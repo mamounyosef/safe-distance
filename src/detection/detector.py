@@ -7,9 +7,60 @@ pixel bounding boxes. It knows nothing about tracking, distance or collisions.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from pathlib import Path
 
 import numpy as np
-from ultralytics import YOLO
+from ultralytics import YOLO, YOLOE
+from ultralytics.utils import SETTINGS
+
+# Ultralytics looks for helper downloads (such as YOLOE's text encoder) in its
+# configured weights directory, so point that at our own weights/ folder.
+WEIGHTS_DIR = Path(__file__).resolve().parents[2] / "weights"
+if SETTINGS.get("weights_dir") != str(WEIGHTS_DIR):
+    SETTINGS["weights_dir"] = str(WEIGHTS_DIR)
+
+# Words handed to YOLOE when open-vocabulary mode is used. Unlike the fixed
+# COCO list below, these can be anything: the model matches image regions
+# against the text itself, so adding a hazard costs nothing but a word.
+#
+# Wording matters: these were picked by testing alternatives on real frames.
+# "construction barrier" beat "road barrier", "obstacle" and "roadblock" on
+# the orange water-filled barriers found at roadworks. Abstract words such as
+# "obstacle" match poorly, because there is no consistent visual concept
+# behind them; concrete nouns work far better.
+ROAD_PROMPTS: list[str] = [
+    "car",
+    "van",
+    "truck",
+    "bus",
+    "motorcycle",
+    "bicycle",
+    "person",
+    "traffic cone",
+    "construction barrier",
+    "traffic barricade",
+    "animal",
+    # Generic hazard words that tested clean (small boxes, never the road):
+    "obstacle",
+    "box",
+    "bucket",
+]
+# Tested and rejected on real crash footage:
+#   "debris", "rock", "metal scrap", "bumper", "car door", "obstacle"
+#       never fired at all, at any resolution.
+#   "object on road" matched the ROAD SURFACE, producing boxes covering 45%
+#       of the frame. Generic phrases containing a scene word are dangerous:
+#       the model happily matches the scene rather than the object. Note that
+#       bare "obstacle" is fine and is kept above; it is the words "on road"
+#       that drag the match onto the road surface itself.
+#   "car wreck", "wreckage", "tire" fired weakly (0.08 to 0.13) and
+#       inconsistently, not enough to rely on.
+#   "road barrier" lost to "construction barrier".
+# Lesson: judge a prompt by the box it draws, not by its confidence score.
+# Conclusion: no prompt reliably detects scattered crash debris. The gap is
+# semantic, not a lack of pixels, so raising resolution does not help either.
+# Closing it needs a class-agnostic obstacle check (is something solid
+# sticking up off the road surface?), not a better word.
 
 # COCO (Common Objects in Context) class ids we care about by name, because
 # the rest of the pipeline treats them differently: a pedestrian gets a wider
@@ -104,6 +155,15 @@ class Detector:
         max_det: maximum detections reported per frame.
         classes: mapping of class id to name for the classes we label by name.
             Every other class the model reports is kept as OTHER_CLASS.
+            Ignored in open-vocabulary mode, where the prompts are the names.
+        prompts: word list for open-vocabulary mode. Only used when the
+            weights are a YOLOE model, which is detected from the filename.
+
+    Open-vocabulary mode: a normal YOLO model has a fixed list of 80 class
+    slots baked into its final layer, so an object with no slot (a traffic
+    cone, debris) can never be reported. A YOLOE model instead compares image
+    regions against text you supply at runtime, so the vocabulary is whatever
+    words you pass in. It costs accuracy on the common classes and some speed.
     """
 
     def __init__(
@@ -115,8 +175,18 @@ class Detector:
         half: bool = True,
         max_det: int = 300,
         classes: dict[int, str] | None = None,
+        prompts: list[str] | None = None,
     ) -> None:
-        self.model = YOLO(weights)
+        self.open_vocab = "yoloe" in Path(weights).name.lower()
+        if self.open_vocab:
+            self.model = YOLOE(weights)
+            self.prompts = ROAD_PROMPTS if prompts is None else prompts
+            # Encoding the words is a one-off cost of tens of seconds, paid
+            # here at startup rather than per frame.
+            self.model.set_classes(self.prompts)
+        else:
+            self.model = YOLO(weights)
+            self.prompts = None
         self.device = device
         self.conf = conf
         self.imgsz = imgsz
@@ -148,6 +218,17 @@ class Detector:
         )
         return self._parse(results[0])
 
+    def _name_for(self, class_id: int, result) -> str:
+        """Label for a class id.
+
+        In open-vocabulary mode the model's own names are the prompts we gave
+        it, so they are used directly. Otherwise we keep our short named list
+        and fold everything else into OTHER_CLASS.
+        """
+        if self.open_vocab:
+            return result.names[class_id]
+        return self.classes.get(class_id, OTHER_CLASS)
+
     def _parse(self, result) -> list[Detection]:
         """Convert one Ultralytics Results object into our own Detection list."""
         boxes = result.boxes
@@ -173,7 +254,7 @@ class Detector:
                     x2=float(x2),
                     y2=float(y2),
                     class_id=class_id,
-                    class_name=self.classes.get(class_id, OTHER_CLASS),
+                    class_name=self._name_for(class_id, result),
                     confidence=float(confs[i]),
                     track_id=int(track_ids[i]) if track_ids is not None else None,
                     mask=masks[i] if masks is not None else None,

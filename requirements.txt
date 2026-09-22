@@ -1,0 +1,15 @@
+# Install torch first, from the CUDA index, or pip will fetch the CPU build:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+# Then:
+#   pip install -r requirements.txt
+torch==2.6.0+cu124
+torchvision==0.21.0+cu124
+
+ultralytics==8.4.155
+opencv-python==5.0.0.93
+numpy==2.5.2
+
+# Used by scripts/download_lost_and_found.py to pull single scenes out of the
+# 6 GB dataset archives without downloading them whole.
+remotezip==0.12.6
+requests==2.34.2

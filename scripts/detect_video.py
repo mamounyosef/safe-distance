@@ -28,8 +28,9 @@ from src.detection.detector import OTHER_CLASS, Detector
 # CONFIG
 # ----------------------------------------------------------------------------
 
-# Input video.
-SOURCE = r"C:\Users\mamou\Videos\2026-09-21 20-45-12.mp4"
+# Input video. This one is Lost and Found scene 04: real obstacles placed on
+# the road, built from the dataset frames by scripts/frames_to_video.py.
+SOURCE = "data/videos/lost_and_found_04.mp4"
 
 # Annotated output video.
 OUTPUT = "out/detected.mp4"
@@ -37,7 +38,12 @@ OUTPUT = "out/detected.mp4"
 # Checkpoint: yolo26n / s / m / l / x .pt, fastest to most accurate.
 # Add "-seg" (yolo26s-seg.pt) for segmentation: gives a pixel outline per
 # object, so the road contact point lands on a tyre instead of a box corner.
-WEIGHTS = "weights/yolo26s-seg.pt"
+# Use "weights/yoloe-11s-seg.pt" for open-vocabulary mode, where the classes
+# are the words in ROAD_PROMPTS (src/detection/detector.py) instead of the
+# fixed COCO 80. That one finds traffic cones and barriers; COCO cannot.
+
+# "weights/yoloe-11s-seg.pt" or "weights/yolo26s-seg.pt"
+WEIGHTS = "weights/yoloe-11s-seg.pt"
 
 # How strongly segmentation masks are tinted, 0.0 to 1.0. No effect on boxes.
 MASK_ALPHA = 0.4
@@ -47,11 +53,13 @@ DEVICE = "cuda"
 
 # Longest side fed to the model, multiple of 32. Aspect ratio is kept by
 # padding (letterboxing), so 1920x1080 at 640 becomes 640x384.
-# Higher sees distant objects better; cost scales with the square. 640/960/1280.
+# Measured on this clip: 640 and 960 both ~21 ms, 1280 ~26 ms, so we are not
+# GPU-bound at the low end and 1280 is nearly free. At 640 the roadworks
+# barriers are invisible; at 1280 they are detected. 640/960/1280.
 IMGSZ = 960
 
 # Minimum confidence, 0.0 to 1.0. Lower catches more but flickers.
-CONF = 0.4
+CONF = 0.05
 
 # FP16 (16-bit floating point): 1.5 to 2x faster on GPU, ignored on CPU.
 HALF = True
@@ -80,11 +88,21 @@ COLOURS: dict[str, tuple[int, int, int]] = {
     "bicycle": (0, 200, 255),
     "motorcycle": (0, 200, 255),
     "car": (0, 255, 0),
+    "van": (0, 255, 0),
     "bus": (0, 255, 0),
     "truck": (0, 255, 0),
     "train": (0, 255, 0),
     "cat": (255, 200, 0),
     "dog": (255, 200, 0),
+    "animal": (255, 200, 0),
+    # Open-vocabulary hazards, drawn in magenta so they stand out.
+    # These names must match ROAD_PROMPTS in src/detection/detector.py.
+    "traffic cone": (255, 0, 255),
+    "construction barrier": (255, 0, 255),
+    "traffic barricade": (255, 0, 255),
+    "obstacle": (255, 0, 255),
+    "box": (255, 0, 255),
+    "bucket": (255, 0, 255),
     OTHER_CLASS: (160, 160, 160),
 }
 

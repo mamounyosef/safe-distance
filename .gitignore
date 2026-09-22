@@ -221,3 +221,9 @@ __marimo__/
 weights/
 out/
 *.pt
+
+# Text encoder downloaded by YOLOE
+mobileclip_blt.ts
+
+# Datasets
+data/
