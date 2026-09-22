@@ -5,7 +5,7 @@ It exists to prove detection is stable across frames and to measure speed.
 
 RUN IT (from the repo root, D:\\My Projects\\safe-distance):
 
-    .venv\\Scripts\\python.exe scripts\\detect_video.py
+    .venv\\Scripts\\python.exe src\\detection\\scripts\\detect_video.py
 
 Every setting lives in the CONFIG block below. Edit it there and re-run.
 """
@@ -20,7 +20,9 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+# Make the repo root importable, so "src.detection" resolves when this file
+# is run directly. This file is at src/detection/scripts/, three levels down.
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from src.detection.detector import OTHER_CLASS, Detector
 
@@ -103,6 +105,7 @@ COLOURS: dict[str, tuple[int, int, int]] = {
     "obstacle": (255, 0, 255),
     "box": (255, 0, 255),
     "bucket": (255, 0, 255),
+    "ball": (255, 0, 255),
     OTHER_CLASS: (160, 160, 160),
 }
 

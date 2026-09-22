@@ -23,11 +23,11 @@ if SETTINGS.get("weights_dir") != str(WEIGHTS_DIR):
 # COCO list below, these can be anything: the model matches image regions
 # against the text itself, so adding a hazard costs nothing but a word.
 #
-# Wording matters: these were picked by testing alternatives on real frames.
-# "construction barrier" beat "road barrier", "obstacle" and "roadblock" on
-# the orange water-filled barriers found at roadworks. Abstract words such as
-# "obstacle" match poorly, because there is no consistent visual concept
-# behind them; concrete nouns work far better.
+# Wording matters: these were picked by testing alternatives on real frames
+# and on the Lost and Found benchmark (src/detection/benchmarks/lost_and_found).
+# "construction barrier" beat "road barrier" and "roadblock" on the orange
+# water-filled barriers found at roadworks. Specific nouns generally beat
+# generic ones, though bare "obstacle" still earns its place.
 ROAD_PROMPTS: list[str] = [
     "car",
     "van",
@@ -40,6 +40,12 @@ ROAD_PROMPTS: list[str] = [
     "construction barrier",
     "traffic barricade",
     "animal",
+    # Specific nouns beat generic ones: with only "animal", YOLOE found 30 to
+    # 36% of dogs on Lost and Found while YOLO26 (exact COCO "dog") found 49
+    # to 55%, so the specific words are listed too.
+    "dog",
+    "cat",
+    "ball",
     # Generic hazard words that tested clean (small boxes, never the road):
     "obstacle",
     "box",

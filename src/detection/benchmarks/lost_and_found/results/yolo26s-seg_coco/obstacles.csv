@@ -1,0 +1,1725 @@
+frame,label,type,group,distance_m,box_height_px,best_iou,best_conf
+02_Hanns_Klemm_Str_44_000000_000020,05,"crate (gray, 2x stacked)",standard objects,62.8,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000000_000030,05,"crate (gray, 2x stacked)",standard objects,61.07,12.0,0.852,0.075
+02_Hanns_Klemm_Str_44_000000_000040,05,"crate (gray, 2x stacked)",standard objects,57.82,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000000_000050,05,"crate (gray, 2x stacked)",standard objects,55.46,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000000_000060,05,"crate (gray, 2x stacked)",standard objects,53.3,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000000_000070,05,"crate (gray, 2x stacked)",standard objects,50.07,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000000_000080,05,"crate (gray, 2x stacked)",standard objects,46.68,17.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000000_000090,05,"crate (gray, 2x stacked)",standard objects,43.3,17.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000000_000100,05,"crate (gray, 2x stacked)",standard objects,39.82,19.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000000_000110,05,"crate (gray, 2x stacked)",standard objects,35.36,21.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000000_000120,05,"crate (gray, 2x stacked)",standard objects,30.89,24.0,0.907,0.058
+02_Hanns_Klemm_Str_44_000000_000130,05,"crate (gray, 2x stacked)",standard objects,26.44,29.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000000_000140,05,"crate (gray, 2x stacked)",standard objects,22.13,34.0,0.942,0.18
+02_Hanns_Klemm_Str_44_000000_000150,05,"crate (gray, 2x stacked)",standard objects,18.09,44.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000000_000160,05,"crate (gray, 2x stacked)",standard objects,14.09,56.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000000_000170,05,"crate (gray, 2x stacked)",standard objects,10.47,76.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000000_000180,05,"crate (gray, 2x stacked)",standard objects,7.16,120.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000020,05,"crate (gray, 2x stacked)",standard objects,60.81,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000020,04,crate (gray),standard objects,60.19,7.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000030,05,"crate (gray, 2x stacked)",standard objects,59.63,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000030,04,crate (gray),standard objects,59.2,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000040,05,"crate (gray, 2x stacked)",standard objects,59.22,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000040,04,crate (gray),standard objects,57.15,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000050,05,"crate (gray, 2x stacked)",standard objects,55.41,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000050,04,crate (gray),standard objects,55.36,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000060,05,"crate (gray, 2x stacked)",standard objects,53.08,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000060,04,crate (gray),standard objects,53.39,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000070,05,"crate (gray, 2x stacked)",standard objects,52.46,15.0,0.495,0.06
+02_Hanns_Klemm_Str_44_000001_000070,04,crate (gray),standard objects,51.45,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000080,05,"crate (gray, 2x stacked)",standard objects,49.69,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000080,04,crate (gray),standard objects,49.94,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000090,05,"crate (gray, 2x stacked)",standard objects,48.22,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000090,04,crate (gray),standard objects,47.53,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000100,05,"crate (gray, 2x stacked)",standard objects,44.2,18.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000100,04,crate (gray),standard objects,44.53,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000110,05,"crate (gray, 2x stacked)",standard objects,42.03,18.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000110,04,crate (gray),standard objects,41.68,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000120,05,"crate (gray, 2x stacked)",standard objects,37.86,19.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000120,04,crate (gray),standard objects,38.76,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000130,05,"crate (gray, 2x stacked)",standard objects,35.13,22.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000130,04,crate (gray),standard objects,35.11,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000140,05,"crate (gray, 2x stacked)",standard objects,31.16,25.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000140,04,crate (gray),standard objects,31.42,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000150,05,"crate (gray, 2x stacked)",standard objects,27.29,28.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000150,04,crate (gray),standard objects,27.53,17.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000160,05,"crate (gray, 2x stacked)",standard objects,23.13,33.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000160,04,crate (gray),standard objects,23.54,19.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000170,05,"crate (gray, 2x stacked)",standard objects,19.38,41.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000170,04,crate (gray),standard objects,19.65,25.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000180,05,"crate (gray, 2x stacked)",standard objects,15.19,53.0,0.93,0.15
+02_Hanns_Klemm_Str_44_000001_000180,04,crate (gray),standard objects,15.51,32.0,0.963,0.264
+02_Hanns_Klemm_Str_44_000001_000190,05,"crate (gray, 2x stacked)",standard objects,11.46,72.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000190,04,crate (gray),standard objects,11.63,44.0,0.922,0.173
+02_Hanns_Klemm_Str_44_000001_000200,05,"crate (gray, 2x stacked)",standard objects,7.93,105.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000001_000200,04,crate (gray),standard objects,7.99,70.0,0.95,0.088
+02_Hanns_Klemm_Str_44_000002_000020,02,"crate (black, 2x stacked)",standard objects,62.46,23.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000020,01,crate (black),standard objects,61.57,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000030,01,crate (black),standard objects,60.22,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000030,02,"crate (black, 2x stacked)",standard objects,60.63,23.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000040,02,"crate (black, 2x stacked)",standard objects,58.42,23.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000040,01,crate (black),standard objects,57.87,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000050,02,"crate (black, 2x stacked)",standard objects,56.85,25.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000050,01,crate (black),standard objects,54.98,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000060,02,"crate (black, 2x stacked)",standard objects,52.31,26.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000060,01,crate (black),standard objects,53.96,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000070,02,"crate (black, 2x stacked)",standard objects,50.86,26.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000070,01,crate (black),standard objects,50.19,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000080,02,"crate (black, 2x stacked)",standard objects,49.14,28.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000080,01,crate (black),standard objects,48.2,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000090,02,"crate (black, 2x stacked)",standard objects,44.0,31.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000090,01,crate (black),standard objects,43.92,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000100,02,"crate (black, 2x stacked)",standard objects,41.72,33.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000100,01,crate (black),standard objects,41.44,16.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000110,01,crate (black),standard objects,37.13,19.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000110,02,"crate (black, 2x stacked)",standard objects,36.89,37.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000120,01,crate (black),standard objects,33.73,19.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000120,02,"crate (black, 2x stacked)",standard objects,33.43,40.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000130,02,"crate (black, 2x stacked)",standard objects,28.86,47.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000130,01,crate (black),standard objects,28.82,21.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000140,02,"crate (black, 2x stacked)",standard objects,25.01,55.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000140,01,crate (black),standard objects,24.9,26.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000150,02,"crate (black, 2x stacked)",standard objects,20.4,67.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000150,01,crate (black),standard objects,20.54,34.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000160,02,"crate (black, 2x stacked)",standard objects,15.94,87.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000160,01,crate (black),standard objects,16.07,42.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000170,02,"crate (black, 2x stacked)",standard objects,11.89,120.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000170,01,crate (black),standard objects,12.01,59.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000180,02,"crate (black, 2x stacked)",standard objects,8.2,172.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000002_000180,01,crate (black),standard objects,8.27,87.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000020,20,tire,random hazards,62.98,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000020,34,styrofoam,random hazards,63.42,6.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000030,20,tire,random hazards,61.95,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000030,34,styrofoam,random hazards,62.31,6.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000040,20,tire,random hazards,59.91,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000040,34,styrofoam,random hazards,60.36,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000050,20,tire,random hazards,55.48,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000050,34,styrofoam,random hazards,55.62,7.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000060,20,tire,random hazards,54.2,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000060,34,styrofoam,random hazards,52.78,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000070,20,tire,random hazards,52.37,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000070,34,styrofoam,random hazards,50.6,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000080,20,tire,random hazards,47.58,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000080,34,styrofoam,random hazards,47.81,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000090,20,tire,random hazards,43.81,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000090,34,styrofoam,random hazards,43.42,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000100,20,tire,random hazards,39.29,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000100,34,styrofoam,random hazards,39.63,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000110,20,tire,random hazards,36.09,17.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000110,34,styrofoam,random hazards,35.85,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000120,20,tire,random hazards,30.76,19.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000120,34,styrofoam,random hazards,31.61,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000130,20,tire,random hazards,26.6,22.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000130,34,styrofoam,random hazards,26.75,16.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000140,20,tire,random hazards,22.01,27.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000140,34,styrofoam,random hazards,22.25,19.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000150,20,tire,random hazards,17.27,36.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000150,34,styrofoam,random hazards,17.54,25.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000160,20,tire,random hazards,12.73,50.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000160,34,styrofoam,random hazards,13.05,37.0,0.917,0.055
+02_Hanns_Klemm_Str_44_000003_000170,20,tire,random hazards,8.62,79.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000003_000170,34,styrofoam,random hazards,8.85,57.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000020,08,cardboard box,random hazards,60.42,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000020,13,exhaust pipe,random hazards,60.3,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000030,08,cardboard box,random hazards,60.3,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000030,13,exhaust pipe,random hazards,59.91,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000040,08,cardboard box,random hazards,57.89,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000040,13,exhaust pipe,random hazards,58.98,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000050,08,cardboard box,random hazards,56.01,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000050,13,exhaust pipe,random hazards,56.11,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000060,08,cardboard box,random hazards,53.48,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000060,13,exhaust pipe,random hazards,52.82,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000070,08,cardboard box,random hazards,50.62,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000070,13,exhaust pipe,random hazards,51.21,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000080,08,cardboard box,random hazards,47.51,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000080,13,exhaust pipe,random hazards,49.03,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000090,08,cardboard box,random hazards,44.11,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000090,13,exhaust pipe,random hazards,44.23,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000100,13,exhaust pipe,random hazards,40.54,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000100,08,cardboard box,random hazards,40.37,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000110,08,cardboard box,random hazards,36.64,16.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000110,13,exhaust pipe,random hazards,37.18,16.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000120,08,cardboard box,random hazards,32.29,18.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000120,13,exhaust pipe,random hazards,33.0,19.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000130,08,cardboard box,random hazards,28.11,20.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000130,13,exhaust pipe,random hazards,28.89,22.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000140,08,cardboard box,random hazards,24.19,25.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000140,13,exhaust pipe,random hazards,24.75,26.0,0.936,0.158
+02_Hanns_Klemm_Str_44_000005_000150,08,cardboard box,random hazards,20.45,30.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000150,13,exhaust pipe,random hazards,20.89,31.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000160,08,cardboard box,random hazards,16.67,37.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000160,13,exhaust pipe,random hazards,17.14,40.0,0.906,0.099
+02_Hanns_Klemm_Str_44_000005_000170,08,cardboard box,random hazards,12.98,47.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000170,13,exhaust pipe,random hazards,13.61,50.0,0.962,0.068
+02_Hanns_Klemm_Str_44_000005_000180,08,cardboard box,random hazards,9.69,63.0,0.935,0.157
+02_Hanns_Klemm_Str_44_000005_000180,13,exhaust pipe,random hazards,10.26,65.0,0.892,0.4
+02_Hanns_Klemm_Str_44_000005_000190,08,cardboard box,random hazards,6.74,96.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000005_000190,13,exhaust pipe,random hazards,7.25,97.0,0.979,0.114
+02_Hanns_Klemm_Str_44_000006_000020,13,exhaust pipe,random hazards,37.16,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000020,08,cardboard box,random hazards,54.63,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000030,13,exhaust pipe,random hazards,47.44,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000030,08,cardboard box,random hazards,51.8,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000040,13,exhaust pipe,random hazards,54.13,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000040,08,cardboard box,random hazards,51.6,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000050,13,exhaust pipe,random hazards,48.86,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000050,08,cardboard box,random hazards,50.62,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000060,13,exhaust pipe,random hazards,48.29,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000060,08,cardboard box,random hazards,49.59,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000070,13,exhaust pipe,random hazards,46.95,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000070,08,cardboard box,random hazards,45.26,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000080,13,exhaust pipe,random hazards,43.45,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000080,08,cardboard box,random hazards,42.84,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000090,13,exhaust pipe,random hazards,40.47,16.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000090,08,cardboard box,random hazards,39.91,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000100,13,exhaust pipe,random hazards,37.2,18.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000100,08,cardboard box,random hazards,37.12,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000110,13,exhaust pipe,random hazards,34.67,18.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000110,08,cardboard box,random hazards,34.35,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000120,13,exhaust pipe,random hazards,31.32,21.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000120,08,cardboard box,random hazards,30.81,18.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000130,13,exhaust pipe,random hazards,28.35,24.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000130,08,cardboard box,random hazards,27.67,20.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000140,13,exhaust pipe,random hazards,24.82,29.0,0.927,0.155
+02_Hanns_Klemm_Str_44_000006_000140,08,cardboard box,random hazards,24.61,22.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000150,13,exhaust pipe,random hazards,21.58,33.0,0.983,0.496
+02_Hanns_Klemm_Str_44_000006_000150,08,cardboard box,random hazards,21.27,27.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000160,13,exhaust pipe,random hazards,18.26,40.0,0.919,0.203
+02_Hanns_Klemm_Str_44_000006_000160,08,cardboard box,random hazards,17.87,32.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000170,13,exhaust pipe,random hazards,14.58,50.0,0.958,0.082
+02_Hanns_Klemm_Str_44_000006_000170,08,cardboard box,random hazards,14.29,39.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000180,08,cardboard box,random hazards,10.69,55.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000006_000180,13,exhaust pipe,random hazards,11.04,71.0,0.952,0.076
+02_Hanns_Klemm_Str_44_000006_000190,13,exhaust pipe,random hazards,7.59,113.0,0.969,0.078
+02_Hanns_Klemm_Str_44_000006_000190,08,cardboard box,random hazards,7.34,82.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000020,20,tire,random hazards,59.06,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000030,20,tire,random hazards,57.95,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000040,20,tire,random hazards,56.75,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000050,20,tire,random hazards,55.55,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000060,20,tire,random hazards,53.08,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000070,20,tire,random hazards,53.79,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000080,20,tire,random hazards,53.13,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000090,20,tire,random hazards,52.94,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000100,20,tire,random hazards,51.14,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000110,20,tire,random hazards,47.86,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000120,20,tire,random hazards,43.31,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000130,20,tire,random hazards,40.1,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000140,20,tire,random hazards,38.17,16.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000150,20,tire,random hazards,34.94,17.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000160,20,tire,random hazards,32.51,18.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000170,20,tire,random hazards,30.21,21.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000180,20,tire,random hazards,26.56,24.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000190,20,tire,random hazards,23.46,25.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000200,20,tire,random hazards,20.28,30.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000007_000210,20,tire,random hazards,17.09,36.0,0.921,0.186
+02_Hanns_Klemm_Str_44_000007_000220,20,tire,random hazards,13.72,43.0,0.951,0.258
+02_Hanns_Klemm_Str_44_000007_000230,20,tire,random hazards,10.22,62.0,0.959,0.069
+02_Hanns_Klemm_Str_44_000007_000240,20,tire,random hazards,7.22,95.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000020,20,tire,random hazards,64.43,7.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000030,20,tire,random hazards,63.68,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000040,20,tire,random hazards,61.92,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000050,20,tire,random hazards,60.08,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000060,20,tire,random hazards,65.15,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000070,20,tire,random hazards,60.9,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000080,20,tire,random hazards,55.38,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000090,20,tire,random hazards,51.1,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000100,20,tire,random hazards,48.27,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000110,20,tire,random hazards,45.28,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000120,20,tire,random hazards,40.77,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000130,20,tire,random hazards,38.17,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000140,20,tire,random hazards,34.28,17.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000150,20,tire,random hazards,30.6,21.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000160,20,tire,random hazards,26.35,21.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000170,20,tire,random hazards,22.88,26.0,0.931,0.053
+02_Hanns_Klemm_Str_44_000008_000180,20,tire,random hazards,19.12,32.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000190,20,tire,random hazards,15.63,41.0,0.968,0.06
+02_Hanns_Klemm_Str_44_000008_000200,20,tire,random hazards,11.87,54.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000008_000210,20,tire,random hazards,8.44,80.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000020,02,"crate (black, 2x stacked)",standard objects,67.22,20.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000020,01,crate (black),standard objects,67.71,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000030,02,"crate (black, 2x stacked)",standard objects,64.53,20.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000030,01,crate (black),standard objects,66.25,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000040,02,"crate (black, 2x stacked)",standard objects,64.27,20.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000040,01,crate (black),standard objects,65.68,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000050,02,"crate (black, 2x stacked)",standard objects,63.23,20.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000050,01,crate (black),standard objects,64.17,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000060,02,"crate (black, 2x stacked)",standard objects,63.11,21.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000060,01,crate (black),standard objects,63.45,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000070,02,"crate (black, 2x stacked)",standard objects,63.01,22.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000070,01,crate (black),standard objects,61.19,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000080,02,"crate (black, 2x stacked)",standard objects,60.87,23.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000080,01,crate (black),standard objects,61.42,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000090,02,"crate (black, 2x stacked)",standard objects,58.71,23.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000090,01,crate (black),standard objects,59.33,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000100,02,"crate (black, 2x stacked)",standard objects,54.7,25.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000100,01,crate (black),standard objects,55.84,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000110,02,"crate (black, 2x stacked)",standard objects,50.97,26.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000110,01,crate (black),standard objects,51.87,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000120,02,"crate (black, 2x stacked)",standard objects,48.38,29.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000120,01,crate (black),standard objects,48.42,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000130,02,"crate (black, 2x stacked)",standard objects,44.14,30.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000130,01,crate (black),standard objects,45.63,17.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000140,02,"crate (black, 2x stacked)",standard objects,41.65,33.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000140,01,crate (black),standard objects,40.77,18.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000150,02,"crate (black, 2x stacked)",standard objects,37.31,36.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000150,01,crate (black),standard objects,37.96,19.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000160,02,"crate (black, 2x stacked)",standard objects,34.93,40.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000160,01,crate (black),standard objects,34.37,21.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000170,02,"crate (black, 2x stacked)",standard objects,30.75,48.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000170,01,crate (black),standard objects,30.76,23.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000180,02,"crate (black, 2x stacked)",standard objects,26.13,52.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000180,01,crate (black),standard objects,26.49,27.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000190,02,"crate (black, 2x stacked)",standard objects,22.58,65.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000190,01,crate (black),standard objects,22.63,31.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000200,02,"crate (black, 2x stacked)",standard objects,17.93,78.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000200,01,crate (black),standard objects,18.04,38.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000210,02,"crate (black, 2x stacked)",standard objects,13.54,103.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000210,01,crate (black),standard objects,13.69,52.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000220,02,"crate (black, 2x stacked)",standard objects,9.63,147.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000220,01,crate (black),standard objects,9.7,75.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000230,02,"crate (black, 2x stacked)",standard objects,6.35,227.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000009_000230,01,crate (black),standard objects,6.48,117.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000020,05,"crate (gray, 2x stacked)",standard objects,64.79,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000020,04,crate (gray),standard objects,67.57,6.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000030,05,"crate (gray, 2x stacked)",standard objects,64.43,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000030,04,crate (gray),standard objects,65.18,6.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000040,05,"crate (gray, 2x stacked)",standard objects,62.62,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000040,04,crate (gray),standard objects,62.89,7.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000050,05,"crate (gray, 2x stacked)",standard objects,62.04,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000050,04,crate (gray),standard objects,62.52,6.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000060,05,"crate (gray, 2x stacked)",standard objects,63.08,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000060,04,crate (gray),standard objects,61.76,6.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000070,05,"crate (gray, 2x stacked)",standard objects,60.84,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000070,04,crate (gray),standard objects,59.77,6.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000080,05,"crate (gray, 2x stacked)",standard objects,57.48,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000080,04,crate (gray),standard objects,60.29,7.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000090,05,"crate (gray, 2x stacked)",standard objects,52.16,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000090,04,crate (gray),standard objects,53.68,7.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000100,05,"crate (gray, 2x stacked)",standard objects,49.92,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000100,04,crate (gray),standard objects,49.65,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000110,05,"crate (gray, 2x stacked)",standard objects,47.6,16.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000110,04,crate (gray),standard objects,46.92,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000120,05,"crate (gray, 2x stacked)",standard objects,42.63,16.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000120,04,crate (gray),standard objects,43.28,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000130,05,"crate (gray, 2x stacked)",standard objects,39.37,19.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000130,04,crate (gray),standard objects,40.32,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000140,05,"crate (gray, 2x stacked)",standard objects,35.62,19.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000140,04,crate (gray),standard objects,36.16,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000150,05,"crate (gray, 2x stacked)",standard objects,31.29,22.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000150,04,crate (gray),standard objects,31.73,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000160,05,"crate (gray, 2x stacked)",standard objects,27.84,29.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000160,04,crate (gray),standard objects,27.92,18.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000170,05,"crate (gray, 2x stacked)",standard objects,23.53,30.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000170,04,crate (gray),standard objects,24.02,21.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000180,05,"crate (gray, 2x stacked)",standard objects,19.59,39.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000180,04,crate (gray),standard objects,19.84,24.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000190,05,"crate (gray, 2x stacked)",standard objects,15.6,50.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000190,04,crate (gray),standard objects,15.8,30.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000200,04,crate (gray),standard objects,11.64,43.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000200,05,"crate (gray, 2x stacked)",standard objects,11.48,66.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000210,05,"crate (gray, 2x stacked)",standard objects,7.7,108.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000010_000210,04,crate (gray),standard objects,7.86,73.0,0.907,0.088
+02_Hanns_Klemm_Str_44_000011_000030,23,dog (black),emotional hazards,71.94,17.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000040,23,dog (black),emotional hazards,72.47,16.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000050,23,dog (black),emotional hazards,78.99,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000060,23,dog (black),emotional hazards,74.86,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000070,23,dog (black),emotional hazards,69.84,17.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000080,23,dog (black),emotional hazards,70.68,16.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000090,23,dog (black),emotional hazards,68.32,18.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000100,23,dog (black),emotional hazards,70.29,20.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000110,23,dog (black),emotional hazards,61.72,19.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000120,23,dog (black),emotional hazards,54.66,21.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000130,23,dog (black),emotional hazards,48.8,23.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000140,23,dog (black),emotional hazards,45.2,24.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000150,23,dog (black),emotional hazards,40.74,26.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000160,23,dog (black),emotional hazards,36.3,29.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000170,23,dog (black),emotional hazards,32.42,31.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000180,23,dog (black),emotional hazards,28.69,36.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000190,23,dog (black),emotional hazards,25.13,42.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000011_000200,23,dog (black),emotional hazards,21.3,46.0,0.61,0.686
+02_Hanns_Klemm_Str_44_000011_000210,23,dog (black),emotional hazards,18.03,57.0,0.639,0.604
+02_Hanns_Klemm_Str_44_000011_000220,23,dog (black),emotional hazards,14.78,71.0,0.979,0.842
+02_Hanns_Klemm_Str_44_000011_000230,23,dog (black),emotional hazards,11.62,90.0,0.953,0.864
+02_Hanns_Klemm_Str_44_000011_000240,23,dog (black),emotional hazards,8.99,118.0,0.946,0.928
+02_Hanns_Klemm_Str_44_000012_000020,24,dog (white),emotional hazards,72.59,7.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000030,24,dog (white),emotional hazards,72.63,6.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000040,24,dog (white),emotional hazards,73.0,7.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000050,24,dog (white),emotional hazards,67.6,7.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000060,24,dog (white),emotional hazards,67.71,7.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000070,24,dog (white),emotional hazards,63.2,7.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000080,24,dog (white),emotional hazards,61.16,7.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000090,24,dog (white),emotional hazards,59.36,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000100,24,dog (white),emotional hazards,56.87,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000110,24,dog (white),emotional hazards,51.39,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000120,24,dog (white),emotional hazards,47.72,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000130,24,dog (white),emotional hazards,42.51,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000140,24,dog (white),emotional hazards,40.54,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000150,24,dog (white),emotional hazards,35.33,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000160,24,dog (white),emotional hazards,30.94,18.0,0.895,0.095
+02_Hanns_Klemm_Str_44_000012_000170,24,dog (white),emotional hazards,26.63,23.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000012_000180,24,dog (white),emotional hazards,22.21,31.0,0.813,0.479
+02_Hanns_Klemm_Str_44_000012_000190,24,dog (white),emotional hazards,17.9,47.0,0.746,0.722
+02_Hanns_Klemm_Str_44_000012_000200,24,dog (white),emotional hazards,13.31,59.0,0.831,0.699
+02_Hanns_Klemm_Str_44_000013_000020,26,bobby car (gray),emotional hazards,67.11,13.0,0.773,0.074
+02_Hanns_Klemm_Str_44_000013_000030,26,bobby car (gray),emotional hazards,66.59,13.0,0.682,0.089
+02_Hanns_Klemm_Str_44_000013_000040,26,bobby car (gray),emotional hazards,64.62,13.0,0.799,0.086
+02_Hanns_Klemm_Str_44_000013_000050,26,bobby car (gray),emotional hazards,62.94,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000013_000060,26,bobby car (gray),emotional hazards,62.56,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000013_000070,26,bobby car (gray),emotional hazards,63.54,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000013_000080,26,bobby car (gray),emotional hazards,60.93,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000013_000090,26,bobby car (gray),emotional hazards,59.69,16.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000013_000100,26,bobby car (gray),emotional hazards,54.49,17.0,0.843,0.229
+02_Hanns_Klemm_Str_44_000013_000110,26,bobby car (gray),emotional hazards,51.04,16.0,0.785,0.208
+02_Hanns_Klemm_Str_44_000013_000120,26,bobby car (gray),emotional hazards,48.53,18.0,0.846,0.148
+02_Hanns_Klemm_Str_44_000013_000130,26,bobby car (gray),emotional hazards,44.62,19.0,0.943,0.248
+02_Hanns_Klemm_Str_44_000013_000140,26,bobby car (gray),emotional hazards,41.95,21.0,0.861,0.206
+02_Hanns_Klemm_Str_44_000013_000150,26,bobby car (gray),emotional hazards,37.61,24.0,0.893,0.306
+02_Hanns_Klemm_Str_44_000013_000160,26,bobby car (gray),emotional hazards,34.79,27.0,0.888,0.07
+02_Hanns_Klemm_Str_44_000013_000170,26,bobby car (gray),emotional hazards,30.93,30.0,0.802,0.149
+02_Hanns_Klemm_Str_44_000013_000180,26,bobby car (gray),emotional hazards,26.95,33.0,0.911,0.075
+02_Hanns_Klemm_Str_44_000013_000190,26,bobby car (gray),emotional hazards,22.91,40.0,0.928,0.411
+02_Hanns_Klemm_Str_44_000013_000200,26,bobby car (gray),emotional hazards,19.21,50.0,0.927,0.336
+02_Hanns_Klemm_Str_44_000013_000210,26,bobby car (gray),emotional hazards,15.55,61.0,0.939,0.502
+02_Hanns_Klemm_Str_44_000013_000220,26,bobby car (gray),emotional hazards,12.05,81.0,0.95,0.229
+02_Hanns_Klemm_Str_44_000013_000230,26,bobby car (gray),emotional hazards,8.87,112.0,0.945,0.409
+02_Hanns_Klemm_Str_44_000014_000020,27,bobby car (red),emotional hazards,73.67,6.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000030,27,bobby car (red),emotional hazards,76.51,7.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000040,27,bobby car (red),emotional hazards,74.91,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000050,27,bobby car (red),emotional hazards,74.74,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000060,27,bobby car (red),emotional hazards,71.38,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000070,27,bobby car (red),emotional hazards,70.14,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000080,27,bobby car (red),emotional hazards,69.54,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000090,27,bobby car (red),emotional hazards,61.87,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000100,27,bobby car (red),emotional hazards,59.28,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000110,27,bobby car (red),emotional hazards,53.59,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000120,27,bobby car (red),emotional hazards,48.95,16.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000130,27,bobby car (red),emotional hazards,45.05,18.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000140,27,bobby car (red),emotional hazards,41.17,18.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000150,27,bobby car (red),emotional hazards,36.79,21.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000160,27,bobby car (red),emotional hazards,33.43,25.0,0.481,0.078
+02_Hanns_Klemm_Str_44_000014_000170,27,bobby car (red),emotional hazards,29.11,30.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000180,27,bobby car (red),emotional hazards,25.13,36.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000014_000190,27,bobby car (red),emotional hazards,21.31,44.0,0.95,0.155
+02_Hanns_Klemm_Str_44_000014_000200,27,bobby car (red),emotional hazards,17.55,56.0,0.966,0.18
+02_Hanns_Klemm_Str_44_000014_000210,27,bobby car (red),emotional hazards,13.71,72.0,0.97,0.392
+02_Hanns_Klemm_Str_44_000014_000220,27,bobby car (red),emotional hazards,10.26,94.0,0.952,0.106
+02_Hanns_Klemm_Str_44_000015_000050,27,bobby car (red),emotional hazards,52.97,4.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000015_000060,27,bobby car (red),emotional hazards,50.0,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000015_000070,27,bobby car (red),emotional hazards,48.93,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000015_000080,27,bobby car (red),emotional hazards,47.09,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000015_000090,27,bobby car (red),emotional hazards,43.52,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000015_000100,27,bobby car (red),emotional hazards,41.04,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000015_000110,27,bobby car (red),emotional hazards,42.39,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000015_000120,27,bobby car (red),emotional hazards,38.64,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000015_000130,27,bobby car (red),emotional hazards,37.08,16.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000015_000140,27,bobby car (red),emotional hazards,32.17,26.0,0.923,0.054
+02_Hanns_Klemm_Str_44_000015_000150,27,bobby car (red),emotional hazards,28.26,35.0,0.929,0.314
+02_Hanns_Klemm_Str_44_000015_000160,27,bobby car (red),emotional hazards,24.97,39.0,0.651,0.107
+02_Hanns_Klemm_Str_44_000015_000170,27,bobby car (red),emotional hazards,21.07,47.0,0.625,0.07
+02_Hanns_Klemm_Str_44_000015_000180,27,bobby car (red),emotional hazards,17.83,56.0,0.952,0.714
+02_Hanns_Klemm_Str_44_000015_000190,27,bobby car (red),emotional hazards,14.14,67.0,0.967,0.82
+02_Hanns_Klemm_Str_44_000015_000200,27,bobby car (red),emotional hazards,10.82,93.0,0.934,0.858
+02_Hanns_Klemm_Str_44_000015_000210,27,bobby car (red),emotional hazards,7.71,128.0,0.973,0.886
+02_Hanns_Klemm_Str_44_000016_000020,26,bobby car (gray),emotional hazards,45.07,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000016_000030,26,bobby car (gray),emotional hazards,46.33,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000016_000040,26,bobby car (gray),emotional hazards,45.02,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000016_000050,26,bobby car (gray),emotional hazards,44.45,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000016_000060,26,bobby car (gray),emotional hazards,44.07,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000016_000070,26,bobby car (gray),emotional hazards,40.12,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000016_000080,26,bobby car (gray),emotional hazards,38.32,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000016_000090,26,bobby car (gray),emotional hazards,35.41,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000016_000100,26,bobby car (gray),emotional hazards,32.71,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000016_000110,26,bobby car (gray),emotional hazards,29.67,23.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000016_000120,26,bobby car (gray),emotional hazards,25.79,37.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000016_000130,26,bobby car (gray),emotional hazards,22.69,43.0,0.963,0.096
+02_Hanns_Klemm_Str_44_000016_000140,26,bobby car (gray),emotional hazards,19.06,55.0,0.93,0.158
+02_Hanns_Klemm_Str_44_000016_000150,26,bobby car (gray),emotional hazards,15.65,64.0,0.945,0.694
+02_Hanns_Klemm_Str_44_000016_000160,26,bobby car (gray),emotional hazards,12.22,81.0,0.97,0.819
+02_Hanns_Klemm_Str_44_000016_000170,26,bobby car (gray),emotional hazards,9.07,105.0,0.974,0.89
+02_Hanns_Klemm_Str_44_000016_000180,26,bobby car (gray),emotional hazards,6.4,156.0,0.979,0.806
+02_Hanns_Klemm_Str_44_000017_000020,23,dog (black),emotional hazards,51.52,10.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000017_000030,23,dog (black),emotional hazards,49.57,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000017_000040,23,dog (black),emotional hazards,50.29,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000017_000050,23,dog (black),emotional hazards,48.93,13.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000017_000060,23,dog (black),emotional hazards,47.21,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000017_000070,23,dog (black),emotional hazards,43.71,14.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000017_000080,23,dog (black),emotional hazards,42.53,15.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000017_000090,23,dog (black),emotional hazards,37.58,19.0,0.791,0.061
+02_Hanns_Klemm_Str_44_000017_000100,23,dog (black),emotional hazards,34.64,28.0,0.876,0.512
+02_Hanns_Klemm_Str_44_000017_000110,23,dog (black),emotional hazards,30.94,34.0,0.929,0.823
+02_Hanns_Klemm_Str_44_000017_000120,23,dog (black),emotional hazards,26.67,39.0,0.945,0.857
+02_Hanns_Klemm_Str_44_000017_000130,23,dog (black),emotional hazards,22.98,45.0,0.955,0.779
+02_Hanns_Klemm_Str_44_000017_000140,23,dog (black),emotional hazards,19.01,55.0,0.938,0.865
+02_Hanns_Klemm_Str_44_000017_000150,23,dog (black),emotional hazards,15.04,69.0,0.92,0.871
+02_Hanns_Klemm_Str_44_000017_000160,23,dog (black),emotional hazards,11.45,92.0,0.957,0.867
+02_Hanns_Klemm_Str_44_000017_000170,23,dog (black),emotional hazards,7.92,132.0,0.983,0.903
+02_Hanns_Klemm_Str_44_000018_000080,24,dog (white),emotional hazards,27.52,9.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000018_000090,24,dog (white),emotional hazards,46.0,8.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000018_000100,24,dog (white),emotional hazards,43.89,12.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000018_000110,24,dog (white),emotional hazards,42.68,11.0,0.0,0.0
+02_Hanns_Klemm_Str_44_000018_000120,24,dog (white),emotional hazards,37.79,18.0,0.709,0.354
+02_Hanns_Klemm_Str_44_000018_000130,24,dog (white),emotional hazards,35.56,23.0,0.775,0.248
+02_Hanns_Klemm_Str_44_000018_000140,24,dog (white),emotional hazards,31.41,25.0,0.862,0.415
+02_Hanns_Klemm_Str_44_000018_000150,24,dog (white),emotional hazards,27.73,30.0,0.879,0.292
+02_Hanns_Klemm_Str_44_000018_000160,24,dog (white),emotional hazards,24.1,33.0,0.809,0.398
+02_Hanns_Klemm_Str_44_000018_000170,24,dog (white),emotional hazards,20.61,38.0,0.833,0.619
+02_Hanns_Klemm_Str_44_000018_000180,24,dog (white),emotional hazards,16.97,44.0,0.885,0.797
+02_Hanns_Klemm_Str_44_000018_000190,24,dog (white),emotional hazards,13.84,58.0,0.963,0.669
+02_Hanns_Klemm_Str_44_000018_000200,24,dog (white),emotional hazards,10.4,75.0,0.933,0.75
+02_Hanns_Klemm_Str_44_000018_000210,24,dog (white),emotional hazards,6.94,112.0,0.952,0.862
+04_Maurener_Weg_8_000000_000020,06,"crate (gray, upright)",standard objects,71.58,20.0,0.0,0.0
+04_Maurener_Weg_8_000000_000020,04,crate (gray),standard objects,63.54,8.0,0.0,0.0
+04_Maurener_Weg_8_000000_000020,05,"crate (gray, 2x stacked)",standard objects,75.83,11.0,0.0,0.0
+04_Maurener_Weg_8_000000_000030,04,crate (gray),standard objects,62.86,9.0,0.0,0.0
+04_Maurener_Weg_8_000000_000030,05,"crate (gray, 2x stacked)",standard objects,72.3,12.0,0.0,0.0
+04_Maurener_Weg_8_000000_000030,06,"crate (gray, upright)",standard objects,71.32,21.0,0.0,0.0
+04_Maurener_Weg_8_000000_000040,04,crate (gray),standard objects,60.13,9.0,0.0,0.0
+04_Maurener_Weg_8_000000_000040,05,"crate (gray, 2x stacked)",standard objects,67.36,12.0,0.0,0.0
+04_Maurener_Weg_8_000000_000040,06,"crate (gray, upright)",standard objects,68.5,23.0,0.0,0.0
+04_Maurener_Weg_8_000000_000050,04,crate (gray),standard objects,58.18,9.0,0.0,0.0
+04_Maurener_Weg_8_000000_000050,05,"crate (gray, 2x stacked)",standard objects,66.22,13.0,0.0,0.0
+04_Maurener_Weg_8_000000_000050,06,"crate (gray, upright)",standard objects,65.81,22.0,0.0,0.0
+04_Maurener_Weg_8_000000_000060,04,crate (gray),standard objects,54.43,11.0,0.0,0.0
+04_Maurener_Weg_8_000000_000060,05,"crate (gray, 2x stacked)",standard objects,64.3,14.0,0.81,0.114
+04_Maurener_Weg_8_000000_000060,06,"crate (gray, upright)",standard objects,63.29,24.0,0.0,0.0
+04_Maurener_Weg_8_000000_000070,04,crate (gray),standard objects,51.21,11.0,0.0,0.0
+04_Maurener_Weg_8_000000_000070,05,"crate (gray, 2x stacked)",standard objects,60.84,14.0,0.85,0.068
+04_Maurener_Weg_8_000000_000070,06,"crate (gray, upright)",standard objects,59.39,25.0,0.0,0.0
+04_Maurener_Weg_8_000000_000080,04,crate (gray),standard objects,47.49,11.0,0.0,0.0
+04_Maurener_Weg_8_000000_000080,05,"crate (gray, 2x stacked)",standard objects,55.74,15.0,0.866,0.091
+04_Maurener_Weg_8_000000_000080,06,"crate (gray, upright)",standard objects,54.06,28.0,0.0,0.0
+04_Maurener_Weg_8_000000_000090,04,crate (gray),standard objects,42.58,13.0,0.0,0.0
+04_Maurener_Weg_8_000000_000090,05,"crate (gray, 2x stacked)",standard objects,51.78,18.0,0.847,0.116
+04_Maurener_Weg_8_000000_000090,06,"crate (gray, upright)",standard objects,51.57,28.0,0.0,0.0
+04_Maurener_Weg_8_000000_000100,04,crate (gray),standard objects,36.89,14.0,0.0,0.0
+04_Maurener_Weg_8_000000_000100,05,"crate (gray, 2x stacked)",standard objects,48.86,19.0,0.914,0.072
+04_Maurener_Weg_8_000000_000100,06,"crate (gray, upright)",standard objects,47.28,31.0,0.0,0.0
+04_Maurener_Weg_8_000000_000110,04,crate (gray),standard objects,32.78,18.0,0.0,0.0
+04_Maurener_Weg_8_000000_000110,05,"crate (gray, 2x stacked)",standard objects,42.43,20.0,0.0,0.0
+04_Maurener_Weg_8_000000_000110,06,"crate (gray, upright)",standard objects,42.64,34.0,0.0,0.0
+04_Maurener_Weg_8_000000_000120,04,crate (gray),standard objects,28.44,20.0,0.0,0.0
+04_Maurener_Weg_8_000000_000120,05,"crate (gray, 2x stacked)",standard objects,37.88,25.0,0.888,0.095
+04_Maurener_Weg_8_000000_000120,06,"crate (gray, upright)",standard objects,36.65,37.0,0.0,0.0
+04_Maurener_Weg_8_000000_000130,04,crate (gray),standard objects,24.69,24.0,0.0,0.0
+04_Maurener_Weg_8_000000_000130,05,"crate (gray, 2x stacked)",standard objects,34.75,26.0,0.0,0.0
+04_Maurener_Weg_8_000000_000130,06,"crate (gray, upright)",standard objects,32.38,44.0,0.0,0.0
+04_Maurener_Weg_8_000000_000140,04,crate (gray),standard objects,20.67,28.0,0.0,0.0
+04_Maurener_Weg_8_000000_000140,05,"crate (gray, 2x stacked)",standard objects,30.43,29.0,0.945,0.076
+04_Maurener_Weg_8_000000_000140,06,"crate (gray, upright)",standard objects,28.35,51.0,0.0,0.0
+04_Maurener_Weg_8_000000_000150,04,crate (gray),standard objects,16.61,35.0,0.0,0.0
+04_Maurener_Weg_8_000000_000150,05,"crate (gray, 2x stacked)",standard objects,25.85,34.0,0.87,0.053
+04_Maurener_Weg_8_000000_000150,06,"crate (gray, upright)",standard objects,24.26,60.0,0.0,0.0
+04_Maurener_Weg_8_000000_000160,04,crate (gray),standard objects,12.79,41.0,0.0,0.0
+04_Maurener_Weg_8_000000_000160,05,"crate (gray, 2x stacked)",standard objects,22.6,40.0,0.891,0.118
+04_Maurener_Weg_8_000000_000160,06,"crate (gray, upright)",standard objects,19.69,71.0,0.0,0.0
+04_Maurener_Weg_8_000000_000170,04,crate (gray),standard objects,9.15,65.0,0.0,0.0
+04_Maurener_Weg_8_000000_000170,05,"crate (gray, 2x stacked)",standard objects,18.5,45.0,0.0,0.0
+04_Maurener_Weg_8_000000_000170,06,"crate (gray, upright)",standard objects,15.98,90.0,0.0,0.0
+04_Maurener_Weg_8_000000_000180,05,"crate (gray, 2x stacked)",standard objects,15.01,56.0,0.0,0.0
+04_Maurener_Weg_8_000000_000180,06,"crate (gray, upright)",standard objects,12.63,110.0,0.0,0.0
+04_Maurener_Weg_8_000000_000190,05,"crate (gray, 2x stacked)",standard objects,12.06,70.0,0.921,0.051
+04_Maurener_Weg_8_000000_000190,06,"crate (gray, upright)",standard objects,9.65,150.0,0.0,0.0
+04_Maurener_Weg_8_000000_000200,05,"crate (gray, 2x stacked)",standard objects,9.71,92.0,0.927,0.257
+04_Maurener_Weg_8_000000_000200,06,"crate (gray, upright)",standard objects,7.22,201.0,0.0,0.0
+04_Maurener_Weg_8_000001_000030,03,"crate (black, upright)",standard objects,71.48,12.0,0.0,0.0
+04_Maurener_Weg_8_000001_000030,03,"crate (black, upright)",standard objects,81.02,9.0,0.0,0.0
+04_Maurener_Weg_8_000001_000030,02,"crate (black, 2x stacked)",standard objects,74.35,15.0,0.0,0.0
+04_Maurener_Weg_8_000001_000040,03,"crate (black, upright)",standard objects,66.52,11.0,0.0,0.0
+04_Maurener_Weg_8_000001_000040,03,"crate (black, upright)",standard objects,79.72,9.0,0.0,0.0
+04_Maurener_Weg_8_000001_000040,02,"crate (black, 2x stacked)",standard objects,73.41,15.0,0.0,0.0
+04_Maurener_Weg_8_000001_000050,03,"crate (black, upright)",standard objects,66.25,11.0,0.0,0.0
+04_Maurener_Weg_8_000001_000050,03,"crate (black, upright)",standard objects,77.84,9.0,0.0,0.0
+04_Maurener_Weg_8_000001_000050,02,"crate (black, 2x stacked)",standard objects,71.11,16.0,0.0,0.0
+04_Maurener_Weg_8_000001_000060,03,"crate (black, upright)",standard objects,65.15,13.0,0.0,0.0
+04_Maurener_Weg_8_000001_000060,03,"crate (black, upright)",standard objects,74.69,10.0,0.0,0.0
+04_Maurener_Weg_8_000001_000060,02,"crate (black, 2x stacked)",standard objects,68.76,17.0,0.0,0.0
+04_Maurener_Weg_8_000001_000070,03,"crate (black, upright)",standard objects,59.25,13.0,0.0,0.0
+04_Maurener_Weg_8_000001_000070,03,"crate (black, upright)",standard objects,69.89,11.0,0.0,0.0
+04_Maurener_Weg_8_000001_000070,02,"crate (black, 2x stacked)",standard objects,64.49,18.0,0.0,0.0
+04_Maurener_Weg_8_000001_000080,03,"crate (black, upright)",standard objects,54.8,13.0,0.0,0.0
+04_Maurener_Weg_8_000001_000080,03,"crate (black, upright)",standard objects,64.92,12.0,0.0,0.0
+04_Maurener_Weg_8_000001_000080,02,"crate (black, 2x stacked)",standard objects,62.16,19.0,0.0,0.0
+04_Maurener_Weg_8_000001_000090,03,"crate (black, upright)",standard objects,52.86,17.0,0.0,0.0
+04_Maurener_Weg_8_000001_000090,03,"crate (black, upright)",standard objects,62.43,12.0,0.0,0.0
+04_Maurener_Weg_8_000001_000090,02,"crate (black, 2x stacked)",standard objects,58.16,19.0,0.0,0.0
+04_Maurener_Weg_8_000001_000100,03,"crate (black, upright)",standard objects,49.74,16.0,0.0,0.0
+04_Maurener_Weg_8_000001_000100,03,"crate (black, upright)",standard objects,60.56,14.0,0.0,0.0
+04_Maurener_Weg_8_000001_000100,02,"crate (black, 2x stacked)",standard objects,54.31,20.0,0.0,0.0
+04_Maurener_Weg_8_000001_000110,03,"crate (black, upright)",standard objects,43.87,19.0,0.0,0.0
+04_Maurener_Weg_8_000001_000110,03,"crate (black, upright)",standard objects,57.2,13.0,0.0,0.0
+04_Maurener_Weg_8_000001_000110,02,"crate (black, 2x stacked)",standard objects,49.52,20.0,0.0,0.0
+04_Maurener_Weg_8_000001_000120,03,"crate (black, upright)",standard objects,40.13,22.0,0.0,0.0
+04_Maurener_Weg_8_000001_000120,03,"crate (black, upright)",standard objects,51.33,13.0,0.0,0.0
+04_Maurener_Weg_8_000001_000120,02,"crate (black, 2x stacked)",standard objects,46.84,23.0,0.0,0.0
+04_Maurener_Weg_8_000001_000130,03,"crate (black, upright)",standard objects,36.42,23.0,0.0,0.0
+04_Maurener_Weg_8_000001_000130,03,"crate (black, upright)",standard objects,48.13,15.0,0.0,0.0
+04_Maurener_Weg_8_000001_000130,02,"crate (black, 2x stacked)",standard objects,42.43,26.0,0.0,0.0
+04_Maurener_Weg_8_000001_000140,03,"crate (black, upright)",standard objects,32.02,30.0,0.0,0.0
+04_Maurener_Weg_8_000001_000140,03,"crate (black, upright)",standard objects,43.28,16.0,0.0,0.0
+04_Maurener_Weg_8_000001_000140,02,"crate (black, 2x stacked)",standard objects,37.24,29.0,0.0,0.0
+04_Maurener_Weg_8_000001_000150,03,"crate (black, upright)",standard objects,27.6,26.0,0.0,0.0
+04_Maurener_Weg_8_000001_000150,03,"crate (black, upright)",standard objects,39.84,17.0,0.0,0.0
+04_Maurener_Weg_8_000001_000150,02,"crate (black, 2x stacked)",standard objects,34.11,32.0,0.0,0.0
+04_Maurener_Weg_8_000001_000160,03,"crate (black, upright)",standard objects,22.9,31.0,0.0,0.0
+04_Maurener_Weg_8_000001_000160,03,"crate (black, upright)",standard objects,35.07,21.0,0.0,0.0
+04_Maurener_Weg_8_000001_000160,02,"crate (black, 2x stacked)",standard objects,28.58,39.0,0.0,0.0
+04_Maurener_Weg_8_000001_000170,03,"crate (black, upright)",standard objects,18.45,37.0,0.0,0.0
+04_Maurener_Weg_8_000001_000170,03,"crate (black, upright)",standard objects,30.81,25.0,0.0,0.0
+04_Maurener_Weg_8_000001_000170,02,"crate (black, 2x stacked)",standard objects,24.93,43.0,0.0,0.0
+04_Maurener_Weg_8_000001_000180,03,"crate (black, upright)",standard objects,14.46,50.0,0.0,0.0
+04_Maurener_Weg_8_000001_000180,03,"crate (black, upright)",standard objects,25.69,27.0,0.0,0.0
+04_Maurener_Weg_8_000001_000180,02,"crate (black, 2x stacked)",standard objects,20.41,53.0,0.0,0.0
+04_Maurener_Weg_8_000001_000190,03,"crate (black, upright)",standard objects,10.43,67.0,0.0,0.0
+04_Maurener_Weg_8_000001_000190,03,"crate (black, upright)",standard objects,21.87,32.0,0.0,0.0
+04_Maurener_Weg_8_000001_000190,02,"crate (black, 2x stacked)",standard objects,16.08,71.0,0.0,0.0
+04_Maurener_Weg_8_000001_000200,03,"crate (black, upright)",standard objects,6.65,110.0,0.0,0.0
+04_Maurener_Weg_8_000001_000200,03,"crate (black, upright)",standard objects,18.1,38.0,0.951,0.099
+04_Maurener_Weg_8_000001_000200,02,"crate (black, 2x stacked)",standard objects,12.47,91.0,0.0,0.0
+04_Maurener_Weg_8_000001_000210,03,"crate (black, upright)",standard objects,14.97,48.0,0.877,0.063
+04_Maurener_Weg_8_000001_000210,02,"crate (black, 2x stacked)",standard objects,9.33,122.0,0.893,0.147
+04_Maurener_Weg_8_000002_000010,04,crate (gray),standard objects,39.04,10.0,0.0,0.0
+04_Maurener_Weg_8_000002_000010,05,"crate (gray, 2x stacked)",standard objects,42.06,20.0,0.0,0.0
+04_Maurener_Weg_8_000002_000010,06,"crate (gray, upright)",standard objects,53.97,29.0,0.0,0.0
+04_Maurener_Weg_8_000002_000020,04,crate (gray),standard objects,38.2,11.0,0.0,0.0
+04_Maurener_Weg_8_000002_000020,05,"crate (gray, 2x stacked)",standard objects,41.68,18.0,0.0,0.0
+04_Maurener_Weg_8_000002_000020,06,"crate (gray, upright)",standard objects,52.37,31.0,0.0,0.0
+04_Maurener_Weg_8_000002_000030,04,crate (gray),standard objects,37.19,11.0,0.0,0.0
+04_Maurener_Weg_8_000002_000030,05,"crate (gray, 2x stacked)",standard objects,40.92,21.0,0.0,0.0
+04_Maurener_Weg_8_000002_000030,06,"crate (gray, upright)",standard objects,52.76,30.0,0.0,0.0
+04_Maurener_Weg_8_000002_000040,04,crate (gray),standard objects,36.57,10.0,0.0,0.0
+04_Maurener_Weg_8_000002_000040,05,"crate (gray, 2x stacked)",standard objects,39.21,19.0,0.0,0.0
+04_Maurener_Weg_8_000002_000040,06,"crate (gray, upright)",standard objects,51.7,33.0,0.0,0.0
+04_Maurener_Weg_8_000002_000050,04,crate (gray),standard objects,34.24,12.0,0.0,0.0
+04_Maurener_Weg_8_000002_000050,05,"crate (gray, 2x stacked)",standard objects,36.61,21.0,0.0,0.0
+04_Maurener_Weg_8_000002_000050,06,"crate (gray, upright)",standard objects,45.4,34.0,0.0,0.0
+04_Maurener_Weg_8_000002_000060,04,crate (gray),standard objects,31.64,12.0,0.0,0.0
+04_Maurener_Weg_8_000002_000060,05,"crate (gray, 2x stacked)",standard objects,34.46,21.0,0.0,0.0
+04_Maurener_Weg_8_000002_000060,06,"crate (gray, upright)",standard objects,44.07,36.0,0.0,0.0
+04_Maurener_Weg_8_000002_000070,04,crate (gray),standard objects,28.81,15.0,0.0,0.0
+04_Maurener_Weg_8_000002_000070,05,"crate (gray, 2x stacked)",standard objects,31.45,21.0,0.0,0.0
+04_Maurener_Weg_8_000002_000070,06,"crate (gray, upright)",standard objects,40.05,37.0,0.0,0.0
+04_Maurener_Weg_8_000002_000080,04,crate (gray),standard objects,25.97,15.0,0.0,0.0
+04_Maurener_Weg_8_000002_000080,05,"crate (gray, 2x stacked)",standard objects,28.26,26.0,0.0,0.0
+04_Maurener_Weg_8_000002_000080,06,"crate (gray, upright)",standard objects,36.7,43.0,0.0,0.0
+04_Maurener_Weg_8_000002_000090,04,crate (gray),standard objects,22.75,17.0,0.875,0.052
+04_Maurener_Weg_8_000002_000090,05,"crate (gray, 2x stacked)",standard objects,25.02,32.0,0.0,0.0
+04_Maurener_Weg_8_000002_000090,06,"crate (gray, upright)",standard objects,32.06,43.0,0.0,0.0
+04_Maurener_Weg_8_000002_000100,04,crate (gray),standard objects,19.19,24.0,0.0,0.0
+04_Maurener_Weg_8_000002_000100,05,"crate (gray, 2x stacked)",standard objects,21.35,34.0,0.0,0.0
+04_Maurener_Weg_8_000002_000100,06,"crate (gray, upright)",standard objects,28.37,55.0,0.0,0.0
+04_Maurener_Weg_8_000002_000110,04,crate (gray),standard objects,15.37,32.0,0.0,0.0
+04_Maurener_Weg_8_000002_000110,05,"crate (gray, 2x stacked)",standard objects,18.0,43.0,0.0,0.0
+04_Maurener_Weg_8_000002_000110,06,"crate (gray, upright)",standard objects,24.03,57.0,0.0,0.0
+04_Maurener_Weg_8_000002_000120,04,crate (gray),standard objects,11.76,39.0,0.0,0.0
+04_Maurener_Weg_8_000002_000120,05,"crate (gray, 2x stacked)",standard objects,14.18,58.0,0.0,0.0
+04_Maurener_Weg_8_000002_000120,06,"crate (gray, upright)",standard objects,19.9,70.0,0.0,0.0
+04_Maurener_Weg_8_000002_000130,04,crate (gray),standard objects,8.39,64.0,0.953,0.248
+04_Maurener_Weg_8_000002_000130,05,"crate (gray, 2x stacked)",standard objects,10.93,74.0,0.943,0.082
+04_Maurener_Weg_8_000002_000130,06,"crate (gray, upright)",standard objects,16.67,85.0,0.0,0.0
+04_Maurener_Weg_8_000002_000140,05,"crate (gray, 2x stacked)",standard objects,8.19,102.0,0.0,0.0
+04_Maurener_Weg_8_000002_000140,06,"crate (gray, upright)",standard objects,13.97,96.0,0.0,0.0
+04_Maurener_Weg_8_000002_000150,05,"crate (gray, 2x stacked)",standard objects,6.5,130.0,0.0,0.0
+04_Maurener_Weg_8_000002_000150,06,"crate (gray, upright)",standard objects,12.11,112.0,0.0,0.0
+04_Maurener_Weg_8_000003_000010,03,"crate (black, upright)",standard objects,32.8,20.0,0.0,0.0
+04_Maurener_Weg_8_000003_000010,02,"crate (black, 2x stacked)",standard objects,38.22,30.0,0.0,0.0
+04_Maurener_Weg_8_000003_000010,01,crate (black),standard objects,46.87,16.0,0.0,0.0
+04_Maurener_Weg_8_000003_000020,03,"crate (black, upright)",standard objects,32.32,22.0,0.0,0.0
+04_Maurener_Weg_8_000003_000020,02,"crate (black, 2x stacked)",standard objects,37.88,29.0,0.0,0.0
+04_Maurener_Weg_8_000003_000020,01,crate (black),standard objects,45.43,17.0,0.0,0.0
+04_Maurener_Weg_8_000003_000030,03,"crate (black, upright)",standard objects,31.8,22.0,0.0,0.0
+04_Maurener_Weg_8_000003_000030,02,"crate (black, 2x stacked)",standard objects,36.65,30.0,0.0,0.0
+04_Maurener_Weg_8_000003_000030,01,crate (black),standard objects,44.8,16.0,0.0,0.0
+04_Maurener_Weg_8_000003_000040,03,"crate (black, upright)",standard objects,30.95,23.0,0.0,0.0
+04_Maurener_Weg_8_000003_000040,02,"crate (black, 2x stacked)",standard objects,36.01,31.0,0.0,0.0
+04_Maurener_Weg_8_000003_000040,01,crate (black),standard objects,43.07,17.0,0.0,0.0
+04_Maurener_Weg_8_000003_000050,03,"crate (black, upright)",standard objects,28.21,24.0,0.0,0.0
+04_Maurener_Weg_8_000003_000050,02,"crate (black, 2x stacked)",standard objects,33.86,32.0,0.0,0.0
+04_Maurener_Weg_8_000003_000050,01,crate (black),standard objects,41.91,18.0,0.0,0.0
+04_Maurener_Weg_8_000003_000060,03,"crate (black, upright)",standard objects,26.12,26.0,0.0,0.0
+04_Maurener_Weg_8_000003_000060,02,"crate (black, 2x stacked)",standard objects,31.34,35.0,0.0,0.0
+04_Maurener_Weg_8_000003_000060,01,crate (black),standard objects,39.46,20.0,0.0,0.0
+04_Maurener_Weg_8_000003_000070,02,"crate (black, 2x stacked)",standard objects,28.18,37.0,0.0,0.0
+04_Maurener_Weg_8_000003_000070,03,"crate (black, upright)",standard objects,23.02,31.0,0.0,0.0
+04_Maurener_Weg_8_000003_000070,01,crate (black),standard objects,36.02,22.0,0.0,0.0
+04_Maurener_Weg_8_000003_000080,03,"crate (black, upright)",standard objects,19.89,36.0,0.0,0.0
+04_Maurener_Weg_8_000003_000080,02,"crate (black, 2x stacked)",standard objects,25.15,43.0,0.0,0.0
+04_Maurener_Weg_8_000003_000080,01,crate (black),standard objects,32.47,25.0,0.0,0.0
+04_Maurener_Weg_8_000003_000090,03,"crate (black, upright)",standard objects,16.64,42.0,0.0,0.0
+04_Maurener_Weg_8_000003_000090,02,"crate (black, 2x stacked)",standard objects,21.29,49.0,0.0,0.0
+04_Maurener_Weg_8_000003_000090,01,crate (black),standard objects,29.14,27.0,0.0,0.0
+04_Maurener_Weg_8_000003_000100,03,"crate (black, upright)",standard objects,12.72,55.0,0.0,0.0
+04_Maurener_Weg_8_000003_000100,02,"crate (black, 2x stacked)",standard objects,17.92,59.0,0.0,0.0
+04_Maurener_Weg_8_000003_000100,01,crate (black),standard objects,25.44,30.0,0.0,0.0
+04_Maurener_Weg_8_000003_000110,03,"crate (black, upright)",standard objects,9.28,76.0,0.0,0.0
+04_Maurener_Weg_8_000003_000110,02,"crate (black, 2x stacked)",standard objects,14.19,75.0,0.0,0.0
+04_Maurener_Weg_8_000003_000110,01,crate (black),standard objects,22.09,36.0,0.0,0.0
+04_Maurener_Weg_8_000003_000120,02,"crate (black, 2x stacked)",standard objects,11.11,93.0,0.987,0.083
+04_Maurener_Weg_8_000003_000120,01,crate (black),standard objects,18.92,40.0,0.0,0.0
+04_Maurener_Weg_8_000003_000130,02,"crate (black, 2x stacked)",standard objects,8.62,122.0,0.0,0.0
+04_Maurener_Weg_8_000003_000130,01,crate (black),standard objects,16.18,50.0,0.0,0.0
+04_Maurener_Weg_8_000003_000140,02,"crate (black, 2x stacked)",standard objects,6.94,153.0,0.0,0.0
+04_Maurener_Weg_8_000003_000140,01,crate (black),standard objects,14.57,58.0,0.0,0.0
+04_Maurener_Weg_8_000004_000020,15,euro pallet,random hazards,53.26,11.0,0.0,0.0
+04_Maurener_Weg_8_000004_000030,15,euro pallet,random hazards,53.17,11.0,0.0,0.0
+04_Maurener_Weg_8_000004_000040,15,euro pallet,random hazards,53.19,12.0,0.0,0.0
+04_Maurener_Weg_8_000004_000050,15,euro pallet,random hazards,52.84,12.0,0.0,0.0
+04_Maurener_Weg_8_000004_000060,15,euro pallet,random hazards,51.55,12.0,0.0,0.0
+04_Maurener_Weg_8_000004_000070,15,euro pallet,random hazards,51.57,12.0,0.0,0.0
+04_Maurener_Weg_8_000004_000080,15,euro pallet,random hazards,50.15,13.0,0.0,0.0
+04_Maurener_Weg_8_000004_000090,15,euro pallet,random hazards,48.42,12.0,0.0,0.0
+04_Maurener_Weg_8_000004_000100,15,euro pallet,random hazards,44.79,15.0,0.0,0.0
+04_Maurener_Weg_8_000004_000110,15,euro pallet,random hazards,42.32,13.0,0.0,0.0
+04_Maurener_Weg_8_000004_000120,15,euro pallet,random hazards,39.86,12.0,0.0,0.0
+04_Maurener_Weg_8_000004_000130,15,euro pallet,random hazards,36.33,14.0,0.0,0.0
+04_Maurener_Weg_8_000004_000140,15,euro pallet,random hazards,32.34,17.0,0.0,0.0
+04_Maurener_Weg_8_000004_000150,15,euro pallet,random hazards,28.47,20.0,0.0,0.0
+04_Maurener_Weg_8_000004_000160,15,euro pallet,random hazards,25.4,23.0,0.0,0.0
+04_Maurener_Weg_8_000004_000160,21,ball,emotional hazards,14.07,40.0,0.774,0.158
+04_Maurener_Weg_8_000004_000170,15,euro pallet,random hazards,21.72,27.0,0.0,0.0
+04_Maurener_Weg_8_000004_000170,21,ball,emotional hazards,10.92,45.0,0.932,0.423
+04_Maurener_Weg_8_000004_000180,15,euro pallet,random hazards,18.38,34.0,0.0,0.0
+04_Maurener_Weg_8_000004_000190,15,euro pallet,random hazards,14.7,46.0,0.0,0.0
+04_Maurener_Weg_8_000004_000200,15,euro pallet,random hazards,11.23,60.0,0.922,0.083
+04_Maurener_Weg_8_000004_000210,15,euro pallet,random hazards,8.47,93.0,0.0,0.0
+04_Maurener_Weg_8_000005_000010,16,pylon,random hazards,49.86,16.0,0.0,0.0
+04_Maurener_Weg_8_000005_000010,18,pylon (white),random hazards,48.18,18.0,0.0,0.0
+04_Maurener_Weg_8_000005_000020,16,pylon,random hazards,49.36,15.0,0.0,0.0
+04_Maurener_Weg_8_000005_000020,18,pylon (white),random hazards,47.7,19.0,0.0,0.0
+04_Maurener_Weg_8_000005_000030,16,pylon,random hazards,48.24,16.0,0.0,0.0
+04_Maurener_Weg_8_000005_000030,18,pylon (white),random hazards,47.6,19.0,0.0,0.0
+04_Maurener_Weg_8_000005_000040,16,pylon,random hazards,47.9,16.0,0.0,0.0
+04_Maurener_Weg_8_000005_000040,18,pylon (white),random hazards,46.25,17.0,0.0,0.0
+04_Maurener_Weg_8_000005_000050,16,pylon,random hazards,47.6,16.0,0.0,0.0
+04_Maurener_Weg_8_000005_000050,18,pylon (white),random hazards,46.05,17.0,0.0,0.0
+04_Maurener_Weg_8_000005_000060,16,pylon,random hazards,46.52,15.0,0.0,0.0
+04_Maurener_Weg_8_000005_000060,18,pylon (white),random hazards,44.52,18.0,0.0,0.0
+04_Maurener_Weg_8_000005_000070,16,pylon,random hazards,44.71,15.0,0.0,0.0
+04_Maurener_Weg_8_000005_000070,18,pylon (white),random hazards,42.29,20.0,0.0,0.0
+04_Maurener_Weg_8_000005_000080,16,pylon,random hazards,43.74,17.0,0.0,0.0
+04_Maurener_Weg_8_000005_000080,18,pylon (white),random hazards,41.69,19.0,0.0,0.0
+04_Maurener_Weg_8_000005_000090,16,pylon,random hazards,41.92,19.0,0.0,0.0
+04_Maurener_Weg_8_000005_000090,18,pylon (white),random hazards,39.46,22.0,0.0,0.0
+04_Maurener_Weg_8_000005_000100,18,pylon (white),random hazards,36.82,22.0,0.0,0.0
+04_Maurener_Weg_8_000005_000100,16,pylon,random hazards,40.77,19.0,0.0,0.0
+04_Maurener_Weg_8_000005_000110,18,pylon (white),random hazards,34.89,24.0,0.761,0.053
+04_Maurener_Weg_8_000005_000110,16,pylon,random hazards,37.73,20.0,0.0,0.0
+04_Maurener_Weg_8_000005_000120,18,pylon (white),random hazards,31.58,25.0,0.689,0.085
+04_Maurener_Weg_8_000005_000120,16,pylon,random hazards,34.7,20.0,0.0,0.0
+04_Maurener_Weg_8_000005_000130,18,pylon (white),random hazards,28.31,28.0,0.874,0.165
+04_Maurener_Weg_8_000005_000130,16,pylon,random hazards,31.33,20.0,0.0,0.0
+04_Maurener_Weg_8_000005_000140,18,pylon (white),random hazards,25.37,32.0,0.819,0.056
+04_Maurener_Weg_8_000005_000140,16,pylon,random hazards,27.77,25.0,0.0,0.0
+04_Maurener_Weg_8_000005_000150,18,pylon (white),random hazards,21.77,38.0,0.869,0.182
+04_Maurener_Weg_8_000005_000150,16,pylon,random hazards,24.51,30.0,0.0,0.0
+04_Maurener_Weg_8_000005_000160,18,pylon (white),random hazards,18.04,43.0,0.862,0.09
+04_Maurener_Weg_8_000005_000160,16,pylon,random hazards,20.54,35.0,0.0,0.0
+04_Maurener_Weg_8_000005_000170,18,pylon (white),random hazards,14.29,57.0,0.759,0.227
+04_Maurener_Weg_8_000005_000170,16,pylon,random hazards,16.79,44.0,0.0,0.0
+04_Maurener_Weg_8_000005_000180,16,pylon,random hazards,13.88,52.0,0.0,0.0
+04_Maurener_Weg_8_000005_000180,18,pylon (white),random hazards,11.34,70.0,0.0,0.0
+04_Maurener_Weg_8_000005_000190,18,pylon (white),random hazards,9.25,87.0,0.0,0.0
+04_Maurener_Weg_8_000005_000190,16,pylon,random hazards,11.81,61.0,0.0,0.0
+04_Maurener_Weg_8_000005_000200,18,pylon (white),random hazards,8.06,96.0,0.0,0.0
+04_Maurener_Weg_8_000005_000200,16,pylon,random hazards,10.58,72.0,0.0,0.0
+04_Maurener_Weg_8_000006_000020,18,pylon (white),random hazards,45.87,12.0,0.0,0.0
+04_Maurener_Weg_8_000006_000030,18,pylon (white),random hazards,45.42,13.0,0.0,0.0
+04_Maurener_Weg_8_000006_000040,18,pylon (white),random hazards,44.14,12.0,0.0,0.0
+04_Maurener_Weg_8_000006_000050,18,pylon (white),random hazards,42.39,13.0,0.0,0.0
+04_Maurener_Weg_8_000006_000060,18,pylon (white),random hazards,40.02,14.0,0.0,0.0
+04_Maurener_Weg_8_000006_000070,18,pylon (white),random hazards,37.06,14.0,0.0,0.0
+04_Maurener_Weg_8_000006_000080,18,pylon (white),random hazards,34.22,18.0,0.0,0.0
+04_Maurener_Weg_8_000006_000090,18,pylon (white),random hazards,30.45,20.0,0.0,0.0
+04_Maurener_Weg_8_000006_000100,18,pylon (white),random hazards,26.46,24.0,0.0,0.0
+04_Maurener_Weg_8_000006_000110,18,pylon (white),random hazards,22.5,29.0,0.777,0.051
+04_Maurener_Weg_8_000006_000120,18,pylon (white),random hazards,18.18,30.0,0.0,0.0
+04_Maurener_Weg_8_000006_000130,18,pylon (white),random hazards,14.28,38.0,0.0,0.0
+04_Maurener_Weg_8_000006_000150,18,pylon (white),random hazards,8.48,63.0,0.0,0.0
+04_Maurener_Weg_8_000007_000020,25,kid dummy,emotional hazards,61.81,10.0,0.0,0.0
+04_Maurener_Weg_8_000007_000020,21,ball,emotional hazards,65.08,10.0,0.0,0.0
+04_Maurener_Weg_8_000007_000030,25,kid dummy,emotional hazards,59.63,9.0,0.0,0.0
+04_Maurener_Weg_8_000007_000030,21,ball,emotional hazards,60.81,10.0,0.0,0.0
+04_Maurener_Weg_8_000007_000040,25,kid dummy,emotional hazards,57.53,10.0,0.0,0.0
+04_Maurener_Weg_8_000007_000040,21,ball,emotional hazards,58.21,8.0,0.0,0.0
+04_Maurener_Weg_8_000007_000050,25,kid dummy,emotional hazards,55.05,10.0,0.0,0.0
+04_Maurener_Weg_8_000007_000050,21,ball,emotional hazards,55.1,11.0,0.0,0.0
+04_Maurener_Weg_8_000007_000060,25,kid dummy,emotional hazards,51.23,8.0,0.0,0.0
+04_Maurener_Weg_8_000007_000060,21,ball,emotional hazards,51.04,10.0,0.0,0.0
+04_Maurener_Weg_8_000007_000070,25,kid dummy,emotional hazards,47.56,8.0,0.0,0.0
+04_Maurener_Weg_8_000007_000070,21,ball,emotional hazards,47.79,11.0,0.0,0.0
+04_Maurener_Weg_8_000007_000080,25,kid dummy,emotional hazards,42.68,9.0,0.0,0.0
+04_Maurener_Weg_8_000007_000080,21,ball,emotional hazards,42.98,13.0,0.0,0.0
+04_Maurener_Weg_8_000007_000090,25,kid dummy,emotional hazards,37.52,10.0,0.0,0.0
+04_Maurener_Weg_8_000007_000090,21,ball,emotional hazards,37.04,15.0,0.0,0.0
+04_Maurener_Weg_8_000007_000100,25,kid dummy,emotional hazards,32.66,11.0,0.0,0.0
+04_Maurener_Weg_8_000007_000100,21,ball,emotional hazards,32.42,15.0,0.0,0.0
+04_Maurener_Weg_8_000007_000110,25,kid dummy,emotional hazards,27.93,12.0,0.0,0.0
+04_Maurener_Weg_8_000007_000110,21,ball,emotional hazards,27.65,19.0,0.0,0.0
+04_Maurener_Weg_8_000007_000120,25,kid dummy,emotional hazards,22.79,15.0,0.0,0.0
+04_Maurener_Weg_8_000007_000120,21,ball,emotional hazards,22.85,22.0,0.0,0.0
+04_Maurener_Weg_8_000007_000130,25,kid dummy,emotional hazards,18.15,19.0,0.0,0.0
+04_Maurener_Weg_8_000007_000130,21,ball,emotional hazards,18.02,27.0,0.0,0.0
+04_Maurener_Weg_8_000007_000140,25,kid dummy,emotional hazards,13.94,24.0,0.67,0.054
+04_Maurener_Weg_8_000007_000140,21,ball,emotional hazards,13.87,36.0,0.0,0.0
+04_Maurener_Weg_8_000007_000150,25,kid dummy,emotional hazards,10.28,35.0,0.695,0.407
+04_Maurener_Weg_8_000007_000150,21,ball,emotional hazards,10.09,51.0,0.0,0.0
+04_Maurener_Weg_8_000007_000160,25,kid dummy,emotional hazards,7.37,48.0,0.71,0.42
+04_Maurener_Weg_8_000007_000160,21,ball,emotional hazards,7.21,68.0,0.94,0.527
+04_Maurener_Weg_8_000007_000170,25,kid dummy,emotional hazards,5.56,66.0,0.709,0.329
+04_Maurener_Weg_8_000007_000170,21,ball,emotional hazards,5.37,94.0,0.937,0.275
+04_Maurener_Weg_8_000008_000020,31,plastic bag (bloated),random hazards,59.36,8.0,0.0,0.0
+04_Maurener_Weg_8_000008_000020,11,crate (green),random hazards,66.7,12.0,0.0,0.0
+04_Maurener_Weg_8_000008_000020,31,plastic bag (bloated),random hazards,56.65,8.0,0.0,0.0
+04_Maurener_Weg_8_000008_000030,11,crate (green),random hazards,67.71,11.0,0.0,0.0
+04_Maurener_Weg_8_000008_000030,31,plastic bag (bloated),random hazards,58.74,9.0,0.0,0.0
+04_Maurener_Weg_8_000008_000030,31,plastic bag (bloated),random hazards,55.96,7.0,0.0,0.0
+04_Maurener_Weg_8_000008_000040,11,crate (green),random hazards,64.85,13.0,0.0,0.0
+04_Maurener_Weg_8_000008_000040,31,plastic bag (bloated),random hazards,54.96,9.0,0.0,0.0
+04_Maurener_Weg_8_000008_000040,31,plastic bag (bloated),random hazards,52.89,9.0,0.0,0.0
+04_Maurener_Weg_8_000008_000050,11,crate (green),random hazards,62.1,14.0,0.0,0.0
+04_Maurener_Weg_8_000008_000050,31,plastic bag (bloated),random hazards,48.93,12.0,0.0,0.0
+04_Maurener_Weg_8_000008_000050,31,plastic bag (bloated),random hazards,53.88,10.0,0.0,0.0
+04_Maurener_Weg_8_000008_000060,11,crate (green),random hazards,60.19,15.0,0.0,0.0
+04_Maurener_Weg_8_000008_000060,31,plastic bag (bloated),random hazards,49.08,11.0,0.889,0.071
+04_Maurener_Weg_8_000008_000060,31,plastic bag (bloated),random hazards,45.4,13.0,0.0,0.0
+04_Maurener_Weg_8_000008_000070,31,plastic bag (bloated),random hazards,42.02,15.0,0.0,0.0
+04_Maurener_Weg_8_000008_000070,11,crate (green),random hazards,55.95,13.0,0.0,0.0
+04_Maurener_Weg_8_000008_000070,31,plastic bag (bloated),random hazards,47.06,11.0,0.0,0.0
+04_Maurener_Weg_8_000008_000080,11,crate (green),random hazards,51.21,16.0,0.0,0.0
+04_Maurener_Weg_8_000008_000080,31,plastic bag (bloated),random hazards,41.85,11.0,0.0,0.0
+04_Maurener_Weg_8_000008_000080,31,plastic bag (bloated),random hazards,37.39,16.0,0.0,0.0
+04_Maurener_Weg_8_000008_000090,11,crate (green),random hazards,47.86,18.0,0.0,0.0
+04_Maurener_Weg_8_000008_000090,31,plastic bag (bloated),random hazards,38.46,13.0,0.0,0.0
+04_Maurener_Weg_8_000008_000090,31,plastic bag (bloated),random hazards,33.01,21.0,0.0,0.0
+04_Maurener_Weg_8_000008_000100,31,plastic bag (bloated),random hazards,28.1,22.0,0.0,0.0
+04_Maurener_Weg_8_000008_000100,11,crate (green),random hazards,42.25,19.0,0.0,0.0
+04_Maurener_Weg_8_000008_000100,31,plastic bag (bloated),random hazards,33.31,14.0,0.0,0.0
+04_Maurener_Weg_8_000008_000110,11,crate (green),random hazards,37.02,20.0,0.0,0.0
+04_Maurener_Weg_8_000008_000110,31,plastic bag (bloated),random hazards,23.37,27.0,0.0,0.0
+04_Maurener_Weg_8_000008_000110,31,plastic bag (bloated),random hazards,29.01,18.0,0.0,0.0
+04_Maurener_Weg_8_000008_000120,11,crate (green),random hazards,31.76,23.0,0.0,0.0
+04_Maurener_Weg_8_000008_000120,31,plastic bag (bloated),random hazards,18.89,31.0,0.0,0.0
+04_Maurener_Weg_8_000008_000120,31,plastic bag (bloated),random hazards,24.48,20.0,0.0,0.0
+04_Maurener_Weg_8_000008_000130,11,crate (green),random hazards,26.86,28.0,0.895,0.051
+04_Maurener_Weg_8_000008_000130,31,plastic bag (bloated),random hazards,19.57,23.0,0.846,0.065
+04_Maurener_Weg_8_000008_000130,31,plastic bag (bloated),random hazards,13.94,43.0,0.863,0.073
+04_Maurener_Weg_8_000008_000140,11,crate (green),random hazards,21.55,34.0,0.846,0.112
+04_Maurener_Weg_8_000008_000140,31,plastic bag (bloated),random hazards,15.03,32.0,0.873,0.13
+04_Maurener_Weg_8_000008_000140,31,plastic bag (bloated),random hazards,8.82,68.0,0.0,0.0
+04_Maurener_Weg_8_000008_000150,11,crate (green),random hazards,16.99,42.0,0.861,0.099
+04_Maurener_Weg_8_000008_000150,31,plastic bag (bloated),random hazards,10.38,47.0,0.907,0.141
+04_Maurener_Weg_8_000008_000160,11,crate (green),random hazards,13.03,55.0,0.0,0.0
+04_Maurener_Weg_8_000008_000160,31,plastic bag (bloated),random hazards,6.6,75.0,0.0,0.0
+04_Maurener_Weg_8_000008_000170,11,crate (green),random hazards,9.99,74.0,0.0,0.0
+04_Maurener_Weg_8_000008_000180,11,crate (green),random hazards,7.8,98.0,0.0,0.0
+04_Maurener_Weg_8_000008_000190,11,crate (green),random hazards,6.42,120.0,0.0,0.0
+04_Maurener_Weg_8_000008_000200,11,crate (green),random hazards,5.55,140.0,0.0,0.0
+04_Maurener_Weg_8_000009_000040,24,dog (white),emotional hazards,70.33,11.0,0.0,0.0
+04_Maurener_Weg_8_000009_000050,24,dog (white),emotional hazards,68.25,11.0,0.0,0.0
+04_Maurener_Weg_8_000009_000060,24,dog (white),emotional hazards,65.88,12.0,0.0,0.0
+04_Maurener_Weg_8_000009_000070,24,dog (white),emotional hazards,65.74,12.0,0.0,0.0
+04_Maurener_Weg_8_000009_000080,24,dog (white),emotional hazards,62.46,13.0,0.0,0.0
+04_Maurener_Weg_8_000009_000090,24,dog (white),emotional hazards,58.85,14.0,0.0,0.0
+04_Maurener_Weg_8_000009_000100,24,dog (white),emotional hazards,53.77,14.0,0.0,0.0
+04_Maurener_Weg_8_000009_000110,24,dog (white),emotional hazards,50.62,17.0,0.0,0.0
+04_Maurener_Weg_8_000009_000120,24,dog (white),emotional hazards,45.42,17.0,0.859,0.137
+04_Maurener_Weg_8_000009_000130,24,dog (white),emotional hazards,41.29,20.0,0.81,0.075
+04_Maurener_Weg_8_000009_000140,24,dog (white),emotional hazards,36.21,20.0,0.828,0.191
+04_Maurener_Weg_8_000009_000150,24,dog (white),emotional hazards,31.85,23.0,0.835,0.186
+04_Maurener_Weg_8_000009_000160,24,dog (white),emotional hazards,27.68,26.0,0.763,0.125
+04_Maurener_Weg_8_000009_000170,24,dog (white),emotional hazards,23.04,31.0,0.861,0.258
+04_Maurener_Weg_8_000009_000180,24,dog (white),emotional hazards,19.27,36.0,0.819,0.58
+04_Maurener_Weg_8_000009_000190,24,dog (white),emotional hazards,15.35,44.0,0.813,0.587
+04_Maurener_Weg_8_000009_000200,24,dog (white),emotional hazards,11.9,59.0,0.962,0.811
+04_Maurener_Weg_8_000009_000210,24,dog (white),emotional hazards,8.72,81.0,0.964,0.832
+04_Maurener_Weg_8_000010_000010,23,dog (black),emotional hazards,51.57,23.0,0.0,0.0
+04_Maurener_Weg_8_000010_000020,23,dog (black),emotional hazards,51.66,22.0,0.0,0.0
+04_Maurener_Weg_8_000010_000030,23,dog (black),emotional hazards,51.43,23.0,0.0,0.0
+04_Maurener_Weg_8_000010_000040,23,dog (black),emotional hazards,50.66,22.0,0.0,0.0
+04_Maurener_Weg_8_000010_000050,23,dog (black),emotional hazards,48.84,25.0,0.0,0.0
+04_Maurener_Weg_8_000010_000060,23,dog (black),emotional hazards,45.21,25.0,0.0,0.0
+04_Maurener_Weg_8_000010_000070,23,dog (black),emotional hazards,42.22,28.0,0.0,0.0
+04_Maurener_Weg_8_000010_000080,23,dog (black),emotional hazards,38.05,29.0,0.0,0.0
+04_Maurener_Weg_8_000010_000090,23,dog (black),emotional hazards,34.69,33.0,0.0,0.0
+04_Maurener_Weg_8_000010_000100,23,dog (black),emotional hazards,29.46,39.0,0.778,0.247
+04_Maurener_Weg_8_000010_000110,23,dog (black),emotional hazards,25.23,43.0,0.917,0.725
+04_Maurener_Weg_8_000010_000120,23,dog (black),emotional hazards,20.63,52.0,0.944,0.827
+04_Maurener_Weg_8_000010_000130,23,dog (black),emotional hazards,15.92,67.0,0.951,0.843
+04_Maurener_Weg_8_000010_000140,23,dog (black),emotional hazards,11.86,91.0,0.981,0.89
+04_Maurener_Weg_8_000010_000150,23,dog (black),emotional hazards,8.22,131.0,0.969,0.921
+04_Maurener_Weg_8_000011_000020,26,bobby car (gray),emotional hazards,62.34,18.0,0.0,0.0
+04_Maurener_Weg_8_000011_000030,26,bobby car (gray),emotional hazards,62.04,17.0,0.0,0.0
+04_Maurener_Weg_8_000011_000040,26,bobby car (gray),emotional hazards,61.66,18.0,0.0,0.0
+04_Maurener_Weg_8_000011_000050,26,bobby car (gray),emotional hazards,61.39,17.0,0.0,0.0
+04_Maurener_Weg_8_000011_000060,26,bobby car (gray),emotional hazards,60.67,18.0,0.0,0.0
+04_Maurener_Weg_8_000011_000070,26,bobby car (gray),emotional hazards,55.62,20.0,0.0,0.0
+04_Maurener_Weg_8_000011_000080,26,bobby car (gray),emotional hazards,52.84,19.0,0.0,0.0
+04_Maurener_Weg_8_000011_000090,26,bobby car (gray),emotional hazards,50.11,21.0,0.808,0.119
+04_Maurener_Weg_8_000011_000100,26,bobby car (gray),emotional hazards,47.01,23.0,0.785,0.087
+04_Maurener_Weg_8_000011_000110,26,bobby car (gray),emotional hazards,42.13,24.0,0.825,0.074
+04_Maurener_Weg_8_000011_000120,26,bobby car (gray),emotional hazards,37.84,28.0,0.887,0.051
+04_Maurener_Weg_8_000011_000130,26,bobby car (gray),emotional hazards,34.69,30.0,0.0,0.0
+04_Maurener_Weg_8_000011_000140,26,bobby car (gray),emotional hazards,30.78,33.0,0.887,0.396
+04_Maurener_Weg_8_000011_000150,26,bobby car (gray),emotional hazards,26.29,38.0,0.92,0.361
+04_Maurener_Weg_8_000011_000160,26,bobby car (gray),emotional hazards,22.81,46.0,0.797,0.655
+04_Maurener_Weg_8_000011_000170,26,bobby car (gray),emotional hazards,18.99,55.0,0.837,0.578
+04_Maurener_Weg_8_000011_000180,26,bobby car (gray),emotional hazards,15.12,64.0,0.941,0.828
+04_Maurener_Weg_8_000011_000190,26,bobby car (gray),emotional hazards,11.58,84.0,0.951,0.861
+04_Maurener_Weg_8_000012_000020,27,bobby car (red),emotional hazards,65.44,20.0,0.0,0.0
+04_Maurener_Weg_8_000012_000030,27,bobby car (red),emotional hazards,65.71,19.0,0.0,0.0
+04_Maurener_Weg_8_000012_000040,27,bobby car (red),emotional hazards,64.05,19.0,0.0,0.0
+04_Maurener_Weg_8_000012_000050,27,bobby car (red),emotional hazards,64.53,19.0,0.0,0.0
+04_Maurener_Weg_8_000012_000060,27,bobby car (red),emotional hazards,61.6,20.0,0.0,0.0
+04_Maurener_Weg_8_000012_000070,27,bobby car (red),emotional hazards,58.18,21.0,0.0,0.0
+04_Maurener_Weg_8_000012_000080,27,bobby car (red),emotional hazards,54.27,22.0,0.0,0.0
+04_Maurener_Weg_8_000012_000090,27,bobby car (red),emotional hazards,51.66,23.0,0.0,0.0
+04_Maurener_Weg_8_000012_000100,27,bobby car (red),emotional hazards,47.28,25.0,0.0,0.0
+04_Maurener_Weg_8_000012_000110,27,bobby car (red),emotional hazards,43.34,25.0,0.0,0.0
+04_Maurener_Weg_8_000012_000120,27,bobby car (red),emotional hazards,38.29,28.0,0.0,0.0
+04_Maurener_Weg_8_000012_000130,27,bobby car (red),emotional hazards,33.86,31.0,0.713,0.107
+04_Maurener_Weg_8_000012_000140,27,bobby car (red),emotional hazards,28.59,35.0,0.0,0.0
+04_Maurener_Weg_8_000012_000150,27,bobby car (red),emotional hazards,24.58,43.0,0.664,0.11
+04_Maurener_Weg_8_000012_000160,27,bobby car (red),emotional hazards,19.74,54.0,0.614,0.496
+04_Maurener_Weg_8_000012_000170,27,bobby car (red),emotional hazards,15.63,70.0,0.89,0.746
+04_Maurener_Weg_8_000012_000180,27,bobby car (red),emotional hazards,11.58,89.0,0.956,0.802
+04_Maurener_Weg_8_000012_000190,27,bobby car (red),emotional hazards,8.28,129.0,0.929,0.88
+04_Maurener_Weg_8_000013_000170,28,bobby car (yellow),emotional hazards,32.02,23.0,0.0,0.0
+04_Maurener_Weg_8_000013_000180,28,bobby car (yellow),emotional hazards,27.71,39.0,0.889,0.128
+04_Maurener_Weg_8_000013_000190,28,bobby car (yellow),emotional hazards,23.1,47.0,0.876,0.693
+04_Maurener_Weg_8_000013_000200,28,bobby car (yellow),emotional hazards,19.39,55.0,0.963,0.686
+04_Maurener_Weg_8_000013_000210,28,bobby car (yellow),emotional hazards,15.86,66.0,0.96,0.626
+04_Maurener_Weg_8_000013_000220,28,bobby car (yellow),emotional hazards,12.64,84.0,0.973,0.706
+04_Maurener_Weg_8_000013_000230,28,bobby car (yellow),emotional hazards,9.49,113.0,0.927,0.365
+05_Schafgasse_1_000000_000020,05,"crate (gray, 2x stacked)",standard objects,64.01,11.0,0.0,0.0
+05_Schafgasse_1_000000_000030,05,"crate (gray, 2x stacked)",standard objects,61.02,13.0,0.0,0.0
+05_Schafgasse_1_000000_000040,05,"crate (gray, 2x stacked)",standard objects,59.97,11.0,0.0,0.0
+05_Schafgasse_1_000000_000050,05,"crate (gray, 2x stacked)",standard objects,57.76,14.0,0.0,0.0
+05_Schafgasse_1_000000_000060,05,"crate (gray, 2x stacked)",standard objects,56.11,13.0,0.0,0.0
+05_Schafgasse_1_000000_000070,05,"crate (gray, 2x stacked)",standard objects,51.7,13.0,0.0,0.0
+05_Schafgasse_1_000000_000080,05,"crate (gray, 2x stacked)",standard objects,48.66,15.0,0.0,0.0
+05_Schafgasse_1_000000_000090,05,"crate (gray, 2x stacked)",standard objects,46.4,17.0,0.0,0.0
+05_Schafgasse_1_000000_000100,05,"crate (gray, 2x stacked)",standard objects,42.61,17.0,0.0,0.0
+05_Schafgasse_1_000000_000110,05,"crate (gray, 2x stacked)",standard objects,39.22,18.0,0.0,0.0
+05_Schafgasse_1_000000_000120,05,"crate (gray, 2x stacked)",standard objects,35.77,21.0,0.0,0.0
+05_Schafgasse_1_000000_000130,05,"crate (gray, 2x stacked)",standard objects,31.78,22.0,0.0,0.0
+05_Schafgasse_1_000000_000140,05,"crate (gray, 2x stacked)",standard objects,28.33,26.0,0.0,0.0
+05_Schafgasse_1_000000_000150,05,"crate (gray, 2x stacked)",standard objects,24.92,31.0,0.839,0.122
+05_Schafgasse_1_000000_000160,05,"crate (gray, 2x stacked)",standard objects,21.05,42.0,0.0,0.0
+05_Schafgasse_1_000000_000170,05,"crate (gray, 2x stacked)",standard objects,17.07,47.0,0.0,0.0
+05_Schafgasse_1_000000_000180,05,"crate (gray, 2x stacked)",standard objects,13.46,60.0,0.94,0.196
+05_Schafgasse_1_000000_000190,05,"crate (gray, 2x stacked)",standard objects,10.13,81.0,0.946,0.122
+05_Schafgasse_1_000000_000200,05,"crate (gray, 2x stacked)",standard objects,7.13,124.0,0.0,0.0
+05_Schafgasse_1_000001_000070,03,"crate (black, upright)",standard objects,57.38,12.0,0.0,0.0
+05_Schafgasse_1_000001_000080,03,"crate (black, upright)",standard objects,57.43,13.0,0.0,0.0
+05_Schafgasse_1_000001_000090,03,"crate (black, upright)",standard objects,52.29,14.0,0.0,0.0
+05_Schafgasse_1_000001_000100,03,"crate (black, upright)",standard objects,50.52,14.0,0.0,0.0
+05_Schafgasse_1_000001_000110,03,"crate (black, upright)",standard objects,48.6,16.0,0.0,0.0
+05_Schafgasse_1_000001_000120,03,"crate (black, upright)",standard objects,45.68,14.0,0.0,0.0
+05_Schafgasse_1_000001_000130,03,"crate (black, upright)",standard objects,43.01,17.0,0.0,0.0
+05_Schafgasse_1_000001_000140,03,"crate (black, upright)",standard objects,40.83,18.0,0.0,0.0
+05_Schafgasse_1_000001_000150,03,"crate (black, upright)",standard objects,37.92,18.0,0.0,0.0
+05_Schafgasse_1_000001_000160,03,"crate (black, upright)",standard objects,34.66,23.0,0.0,0.0
+05_Schafgasse_1_000001_000170,03,"crate (black, upright)",standard objects,31.48,27.0,0.0,0.0
+05_Schafgasse_1_000001_000180,03,"crate (black, upright)",standard objects,28.29,27.0,0.0,0.0
+05_Schafgasse_1_000001_000190,03,"crate (black, upright)",standard objects,25.66,29.0,0.0,0.0
+05_Schafgasse_1_000001_000200,03,"crate (black, upright)",standard objects,23.02,32.0,0.0,0.0
+05_Schafgasse_1_000001_000210,03,"crate (black, upright)",standard objects,20.73,40.0,0.0,0.0
+05_Schafgasse_1_000001_000220,03,"crate (black, upright)",standard objects,17.95,41.0,0.0,0.0
+05_Schafgasse_1_000001_000230,03,"crate (black, upright)",standard objects,15.46,46.0,0.0,0.0
+05_Schafgasse_1_000001_000240,03,"crate (black, upright)",standard objects,13.01,56.0,0.869,0.112
+05_Schafgasse_1_000001_000250,03,"crate (black, upright)",standard objects,10.79,69.0,0.874,0.248
+05_Schafgasse_1_000001_000260,03,"crate (black, upright)",standard objects,8.69,82.0,0.927,0.424
+05_Schafgasse_1_000002_000110,08,cardboard box,random hazards,46.74,14.0,0.0,0.0
+05_Schafgasse_1_000002_000110,18,pylon (white),random hazards,39.15,14.0,0.813,0.059
+05_Schafgasse_1_000002_000120,08,cardboard box,random hazards,46.7,15.0,0.0,0.0
+05_Schafgasse_1_000002_000120,18,pylon (white),random hazards,38.37,15.0,0.0,0.0
+05_Schafgasse_1_000002_000130,08,cardboard box,random hazards,44.9,15.0,0.0,0.0
+05_Schafgasse_1_000002_000130,18,pylon (white),random hazards,35.78,15.0,0.0,0.0
+05_Schafgasse_1_000002_000140,08,cardboard box,random hazards,42.35,15.0,0.0,0.0
+05_Schafgasse_1_000002_000140,18,pylon (white),random hazards,34.34,16.0,0.0,0.0
+05_Schafgasse_1_000002_000150,08,cardboard box,random hazards,40.73,17.0,0.0,0.0
+05_Schafgasse_1_000002_000150,18,pylon (white),random hazards,32.82,17.0,0.0,0.0
+05_Schafgasse_1_000002_000160,08,cardboard box,random hazards,38.32,18.0,0.0,0.0
+05_Schafgasse_1_000002_000160,18,pylon (white),random hazards,30.17,18.0,0.0,0.0
+05_Schafgasse_1_000002_000170,08,cardboard box,random hazards,35.89,18.0,0.0,0.0
+05_Schafgasse_1_000002_000170,18,pylon (white),random hazards,27.82,19.0,0.887,0.061
+05_Schafgasse_1_000002_000180,08,cardboard box,random hazards,32.91,20.0,0.0,0.0
+05_Schafgasse_1_000002_000180,18,pylon (white),random hazards,25.14,21.0,0.895,0.122
+05_Schafgasse_1_000002_000190,08,cardboard box,random hazards,30.37,21.0,0.0,0.0
+05_Schafgasse_1_000002_000190,18,pylon (white),random hazards,22.0,24.0,0.0,0.0
+05_Schafgasse_1_000002_000200,08,cardboard box,random hazards,27.36,24.0,0.0,0.0
+05_Schafgasse_1_000002_000200,18,pylon (white),random hazards,18.91,28.0,0.897,0.066
+05_Schafgasse_1_000002_000210,08,cardboard box,random hazards,24.34,26.0,0.0,0.0
+05_Schafgasse_1_000002_000210,18,pylon (white),random hazards,15.72,31.0,0.846,0.078
+05_Schafgasse_1_000002_000220,08,cardboard box,random hazards,21.01,30.0,0.0,0.0
+05_Schafgasse_1_000002_000220,18,pylon (white),random hazards,12.48,41.0,0.793,0.343
+05_Schafgasse_1_000002_000230,08,cardboard box,random hazards,18.15,35.0,0.0,0.0
+05_Schafgasse_1_000002_000230,18,pylon (white),random hazards,9.12,57.0,0.686,0.263
+05_Schafgasse_1_000003_000020,20,tire,random hazards,41.6,16.0,0.0,0.0
+05_Schafgasse_1_000003_000030,20,tire,random hazards,42.15,16.0,0.0,0.0
+05_Schafgasse_1_000003_000040,20,tire,random hazards,39.91,15.0,0.0,0.0
+05_Schafgasse_1_000003_000050,20,tire,random hazards,37.97,17.0,0.0,0.0
+05_Schafgasse_1_000003_000060,20,tire,random hazards,35.94,17.0,0.0,0.0
+05_Schafgasse_1_000003_000070,20,tire,random hazards,34.59,19.0,0.0,0.0
+05_Schafgasse_1_000003_000080,20,tire,random hazards,31.69,19.0,0.0,0.0
+05_Schafgasse_1_000003_000090,20,tire,random hazards,28.52,20.0,0.0,0.0
+05_Schafgasse_1_000003_000100,20,tire,random hazards,25.87,24.0,0.0,0.0
+05_Schafgasse_1_000003_000110,20,tire,random hazards,23.44,27.0,0.0,0.0
+05_Schafgasse_1_000003_000120,20,tire,random hazards,20.15,31.0,0.0,0.0
+05_Schafgasse_1_000003_000130,20,tire,random hazards,17.09,37.0,0.0,0.0
+05_Schafgasse_1_000003_000140,20,tire,random hazards,13.89,46.0,0.0,0.0
+05_Schafgasse_1_000003_000150,20,tire,random hazards,10.63,61.0,0.979,0.078
+05_Schafgasse_1_000003_000160,20,tire,random hazards,7.86,87.0,0.0,0.0
+05_Schafgasse_1_000004_000020,11,crate (green),random hazards,48.51,13.0,0.0,0.0
+05_Schafgasse_1_000004_000020,10,"crate (blue, small)",random hazards,41.33,10.0,0.0,0.0
+05_Schafgasse_1_000004_000030,11,crate (green),random hazards,45.13,13.0,0.0,0.0
+05_Schafgasse_1_000004_000030,10,"crate (blue, small)",random hazards,41.74,11.0,0.0,0.0
+05_Schafgasse_1_000004_000040,11,crate (green),random hazards,44.22,13.0,0.0,0.0
+05_Schafgasse_1_000004_000040,10,"crate (blue, small)",random hazards,40.52,9.0,0.0,0.0
+05_Schafgasse_1_000004_000050,11,crate (green),random hazards,43.55,16.0,0.0,0.0
+05_Schafgasse_1_000004_000050,10,"crate (blue, small)",random hazards,40.33,11.0,0.0,0.0
+05_Schafgasse_1_000004_000060,11,crate (green),random hazards,41.84,16.0,0.0,0.0
+05_Schafgasse_1_000004_000060,10,"crate (blue, small)",random hazards,38.33,14.0,0.0,0.0
+05_Schafgasse_1_000004_000070,11,crate (green),random hazards,39.66,17.0,0.0,0.0
+05_Schafgasse_1_000004_000070,10,"crate (blue, small)",random hazards,36.16,18.0,0.0,0.0
+05_Schafgasse_1_000004_000080,11,crate (green),random hazards,37.61,18.0,0.0,0.0
+05_Schafgasse_1_000004_000080,10,"crate (blue, small)",random hazards,34.17,15.0,0.0,0.0
+05_Schafgasse_1_000004_000090,11,crate (green),random hazards,35.19,18.0,0.0,0.0
+05_Schafgasse_1_000004_000090,10,"crate (blue, small)",random hazards,31.41,15.0,0.0,0.0
+05_Schafgasse_1_000004_000100,11,crate (green),random hazards,32.77,21.0,0.0,0.0
+05_Schafgasse_1_000004_000100,10,"crate (blue, small)",random hazards,28.51,17.0,0.0,0.0
+05_Schafgasse_1_000004_000110,11,crate (green),random hazards,30.01,23.0,0.0,0.0
+05_Schafgasse_1_000004_000110,10,"crate (blue, small)",random hazards,25.48,18.0,0.0,0.0
+05_Schafgasse_1_000004_000120,11,crate (green),random hazards,26.33,24.0,0.0,0.0
+05_Schafgasse_1_000004_000120,10,"crate (blue, small)",random hazards,22.43,20.0,0.0,0.0
+05_Schafgasse_1_000004_000130,11,crate (green),random hazards,22.66,29.0,0.871,0.064
+05_Schafgasse_1_000004_000130,10,"crate (blue, small)",random hazards,18.62,25.0,0.0,0.0
+05_Schafgasse_1_000004_000140,11,crate (green),random hazards,19.53,37.0,0.839,0.082
+05_Schafgasse_1_000004_000140,10,"crate (blue, small)",random hazards,15.19,32.0,0.863,0.051
+05_Schafgasse_1_000004_000150,10,"crate (blue, small)",random hazards,11.52,43.0,0.915,0.632
+05_Schafgasse_1_000004_000150,11,crate (green),random hazards,15.85,41.0,0.962,0.17
+05_Schafgasse_1_000004_000160,11,crate (green),random hazards,12.54,55.0,0.957,0.057
+05_Schafgasse_1_000004_000160,10,"crate (blue, small)",random hazards,7.99,68.0,0.938,0.762
+05_Schafgasse_1_000004_000170,11,crate (green),random hazards,9.57,74.0,0.939,0.149
+05_Schafgasse_1_000005_000030,29,cardboard box,random hazards,43.93,8.0,0.0,0.0
+05_Schafgasse_1_000005_000040,29,cardboard box,random hazards,42.5,9.0,0.0,0.0
+05_Schafgasse_1_000005_000050,29,cardboard box,random hazards,40.75,9.0,0.0,0.0
+05_Schafgasse_1_000005_000060,29,cardboard box,random hazards,40.41,11.0,0.0,0.0
+05_Schafgasse_1_000005_000070,29,cardboard box,random hazards,39.28,9.0,0.0,0.0
+05_Schafgasse_1_000005_000080,29,cardboard box,random hazards,37.5,10.0,0.0,0.0
+05_Schafgasse_1_000005_000090,29,cardboard box,random hazards,34.43,12.0,0.0,0.0
+05_Schafgasse_1_000005_000100,29,cardboard box,random hazards,32.17,11.0,0.0,0.0
+05_Schafgasse_1_000005_000110,29,cardboard box,random hazards,29.22,13.0,0.0,0.0
+05_Schafgasse_1_000005_000120,29,cardboard box,random hazards,26.45,13.0,0.0,0.0
+05_Schafgasse_1_000005_000120,21,ball,emotional hazards,21.28,27.0,0.0,0.0
+05_Schafgasse_1_000005_000130,21,ball,emotional hazards,18.1,31.0,0.857,0.58
+05_Schafgasse_1_000005_000130,29,cardboard box,random hazards,23.06,14.0,0.0,0.0
+05_Schafgasse_1_000005_000140,29,cardboard box,random hazards,20.29,17.0,0.0,0.0
+05_Schafgasse_1_000007_000010,20,tire,random hazards,41.89,11.0,0.0,0.0
+05_Schafgasse_1_000007_000020,20,tire,random hazards,40.63,10.0,0.0,0.0
+05_Schafgasse_1_000007_000030,20,tire,random hazards,39.31,10.0,0.0,0.0
+05_Schafgasse_1_000007_000040,20,tire,random hazards,37.65,10.0,0.0,0.0
+05_Schafgasse_1_000007_000050,20,tire,random hazards,35.49,11.0,0.0,0.0
+05_Schafgasse_1_000007_000060,20,tire,random hazards,33.22,10.0,0.0,0.0
+05_Schafgasse_1_000007_000070,20,tire,random hazards,30.36,10.0,0.0,0.0
+05_Schafgasse_1_000007_000080,20,tire,random hazards,28.02,12.0,0.0,0.0
+05_Schafgasse_1_000007_000090,20,tire,random hazards,24.49,14.0,0.0,0.0
+05_Schafgasse_1_000007_000100,20,tire,random hazards,21.67,16.0,0.0,0.0
+05_Schafgasse_1_000007_000110,20,tire,random hazards,18.32,18.0,0.0,0.0
+05_Schafgasse_1_000007_000120,20,tire,random hazards,15.2,23.0,0.0,0.0
+05_Schafgasse_1_000007_000130,20,tire,random hazards,12.21,30.0,0.0,0.0
+05_Schafgasse_1_000007_000140,20,tire,random hazards,9.29,39.0,0.0,0.0
+05_Schafgasse_1_000007_000150,20,tire,random hazards,6.47,63.0,0.0,0.0
+05_Schafgasse_1_000008_000010,34,styrofoam,random hazards,47.67,9.0,0.0,0.0
+05_Schafgasse_1_000008_000010,14,headlight,random hazards,39.62,15.0,0.0,0.0
+05_Schafgasse_1_000008_000020,34,styrofoam,random hazards,47.06,8.0,0.0,0.0
+05_Schafgasse_1_000008_000020,14,headlight,random hazards,37.84,17.0,0.0,0.0
+05_Schafgasse_1_000008_000030,34,styrofoam,random hazards,47.08,7.0,0.0,0.0
+05_Schafgasse_1_000008_000030,14,headlight,random hazards,36.73,18.0,0.0,0.0
+05_Schafgasse_1_000008_000040,34,styrofoam,random hazards,44.6,9.0,0.0,0.0
+05_Schafgasse_1_000008_000040,14,headlight,random hazards,35.29,19.0,0.0,0.0
+05_Schafgasse_1_000008_000050,34,styrofoam,random hazards,42.17,10.0,0.0,0.0
+05_Schafgasse_1_000008_000050,14,headlight,random hazards,32.31,20.0,0.0,0.0
+05_Schafgasse_1_000008_000060,34,styrofoam,random hazards,39.92,10.0,0.0,0.0
+05_Schafgasse_1_000008_000060,14,headlight,random hazards,29.7,22.0,0.0,0.0
+05_Schafgasse_1_000008_000070,34,styrofoam,random hazards,36.55,10.0,0.0,0.0
+05_Schafgasse_1_000008_000070,14,headlight,random hazards,26.37,22.0,0.0,0.0
+05_Schafgasse_1_000008_000080,34,styrofoam,random hazards,33.1,11.0,0.0,0.0
+05_Schafgasse_1_000008_000080,14,headlight,random hazards,23.27,26.0,0.0,0.0
+05_Schafgasse_1_000008_000090,34,styrofoam,random hazards,30.11,13.0,0.0,0.0
+05_Schafgasse_1_000008_000090,14,headlight,random hazards,19.74,31.0,0.0,0.0
+05_Schafgasse_1_000008_000100,34,styrofoam,random hazards,26.79,14.0,0.0,0.0
+05_Schafgasse_1_000008_000100,14,headlight,random hazards,16.51,38.0,0.0,0.0
+05_Schafgasse_1_000008_000110,34,styrofoam,random hazards,23.57,16.0,0.0,0.0
+05_Schafgasse_1_000008_000110,14,headlight,random hazards,13.23,47.0,0.965,0.104
+05_Schafgasse_1_000008_000120,34,styrofoam,random hazards,20.17,17.0,0.0,0.0
+05_Schafgasse_1_000008_000120,14,headlight,random hazards,9.97,63.0,0.937,0.053
+05_Schafgasse_1_000009_000070,23,dog (black),emotional hazards,55.36,19.0,0.0,0.0
+05_Schafgasse_1_000009_000080,23,dog (black),emotional hazards,53.95,22.0,0.353,0.15
+05_Schafgasse_1_000009_000090,23,dog (black),emotional hazards,53.46,21.0,0.55,0.057
+05_Schafgasse_1_000009_000100,23,dog (black),emotional hazards,52.39,20.0,0.347,0.061
+05_Schafgasse_1_000009_000110,23,dog (black),emotional hazards,49.71,22.0,0.836,0.113
+05_Schafgasse_1_000009_000120,23,dog (black),emotional hazards,48.08,23.0,0.0,0.0
+05_Schafgasse_1_000009_000130,23,dog (black),emotional hazards,44.83,25.0,0.0,0.0
+05_Schafgasse_1_000009_000140,23,dog (black),emotional hazards,42.47,26.0,0.312,0.229
+05_Schafgasse_1_000009_000150,23,dog (black),emotional hazards,38.42,28.0,0.896,0.307
+05_Schafgasse_1_000009_000160,23,dog (black),emotional hazards,36.24,31.0,0.916,0.482
+05_Schafgasse_1_000009_000170,23,dog (black),emotional hazards,32.2,33.0,0.865,0.181
+05_Schafgasse_1_000009_000180,23,dog (black),emotional hazards,28.77,37.0,0.894,0.593
+05_Schafgasse_1_000009_000190,23,dog (black),emotional hazards,25.54,41.0,0.922,0.508
+05_Schafgasse_1_000009_000200,23,dog (black),emotional hazards,21.69,51.0,0.933,0.746
+05_Schafgasse_1_000009_000210,23,dog (black),emotional hazards,18.28,59.0,0.928,0.797
+05_Schafgasse_1_000009_000220,23,dog (black),emotional hazards,14.99,75.0,0.963,0.847
+05_Schafgasse_1_000009_000230,23,dog (black),emotional hazards,11.99,92.0,0.959,0.875
+05_Schafgasse_1_000009_000240,23,dog (black),emotional hazards,9.26,114.0,0.96,0.884
+05_Schafgasse_1_000010_000040,24,dog (white),emotional hazards,53.21,15.0,0.0,0.0
+05_Schafgasse_1_000010_000050,24,dog (white),emotional hazards,52.73,16.0,0.0,0.0
+05_Schafgasse_1_000010_000060,24,dog (white),emotional hazards,51.33,16.0,0.0,0.0
+05_Schafgasse_1_000010_000070,24,dog (white),emotional hazards,50.61,16.0,0.0,0.0
+05_Schafgasse_1_000010_000080,24,dog (white),emotional hazards,48.51,16.0,0.0,0.0
+05_Schafgasse_1_000010_000090,24,dog (white),emotional hazards,45.39,18.0,0.0,0.0
+05_Schafgasse_1_000010_000100,24,dog (white),emotional hazards,42.8,18.0,0.853,0.109
+05_Schafgasse_1_000010_000110,24,dog (white),emotional hazards,38.79,20.0,0.82,0.137
+05_Schafgasse_1_000010_000120,24,dog (white),emotional hazards,35.82,22.0,0.0,0.0
+05_Schafgasse_1_000010_000130,24,dog (white),emotional hazards,31.65,24.0,0.0,0.0
+05_Schafgasse_1_000010_000140,24,dog (white),emotional hazards,27.83,27.0,0.87,0.181
+05_Schafgasse_1_000010_000150,24,dog (white),emotional hazards,23.42,32.0,0.865,0.689
+05_Schafgasse_1_000010_000160,24,dog (white),emotional hazards,19.55,38.0,0.865,0.611
+05_Schafgasse_1_000010_000170,24,dog (white),emotional hazards,15.87,46.0,0.907,0.672
+05_Schafgasse_1_000010_000180,24,dog (white),emotional hazards,12.55,59.0,0.926,0.743
+05_Schafgasse_1_000010_000190,24,dog (white),emotional hazards,9.31,76.0,0.946,0.703
+05_Schafgasse_1_000011_000120,27,bobby car (red),emotional hazards,39.08,29.0,0.0,0.0
+05_Schafgasse_1_000011_000130,27,bobby car (red),emotional hazards,33.58,32.0,0.72,0.089
+05_Schafgasse_1_000011_000140,27,bobby car (red),emotional hazards,28.89,36.0,0.71,0.328
+05_Schafgasse_1_000011_000150,27,bobby car (red),emotional hazards,23.8,41.0,0.786,0.623
+05_Schafgasse_1_000011_000160,27,bobby car (red),emotional hazards,19.23,54.0,0.706,0.356
+05_Schafgasse_1_000011_000170,27,bobby car (red),emotional hazards,14.17,71.0,0.969,0.739
+05_Schafgasse_1_000011_000180,27,bobby car (red),emotional hazards,9.75,105.0,0.958,0.762
+05_Schafgasse_1_000012_000030,28,bobby car (yellow),emotional hazards,77.54,17.0,0.0,0.0
+05_Schafgasse_1_000012_000040,28,bobby car (yellow),emotional hazards,74.82,18.0,0.0,0.0
+05_Schafgasse_1_000012_000050,28,bobby car (yellow),emotional hazards,72.79,17.0,0.0,0.0
+05_Schafgasse_1_000012_000060,28,bobby car (yellow),emotional hazards,72.06,20.0,0.0,0.0
+05_Schafgasse_1_000012_000070,28,bobby car (yellow),emotional hazards,65.78,17.0,0.0,0.0
+05_Schafgasse_1_000012_000080,28,bobby car (yellow),emotional hazards,62.62,18.0,0.0,0.0
+05_Schafgasse_1_000012_000090,28,bobby car (yellow),emotional hazards,60.76,19.0,0.0,0.0
+05_Schafgasse_1_000012_000100,28,bobby car (yellow),emotional hazards,57.89,21.0,0.0,0.0
+05_Schafgasse_1_000012_000110,28,bobby car (yellow),emotional hazards,52.41,23.0,0.0,0.0
+05_Schafgasse_1_000012_000120,28,bobby car (yellow),emotional hazards,48.82,22.0,0.0,0.0
+05_Schafgasse_1_000012_000130,28,bobby car (yellow),emotional hazards,43.81,26.0,0.0,0.0
+05_Schafgasse_1_000012_000140,28,bobby car (yellow),emotional hazards,40.13,28.0,0.0,0.0
+05_Schafgasse_1_000012_000150,28,bobby car (yellow),emotional hazards,35.51,33.0,0.0,0.0
+05_Schafgasse_1_000012_000160,28,bobby car (yellow),emotional hazards,30.85,36.0,0.0,0.0
+05_Schafgasse_1_000012_000170,28,bobby car (yellow),emotional hazards,26.2,41.0,0.0,0.0
+05_Schafgasse_1_000012_000180,28,bobby car (yellow),emotional hazards,22.57,47.0,0.0,0.0
+05_Schafgasse_1_000012_000190,28,bobby car (yellow),emotional hazards,18.22,58.0,0.844,0.306
+05_Schafgasse_1_000012_000200,28,bobby car (yellow),emotional hazards,14.25,75.0,0.893,0.494
+05_Schafgasse_1_000012_000210,28,bobby car (yellow),emotional hazards,10.6,99.0,0.889,0.615
+05_Schafgasse_1_000012_000220,28,bobby car (yellow),emotional hazards,7.32,142.0,0.903,0.457
+05_Schafgasse_1_000013_000030,26,bobby car (gray),emotional hazards,67.85,19.0,0.0,0.0
+05_Schafgasse_1_000013_000040,26,bobby car (gray),emotional hazards,65.08,15.0,0.0,0.0
+05_Schafgasse_1_000013_000050,26,bobby car (gray),emotional hazards,64.37,17.0,0.0,0.0
+05_Schafgasse_1_000013_000060,26,bobby car (gray),emotional hazards,61.51,17.0,0.0,0.0
+05_Schafgasse_1_000013_000070,26,bobby car (gray),emotional hazards,58.52,15.0,0.0,0.0
+05_Schafgasse_1_000013_000080,26,bobby car (gray),emotional hazards,54.04,22.0,0.0,0.0
+05_Schafgasse_1_000013_000090,26,bobby car (gray),emotional hazards,51.2,23.0,0.0,0.0
+05_Schafgasse_1_000013_000100,26,bobby car (gray),emotional hazards,45.71,22.0,0.749,0.073
+05_Schafgasse_1_000013_000110,26,bobby car (gray),emotional hazards,41.84,25.0,0.81,0.072
+05_Schafgasse_1_000013_000120,26,bobby car (gray),emotional hazards,36.78,30.0,0.696,0.065
+05_Schafgasse_1_000013_000130,26,bobby car (gray),emotional hazards,32.16,32.0,0.773,0.319
+05_Schafgasse_1_000013_000140,26,bobby car (gray),emotional hazards,28.02,39.0,0.744,0.606
+05_Schafgasse_1_000013_000150,26,bobby car (gray),emotional hazards,23.07,45.0,0.754,0.742
+05_Schafgasse_1_000013_000160,26,bobby car (gray),emotional hazards,18.43,55.0,0.791,0.766
+05_Schafgasse_1_000013_000170,26,bobby car (gray),emotional hazards,14.2,69.0,0.866,0.833
+05_Schafgasse_1_000013_000180,26,bobby car (gray),emotional hazards,10.46,97.0,0.824,0.847
+05_Schafgasse_1_000014_000030,24,dog (white),emotional hazards,47.14,20.0,0.881,0.278
+05_Schafgasse_1_000014_000040,24,dog (white),emotional hazards,45.34,23.0,0.783,0.093
+05_Schafgasse_1_000014_000050,24,dog (white),emotional hazards,43.42,25.0,0.812,0.181
+05_Schafgasse_1_000014_000060,24,dog (white),emotional hazards,41.49,26.0,0.809,0.352
+05_Schafgasse_1_000014_000070,24,dog (white),emotional hazards,39.53,27.0,0.826,0.286
+05_Schafgasse_1_000014_000080,24,dog (white),emotional hazards,36.05,30.0,0.833,0.271
+05_Schafgasse_1_000014_000090,24,dog (white),emotional hazards,32.25,32.0,0.88,0.547
+05_Schafgasse_1_000014_000100,24,dog (white),emotional hazards,28.71,32.0,0.916,0.67
+05_Schafgasse_1_000014_000110,24,dog (white),emotional hazards,25.23,38.0,0.745,0.633
+05_Schafgasse_1_000014_000120,24,dog (white),emotional hazards,21.15,42.0,0.821,0.58
+05_Schafgasse_1_000014_000130,24,dog (white),emotional hazards,17.66,53.0,0.715,0.572
+05_Schafgasse_1_000014_000140,24,dog (white),emotional hazards,14.09,62.0,0.945,0.742
+05_Schafgasse_1_000014_000150,24,dog (white),emotional hazards,11.09,79.0,0.965,0.813
+05_Schafgasse_1_000014_000160,24,dog (white),emotional hazards,8.48,104.0,0.976,0.803
+05_Schafgasse_1_000015_000050,27,bobby car (red),emotional hazards,47.76,24.0,0.0,0.0
+05_Schafgasse_1_000015_000060,27,bobby car (red),emotional hazards,43.62,25.0,0.874,0.093
+05_Schafgasse_1_000015_000070,27,bobby car (red),emotional hazards,41.34,26.0,0.857,0.201
+05_Schafgasse_1_000015_000080,27,bobby car (red),emotional hazards,37.11,30.0,0.857,0.288
+05_Schafgasse_1_000015_000090,27,bobby car (red),emotional hazards,33.46,33.0,0.789,0.368
+05_Schafgasse_1_000015_000100,27,bobby car (red),emotional hazards,29.06,36.0,0.917,0.39
+05_Schafgasse_1_000015_000110,27,bobby car (red),emotional hazards,25.47,41.0,0.891,0.502
+05_Schafgasse_1_000015_000120,27,bobby car (red),emotional hazards,21.62,46.0,0.884,0.494
+05_Schafgasse_1_000015_000130,27,bobby car (red),emotional hazards,18.15,55.0,0.705,0.748
+05_Schafgasse_1_000015_000140,27,bobby car (red),emotional hazards,14.93,68.0,0.71,0.734
+05_Schafgasse_1_000015_000150,27,bobby car (red),emotional hazards,12.05,82.0,0.981,0.832
+05_Schafgasse_1_000015_000160,27,bobby car (red),emotional hazards,9.41,104.0,0.967,0.769
+05_Schafgasse_1_000015_000170,27,bobby car (red),emotional hazards,7.29,135.0,0.983,0.846
+05_Schafgasse_1_000016_000030,27,bobby car (red),emotional hazards,52.31,20.0,0.0,0.0
+05_Schafgasse_1_000016_000040,27,bobby car (red),emotional hazards,52.14,20.0,0.0,0.0
+05_Schafgasse_1_000016_000050,27,bobby car (red),emotional hazards,50.19,22.0,0.0,0.0
+05_Schafgasse_1_000016_000060,27,bobby car (red),emotional hazards,48.51,23.0,0.0,0.0
+05_Schafgasse_1_000016_000070,27,bobby car (red),emotional hazards,45.53,24.0,0.0,0.0
+05_Schafgasse_1_000016_000080,27,bobby car (red),emotional hazards,42.22,25.0,0.0,0.0
+05_Schafgasse_1_000016_000090,27,bobby car (red),emotional hazards,38.5,27.0,0.0,0.0
+05_Schafgasse_1_000016_000100,27,bobby car (red),emotional hazards,35.52,30.0,0.0,0.0
+05_Schafgasse_1_000016_000110,27,bobby car (red),emotional hazards,31.6,34.0,0.0,0.0
+05_Schafgasse_1_000016_000120,27,bobby car (red),emotional hazards,27.84,40.0,0.0,0.0
+05_Schafgasse_1_000016_000130,27,bobby car (red),emotional hazards,23.85,46.0,0.561,0.067
+05_Schafgasse_1_000016_000140,27,bobby car (red),emotional hazards,19.86,48.0,0.697,0.174
+05_Schafgasse_1_000016_000150,27,bobby car (red),emotional hazards,16.08,63.0,0.633,0.525
+05_Schafgasse_1_000016_000160,27,bobby car (red),emotional hazards,12.51,80.0,0.684,0.232
+05_Schafgasse_1_000016_000170,27,bobby car (red),emotional hazards,9.15,108.0,0.968,0.817
+05_Schafgasse_1_000017_000030,26,bobby car (gray),emotional hazards,53.49,19.0,0.0,0.0
+05_Schafgasse_1_000017_000040,26,bobby car (gray),emotional hazards,52.37,21.0,0.0,0.0
+05_Schafgasse_1_000017_000050,26,bobby car (gray),emotional hazards,50.96,21.0,0.0,0.0
+05_Schafgasse_1_000017_000060,26,bobby car (gray),emotional hazards,49.46,21.0,0.0,0.0
+05_Schafgasse_1_000017_000070,26,bobby car (gray),emotional hazards,46.12,22.0,0.0,0.0
+05_Schafgasse_1_000017_000080,26,bobby car (gray),emotional hazards,43.18,26.0,0.0,0.0
+05_Schafgasse_1_000017_000090,26,bobby car (gray),emotional hazards,39.46,27.0,0.0,0.0
+05_Schafgasse_1_000017_000100,26,bobby car (gray),emotional hazards,35.81,30.0,0.706,0.059
+05_Schafgasse_1_000017_000110,26,bobby car (gray),emotional hazards,31.94,32.0,0.755,0.328
+05_Schafgasse_1_000017_000120,26,bobby car (gray),emotional hazards,28.26,35.0,0.851,0.349
+05_Schafgasse_1_000017_000130,26,bobby car (gray),emotional hazards,25.01,42.0,0.779,0.715
+05_Schafgasse_1_000017_000140,26,bobby car (gray),emotional hazards,21.2,49.0,0.843,0.249
+05_Schafgasse_1_000017_000150,26,bobby car (gray),emotional hazards,17.74,57.0,0.765,0.424
+05_Schafgasse_1_000017_000160,26,bobby car (gray),emotional hazards,14.1,70.0,0.964,0.158
+05_Schafgasse_1_000017_000170,26,bobby car (gray),emotional hazards,10.89,92.0,0.974,0.845
+05_Schafgasse_1_000017_000180,26,bobby car (gray),emotional hazards,7.91,127.0,0.927,0.653
+05_Schafgasse_1_000018_000030,24,dog (white),emotional hazards,55.19,22.0,0.0,0.0
+05_Schafgasse_1_000018_000040,24,dog (white),emotional hazards,52.2,23.0,0.0,0.0
+05_Schafgasse_1_000018_000050,24,dog (white),emotional hazards,50.77,24.0,0.0,0.0
+05_Schafgasse_1_000018_000060,24,dog (white),emotional hazards,47.4,25.0,0.0,0.0
+05_Schafgasse_1_000018_000070,24,dog (white),emotional hazards,42.78,26.0,0.805,0.072
+05_Schafgasse_1_000018_000080,24,dog (white),emotional hazards,39.39,29.0,0.0,0.0
+05_Schafgasse_1_000018_000090,24,dog (white),emotional hazards,35.21,32.0,0.0,0.0
+05_Schafgasse_1_000018_000100,24,dog (white),emotional hazards,30.59,37.0,0.0,0.0
+05_Schafgasse_1_000018_000110,24,dog (white),emotional hazards,25.71,43.0,0.331,0.094
+05_Schafgasse_1_000018_000120,24,dog (white),emotional hazards,21.02,50.0,0.82,0.787
+05_Schafgasse_1_000018_000130,24,dog (white),emotional hazards,16.71,62.0,0.793,0.693
+05_Schafgasse_1_000018_000140,24,dog (white),emotional hazards,12.49,77.0,0.951,0.759
+05_Schafgasse_1_000018_000150,24,dog (white),emotional hazards,8.45,111.0,0.975,0.766
+05_Schafgasse_1_000019_000070,23,dog (black),emotional hazards,58.47,21.0,0.0,0.0
+05_Schafgasse_1_000019_000080,23,dog (black),emotional hazards,54.36,23.0,0.0,0.0
+05_Schafgasse_1_000019_000090,23,dog (black),emotional hazards,53.5,23.0,0.0,0.0
+05_Schafgasse_1_000019_000100,23,dog (black),emotional hazards,51.45,26.0,0.0,0.0
+05_Schafgasse_1_000019_000110,23,dog (black),emotional hazards,48.86,28.0,0.0,0.0
+05_Schafgasse_1_000019_000120,23,dog (black),emotional hazards,43.86,32.0,0.0,0.0
+05_Schafgasse_1_000019_000130,23,dog (black),emotional hazards,41.58,30.0,0.0,0.0
+05_Schafgasse_1_000019_000140,23,dog (black),emotional hazards,37.64,32.0,0.0,0.0
+05_Schafgasse_1_000019_000150,23,dog (black),emotional hazards,33.25,37.0,0.85,0.186
+05_Schafgasse_1_000019_000160,23,dog (black),emotional hazards,28.7,44.0,0.913,0.623
+05_Schafgasse_1_000019_000170,23,dog (black),emotional hazards,24.77,49.0,0.887,0.43
+05_Schafgasse_1_000019_000180,23,dog (black),emotional hazards,20.05,58.0,0.892,0.758
+05_Schafgasse_1_000019_000190,23,dog (black),emotional hazards,15.91,68.0,0.878,0.766
+05_Schafgasse_1_000019_000200,23,dog (black),emotional hazards,12.12,88.0,0.931,0.83
+05_Schafgasse_1_000019_000210,23,dog (black),emotional hazards,8.76,125.0,0.953,0.822
+07_Festplatz_Flugfeld_000000_000030,04,crate (gray),standard objects,82.26,7.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000030,05,"crate (gray, 2x stacked)",standard objects,89.7,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000030,06,"crate (gray, upright)",standard objects,105.56,14.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000040,04,crate (gray),standard objects,77.52,8.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000040,05,"crate (gray, 2x stacked)",standard objects,91.55,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000040,06,"crate (gray, upright)",standard objects,106.56,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000050,04,crate (gray),standard objects,77.7,7.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000050,05,"crate (gray, 2x stacked)",standard objects,91.74,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000050,06,"crate (gray, upright)",standard objects,101.97,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000060,04,crate (gray),standard objects,69.69,7.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000060,05,"crate (gray, 2x stacked)",standard objects,87.81,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000060,06,"crate (gray, upright)",standard objects,99.22,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000070,04,crate (gray),standard objects,66.01,6.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000070,05,"crate (gray, 2x stacked)",standard objects,82.16,9.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000070,06,"crate (gray, upright)",standard objects,93.74,17.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000080,04,crate (gray),standard objects,64.92,8.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000080,05,"crate (gray, 2x stacked)",standard objects,76.82,12.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000080,06,"crate (gray, upright)",standard objects,94.08,17.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000090,04,crate (gray),standard objects,60.87,7.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000090,05,"crate (gray, 2x stacked)",standard objects,76.05,14.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000090,06,"crate (gray, upright)",standard objects,90.26,17.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000100,04,crate (gray),standard objects,55.91,7.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000100,05,"crate (gray, 2x stacked)",standard objects,70.64,13.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000100,06,"crate (gray, upright)",standard objects,88.29,19.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000110,05,"crate (gray, 2x stacked)",standard objects,66.35,12.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000110,04,crate (gray),standard objects,52.71,8.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000110,06,"crate (gray, upright)",standard objects,74.82,20.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000120,04,crate (gray),standard objects,48.99,9.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000120,05,"crate (gray, 2x stacked)",standard objects,63.95,13.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000120,06,"crate (gray, upright)",standard objects,68.72,21.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000130,04,crate (gray),standard objects,44.62,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000130,05,"crate (gray, 2x stacked)",standard objects,58.39,12.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000130,06,"crate (gray, upright)",standard objects,67.57,21.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000140,04,crate (gray),standard objects,41.77,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000140,05,"crate (gray, 2x stacked)",standard objects,54.08,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000140,06,"crate (gray, upright)",standard objects,62.49,22.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000150,04,crate (gray),standard objects,36.81,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000150,05,"crate (gray, 2x stacked)",standard objects,51.62,16.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000150,06,"crate (gray, upright)",standard objects,57.15,27.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000160,04,crate (gray),standard objects,33.12,14.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000160,05,"crate (gray, 2x stacked)",standard objects,47.21,19.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000160,06,"crate (gray, upright)",standard objects,52.01,30.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000170,04,crate (gray),standard objects,29.26,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000170,05,"crate (gray, 2x stacked)",standard objects,42.33,17.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000170,06,"crate (gray, upright)",standard objects,47.45,28.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000180,04,crate (gray),standard objects,25.63,20.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000180,05,"crate (gray, 2x stacked)",standard objects,38.45,21.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000180,06,"crate (gray, upright)",standard objects,43.36,36.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000190,04,crate (gray),standard objects,21.62,21.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000190,05,"crate (gray, 2x stacked)",standard objects,36.12,25.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000190,06,"crate (gray, upright)",standard objects,41.12,39.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000200,04,crate (gray),standard objects,18.02,24.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000200,05,"crate (gray, 2x stacked)",standard objects,31.42,26.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000200,06,"crate (gray, upright)",standard objects,36.24,42.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000210,04,crate (gray),standard objects,14.06,34.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000210,05,"crate (gray, 2x stacked)",standard objects,27.28,32.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000210,06,"crate (gray, upright)",standard objects,31.82,46.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000220,04,crate (gray),standard objects,10.2,43.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000220,05,"crate (gray, 2x stacked)",standard objects,23.19,35.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000220,06,"crate (gray, upright)",standard objects,28.26,46.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000230,05,"crate (gray, 2x stacked)",standard objects,19.43,38.0,0.956,0.056
+07_Festplatz_Flugfeld_000000_000230,06,"crate (gray, upright)",standard objects,24.98,58.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000240,05,"crate (gray, 2x stacked)",standard objects,15.84,51.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000240,06,"crate (gray, upright)",standard objects,20.94,64.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000250,05,"crate (gray, 2x stacked)",standard objects,12.57,70.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000250,06,"crate (gray, upright)",standard objects,17.61,80.0,0.0,0.0
+07_Festplatz_Flugfeld_000000_000260,05,"crate (gray, 2x stacked)",standard objects,9.07,93.0,0.928,0.098
+07_Festplatz_Flugfeld_000000_000260,06,"crate (gray, upright)",standard objects,14.11,97.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000030,03,"crate (black, upright)",standard objects,85.71,9.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000030,02,"crate (black, 2x stacked)",standard objects,106.69,9.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000030,01,crate (black),standard objects,102.7,9.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000040,03,"crate (black, upright)",standard objects,88.02,7.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000040,02,"crate (black, 2x stacked)",standard objects,104.11,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000040,01,crate (black),standard objects,99.3,9.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000050,03,"crate (black, upright)",standard objects,84.87,9.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000050,02,"crate (black, 2x stacked)",standard objects,99.37,12.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000050,01,crate (black),standard objects,93.4,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000060,03,"crate (black, upright)",standard objects,81.95,8.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000060,02,"crate (black, 2x stacked)",standard objects,98.24,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000060,01,crate (black),standard objects,86.4,8.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000070,03,"crate (black, upright)",standard objects,76.92,9.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000070,02,"crate (black, 2x stacked)",standard objects,99.53,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000070,01,crate (black),standard objects,86.14,9.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000080,03,"crate (black, upright)",standard objects,73.41,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000080,02,"crate (black, 2x stacked)",standard objects,93.0,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000080,01,crate (black),standard objects,87.15,9.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000090,03,"crate (black, upright)",standard objects,66.59,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000090,02,"crate (black, 2x stacked)",standard objects,89.45,13.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000090,01,crate (black),standard objects,80.12,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000100,03,"crate (black, upright)",standard objects,63.14,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000100,02,"crate (black, 2x stacked)",standard objects,82.74,13.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000100,01,crate (black),standard objects,74.22,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000110,03,"crate (black, upright)",standard objects,58.42,12.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000110,02,"crate (black, 2x stacked)",standard objects,77.99,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000110,01,crate (black),standard objects,70.76,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000120,03,"crate (black, upright)",standard objects,52.22,13.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000120,02,"crate (black, 2x stacked)",standard objects,70.93,14.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000120,01,crate (black),standard objects,64.13,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000130,03,"crate (black, upright)",standard objects,47.56,14.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000130,02,"crate (black, 2x stacked)",standard objects,67.85,16.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000130,01,crate (black),standard objects,61.19,13.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000140,03,"crate (black, upright)",standard objects,43.2,16.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000140,02,"crate (black, 2x stacked)",standard objects,61.89,18.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000140,01,crate (black),standard objects,56.38,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000150,03,"crate (black, upright)",standard objects,38.11,17.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000150,02,"crate (black, 2x stacked)",standard objects,56.3,19.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000150,01,crate (black),standard objects,51.97,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000160,03,"crate (black, upright)",standard objects,34.27,20.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000160,02,"crate (black, 2x stacked)",standard objects,50.39,21.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000160,01,crate (black),standard objects,47.37,17.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000170,02,"crate (black, 2x stacked)",standard objects,45.74,22.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000170,03,"crate (black, upright)",standard objects,28.87,24.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000170,01,crate (black),standard objects,42.13,20.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000180,03,"crate (black, upright)",standard objects,24.93,28.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000180,02,"crate (black, 2x stacked)",standard objects,41.72,27.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000180,01,crate (black),standard objects,36.97,21.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000190,03,"crate (black, upright)",standard objects,20.76,31.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000190,02,"crate (black, 2x stacked)",standard objects,36.92,29.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000190,01,crate (black),standard objects,33.32,23.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000200,03,"crate (black, upright)",standard objects,16.73,42.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000200,02,"crate (black, 2x stacked)",standard objects,32.75,32.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000200,01,crate (black),standard objects,29.38,28.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000210,03,"crate (black, upright)",standard objects,13.15,52.0,0.838,0.237
+07_Festplatz_Flugfeld_000001_000210,02,"crate (black, 2x stacked)",standard objects,28.95,37.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000210,01,crate (black),standard objects,25.53,32.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000220,03,"crate (black, upright)",standard objects,9.81,72.0,0.925,0.174
+07_Festplatz_Flugfeld_000001_000220,02,"crate (black, 2x stacked)",standard objects,25.64,40.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000220,01,crate (black),standard objects,22.7,38.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000230,02,"crate (black, 2x stacked)",standard objects,23.07,48.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000230,01,crate (black),standard objects,19.47,41.0,0.0,0.0
+07_Festplatz_Flugfeld_000001_000230,03,"crate (black, upright)",standard objects,7.16,103.0,0.912,0.172
+07_Festplatz_Flugfeld_000002_000190,08,cardboard box,random hazards,86.86,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000190,07,bumper,random hazards,99.53,17.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000200,08,cardboard box,random hazards,84.2,9.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000200,07,bumper,random hazards,96.91,19.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000210,08,cardboard box,random hazards,86.45,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000210,07,bumper,random hazards,92.53,18.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000220,08,cardboard box,random hazards,82.79,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000220,07,bumper,random hazards,91.16,18.0,0.431,0.079
+07_Festplatz_Flugfeld_000002_000230,08,cardboard box,random hazards,76.87,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000230,07,bumper,random hazards,84.86,18.0,0.869,0.067
+07_Festplatz_Flugfeld_000002_000240,08,cardboard box,random hazards,74.52,12.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000240,07,bumper,random hazards,85.14,18.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000250,08,cardboard box,random hazards,70.26,13.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000250,07,bumper,random hazards,81.85,21.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000260,08,cardboard box,random hazards,66.52,13.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000260,07,bumper,random hazards,79.18,22.0,0.334,0.334
+07_Festplatz_Flugfeld_000002_000270,08,cardboard box,random hazards,65.08,14.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000270,07,bumper,random hazards,74.13,23.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000280,08,cardboard box,random hazards,60.11,16.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000280,07,bumper,random hazards,67.36,23.0,0.301,0.08
+07_Festplatz_Flugfeld_000002_000290,08,cardboard box,random hazards,55.77,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000290,07,bumper,random hazards,64.3,23.0,0.328,0.201
+07_Festplatz_Flugfeld_000002_000300,08,cardboard box,random hazards,50.66,17.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000300,07,bumper,random hazards,61.45,26.0,0.387,0.058
+07_Festplatz_Flugfeld_000002_000310,08,cardboard box,random hazards,48.05,19.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000310,07,bumper,random hazards,57.05,26.0,0.815,0.058
+07_Festplatz_Flugfeld_000002_000320,08,cardboard box,random hazards,42.8,21.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000320,07,bumper,random hazards,51.62,27.0,0.894,0.304
+07_Festplatz_Flugfeld_000002_000330,08,cardboard box,random hazards,39.31,22.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000330,07,bumper,random hazards,48.6,30.0,0.927,0.535
+07_Festplatz_Flugfeld_000002_000340,08,cardboard box,random hazards,35.66,24.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000340,07,bumper,random hazards,43.1,33.0,0.932,0.299
+07_Festplatz_Flugfeld_000002_000350,08,cardboard box,random hazards,31.73,26.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000350,07,bumper,random hazards,40.65,35.0,0.927,0.463
+07_Festplatz_Flugfeld_000002_000360,08,cardboard box,random hazards,28.34,30.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000360,07,bumper,random hazards,36.23,39.0,0.913,0.44
+07_Festplatz_Flugfeld_000002_000370,08,cardboard box,random hazards,24.87,40.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000370,07,bumper,random hazards,32.92,48.0,0.852,0.457
+07_Festplatz_Flugfeld_000002_000380,08,cardboard box,random hazards,21.24,42.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000380,07,bumper,random hazards,29.28,49.0,0.903,0.558
+07_Festplatz_Flugfeld_000002_000390,08,cardboard box,random hazards,18.09,49.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000390,07,bumper,random hazards,25.89,58.0,0.896,0.326
+07_Festplatz_Flugfeld_000002_000400,08,cardboard box,random hazards,14.72,59.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000400,07,bumper,random hazards,22.92,63.0,0.923,0.077
+07_Festplatz_Flugfeld_000002_000410,08,cardboard box,random hazards,11.6,77.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000410,07,bumper,random hazards,19.75,70.0,0.925,0.174
+07_Festplatz_Flugfeld_000002_000420,07,bumper,random hazards,16.84,84.0,0.95,0.097
+07_Festplatz_Flugfeld_000002_000420,08,cardboard box,random hazards,8.65,105.0,0.0,0.0
+07_Festplatz_Flugfeld_000002_000430,07,bumper,random hazards,14.14,95.0,0.979,0.177
+07_Festplatz_Flugfeld_000002_000440,07,bumper,random hazards,11.59,121.0,0.932,0.158
+07_Festplatz_Flugfeld_000003_000080,34,styrofoam,random hazards,79.13,7.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000080,07,bumper,random hazards,93.2,14.0,0.685,0.078
+07_Festplatz_Flugfeld_000003_000090,34,styrofoam,random hazards,75.12,5.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000090,07,bumper,random hazards,92.66,13.0,0.331,0.19
+07_Festplatz_Flugfeld_000003_000100,34,styrofoam,random hazards,76.96,5.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000100,07,bumper,random hazards,89.7,16.0,0.392,0.404
+07_Festplatz_Flugfeld_000003_000110,34,styrofoam,random hazards,70.26,6.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000110,07,bumper,random hazards,87.15,17.0,0.441,0.37
+07_Festplatz_Flugfeld_000003_000120,34,styrofoam,random hazards,66.83,5.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000120,07,bumper,random hazards,82.42,16.0,0.411,0.471
+07_Festplatz_Flugfeld_000003_000130,34,styrofoam,random hazards,64.08,6.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000130,07,bumper,random hazards,79.18,17.0,0.425,0.525
+07_Festplatz_Flugfeld_000003_000140,34,styrofoam,random hazards,62.07,6.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000140,07,bumper,random hazards,76.01,18.0,0.381,0.521
+07_Festplatz_Flugfeld_000003_000150,34,styrofoam,random hazards,59.47,5.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000150,07,bumper,random hazards,72.87,17.0,0.394,0.533
+07_Festplatz_Flugfeld_000003_000160,34,styrofoam,random hazards,52.41,8.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000160,07,bumper,random hazards,66.45,20.0,0.857,0.173
+07_Festplatz_Flugfeld_000003_000170,34,styrofoam,random hazards,49.88,8.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000170,07,bumper,random hazards,63.95,23.0,0.777,0.173
+07_Festplatz_Flugfeld_000003_000180,34,styrofoam,random hazards,45.84,9.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000180,07,bumper,random hazards,60.28,24.0,0.461,0.247
+07_Festplatz_Flugfeld_000003_000190,34,styrofoam,random hazards,43.1,8.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000190,07,bumper,random hazards,58.16,23.0,0.948,0.206
+07_Festplatz_Flugfeld_000003_000200,34,styrofoam,random hazards,40.1,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000200,07,bumper,random hazards,53.63,25.0,0.829,0.331
+07_Festplatz_Flugfeld_000003_000210,34,styrofoam,random hazards,36.15,12.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000210,07,bumper,random hazards,51.13,28.0,0.864,0.098
+07_Festplatz_Flugfeld_000003_000220,34,styrofoam,random hazards,32.7,13.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000220,07,bumper,random hazards,47.44,29.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000230,34,styrofoam,random hazards,29.19,17.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000230,07,bumper,random hazards,43.27,31.0,0.889,0.066
+07_Festplatz_Flugfeld_000003_000240,34,styrofoam,random hazards,25.79,17.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000240,07,bumper,random hazards,41.34,32.0,0.94,0.171
+07_Festplatz_Flugfeld_000003_000250,34,styrofoam,random hazards,22.5,19.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000250,07,bumper,random hazards,37.0,35.0,0.932,0.169
+07_Festplatz_Flugfeld_000003_000260,34,styrofoam,random hazards,18.93,25.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000260,07,bumper,random hazards,34.24,38.0,0.875,0.14
+07_Festplatz_Flugfeld_000003_000270,34,styrofoam,random hazards,15.5,28.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000270,07,bumper,random hazards,30.74,43.0,0.966,0.237
+07_Festplatz_Flugfeld_000003_000280,34,styrofoam,random hazards,11.85,32.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000280,07,bumper,random hazards,26.76,51.0,0.914,0.333
+07_Festplatz_Flugfeld_000003_000290,34,styrofoam,random hazards,8.0,53.0,0.0,0.0
+07_Festplatz_Flugfeld_000003_000290,07,bumper,random hazards,23.24,56.0,0.976,0.316
+07_Festplatz_Flugfeld_000003_000300,07,bumper,random hazards,19.75,73.0,0.909,0.533
+07_Festplatz_Flugfeld_000003_000310,07,bumper,random hazards,16.45,88.0,0.923,0.274
+07_Festplatz_Flugfeld_000003_000320,07,bumper,random hazards,13.15,114.0,0.943,0.139
+07_Festplatz_Flugfeld_000003_000330,07,bumper,random hazards,10.12,154.0,0.949,0.297
+07_Festplatz_Flugfeld_000003_000340,07,bumper,random hazards,7.54,215.0,0.967,0.415
+07_Festplatz_Flugfeld_000004_000030,08,cardboard box,random hazards,57.07,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000030,20,tire,random hazards,51.41,14.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000040,08,cardboard box,random hazards,55.79,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000040,20,tire,random hazards,50.01,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000050,08,cardboard box,random hazards,56.5,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000050,20,tire,random hazards,48.47,16.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000060,08,cardboard box,random hazards,51.6,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000060,20,tire,random hazards,48.55,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000070,08,cardboard box,random hazards,50.41,10.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000070,20,tire,random hazards,45.61,17.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000080,08,cardboard box,random hazards,47.77,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000080,20,tire,random hazards,44.14,17.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000090,08,cardboard box,random hazards,45.95,12.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000090,20,tire,random hazards,41.41,18.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000100,08,cardboard box,random hazards,43.65,12.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000100,20,tire,random hazards,38.09,20.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000110,08,cardboard box,random hazards,40.75,11.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000110,20,tire,random hazards,33.82,22.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000120,08,cardboard box,random hazards,36.31,14.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000120,20,tire,random hazards,31.38,24.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000130,08,cardboard box,random hazards,32.94,18.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000130,20,tire,random hazards,28.1,29.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000140,08,cardboard box,random hazards,30.37,18.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000140,20,tire,random hazards,23.81,34.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000150,08,cardboard box,random hazards,26.66,20.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000150,20,tire,random hazards,20.29,38.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000160,08,cardboard box,random hazards,23.61,21.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000160,20,tire,random hazards,17.03,48.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000170,08,cardboard box,random hazards,20.48,24.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000170,20,tire,random hazards,13.72,56.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000180,08,cardboard box,random hazards,17.31,28.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000180,20,tire,random hazards,10.66,71.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000190,08,cardboard box,random hazards,14.72,37.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000190,20,tire,random hazards,7.87,100.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000200,08,cardboard box,random hazards,11.83,44.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000210,08,cardboard box,random hazards,9.21,61.0,0.0,0.0
+07_Festplatz_Flugfeld_000004_000220,08,cardboard box,random hazards,6.89,80.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000020,09,crate (blue),random hazards,45.74,12.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000020,13,exhaust pipe,random hazards,49.41,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000030,09,crate (blue),random hazards,45.87,13.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000030,13,exhaust pipe,random hazards,48.42,16.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000040,09,crate (blue),random hazards,43.7,12.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000040,13,exhaust pipe,random hazards,47.9,12.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000050,09,crate (blue),random hazards,43.17,13.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000050,13,exhaust pipe,random hazards,48.38,16.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000060,09,crate (blue),random hazards,42.14,13.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000060,13,exhaust pipe,random hazards,45.16,16.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000070,09,crate (blue),random hazards,39.95,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000070,13,exhaust pipe,random hazards,44.99,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000080,09,crate (blue),random hazards,37.31,14.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000080,13,exhaust pipe,random hazards,41.95,15.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000090,09,crate (blue),random hazards,35.7,16.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000090,13,exhaust pipe,random hazards,39.95,20.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000100,09,crate (blue),random hazards,32.85,16.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000100,13,exhaust pipe,random hazards,37.78,20.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000110,09,crate (blue),random hazards,30.38,19.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000110,13,exhaust pipe,random hazards,34.33,19.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000120,09,crate (blue),random hazards,27.73,19.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000120,13,exhaust pipe,random hazards,31.85,27.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000130,09,crate (blue),random hazards,24.88,25.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000130,13,exhaust pipe,random hazards,28.88,29.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000140,09,crate (blue),random hazards,21.7,26.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000140,13,exhaust pipe,random hazards,25.85,29.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000150,09,crate (blue),random hazards,18.88,31.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000150,13,exhaust pipe,random hazards,23.06,31.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000160,09,crate (blue),random hazards,15.82,38.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000160,13,exhaust pipe,random hazards,19.94,37.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000170,09,crate (blue),random hazards,12.9,44.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000170,13,exhaust pipe,random hazards,17.13,43.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000180,13,exhaust pipe,random hazards,14.19,54.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000180,09,crate (blue),random hazards,10.04,61.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000190,09,crate (blue),random hazards,7.07,90.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000190,13,exhaust pipe,random hazards,11.34,73.0,0.0,0.0
+07_Festplatz_Flugfeld_000005_000200,13,exhaust pipe,random hazards,8.56,99.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000000_000040,39,kid (walking),humans,44.16,52.0,0.699,0.537
+15_Rechbergstr_Deckenpfronn_000000_000040,40,kid (on a bobby car),humans,43.18,48.0,0.83,0.658
+15_Rechbergstr_Deckenpfronn_000000_000050,40,kid (on a bobby car),humans,43.23,51.0,0.814,0.627
+15_Rechbergstr_Deckenpfronn_000000_000060,39,kid (walking),humans,44.4,28.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000000_000060,40,kid (on a bobby car),humans,43.39,48.0,0.84,0.481
+15_Rechbergstr_Deckenpfronn_000000_000070,39,kid (walking),humans,45.04,31.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000000_000070,40,kid (on a bobby car),humans,43.31,49.0,0.907,0.496
+15_Rechbergstr_Deckenpfronn_000000_000080,39,kid (walking),humans,45.09,50.0,0.948,0.57
+15_Rechbergstr_Deckenpfronn_000000_000080,40,kid (on a bobby car),humans,43.24,50.0,0.766,0.377
+15_Rechbergstr_Deckenpfronn_000000_000090,40,kid (on a bobby car),humans,43.31,50.0,0.766,0.479
+15_Rechbergstr_Deckenpfronn_000000_000100,41,kid (on a small bobby car),humans,44.74,38.0,0.756,0.142
+15_Rechbergstr_Deckenpfronn_000000_000100,40,kid (on a bobby car),humans,43.47,49.0,0.836,0.479
+15_Rechbergstr_Deckenpfronn_000000_000110,41,kid (on a small bobby car),humans,46.37,38.0,0.913,0.428
+15_Rechbergstr_Deckenpfronn_000000_000110,40,kid (on a bobby car),humans,43.64,46.0,0.91,0.551
+15_Rechbergstr_Deckenpfronn_000000_000120,40,kid (on a bobby car),humans,44.11,45.0,0.926,0.617
+15_Rechbergstr_Deckenpfronn_000000_000120,41,kid (on a small bobby car),humans,46.99,37.0,0.923,0.578
+15_Rechbergstr_Deckenpfronn_000000_000130,40,kid (on a bobby car),humans,45.48,47.0,0.796,0.494
+15_Rechbergstr_Deckenpfronn_000000_000130,41,kid (on a small bobby car),humans,47.81,36.0,0.926,0.44
+15_Rechbergstr_Deckenpfronn_000000_000140,40,kid (on a bobby car),humans,47.36,46.0,0.868,0.49
+15_Rechbergstr_Deckenpfronn_000000_000140,41,kid (on a small bobby car),humans,47.34,37.0,0.964,0.411
+15_Rechbergstr_Deckenpfronn_000000_000150,40,kid (on a bobby car),humans,48.08,47.0,0.866,0.304
+15_Rechbergstr_Deckenpfronn_000000_000150,41,kid (on a small bobby car),humans,47.74,38.0,0.95,0.367
+15_Rechbergstr_Deckenpfronn_000000_000160,40,kid (on a bobby car),humans,47.93,47.0,0.91,0.494
+15_Rechbergstr_Deckenpfronn_000000_000160,41,kid (on a small bobby car),humans,47.58,37.0,0.902,0.467
+15_Rechbergstr_Deckenpfronn_000000_000170,40,kid (on a bobby car),humans,48.64,48.0,0.772,0.459
+15_Rechbergstr_Deckenpfronn_000000_000170,41,kid (on a small bobby car),humans,47.76,37.0,0.974,0.319
+15_Rechbergstr_Deckenpfronn_000000_000180,40,kid (on a bobby car),humans,47.81,48.0,0.898,0.354
+15_Rechbergstr_Deckenpfronn_000000_000180,41,kid (on a small bobby car),humans,47.54,37.0,0.957,0.402
+15_Rechbergstr_Deckenpfronn_000001_000040,41,kid (on a small bobby car),humans,62.59,25.0,0.942,0.064
+15_Rechbergstr_Deckenpfronn_000001_000040,40,kid (on a bobby car),humans,67.15,12.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000040,39,kid (walking),humans,64.3,34.0,0.519,0.367
+15_Rechbergstr_Deckenpfronn_000001_000040,40,kid (on a bobby car),humans,62.68,28.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000050,40,kid (on a bobby car),humans,63.6,25.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000050,41,kid (on a small bobby car),humans,62.04,26.0,0.91,0.069
+15_Rechbergstr_Deckenpfronn_000001_000050,39,kid (walking),humans,64.56,33.0,0.697,0.306
+15_Rechbergstr_Deckenpfronn_000001_000050,40,kid (on a bobby car),humans,62.46,28.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000060,41,kid (on a small bobby car),humans,61.57,26.0,0.954,0.124
+15_Rechbergstr_Deckenpfronn_000001_000060,40,kid (on a bobby car),humans,63.86,27.0,0.54,0.123
+15_Rechbergstr_Deckenpfronn_000001_000060,39,kid (walking),humans,64.82,35.0,0.81,0.635
+15_Rechbergstr_Deckenpfronn_000001_000060,40,kid (on a bobby car),humans,62.71,30.0,0.325,0.479
+15_Rechbergstr_Deckenpfronn_000001_000070,41,kid (on a small bobby car),humans,61.81,26.0,0.925,0.107
+15_Rechbergstr_Deckenpfronn_000001_000070,40,kid (on a bobby car),humans,63.73,26.0,0.476,0.12
+15_Rechbergstr_Deckenpfronn_000001_000070,39,kid (walking),humans,64.05,35.0,0.957,0.6
+15_Rechbergstr_Deckenpfronn_000001_000070,40,kid (on a bobby car),humans,62.74,28.0,0.456,0.064
+15_Rechbergstr_Deckenpfronn_000001_000080,40,kid (on a bobby car),humans,63.79,34.0,0.688,0.354
+15_Rechbergstr_Deckenpfronn_000001_000080,41,kid (on a small bobby car),humans,62.37,27.0,0.868,0.083
+15_Rechbergstr_Deckenpfronn_000001_000080,39,kid (walking),humans,63.64,35.0,0.929,0.625
+15_Rechbergstr_Deckenpfronn_000001_000080,40,kid (on a bobby car),humans,62.98,29.0,0.328,0.354
+15_Rechbergstr_Deckenpfronn_000001_000090,40,kid (on a bobby car),humans,63.56,28.0,0.339,0.347
+15_Rechbergstr_Deckenpfronn_000001_000090,39,kid (walking),humans,63.76,34.0,0.866,0.347
+15_Rechbergstr_Deckenpfronn_000001_000090,40,kid (on a bobby car),humans,62.13,27.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000090,41,kid (on a small bobby car),humans,62.34,26.0,0.919,0.131
+15_Rechbergstr_Deckenpfronn_000001_000100,40,kid (on a bobby car),humans,62.86,34.0,0.89,0.294
+15_Rechbergstr_Deckenpfronn_000001_000100,41,kid (on a small bobby car),humans,62.46,27.0,0.727,0.079
+15_Rechbergstr_Deckenpfronn_000001_000100,39,kid (walking),humans,62.98,33.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000100,40,kid (on a bobby car),humans,62.19,17.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000110,40,kid (on a bobby car),humans,62.8,36.0,0.925,0.484
+15_Rechbergstr_Deckenpfronn_000001_000110,41,kid (on a small bobby car),humans,63.01,28.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000110,40,kid (on a bobby car),humans,61.72,14.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000120,41,kid (on a small bobby car),humans,61.54,26.0,0.357,0.734
+15_Rechbergstr_Deckenpfronn_000001_000120,40,kid (on a bobby car),humans,61.81,18.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000120,40,kid (on a bobby car),humans,63.86,36.0,0.68,0.516
+15_Rechbergstr_Deckenpfronn_000001_000130,41,kid (on a small bobby car),humans,61.92,26.0,0.856,0.26
+15_Rechbergstr_Deckenpfronn_000001_000130,40,kid (on a bobby car),humans,63.6,35.0,0.749,0.473
+15_Rechbergstr_Deckenpfronn_000001_000130,40,kid (on a bobby car),humans,61.13,13.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000140,41,kid (on a small bobby car),humans,61.72,28.0,0.89,0.068
+15_Rechbergstr_Deckenpfronn_000001_000140,40,kid (on a bobby car),humans,60.56,22.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000140,40,kid (on a bobby car),humans,63.76,35.0,0.914,0.434
+15_Rechbergstr_Deckenpfronn_000001_000150,41,kid (on a small bobby car),humans,61.75,27.0,0.918,0.084
+15_Rechbergstr_Deckenpfronn_000001_000150,40,kid (on a bobby car),humans,63.51,39.0,0.841,0.288
+15_Rechbergstr_Deckenpfronn_000001_000150,40,kid (on a bobby car),humans,60.87,20.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000160,41,kid (on a small bobby car),humans,61.81,26.0,0.864,0.234
+15_Rechbergstr_Deckenpfronn_000001_000160,40,kid (on a bobby car),humans,64.53,36.0,0.851,0.486
+15_Rechbergstr_Deckenpfronn_000001_000160,40,kid (on a bobby car),humans,62.13,21.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000170,41,kid (on a small bobby car),humans,61.98,26.0,0.877,0.064
+15_Rechbergstr_Deckenpfronn_000001_000170,40,kid (on a bobby car),humans,64.53,12.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000170,40,kid (on a bobby car),humans,64.01,29.0,0.368,0.172
+15_Rechbergstr_Deckenpfronn_000001_000170,39,kid (walking),humans,64.08,30.0,0.379,0.172
+15_Rechbergstr_Deckenpfronn_000001_000170,40,kid (on a bobby car),humans,62.34,29.0,0.309,0.078
+15_Rechbergstr_Deckenpfronn_000001_000180,41,kid (on a small bobby car),humans,62.16,27.0,0.875,0.061
+15_Rechbergstr_Deckenpfronn_000001_000180,40,kid (on a bobby car),humans,65.64,12.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000180,40,kid (on a bobby car),humans,63.86,27.0,0.319,0.09
+15_Rechbergstr_Deckenpfronn_000001_000180,39,kid (walking),humans,65.21,31.0,0.66,0.266
+15_Rechbergstr_Deckenpfronn_000001_000180,40,kid (on a bobby car),humans,62.46,28.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000190,41,kid (on a small bobby car),humans,61.66,26.0,0.923,0.09
+15_Rechbergstr_Deckenpfronn_000001_000190,40,kid (on a bobby car),humans,64.41,13.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000190,39,kid (walking),humans,63.95,30.0,0.405,0.091
+15_Rechbergstr_Deckenpfronn_000001_000190,40,kid (on a bobby car),humans,61.63,38.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000200,40,kid (on a bobby car),humans,68.36,15.0,0.735,0.079
+15_Rechbergstr_Deckenpfronn_000001_000200,39,kid (walking),humans,67.5,22.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000200,41,kid (on a small bobby car),humans,62.22,27.0,0.844,0.085
+15_Rechbergstr_Deckenpfronn_000001_000200,40,kid (on a bobby car),humans,61.89,29.0,0.36,0.16
+15_Rechbergstr_Deckenpfronn_000001_000210,41,kid (on a small bobby car),humans,61.89,26.0,0.899,0.05
+15_Rechbergstr_Deckenpfronn_000001_000210,40,kid (on a bobby car),humans,63.29,15.0,0.425,0.066
+15_Rechbergstr_Deckenpfronn_000001_000210,40,kid (on a bobby car),humans,61.13,34.0,0.343,0.188
+15_Rechbergstr_Deckenpfronn_000001_000220,41,kid (on a small bobby car),humans,62.07,26.0,0.899,0.064
+15_Rechbergstr_Deckenpfronn_000001_000220,40,kid (on a bobby car),humans,64.59,21.0,0.393,0.212
+15_Rechbergstr_Deckenpfronn_000001_000220,40,kid (on a bobby car),humans,60.93,34.0,0.441,0.1
+15_Rechbergstr_Deckenpfronn_000001_000230,40,kid (on a bobby car),humans,64.33,18.0,0.766,0.053
+15_Rechbergstr_Deckenpfronn_000001_000230,41,kid (on a small bobby car),humans,62.65,27.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000230,40,kid (on a bobby car),humans,60.67,34.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000240,40,kid (on a bobby car),humans,64.33,20.0,0.501,0.051
+15_Rechbergstr_Deckenpfronn_000001_000240,41,kid (on a small bobby car),humans,61.6,26.0,0.672,0.051
+15_Rechbergstr_Deckenpfronn_000001_000240,40,kid (on a bobby car),humans,61.72,33.0,0.686,0.051
+15_Rechbergstr_Deckenpfronn_000001_000250,40,kid (on a bobby car),humans,63.42,16.0,0.613,0.108
+15_Rechbergstr_Deckenpfronn_000001_000250,41,kid (on a small bobby car),humans,62.8,26.0,0.606,0.108
+15_Rechbergstr_Deckenpfronn_000001_000250,40,kid (on a bobby car),humans,61.81,34.0,0.327,0.208
+15_Rechbergstr_Deckenpfronn_000001_000260,40,kid (on a bobby car),humans,62.43,21.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000260,41,kid (on a small bobby car),humans,61.88,26.0,0.564,0.08
+15_Rechbergstr_Deckenpfronn_000001_000260,40,kid (on a bobby car),humans,61.84,33.0,0.36,0.398
+15_Rechbergstr_Deckenpfronn_000001_000270,41,kid (on a small bobby car),humans,61.84,26.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000270,40,kid (on a bobby car),humans,61.78,33.0,0.336,0.307
+15_Rechbergstr_Deckenpfronn_000001_000270,39,kid (walking),humans,64.43,33.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000280,39,kid (walking),humans,64.46,33.0,0.543,0.073
+15_Rechbergstr_Deckenpfronn_000001_000280,39,kid (walking),humans,63.98,33.0,0.78,0.149
+15_Rechbergstr_Deckenpfronn_000001_000280,40,kid (on a bobby car),humans,61.98,33.0,0.695,0.093
+15_Rechbergstr_Deckenpfronn_000001_000290,41,kid (on a small bobby car),humans,61.87,26.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000290,40,kid (on a bobby car),humans,61.63,34.0,0.471,0.089
+15_Rechbergstr_Deckenpfronn_000001_000290,39,kid (walking),humans,63.7,33.0,0.346,0.154
+15_Rechbergstr_Deckenpfronn_000001_000290,39,kid (walking),humans,63.57,34.0,0.563,0.154
+15_Rechbergstr_Deckenpfronn_000001_000300,40,kid (on a bobby car),humans,62.04,34.0,0.468,0.289
+15_Rechbergstr_Deckenpfronn_000001_000300,41,kid (on a small bobby car),humans,62.46,26.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000300,39,kid (walking),humans,63.89,33.0,0.0,0.0
+15_Rechbergstr_Deckenpfronn_000001_000300,39,kid (walking),humans,64.21,34.0,0.532,0.128
+15_Rechbergstr_Deckenpfronn_000002_000130,40,kid (on a bobby car),humans,41.8,57.0,0.514,0.277
+15_Rechbergstr_Deckenpfronn_000002_000140,40,kid (on a bobby car),humans,37.5,55.0,0.372,0.48
+15_Rechbergstr_Deckenpfronn_000002_000150,40,kid (on a bobby car),humans,35.88,60.0,0.44,0.204
+15_Rechbergstr_Deckenpfronn_000002_000160,40,kid (on a bobby car),humans,33.36,63.0,0.444,0.361
+15_Rechbergstr_Deckenpfronn_000002_000170,40,kid (on a bobby car),humans,31.83,66.0,0.497,0.194
+15_Rechbergstr_Deckenpfronn_000002_000180,40,kid (on a bobby car),humans,31.04,71.0,0.405,0.291
+15_Rechbergstr_Deckenpfronn_000003_000120,40,kid (on a bobby car),humans,36.89,59.0,0.324,0.576
+15_Rechbergstr_Deckenpfronn_000003_000130,40,kid (on a bobby car),humans,35.36,62.0,0.313,0.625
+15_Rechbergstr_Deckenpfronn_000003_000140,40,kid (on a bobby car),humans,31.98,67.0,0.468,0.147
+15_Rechbergstr_Deckenpfronn_000003_000150,40,kid (on a bobby car),humans,30.42,70.0,0.396,0.492
+15_Rechbergstr_Deckenpfronn_000003_000160,40,kid (on a bobby car),humans,28.11,76.0,0.379,0.582
+15_Rechbergstr_Deckenpfronn_000003_000170,40,kid (on a bobby car),humans,25.69,83.0,0.318,0.617
+15_Rechbergstr_Deckenpfronn_000004_000150,41,kid (on a small bobby car),humans,42.73,40.0,0.869,0.291
+15_Rechbergstr_Deckenpfronn_000004_000160,41,kid (on a small bobby car),humans,40.22,41.0,0.846,0.361
+15_Rechbergstr_Deckenpfronn_000004_000170,41,kid (on a small bobby car),humans,37.22,44.0,0.921,0.409
+15_Rechbergstr_Deckenpfronn_000004_000180,41,kid (on a small bobby car),humans,35.79,48.0,0.863,0.356
+15_Rechbergstr_Deckenpfronn_000004_000190,41,kid (on a small bobby car),humans,32.83,51.0,0.981,0.446
+15_Rechbergstr_Deckenpfronn_000004_000200,41,kid (on a small bobby car),humans,31.3,56.0,0.953,0.498
+15_Rechbergstr_Deckenpfronn_000004_000210,41,kid (on a small bobby car),humans,28.25,59.0,0.941,0.5
+15_Rechbergstr_Deckenpfronn_000004_000220,41,kid (on a small bobby car),humans,25.91,65.0,0.931,0.593
+15_Rechbergstr_Deckenpfronn_000004_000230,41,kid (on a small bobby car),humans,23.51,71.0,0.93,0.699
+15_Rechbergstr_Deckenpfronn_000004_000240,41,kid (on a small bobby car),humans,21.23,79.0,0.91,0.625
+15_Rechbergstr_Deckenpfronn_000004_000250,41,kid (on a small bobby car),humans,19.39,87.0,0.855,0.761
+15_Rechbergstr_Deckenpfronn_000004_000260,41,kid (on a small bobby car),humans,17.54,95.0,0.888,0.728
+15_Rechbergstr_Deckenpfronn_000004_000270,41,kid (on a small bobby car),humans,15.74,108.0,0.869,0.725
+15_Rechbergstr_Deckenpfronn_000004_000280,41,kid (on a small bobby car),humans,14.11,120.0,0.625,0.746
+15_Rechbergstr_Deckenpfronn_000004_000290,41,kid (on a small bobby car),humans,13.19,132.0,0.865,0.828
+15_Rechbergstr_Deckenpfronn_000005_000020,42,kid (crawling),humans,12.41,85.0,0.959,0.762
+15_Rechbergstr_Deckenpfronn_000005_000030,42,kid (crawling),humans,12.47,82.0,0.976,0.773
+15_Rechbergstr_Deckenpfronn_000005_000040,42,kid (crawling),humans,12.54,84.0,0.964,0.831
+15_Rechbergstr_Deckenpfronn_000005_000050,42,kid (crawling),humans,12.6,82.0,0.919,0.794
+15_Rechbergstr_Deckenpfronn_000005_000060,42,kid (crawling),humans,12.66,74.0,0.953,0.78
+15_Rechbergstr_Deckenpfronn_000005_000070,42,kid (crawling),humans,12.69,67.0,0.97,0.794
+15_Rechbergstr_Deckenpfronn_000005_000080,42,kid (crawling),humans,12.68,68.0,0.966,0.774
+15_Rechbergstr_Deckenpfronn_000005_000090,42,kid (crawling),humans,12.71,69.0,0.976,0.861
+15_Rechbergstr_Deckenpfronn_000005_000100,42,kid (crawling),humans,12.71,76.0,0.943,0.816
+15_Rechbergstr_Deckenpfronn_000006_000090,39,kid (walking),humans,48.24,45.0,0.826,0.736
+15_Rechbergstr_Deckenpfronn_000006_000100,39,kid (walking),humans,45.15,47.0,0.882,0.725
+15_Rechbergstr_Deckenpfronn_000006_000110,39,kid (walking),humans,43.56,49.0,0.913,0.784
+15_Rechbergstr_Deckenpfronn_000006_000120,39,kid (walking),humans,42.37,52.0,0.886,0.774
+15_Rechbergstr_Deckenpfronn_000006_000130,39,kid (walking),humans,41.58,53.0,0.816,0.649
+15_Rechbergstr_Deckenpfronn_000006_000140,39,kid (walking),humans,40.46,55.0,0.871,0.646
+15_Rechbergstr_Deckenpfronn_000006_000160,39,kid (walking),humans,36.15,68.0,0.873,0.791
+15_Rechbergstr_Deckenpfronn_000006_000170,39,kid (walking),humans,33.22,72.0,0.945,0.803
+15_Rechbergstr_Deckenpfronn_000006_000180,39,kid (walking),humans,31.62,75.0,0.921,0.821
+15_Rechbergstr_Deckenpfronn_000006_000190,39,kid (walking),humans,29.68,79.0,0.888,0.765
+15_Rechbergstr_Deckenpfronn_000006_000200,39,kid (walking),humans,28.1,84.0,0.948,0.854
+15_Rechbergstr_Deckenpfronn_000006_000210,39,kid (walking),humans,26.16,89.0,0.906,0.789
+15_Rechbergstr_Deckenpfronn_000006_000220,39,kid (walking),humans,25.04,98.0,0.971,0.771
+15_Rechbergstr_Deckenpfronn_000006_000230,39,kid (walking),humans,23.08,103.0,0.931,0.841
+15_Rechbergstr_Deckenpfronn_000006_000230,39,kid (walking),humans,23.73,95.0,0.894,0.703
+15_Rechbergstr_Deckenpfronn_000006_000240,39,kid (walking),humans,22.19,101.0,0.935,0.821
+15_Rechbergstr_Deckenpfronn_000006_000250,39,kid (walking),humans,20.55,110.0,0.984,0.833
+15_Rechbergstr_Deckenpfronn_000006_000260,39,kid (walking),humans,19.23,118.0,0.945,0.855
+15_Rechbergstr_Deckenpfronn_000006_000270,39,kid (walking),humans,18.01,126.0,0.935,0.578
+15_Rechbergstr_Deckenpfronn_000006_000280,39,kid (walking),humans,16.78,135.0,0.986,0.846
+15_Rechbergstr_Deckenpfronn_000006_000320,39,kid (walking),humans,11.95,198.0,0.94,0.873
+15_Rechbergstr_Deckenpfronn_000006_000330,39,kid (walking),humans,11.0,208.0,0.987,0.903
+15_Rechbergstr_Deckenpfronn_000006_000340,39,kid (walking),humans,10.55,218.0,0.956,0.874
+15_Rechbergstr_Deckenpfronn_000006_000350,39,kid (walking),humans,10.21,233.0,0.973,0.865
+15_Rechbergstr_Deckenpfronn_000007_000050,39,kid (walking),humans,50.76,46.0,0.819,0.74
+15_Rechbergstr_Deckenpfronn_000007_000060,39,kid (walking),humans,50.35,46.0,0.891,0.722
+15_Rechbergstr_Deckenpfronn_000007_000070,39,kid (walking),humans,49.94,45.0,0.937,0.783
+15_Rechbergstr_Deckenpfronn_000007_000080,39,kid (walking),humans,49.5,47.0,0.933,0.789
+15_Rechbergstr_Deckenpfronn_000007_000090,39,kid (walking),humans,49.38,48.0,0.886,0.74
+15_Rechbergstr_Deckenpfronn_000007_000150,39,kid (walking),humans,38.21,64.0,0.815,0.712
+15_Rechbergstr_Deckenpfronn_000007_000160,39,kid (walking),humans,36.33,65.0,0.89,0.75
+15_Rechbergstr_Deckenpfronn_000007_000170,39,kid (walking),humans,34.63,68.0,0.89,0.819
+15_Rechbergstr_Deckenpfronn_000007_000180,39,kid (walking),humans,31.96,74.0,0.887,0.82
+15_Rechbergstr_Deckenpfronn_000007_000190,39,kid (walking),humans,29.63,78.0,0.959,0.841
+15_Rechbergstr_Deckenpfronn_000007_000200,39,kid (walking),humans,27.9,84.0,0.93,0.832
+15_Rechbergstr_Deckenpfronn_000007_000230,39,kid (walking),humans,22.7,98.0,0.95,0.836
+15_Rechbergstr_Deckenpfronn_000007_000240,39,kid (walking),humans,21.11,105.0,0.951,0.851
+15_Rechbergstr_Deckenpfronn_000007_000250,39,kid (walking),humans,19.78,110.0,0.949,0.839
+15_Rechbergstr_Deckenpfronn_000007_000260,39,kid (walking),humans,18.57,117.0,0.983,0.858
+15_Rechbergstr_Deckenpfronn_000007_000270,39,kid (walking),humans,17.83,125.0,0.864,0.833
+15_Rechbergstr_Deckenpfronn_000007_000280,39,kid (walking),humans,16.9,132.0,0.931,0.827
+15_Rechbergstr_Deckenpfronn_000007_000350,39,kid (walking),humans,14.55,150.0,0.982,0.871
+15_Rechbergstr_Deckenpfronn_000007_000360,39,kid (walking),humans,14.74,152.0,0.975,0.865

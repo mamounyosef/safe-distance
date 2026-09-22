@@ -1,0 +1,408 @@
+{
+  "benchmark": "lost_and_found_obstacle_detection",
+  "provenance": {
+    "created_utc": "2026-09-22T20:05:56+00:00",
+    "git_commit": "0573e63",
+    "git_uncommitted_changes": true,
+    "python": "3.12.0",
+    "torch": "2.6.0+cu124",
+    "ultralytics": "8.4.155",
+    "gpu": "NVIDIA GeForce RTX 4060"
+  },
+  "dataset": {
+    "name": "Lost and Found",
+    "source": "https://huggingface.co/datasets/kumuji/lost_and_found",
+    "split": "test",
+    "scenes": [
+      "02_Hanns_Klemm_Str_44",
+      "04_Maurener_Weg_8",
+      "05_Schafgasse_1",
+      "07_Festplatz_Flugfeld",
+      "15_Rechbergstr_Deckenpfronn"
+    ],
+    "frames": 1203,
+    "obstacles": 1724,
+    "obstacles_skipped_no_depth": 0,
+    "excluded_labels": "random non-hazards (30, 32, 33, 35-38), per the dataset definition",
+    "distance_source": "median stereo depth inside the obstacle polygon"
+  },
+  "config": {
+    "run_name": "yolo26s-seg_coco",
+    "weights": "weights/yolo26s-seg.pt",
+    "prompts": null,
+    "imgsz": 1280,
+    "conf_thresholds": [
+      0.05,
+      0.1,
+      0.25
+    ],
+    "min_iou": 0.3,
+    "matching": "any predicted class counts",
+    "distance_bands_m": [
+      [
+        0,
+        10
+      ],
+      [
+        10,
+        20
+      ],
+      [
+        20,
+        30
+      ],
+      [
+        30,
+        50
+      ],
+      [
+        50,
+        1000
+      ]
+    ]
+  },
+  "latency_ms": {
+    "median": 28.3,
+    "p95": 37.4
+  },
+  "recall_overall": {
+    "obstacles": 1724,
+    "recall": {
+      "0.05": 0.2993,
+      "0.1": 0.2338,
+      "0.25": 0.1723
+    }
+  },
+  "recall_by_distance": {
+    "0-10 m": {
+      "obstacles": 88,
+      "recall": {
+        "0.05": 0.4886,
+        "0.1": 0.4318,
+        "0.25": 0.3523
+      }
+    },
+    "10-20 m": {
+      "obstacles": 265,
+      "recall": {
+        "0.05": 0.566,
+        "0.1": 0.4679,
+        "0.25": 0.3698
+      }
+    },
+    "20-30 m": {
+      "obstacles": 247,
+      "recall": {
+        "0.05": 0.3603,
+        "0.1": 0.3036,
+        "0.25": 0.2348
+      }
+    },
+    "30-50 m": {
+      "obstacles": 584,
+      "recall": {
+        "0.05": 0.2175,
+        "0.1": 0.1729,
+        "0.25": 0.1301
+      }
+    },
+    "50+ m": {
+      "obstacles": 540,
+      "recall": {
+        "0.05": 0.1981,
+        "0.1": 0.1204,
+        "0.25": 0.063
+      }
+    }
+  },
+  "recall_by_group": {
+    "standard objects": {
+      "obstacles": 535,
+      "recall": {
+        "0.05": 0.071,
+        "0.1": 0.0355,
+        "0.25": 0.0056
+      }
+    },
+    "random hazards": {
+      "obstacles": 563,
+      "recall": {
+        "0.05": 0.1758,
+        "0.1": 0.1048,
+        "0.25": 0.0515
+      }
+    },
+    "emotional hazards": {
+      "obstacles": 423,
+      "recall": {
+        "0.05": 0.487,
+        "0.1": 0.4208,
+        "0.25": 0.3333
+      }
+    },
+    "humans": {
+      "obstacles": 203,
+      "recall": {
+        "0.05": 0.8522,
+        "0.1": 0.7241,
+        "0.25": 0.6108
+      }
+    }
+  },
+  "recall_by_type": {
+    "crate (gray, 2x stacked)": {
+      "obstacles": 133,
+      "recall": {
+        "0.05": 0.1654,
+        "0.1": 0.0677,
+        "0.25": 0.0075
+      }
+    },
+    "crate (gray)": {
+      "obstacles": 88,
+      "recall": {
+        "0.05": 0.0682,
+        "0.1": 0.0341,
+        "0.25": 0.0114
+      }
+    },
+    "crate (black, 2x stacked)": {
+      "obstacles": 93,
+      "recall": {
+        "0.05": 0.0215,
+        "0.1": 0.0108,
+        "0.25": 0.0
+      }
+    },
+    "crate (black)": {
+      "obstacles": 74,
+      "recall": {
+        "0.05": 0.0,
+        "0.1": 0.0,
+        "0.25": 0.0
+      }
+    },
+    "tire": {
+      "obstacles": 106,
+      "recall": {
+        "0.05": 0.0566,
+        "0.1": 0.0189,
+        "0.25": 0.0094
+      }
+    },
+    "styrofoam": {
+      "obstacles": 50,
+      "recall": {
+        "0.05": 0.02,
+        "0.1": 0.0,
+        "0.25": 0.0
+      }
+    },
+    "cardboard box": {
+      "obstacles": 105,
+      "recall": {
+        "0.05": 0.0095,
+        "0.1": 0.0095,
+        "0.25": 0.0
+      }
+    },
+    "exhaust pipe": {
+      "obstacles": 55,
+      "recall": {
+        "0.05": 0.2,
+        "0.1": 0.1091,
+        "0.25": 0.0364
+      }
+    },
+    "dog (black)": {
+      "obstacles": 86,
+      "recall": {
+        "0.05": 0.4884,
+        "0.1": 0.4535,
+        "0.25": 0.3837
+      }
+    },
+    "dog (white)": {
+      "obstacles": 94,
+      "recall": {
+        "0.05": 0.5532,
+        "0.1": 0.5,
+        "0.25": 0.4043
+      }
+    },
+    "bobby car (gray)": {
+      "obstacles": 89,
+      "recall": {
+        "0.05": 0.573,
+        "0.1": 0.427,
+        "0.25": 0.3034
+      }
+    },
+    "bobby car (red)": {
+      "obstacles": 91,
+      "recall": {
+        "0.05": 0.4615,
+        "0.1": 0.3956,
+        "0.25": 0.2967
+      }
+    },
+    "crate (gray, upright)": {
+      "obstacles": 58,
+      "recall": {
+        "0.05": 0.0,
+        "0.1": 0.0,
+        "0.25": 0.0
+      }
+    },
+    "crate (black, upright)": {
+      "obstacles": 89,
+      "recall": {
+        "0.05": 0.0899,
+        "0.1": 0.0674,
+        "0.25": 0.0112
+      }
+    },
+    "euro pallet": {
+      "obstacles": 20,
+      "recall": {
+        "0.05": 0.05,
+        "0.1": 0.0,
+        "0.25": 0.0
+      }
+    },
+    "ball": {
+      "obstacles": 20,
+      "recall": {
+        "0.05": 0.25,
+        "0.1": 0.25,
+        "0.25": 0.2
+      }
+    },
+    "pylon": {
+      "obstacles": 20,
+      "recall": {
+        "0.05": 0.0,
+        "0.1": 0.0,
+        "0.25": 0.0
+      }
+    },
+    "pylon (white)": {
+      "obstacles": 46,
+      "recall": {
+        "0.05": 0.3261,
+        "0.1": 0.1304,
+        "0.25": 0.0435
+      }
+    },
+    "kid dummy": {
+      "obstacles": 16,
+      "recall": {
+        "0.05": 0.25,
+        "0.1": 0.1875,
+        "0.25": 0.1875
+      }
+    },
+    "plastic bag (bloated)": {
+      "obstacles": 28,
+      "recall": {
+        "0.05": 0.1786,
+        "0.1": 0.0714,
+        "0.25": 0.0
+      }
+    },
+    "crate (green)": {
+      "obstacles": 35,
+      "recall": {
+        "0.05": 0.2286,
+        "0.1": 0.0857,
+        "0.25": 0.0
+      }
+    },
+    "bobby car (yellow)": {
+      "obstacles": 27,
+      "recall": {
+        "0.05": 0.3704,
+        "0.1": 0.3704,
+        "0.25": 0.3333
+      }
+    },
+    "crate (blue, small)": {
+      "obstacles": 15,
+      "recall": {
+        "0.05": 0.2,
+        "0.1": 0.1333,
+        "0.25": 0.1333
+      }
+    },
+    "headlight": {
+      "obstacles": 12,
+      "recall": {
+        "0.05": 0.1667,
+        "0.1": 0.0833,
+        "0.25": 0.0
+      }
+    },
+    "bumper": {
+      "obstacles": 53,
+      "recall": {
+        "0.05": 0.8679,
+        "0.1": 0.6792,
+        "0.25": 0.4151
+      }
+    },
+    "crate (blue)": {
+      "obstacles": 18,
+      "recall": {
+        "0.05": 0.0,
+        "0.1": 0.0,
+        "0.25": 0.0
+      }
+    },
+    "kid (walking)": {
+      "obstacles": 65,
+      "recall": {
+        "0.05": 0.9077,
+        "0.1": 0.8769,
+        "0.25": 0.8
+      }
+    },
+    "kid (on a bobby car)": {
+      "obstacles": 79,
+      "recall": {
+        "0.05": 0.7595,
+        "0.1": 0.6329,
+        "0.25": 0.481
+      }
+    },
+    "kid (on a small bobby car)": {
+      "obstacles": 50,
+      "recall": {
+        "0.05": 0.9,
+        "0.1": 0.62,
+        "0.25": 0.5
+      }
+    },
+    "kid (crawling)": {
+      "obstacles": 9,
+      "recall": {
+        "0.05": 1.0,
+        "0.1": 1.0,
+        "0.25": 1.0
+      }
+    }
+  },
+  "false_alarms_on_free_road": {
+    "0.05": {
+      "total": 198,
+      "per_frame": 0.1646
+    },
+    "0.1": {
+      "total": 133,
+      "per_frame": 0.1106
+    },
+    "0.25": {
+      "total": 89,
+      "per_frame": 0.074
+    }
+  }
+}

@@ -40,9 +40,13 @@ DEST = Path("data/lost_and_found")
 # 15_Rechbergstr_Deckenpfronn=143, 07_Festplatz_Flugfeld=137,
 # 03_Hanns_Klemm_Str_19=136, 11_Parkplatz_Flugfeld=100,
 # 14_Otto_Lilienthal_Str_24=53. Set to None to fetch every scene (6 GB).
+# The five scenes below are the official test split, used for benchmarking.
 SCENES = [
+    "02_Hanns_Klemm_Str_44",
     "04_Maurener_Weg_8",
-    "14_Otto_Lilienthal_Str_24",
+    "05_Schafgasse_1",
+    "07_Festplatz_Flugfeld",
+    "15_Rechbergstr_Deckenpfronn",
 ]
 
 # Also fetch the precomputed stereo depth for those scenes. This is our
