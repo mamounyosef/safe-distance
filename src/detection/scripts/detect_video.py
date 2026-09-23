@@ -44,8 +44,10 @@ OUTPUT = "out/detected.mp4"
 # are the words in ROAD_PROMPTS (src/detection/detector.py) instead of the
 # fixed COCO 80. That one finds traffic cones and barriers; COCO cannot.
 
-# "weights/yoloe-11s-seg.pt" or "weights/yolo26s-seg.pt"
-WEIGHTS = "weights/yoloe-11s-seg.pt"
+# "weights/yolo26s-seg.pt" (default: best on cars and pedestrians, see the
+# KITTI benchmark) or "weights/yoloe-11s-seg.pt" (best on unusual obstacles,
+# see the Lost and Found benchmark).
+WEIGHTS = "weights/yolo26s-seg.pt"
 
 # How strongly segmentation masks are tinted, 0.0 to 1.0. No effect on boxes.
 MASK_ALPHA = 0.4
@@ -87,6 +89,8 @@ SHOW_SCALE = 0.6
 # Colours are BGR (Blue, Green, Red), which is the order OpenCV uses.
 COLOURS: dict[str, tuple[int, int, int]] = {
     "person": (0, 200, 255),
+    "pedestrian": (0, 200, 255),
+    "cyclist": (0, 200, 255),
     "bicycle": (0, 200, 255),
     "motorcycle": (0, 200, 255),
     "car": (0, 255, 0),

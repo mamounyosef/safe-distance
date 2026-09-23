@@ -1,0 +1,428 @@
+{
+  "benchmark": "lost_and_found_obstacle_detection",
+  "provenance": {
+    "created_utc": "2026-09-23T12:12:52+00:00",
+    "git_commit": "a0e55b3",
+    "git_uncommitted_changes": true,
+    "python": "3.12.0",
+    "torch": "2.6.0+cu124",
+    "ultralytics": "8.4.155",
+    "gpu": "NVIDIA GeForce RTX 4060"
+  },
+  "dataset": {
+    "name": "Lost and Found",
+    "source": "https://huggingface.co/datasets/kumuji/lost_and_found",
+    "split": "test",
+    "scenes": [
+      "02_Hanns_Klemm_Str_44",
+      "04_Maurener_Weg_8",
+      "05_Schafgasse_1",
+      "07_Festplatz_Flugfeld",
+      "15_Rechbergstr_Deckenpfronn"
+    ],
+    "frames": 1203,
+    "obstacles": 1724,
+    "obstacles_skipped_no_depth": 0,
+    "excluded_labels": "random non-hazards (30, 32, 33, 35-38), per the dataset definition",
+    "distance_source": "median stereo depth inside the obstacle polygon"
+  },
+  "config": {
+    "run_name": "yoloe-11s-seg_prompts-v3",
+    "weights": "weights/yoloe-11s-seg.pt",
+    "prompts": [
+      "car",
+      "van",
+      "truck",
+      "bus",
+      "motorcycle",
+      "bicycle",
+      "person",
+      "pedestrian",
+      "cyclist",
+      "traffic cone",
+      "construction barrier",
+      "traffic barricade",
+      "animal",
+      "dog",
+      "cat",
+      "ball",
+      "obstacle",
+      "box",
+      "bucket"
+    ],
+    "imgsz": 1280,
+    "conf_thresholds": [
+      0.05,
+      0.1,
+      0.25
+    ],
+    "min_iou": 0.3,
+    "matching": "any predicted class counts",
+    "distance_bands_m": [
+      [
+        0,
+        10
+      ],
+      [
+        10,
+        20
+      ],
+      [
+        20,
+        30
+      ],
+      [
+        30,
+        50
+      ],
+      [
+        50,
+        1000
+      ]
+    ]
+  },
+  "latency_ms": {
+    "median": 30.6,
+    "p95": 42.0
+  },
+  "recall_overall": {
+    "obstacles": 1724,
+    "recall": {
+      "0.05": 0.4188,
+      "0.1": 0.3231,
+      "0.25": 0.2129
+    }
+  },
+  "recall_by_distance": {
+    "0-10 m": {
+      "obstacles": 88,
+      "recall": {
+        "0.05": 0.9886,
+        "0.1": 0.9432,
+        "0.25": 0.6705
+      }
+    },
+    "10-20 m": {
+      "obstacles": 265,
+      "recall": {
+        "0.05": 0.8415,
+        "0.1": 0.6906,
+        "0.25": 0.4604
+      }
+    },
+    "20-30 m": {
+      "obstacles": 247,
+      "recall": {
+        "0.05": 0.5547,
+        "0.1": 0.3887,
+        "0.25": 0.251
+      }
+    },
+    "30-50 m": {
+      "obstacles": 584,
+      "recall": {
+        "0.05": 0.2654,
+        "0.1": 0.1901,
+        "0.25": 0.1267
+      }
+    },
+    "50+ m": {
+      "obstacles": 540,
+      "recall": {
+        "0.05": 0.2222,
+        "0.1": 0.1556,
+        "0.25": 0.0926
+      }
+    }
+  },
+  "recall_by_group": {
+    "standard objects": {
+      "obstacles": 535,
+      "recall": {
+        "0.05": 0.2654,
+        "0.1": 0.1439,
+        "0.25": 0.0467
+      }
+    },
+    "random hazards": {
+      "obstacles": 563,
+      "recall": {
+        "0.05": 0.3588,
+        "0.1": 0.2575,
+        "0.25": 0.1385
+      }
+    },
+    "emotional hazards": {
+      "obstacles": 423,
+      "recall": {
+        "0.05": 0.4799,
+        "0.1": 0.4043,
+        "0.25": 0.305
+      }
+    },
+    "humans": {
+      "obstacles": 203,
+      "recall": {
+        "0.05": 0.8621,
+        "0.1": 0.8079,
+        "0.25": 0.665
+      }
+    }
+  },
+  "recall_by_type": {
+    "crate (gray, 2x stacked)": {
+      "obstacles": 133,
+      "recall": {
+        "0.05": 0.3383,
+        "0.1": 0.2105,
+        "0.25": 0.0752
+      }
+    },
+    "crate (gray)": {
+      "obstacles": 88,
+      "recall": {
+        "0.05": 0.2045,
+        "0.1": 0.125,
+        "0.25": 0.0341
+      }
+    },
+    "crate (black, 2x stacked)": {
+      "obstacles": 93,
+      "recall": {
+        "0.05": 0.3118,
+        "0.1": 0.1398,
+        "0.25": 0.0538
+      }
+    },
+    "crate (black)": {
+      "obstacles": 74,
+      "recall": {
+        "0.05": 0.2568,
+        "0.1": 0.1486,
+        "0.25": 0.0405
+      }
+    },
+    "tire": {
+      "obstacles": 106,
+      "recall": {
+        "0.05": 0.3396,
+        "0.1": 0.1415,
+        "0.25": 0.0472
+      }
+    },
+    "styrofoam": {
+      "obstacles": 50,
+      "recall": {
+        "0.05": 0.12,
+        "0.1": 0.08,
+        "0.25": 0.0
+      }
+    },
+    "cardboard box": {
+      "obstacles": 105,
+      "recall": {
+        "0.05": 0.381,
+        "0.1": 0.2857,
+        "0.25": 0.1333
+      }
+    },
+    "exhaust pipe": {
+      "obstacles": 55,
+      "recall": {
+        "0.05": 0.0545,
+        "0.1": 0.0,
+        "0.25": 0.0
+      }
+    },
+    "dog (black)": {
+      "obstacles": 86,
+      "recall": {
+        "0.05": 0.3605,
+        "0.1": 0.3256,
+        "0.25": 0.2907
+      }
+    },
+    "dog (white)": {
+      "obstacles": 94,
+      "recall": {
+        "0.05": 0.4255,
+        "0.1": 0.4149,
+        "0.25": 0.3617
+      }
+    },
+    "bobby car (gray)": {
+      "obstacles": 89,
+      "recall": {
+        "0.05": 0.6966,
+        "0.1": 0.5056,
+        "0.25": 0.3708
+      }
+    },
+    "bobby car (red)": {
+      "obstacles": 91,
+      "recall": {
+        "0.05": 0.5385,
+        "0.1": 0.4725,
+        "0.25": 0.3077
+      }
+    },
+    "crate (gray, upright)": {
+      "obstacles": 58,
+      "recall": {
+        "0.05": 0.2414,
+        "0.1": 0.0862,
+        "0.25": 0.0
+      }
+    },
+    "crate (black, upright)": {
+      "obstacles": 89,
+      "recall": {
+        "0.05": 0.191,
+        "0.1": 0.1011,
+        "0.25": 0.0449
+      }
+    },
+    "euro pallet": {
+      "obstacles": 20,
+      "recall": {
+        "0.05": 0.15,
+        "0.1": 0.15,
+        "0.25": 0.05
+      }
+    },
+    "ball": {
+      "obstacles": 20,
+      "recall": {
+        "0.05": 0.35,
+        "0.1": 0.2,
+        "0.25": 0.05
+      }
+    },
+    "pylon": {
+      "obstacles": 20,
+      "recall": {
+        "0.05": 0.65,
+        "0.1": 0.4,
+        "0.25": 0.2
+      }
+    },
+    "pylon (white)": {
+      "obstacles": 46,
+      "recall": {
+        "0.05": 0.5652,
+        "0.1": 0.4565,
+        "0.25": 0.2391
+      }
+    },
+    "kid dummy": {
+      "obstacles": 16,
+      "recall": {
+        "0.05": 0.1875,
+        "0.1": 0.125,
+        "0.25": 0.0625
+      }
+    },
+    "plastic bag (bloated)": {
+      "obstacles": 28,
+      "recall": {
+        "0.05": 0.1071,
+        "0.1": 0.0714,
+        "0.25": 0.0714
+      }
+    },
+    "crate (green)": {
+      "obstacles": 35,
+      "recall": {
+        "0.05": 0.4286,
+        "0.1": 0.3429,
+        "0.25": 0.2
+      }
+    },
+    "bobby car (yellow)": {
+      "obstacles": 27,
+      "recall": {
+        "0.05": 0.4074,
+        "0.1": 0.3704,
+        "0.25": 0.2593
+      }
+    },
+    "crate (blue, small)": {
+      "obstacles": 15,
+      "recall": {
+        "0.05": 0.2667,
+        "0.1": 0.2,
+        "0.25": 0.0667
+      }
+    },
+    "headlight": {
+      "obstacles": 12,
+      "recall": {
+        "0.05": 0.1667,
+        "0.1": 0.0833,
+        "0.25": 0.0
+      }
+    },
+    "bumper": {
+      "obstacles": 53,
+      "recall": {
+        "0.05": 0.8302,
+        "0.1": 0.7925,
+        "0.25": 0.5849
+      }
+    },
+    "crate (blue)": {
+      "obstacles": 18,
+      "recall": {
+        "0.05": 0.3889,
+        "0.1": 0.2222,
+        "0.25": 0.1111
+      }
+    },
+    "kid (walking)": {
+      "obstacles": 65,
+      "recall": {
+        "0.05": 0.9692,
+        "0.1": 0.8923,
+        "0.25": 0.8
+      }
+    },
+    "kid (on a bobby car)": {
+      "obstacles": 79,
+      "recall": {
+        "0.05": 0.7342,
+        "0.1": 0.6582,
+        "0.25": 0.4684
+      }
+    },
+    "kid (on a small bobby car)": {
+      "obstacles": 50,
+      "recall": {
+        "0.05": 0.9,
+        "0.1": 0.9,
+        "0.25": 0.74
+      }
+    },
+    "kid (crawling)": {
+      "obstacles": 9,
+      "recall": {
+        "0.05": 1.0,
+        "0.1": 1.0,
+        "0.25": 1.0
+      }
+    }
+  },
+  "false_alarms_on_free_road": {
+    "0.05": {
+      "total": 150,
+      "per_frame": 0.1247
+    },
+    "0.1": {
+      "total": 86,
+      "per_frame": 0.0715
+    },
+    "0.25": {
+      "total": 41,
+      "per_frame": 0.0341
+    }
+  }
+}

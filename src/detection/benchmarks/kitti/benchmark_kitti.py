@@ -62,7 +62,6 @@ SUBSET = DATA / "subset.txt"
 # Runs to perform, as (weights, run name). Each run writes results/<run name>/.
 RUNS = [
     ("weights/yoloe-11s-seg.pt", "yoloe-11s-seg_prompts-v2"),
-    ("weights/yolo26s-seg.pt", "yolo26s-seg_coco"),
 ]
 
 # Longest side fed to the model. KITTI images are 1242x375.
@@ -145,9 +144,10 @@ def to_kitti_classes(preds: list[dict]) -> list[dict]:
     bicycle would wrongly count every correctly seen parked bike as a false
     alarm.
     """
-    people = [p for p in preds if p["class"] == "person"]
+    # Open-vocabulary runs may also output "pedestrian" and "cyclist" directly.
+    people = [p for p in preds if p["class"] in ("person", "pedestrian")]
     ridden = set()
-    out = []
+    out = [{**p, "class": "Cyclist"} for p in preds if p["class"] == "cyclist"]
     for b in (p for p in preds if p["class"] == "bicycle"):
         best, best_j = 0.0, -1
         for j, p in enumerate(people):
@@ -402,7 +402,8 @@ def evaluate(weights: str, run_name: str, ids: list[str]) -> None:
                 for c, s in AP_CLASSES.items()
             },
             "class_conversion": (
-                "car and van -> Car; person -> Pedestrian; bicycle merged with its rider "
+                "car and van -> Car; person and pedestrian -> Pedestrian; cyclist -> Cyclist; "
+                "bicycle merged with its rider "
                 f"(person box >= {RIDER_OVERLAP:.0%} inside the bicycle box) -> Cyclist; "
                 "rider-less bicycles dropped (parked bikes are unlabelled in KITTI)"
             ),

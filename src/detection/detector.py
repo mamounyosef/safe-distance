@@ -36,6 +36,9 @@ ROAD_PROMPTS: list[str] = [
     "motorcycle",
     "bicycle",
     "person",
+    # Tested and rejected (prompts v3): adding "pedestrian" and "cyclist"
+    # moved KITTI pedestrian AP only 51.0% -> 52.5% and dropped cyclist AP
+    # 24.5% -> 15.9%. The gap to YOLO26 on people is the model, not the words.
     "traffic cone",
     "construction barrier",
     "traffic barricade",
