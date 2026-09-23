@@ -214,18 +214,23 @@ class Detector:
         Returns:
             One Detection per object found, with track_id left as None.
         """
-        results = self.model.predict(
-            frame,
-            device=self.device,
-            conf=self.conf,
-            imgsz=self.imgsz,
+        results = self.model.predict(frame, **self.inference_args)
+        return self.parse(results[0])
+
+    @property
+    def inference_args(self) -> dict:
+        """Settings passed to every model call, shared with the tracker so
+        detection and tracking always run the model identically."""
+        return {
+            "device": self.device,
+            "conf": self.conf,
+            "imgsz": self.imgsz,
             # Ultralytics replaced the old `half` flag with `quantize`:
             # 16 means FP16, 32 means full FP32 precision.
-            quantize=16 if self.half else 32,
-            max_det=self.max_det,
-            verbose=False,
-        )
-        return self._parse(results[0])
+            "quantize": 16 if self.half else 32,
+            "max_det": self.max_det,
+            "verbose": False,
+        }
 
     def _name_for(self, class_id: int, result) -> str:
         """Label for a class id.
@@ -238,8 +243,12 @@ class Detector:
             return result.names[class_id]
         return self.classes.get(class_id, OTHER_CLASS)
 
-    def _parse(self, result) -> list[Detection]:
-        """Convert one Ultralytics Results object into our own Detection list."""
+    def parse(self, result) -> list[Detection]:
+        """Convert one Ultralytics Results object into our own Detection list.
+
+        Public because the tracker also produces Results objects, from the
+        same model, and turns them into Detections the same way.
+        """
         boxes = result.boxes
         if boxes is None or len(boxes) == 0:
             return []
