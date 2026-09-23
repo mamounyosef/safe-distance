@@ -1,0 +1,510 @@
+{
+  "benchmark": "kitti_road_user_detection",
+  "provenance": {
+    "created_utc": "2026-09-23T07:11:51+00:00",
+    "git_commit": "992ab92",
+    "git_uncommitted_changes": true,
+    "python": "3.12.0",
+    "torch": "2.6.0+cu124",
+    "ultralytics": "8.4.155",
+    "gpu": "NVIDIA GeForce RTX 4060"
+  },
+  "dataset": {
+    "name": "KITTI Object Detection",
+    "source": "https://www.cvlibs.net/datasets/kitti/eval_object.php",
+    "split": "training (the only split with public labels; models were not trained on KITTI)",
+    "images": 1500,
+    "subset": "data/kitti/subset.txt (random, fixed seed, see scripts/download_kitti.py)",
+    "objects": 8049,
+    "distance_source": "laser-measured 3D position, ground distance sqrt(x^2 + z^2)"
+  },
+  "config": {
+    "run_name": "yolo26s-seg_coco",
+    "weights": "weights/yolo26s-seg.pt",
+    "prompts": null,
+    "imgsz": 1280,
+    "detect_conf": 0.01,
+    "conf_thresholds": [
+      0.05,
+      0.1,
+      0.25
+    ],
+    "recall_min_iou": 0.5,
+    "recall_matching": "any predicted class counts",
+    "ap_classes": {
+      "Car": {
+        "min_iou": 0.7,
+        "ignored_neighbours": [
+          "Van"
+        ]
+      },
+      "Pedestrian": {
+        "min_iou": 0.5,
+        "ignored_neighbours": [
+          "Person_sitting"
+        ]
+      },
+      "Cyclist": {
+        "min_iou": 0.5,
+        "ignored_neighbours": []
+      }
+    },
+    "class_conversion": "car and van -> Car; person -> Pedestrian; bicycle merged with its rider (person box >= 30% inside the bicycle box) -> Cyclist; rider-less bicycles dropped (parked bikes are unlabelled in KITTI)",
+    "ap_method": "KITTI-style AP|R40, greedy matching",
+    "difficulties": {
+      "easy": {
+        "min_height_px": 40,
+        "max_occlusion": 0,
+        "max_truncation": 0.15
+      },
+      "moderate": {
+        "min_height_px": 25,
+        "max_occlusion": 1,
+        "max_truncation": 0.3
+      },
+      "hard": {
+        "min_height_px": 25,
+        "max_occlusion": 2,
+        "max_truncation": 0.5
+      }
+    },
+    "distance_bands_m": [
+      [
+        0,
+        10
+      ],
+      [
+        10,
+        20
+      ],
+      [
+        20,
+        30
+      ],
+      [
+        30,
+        50
+      ],
+      [
+        50,
+        1000
+      ]
+    ]
+  },
+  "latency_ms": {
+    "median": 30.2,
+    "p95": 55.9
+  },
+  "recall_overall": {
+    "objects": 8049,
+    "recall": {
+      "0.05": 0.8686,
+      "0.1": 0.8592,
+      "0.25": 0.8389
+    }
+  },
+  "recall_by_class": {
+    "car": {
+      "objects": 5946,
+      "recall": {
+        "0.05": 0.9038,
+        "0.1": 0.8971,
+        "0.25": 0.8848
+      }
+    },
+    "pedestrian": {
+      "objects": 869,
+      "recall": {
+        "0.05": 0.7675,
+        "0.1": 0.7503,
+        "0.25": 0.7043
+      }
+    },
+    "van": {
+      "objects": 548,
+      "recall": {
+        "0.05": 0.8485,
+        "0.1": 0.8376,
+        "0.25": 0.7974
+      }
+    },
+    "cyclist": {
+      "objects": 324,
+      "recall": {
+        "0.05": 0.679,
+        "0.1": 0.6574,
+        "0.25": 0.608
+      }
+    },
+    "truck": {
+      "objects": 235,
+      "recall": {
+        "0.05": 0.8511,
+        "0.1": 0.8383,
+        "0.25": 0.7957
+      }
+    },
+    "tram": {
+      "objects": 127,
+      "recall": {
+        "0.05": 0.5118,
+        "0.1": 0.4803,
+        "0.25": 0.4567
+      }
+    }
+  },
+  "recall_by_distance": {
+    "0-10 m": {
+      "objects": 982,
+      "recall": {
+        "0.05": 0.8971,
+        "0.1": 0.8961,
+        "0.25": 0.89
+      }
+    },
+    "10-20 m": {
+      "objects": 1933,
+      "recall": {
+        "0.05": 0.8862,
+        "0.1": 0.88,
+        "0.25": 0.8738
+      }
+    },
+    "20-30 m": {
+      "objects": 1795,
+      "recall": {
+        "0.05": 0.8529,
+        "0.1": 0.8451,
+        "0.25": 0.8262
+      }
+    },
+    "30-50 m": {
+      "objects": 2315,
+      "recall": {
+        "0.05": 0.8531,
+        "0.1": 0.8428,
+        "0.25": 0.8181
+      }
+    },
+    "50+ m": {
+      "objects": 1024,
+      "recall": {
+        "0.05": 0.8701,
+        "0.1": 0.8467,
+        "0.25": 0.793
+      }
+    }
+  },
+  "recall_by_class_and_distance": {
+    "car": {
+      "0-10 m": {
+        "objects": 657,
+        "recall": {
+          "0.05": 0.9087,
+          "0.1": 0.9072,
+          "0.25": 0.9072
+        }
+      },
+      "10-20 m": {
+        "objects": 1382,
+        "recall": {
+          "0.05": 0.9175,
+          "0.1": 0.9139,
+          "0.25": 0.9103
+        }
+      },
+      "20-30 m": {
+        "objects": 1367,
+        "recall": {
+          "0.05": 0.891,
+          "0.1": 0.8844,
+          "0.25": 0.8742
+        }
+      },
+      "30-50 m": {
+        "objects": 1841,
+        "recall": {
+          "0.05": 0.8952,
+          "0.1": 0.8876,
+          "0.25": 0.8756
+        }
+      },
+      "50+ m": {
+        "objects": 699,
+        "recall": {
+          "0.05": 0.9199,
+          "0.1": 0.9041,
+          "0.25": 0.8584
+        }
+      }
+    },
+    "pedestrian": {
+      "0-10 m": {
+        "objects": 246,
+        "recall": {
+          "0.05": 0.874,
+          "0.1": 0.874,
+          "0.25": 0.8496
+        }
+      },
+      "10-20 m": {
+        "objects": 335,
+        "recall": {
+          "0.05": 0.7701,
+          "0.1": 0.7552,
+          "0.25": 0.7403
+        }
+      },
+      "20-30 m": {
+        "objects": 153,
+        "recall": {
+          "0.05": 0.7647,
+          "0.1": 0.7386,
+          "0.25": 0.6732
+        }
+      },
+      "30-50 m": {
+        "objects": 110,
+        "recall": {
+          "0.05": 0.5818,
+          "0.1": 0.5545,
+          "0.25": 0.4091
+        }
+      },
+      "50+ m": {
+        "objects": 25,
+        "recall": {
+          "0.05": 0.52,
+          "0.1": 0.4,
+          "0.25": 0.28
+        }
+      }
+    },
+    "van": {
+      "0-10 m": {
+        "objects": 34,
+        "recall": {
+          "0.05": 0.9118,
+          "0.1": 0.9118,
+          "0.25": 0.9118
+        }
+      },
+      "10-20 m": {
+        "objects": 103,
+        "recall": {
+          "0.05": 0.932,
+          "0.1": 0.932,
+          "0.25": 0.932
+        }
+      },
+      "20-30 m": {
+        "objects": 116,
+        "recall": {
+          "0.05": 0.8879,
+          "0.1": 0.8879,
+          "0.25": 0.8879
+        }
+      },
+      "30-50 m": {
+        "objects": 150,
+        "recall": {
+          "0.05": 0.82,
+          "0.1": 0.8067,
+          "0.25": 0.7533
+        }
+      },
+      "50+ m": {
+        "objects": 145,
+        "recall": {
+          "0.05": 0.7724,
+          "0.1": 0.7448,
+          "0.25": 0.6483
+        }
+      }
+    },
+    "cyclist": {
+      "0-10 m": {
+        "objects": 24,
+        "recall": {
+          "0.05": 0.875,
+          "0.1": 0.875,
+          "0.25": 0.875
+        }
+      },
+      "10-20 m": {
+        "objects": 89,
+        "recall": {
+          "0.05": 0.7978,
+          "0.1": 0.7753,
+          "0.25": 0.7528
+        }
+      },
+      "20-30 m": {
+        "objects": 88,
+        "recall": {
+          "0.05": 0.6023,
+          "0.1": 0.5909,
+          "0.25": 0.5455
+        }
+      },
+      "30-50 m": {
+        "objects": 104,
+        "recall": {
+          "0.05": 0.6154,
+          "0.1": 0.5865,
+          "0.25": 0.5192
+        }
+      },
+      "50+ m": {
+        "objects": 19,
+        "recall": {
+          "0.05": 0.5789,
+          "0.1": 0.5263,
+          "0.25": 0.3684
+        }
+      }
+    },
+    "truck": {
+      "0-10 m": {
+        "objects": 16,
+        "recall": {
+          "0.05": 0.8125,
+          "0.1": 0.8125,
+          "0.25": 0.8125
+        }
+      },
+      "10-20 m": {
+        "objects": 13,
+        "recall": {
+          "0.05": 0.7692,
+          "0.1": 0.7692,
+          "0.25": 0.7692
+        }
+      },
+      "20-30 m": {
+        "objects": 35,
+        "recall": {
+          "0.05": 0.9143,
+          "0.1": 0.9143,
+          "0.25": 0.8
+        }
+      },
+      "30-50 m": {
+        "objects": 73,
+        "recall": {
+          "0.05": 0.863,
+          "0.1": 0.863,
+          "0.25": 0.8219
+        }
+      },
+      "50+ m": {
+        "objects": 98,
+        "recall": {
+          "0.05": 0.8367,
+          "0.1": 0.8061,
+          "0.25": 0.7755
+        }
+      }
+    },
+    "tram": {
+      "0-10 m": {
+        "objects": 5,
+        "recall": {
+          "0.05": 0.8,
+          "0.1": 0.8,
+          "0.25": 0.8
+        }
+      },
+      "10-20 m": {
+        "objects": 11,
+        "recall": {
+          "0.05": 0.9091,
+          "0.1": 0.9091,
+          "0.25": 0.9091
+        }
+      },
+      "20-30 m": {
+        "objects": 36,
+        "recall": {
+          "0.05": 0.2222,
+          "0.1": 0.2222,
+          "0.25": 0.1667
+        }
+      },
+      "30-50 m": {
+        "objects": 37,
+        "recall": {
+          "0.05": 0.3514,
+          "0.1": 0.2973,
+          "0.25": 0.2703
+        }
+      },
+      "50+ m": {
+        "objects": 38,
+        "recall": {
+          "0.05": 0.7895,
+          "0.1": 0.7368,
+          "0.25": 0.7368
+        }
+      }
+    }
+  },
+  "average_precision": {
+    "Car": {
+      "easy": {
+        "ap": 0.8342,
+        "objects": 1186
+      },
+      "moderate": {
+        "ap": 0.7364,
+        "objects": 3234
+      },
+      "hard": {
+        "ap": 0.5991,
+        "objects": 4497
+      }
+    },
+    "Pedestrian": {
+      "easy": {
+        "ap": 0.743,
+        "objects": 416
+      },
+      "moderate": {
+        "ap": 0.6387,
+        "objects": 648
+      },
+      "hard": {
+        "ap": 0.545,
+        "objects": 785
+      }
+    },
+    "Cyclist": {
+      "easy": {
+        "ap": 0.349,
+        "objects": 125
+      },
+      "moderate": {
+        "ap": 0.2565,
+        "objects": 219
+      },
+      "hard": {
+        "ap": 0.2444,
+        "objects": 238
+      }
+    }
+  },
+  "false_alarms": {
+    "0.05": {
+      "total": 9667,
+      "per_image": 6.4447
+    },
+    "0.1": {
+      "total": 5585,
+      "per_image": 3.7233
+    },
+    "0.25": {
+      "total": 2432,
+      "per_image": 1.6213
+    }
+  }
+}

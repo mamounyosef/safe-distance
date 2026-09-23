@@ -27,23 +27,19 @@ from __future__ import annotations
 
 import csv
 import json
-import platform
-import subprocess
 import sys
 import time
-from datetime import datetime, timezone
 from pathlib import Path
 
 import cv2
 import numpy as np
-import torch
-import ultralytics
 
 # Make the repo root importable, so "src.detection" resolves when this file
 # is run directly. This file is at src/detection/benchmarks/lost_and_found/,
 # four levels down.
 sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
 
+from src.detection.benchmarks.common import best_row, iou, md_table, pct, provenance
 from src.detection.detector import Detector
 
 # ----------------------------------------------------------------------------
@@ -154,14 +150,6 @@ def polygon_box(polygon: list) -> tuple[float, float, float, float]:
     return float(pts[:, 0].min()), float(pts[:, 1].min()), float(pts[:, 0].max()), float(pts[:, 1].max())
 
 
-def iou(a: tuple, b: tuple) -> float:
-    ix1, iy1 = max(a[0], b[0]), max(a[1], b[1])
-    ix2, iy2 = min(a[2], b[2]), min(a[3], b[3])
-    inter = max(0.0, ix2 - ix1) * max(0.0, iy2 - iy1)
-    union = (a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - inter
-    return inter / union if union > 0 else 0.0
-
-
 def disparity_to_depth(raw: np.ndarray, fx: float, baseline: float) -> np.ndarray:
     """Convert a stored disparity image to depth in metres.
 
@@ -202,28 +190,6 @@ def recall_table(rows: list[dict], key) -> dict:
             },
         }
     return out
-
-
-def provenance() -> dict:
-    """Everything needed to reproduce the numbers."""
-    try:
-        commit = subprocess.run(
-            ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, check=True
-        ).stdout.strip()
-        dirty = bool(subprocess.run(
-            ["git", "status", "--porcelain"], capture_output=True, text=True, check=True
-        ).stdout.strip())
-    except (OSError, subprocess.CalledProcessError):
-        commit, dirty = "unknown", None
-    return {
-        "created_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "git_commit": commit,
-        "git_uncommitted_changes": dirty,
-        "python": platform.python_version(),
-        "torch": torch.__version__,
-        "ultralytics": ultralytics.__version__,
-        "gpu": torch.cuda.get_device_name(0) if torch.cuda.is_available() else "none",
-    }
 
 
 def list_frames() -> list[Path]:
@@ -393,17 +359,6 @@ def evaluate(weights: str, run_name: str, frames: list[Path]) -> None:
     print(f"wrote {json_path}, {csv_path} and RESULTS.md")
 
 
-def md_table(header: list[str], rows: list[list]) -> list[str]:
-    """Render a Markdown table."""
-    lines = ["| " + " | ".join(header) + " |", "|" + " --- |" * len(header)]
-    lines += ["| " + " | ".join(str(c) for c in row) + " |" for row in rows]
-    return lines + [""]
-
-
-def pct(x: float) -> str:
-    return f"{x:.0%}"
-
-
 def write_report(run_dir: Path) -> None:
     """Generate RESULTS.md for one run, entirely from its results.json.
 
@@ -502,14 +457,7 @@ def write_comparison() -> None:
     names = list(runs)
     t = str(min(next(iter(runs.values()))["config"]["conf_thresholds"]))
 
-    def row(label: str, values: list, higher_is_better: bool, fmt) -> list:
-        known = [v for v in values if v is not None]
-        best = (max if higher_is_better else min)(known) if known else None
-        cells = [
-            "-" if v is None else (f"**{fmt(v)}**" if v == best and len(names) > 1 else fmt(v))
-            for v in values
-        ]
-        return [label, *cells]
+    row = best_row
 
     def recall_section(key: str, order: list[str]) -> list[str]:
         rows = []
