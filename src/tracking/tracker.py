@@ -67,6 +67,11 @@ class Tracker:
             yaml.safe_dump(self.settings, f)
             self.config_path = Path(f.name)
 
+        # Ultralytics keeps the tracker's memory on the model, which may be
+        # shared with an earlier Tracker. The first frame therefore asks for a
+        # fresh tracker, so IDs from a previous video never carry over.
+        self._first_frame = True
+
     def update(self, frame: np.ndarray) -> list[Detection]:
         """Track objects in the next frame of the video.
 
@@ -76,8 +81,11 @@ class Tracker:
         """
         results = self.detector.model.track(
             frame,
-            persist=True,  # keep the tracker's memory between calls
+            # Keep the tracker's memory between calls, except on the first
+            # frame, where a new tracker is built from our settings.
+            persist=not self._first_frame,
             tracker=str(self.config_path),
             **self.detector.inference_args,
         )
+        self._first_frame = False
         return self.detector.parse(results[0])

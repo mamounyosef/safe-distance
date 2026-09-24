@@ -44,9 +44,12 @@ IMGSZ = 960
 CONF = 0.05
 HALF = True
 
-# "bytetrack", or "botsort" (adds camera motion compensation for a moving
-# camera, at some CPU cost).
-TRACKER = "bytetrack"
+# "botsort" (default) or "bytetrack". BoT-SORT adds camera motion
+# compensation for our moving camera. On the KITTI tracking benchmark it cut
+# ID switches by about 25% for cars and pedestrians and raised car MOTA from
+# 64.8% to 72.0%, for 6 ms more per frame at KITTI's size (about 17 ms at
+# 1080p). See src/tracking/benchmarks/kitti_tracking/COMPARISON.md.
+TRACKER = "botsort"
 
 # Tracker settings. Defaults are Ultralytics' except TRACK_LOW_THRESH.
 # A track is continued by a detection scoring at least TRACK_HIGH_THRESH in
