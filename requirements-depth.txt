@@ -1,0 +1,34 @@
+# Optional: the depth models benchmarked in src/distance/depth_models.py.
+# Install AFTER requirements.txt. Several of these projects declare loose or
+# conflicting requirements, so they are installed without their dependencies
+# and the pieces they actually import at inference are listed here instead.
+# That keeps torch 2.6.0 + CUDA 12.4 from being replaced.
+#
+#   pip install -r requirements-depth.txt -c pin-torch.txt
+#   pip install --no-deps xformers==0.0.29.post3 --index-url https://download.pytorch.org/whl/cu124
+#   pip install --no-deps timm==1.0.30
+#   pip install --no-deps "git+https://github.com/lpiccinelli-eth/UniDepth"
+#   pip install --no-deps "git+https://github.com/ByteDance-Seed/depth-anything-3"
+#
+# Models are downloaded on first use to C:\safe-distance-models (override with
+# the SAFE_DISTANCE_MODELS environment variable).
+
+# Depth Anything V2 Metric, Depth Pro (Hugging Face)
+transformers==5.17.0
+
+# UniDepth v2
+einops==0.8.2
+wandb==0.30.0
+
+# Metric3D v2 (loaded through torch.hub)
+mmengine==0.10.7
+mmcv-lite==2.2.0
+
+# Depth Anything 3 (imports these at load time)
+omegaconf==2.3.1
+moviepy==1.0.3
+plyfile==1.1.5
+trimesh==5.1.0
+pillow-heif==1.8.0
+evo==1.37.1
+pycolmap==4.2.0
