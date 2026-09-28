@@ -107,7 +107,7 @@ class HuggingFaceBackend(DepthBackend):
 
         self.processor = AutoImageProcessor.from_pretrained(self.model_id, cache_dir=str(HF_CACHE))
         self._model = AutoModelForDepthEstimation.from_pretrained(
-            self.model_id, cache_dir=str(HF_CACHE), torch_dtype=torch.float16
+            self.model_id, cache_dir=str(HF_CACHE), dtype=torch.float16
         ).cuda().eval()
 
     def _predict(self, frame: np.ndarray, camera: Camera) -> np.ndarray:
