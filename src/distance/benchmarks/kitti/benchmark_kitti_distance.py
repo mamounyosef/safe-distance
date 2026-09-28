@@ -75,6 +75,14 @@ CAMERA_PITCH_RAD = 0.0
 # is at least this. Each detection matches at most one object.
 MIN_IOU = 0.5
 
+# The driving corridor for "in path" results: an object is in our path if its
+# footprint on the road comes within this many metres of our car's centre
+# line, left or right: the objects we could actually hit head-on.
+# 1.2 m = half our car's width (about 0.9 m) plus a 0.3 m margin. A first
+# try with 1.75 m (half a lane) wrongly caught cars in the next lane driving
+# alongside us: nearly out of view, nearest surface beside our own car.
+CORRIDOR_HALF_WIDTH_M = 1.2
+
 # Distance bands in metres.
 BANDS = [(0, 10), (10, 20), (20, 30), (30, 50), (50, 1000)]
 
@@ -86,6 +94,11 @@ OUT_DIR = Path(__file__).resolve().parent / "results"
 
 # True: skip inference and only regenerate reports from existing results.json.
 REPORT_ONLY = False
+
+# True: skip the detector and recompute every statistic of RUN_NAME from its
+# saved objects.csv plus the label files. For when only the scoring changes,
+# not the detector or the estimators. Takes seconds and no GPU.
+RESCORE_ONLY = False
 
 # ----------------------------------------------------------------------------
 
@@ -109,21 +122,54 @@ ESTIMATORS = [GroundPlaneEstimator(), KnownSizeEstimator()]
 TRUTHS = ["nearest_surface", "centre"]
 
 
-def nearest_surface_distance(x: float, z: float, width: float, length: float, rotation_y: float) -> float:
-    """Ground distance from the camera to the nearest point of an object's footprint.
+def footprint_corners(x: float, z: float, width: float, length: float,
+                      rotation_y: float) -> list[tuple[float, float]]:
+    """The four corners of an object's footprint on the road, as (x, z) points.
 
     KITTI gives each object's bottom-centre position (x to the right, z ahead),
     its width and length, and its heading rotation_y around the vertical axis.
-    The footprint is that rectangle on the road; the answer is the distance
-    from the camera (the origin) to its closest edge, or 0 if the camera is
-    inside it.
+    Corners are built in the object's own frame (length along its heading) and
+    rotated into camera coordinates exactly as in the KITTI development kit.
     """
     c, s = math.cos(rotation_y), math.sin(rotation_y)
-    # Corners in the object's own frame (length along its heading), rotated
-    # into camera coordinates exactly as in the KITTI development kit.
     local = [(length / 2, width / 2), (length / 2, -width / 2),
              (-length / 2, -width / 2), (-length / 2, width / 2)]
-    corners = [(x + c * lx + s * lz, z - s * lx + c * lz) for lx, lz in local]
+    return [(x + c * lx + s * lz, z - s * lx + c * lz) for lx, lz in local]
+
+
+def lateral_gap(corners: list[tuple[float, float]]) -> float:
+    """How far to the side of our car's centre line the footprint's nearest
+    edge is, in metres. 0 if the footprint straddles the centre line."""
+    xs = [cx for cx, _ in corners]
+    if min(xs) <= 0.0 <= max(xs):
+        return 0.0
+    return min(abs(min(xs)), abs(max(xs)))
+
+
+def label_geometry(f: list[str]) -> dict:
+    """True distances and sideways gap of one KITTI label line.
+
+    Label fields: 8-10 height, width, length; 11-13 position x, y, z;
+    14 heading around the vertical axis.
+    """
+    width, length = float(f[9]), float(f[10])
+    x, z, rotation_y = float(f[11]), float(f[13]), float(f[14])
+    corners = footprint_corners(x, z, width, length, rotation_y)
+    return {
+        "true_centre_m": math.hypot(x, z),
+        "true_nearest_surface_m": nearest_surface_distance(x, z, width, length, rotation_y),
+        "lateral_gap_m": lateral_gap(corners),
+    }
+
+
+def nearest_surface_distance(x: float, z: float, width: float, length: float, rotation_y: float) -> float:
+    """Ground distance from the camera to the nearest point of an object's footprint.
+
+    The footprint is the object's rectangle on the road (see footprint_corners);
+    the answer is the distance from the camera (the origin) to its closest
+    edge, or 0 if the camera is inside it.
+    """
+    corners = footprint_corners(x, z, width, length, rotation_y)
 
     def to_segment(ax, az, bx, bz):
         dx, dz = bx - ax, bz - az
@@ -208,17 +254,12 @@ def run(ids: list[str]) -> None:
         for line in (DATA / "training" / "label_2" / f"{image_id}.txt").read_text().splitlines():
             f = line.split()
             if f and f[0] in CLASSES:
-                # Label fields: 8-10 height, width, length; 11-13 position x, y, z;
-                # 14 heading around the vertical axis.
-                width, length = float(f[9]), float(f[10])
-                x, z, rotation_y = float(f[11]), float(f[13]), float(f[14])
                 labels.append({
                     "type": f[0],
                     "box": tuple(float(v) for v in f[4:8]),
                     "occluded": int(f[2]),
                     "truncated": float(f[1]),
-                    "true_centre_m": math.hypot(x, z),
-                    "true_nearest_surface_m": nearest_surface_distance(x, z, width, length, rotation_y),
+                    **label_geometry(f),
                 })
         total_objects += len(labels)
 
@@ -241,26 +282,50 @@ def run(ids: list[str]) -> None:
                 "box_height_px": round(g["box"][3] - g["box"][1], 1),
                 "true_centre_m": round(g["true_centre_m"], 2),
                 "true_nearest_surface_m": round(g["true_nearest_surface_m"], 2),
+                "lateral_gap_m": round(g["lateral_gap_m"], 2),
                 **{m: (None if estimates[m][bi] is None else round(estimates[m][bi], 2)) for m in methods},
             })
 
         if i % 250 == 0 or i == len(ids):
             print(f"  {i}/{len(ids)} images, {len(rows)} objects matched", flush=True)
 
-    band_order = [band_name(lo, hi) for lo, hi in BANDS]
+    latency = {m: round(float(np.median(t)), 3) for m, t in times.items()}
+    results = build_results(rows, methods, len(ids), total_objects, latency, provenance())
+    save_run(results, rows)
+
+
+def by_distance(rows: list[dict], method: str, truth: str) -> dict:
+    """Error statistics per distance band. Bands use the same truth as the errors."""
+    out = {}
+    for lo, hi in BANDS:
+        b = band_name(lo, hi)
+        subset = [r for r in rows if band_of(r[f"true_{truth}_m"]) == b]
+        if subset:
+            out[b] = error_stats(subset, method, truth)
+    return out
+
+
+def build_results(rows: list[dict], methods: list[str], n_images: int, total_objects: int,
+                  latency: dict, prov: dict) -> dict:
+    """Every statistic, from the per-object rows. Shared by run and rescore."""
+    for r in rows:
+        r["in_path"] = r["lateral_gap_m"] <= CORRIDOR_HALF_WIDTH_M
+    in_path = [r for r in rows if r["in_path"]]
+    beside = [r for r in rows if not r["in_path"]]
     classes = sorted({r["class"] for r in rows}, key=lambda c: -sum(r["class"] == c for r in rows))
-    results = {
+    return {
         "benchmark": "kitti_distance",
-        "provenance": provenance(),
+        "provenance": prov,
         "dataset": {
             "name": "KITTI Object Detection",
             "source": "https://www.cvlibs.net/datasets/kitti/eval_object.php",
             "split": "training (public labels)",
-            "images": len(ids),
+            "images": n_images,
             "subset": f"{SUBSET.as_posix()} (random, fixed seed, see scripts/download_kitti.py)",
             "labelled_objects": total_objects,
             "matched_objects": len(rows),
-            "distance_source": "laser-measured 3D position, ground distance sqrt(x^2 + z^2)",
+            "in_path_objects": len(in_path),
+            "distance_source": "laser-measured 3D boxes",
         },
         "config": {
             "run_name": RUN_NAME,
@@ -270,21 +335,21 @@ def run(ids: list[str]) -> None:
             "camera_height_m": CAMERA_HEIGHT_M,
             "camera_pitch_rad": CAMERA_PITCH_RAD,
             "min_iou": MIN_IOU,
+            "corridor_half_width_m": CORRIDOR_HALF_WIDTH_M,
             "estimators": methods,
             "distance_bands_m": BANDS,
         },
-        "estimator_latency_ms_per_image": {m: round(float(np.median(t)), 3) for m, t in times.items()},
-        # methods[estimator][truth] -> overall / by distance / by class.
-        # Distance bands use the same truth the errors are measured against.
+        "estimator_latency_ms_per_image": latency,
+        # methods[estimator][truth] -> all objects, in-path only, and beside
+        # the path; each overall and by distance, plus all objects by class.
         "methods": {
             m: {
                 t: {
                     "overall": error_stats(rows, m, t),
-                    "by_distance": {
-                        b: error_stats([r for r in rows if band_of(r[f"true_{t}_m"]) == b], m, t)
-                        for b in band_order if any(band_of(r[f"true_{t}_m"]) == b for r in rows)
-                    },
+                    "by_distance": by_distance(rows, m, t),
                     "by_class": {c: error_stats([r for r in rows if r["class"] == c], m, t) for c in classes},
+                    "in_path": {"overall": error_stats(in_path, m, t), "by_distance": by_distance(in_path, m, t)},
+                    "beside": {"overall": error_stats(beside, m, t), "by_distance": by_distance(beside, m, t)},
                 }
                 for t in TRUTHS
             }
@@ -292,6 +357,8 @@ def run(ids: list[str]) -> None:
         },
     }
 
+
+def save_run(results: dict, rows: list[dict]) -> None:
     run_dir = OUT_DIR / RUN_NAME
     run_dir.mkdir(parents=True, exist_ok=True)
     (run_dir / "results.json").write_text(json.dumps(results, indent=2))
@@ -301,12 +368,68 @@ def run(ids: list[str]) -> None:
         writer.writerows(rows)
     write_report(run_dir)
 
+    methods = results["config"]["estimators"]
     for t in TRUTHS:
-        for m in methods:
-            o = results["methods"][m][t]["overall"]
-            print(f"  vs {t:>15} | {m:>13}: median error {o['median_abs_error_m']} m, "
-                  f"within 10% {o['within_10pct']:.0%}, bias {o['bias']:+.1%}")
+        for scope in ("all", "in_path"):
+            for m in methods:
+                node = results["methods"][m][t]
+                o = node["overall"] if scope == "all" else node["in_path"]["overall"]
+                print(f"  vs {t:>15} | {scope:>7} | {m:>13}: median error {o['median_abs_error_m']} m, "
+                      f"within 10% {o['within_10pct']:.0%}, bias {o['bias']:+.1%}")
     print(f"wrote {run_dir}")
+
+
+def rescore() -> None:
+    """Recompute all statistics of RUN_NAME from objects.csv and the labels.
+
+    The detector and estimators are not run: their outputs are already in
+    objects.csv. Geometry that is missing from an older objects.csv (such as
+    the sideways gap) is recovered from the label files, by matching each row
+    to its label line on object type and true centre distance.
+    """
+    run_dir = OUT_DIR / RUN_NAME
+    old = json.loads((run_dir / "results.json").read_text())
+    methods = old["config"]["estimators"]
+    with (run_dir / "objects.csv").open(newline="") as f:
+        raw = list(csv.DictReader(f))
+
+    # Per image: (type, box height, occlusion, geometry) of every label line.
+    geometry_cache: dict[str, list[tuple[str, float, int, dict]]] = {}
+    rows = []
+    for r in raw:
+        image = r["image"]
+        if image not in geometry_cache:
+            lines = (DATA / "training" / "label_2" / f"{image}.txt").read_text().splitlines()
+            geometry_cache[image] = [
+                (f[0], float(f[7]) - float(f[5]), int(f[2]), label_geometry(f))
+                for f in map(str.split, lines) if f and f[0] in CLASSES
+            ]
+        centre = float(r["true_centre_m"])
+        candidates = [g for t, h, occ, g in geometry_cache[image]
+                      if t == r["type"] and abs(g["true_centre_m"] - centre) < 0.006
+                      and abs(h - float(r["box_height_px"])) < 0.06 and occ == int(r["occluded"])]
+        if len(candidates) != 1:
+            raise SystemExit(f"cannot uniquely match row to its label: image {image}, {r['type']} at {centre} m")
+        g = candidates[0]
+        rows.append({
+            "image": image,
+            "type": r["type"],
+            "class": r["class"],
+            "predicted_class": r["predicted_class"],
+            "occluded": int(r["occluded"]),
+            "truncated": float(r["truncated"]),
+            "box_height_px": float(r["box_height_px"]),
+            "true_centre_m": round(g["true_centre_m"], 2),
+            "true_nearest_surface_m": round(g["true_nearest_surface_m"], 2),
+            "lateral_gap_m": round(g["lateral_gap_m"], 2),
+            **{m: (float(r[m]) if r[m] not in ("", "None") else None) for m in methods},
+        })
+
+    prov = {**old["provenance"], "rescored_utc": provenance()["created_utc"],
+            "rescored_git_commit": provenance()["git_commit"]}
+    results = build_results(rows, methods, old["dataset"]["images"], old["dataset"]["labelled_objects"],
+                            old["estimator_latency_ms_per_image"], prov)
+    save_run(results, rows)
 
 
 def fmt_pct(v) -> str:
@@ -385,6 +508,29 @@ def write_report(run_dir: Path) -> None:
                 [m, *stat_rows({"x": r["methods"][m][t]["overall"]}, ["x"])[0][1:]] for m in methods
             ]),
         ]
+    if "in_path" in r["methods"][methods[0]][truths[0]]:
+        half = cfg.get("corridor_half_width_m")
+        out += [
+            "## In our path vs beside it",
+            "",
+            f"In path: the object's footprint comes within {half} m of our car's centre line (it",
+            "overlaps our lane), so these are the objects a forward collision warning must get right.",
+            f"{ds.get('in_path_objects')} of {ds['matched_objects']} matched objects are in path.",
+            "",
+        ]
+        for t in truths:
+            rows_ = []
+            for scope in ("in_path", "beside"):
+                for m in methods:
+                    s = r["methods"][m][t][scope]["overall"]
+                    rows_.append([f"{scope.replace('_', ' ')} / {m}",
+                                  *stat_rows({"x": s}, ["x"])[0][1:]])
+            out += [f"### Overall, vs {t.replace('_', ' ')}", "",
+                    *md_table(["Scope / estimator", *STAT_HEADER], rows_)]
+            for m in methods:
+                mr = r["methods"][m][t]["in_path"]["by_distance"]
+                out += [f"### `{m}` in path, by distance, vs {t.replace('_', ' ')}", "",
+                        *md_table(["Distance", *STAT_HEADER], stat_rows(mr, list(mr)))]
     for t in truths:
         for m in methods:
             mr = r["methods"][m][t]
@@ -456,6 +602,10 @@ def write_comparison() -> None:
 
 
 def main() -> None:
+    if RESCORE_ONLY:
+        rescore()
+        write_comparison()
+        return
     if REPORT_ONLY:
         for run_dir in sorted(p for p in OUT_DIR.iterdir() if (p / "results.json").exists()):
             write_report(run_dir)
