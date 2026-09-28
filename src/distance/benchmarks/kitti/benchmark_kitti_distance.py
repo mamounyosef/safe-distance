@@ -57,25 +57,32 @@ from src.distance.estimators import FallbackEstimator, GroundPlaneEstimator, Kno
 DATA = Path("data/kitti")
 SUBSET = DATA / "subset.txt"
 
-# Runs to perform, in order, as (run name, estimator set). Each writes
+# Runs to perform, in order, as (run name, estimator set, images). Each writes
 # results/<run name>/. Estimator sets are defined in ESTIMATOR_SETS below:
 # "geometric" is ground plane + known size + their combination; any depth
 # model name from src/distance/depth_models.py BACKENDS gives that model read
 # three ways (median, 10th and 25th percentile of the depth inside the mask).
 # Use a new run name when changing a setting, so earlier results stay.
 RUNS = [
-    ("geometric_n300", "geometric"),
-    ("da2-metric-small_n300", "da2-metric-small"),
-    ("da2-metric-base_n300", "da2-metric-base"),
-    ("da2-metric-large_n300", "da2-metric-large"),
-    ("da3-metric-large_n300", "da3-metric-large"),
-    ("metric3d-v2-small_n300", "metric3d-v2-small"),
-    ("metric3d-v2-large_n300", "metric3d-v2-large"),
-    ("unidepth-v2-small_n300", "unidepth-v2-small"),
-    ("unidepth-v2-base_n300", "unidepth-v2-base"),
-    ("unidepth-v2-large_n300", "unidepth-v2-large"),
-    ("depth-pro_n300", "depth-pro"),
-    ("yolo26s-depth_n300", "yolo26s-depth"),
+    # Screening: every model on the first 300 images.
+    ("geometric_n300", "geometric", 300),
+    ("da2-metric-small_n300", "da2-metric-small", 300),
+    ("da2-metric-base_n300", "da2-metric-base", 300),
+    ("da2-metric-large_n300", "da2-metric-large", 300),
+    ("da3-metric-large_n300", "da3-metric-large", 300),
+    ("metric3d-v2-small_n300", "metric3d-v2-small", 300),
+    ("metric3d-v2-large_n300", "metric3d-v2-large", 300),
+    ("unidepth-v2-small_n300", "unidepth-v2-small", 300),
+    ("unidepth-v2-base_n300", "unidepth-v2-base", 300),
+    ("unidepth-v2-large_n300", "unidepth-v2-large", 300),
+    ("depth-pro_n300", "depth-pro", 300),
+    ("yolo26s-depth_n300", "yolo26s-depth", 300),
+    # Finalists on all 1500 images.
+    ("geometric_full", "geometric", 0),
+    ("metric3d-v2-small_full", "metric3d-v2-small", 0),
+    ("metric3d-v2-large_full", "metric3d-v2-large", 0),
+    ("unidepth-v2-base_full", "unidepth-v2-base", 0),
+    ("unidepth-v2-large_full", "unidepth-v2-large", 0),
 ]
 
 # Detector settings. Only detections matched to a real object are scored, so
@@ -103,10 +110,8 @@ CORRIDOR_HALF_WIDTH_M = 1.2
 # Distance bands in metres.
 BANDS = [(0, 10), (10, 20), (20, 30), (30, 50), (50, 1000)]
 
-# Use only the first this-many images of the subset. 0 = all 1500. The "_n300"
-# runs use 300: a cheap first comparison of many models; the best few are
-# then run on all images under a new name.
-MAX_IMAGES = 300
+# The images count of each run is its third RUNS value: the first N images of
+# the subset, or 0 for all 1500.
 
 # Where run folders are written: results/ next to this file.
 OUT_DIR = Path(__file__).resolve().parent / "results"
@@ -673,20 +678,19 @@ def main() -> None:
     if not SUBSET.exists():
         raise SystemExit(f"{SUBSET} not found. Run scripts/download_kitti.py first.")
     ids = [i for i in SUBSET.read_text().split() if (DATA / "training" / "image_2" / f"{i}.png").exists()]
-    if MAX_IMAGES:
-        ids = ids[:MAX_IMAGES]
 
     import gc
 
     import torch
 
-    for run_name, set_name in RUNS:
+    for run_name, set_name, n_images in RUNS:
         if SKIP_EXISTING and (OUT_DIR / run_name / "results.json").exists():
             print(f"=== {run_name}: already done, skipped ===")
             continue
-        print(f"=== {run_name} ({len(ids)} images) ===", flush=True)
+        run_ids = ids[:n_images] if n_images else ids
+        print(f"=== {run_name} ({len(run_ids)} images) ===", flush=True)
         estimators = estimator_set(set_name)
-        run(ids, run_name, estimators)
+        run(run_ids, run_name, estimators)
         # Free the depth model before loading the next one.
         estimators = None
         gc.collect()

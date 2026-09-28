@@ -79,28 +79,31 @@ SCENES = [
     "15_Rechbergstr_Deckenpfronn",
 ]
 
-# Use every FRAME_STEP-th frame of the 1203. 4 gives about 300 frames: a
-# cheap first comparison of many models; the best few are then run with 1
-# (all frames) under a new run name.
-FRAME_STEP = 4
-
-# Runs to perform, in order, as (run name, estimator set). "geometric" is
+# Runs to perform, in order, as (run name, estimator set, frame step: use every
+# N-th frame of the 1203, 1 = all). "geometric" is
 # ground plane plus the known-size / ground-plane combination (known size
 # alone is omitted: it cannot measure obstacles). Any depth model name from
 # src/distance/depth_models.py BACKENDS gives that model read three ways.
 RUNS = [
-    ("geometric_n300", "geometric"),
-    ("da2-metric-small_n300", "da2-metric-small"),
-    ("da2-metric-base_n300", "da2-metric-base"),
-    ("da2-metric-large_n300", "da2-metric-large"),
-    ("da3-metric-large_n300", "da3-metric-large"),
-    ("metric3d-v2-small_n300", "metric3d-v2-small"),
-    ("metric3d-v2-large_n300", "metric3d-v2-large"),
-    ("unidepth-v2-small_n300", "unidepth-v2-small"),
-    ("unidepth-v2-base_n300", "unidepth-v2-base"),
-    ("unidepth-v2-large_n300", "unidepth-v2-large"),
-    ("depth-pro_n300", "depth-pro"),
-    ("yolo26s-depth_n300", "yolo26s-depth"),
+    # Screening: every model on every 4th frame (about 300).
+    ("geometric_n300", "geometric", 4),
+    ("da2-metric-small_n300", "da2-metric-small", 4),
+    ("da2-metric-base_n300", "da2-metric-base", 4),
+    ("da2-metric-large_n300", "da2-metric-large", 4),
+    ("da3-metric-large_n300", "da3-metric-large", 4),
+    ("metric3d-v2-small_n300", "metric3d-v2-small", 4),
+    ("metric3d-v2-large_n300", "metric3d-v2-large", 4),
+    ("unidepth-v2-small_n300", "unidepth-v2-small", 4),
+    ("unidepth-v2-base_n300", "unidepth-v2-base", 4),
+    ("unidepth-v2-large_n300", "unidepth-v2-large", 4),
+    ("depth-pro_n300", "depth-pro", 4),
+    ("yolo26s-depth_n300", "yolo26s-depth", 4),
+    # Finalists on all 1203 frames.
+    ("geometric_full", "geometric", 1),
+    ("metric3d-v2-small_full", "metric3d-v2-small", 1),
+    ("metric3d-v2-large_full", "metric3d-v2-large", 1),
+    ("unidepth-v2-base_full", "unidepth-v2-base", 1),
+    ("unidepth-v2-large_full", "unidepth-v2-large", 1),
 ]
 
 # Distance bands in metres, and the range runs are ranked by.
@@ -165,11 +168,11 @@ def error_stats(rows: list[dict], method: str) -> dict:
     }
 
 
-def list_frames() -> list[Path]:
+def list_frames(step: int) -> list[Path]:
     frames = []
     for scene in SCENES:
         frames += sorted((DATA / "leftImg8bit" / "test" / scene).glob("*_leftImg8bit.png"))
-    return frames[::FRAME_STEP]
+    return frames[::step]
 
 
 def outline_detection(polygon: list) -> Detection:
@@ -180,7 +183,7 @@ def outline_detection(polygon: list) -> Detection:
                      class_id=-1, class_name="obstacle", confidence=1.0, mask=pts)
 
 
-def run(frames: list[Path], run_name: str, estimators: list) -> None:
+def run(frames: list[Path], run_name: str, estimators: list, frame_step: int) -> None:
     methods = [e.name for e in estimators]
     rows, skipped_no_depth = [], 0
 
@@ -229,12 +232,13 @@ def run(frames: list[Path], run_name: str, estimators: list) -> None:
         depth_model = {"name": b.name, "uses_our_focal_length": b.uses_focal_length,
                        "inference_ms_median": round(float(np.median(t)), 1),
                        "inference_ms_p95": round(float(np.percentile(t, 95)), 1)}
-    results = build_results(rows, methods, len(frames), skipped_no_depth, provenance(), run_name, depth_model)
+    results = build_results(rows, methods, len(frames), skipped_no_depth, provenance(), run_name,
+                            depth_model, frame_step)
     save_run(results, rows)
 
 
 def build_results(rows: list[dict], methods: list[str], n_frames: int, skipped: int, prov: dict,
-                  run_name: str, depth_model: dict | None) -> dict:
+                  run_name: str, depth_model: dict | None, frame_step: int) -> dict:
     band_order = [band_name(lo, hi) for lo, hi in BANDS]
     lo, hi = RANK_RANGE_M
     ranked = [r for r in rows if lo <= r["true_m"] < hi]
@@ -248,7 +252,7 @@ def build_results(rows: list[dict], methods: list[str], n_frames: int, skipped: 
             "split": "test",
             "scenes": SCENES,
             "frames": n_frames,
-            "frame_step": FRAME_STEP,
+            "frame_step": frame_step,
             "obstacles": len(rows),
             "obstacles_skipped_no_stereo_depth": skipped,
             "excluded_labels": "random non-hazards (30, 32, 33, 35-38), per the dataset definition",
@@ -304,7 +308,8 @@ def rescore(run_dir: Path) -> None:
             "rescored_git_commit": provenance()["git_commit"]}
     results = build_results(rows, methods, old["dataset"]["frames"],
                             old["dataset"]["obstacles_skipped_no_stereo_depth"], prov,
-                            old["config"]["run_name"], old["config"].get("depth_model"))
+                            old["config"]["run_name"], old["config"].get("depth_model"),
+                            old["dataset"]["frame_step"])
     save_run(results, rows)
 
 
@@ -448,15 +453,15 @@ def main() -> None:
 
     import torch
 
-    frames = list_frames()
-    for run_name, set_name in RUNS:
+    for run_name, set_name, frame_step in RUNS:
         if SKIP_EXISTING and (OUT_DIR / run_name / "results.json").exists():
             print(f"=== {run_name}: already done, skipped ===")
             continue
+        frames = list_frames(frame_step)
         print(f"=== {run_name} ({len(frames)} frames) ===", flush=True)
         t0 = time.perf_counter()
         estimators = estimator_set(set_name)
-        run(frames, run_name, estimators)
+        run(frames, run_name, estimators, frame_step)
         estimators = None
         gc.collect()
         torch.cuda.empty_cache()
