@@ -47,7 +47,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
 from src.detection.benchmarks.common import best_row, iou, md_table, pct, provenance
 from src.detection.detector import Detector
 from src.distance.camera import Camera
-from src.distance.estimators import GroundPlaneEstimator, KnownSizeEstimator
+from src.distance.estimators import FallbackEstimator, GroundPlaneEstimator, KnownSizeEstimator
 
 # ----------------------------------------------------------------------------
 # CONFIG
@@ -57,9 +57,26 @@ from src.distance.estimators import GroundPlaneEstimator, KnownSizeEstimator
 DATA = Path("data/kitti")
 SUBSET = DATA / "subset.txt"
 
-# Run name: results are written to results/<RUN_NAME>/. Use a new name when
-# changing an estimator or a setting, so earlier results stay for comparison.
-RUN_NAME = "yolo26s-seg_geometric-v1"
+# Runs to perform, in order, as (run name, estimator set). Each writes
+# results/<run name>/. Estimator sets are defined in ESTIMATOR_SETS below:
+# "geometric" is ground plane + known size + their combination; any depth
+# model name from src/distance/depth_models.py BACKENDS gives that model read
+# three ways (median, 10th and 25th percentile of the depth inside the mask).
+# Use a new run name when changing a setting, so earlier results stay.
+RUNS = [
+    ("geometric_n300", "geometric"),
+    ("da2-metric-small_n300", "da2-metric-small"),
+    ("da2-metric-base_n300", "da2-metric-base"),
+    ("da2-metric-large_n300", "da2-metric-large"),
+    ("da3-metric-large_n300", "da3-metric-large"),
+    ("metric3d-v2-small_n300", "metric3d-v2-small"),
+    ("metric3d-v2-large_n300", "metric3d-v2-large"),
+    ("unidepth-v2-small_n300", "unidepth-v2-small"),
+    ("unidepth-v2-base_n300", "unidepth-v2-base"),
+    ("unidepth-v2-large_n300", "unidepth-v2-large"),
+    ("depth-pro_n300", "depth-pro"),
+    ("yolo26s-depth_n300", "yolo26s-depth"),
+]
 
 # Detector settings. Only detections matched to a real object are scored, so
 # the confidence threshold mostly decides which objects get matched at all.
@@ -86,8 +103,10 @@ CORRIDOR_HALF_WIDTH_M = 1.2
 # Distance bands in metres.
 BANDS = [(0, 10), (10, 20), (20, 30), (30, 50), (50, 1000)]
 
-# Stop after this many images. 0 = the whole subset.
-MAX_IMAGES = 0
+# Use only the first this-many images of the subset. 0 = all 1500. The "_n300"
+# runs use 300: a cheap first comparison of many models; the best few are
+# then run on all images under a new name.
+MAX_IMAGES = 300
 
 # Where run folders are written: results/ next to this file.
 OUT_DIR = Path(__file__).resolve().parent / "results"
@@ -95,10 +114,14 @@ OUT_DIR = Path(__file__).resolve().parent / "results"
 # True: skip inference and only regenerate reports from existing results.json.
 REPORT_ONLY = False
 
-# True: skip the detector and recompute every statistic of RUN_NAME from its
-# saved objects.csv plus the label files. For when only the scoring changes,
-# not the detector or the estimators. Takes seconds and no GPU.
+# True: skip the detector and recompute every statistic of every run folder
+# from its saved objects.csv plus the label files. For when only the scoring
+# changes, not the detector or the estimators. Takes seconds and no GPU.
 RESCORE_ONLY = False
+
+# True: skip runs whose results.json already exists, so an interrupted batch
+# of runs resumes where it stopped instead of starting over.
+SKIP_EXISTING = True
 
 # ----------------------------------------------------------------------------
 
@@ -112,7 +135,13 @@ CLASSES = {
     "Cyclist": "cyclist",
 }
 
-ESTIMATORS = [GroundPlaneEstimator(), KnownSizeEstimator()]
+def estimator_set(name: str) -> list:
+    """Build the estimators for one run. Depth models load lazily."""
+    if name == "geometric":
+        return [GroundPlaneEstimator(), KnownSizeEstimator(), FallbackEstimator()]
+    from src.distance.depth_models import depth_estimators
+
+    return depth_estimators(name)
 
 # Two definitions of the true distance, both scored:
 #   centre           to the middle of the object, as KITTI records it.
@@ -237,9 +266,9 @@ def match(labels: list[dict], boxes: list[tuple]) -> dict[int, int]:
     return out
 
 
-def run(ids: list[str]) -> None:
+def run(ids: list[str], run_name: str, estimators: list) -> None:
     detector = Detector(weights=WEIGHTS, conf=CONF, imgsz=IMGSZ)
-    methods = [e.name for e in ESTIMATORS]
+    methods = [e.name for e in estimators]
     rows = []
     total_objects = 0
     times = {m: [] for m in methods}
@@ -265,7 +294,7 @@ def run(ids: list[str]) -> None:
 
         dets = detector.detect(img)
         estimates = {}
-        for e in ESTIMATORS:
+        for e in estimators:
             t0 = time.perf_counter()
             estimates[e.name] = e.estimate(img, dets, camera)
             times[e.name].append((time.perf_counter() - t0) * 1000.0)
@@ -290,7 +319,18 @@ def run(ids: list[str]) -> None:
             print(f"  {i}/{len(ids)} images, {len(rows)} objects matched", flush=True)
 
     latency = {m: round(float(np.median(t)), 3) for m, t in times.items()}
-    results = build_results(rows, methods, len(ids), total_objects, latency, provenance())
+    # Depth estimators share one model inference per frame, so the per-estimator
+    # times above hide it in whichever ran first; the model's own timing is the
+    # meaningful number. The first frame is dropped: it includes loading.
+    backends = {id(e.backend): e.backend for e in estimators if hasattr(e, "backend")}
+    depth_model = None
+    for b in backends.values():
+        t = b.times_ms[1:] or b.times_ms
+        depth_model = {"name": b.name, "uses_our_focal_length": b.uses_focal_length,
+                       "inference_ms_median": round(float(np.median(t)), 1),
+                       "inference_ms_p95": round(float(np.percentile(t, 95)), 1)}
+    results = build_results(rows, methods, len(ids), total_objects, latency, provenance(),
+                            run_name, depth_model)
     save_run(results, rows)
 
 
@@ -306,7 +346,7 @@ def by_distance(rows: list[dict], method: str, truth: str) -> dict:
 
 
 def build_results(rows: list[dict], methods: list[str], n_images: int, total_objects: int,
-                  latency: dict, prov: dict) -> dict:
+                  latency: dict, prov: dict, run_name: str, depth_model: dict | None = None) -> dict:
     """Every statistic, from the per-object rows. Shared by run and rescore."""
     for r in rows:
         r["in_path"] = r["lateral_gap_m"] <= CORRIDOR_HALF_WIDTH_M
@@ -328,7 +368,8 @@ def build_results(rows: list[dict], methods: list[str], n_images: int, total_obj
             "distance_source": "laser-measured 3D boxes",
         },
         "config": {
-            "run_name": RUN_NAME,
+            "run_name": run_name,
+            "depth_model": depth_model,
             "weights": WEIGHTS,
             "imgsz": IMGSZ,
             "conf": CONF,
@@ -359,7 +400,7 @@ def build_results(rows: list[dict], methods: list[str], n_images: int, total_obj
 
 
 def save_run(results: dict, rows: list[dict]) -> None:
-    run_dir = OUT_DIR / RUN_NAME
+    run_dir = OUT_DIR / results["config"]["run_name"]
     run_dir.mkdir(parents=True, exist_ok=True)
     (run_dir / "results.json").write_text(json.dumps(results, indent=2))
     with (run_dir / "objects.csv").open("w", newline="") as f:
@@ -379,15 +420,14 @@ def save_run(results: dict, rows: list[dict]) -> None:
     print(f"wrote {run_dir}")
 
 
-def rescore() -> None:
-    """Recompute all statistics of RUN_NAME from objects.csv and the labels.
+def rescore(run_dir: Path) -> None:
+    """Recompute all statistics of one run from its objects.csv and the labels.
 
     The detector and estimators are not run: their outputs are already in
     objects.csv. Geometry that is missing from an older objects.csv (such as
     the sideways gap) is recovered from the label files, by matching each row
     to its label line on object type and true centre distance.
     """
-    run_dir = OUT_DIR / RUN_NAME
     old = json.loads((run_dir / "results.json").read_text())
     methods = old["config"]["estimators"]
     with (run_dir / "objects.csv").open(newline="") as f:
@@ -428,7 +468,8 @@ def rescore() -> None:
     prov = {**old["provenance"], "rescored_utc": provenance()["created_utc"],
             "rescored_git_commit": provenance()["git_commit"]}
     results = build_results(rows, methods, old["dataset"]["images"], old["dataset"]["labelled_objects"],
-                            old["estimator_latency_ms_per_image"], prov)
+                            old["estimator_latency_ms_per_image"], prov,
+                            old["config"]["run_name"], old["config"].get("depth_model"))
     save_run(results, rows)
 
 
@@ -476,6 +517,11 @@ def write_report(run_dir: Path) -> None:
         *md_table(["", ""], [
             ["Detector", f"`{cfg['weights']}`, input size {cfg['imgsz']}, confidence {cfg['conf']}"],
             ["Estimators", ", ".join(f"`{m}`" for m in methods)],
+            *([["Depth model", f"`{cfg['depth_model']['name']}`, "
+                               f"{'given' if cfg['depth_model']['uses_our_focal_length'] else 'not given'} "
+                               f"our focal length; inference {cfg['depth_model']['inference_ms_median']} ms "
+                               f"median, {cfg['depth_model']['inference_ms_p95']} ms p95 per image"]]
+              if cfg.get("depth_model") else []),
             ["Camera", f"height {cfg['camera_height_m']} m, pitch {cfg['camera_pitch_rad']} rad; "
                        "focal length and centre from each image's calibration file"],
             ["Dataset", f"[{ds['name']}]({ds['source']}), {ds['split']}"],
@@ -557,45 +603,55 @@ def write_report(run_dir: Path) -> None:
 
 
 def write_comparison() -> None:
-    """Generate COMPARISON.md: every run and estimator side by side, per truth."""
+    """Generate COMPARISON.md: every run and estimator, ranked, per truth.
+
+    One row per (run, estimator), sorted by the share of in-path objects
+    within 10% of the true distance: the objects a collision warning must get
+    right. Runs on different image counts are marked, since their numbers are
+    not directly comparable.
+    """
     runs = {
         p.name: json.loads((p / "results.json").read_text())
         for p in sorted(OUT_DIR.iterdir()) if (p / "results.json").exists()
     }
     if not runs:
         return
-    cols = [(run, m) for run, r in runs.items() for m in r["config"]["estimators"]]
-    names = [f"{run} / {m}" for run, m in cols]
     first = next(iter(runs.values()))
     truths = list(first["methods"][first["config"]["estimators"][0]])
+    band_names = [band_name(lo, hi) for lo, hi in BANDS]
 
     out = [
         "# KITTI distance benchmark: comparison",
         "",
         "Generated automatically from every `results/<run>/results.json` by `benchmark_kitti_distance.py`. "
-        "Do not edit by hand. Best value per row in bold.",
+        "Do not edit by hand. Each run's full results are in `results/<run>/RESULTS.md`.",
+        "",
+        "Ranked by **in path, within 10%**: the share of objects in our driving corridor whose",
+        "estimated distance is within 10% of the truth. `_median`, `_p10`, `_p25` mark how a depth",
+        "model's per-pixel depth inside the object's mask is summarised (median, 10th or 25th",
+        "percentile). Depth model time is inference only, per image, on the hardware in each run.",
         "",
     ]
     for t in truths:
-        def get(run, m, band=None):
-            mr = runs[run]["methods"][m][t]
-            return mr["overall"] if band is None else mr["by_distance"].get(band)
-
-        bands = list(first["methods"][first["config"]["estimators"][0]][t]["by_distance"])
-        rows = [
-            best_row("Coverage", [get(r, m)["coverage"] for r, m in cols], True, fmt_pct),
-            best_row("Median error (m), all", [get(r, m)["median_abs_error_m"] for r, m in cols], False, fmt_m),
-            best_row("Within 10%, all", [get(r, m)["within_10pct"] for r, m in cols], True, fmt_pct),
-            best_row("|Bias|, all", [None if get(r, m)["bias"] is None else abs(get(r, m)["bias"])
-                                     for r, m in cols], False, fmt_bias),
-        ]
-        rows += [best_row(f"Median error (m), {b}",
-                          [(get(r, m, b) or {}).get("median_abs_error_m") for r, m in cols], False, fmt_m)
-                 for b in bands]
-        rows += [best_row(f"Within 10%, {b}",
-                          [(get(r, m, b) or {}).get("within_10pct") for r, m in cols], True, fmt_pct)
-                 for b in bands]
-        out += [f"## vs {t.replace('_', ' ')}", "", *md_table(["", *names], rows)]
+        rows = []
+        for run, r in runs.items():
+            dm = r["config"].get("depth_model") or {}
+            for m in r["config"]["estimators"]:
+                node = r["methods"][m][t]
+                ip = node["in_path"]
+                rows.append((ip["overall"]["within_10pct"] or 0.0, [
+                    f"`{run}`", f"`{m}`", r["dataset"]["images"], fmt_pct(node["overall"]["coverage"]),
+                    fmt_pct(ip["overall"]["within_10pct"]), fmt_m(ip["overall"]["median_abs_error_m"]),
+                    *[fmt_pct((ip["by_distance"].get(b) or {}).get("within_10pct")) for b in band_names],
+                    fmt_pct(node["overall"]["within_10pct"]), fmt_m(node["overall"]["median_abs_error_m"]),
+                    dm.get("inference_ms_median", "-"),
+                ]))
+        rows.sort(key=lambda x: -x[0])
+        header = ["Rank", "Run", "Estimator", "Images", "Coverage", "In path within 10%",
+                  "In path median error (m)", *[f"In path within 10%, {b}" for b in band_names],
+                  "All objects within 10%", "All objects median error (m)", "Depth model ms"]
+        out += [f"## vs {t.replace('_', ' ')}", "",
+                *md_table(header, [[i, *row] for i, (_, row) in enumerate(rows, 1)])]
     path = OUT_DIR.parent / "COMPARISON.md"
     path.write_text("\n".join(out))
     print(f"regenerated {path}")
@@ -603,7 +659,9 @@ def write_comparison() -> None:
 
 def main() -> None:
     if RESCORE_ONLY:
-        rescore()
+        for run_dir in sorted(p for p in OUT_DIR.iterdir() if (p / "objects.csv").exists()):
+            print(f"=== rescore {run_dir.name} ===")
+            rescore(run_dir)
         write_comparison()
         return
     if REPORT_ONLY:
@@ -617,9 +675,23 @@ def main() -> None:
     ids = [i for i in SUBSET.read_text().split() if (DATA / "training" / "image_2" / f"{i}.png").exists()]
     if MAX_IMAGES:
         ids = ids[:MAX_IMAGES]
-    print(f"=== {RUN_NAME} ===")
-    run(ids)
-    write_comparison()
+
+    import gc
+
+    import torch
+
+    for run_name, set_name in RUNS:
+        if SKIP_EXISTING and (OUT_DIR / run_name / "results.json").exists():
+            print(f"=== {run_name}: already done, skipped ===")
+            continue
+        print(f"=== {run_name} ({len(ids)} images) ===", flush=True)
+        estimators = estimator_set(set_name)
+        run(ids, run_name, estimators)
+        # Free the depth model before loading the next one.
+        estimators = None
+        gc.collect()
+        torch.cuda.empty_cache()
+        write_comparison()
 
 
 if __name__ == "__main__":
