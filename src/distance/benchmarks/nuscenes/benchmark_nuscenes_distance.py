@@ -75,6 +75,8 @@ RUNS = [
     ("unidepth-v2-small", "unidepth-v2-small"),
     ("unidepth-v2-base", "unidepth-v2-base"),
     ("unidepth-v2-large", "unidepth-v2-large"),
+    ("unidepth-v2-base-nocam", "unidepth-v2-base-nocam"),
+    ("unidepth-v2-large-nocam", "unidepth-v2-large-nocam"),
     ("da3-metric-large", "da3-metric-large"),
     ("depth-pro", "depth-pro"),
     ("da2-metric-small", "da2-metric-small"),
@@ -408,6 +410,9 @@ def run(ds: NuScenesMini, run_name: str, estimators: list) -> None:
         depth_model = {"name": b.name, "uses_our_focal_length": b.uses_focal_length, "precision": b.precision,
                        "inference_ms_median": round(float(np.median(t)), 1),
                        "inference_ms_p95": round(float(np.percentile(t, 95)), 1)}
+        if getattr(b, "estimated_fx", None):
+            depth_model["estimated_focal_px_median"] = round(float(np.median(b.estimated_fx)), 1)
+            depth_model["estimated_focal_px_p10_p90"] = [round(float(np.percentile(b.estimated_fx, q)), 1) for q in (10, 90)]
     save_run(build_results(rows, methods, len(ds.frames), n_labelled, provenance(), run_name, depth_model), rows)
 
 
@@ -450,6 +455,9 @@ def run_outlines(ds: NuScenesMini, run_name: str, estimators: list) -> None:
         depth_model = {"name": b.name, "uses_our_focal_length": b.uses_focal_length, "precision": b.precision,
                        "inference_ms_median": round(float(np.median(t)), 1),
                        "inference_ms_p95": round(float(np.percentile(t, 95)), 1)}
+        if getattr(b, "estimated_fx", None):
+            depth_model["estimated_focal_px_median"] = round(float(np.median(b.estimated_fx)), 1)
+            depth_model["estimated_focal_px_p10_p90"] = [round(float(np.percentile(b.estimated_fx, q)), 1) for q in (10, 90)]
     save_run(build_results(rows, methods, len(ds.frames), n_labelled, provenance(), run_name, depth_model,
                            "labelled 3D box projected into the image (convex hull of its corners)"),
              rows, OBSTACLE_OUT_DIR)

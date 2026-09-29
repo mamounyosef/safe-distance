@@ -177,15 +177,21 @@ class Metric3DBackend(DepthBackend):
 
 
 class UniDepthBackend(DepthBackend):
-    """UniDepth v2, given our camera's intrinsic matrix."""
+    """UniDepth v2, given our camera's intrinsic matrix, or estimating it itself.
 
-    uses_focal_length = True
+    With give_camera=False the model is not told the camera and predicts the
+    focal length on its own, as it would on an uncalibrated dashcam. The
+    focal lengths it estimates are kept, to compare with the real one.
+    """
+
     precision = "fp16 (library autocast)"
 
-    def __init__(self, name: str, model_id: str) -> None:
+    def __init__(self, name: str, model_id: str, give_camera: bool = True) -> None:
         super().__init__()
         self.name = name
         self.model_id = model_id
+        self.uses_focal_length = give_camera
+        self.estimated_fx: list[float] = []
 
     def load(self) -> None:
         from unidepth.models import UniDepthV2
@@ -197,7 +203,12 @@ class UniDepthBackend(DepthBackend):
         rgb = torch.from_numpy(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB).transpose(2, 0, 1)).cuda()
         K = torch.tensor([[camera.fx, 0, camera.cx], [0, camera.fy, camera.cy], [0, 0, 1]],
                          dtype=torch.float32).cuda()
-        pred = self._model.infer(rgb, K)["depth"]
+        if self.uses_focal_length:
+            pred = self._model.infer(rgb, K)["depth"]
+        else:
+            out = self._model.infer(rgb)
+            pred = out["depth"]
+            self.estimated_fx.append(float(out["intrinsics"].reshape(-1, 3, 3)[0, 0, 0]))
         return _resize_depth(pred, h, w)
 
 
@@ -266,6 +277,8 @@ BACKENDS = {
     "unidepth-v2-small": lambda: UniDepthBackend("unidepth-v2-small", "lpiccinelli/unidepth-v2-vits14"),
     "unidepth-v2-base": lambda: UniDepthBackend("unidepth-v2-base", "lpiccinelli/unidepth-v2-vitb14"),
     "unidepth-v2-large": lambda: UniDepthBackend("unidepth-v2-large", "lpiccinelli/unidepth-v2-vitl14"),
+    "unidepth-v2-base-nocam": lambda: UniDepthBackend("unidepth-v2-base-nocam", "lpiccinelli/unidepth-v2-vitb14", give_camera=False),
+    "unidepth-v2-large-nocam": lambda: UniDepthBackend("unidepth-v2-large-nocam", "lpiccinelli/unidepth-v2-vitl14", give_camera=False),
     "da3-metric-large": lambda: DepthAnything3MetricBackend(),
     "yolo26s-depth": lambda: YoloDepthBackend(),
 }

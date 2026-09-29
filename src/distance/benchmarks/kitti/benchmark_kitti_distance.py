@@ -85,6 +85,8 @@ RUNS = [
     ("unidepth-v2-large_full", "unidepth-v2-large", 0),
     ("metric3d-v2-small-fp16_full", "metric3d-v2-small-fp16", 0),
     ("metric3d-v2-large-fp16_full", "metric3d-v2-large-fp16", 0),
+    ("unidepth-v2-base-nocam_full", "unidepth-v2-base-nocam", 0),
+    ("unidepth-v2-large-nocam_full", "unidepth-v2-large-nocam", 0),
 ]
 
 # Detector settings. Only detections matched to a real object are scored, so
@@ -336,6 +338,9 @@ def run(ids: list[str], run_name: str, estimators: list) -> None:
         depth_model = {"name": b.name, "uses_our_focal_length": b.uses_focal_length, "precision": b.precision,
                        "inference_ms_median": round(float(np.median(t)), 1),
                        "inference_ms_p95": round(float(np.percentile(t, 95)), 1)}
+        if getattr(b, "estimated_fx", None):
+            depth_model["estimated_focal_px_median"] = round(float(np.median(b.estimated_fx)), 1)
+            depth_model["estimated_focal_px_p10_p90"] = [round(float(np.percentile(b.estimated_fx, q)), 1) for q in (10, 90)]
     results = build_results(rows, methods, len(ids), total_objects, latency, provenance(),
                             run_name, depth_model)
     save_run(results, rows)
