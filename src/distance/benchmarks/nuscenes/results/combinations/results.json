@@ -8,8 +8,8 @@
     "torch": "2.6.0+cu124",
     "ultralytics": "8.4.155",
     "gpu": "NVIDIA GeForce RTX 4060",
-    "rescored_utc": "2026-09-29T12:27:37+00:00",
-    "rescored_git_commit": "dc7a16d"
+    "rescored_utc": "2026-09-29T14:20:15+00:00",
+    "rescored_git_commit": "7c6bf85"
   },
   "dataset": {
     "name": "nuScenes v1.0-mini",
@@ -21,7 +21,8 @@
     "matched_objects": 1797,
     "in_path_objects": 321,
     "min_visibility": "v40-60",
-    "ground_truth": "LiDAR 3D boxes; ground distance from the road point below the camera"
+    "ground_truth": "LiDAR 3D boxes; ground distance from the road point below the camera",
+    "estimator_input": "detections matched to labels (IoU >= 0.5)"
   },
   "config": {
     "run_name": "combinations",

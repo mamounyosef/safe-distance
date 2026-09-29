@@ -73,6 +73,17 @@ BENCHMARKS = [
         "members": ["metric3d-v2-small", "metric3d-v2-large", "unidepth-v2-base", "unidepth-v2-large"],
         "run_name": "combinations",
     },
+    {
+        # nuScenes traffic cones and barriers, scored at their labelled outlines.
+        "script": HERE / "nuscenes" / "benchmark_nuscenes_distance.py",
+        "results_dir": HERE / "nuscenes" / "results_obstacles",
+        "comparison": ("COMPARISON_OBSTACLES.md",
+                       "nuScenes distance benchmark: traffic cones and barriers (labelled outlines)"),
+        "objects_file": "objects.csv",
+        "key_columns": ["frame", "class", "box_height_px", "true_centre_m"],
+        "members": ["metric3d-v2-small", "metric3d-v2-large", "unidepth-v2-base", "unidepth-v2-large"],
+        "run_name": "combinations",
+    },
 ]
 
 # ----------------------------------------------------------------------------
@@ -99,7 +110,7 @@ def combine(rule: str, values: list[float | None]) -> float | None:
 
 def build(bench: dict) -> None:
     module = load_module(bench["script"])
-    results_dir = bench["script"].parent / "results"
+    results_dir = bench.get("results_dir", bench["script"].parent / "results")
     member_rows = {}
     for run in bench["members"]:
         with (results_dir / run / bench["objects_file"]).open(newline="") as f:
@@ -145,7 +156,10 @@ def build(bench: dict) -> None:
 
     print(f"=== {bench['script'].parent.name}: {len(merged)} objects, {len(names)} combinations ===")
     module.rescore(out_dir)
-    module.write_comparison()
+    if "comparison" in bench:
+        module.write_comparison(results_dir, *bench["comparison"])
+    else:
+        module.write_comparison()
 
 
 def main() -> None:

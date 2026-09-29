@@ -1,0 +1,839 @@
+frame,scene,condition,class,category,predicted_class,visibility,box_height_px,true_centre_m,true_nearest_surface_m,lateral_gap_m,in_path,"min(metric3d-v2-small_p10,unidepth-v2-large_p10)","mean(metric3d-v2-small_p10,unidepth-v2-large_p10)","min(metric3d-v2-large_p25,unidepth-v2-large_p10)","mean(metric3d-v2-large_p25,unidepth-v2-large_p10)","min(metric3d-v2-small_p10,unidepth-v2-base_p10)","mean(metric3d-v2-small_p10,unidepth-v2-base_p10)"
+e3d495d4ac534d54b321f50006683844,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,63.5,26.31,25.27,7.37,False,22.66,23.32,22.66,23.2,22.74,23.36
+e3d495d4ac534d54b321f50006683844,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,57.6,28.28,27.24,7.51,False,24.64,25.39,24.64,25.16,24.51,25.33
+e3d495d4ac534d54b321f50006683844,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,31.3,42.92,41.88,9.07,False,34.27,35.77,34.27,35.5,34.22,35.75
+e3d495d4ac534d54b321f50006683844,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,48.8,32.14,31.06,7.6,False,28.31,29.06,28.31,28.82,28.32,29.07
+e3d495d4ac534d54b321f50006683844,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,105.8,16.65,15.61,6.64,False,13.1,13.64,13.1,13.63,13.46,13.82
+e3d495d4ac534d54b321f50006683844,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,47.1,34.16,33.11,7.74,False,30.01,30.88,30.01,30.8,30.02,30.88
+e3d495d4ac534d54b321f50006683844,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,26.2,46.85,45.88,9.15,False,33.78,34.59,33.78,37.14,34.22,34.81
+e3d495d4ac534d54b321f50006683844,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,150.6,13.01,11.96,6.63,False,10.95,11.29,10.95,11.27,11.2,11.41
+e3d495d4ac534d54b321f50006683844,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,67.0,24.37,23.35,7.25,False,20.88,21.47,20.88,21.32,20.95,21.5
+e3d495d4ac534d54b321f50006683844,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,92.8,18.53,17.49,6.72,False,15.11,15.71,15.11,15.64,15.55,15.93
+e3d495d4ac534d54b321f50006683844,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,82.2,20.45,19.37,6.85,False,16.99,17.53,16.99,17.52,17.28,17.68
+e3d495d4ac534d54b321f50006683844,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,75.4,22.41,21.34,7.02,False,18.99,19.65,18.99,19.53,19.23,19.77
+e3d495d4ac534d54b321f50006683844,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,52.2,30.2,29.19,7.55,False,26.59,27.38,26.59,27.12,26.5,27.34
+e3d495d4ac534d54b321f50006683844,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,126.7,14.79,13.75,6.66,False,11.2,11.61,11.2,11.59,11.55,11.79
+4b6870ae200c4b969b91c50a9737f712,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,79.0,22.04,21.0,7.48,False,18.75,19.23,18.75,19.39,19.04,19.37
+4b6870ae200c4b969b91c50a9737f712,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,70.4,23.98,22.94,7.63,False,20.89,21.18,20.89,21.52,21.11,21.29
+4b6870ae200c4b969b91c50a9737f712,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,35.5,38.53,37.49,9.27,False,32.36,32.92,32.36,33.42,32.06,32.78
+4b6870ae200c4b969b91c50a9737f712,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,57.9,27.8,26.71,7.74,False,24.93,25.3,24.93,25.44,24.91,25.29
+4b6870ae200c4b969b91c50a9737f712,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,15.4,70.5,70.23,27.92,False,27.45,42.77,51.22,54.65,27.45,29.07
+4b6870ae200c4b969b91c50a9737f712,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,160.4,12.71,11.69,6.69,False,11.18,11.33,11.18,11.62,11.35,11.41
+4b6870ae200c4b969b91c50a9737f712,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,55.2,29.8,28.75,7.89,False,26.96,27.29,26.96,27.52,26.88,27.25
+4b6870ae200c4b969b91c50a9737f712,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,85.3,20.14,19.12,7.35,False,16.96,17.32,16.96,17.5,17.15,17.41
+4b6870ae200c4b969b91c50a9737f712,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,131.9,14.48,13.44,6.78,False,11.68,12.02,11.68,12.18,11.92,12.14
+4b6870ae200c4b969b91c50a9737f712,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,111.7,16.32,15.24,6.92,False,12.91,13.25,12.91,13.48,13.06,13.33
+4b6870ae200c4b969b91c50a9737f712,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,98.7,18.22,17.14,7.11,False,15.02,15.41,15.02,15.53,15.26,15.53
+4b6870ae200c4b969b91c50a9737f712,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,62.8,25.88,24.86,7.68,False,23.06,23.38,23.06,23.66,23.27,23.49
+d0d9ef23e3934ea09d55afdc24db9827,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,106.1,17.65,16.6,7.59,False,14.07,14.38,14.07,14.67,14.05,14.38
+d0d9ef23e3934ea09d55afdc24db9827,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,91.6,19.52,18.48,7.75,False,16.05,16.39,16.05,16.61,15.97,16.36
+d0d9ef23e3934ea09d55afdc24db9827,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,41.0,33.9,32.86,9.5,False,29.79,30.11,30.42,31.84,29.79,30.17
+d0d9ef23e3934ea09d55afdc24db9827,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,20.4,75.55,74.97,24.46,False,25.06,25.3,25.06,26.04,25.33,25.43
+d0d9ef23e3934ea09d55afdc24db9827,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,72.0,23.25,22.16,7.9,False,20.06,20.42,20.06,20.74,19.93,20.36
+d0d9ef23e3934ea09d55afdc24db9827,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,16.7,66.12,65.84,28.36,False,17.36,18.17,17.36,32.34,17.23,18.11
+d0d9ef23e3934ea09d55afdc24db9827,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,67.3,25.22,24.16,8.06,False,22.13,22.46,22.13,22.87,22.02,22.41
+d0d9ef23e3934ea09d55afdc24db9827,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,21.9,74.99,74.41,22.22,False,31.67,32.12,31.67,42.77,31.86,32.22
+d0d9ef23e3934ea09d55afdc24db9827,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,119.5,15.82,14.8,7.45,False,12.75,12.96,12.75,13.27,12.81,13.0
+d0d9ef23e3934ea09d55afdc24db9827,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,146.1,13.99,12.93,7.19,False,12.36,12.37,12.36,12.81,12.36,12.37
+d0d9ef23e3934ea09d55afdc24db9827,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,79.6,21.37,20.35,7.82,False,18.1,18.51,18.1,18.81,18.13,18.52
+74e7a9260c5d45b78b831528b62daf41,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,124.2,15.81,14.79,7.92,False,13.37,13.52,13.67,14.11,13.37,13.66
+74e7a9260c5d45b78b831528b62daf41,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,47.5,29.91,28.87,9.83,False,25.25,26.57,27.9,28.5,25.25,26.74
+74e7a9260c5d45b78b831528b62daf41,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,21.6,71.62,71.02,25.22,False,29.64,39.12,48.6,51.83,29.64,36.47
+74e7a9260c5d45b78b831528b62daf41,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,91.3,19.4,18.31,8.11,False,15.86,15.86,15.86,16.46,15.87,16.02
+74e7a9260c5d45b78b831528b62daf41,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,18.0,62.64,62.36,29.01,False,16.41,18.1,19.79,30.58,16.41,16.7
+74e7a9260c5d45b78b831528b62daf41,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,83.0,21.32,20.26,8.3,False,18.08,18.13,18.19,18.82,18.08,18.26
+74e7a9260c5d45b78b831528b62daf41,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,23.3,71.01,70.42,22.98,False,28.15,28.79,29.42,30.41,28.15,28.9
+74e7a9260c5d45b78b831528b62daf41,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,103.8,17.58,16.57,8.02,False,13.97,14.01,14.05,14.57,13.97,14.15
+21ca7cbfbde14f088143cf001570d01b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,24.9,73.98,73.21,32.24,False,44.95,46.08,47.2,47.43,42.64,43.8
+21ca7cbfbde14f088143cf001570d01b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,56.3,26.13,25.09,9.94,False,23.22,24.0,24.79,24.95,23.22,23.7
+21ca7cbfbde14f088143cf001570d01b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,23.1,67.85,67.24,25.5,False,25.39,26.04,26.51,26.6,25.39,26.2
+21ca7cbfbde14f088143cf001570d01b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,123.7,15.86,14.78,8.17,False,14.1,14.22,14.34,14.71,14.1,14.27
+21ca7cbfbde14f088143cf001570d01b,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,19.6,58.81,58.53,29.22,False,17.06,20.2,23.35,27.11,15.98,16.52
+21ca7cbfbde14f088143cf001570d01b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,107.8,17.69,16.64,8.37,False,14.96,15.05,14.96,15.46,15.13,15.17
+21ca7cbfbde14f088143cf001570d01b,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,55.1,20.08,19.78,8.76,False,17.89,17.91,17.89,18.23,17.93,17.98
+21ca7cbfbde14f088143cf001570d01b,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,61.9,19.2,18.88,8.65,False,16.5,16.71,16.5,16.91,16.82,16.88
+21ca7cbfbde14f088143cf001570d01b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,27.5,50.89,50.34,5.2,False,46.9,51.6,52.84,54.57,46.9,50.67
+21ca7cbfbde14f088143cf001570d01b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,28.1,51.76,51.16,9.2,False,25.43,26.44,27.45,27.61,25.43,26.39
+21ca7cbfbde14f088143cf001570d01b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,28.6,51.28,50.75,7.12,False,25.91,30.62,35.32,40.28,25.91,30.23
+ddbc1befa70f4b49a0824f63a920676b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,26.4,70.88,70.14,32.62,False,22.09,30.04,37.99,39.79,22.09,29.62
+ddbc1befa70f4b49a0824f63a920676b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,67.0,22.97,21.93,10.05,False,20.64,21.12,21.6,22.11,20.64,20.95
+ddbc1befa70f4b49a0824f63a920676b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,24.5,64.66,64.02,25.86,False,17.53,18.05,17.53,17.76,17.8,18.19
+ddbc1befa70f4b49a0824f63a920676b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,58.3,24.8,23.74,10.11,False,17.25,17.73,17.25,17.71,17.29,17.75
+ddbc1befa70f4b49a0824f63a920676b,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,69.4,17.04,16.73,8.84,False,15.85,16.28,15.74,16.23,15.85,16.23
+ddbc1befa70f4b49a0824f63a920676b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,29.6,47.43,46.88,4.93,False,44.03,48.45,46.54,49.7,44.03,48.4
+ddbc1befa70f4b49a0824f63a920676b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,30.2,48.35,47.74,8.92,False,21.98,23.12,22.61,23.44,21.98,22.41
+ddbc1befa70f4b49a0824f63a920676b,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,30.7,47.85,47.3,6.83,False,31.38,40.59,45.25,47.52,31.38,38.19
+33b500c9cc824733a47bfe2c3ea33202,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,24.7,64.12,63.67,19.34,False,35.86,36.16,34.14,35.3,35.86,36.05
+33b500c9cc824733a47bfe2c3ea33202,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,84.7,19.72,18.69,10.18,False,17.53,17.59,17.64,17.66,17.53,17.57
+33b500c9cc824733a47bfe2c3ea33202,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,71.9,21.47,20.42,10.26,False,17.93,18.02,18.11,18.3,17.93,18.07
+33b500c9cc824733a47bfe2c3ea33202,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,61.4,23.3,22.32,10.43,False,15.72,16.05,15.72,16.02,15.64,16.01
+33b500c9cc824733a47bfe2c3ea33202,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,32.5,46.13,45.48,12.55,False,20.12,21.2,22.29,22.46,20.12,21.36
+33b500c9cc824733a47bfe2c3ea33202,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,32.3,43.73,43.16,4.6,False,24.58,24.99,25.41,25.89,24.58,25.3
+33b500c9cc824733a47bfe2c3ea33202,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,32.9,44.69,44.06,8.56,False,18.47,19.21,19.95,25.86,18.47,19.36
+33b500c9cc824733a47bfe2c3ea33202,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,22.7,45.8,45.58,0.5,True,40.91,43.02,45.12,45.33,40.91,44.47
+33b500c9cc824733a47bfe2c3ea33202,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,32.0,45.37,44.73,10.59,False,18.82,19.98,21.13,21.28,18.82,20.62
+33b500c9cc824733a47bfe2c3ea33202,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,33.5,44.16,43.6,6.48,False,31.47,36.12,40.78,41.88,31.47,36.19
+c311678f400e471d84e785652dd87a7a,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,30.9,64.19,63.5,33.39,False,19.46,29.37,39.28,45.48,19.46,26.92
+c311678f400e471d84e785652dd87a7a,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,72.0,21.52,20.51,10.62,False,14.67,14.91,14.67,14.78,14.53,14.84
+c311678f400e471d84e785652dd87a7a,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,78.8,19.84,18.88,10.52,False,17.45,17.59,17.45,17.77,17.5,17.61
+c311678f400e471d84e785652dd87a7a,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,31.8,44.62,43.67,1.23,False,23.32,27.45,31.57,35.36,23.32,29.07
+c311678f400e471d84e785652dd87a7a,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,36.0,42.32,41.65,12.33,False,16.55,19.14,21.74,24.73,16.55,19.54
+c311678f400e471d84e785652dd87a7a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,24.2,40.84,40.57,1.2,True,38.91,41.0,38.91,41.0,38.91,41.3
+c311678f400e471d84e785652dd87a7a,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,36.5,40.79,40.15,8.36,False,29.03,35.2,37.76,39.56,29.03,35.08
+c311678f400e471d84e785652dd87a7a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,24.9,41.79,41.57,0.23,True,30.89,35.52,34.11,37.13,30.89,35.02
+c311678f400e471d84e785652dd87a7a,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,31.7,61.22,60.23,21.79,False,17.78,17.88,17.97,18.39,17.78,17.81
+c311678f400e471d84e785652dd87a7a,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,35.5,41.51,40.86,10.37,False,15.06,15.5,15.93,16.09,15.06,15.39
+c311678f400e471d84e785652dd87a7a,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,37.2,40.21,39.64,6.26,False,35.75,38.77,38.17,39.98,35.75,38.82
+885472e412f4499cacf2f4796c309276,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,34.4,41.13,40.17,0.85,True,36.57,37.44,38.3,39.27,36.57,38.65
+885472e412f4499cacf2f4796c309276,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,39.1,39.01,38.32,11.98,False,11.94,12.02,12.09,12.25,11.94,12.02
+885472e412f4499cacf2f4796c309276,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,26.5,37.35,37.08,0.87,True,36.07,37.84,39.6,39.93,36.07,39.12
+885472e412f4499cacf2f4796c309276,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,27.2,57.99,56.88,19.38,False,34.43,43.92,52.63,53.03,34.43,43.6
+885472e412f4499cacf2f4796c309276,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,39.7,37.4,36.75,8.03,False,31.59,34.33,36.59,36.83,31.59,35.38
+885472e412f4499cacf2f4796c309276,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,27.2,38.3,38.07,0.0,True,36.31,41.5,40.58,43.63,36.31,41.44
+885472e412f4499cacf2f4796c309276,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,26.4,62.74,61.58,20.11,False,52.9,53.48,54.06,55.05,52.9,53.41
+885472e412f4499cacf2f4796c309276,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,38.5,38.16,37.49,10.02,False,36.39,36.69,36.98,37.1,36.39,38.13
+885472e412f4499cacf2f4796c309276,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,40.4,36.78,36.2,5.94,False,20.51,21.23,21.94,22.28,20.51,21.12
+e41335fbfc1645faa5a532a62df1fe68,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,30.2,53.95,53.43,20.51,False,24.96,34.8,44.65,46.0,24.96,32.56
+e41335fbfc1645faa5a532a62df1fe68,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,37.3,37.75,36.79,0.58,True,33.77,35.17,36.58,36.83,33.77,35.4
+e41335fbfc1645faa5a532a62df1fe68,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,42.6,35.85,35.14,11.73,False,34.6,34.74,34.88,35.01,34.6,35.62
+e41335fbfc1645faa5a532a62df1fe68,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,29.1,33.97,33.7,0.63,True,34.61,35.82,36.7,36.87,34.61,36.36
+e41335fbfc1645faa5a532a62df1fe68,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,29.0,54.83,53.72,19.77,False,42.79,45.78,48.78,50.25,42.79,43.8
+e41335fbfc1645faa5a532a62df1fe68,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,43.3,34.14,33.47,7.8,False,27.83,31.24,34.41,34.53,27.83,31.79
+e41335fbfc1645faa5a532a62df1fe68,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,29.8,34.92,34.7,0.0,True,35.92,38.16,37.47,38.94,35.92,38.55
+e41335fbfc1645faa5a532a62df1fe68,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,28.0,59.55,58.4,20.52,False,45.02,47.58,50.14,51.73,45.02,45.92
+e41335fbfc1645faa5a532a62df1fe68,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,26.5,35.97,35.71,0.25,True,36.6,39.03,38.48,39.97,36.6,39.37
+e41335fbfc1645faa5a532a62df1fe68,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,42.0,34.95,34.25,9.76,False,34.41,34.55,34.68,35.03,34.41,35.55
+e41335fbfc1645faa5a532a62df1fe68,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,47.5,32.72,32.28,1.72,False,20.02,20.12,20.22,25.74,20.02,20.27
+81b6368f6af9417684cefeb6661a14e7,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,32.2,51.31,50.77,21.01,False,38.1,42.12,46.14,46.98,38.1,40.59
+81b6368f6af9417684cefeb6661a14e7,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,40.4,34.85,33.89,0.21,True,30.76,31.61,31.65,32.05,30.76,32.81
+81b6368f6af9417684cefeb6661a14e7,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,46.4,33.16,32.42,11.39,False,30.22,31.0,29.79,30.79,30.22,31.96
+81b6368f6af9417684cefeb6661a14e7,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,31.8,31.07,30.8,0.3,True,30.29,31.66,31.75,32.39,30.29,32.95
+81b6368f6af9417684cefeb6661a14e7,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,30.9,52.15,51.05,20.29,False,39.47,43.45,47.43,48.79,39.47,42.46
+81b6368f6af9417684cefeb6661a14e7,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,47.3,31.35,30.66,7.48,False,18.08,18.44,18.8,19.01,18.08,18.7
+81b6368f6af9417684cefeb6661a14e7,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,32.5,32.02,31.79,0.18,True,31.4,34.41,32.88,35.14,31.4,35.25
+81b6368f6af9417684cefeb6661a14e7,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,29.7,56.85,55.69,21.08,False,41.9,45.63,49.36,50.86,41.9,44.72
+81b6368f6af9417684cefeb6661a14e7,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,38.1,52.33,51.29,23.16,False,15.61,15.94,16.26,16.46,15.61,15.92
+81b6368f6af9417684cefeb6661a14e7,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,28.8,33.07,32.81,0.61,True,32.12,34.95,33.29,35.54,32.12,35.98
+81b6368f6af9417684cefeb6661a14e7,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,45.8,32.19,31.48,9.42,False,27.76,29.54,29.08,30.2,27.76,30.27
+81b6368f6af9417684cefeb6661a14e7,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,52.0,29.83,29.4,1.38,False,24.81,25.84,26.5,26.69,24.81,25.88
+81b6368f6af9417684cefeb6661a14e7,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,22.4,44.06,43.85,19.34,False,27.75,32.08,32.68,34.54,27.75,31.84
+a61bfbde6877413386a772591617f38d,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,35.3,48.5,47.93,22.01,False,34.95,39.23,40.32,41.91,34.95,38.8
+a61bfbde6877413386a772591617f38d,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,44.6,31.68,30.73,0.0,True,26.58,28.06,28.5,29.02,26.58,28.67
+a61bfbde6877413386a772591617f38d,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,51.4,30.24,29.48,10.72,False,14.31,20.71,26.38,26.74,14.31,21.62
+a61bfbde6877413386a772591617f38d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.5,27.91,27.65,0.0,True,26.95,28.86,28.44,29.61,26.95,29.3
+a61bfbde6877413386a772591617f38d,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,52.6,26.94,26.33,2.82,False,16.53,16.62,16.72,20.95,16.53,16.98
+a61bfbde6877413386a772591617f38d,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,33.7,49.28,48.2,21.36,False,37.58,41.92,42.33,44.3,37.58,40.96
+a61bfbde6877413386a772591617f38d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,36.1,28.85,28.63,0.87,True,28.87,32.04,31.24,33.22,28.87,31.37
+a61bfbde6877413386a772591617f38d,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,32.1,53.96,52.8,22.2,False,39.82,44.14,44.94,46.7,39.82,43.7
+a61bfbde6877413386a772591617f38d,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,41.7,49.58,48.52,24.17,False,34.4,38.46,39.13,40.83,34.4,37.52
+a61bfbde6877413386a772591617f38d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,32.0,29.9,29.65,1.31,False,29.32,32.14,31.33,33.14,29.32,32.33
+a61bfbde6877413386a772591617f38d,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,51.0,29.2,28.47,8.75,False,18.03,18.37,18.7,21.91,18.03,18.76
+a61bfbde6877413386a772591617f38d,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,58.4,26.67,26.25,0.76,True,22.31,22.72,22.69,22.91,22.31,23.33
+ad609ca688444331b3218f664d644473,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,39.8,45.93,45.33,23.54,False,32.96,35.72,38.47,38.76,32.96,35.35
+ad609ca688444331b3218f664d644473,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,42.2,23.56,23.32,0.09,True,23.74,24.52,25.12,25.2,23.74,24.58
+ad609ca688444331b3218f664d644473,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,50.1,28.68,27.73,0.44,True,24.54,25.06,25.59,26.16,24.54,25.41
+ad609ca688444331b3218f664d644473,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,34.4,53.75,52.44,24.42,False,37.96,41.24,44.52,44.92,37.96,39.91
+ad609ca688444331b3218f664d644473,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,57.8,27.47,26.68,9.7,False,23.81,24.75,25.11,25.4,23.81,25.27
+ad609ca688444331b3218f664d644473,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,34.0,49.2,48.15,23.49,False,35.4,38.05,40.7,41.0,35.4,37.34
+ad609ca688444331b3218f664d644473,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,40.1,24.91,24.64,0.82,True,24.76,25.38,25.99,26.27,24.76,25.95
+ad609ca688444331b3218f664d644473,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,60.3,23.96,23.33,1.85,False,21.78,22.98,23.7,23.94,21.78,23.16
+ad609ca688444331b3218f664d644473,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,37.7,46.66,45.59,22.98,False,34.02,36.52,39.01,39.23,34.02,36.09
+ad609ca688444331b3218f664d644473,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,40.7,25.86,25.64,1.9,False,26.45,27.96,26.8,28.13,26.45,27.61
+ad609ca688444331b3218f664d644473,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,35.4,51.3,50.14,23.91,False,36.3,39.34,42.38,42.64,36.3,38.56
+ad609ca688444331b3218f664d644473,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.9,26.92,26.66,2.38,False,27.66,28.46,28.44,28.85,27.66,28.82
+ad609ca688444331b3218f664d644473,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,61.7,24.61,23.95,3.81,False,14.66,14.72,14.46,14.56,14.79,14.81
+ad609ca688444331b3218f664d644473,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,59.5,25.12,24.2,0.03,True,23.98,24.64,25.31,25.35,23.98,24.7
+ad609ca688444331b3218f664d644473,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,67.0,23.67,23.25,0.0,True,18.82,19.2,19.04,19.31,18.82,19.12
+ad609ca688444331b3218f664d644473,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,26.0,38.53,38.33,17.17,False,20.96,29.67,34.53,36.45,20.96,29.1
+3ead6ff0cd324d92918112dfcf400343,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,48.4,20.7,20.46,1.16,True,20.98,21.3,21.27,21.44,20.98,21.5
+3ead6ff0cd324d92918112dfcf400343,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,56.7,25.81,24.85,1.83,False,21.9,21.98,22.06,22.47,21.9,22.44
+3ead6ff0cd324d92918112dfcf400343,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,44.2,27.13,26.78,12.94,False,22.98,23.29,23.01,23.3,22.98,24.03
+3ead6ff0cd324d92918112dfcf400343,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,38.1,51.3,49.98,26.57,False,31.59,35.86,40.13,41.45,31.59,35.35
+3ead6ff0cd324d92918112dfcf400343,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,45.7,22.05,21.79,1.95,False,22.09,22.41,22.32,22.52,22.09,22.88
+3ead6ff0cd324d92918112dfcf400343,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,70.1,21.08,20.45,0.72,True,20.02,20.52,21.01,21.05,20.02,20.62
+3ead6ff0cd324d92918112dfcf400343,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,46.4,23.01,22.79,3.08,False,22.94,24.08,23.06,24.13,22.94,24.07
+3ead6ff0cd324d92918112dfcf400343,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,40.8,24.08,23.82,3.61,False,23.27,23.63,23.56,23.77,23.27,24.23
+3ead6ff0cd324d92918112dfcf400343,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,71.2,21.76,21.09,2.66,False,21.41,21.45,21.41,21.41,21.48,21.66
+3ead6ff0cd324d92918112dfcf400343,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,68.3,22.24,21.33,1.18,True,21.08,21.38,21.64,21.66,21.08,21.58
+3ead6ff0cd324d92918112dfcf400343,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,78.2,20.78,20.37,0.0,True,16.03,16.27,15.92,16.22,16.03,16.25
+3ead6ff0cd324d92918112dfcf400343,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,28.0,35.9,35.71,15.55,False,29.45,31.59,30.73,32.23,29.45,31.75
+5941e77ca4bd478e99e17114ca8759ab,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,57.6,17.68,17.44,2.57,False,17.58,17.72,17.56,17.57,17.86,18.22
+5941e77ca4bd478e99e17114ca8759ab,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,65.1,22.81,21.85,3.65,False,18.38,18.44,18.5,18.52,18.38,19.03
+5941e77ca4bd478e99e17114ca8759ab,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,48.7,24.44,24.08,11.27,False,20.88,21.06,21.01,21.12,20.88,21.59
+5941e77ca4bd478e99e17114ca8759ab,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,54.0,19.05,18.78,3.47,False,19.0,19.05,18.44,18.77,19.0,19.62
+5941e77ca4bd478e99e17114ca8759ab,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,82.2,18.04,17.4,0.0,True,17.23,17.33,17.23,17.46,17.43,17.61
+5941e77ca4bd478e99e17114ca8759ab,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,78.4,19.66,18.88,3.15,False,12.75,12.86,12.75,15.82,12.44,12.7
+5941e77ca4bd478e99e17114ca8759ab,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,54.6,20.04,19.82,4.64,False,19.49,19.74,19.21,19.61,19.49,20.61
+5941e77ca4bd478e99e17114ca8759ab,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,47.8,21.12,20.86,5.23,False,19.59,19.81,19.99,20.02,19.59,20.77
+5941e77ca4bd478e99e17114ca8759ab,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,82.6,18.74,18.04,1.18,True,18.0,18.2,18.0,18.12,18.4,18.42
+5941e77ca4bd478e99e17114ca8759ab,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,80.5,19.22,18.3,2.64,False,17.61,17.75,17.61,17.71,17.9,18.23
+5941e77ca4bd478e99e17114ca8759ab,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,92.5,17.73,17.31,0.57,True,12.49,12.59,12.62,12.65,12.46,12.48
+e0bc3ff06fe348fdb56039c640be0ac3,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,28.6,37.63,37.33,19.27,False,28.03,29.68,27.56,29.44,28.03,30.37
+e0bc3ff06fe348fdb56039c640be0ac3,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,69.5,15.2,14.96,4.08,False,14.4,14.48,13.9,14.23,14.4,14.8
+e0bc3ff06fe348fdb56039c640be0ac3,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,75.6,20.34,19.38,5.67,False,14.68,14.88,14.43,14.75,14.68,15.16
+e0bc3ff06fe348fdb56039c640be0ac3,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,30.9,33.96,33.67,15.0,False,15.36,18.14,14.66,17.8,15.36,23.71
+e0bc3ff06fe348fdb56039c640be0ac3,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,64.6,16.59,16.33,5.09,False,15.8,15.93,15.16,15.61,15.8,16.43
+e0bc3ff06fe348fdb56039c640be0ac3,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,96.7,15.47,14.84,0.18,True,14.29,14.43,14.29,14.38,14.57,14.79
+e0bc3ff06fe348fdb56039c640be0ac3,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,89.0,17.12,16.33,1.48,False,16.43,16.57,16.21,16.32,16.71,16.84
+e0bc3ff06fe348fdb56039c640be0ac3,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,65.2,17.63,17.42,6.33,False,15.95,16.45,16.43,16.7,15.95,17.13
+e0bc3ff06fe348fdb56039c640be0ac3,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,56.6,18.72,18.48,7.0,False,15.81,16.43,16.53,16.79,15.81,17.05
+e0bc3ff06fe348fdb56039c640be0ac3,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,83.0,18.18,17.35,3.22,False,11.72,11.8,11.78,11.83,11.72,11.75
+e0bc3ff06fe348fdb56039c640be0ac3,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,95.3,16.16,15.46,0.0,True,15.15,15.32,15.15,15.29,15.48,15.66
+e0bc3ff06fe348fdb56039c640be0ac3,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,96.1,16.73,15.82,4.22,False,12.61,13.09,13.57,13.73,12.61,12.61
+e0bc3ff06fe348fdb56039c640be0ac3,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,110.1,15.2,14.75,2.11,False,9.25,9.45,9.25,9.52,9.02,9.34
+0b2eb9c1cd1b45f0b1664a01684c5767,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,29.4,35.38,35.08,16.07,False,13.37,13.59,13.39,13.61,13.37,13.84
+0b2eb9c1cd1b45f0b1664a01684c5767,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,88.5,12.95,12.72,5.46,False,6.75,6.83,6.75,6.75,6.55,6.73
+0b2eb9c1cd1b45f0b1664a01684c5767,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,46.6,24.38,24.05,12.41,False,20.07,20.55,18.79,19.91,20.07,20.7
+0b2eb9c1cd1b45f0b1664a01684c5767,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,92.0,17.01,16.12,3.34,False,11.12,11.21,11.27,11.29,11.12,11.2
+0b2eb9c1cd1b45f0b1664a01684c5767,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,30.7,38.82,38.51,19.55,False,26.29,30.54,28.78,31.79,26.29,31.18
+0b2eb9c1cd1b45f0b1664a01684c5767,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,81.4,14.38,14.13,6.58,False,7.19,8.48,7.19,9.5,9.77,11.43
+0b2eb9c1cd1b45f0b1664a01684c5767,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,120.1,13.04,12.44,1.68,False,11.29,11.54,11.79,11.95,11.29,11.77
+0b2eb9c1cd1b45f0b1664a01684c5767,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,104.8,14.66,13.86,0.0,True,14.0,14.18,14.0,14.02,14.37,14.46
+0b2eb9c1cd1b45f0b1664a01684c5767,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,82.0,15.49,15.29,7.88,False,13.98,14.45,13.1,14.0,13.98,14.7
+0b2eb9c1cd1b45f0b1664a01684c5767,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,96.0,15.7,14.86,1.54,False,14.96,15.14,14.96,14.96,15.31,15.49
+0b2eb9c1cd1b45f0b1664a01684c5767,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,115.5,13.66,12.97,0.0,True,12.69,12.83,12.69,12.83,12.97,13.14
+0b2eb9c1cd1b45f0b1664a01684c5767,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,120.7,14.47,13.56,5.68,False,6.76,6.83,6.76,6.77,6.55,6.72
+0b2eb9c1cd1b45f0b1664a01684c5767,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,139.7,12.85,12.34,3.5,False,7.3,7.41,7.33,7.42,7.19,7.25
+357a06d0a5a44506b161c072c7247807,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,49.6,22.27,21.95,10.31,False,12.41,12.53,12.54,12.59,12.41,12.67
+357a06d0a5a44506b161c072c7247807,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,27.8,39.64,39.29,19.13,False,31.7,35.47,29.67,34.45,31.7,34.07
+357a06d0a5a44506b161c072c7247807,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,106.6,14.68,13.78,1.75,False,13.64,13.71,13.44,13.61,13.64,13.91
+357a06d0a5a44506b161c072c7247807,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,26.7,43.29,42.99,22.64,False,34.31,38.04,29.94,35.86,34.31,36.57
+357a06d0a5a44506b161c072c7247807,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,157.6,10.84,10.31,2.95,False,8.98,9.29,8.98,9.18,9.36,9.47
+357a06d0a5a44506b161c072c7247807,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,46.0,26.77,26.45,14.36,False,19.14,21.9,20.43,22.55,19.14,22.66
+357a06d0a5a44506b161c072c7247807,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,127.6,12.28,11.49,0.0,True,11.45,11.57,11.45,11.47,11.7,11.71
+357a06d0a5a44506b161c072c7247807,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,114.2,13.35,12.5,0.07,True,12.6,12.61,12.43,12.52,12.61,12.8
+357a06d0a5a44506b161c072c7247807,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,145.5,11.33,10.69,1.19,True,10.15,10.29,10.15,10.29,10.44,10.5
+357a06d0a5a44506b161c072c7247807,scene-0061,day,barrier,movable_object.barrier,labelled outline,v60-80,187.9,10.82,10.22,4.65,False,5.93,6.62,7.32,8.0,5.93,7.0
+357a06d0a5a44506b161c072c7247807,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,26.6,44.51,44.21,23.84,False,34.48,39.08,32.71,38.2,34.48,37.63
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,barrier,movable_object.barrier,labelled outline,v40-60,124.0,16.66,16.29,8.55,False,7.07,7.33,7.07,7.19,7.26,7.43
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,42.9,29.0,28.68,15.6,False,21.85,24.86,22.36,25.11,21.85,24.59
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,26.0,47.0,46.73,23.98,False,29.99,37.53,34.38,39.73,29.99,34.28
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,26.7,45.5,45.18,22.65,False,28.31,37.05,33.64,39.72,28.31,32.84
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,71.9,15.41,15.05,3.84,False,10.7,10.72,10.36,10.55,10.7,10.77
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,126.8,12.42,11.52,0.36,True,11.69,11.7,11.33,11.51,11.68,11.7
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.6,27.2,26.91,6.36,False,22.64,24.86,23.33,25.2,22.64,24.67
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,26.9,41.27,40.97,18.98,False,11.15,11.45,11.37,11.55,11.15,11.43
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,230.4,8.89,8.48,3.95,False,7.07,7.21,7.07,7.21,7.21,7.29
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,48.1,24.77,24.46,12.11,False,20.4,22.06,19.93,21.83,20.4,22.46
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,163.9,10.02,9.26,0.76,True,9.06,9.23,9.06,9.16,9.15,9.28
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,140.9,11.06,10.22,0.0,True,10.33,10.45,10.29,10.31,10.45,10.51
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,24.3,48.3,47.99,24.99,False,30.41,37.95,35.61,40.55,30.41,35.04
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,197.4,9.19,8.62,2.31,False,7.68,7.81,7.68,7.86,7.82,7.88
+5aed4c34988b4c18a33c69ddcddb6010,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,26.7,42.5,42.2,20.09,False,11.82,12.21,12.07,12.34,11.82,12.21
+c8623ea6d2774a3aa81255a117ba2319,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,44.3,27.07,26.76,13.02,False,20.35,22.66,21.15,23.05,20.35,23.15
+c8623ea6d2774a3aa81255a117ba2319,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.5,31.9,31.62,16.83,False,23.62,26.54,24.22,26.84,23.62,26.98
+c8623ea6d2774a3aa81255a117ba2319,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,33.0,28.91,28.61,6.85,False,25.08,26.45,26.1,26.95,25.08,26.93
+c8623ea6d2774a3aa81255a117ba2319,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,82.7,13.29,12.93,2.34,False,12.84,12.88,12.73,12.79,12.91,13.13
+c8623ea6d2774a3aa81255a117ba2319,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,157.3,10.32,9.41,0.0,True,9.25,9.59,9.25,9.38,9.53,9.72
+c8623ea6d2774a3aa81255a117ba2319,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,38.1,25.11,24.82,3.66,False,22.54,23.98,23.8,24.61,22.54,24.3
+c8623ea6d2774a3aa81255a117ba2319,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,230.4,8.01,7.31,1.81,False,6.63,6.93,6.63,6.75,6.86,7.04
+c8623ea6d2774a3aa81255a117ba2319,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,184.9,8.96,8.14,0.46,True,7.96,8.27,7.96,8.13,8.26,8.41
+c8623ea6d2774a3aa81255a117ba2319,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,307.5,7.39,6.97,3.23,False,5.89,6.08,5.89,6.04,6.08,6.18
+c8623ea6d2774a3aa81255a117ba2319,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,25.0,48.8,48.5,22.61,False,11.62,11.69,11.76,11.77,11.62,11.76
+06c1523315b14aa7a0dfa4afacafb9e6,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,36.2,29.97,29.69,13.79,False,22.0,25.34,23.58,26.12,22.0,25.91
+06c1523315b14aa7a0dfa4afacafb9e6,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.0,26.83,26.53,3.74,False,23.56,24.81,23.86,24.96,23.56,25.09
+06c1523315b14aa7a0dfa4afacafb9e6,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,98.4,11.12,10.77,0.87,True,11.03,11.14,11.03,11.06,11.17,11.21
+06c1523315b14aa7a0dfa4afacafb9e6,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,30.1,33.45,33.1,8.39,False,9.63,9.81,9.63,9.69,9.78,9.88
+06c1523315b14aa7a0dfa4afacafb9e6,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,22.0,56.36,56.06,30.58,False,38.76,48.13,39.96,48.73,38.76,44.42
+06c1523315b14aa7a0dfa4afacafb9e6,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,210.5,8.19,7.3,0.29,True,7.08,7.31,7.08,7.2,7.35,7.45
+06c1523315b14aa7a0dfa4afacafb9e6,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,34.8,30.23,29.92,6.17,False,24.85,26.66,26.97,27.72,24.85,26.88
+06c1523315b14aa7a0dfa4afacafb9e6,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,41.2,23.03,22.74,0.93,True,20.84,21.68,20.94,21.73,20.84,21.86
+06c1523315b14aa7a0dfa4afacafb9e6,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,333.1,6.17,5.63,2.72,False,5.12,5.32,5.12,5.24,5.36,5.44
+06c1523315b14aa7a0dfa4afacafb9e6,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,273.4,6.9,6.15,1.51,False,5.62,5.81,5.62,5.75,5.91,5.96
+06c1523315b14aa7a0dfa4afacafb9e6,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,61.6,16.58,16.29,4.52,False,6.65,6.86,6.65,6.73,6.98,7.02
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,38.2,24.65,24.35,0.69,True,21.55,22.86,22.41,23.29,21.55,22.93
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,73.1,13.92,13.62,2.65,False,8.86,9.15,8.86,9.04,9.06,9.25
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,125.2,8.87,8.51,0.0,True,8.72,8.98,8.72,8.98,8.89,9.07
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,31.9,31.24,30.9,4.62,False,27.02,28.24,28.92,29.19,27.02,28.58
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,21.8,54.34,54.05,24.97,False,38.7,46.02,44.89,49.11,38.7,44.53
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,334.5,6.07,5.25,1.32,False,4.65,4.79,4.65,4.84,4.9,4.92
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,37.2,28.1,27.79,2.77,False,24.85,25.91,26.05,26.52,24.85,26.38
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,46.1,20.88,20.59,1.12,True,19.12,19.87,19.32,19.97,19.12,20.01
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,21.7,50.62,50.34,22.84,False,36.23,42.89,42.49,46.02,36.23,41.98
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,29.1,35.06,34.76,7.0,False,31.33,32.8,31.92,33.09,31.33,32.45
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,301.9,5.05,4.48,2.34,False,4.36,4.53,4.36,4.51,4.61,4.65
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,76.6,14.55,14.27,6.31,False,4.7,4.86,4.7,4.89,5.02,5.06
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,28.7,36.3,36.0,7.77,False,9.01,9.21,9.01,10.0,9.3,9.36
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,55.6,17.31,17.1,3.89,False,6.27,6.46,6.27,6.38,6.48,6.57
+c9d8cf50e42b47fa9a0bbd923e5e9c30,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,24.8,44.86,44.57,19.84,False,32.2,38.67,37.34,41.24,32.2,38.01
+addcad764798404b8141c9d40b413e73,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,27.7,38.96,38.69,6.53,False,33.87,36.3,34.44,36.59,33.87,36.57
+addcad764798404b8141c9d40b413e73,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,41.4,22.79,22.48,1.17,True,21.17,21.63,21.04,21.56,21.17,21.92
+addcad764798404b8141c9d40b413e73,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,84.3,12.0,11.69,1.24,False,11.64,11.89,11.64,11.79,12.14,12.19
+addcad764798404b8141c9d40b413e73,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,165.6,6.95,6.58,0.63,True,6.74,7.04,6.74,6.95,6.99,7.16
+addcad764798404b8141c9d40b413e73,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,33.6,29.32,28.98,1.53,False,26.43,27.84,27.53,28.4,26.43,27.77
+addcad764798404b8141c9d40b413e73,scene-0061,day,barrier,movable_object.barrier,labelled outline,v80-100,292.9,4.45,3.81,2.0,False,3.51,4.01,3.51,3.67,3.7,4.11
+addcad764798404b8141c9d40b413e73,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,39.6,26.27,25.95,0.0,True,23.49,24.79,24.0,25.05,23.49,24.8
+addcad764798404b8141c9d40b413e73,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,51.6,19.01,18.72,3.22,False,17.83,18.13,17.73,18.08,17.83,18.05
+addcad764798404b8141c9d40b413e73,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,30.3,33.14,32.85,3.54,False,29.94,30.84,29.68,30.7,29.94,31.34
+addcad764798404b8141c9d40b413e73,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,25.6,40.32,40.01,7.04,False,34.49,37.03,35.96,37.77,34.49,36.64
+addcad764798404b8141c9d40b413e73,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,29.7,34.38,34.08,4.2,False,30.72,31.09,28.97,30.21,30.72,32.16
+addcad764798404b8141c9d40b413e73,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,65.6,15.52,15.32,5.57,False,13.58,13.87,13.84,14.0,13.58,13.87
+addcad764798404b8141c9d40b413e73,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,29.8,31.71,31.4,2.79,False,28.19,29.32,30.34,30.39,28.19,29.59
+426b7a257a5a4fcbbf1086a335f9c648,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,29.0,36.9,36.63,2.57,False,31.34,33.52,33.01,34.36,31.34,34.02
+426b7a257a5a4fcbbf1086a335f9c648,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,46.5,20.81,20.49,3.46,False,18.56,18.95,18.53,18.94,18.56,19.17
+426b7a257a5a4fcbbf1086a335f9c648,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,102.7,9.91,9.61,0.01,True,9.7,9.85,9.7,9.93,10.0,10.02
+426b7a257a5a4fcbbf1086a335f9c648,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,28.2,39.51,39.22,3.54,False,34.3,36.36,36.94,37.69,34.3,36.0
+426b7a257a5a4fcbbf1086a335f9c648,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,235.0,4.97,4.6,1.38,False,4.53,4.62,4.53,4.71,4.7,4.71
+426b7a257a5a4fcbbf1086a335f9c648,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,36.4,27.25,26.91,0.75,True,23.96,25.0,24.46,25.25,23.96,25.37
+426b7a257a5a4fcbbf1086a335f9c648,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,43.5,24.24,23.92,2.06,False,21.14,22.01,21.59,22.23,21.14,22.46
+426b7a257a5a4fcbbf1086a335f9c648,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,60.3,17.06,16.76,5.12,False,14.77,15.18,15.04,15.32,14.77,15.13
+426b7a257a5a4fcbbf1086a335f9c648,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,32.4,31.07,30.77,0.21,True,27.37,28.38,27.47,28.43,27.37,28.61
+426b7a257a5a4fcbbf1086a335f9c648,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,73.1,14.72,14.42,1.8,False,7.59,7.73,7.59,7.79,7.72,7.79
+426b7a257a5a4fcbbf1086a335f9c648,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,26.8,38.25,37.93,3.01,False,33.57,35.11,35.76,36.21,33.57,35.27
+426b7a257a5a4fcbbf1086a335f9c648,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,31.6,32.3,32.0,0.74,True,27.45,27.57,26.4,26.92,27.7,28.98
+426b7a257a5a4fcbbf1086a335f9c648,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,27.0,40.68,40.38,4.0,False,36.04,37.43,38.3,38.56,36.04,37.82
+426b7a257a5a4fcbbf1086a335f9c648,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,32.0,29.57,29.26,0.0,True,25.99,26.31,26.5,26.56,25.99,27.08
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,30.8,34.68,34.42,0.55,True,29.89,31.93,31.77,32.87,29.89,32.12
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,53.9,18.7,18.39,5.5,False,15.81,16.52,17.07,17.14,15.81,16.59
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,25.3,40.33,40.07,0.56,True,34.65,37.05,36.36,37.91,34.65,36.75
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,135.5,7.71,7.4,0.38,True,7.31,7.47,7.31,7.63,7.54,7.58
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,29.8,37.29,37.0,0.0,True,32.25,34.55,34.65,35.75,32.25,33.92
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,25.5,41.25,40.98,0.99,True,35.24,37.12,36.36,37.68,35.24,37.23
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,40.2,25.08,24.73,3.46,False,22.23,23.02,23.05,23.44,22.23,23.2
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,48.8,22.12,21.8,4.48,False,19.32,20.02,20.71,20.73,19.32,20.13
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,73.8,15.09,14.79,6.73,False,11.9,12.59,12.66,12.97,11.9,12.42
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.1,28.87,28.57,2.28,False,24.7,25.02,24.33,24.84,24.7,25.95
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,86.1,12.51,12.21,0.33,True,12.12,12.18,12.12,12.29,12.25,12.5
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,28.4,36.03,35.71,0.12,True,31.95,33.74,33.45,34.49,31.95,33.36
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,34.1,30.1,29.8,1.87,False,23.46,23.94,22.75,23.11,24.42,24.43
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,28.5,38.46,38.16,0.0,True,32.94,35.43,35.71,36.81,32.94,34.89
+8fe9b9f55bd14e25b8fde193d6b6a503,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.0,27.32,27.01,2.77,False,24.07,24.12,24.16,24.21,24.07,25.14
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,72.8,14.96,14.67,0.27,True,6.47,6.62,6.47,6.74,6.6,6.68
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,32.9,32.83,32.56,3.17,False,28.39,30.03,31.07,31.37,28.39,30.02
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,63.0,17.01,16.69,6.86,False,13.38,14.09,14.36,14.57,13.38,14.11
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,26.7,38.47,38.2,1.88,False,33.0,34.95,36.35,36.63,33.0,34.88
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,188.0,5.89,5.57,1.01,True,5.47,5.47,5.47,5.64,5.47,5.54
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,31.7,35.43,35.14,2.58,False,28.55,30.41,32.26,32.42,28.55,30.25
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,26.9,39.39,39.12,1.59,False,33.73,35.55,35.65,36.52,33.73,35.38
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,44.6,23.29,22.94,5.34,False,19.78,20.62,21.27,21.37,19.78,20.74
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,54.8,20.48,20.15,6.11,False,16.64,17.72,17.75,18.27,16.64,17.63
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,38.2,27.06,26.75,4.46,False,23.15,23.91,22.48,23.58,23.15,23.79
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,102.7,10.65,10.34,0.03,True,10.21,10.22,10.21,10.45,10.23,10.41
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,30.3,34.17,33.85,2.83,False,28.64,30.34,32.03,32.07,28.64,30.27
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,37.0,28.27,27.96,4.15,False,22.12,22.63,21.47,21.8,23.14,23.26
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,30.2,36.61,36.3,2.31,False,30.7,32.02,33.35,33.67,30.7,32.21
+4bc3a28622964e9f9ab28a68614189f1,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,38.4,25.51,25.19,4.83,False,22.35,22.75,22.88,23.01,22.35,22.74
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,84.4,12.99,12.7,0.13,True,12.21,12.39,12.21,12.5,12.57,12.62
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.4,30.92,30.65,5.33,False,26.47,29.04,28.26,29.94,26.47,28.1
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,75.7,15.33,15.0,7.9,False,11.33,12.46,13.0,13.29,11.33,11.96
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,37.8,29.35,29.03,5.45,False,19.63,19.77,19.3,19.61,19.62,19.62
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,28.3,36.5,36.23,4.38,False,30.54,32.41,32.79,33.53,30.54,32.39
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,165.7,4.06,3.71,1.43,False,3.34,3.76,3.34,4.0,4.01,4.09
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,33.8,33.49,33.19,4.88,False,28.03,30.04,29.98,31.01,28.03,29.51
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,28.4,37.45,37.18,4.14,False,30.88,32.83,32.64,33.7,30.88,32.71
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,50.0,21.45,21.09,6.85,False,17.35,18.59,18.36,19.09,17.35,18.34
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,62.4,18.82,18.49,7.45,False,14.75,15.64,15.55,16.04,14.75,15.63
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,41.9,25.16,24.85,6.24,False,19.92,20.95,19.48,20.73,19.92,20.54
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,128.4,8.69,8.38,0.78,True,8.16,8.3,8.16,8.46,8.45,8.46
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,32.4,32.26,31.94,5.06,False,27.78,29.61,29.39,30.41,27.78,29.13
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,40.4,26.36,26.05,6.02,False,19.19,19.55,19.7,19.81,19.19,19.65
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,32.2,34.64,34.33,4.68,False,28.92,30.82,30.85,31.79,28.92,30.62
+6c913201b35146eea7a2ed8c3fe43887,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,42.3,23.76,23.43,6.49,False,19.14,20.16,19.92,20.55,19.14,20.23
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,96.1,11.51,11.21,0.73,True,10.81,10.89,10.96,11.35,10.81,11.17
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,60.5,16.45,16.18,0.12,True,6.34,6.44,6.34,6.63,6.53,6.56
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,37.6,29.46,29.18,6.68,False,22.91,24.99,26.07,26.57,22.91,24.98
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,40.2,27.91,27.58,6.74,False,17.34,18.06,17.96,18.37,17.34,18.31
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,29.7,35.03,34.76,5.99,False,29.12,31.9,30.14,32.41,29.12,31.54
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.6,32.02,31.72,6.33,False,25.6,28.38,27.44,29.3,25.6,28.13
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,29.8,35.97,35.7,5.79,False,29.13,32.08,30.21,32.62,29.13,31.76
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,55.0,20.09,19.72,7.75,False,15.98,16.98,17.27,17.62,15.98,17.1
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,70.4,17.49,17.15,8.24,False,13.44,14.04,14.08,14.37,13.44,14.09
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,45.3,23.76,23.44,7.33,False,17.88,19.31,18.68,19.71,17.88,19.04
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,159.2,7.22,6.91,1.2,True,6.76,6.76,6.76,7.09,6.76,6.92
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,34.4,30.78,30.46,6.45,False,24.28,26.95,26.82,28.23,24.28,27.0
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,43.4,24.94,24.62,7.17,False,17.25,17.87,18.03,18.26,17.25,18.11
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,33.9,33.18,32.87,6.21,False,26.27,29.31,28.44,30.4,26.27,28.85
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,45.9,22.36,22.03,7.51,False,17.51,18.59,18.72,19.2,17.51,18.65
+6bd85a6773944798ae0be117d40d4fdc,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,31.4,37.16,36.89,5.36,False,29.95,33.31,31.57,34.12,29.95,32.71
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,110.8,10.16,9.86,1.18,True,9.44,9.69,9.44,9.79,9.63,9.79
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,66.6,15.09,14.82,0.76,True,14.43,14.6,14.4,14.59,14.43,14.7
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,40.0,28.13,27.86,7.74,False,23.7,24.77,25.85,25.9,23.7,24.31
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,42.9,26.6,26.27,7.76,False,16.96,20.66,24.21,24.28,16.96,20.43
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,31.3,33.7,33.42,7.27,False,27.89,29.73,30.84,31.2,27.89,29.2
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,37.7,30.69,30.39,7.49,False,24.58,26.45,28.33,28.57,24.58,25.81
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,31.2,34.64,34.37,7.11,False,28.51,30.45,30.85,31.62,28.51,29.64
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,26.8,36.79,36.55,6.15,False,30.04,32.78,33.14,34.34,30.04,32.51
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,61.0,18.88,18.51,8.45,False,14.98,15.49,15.91,15.96,14.98,15.47
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,49.1,22.49,22.17,8.17,False,17.54,17.7,17.54,17.55,17.85,18.0
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,204.8,5.91,5.58,1.49,False,5.39,5.48,5.39,5.59,5.51,5.54
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,36.5,29.44,29.11,7.55,False,24.1,25.91,26.93,27.32,24.1,24.98
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,46.9,23.66,23.34,8.07,False,16.69,16.76,16.6,16.65,16.15,16.48
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.7,31.85,31.54,7.43,False,25.67,27.41,29.16,29.56,25.67,27.16
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,50.1,21.14,20.81,8.3,False,17.14,17.38,17.62,17.66,17.14,17.34
+b81fa956bfd84063b59401acce77dc12,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,32.9,35.82,35.54,6.72,False,29.71,31.21,30.64,31.67,29.71,30.47
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,125.2,9.14,8.84,1.36,False,8.4,8.67,8.4,8.79,8.61,8.77
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,72.0,14.06,13.78,1.03,True,13.69,13.7,13.63,13.66,13.71,13.8
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,41.9,27.14,26.86,8.19,False,22.34,23.87,25.05,25.22,22.34,23.66
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,45.2,25.63,25.3,8.2,False,20.98,22.45,23.91,23.95,20.98,22.2
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,32.4,32.78,32.51,7.84,False,27.59,29.61,30.41,31.02,27.59,29.23
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,39.4,29.68,29.38,7.98,False,25.02,26.39,27.46,27.62,25.02,26.73
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,32.5,33.61,33.34,7.63,False,28.25,29.71,30.67,30.93,28.25,29.68
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,27.7,35.77,35.52,6.75,False,29.92,33.84,33.75,35.75,29.92,33.43
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,66.0,17.98,17.61,8.76,False,13.6,14.32,14.84,14.94,13.6,14.22
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,52.3,21.54,21.22,8.55,False,15.91,16.82,16.49,17.11,15.91,16.87
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,49.3,20.02,19.76,0.8,True,6.52,6.71,6.52,6.72,6.71,6.8
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,219.6,4.95,4.61,1.61,False,4.35,4.38,4.35,4.58,4.4,4.43
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,38.2,28.44,28.11,8.01,False,23.57,25.34,26.38,26.74,23.57,25.55
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,37.2,30.86,30.55,7.93,False,26.07,27.91,28.38,29.07,26.07,27.68
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,53.6,20.23,19.9,8.63,False,15.61,16.28,16.63,16.79,15.61,16.18
+95c58e12ca3d488b8101ff7f15737eb8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,34.1,34.81,34.52,7.31,False,29.39,30.82,30.74,31.49,29.39,30.92
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,147.0,7.94,7.63,1.42,False,7.2,7.38,7.2,7.58,7.38,7.47
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,79.4,12.83,12.55,1.14,True,12.14,12.24,12.14,12.36,12.31,12.32
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,44.2,25.96,25.68,8.36,False,20.93,21.88,22.84,23.02,20.93,22.25
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,47.8,24.47,24.13,8.38,False,19.85,20.99,21.44,21.79,19.85,21.12
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,33.8,31.57,31.29,8.07,False,26.13,27.75,27.3,28.34,26.13,27.69
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,41.3,28.51,28.2,8.21,False,22.85,24.0,25.14,25.38,22.85,24.45
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,33.8,32.42,32.14,7.87,False,26.97,27.88,28.15,28.46,26.97,28.2
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,28.8,34.56,34.31,7.0,False,29.73,31.12,31.08,31.79,29.73,31.46
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,56.0,20.42,20.1,8.69,False,15.78,16.2,15.59,16.1,15.78,16.4
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,52.7,18.79,18.52,0.95,True,15.97,16.71,16.94,17.2,15.97,16.75
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,148.8,3.84,3.49,1.65,False,3.77,4.11,3.77,4.34,4.15,4.3
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,40.1,27.3,26.97,8.26,False,22.09,23.23,24.38,24.67,22.09,23.43
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,39.0,29.67,29.36,8.15,False,24.32,25.73,26.34,26.74,24.32,26.09
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,58.1,19.08,18.75,8.76,False,14.62,14.92,15.22,15.46,14.62,15.09
+5979f20786b745c5b05c21d8badc2ed8,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,35.4,33.6,33.32,7.54,False,28.87,29.8,28.61,29.66,28.87,29.75
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,176.0,6.79,6.47,1.44,False,6.17,6.35,6.17,6.52,6.33,6.43
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,45.0,22.31,22.03,0.93,True,19.1,20.11,19.69,20.41,19.1,20.11
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,87.9,11.65,11.38,1.17,True,11.0,11.07,11.0,11.27,11.13,11.27
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,46.5,24.83,24.55,8.42,False,19.07,20.96,22.34,22.6,19.07,20.91
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,50.5,23.36,23.03,8.44,False,17.8,19.78,20.18,20.97,17.8,19.42
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.2,30.41,30.14,8.15,False,23.66,26.14,26.77,27.7,23.66,25.84
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,43.2,27.38,27.08,8.31,False,21.28,23.21,24.97,25.05,21.28,23.09
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.1,31.28,31.0,7.96,False,24.03,26.09,27.1,27.62,24.03,26.35
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,29.9,33.41,33.16,7.09,False,26.19,29.37,29.92,31.23,26.19,28.93
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,56.8,21.77,21.47,8.53,False,12.98,13.23,12.98,13.26,13.47,13.5
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,60.2,19.36,19.04,8.74,False,13.63,14.33,13.79,14.41,13.63,14.28
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,56.3,17.61,17.34,1.0,True,15.78,16.25,16.39,16.55,15.78,16.26
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,42.0,26.2,25.87,8.33,False,20.15,22.24,23.71,24.02,20.15,21.9
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.2,28.65,28.37,0.72,True,6.73,6.96,6.73,6.99,6.94,7.06
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,40.7,28.54,28.22,8.23,False,22.07,24.41,25.78,26.27,22.07,24.05
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,63.0,18.01,17.67,8.81,False,13.34,14.12,14.44,14.66,13.34,14.03
+64fcc224844b41179faa673670804b54,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,36.8,32.45,32.16,7.61,False,25.02,27.3,27.25,28.41,25.02,27.84
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,217.9,5.67,5.35,1.45,False,5.22,5.22,5.23,5.53,5.22,5.29
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,47.5,21.14,20.87,0.97,True,18.08,19.25,19.19,19.8,18.08,19.36
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,98.4,10.5,10.22,1.19,True,10.01,10.02,10.01,10.25,10.04,10.14
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,49.0,23.73,23.45,8.44,False,18.21,20.27,22.33,22.34,18.21,20.3
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,53.4,22.29,21.95,8.48,False,16.93,19.02,20.82,20.96,16.93,19.05
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,36.5,29.39,29.11,8.2,False,22.66,24.59,26.53,27.02,22.66,24.93
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,45.1,26.35,26.05,8.35,False,19.91,22.3,24.68,24.69,19.91,22.09
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,36.6,30.15,29.88,8.02,False,23.16,25.22,27.28,27.43,23.16,25.54
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,24.2,55.25,54.96,0.0,True,7.03,7.08,7.03,7.25,7.03,7.08
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,31.0,32.27,32.02,7.14,False,25.58,28.55,30.54,31.04,25.58,28.34
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,28.6,37.06,36.77,0.49,True,18.36,25.17,31.7,31.84,18.36,25.16
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,60.5,20.7,20.41,8.56,False,12.13,12.34,12.55,12.74,12.13,12.59
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,29.7,33.32,33.05,0.55,True,23.41,27.31,29.98,30.6,23.41,26.93
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,64.3,18.42,18.1,8.76,False,12.27,12.75,12.99,13.11,12.27,12.86
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,60.4,16.45,16.18,1.02,True,14.85,15.41,15.63,15.8,14.85,15.59
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,43.9,25.22,24.9,8.39,False,19.39,21.35,23.31,23.67,19.39,21.55
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,36.7,27.48,27.2,0.77,True,22.18,24.45,24.56,25.64,22.18,24.2
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,42.4,27.53,27.21,8.27,False,20.52,23.36,25.34,25.77,20.52,22.98
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,68.5,16.97,16.63,8.83,False,12.25,12.58,12.91,13.23,12.25,12.69
+174d78fa966f42f9a9732ff84de02418,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,38.2,31.31,31.03,7.65,False,24.64,26.74,28.31,28.57,24.64,26.7
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,213.8,4.56,4.23,1.45,False,4.01,4.01,4.01,4.67,4.01,4.12
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,50.5,19.97,19.69,0.97,True,17.88,18.77,19.55,19.6,17.88,18.84
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,112.1,9.33,9.05,1.19,True,8.98,9.02,9.06,9.8,8.98,9.07
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,52.0,22.63,22.34,8.45,False,17.57,19.27,20.98,22.32,17.57,19.59
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,57.0,21.21,20.87,8.48,False,16.38,18.02,19.65,20.71,16.38,18.2
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,38.4,28.19,27.91,8.2,False,22.13,24.49,26.86,28.38,22.13,24.41
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,47.6,25.18,24.87,8.37,False,19.74,21.79,23.84,25.41,19.74,21.88
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,38.2,29.03,28.75,8.03,False,22.37,24.81,27.25,28.66,22.37,24.64
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,32.3,31.12,30.88,7.14,False,24.96,29.14,32.54,32.92,24.96,28.27
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,29.6,35.88,35.59,0.5,True,26.52,29.43,30.62,31.48,26.52,29.29
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,64.9,19.64,19.34,8.55,False,14.71,16.05,17.4,18.57,14.71,16.27
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,20.0,58.43,58.16,0.0,True,39.58,47.11,45.79,50.22,39.58,45.21
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,30.9,32.15,31.87,0.56,True,24.38,28.05,29.5,30.62,24.38,27.73
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,70.1,17.35,17.03,8.76,False,11.55,11.59,11.55,12.61,11.62,11.92
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,65.4,15.28,15.01,1.03,True,14.25,14.68,15.12,15.52,14.25,14.82
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,46.4,24.1,23.77,8.41,False,18.86,20.72,22.58,23.98,18.86,20.98
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,38.5,26.3,26.02,0.78,True,22.17,23.83,24.47,24.98,22.17,23.77
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,44.5,26.39,26.08,8.28,False,20.77,23.38,26.0,26.71,20.77,23.01
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,39.9,30.18,29.9,7.67,False,23.54,25.77,28.01,29.28,23.54,25.63
+3789c6c9d01449e7baf981a6f185825d,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,20.7,49.67,49.36,0.0,True,37.61,43.74,43.49,46.68,37.61,42.36
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,137.5,3.56,3.21,1.49,False,3.98,4.22,4.46,5.15,3.98,4.0
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,53.7,18.85,18.58,1.14,True,17.1,17.94,18.77,19.52,17.1,18.08
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,129.0,8.23,7.95,1.26,False,7.58,7.79,7.99,8.91,7.58,7.86
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,55.3,21.59,21.31,8.62,False,16.76,18.23,19.71,21.69,16.76,18.55
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,60.9,20.2,19.86,8.63,False,15.64,16.84,18.04,20.12,15.64,17.3
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,40.3,27.06,26.78,8.42,False,21.28,23.73,26.19,27.58,21.28,23.66
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,50.2,24.13,23.83,8.56,False,19.21,21.02,22.83,24.71,19.21,21.1
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,40.0,27.96,27.69,8.26,False,22.0,23.89,25.79,28.12,22.0,24.3
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,33.6,30.05,29.8,7.42,False,25.15,27.9,30.65,31.75,25.15,27.59
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,30.6,34.77,34.47,0.79,True,26.31,28.76,31.17,31.19,26.31,28.69
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,69.8,18.67,18.36,8.72,False,14.05,15.21,16.38,17.92,14.05,15.55
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,20.4,57.32,57.04,0.23,True,44.9,51.77,53.01,55.83,44.9,50.66
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,32.0,31.03,30.76,0.82,True,24.25,27.6,30.17,30.56,24.25,27.38
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,71.0,14.16,13.89,1.15,True,13.12,13.59,14.07,15.0,13.12,13.7
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,49.2,23.04,22.71,8.6,False,18.2,19.52,20.83,23.14,18.2,20.14
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,40.3,25.18,24.89,1.0,True,21.99,23.75,25.51,25.91,21.99,23.84
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,46.9,25.33,25.01,8.49,False,19.69,21.9,24.1,25.8,19.69,21.9
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,41.6,29.11,28.83,7.92,False,22.94,25.06,27.18,28.94,22.94,25.31
+518c6dcad243448abf03cf28b2b09d60,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,21.9,60.93,60.62,0.0,True,49.48,59.33,58.07,63.63,49.48,56.92
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,57.4,17.73,17.45,1.66,False,16.08,17.0,17.92,18.18,16.08,16.93
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,153.2,7.14,6.85,1.5,False,6.25,6.54,6.84,7.46,6.25,6.6
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,59.6,20.57,20.29,9.16,False,16.04,17.23,18.41,20.04,16.04,17.6
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,66.1,19.22,18.88,9.13,False,14.97,15.88,16.78,18.25,14.97,16.21
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,42.6,26.01,25.72,9.12,False,20.91,22.52,24.14,25.72,20.91,23.12
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,53.6,23.11,22.8,9.18,False,18.38,19.78,21.18,23.09,18.38,20.27
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,42.2,26.91,26.63,8.99,False,21.7,22.91,24.11,26.26,21.7,23.7
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.3,28.98,28.72,8.22,False,24.51,26.32,28.12,29.41,24.51,26.25
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,31.7,33.64,33.35,1.72,False,27.43,29.2,30.98,31.53,27.43,30.05
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,76.4,17.72,17.42,9.2,False,13.68,15.06,16.45,18.25,13.68,15.02
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,20.8,56.19,55.91,1.78,False,44.78,50.28,49.76,52.77,44.78,50.59
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,33.3,29.91,29.63,1.66,False,25.1,27.94,30.68,30.73,25.1,28.29
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,77.7,13.04,12.77,1.54,False,12.12,12.67,13.22,13.82,12.12,12.77
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,52.8,22.0,21.67,9.19,False,17.71,18.88,20.04,21.98,17.71,19.48
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,42.4,24.05,23.76,1.69,False,21.62,23.31,24.48,24.74,21.62,23.2
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,49.8,24.27,23.95,9.14,False,19.34,20.98,22.62,24.21,19.34,21.34
+de48c26fdae74181bf94ee9cd7d5f61f,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v40-60,43.8,28.05,27.76,8.69,False,23.05,23.98,24.91,27.16,23.05,25.0
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,62.5,16.53,16.24,2.55,False,15.1,16.01,16.92,17.04,15.1,16.02
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,195.0,5.99,5.69,1.87,False,5.02,5.26,5.5,5.86,5.02,5.33
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,66.1,19.53,19.24,10.08,False,15.14,16.89,18.64,20.48,15.14,17.31
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,46.0,24.91,24.62,10.33,False,19.66,21.43,23.19,23.95,19.66,22.27
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,58.6,22.05,21.73,10.24,False,16.74,18.46,20.19,21.05,16.74,19.09
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,45.4,25.8,25.52,10.26,False,19.98,21.8,23.63,24.41,19.98,22.67
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,37.6,27.84,27.59,9.59,False,22.78,25.14,27.5,28.1,22.78,25.65
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,33.0,32.42,32.13,3.38,False,26.85,29.25,28.44,30.05,26.85,29.61
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.0,28.7,28.41,3.15,False,25.65,28.07,27.58,29.04,25.65,28.3
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,87.5,11.85,11.57,2.2,False,10.89,11.37,11.85,12.32,10.89,11.54
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,58.1,20.94,20.59,10.19,False,16.11,17.68,19.25,20.17,16.11,18.4
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,45.1,22.84,22.55,2.88,False,20.58,22.21,22.51,23.18,20.58,22.23
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,54.2,23.18,22.85,10.26,False,18.11,19.89,21.68,22.38,18.11,20.52
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,46.8,26.93,26.64,10.02,False,21.14,23.09,25.04,25.32,21.14,23.98
+8efbcbcd8e4848eda3f213f562191f2a,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,22.7,63.23,62.88,4.75,False,59.08,66.2,61.56,67.44,59.08,66.63
+6c8111f474b943f589b4da1e3444c1c0,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,70.3,15.17,14.87,3.76,False,13.77,14.39,14.84,14.93,13.77,14.55
+6c8111f474b943f589b4da1e3444c1c0,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,177.1,4.77,4.44,2.32,False,4.47,4.67,4.86,5.06,4.47,4.7
+6c8111f474b943f589b4da1e3444c1c0,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,27.0,40.56,40.27,6.86,False,33.08,36.75,34.73,37.58,33.08,37.72
+6c8111f474b943f589b4da1e3444c1c0,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,51.5,23.7,23.41,11.97,False,18.98,20.04,20.4,20.74,18.98,20.62
+6c8111f474b943f589b4da1e3444c1c0,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,41.3,26.55,26.29,11.42,False,20.91,23.25,23.9,24.74,20.91,23.79
+6c8111f474b943f589b4da1e3444c1c0,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.1,31.02,30.72,5.72,False,24.68,27.05,26.59,28.01,24.68,28.16
+6c8111f474b943f589b4da1e3444c1c0,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,37.4,27.3,27.01,5.24,False,24.39,26.16,25.57,26.76,24.39,26.64
+6c8111f474b943f589b4da1e3444c1c0,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,103.8,10.5,10.21,3.07,False,9.27,9.55,9.84,10.05,9.27,9.75
+6c8111f474b943f589b4da1e3444c1c0,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,51.8,25.69,25.39,11.84,False,20.69,22.11,20.95,22.24,20.69,23.16
+6c8111f474b943f589b4da1e3444c1c0,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,32.0,36.1,35.8,6.31,False,28.07,32.03,32.09,34.04,28.07,33.52
+bf8c213cfaad4861907cd2677dc2dbcd,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,77.4,14.2,13.9,4.75,False,12.6,13.25,13.37,13.63,12.6,13.35
+bf8c213cfaad4861907cd2677dc2dbcd,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,28.0,39.57,39.27,9.49,False,33.77,36.15,36.07,37.3,33.77,36.98
+bf8c213cfaad4861907cd2677dc2dbcd,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,44.6,25.69,25.43,13.01,False,17.56,20.91,23.31,23.79,17.56,21.39
+bf8c213cfaad4861907cd2677dc2dbcd,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,39.4,26.32,26.03,7.02,False,23.57,24.78,24.22,25.1,23.57,24.98
+bf8c213cfaad4861907cd2677dc2dbcd,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,120.0,9.58,9.28,3.77,False,7.95,8.28,8.61,8.71,7.95,8.43
+bf8c213cfaad4861907cd2677dc2dbcd,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v60-80,27.0,68.04,67.65,14.72,False,58.19,63.56,63.05,66.0,58.19,65.37
+bf8c213cfaad4861907cd2677dc2dbcd,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,24.1,64.33,63.97,13.93,False,58.74,63.92,62.84,65.97,58.74,65.74
+bf8c213cfaad4861907cd2677dc2dbcd,scene-0061,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,33.2,35.11,34.81,8.65,False,28.34,32.22,30.77,33.43,28.34,32.92
+054c2431ba324912bb4799b9217f5b7b,scene-0103,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,29.7,33.76,33.59,6.65,False,32.52,33.87,32.83,34.02,32.52,33.97
+94449679456646028efd31ec73c6ae47,scene-0103,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,34.2,29.39,29.21,6.16,False,28.24,29.17,28.1,29.11,28.24,29.16
+350b563e0523486391eba9d010337e2d,scene-0103,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,40.5,25.0,24.82,5.99,False,23.81,24.54,23.97,24.62,23.81,23.99
+3d1b68481c894b0c84291b7d923e2e23,scene-0103,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,49.9,20.74,20.55,6.01,False,19.51,20.02,19.78,20.16,19.51,20.12
+579c17cec3f94f0cbb84b8b95590841c,scene-0103,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,62.7,17.0,16.81,6.0,False,16.5,16.52,15.88,16.19,16.47,16.5
+f9b9612d1bec41cf974eb41c202759f7,scene-0103,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,79.7,13.94,13.75,5.93,False,13.29,13.31,12.8,13.04,13.05,13.2
+c6de74ea1ed34b1fa6e084304bfdc184,scene-0103,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,96.7,12.05,11.85,5.89,False,10.89,11.1,10.42,10.66,10.9,11.11
+ae6645e8bf474b65b19a69bf71fe90a3,scene-0103,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,67.4,18.51,18.26,7.37,False,15.17,15.76,12.98,14.67,15.17,15.59
+87723668b00f419ba263ab062d14bd13,scene-0103,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,88.6,15.07,14.82,7.42,False,11.54,12.07,12.42,12.52,11.54,11.86
+d5061556971945c2afc03dbfdc3bc1a6,scene-0103,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,71.4,16.36,16.14,7.3,False,13.37,14.16,13.81,14.38,13.37,14.25
+2d3b48e3840244c7b681cb6e63e2c123,scene-0103,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,93.4,13.56,13.36,7.27,False,10.57,10.88,10.69,10.95,10.57,10.8
+7d017f5a0bda42e0968d127852faac11,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,45.3,30.98,30.68,10.24,False,26.79,27.7,28.62,28.9,26.79,28.48
+7689f1f8b5d5419cab590af0ddc27942,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,52.7,27.26,26.94,10.04,False,23.52,24.49,24.59,25.03,23.52,24.97
+3318c79c35d349fbb576dc709b78ade5,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,63.5,23.51,23.18,10.05,False,19.17,20.5,20.6,21.21,19.17,20.44
+23377008bf0e4963b2f250660894e337,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,79.8,19.78,19.45,10.03,False,16.7,17.59,17.11,17.79,16.7,17.55
+1a91b5a0d17840ac98fcd256523bf9ad,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,19.3,47.53,47.33,8.51,False,41.85,45.42,44.59,46.8,41.85,44.34
+1a91b5a0d17840ac98fcd256523bf9ad,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,18.5,50.16,49.95,5.37,False,46.65,50.33,50.1,52.05,46.65,49.11
+e5237a3e9a6c4f7793b6381fd5c6c4e5,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,21.0,43.94,43.74,7.99,False,37.99,40.23,40.81,41.64,37.99,39.27
+e5237a3e9a6c4f7793b6381fd5c6c4e5,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,20.0,46.53,46.31,4.83,False,42.53,45.18,45.51,46.67,42.53,44.88
+7c5a49ef75ba4c0b8b56146112b55b91,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,22.6,40.74,40.55,7.59,False,36.12,36.97,36.85,37.34,36.12,37.18
+7c5a49ef75ba4c0b8b56146112b55b91,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,21.5,43.28,43.07,4.4,False,39.99,42.21,40.78,42.61,39.99,42.05
+7c5a49ef75ba4c0b8b56146112b55b91,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,27.2,34.59,34.42,8.88,False,33.53,34.59,33.67,34.66,33.53,34.16
+7c5a49ef75ba4c0b8b56146112b55b91,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,21.3,43.17,42.97,4.93,False,39.77,42.25,40.91,42.81,39.77,41.98
+7c5a49ef75ba4c0b8b56146112b55b91,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,22.9,40.32,40.07,6.77,False,35.83,37.29,37.66,38.2,35.83,37.36
+0d6e66783980495e8fad51cec76bb44d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,24.6,37.71,37.52,7.29,False,33.92,34.06,34.2,34.3,33.92,34.44
+0d6e66783980495e8fad51cec76bb44d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,23.2,40.2,39.98,4.09,False,37.57,38.95,37.51,38.92,37.57,39.44
+0d6e66783980495e8fad51cec76bb44d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,30.1,31.62,31.44,8.66,False,29.78,31.03,30.85,31.57,29.78,31.03
+0d6e66783980495e8fad51cec76bb44d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,23.0,40.11,39.9,4.6,False,37.58,39.34,38.29,39.69,37.58,39.74
+0d6e66783980495e8fad51cec76bb44d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,24.9,37.27,37.02,6.47,False,34.21,35.0,34.33,35.06,34.21,35.46
+f62878a493ea46e3b60bd312dfac2334,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,27.0,34.56,34.37,7.17,False,30.61,31.34,31.93,32.0,30.61,31.36
+f62878a493ea46e3b60bd312dfac2334,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,25.3,37.01,36.79,3.96,False,33.73,35.61,35.13,36.31,33.73,35.22
+f62878a493ea46e3b60bd312dfac2334,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,33.6,28.08,27.86,7.25,False,26.12,27.17,27.99,28.1,26.12,28.01
+f62878a493ea46e3b60bd312dfac2334,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,33.7,28.57,28.38,8.58,False,25.42,26.51,27.59,27.8,25.42,26.77
+f62878a493ea46e3b60bd312dfac2334,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,25.2,36.93,36.72,4.46,False,33.32,35.77,35.51,36.86,33.32,35.48
+f62878a493ea46e3b60bd312dfac2334,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,27.3,34.13,33.87,6.35,False,30.49,32.16,32.53,33.19,30.49,32.16
+db33b7a532744b56b05413a8323a6b87,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,30.1,31.25,31.07,7.48,False,27.94,28.45,28.96,29.11,27.94,28.31
+db33b7a532744b56b05413a8323a6b87,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,27.9,33.64,33.43,4.29,False,31.2,32.27,32.25,32.79,31.2,32.84
+db33b7a532744b56b05413a8323a6b87,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,38.5,24.84,24.62,7.48,False,23.16,24.09,24.96,25.0,23.16,23.95
+db33b7a532744b56b05413a8323a6b87,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,38.6,25.38,25.18,8.82,False,21.27,22.75,24.23,24.31,21.27,22.83
+db33b7a532744b56b05413a8323a6b87,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,27.8,33.58,33.37,4.78,False,31.43,32.55,32.94,33.31,31.43,32.97
+db33b7a532744b56b05413a8323a6b87,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,30.5,30.81,30.56,6.65,False,27.82,28.68,29.54,29.57,27.82,28.65
+3f09ac5ffc0745eca86d75b5e3db3f49,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,34.8,27.63,27.45,7.84,False,24.18,25.2,25.64,25.93,24.18,24.95
+3f09ac5ffc0745eca86d75b5e3db3f49,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,31.8,29.9,29.69,4.67,False,27.06,28.52,28.96,29.48,27.06,28.2
+3f09ac5ffc0745eca86d75b5e3db3f49,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,46.4,21.29,21.06,7.75,False,19.27,19.98,20.69,20.92,19.27,20.17
+3f09ac5ffc0745eca86d75b5e3db3f49,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,46.5,21.9,21.7,9.1,False,17.42,17.59,17.76,17.98,17.42,19.71
+3f09ac5ffc0745eca86d75b5e3db3f49,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,46.4,21.66,21.42,8.53,False,19.18,19.77,20.37,20.75,19.18,19.98
+3f09ac5ffc0745eca86d75b5e3db3f49,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,31.6,29.85,29.64,5.18,False,27.33,28.87,29.37,29.89,27.33,28.7
+3f09ac5ffc0745eca86d75b5e3db3f49,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.1,27.14,26.89,7.01,False,24.36,25.63,26.14,26.52,24.36,25.49
+281af8097e0d404f8a1964b0a87e947b,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,41.3,23.83,23.64,8.24,False,20.82,21.3,21.78,22.01,20.82,21.23
+281af8097e0d404f8a1964b0a87e947b,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,37.0,25.94,25.73,5.11,False,23.7,24.45,24.66,24.94,23.7,24.75
+281af8097e0d404f8a1964b0a87e947b,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,59.3,17.65,17.42,8.11,False,15.69,15.83,15.97,16.46,15.69,16.01
+281af8097e0d404f8a1964b0a87e947b,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,59.2,17.32,17.09,7.42,False,15.52,15.77,16.01,16.47,15.52,16.11
+281af8097e0d404f8a1964b0a87e947b,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,59.3,18.38,18.16,9.47,False,16.13,16.19,16.25,16.52,16.13,16.43
+281af8097e0d404f8a1964b0a87e947b,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,59.5,17.97,17.73,8.83,False,15.86,16.11,16.35,16.72,15.86,16.11
+281af8097e0d404f8a1964b0a87e947b,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,36.9,25.9,25.68,5.63,False,23.83,24.63,25.43,25.5,23.83,24.77
+281af8097e0d404f8a1964b0a87e947b,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,41.9,23.34,23.09,7.41,False,20.59,21.38,22.16,22.26,20.59,21.31
+12e63e9ea8e345509b55ec661a911318,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,51.2,19.95,19.76,8.45,False,17.1,17.53,17.68,17.82,17.1,17.48
+12e63e9ea8e345509b55ec661a911318,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,44.6,21.8,21.61,5.34,False,20.15,20.69,21.2,21.21,20.15,20.92
+12e63e9ea8e345509b55ec661a911318,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,82.4,13.67,13.42,7.56,False,12.19,12.31,12.44,12.58,12.19,12.43
+12e63e9ea8e345509b55ec661a911318,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,44.5,21.81,21.59,5.86,False,20.48,20.88,21.29,21.46,20.48,21.13
+12e63e9ea8e345509b55ec661a911318,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,52.5,19.39,19.14,7.63,False,17.17,17.73,17.97,18.13,17.17,17.7
+092cdc4f4b8c41568ad30f0235556538,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,67.8,16.21,15.99,8.46,False,13.48,13.55,13.48,13.54,13.62,13.65
+092cdc4f4b8c41568ad30f0235556538,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,56.3,17.66,17.48,5.34,False,16.49,16.82,16.9,17.02,16.49,16.9
+092cdc4f4b8c41568ad30f0235556538,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,41.2,22.87,22.67,3.05,False,21.11,22.3,21.77,22.63,21.11,22.7
+092cdc4f4b8c41568ad30f0235556538,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,35.1,26.33,26.09,3.02,False,24.66,25.84,25.47,26.24,24.66,25.88
+092cdc4f4b8c41568ad30f0235556538,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,56.1,17.72,17.49,5.85,False,16.56,16.88,17.01,17.11,16.56,17.0
+092cdc4f4b8c41568ad30f0235556538,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,70.4,15.55,15.31,7.64,False,13.33,13.41,13.49,13.59,13.33,13.58
+078b27dc1d57494887cba9e4e511ddeb,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,27.1,34.14,33.89,5.72,False,18.0,26.47,23.04,28.99,18.0,26.71
+078b27dc1d57494887cba9e4e511ddeb,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,77.1,13.69,13.52,5.39,False,12.49,12.62,12.76,12.8,12.49,12.73
+078b27dc1d57494887cba9e4e511ddeb,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,50.8,18.68,18.47,3.11,False,17.41,18.09,18.18,18.48,17.41,18.37
+078b27dc1d57494887cba9e4e511ddeb,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,42.0,22.11,21.87,3.06,False,20.65,21.32,21.31,21.65,20.65,21.75
+078b27dc1d57494887cba9e4e511ddeb,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,76.0,13.8,13.56,5.86,False,12.41,12.48,12.55,12.63,12.41,12.57
+e4b019462e2f4e39944b5a5a9c349b2d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,31.0,30.04,29.79,5.71,False,27.99,29.16,28.81,29.57,27.99,29.8
+e4b019462e2f4e39944b5a5a9c349b2d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,118.9,10.04,9.84,5.41,False,8.37,8.41,8.46,8.46,8.37,8.43
+e4b019462e2f4e39944b5a5a9c349b2d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,66.5,14.6,14.39,3.14,False,13.91,14.16,14.32,14.37,13.91,14.42
+e4b019462e2f4e39944b5a5a9c349b2d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,52.5,17.99,17.75,3.06,False,16.89,17.26,17.11,17.37,16.89,17.51
+97a4892cd1bf408f8bd707be081c791c,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,36.3,25.96,25.71,5.78,False,22.29,23.87,25.45,25.84,22.29,24.66
+97a4892cd1bf408f8bd707be081c791c,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,49.6,18.98,18.73,3.4,False,18.46,18.73,18.44,18.73,18.46,18.88
+97a4892cd1bf408f8bd707be081c791c,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,95.7,10.59,10.36,3.18,False,9.95,10.02,9.95,10.15,10.09,10.13
+97a4892cd1bf408f8bd707be081c791c,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,69.6,13.91,13.66,3.11,False,13.65,13.68,13.65,13.68,13.65,13.81
+97a4892cd1bf408f8bd707be081c791c,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,40.0,23.26,23.01,3.93,False,19.75,21.56,22.04,22.71,19.75,21.57
+427ebabc32f24b3f90bc66ea1a13cf01,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,44.0,21.81,21.56,5.82,False,21.08,21.52,20.85,20.96,21.66,21.8
+427ebabc32f24b3f90bc66ea1a13cf01,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,65.2,14.81,14.57,3.42,False,14.51,14.63,14.27,14.39,14.67,14.71
+427ebabc32f24b3f90bc66ea1a13cf01,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,42.7,22.39,22.19,7.58,False,22.1,22.41,22.1,22.27,22.73,22.91
+427ebabc32f24b3f90bc66ea1a13cf01,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,174.0,6.68,6.44,3.22,False,5.6,5.78,5.6,5.67,5.64,5.79
+427ebabc32f24b3f90bc66ea1a13cf01,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,43.5,22.43,22.24,8.06,False,21.88,21.97,21.88,22.1,22.06,22.39
+427ebabc32f24b3f90bc66ea1a13cf01,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,43.7,22.53,22.33,8.9,False,21.76,21.92,21.76,22.19,22.08,22.13
+427ebabc32f24b3f90bc66ea1a13cf01,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,104.6,9.81,9.56,3.15,False,9.18,9.41,9.18,9.29,9.27,9.46
+427ebabc32f24b3f90bc66ea1a13cf01,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,49.6,19.06,18.82,3.97,False,18.55,18.56,18.21,18.38,18.57,18.81
+427ebabc32f24b3f90bc66ea1a13cf01,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,43.3,22.53,22.34,8.49,False,21.53,21.88,21.53,22.19,22.05,22.14
+dd1b722645744b3eb49fdad74b765c4f,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,56.3,17.57,17.32,5.77,False,15.04,15.75,16.3,16.38,15.04,16.62
+dd1b722645744b3eb49fdad74b765c4f,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,96.7,10.56,10.33,3.4,False,10.1,10.11,10.1,10.12,10.11,10.14
+dd1b722645744b3eb49fdad74b765c4f,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,54.5,18.28,18.07,7.54,False,17.74,17.84,17.74,17.74,17.79,17.87
+dd1b722645744b3eb49fdad74b765c4f,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,55.9,18.38,18.18,8.08,False,16.91,17.38,17.5,17.68,16.91,17.33
+dd1b722645744b3eb49fdad74b765c4f,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,56.2,18.57,18.36,8.91,False,17.35,17.57,17.38,17.59,17.35,17.55
+dd1b722645744b3eb49fdad74b765c4f,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,216.4,5.84,5.59,3.15,False,4.86,4.89,4.92,5.17,4.86,4.96
+dd1b722645744b3eb49fdad74b765c4f,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,66.0,14.76,14.51,3.94,False,14.36,14.55,14.23,14.48,14.36,14.47
+dd1b722645744b3eb49fdad74b765c4f,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,55.4,18.51,18.31,8.47,False,17.55,17.76,17.86,17.91,17.55,17.73
+8f4376cb2da3448abf42221512917c4d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,75.2,13.9,13.65,5.72,False,12.34,12.7,12.92,12.99,12.34,12.42
+8f4376cb2da3448abf42221512917c4d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,34.2,32.02,31.81,5.77,False,32.52,32.89,30.62,31.94,32.52,33.48
+8f4376cb2da3448abf42221512917c4d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,170.8,6.94,6.74,3.42,False,5.93,6.0,6.07,6.12,5.93,5.97
+8f4376cb2da3448abf42221512917c4d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,72.3,14.78,14.55,7.51,False,12.96,13.39,13.8,13.81,12.96,13.0
+8f4376cb2da3448abf42221512917c4d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,74.4,14.93,14.71,8.03,False,12.61,13.15,13.51,13.61,12.61,12.77
+8f4376cb2da3448abf42221512917c4d,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,93.7,11.0,10.76,3.89,False,9.99,10.29,10.5,10.55,9.99,10.13
+e1a0ecd338d943b790f553972f2c9068,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,39.9,27.69,27.47,5.64,False,27.62,27.82,27.67,27.84,27.62,28.86
+e1a0ecd338d943b790f553972f2c9068,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,173.4,7.12,6.91,3.9,False,6.13,6.15,6.17,6.52,6.13,6.19
+16cd95c28f0642bca8f6f8017c5410d3,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,48.6,23.01,22.79,5.53,False,23.22,23.61,22.79,23.39,23.22,24.13
+16cd95c28f0642bca8f6f8017c5410d3,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,37.3,25.41,25.18,5.52,False,25.0,26.05,24.93,26.02,25.0,26.32
+b79f8bcaf26944f9bbc08c928602a4e0,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,60.5,18.82,18.59,5.42,False,18.08,18.77,18.34,18.89,18.08,18.92
+b79f8bcaf26944f9bbc08c928602a4e0,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,57.9,16.73,16.5,5.4,False,15.87,16.35,16.0,16.41,15.87,16.61
+b79f8bcaf26944f9bbc08c928602a4e0,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,45.4,21.18,20.94,5.41,False,20.42,21.36,20.82,21.56,20.42,21.58
+8140e0d584a448ddac2befd221508790,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,80.8,14.63,14.39,5.35,False,13.69,14.04,14.17,14.28,13.69,14.12
+8140e0d584a448ddac2befd221508790,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,82.4,12.62,12.4,5.31,False,11.4,11.66,11.69,11.8,11.4,11.66
+8140e0d584a448ddac2befd221508790,scene-0655,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,58.4,16.92,16.67,5.31,False,15.64,16.23,16.28,16.55,15.64,16.3
+95a6d6872f9d4d19b7ac55a80943c611,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,44.84,47.62,50.41,52.2,44.84,48.46
+ca953b73b68c4855887802390c30d1d2,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.69,48.21,1.91,False,44.73,46.41,48.09,49.12,44.73,47.89
+ca953b73b68c4855887802390c30d1d2,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.9,3.67,False,48.67,53.03,57.4,58.59,48.67,54.63
+ca953b73b68c4855887802390c30d1d2,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.5,False,46.79,48.92,51.05,52.47,46.79,50.79
+03bcdd9ceeb5403880dbea94d82fd645,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.69,48.22,1.91,False,45.35,47.17,48.99,49.53,45.35,48.28
+03bcdd9ceeb5403880dbea94d82fd645,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.9,3.67,False,50.24,54.14,58.05,58.47,50.24,55.33
+03bcdd9ceeb5403880dbea94d82fd645,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.5,False,48.12,49.86,51.61,52.48,48.12,51.33
+03bcdd9ceeb5403880dbea94d82fd645,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,49.31,53.34,57.37,57.62,49.31,54.52
+03bcdd9ceeb5403880dbea94d82fd645,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,45.18,49.89,53.52,54.06,45.18,50.88
+8c66f270e43e4e49b3636b2ee042f96d,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.69,48.22,1.91,False,46.13,47.08,48.02,49.34,46.13,48.07
+8c66f270e43e4e49b3636b2ee042f96d,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.9,3.67,False,51.03,54.45,57.88,58.71,51.03,55.57
+8c66f270e43e4e49b3636b2ee042f96d,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.5,False,48.7,49.81,50.93,52.73,48.7,51.55
+8c66f270e43e4e49b3636b2ee042f96d,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,50.03,53.55,57.07,57.82,50.03,54.77
+8c66f270e43e4e49b3636b2ee042f96d,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,45.72,49.84,53.5,53.73,45.72,50.74
+9e3b30e1496741bfa6593673ac3d3b30,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.69,48.22,1.92,False,43.92,46.39,48.85,49.6,43.92,47.77
+9e3b30e1496741bfa6593673ac3d3b30,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.68,False,48.52,54.09,59.65,59.97,48.52,56.31
+9e3b30e1496741bfa6593673ac3d3b30,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,46.03,48.84,51.64,53.06,46.03,51.33
+9e3b30e1496741bfa6593673ac3d3b30,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,47.43,52.77,58.12,58.31,47.43,54.9
+9e3b30e1496741bfa6593673ac3d3b30,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,43.93,49.41,52.36,53.62,43.93,50.62
+9ac08955983e41ea8f4bf16b49bfa79c,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.69,48.22,1.92,False,47.4,48.03,48.67,50.31,47.4,49.73
+9ac08955983e41ea8f4bf16b49bfa79c,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.67,False,51.77,54.48,57.2,58.78,51.77,57.07
+9ac08955983e41ea8f4bf16b49bfa79c,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,49.48,50.24,51.0,53.34,49.48,52.69
+9ac08955983e41ea8f4bf16b49bfa79c,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,50.75,53.56,56.38,57.92,50.75,56.11
+9ac08955983e41ea8f4bf16b49bfa79c,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,46.52,50.21,53.67,53.78,46.52,52.13
+6e76f277e47547bca0e38099ce01da54,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.69,48.22,1.92,False,46.49,46.84,47.18,47.43,46.49,48.65
+6e76f277e47547bca0e38099ce01da54,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.67,False,50.28,53.34,56.39,56.87,50.28,55.86
+6e76f277e47547bca0e38099ce01da54,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,48.35,48.94,49.53,50.65,48.35,51.41
+6e76f277e47547bca0e38099ce01da54,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,49.68,52.74,55.8,56.14,49.68,55.2
+6e76f277e47547bca0e38099ce01da54,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,46.5,49.72,50.19,51.56,46.5,51.41
+85b9d897bc9d4d7094696a5a356b29f0,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.69,48.22,1.92,False,43.26,44.97,46.68,50.68,43.26,45.99
+85b9d897bc9d4d7094696a5a356b29f0,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.67,False,47.93,52.8,57.68,62.11,47.93,53.89
+85b9d897bc9d4d7094696a5a356b29f0,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,45.76,47.62,49.49,55.11,45.76,49.17
+85b9d897bc9d4d7094696a5a356b29f0,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,46.81,51.41,56.0,60.35,46.81,52.64
+85b9d897bc9d4d7094696a5a356b29f0,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,42.03,46.41,48.23,49.5,42.03,47.75
+435543e1321b411ea5c930633e0883d9,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.69,48.22,1.91,False,15.34,15.56,15.34,15.43,15.79,16.06
+435543e1321b411ea5c930633e0883d9,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.66,False,15.37,15.59,15.37,15.43,15.82,16.09
+435543e1321b411ea5c930633e0883d9,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.5,False,15.34,15.56,15.34,15.41,15.79,16.07
+435543e1321b411ea5c930633e0883d9,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.47,False,15.34,15.57,15.34,15.41,15.8,16.08
+435543e1321b411ea5c930633e0883d9,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,15.34,15.55,15.34,15.41,15.77,16.05
+cf3f00e98842449696a4cb4edb1e1c5e,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.69,48.22,1.92,False,36.81,39.93,40.83,41.94,36.81,40.23
+cf3f00e98842449696a4cb4edb1e1c5e,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.66,False,39.79,45.61,50.2,50.82,39.79,45.61
+cf3f00e98842449696a4cb4edb1e1c5e,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.5,False,38.56,42.01,44.5,44.98,38.56,42.61
+cf3f00e98842449696a4cb4edb1e1c5e,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.47,False,39.2,44.86,46.32,48.41,39.2,44.67
+cf3f00e98842449696a4cb4edb1e1c5e,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,36.84,42.39,39.02,43.48,36.84,42.13
+c7f783fe8173446383bfbbb7a783517f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.69,48.22,1.92,False,17.46,17.99,18.35,18.44,17.46,18.16
+c7f783fe8173446383bfbbb7a783517f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.67,False,17.41,17.96,18.38,18.45,17.41,18.14
+c7f783fe8173446383bfbbb7a783517f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,17.43,17.97,18.38,18.45,17.43,18.15
+c7f783fe8173446383bfbbb7a783517f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,17.41,17.96,18.38,18.45,17.41,18.14
+c7f783fe8173446383bfbbb7a783517f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,17.41,17.96,18.38,18.45,17.41,18.14
+a409449573af464c9cd6775837c45967,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.69,48.22,1.92,False,14.63,15.04,15.44,15.6,14.63,15.12
+a409449573af464c9cd6775837c45967,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.66,False,14.54,14.99,15.44,15.58,14.54,15.05
+a409449573af464c9cd6775837c45967,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.5,False,14.57,15.0,15.44,15.59,14.57,15.07
+a409449573af464c9cd6775837c45967,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.47,False,14.55,15.0,15.44,15.58,14.55,15.05
+a409449573af464c9cd6775837c45967,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,14.55,15.0,15.44,15.58,14.55,15.05
+45d02c618f34449bb7587ff6caf120ae,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.69,48.22,1.92,False,14.62,14.88,15.14,15.46,14.62,15.21
+45d02c618f34449bb7587ff6caf120ae,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.67,False,14.66,14.89,15.13,15.46,14.66,15.22
+45d02c618f34449bb7587ff6caf120ae,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,14.64,14.89,15.13,15.46,14.64,15.22
+45d02c618f34449bb7587ff6caf120ae,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,14.66,14.89,15.13,15.46,14.66,15.22
+45d02c618f34449bb7587ff6caf120ae,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,14.66,14.89,15.13,15.46,14.66,15.23
+3fb6c2eacb2e4361bb5d5aa092c4ff8f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.7,48.23,1.92,False,46.13,46.46,46.79,49.31,46.13,46.8
+3fb6c2eacb2e4361bb5d5aa092c4ff8f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.67,False,50.31,54.62,58.94,59.9,50.31,54.51
+3fb6c2eacb2e4361bb5d5aa092c4ff8f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,48.26,48.97,49.67,52.58,48.26,50.19
+3fb6c2eacb2e4361bb5d5aa092c4ff8f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,49.08,53.15,57.22,58.42,49.08,53.11
+3fb6c2eacb2e4361bb5d5aa092c4ff8f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,44.91,48.53,52.16,52.7,44.91,48.57
+c8fc91d460cb4ef39117982e0a20804d,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.7,48.23,1.92,False,19.63,19.73,19.3,19.46,19.84,20.23
+c8fc91d460cb4ef39117982e0a20804d,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.67,False,19.66,19.7,19.42,19.54,19.75,20.18
+c8fc91d460cb4ef39117982e0a20804d,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,19.63,19.71,19.34,19.48,19.79,20.2
+c8fc91d460cb4ef39117982e0a20804d,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,19.66,19.7,19.41,19.54,19.75,20.18
+c8fc91d460cb4ef39117982e0a20804d,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,19.62,19.68,19.36,19.49,19.73,20.16
+23e08a928077488685ab3138f3e4164f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.7,48.23,1.92,False,19.31,19.66,19.36,19.69,19.31,19.8
+23e08a928077488685ab3138f3e4164f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.66,False,20.06,34.97,38.64,44.26,20.06,37.09
+23e08a928077488685ab3138f3e4164f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.5,False,19.31,19.7,19.5,19.8,19.31,19.93
+23e08a928077488685ab3138f3e4164f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.47,False,19.78,33.84,34.28,41.09,19.78,36.55
+23e08a928077488685ab3138f3e4164f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,19.56,21.75,23.95,24.38,19.56,32.59
+f8ec648a57f24d988bd07305abf8b77f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.7,48.23,1.92,False,44.98,46.27,47.55,47.58,44.98,45.44
+f8ec648a57f24d988bd07305abf8b77f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.67,False,48.99,53.75,55.19,56.85,48.99,52.35
+f8ec648a57f24d988bd07305abf8b77f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,46.99,48.76,50.52,50.67,46.99,47.91
+f8ec648a57f24d988bd07305abf8b77f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,48.43,53.04,54.69,56.17,48.43,51.64
+f8ec648a57f24d988bd07305abf8b77f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,45.01,48.72,49.14,50.78,45.01,47.66
+36287d40e88a4ac9bb64cf4e8c166d1f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.7,48.23,1.93,False,41.37,43.96,44.83,45.69,41.37,44.05
+36287d40e88a4ac9bb64cf4e8c166d1f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.67,False,45.23,51.32,50.52,53.97,45.23,51.52
+36287d40e88a4ac9bb64cf4e8c166d1f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,43.21,46.25,47.26,48.28,43.21,47.55
+36287d40e88a4ac9bb64cf4e8c166d1f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,44.3,50.17,49.59,52.82,44.3,50.32
+36287d40e88a4ac9bb64cf4e8c166d1f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,41.33,46.59,44.45,48.15,41.33,46.34
+29cfc6babdba4e7ebad782f6d551033f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.7,48.23,1.92,False,18.87,19.36,19.26,19.55,18.87,19.43
+29cfc6babdba4e7ebad782f6d551033f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.67,False,18.84,19.34,19.21,19.53,18.84,19.41
+29cfc6babdba4e7ebad782f6d551033f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,18.85,19.35,19.23,19.54,18.85,19.41
+29cfc6babdba4e7ebad782f6d551033f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,18.84,19.34,19.21,19.53,18.84,19.41
+29cfc6babdba4e7ebad782f6d551033f,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,18.82,19.34,19.22,19.54,18.82,19.39
+5479effa00bf4d01b96e1ec77065c977,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.7,48.23,1.93,False,45.19,45.83,42.94,44.7,45.19,46.16
+5479effa00bf4d01b96e1ec77065c977,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.68,False,49.07,53.78,51.51,55.0,49.07,53.23
+5479effa00bf4d01b96e1ec77065c977,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,46.82,48.35,45.68,47.78,46.82,49.19
+5479effa00bf4d01b96e1ec77065c977,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,47.79,51.81,49.38,52.61,47.79,51.79
+5479effa00bf4d01b96e1ec77065c977,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,44.05,46.75,41.02,45.23,44.05,47.53
+836281904290463cafe2059d05d2b474,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.7,48.23,1.93,False,36.2,40.47,44.73,45.94,36.2,39.52
+836281904290463cafe2059d05d2b474,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.9,3.67,False,38.73,45.66,52.59,53.62,38.73,44.43
+836281904290463cafe2059d05d2b474,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,37.37,42.15,46.93,48.59,37.37,41.86
+836281904290463cafe2059d05d2b474,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,38.19,45.08,51.97,53.03,38.19,43.91
+836281904290463cafe2059d05d2b474,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,35.75,42.06,48.38,48.8,35.75,41.26
+defde01fa5594f18b24be8fe68e6f2c4,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.7,48.23,1.93,False,6.33,6.52,6.71,6.78,6.33,6.51
+defde01fa5594f18b24be8fe68e6f2c4,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.9,3.67,False,6.87,30.02,30.41,41.79,6.87,28.66
+defde01fa5594f18b24be8fe68e6f2c4,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.51,False,6.43,27.18,6.98,27.46,6.43,23.22
+defde01fa5594f18b24be8fe68e6f2c4,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,6.82,28.83,8.98,29.91,6.82,27.7
+defde01fa5594f18b24be8fe68e6f2c4,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,6.56,26.59,7.24,26.93,6.56,25.83
+6e8383a5f5ba4334b4cb40e0663acdaa,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.7,48.23,1.93,False,34.73,37.47,40.22,40.93,34.73,37.52
+6e8383a5f5ba4334b4cb40e0663acdaa,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.9,3.67,False,28.68,35.05,37.07,39.25,28.68,34.95
+6e8383a5f5ba4334b4cb40e0663acdaa,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.51,False,31.98,36.29,40.6,41.06,31.98,36.23
+6e8383a5f5ba4334b4cb40e0663acdaa,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.47,False,27.69,34.43,35.78,38.48,27.69,34.36
+6e8383a5f5ba4334b4cb40e0663acdaa,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,22.41,23.09,22.56,23.17,22.41,27.16
+7b90568403b64fba883c052427b76f24,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.7,48.23,1.93,False,7.97,8.04,8.11,8.21,7.57,7.77
+7b90568403b64fba883c052427b76f24,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.9,3.67,False,8.01,8.09,8.18,8.29,7.59,7.8
+7b90568403b64fba883c052427b76f24,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.51,False,8.0,8.08,8.16,8.27,7.57,7.79
+7b90568403b64fba883c052427b76f24,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.48,False,8.0,8.09,8.18,8.29,7.58,7.79
+7b90568403b64fba883c052427b76f24,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,7.96,8.06,8.17,8.27,7.58,7.77
+be0d41d37aac4b3c9771e1bafe72ff41,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.71,48.23,1.93,False,39.94,41.88,43.51,43.66,39.94,41.6
+be0d41d37aac4b3c9771e1bafe72ff41,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.9,3.66,False,42.91,46.3,49.69,50.88,42.91,45.61
+be0d41d37aac4b3c9771e1bafe72ff41,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.51,False,41.55,43.83,46.11,46.86,41.55,43.66
+be0d41d37aac4b3c9771e1bafe72ff41,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,22.7,64.4,62.93,3.47,False,42.43,45.91,49.38,50.52,42.43,45.23
+be0d41d37aac4b3c9771e1bafe72ff41,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,40.06,43.67,47.28,47.53,40.06,43.05
+c218bb82f11c47bc864e72a3e26db2c9,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.71,48.24,1.92,False,40.34,44.02,44.99,46.34,40.34,44.11
+c218bb82f11c47bc864e72a3e26db2c9,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.9,3.66,False,42.9,49.5,54.38,55.24,42.9,48.81
+c218bb82f11c47bc864e72a3e26db2c9,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.5,False,41.9,45.85,46.97,48.38,41.9,46.74
+c218bb82f11c47bc864e72a3e26db2c9,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,39.76,46.22,47.56,50.12,39.76,45.92
+706bc4ecedb1483485dd25b2cdb79b1e,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.71,48.24,1.93,False,41.43,43.87,46.31,47.58,41.43,43.67
+706bc4ecedb1483485dd25b2cdb79b1e,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.9,3.66,False,44.17,50.07,55.28,55.62,44.17,48.42
+706bc4ecedb1483485dd25b2cdb79b1e,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,42.71,45.39,48.07,49.36,42.71,45.42
+706bc4ecedb1483485dd25b2cdb79b1e,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,42.24,46.51,49.68,50.23,42.24,45.96
+63f667397e55468ea55cec6ca099d5e8,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.71,48.24,1.93,False,8.26,8.35,8.18,8.31,8.05,8.16
+63f667397e55468ea55cec6ca099d5e8,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.9,3.67,False,8.19,8.29,8.29,8.34,7.98,8.09
+63f667397e55468ea55cec6ca099d5e8,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,8.2,8.29,8.2,8.29,8.01,8.11
+63f667397e55468ea55cec6ca099d5e8,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,8.2,8.27,8.28,8.31,7.97,8.08
+5a997f9d82874cc99e166b81c4cda2ad,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.71,48.24,1.93,False,8.83,13.7,17.61,18.09,8.83,13.73
+5a997f9d82874cc99e166b81c4cda2ad,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.66,False,17.57,18.14,17.85,18.28,17.57,18.13
+5a997f9d82874cc99e166b81c4cda2ad,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,17.54,18.08,17.83,18.23,17.54,18.11
+5a997f9d82874cc99e166b81c4cda2ad,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,17.5,18.09,17.85,18.27,17.5,18.09
+b379e0c083e349d9b3eda2b1f817535d,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.71,48.24,1.93,False,34.72,38.83,42.93,43.55,34.72,38.21
+b379e0c083e349d9b3eda2b1f817535d,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.67,False,37.37,43.5,49.63,50.34,37.37,42.59
+b379e0c083e349d9b3eda2b1f817535d,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,36.31,40.95,45.6,46.53,36.31,40.8
+b379e0c083e349d9b3eda2b1f817535d,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,34.91,40.69,44.18,45.33,34.91,39.99
+b71a3ed2e4cc4c3b9add0925bcefe743,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.71,48.24,1.93,False,6.36,6.44,6.51,6.67,6.36,6.41
+b71a3ed2e4cc4c3b9add0925bcefe743,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.66,False,6.31,6.46,6.62,6.73,6.31,6.41
+b71a3ed2e4cc4c3b9add0925bcefe743,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.66,51.19,2.51,False,6.33,6.44,6.55,6.69,6.33,6.41
+b71a3ed2e4cc4c3b9add0925bcefe743,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,6.32,6.46,6.59,6.72,6.32,6.42
+8b448769529640509f5481de4976963e,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.71,48.24,1.93,False,38.74,41.62,42.08,43.29,38.74,40.8
+8b448769529640509f5481de4976963e,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.66,False,41.98,46.69,47.46,49.42,41.98,45.52
+8b448769529640509f5481de4976963e,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.5,False,40.27,43.8,44.67,46.0,40.27,43.33
+8b448769529640509f5481de4976963e,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,39.15,43.9,44.84,46.75,39.15,42.85
+549a0000f3a545239b5c6142fab2d9f2,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.71,48.24,1.93,False,9.07,26.86,10.36,27.51,9.07,28.36
+549a0000f3a545239b5c6142fab2d9f2,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.66,False,45.88,50.36,53.84,54.34,45.88,50.8
+549a0000f3a545239b5c6142fab2d9f2,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.51,False,27.14,37.64,48.15,48.62,27.14,39.51
+549a0000f3a545239b5c6142fab2d9f2,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,41.56,45.98,47.57,48.99,41.56,46.47
+28e5177a5fc44a4aa8e813306e614927,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.71,48.24,1.93,False,44.17,46.23,46.92,47.61,44.17,44.95
+28e5177a5fc44a4aa8e813306e614927,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.66,False,47.01,52.8,56.0,57.29,47.01,51.16
+28e5177a5fc44a4aa8e813306e614927,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.51,False,45.55,48.9,50.69,51.47,45.55,47.99
+28e5177a5fc44a4aa8e813306e614927,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,44.52,49.2,48.55,51.22,44.52,47.86
+358ec472650f42d4b6c27686ee2e0d39,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.71,48.24,1.94,False,42.65,45.1,46.3,46.92,42.65,44.77
+358ec472650f42d4b6c27686ee2e0d39,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.67,False,45.41,51.52,54.45,56.04,45.41,51.48
+358ec472650f42d4b6c27686ee2e0d39,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.51,False,43.86,47.73,49.72,50.66,43.86,48.16
+358ec472650f42d4b6c27686ee2e0d39,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.28,False,43.05,48.25,47.95,50.7,43.05,48.0
+7036599cb4d44e9d98c2cfad3332c4f6,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.71,48.24,1.94,False,42.49,44.68,45.35,46.11,42.49,45.42
+7036599cb4d44e9d98c2cfad3332c4f6,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.66,False,45.23,50.43,54.58,55.11,45.23,51.83
+7036599cb4d44e9d98c2cfad3332c4f6,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.51,False,44.12,46.69,49.26,49.42,44.12,48.5
+7036599cb4d44e9d98c2cfad3332c4f6,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,42.48,47.4,47.3,49.81,42.48,48.0
+cd8a6fbb4c0a42138792b0b3515b363b,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.72,48.24,1.93,False,43.3,44.51,45.4,45.56,43.3,44.55
+cd8a6fbb4c0a42138792b0b3515b363b,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.66,False,46.38,50.87,54.71,55.03,46.38,51.38
+cd8a6fbb4c0a42138792b0b3515b363b,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.5,False,45.07,47.18,49.29,49.46,45.07,47.91
+cd8a6fbb4c0a42138792b0b3515b363b,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,43.32,47.47,47.18,49.39,43.32,47.45
+0839e821f0794b05a0f0dc6cce034265,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.72,48.25,1.93,False,41.83,43.63,45.44,45.77,41.83,44.27
+0839e821f0794b05a0f0dc6cce034265,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.65,False,44.81,49.28,53.38,53.56,44.81,51.29
+0839e821f0794b05a0f0dc6cce034265,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.5,False,43.5,45.72,47.94,48.54,43.5,47.94
+0839e821f0794b05a0f0dc6cce034265,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,41.59,46.14,46.26,48.47,41.59,47.21
+1f9771d7882744aba57113fd8b40e294,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.72,48.25,1.93,False,42.56,44.08,45.59,46.55,42.56,45.12
+1f9771d7882744aba57113fd8b40e294,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.66,False,45.54,50.14,54.75,54.89,45.54,51.5
+1f9771d7882744aba57113fd8b40e294,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.5,False,44.32,46.21,48.1,49.28,44.32,48.01
+1f9771d7882744aba57113fd8b40e294,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,42.1,46.64,49.61,50.39,42.1,47.56
+aeae6f7b9b154cae9dfbd64705a4e540,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.72,48.25,1.94,False,42.36,43.95,45.54,46.92,42.36,44.91
+aeae6f7b9b154cae9dfbd64705a4e540,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.66,False,45.56,50.66,55.76,56.61,45.56,51.75
+aeae6f7b9b154cae9dfbd64705a4e540,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.5,False,44.11,46.74,49.37,50.68,44.11,48.52
+aeae6f7b9b154cae9dfbd64705a4e540,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,42.14,46.92,50.57,51.14,42.14,47.66
+bd0ce9c48550446fa13676c7703a70c1,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.0,49.72,48.25,1.94,False,42.75,44.62,46.49,48.08,42.75,45.71
+bd0ce9c48550446fa13676c7703a70c1,scene-0553,day,barrier,movable_object.barrier,labelled outline,v60-80,21.2,67.36,65.89,3.66,False,45.73,51.34,56.96,57.41,45.73,52.65
+bd0ce9c48550446fa13676c7703a70c1,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,23.3,52.65,51.19,2.51,False,44.35,47.48,50.6,51.88,44.35,49.59
+bd0ce9c48550446fa13676c7703a70c1,scene-0553,day,barrier,movable_object.barrier,labelled outline,v80-100,25.5,61.46,60.0,3.27,False,42.47,47.34,51.32,51.77,42.47,48.49
+b04ad7e3c86d47fc98dba25595b2327e,scene-0757,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,153.9,10.43,10.09,2.35,False,9.26,9.41,9.57,9.67,9.26,9.46
+9ce08dbf60bb4b22a952e11f56504292,scene-0757,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,210.9,7.94,7.62,2.03,False,7.06,7.08,7.11,7.27,7.06,7.17
+f921ab741862402aa867b4cd7ceb3d40,scene-0757,day,traffic cone,movable_object.trafficcone,labelled outline,v80-100,330.9,5.52,5.16,1.84,False,4.66,4.69,4.72,4.92,4.66,4.76
+941df6343d944a659e16b892e023931c,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,21.5,56.01,54.86,2.67,False,38.27,40.26,42.24,51.56,38.27,39.17
+a534bc510aba4393bc620e7c8121b69c,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,24.5,49.69,48.55,2.55,False,36.03,38.95,41.87,52.02,36.03,37.17
+e37de16d519e4af6beaba685eae05a57,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,28.2,43.34,42.2,2.79,False,33.74,34.34,34.94,39.45,33.06,33.4
+f9c324a0d723415e92f7503ced9a7389,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,33.2,36.91,35.76,2.88,False,28.98,31.34,28.98,35.08,29.26,31.48
+54e94f89fb124c32940a224c196a49c0,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,40.0,31.1,29.96,2.95,False,27.86,30.43,27.86,31.95,27.72,30.36
+7d10c94f6a104fc0882fe126533d31e3,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,51.5,24.61,23.46,2.94,False,22.55,23.37,22.55,25.23,22.94,23.56
+1636a50b7f3b403e899910eea8ce2e23,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,73.3,17.96,16.8,2.98,False,16.7,18.12,16.7,18.15,16.91,18.22
+efc0530010574686a81ea923e2a77955,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,128.4,11.26,10.12,2.95,False,9.65,10.23,9.65,10.9,9.44,10.13
+d80d00fe8aa444b7b04ae588b5e55ea0,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,345.5,5.08,4.19,2.9,False,5.07,5.51,5.07,5.97,5.09,5.52
+2edd8a4e2b484a22b0ec566f2f2e9b95,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,55.4,26.12,25.11,8.39,False,24.89,26.08,27.26,27.56,24.89,25.66
+341e20164fcb47cbb22332a47013bdb6,scene-1077,night,barrier,movable_object.barrier,labelled outline,v40-60,63.2,23.77,22.7,9.25,False,18.77,21.17,18.77,19.92,22.56,23.06
+341e20164fcb47cbb22332a47013bdb6,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,80.6,19.26,18.29,8.27,False,16.35,18.25,16.35,17.59,18.6,19.38
+1a73ab0790a0423bbd317c10bebf7f23,scene-1077,night,barrier,movable_object.barrier,labelled outline,v60-80,96.5,17.31,16.27,9.13,False,12.72,14.76,12.72,14.83,15.9,16.35
+1a73ab0790a0423bbd317c10bebf7f23,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,25.8,49.86,49.44,8.34,False,36.89,41.87,46.84,47.79,36.89,42.72
+2e63eb8c6e91493292396908c1257f31,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,30.6,42.62,42.24,8.24,False,34.28,38.3,42.07,42.2,34.28,38.86
+9c46f52aa0674d528647cd892968f78b,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,36.7,35.4,35.08,8.06,False,33.27,34.87,36.46,37.0,33.27,35.94
+f0a02178f2f5410f91c903bf632ee296,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,46.3,28.37,28.11,8.04,False,27.93,28.04,27.93,28.63,28.15,29.05
+1402826678e143fdbe22da3080dd36d8,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,67.5,20.88,20.53,8.05,False,17.39,18.04,17.39,18.76,18.68,18.8
+2d35f62a9daf41a18c15c7a946b0d141,scene-1077,night,barrier,movable_object.barrier,labelled outline,v80-100,108.4,15.4,14.43,8.19,False,12.85,13.02,13.18,13.5,12.85,13.15
