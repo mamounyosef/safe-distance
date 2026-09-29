@@ -1,0 +1,470 @@
+{
+  "benchmark": "depth_model_speed",
+  "provenance": {
+    "created_utc": "2026-09-29T13:06:51+00:00",
+    "git_commit": "8cff289",
+    "git_uncommitted_changes": true,
+    "python": "3.12.0",
+    "torch": "2.6.0+cu124",
+    "ultralytics": "8.4.155",
+    "gpu": "NVIDIA GeForce RTX 4060"
+  },
+  "config": {
+    "run_name": "rtx4060_pytorch_fp16",
+    "warmup": 5,
+    "timed": 40,
+    "batch_size": 1,
+    "precision": "per model, see each model's precision (PyTorch, no TensorRT)",
+    "frame_budget_ms": 33.3,
+    "timing_covers": "camera image in, full-resolution depth map in metres out"
+  },
+  "models": {
+    "metric3d-v2-small": {
+      "gpu_at_start": {
+        "utilization_pct": 40,
+        "memory_used_mb": 1113,
+        "memory_total_mb": 8188,
+        "temperature_c": 60,
+        "sm_clock_mhz": 2775
+      },
+      "uses_our_focal_length": true,
+      "precision": "fp32",
+      "peak_gpu_memory_gb": 0.67,
+      "by_size": {
+        "KITTI 1242x375": {
+          "median_ms": 150.5,
+          "p95_ms": 153.3,
+          "mean_ms": 150.9,
+          "fps_at_median": 6.6
+        },
+        "nuScenes 1600x900": {
+          "median_ms": 153.6,
+          "p95_ms": 155.8,
+          "mean_ms": 153.7,
+          "fps_at_median": 6.5
+        },
+        "Lost and Found 2048x1024": {
+          "median_ms": 157.0,
+          "p95_ms": 158.9,
+          "mean_ms": 157.0,
+          "fps_at_median": 6.4
+        }
+      }
+    },
+    "metric3d-v2-large": {
+      "gpu_at_start": {
+        "utilization_pct": 97,
+        "memory_used_mb": 1116,
+        "memory_total_mb": 8188,
+        "temperature_c": 62,
+        "sm_clock_mhz": 2775
+      },
+      "uses_our_focal_length": true,
+      "precision": "fp32",
+      "peak_gpu_memory_gb": 2.54,
+      "by_size": {
+        "KITTI 1242x375": {
+          "median_ms": 886.9,
+          "p95_ms": 893.1,
+          "mean_ms": 887.1,
+          "fps_at_median": 1.1
+        },
+        "nuScenes 1600x900": {
+          "median_ms": 890.7,
+          "p95_ms": 900.9,
+          "mean_ms": 891.3,
+          "fps_at_median": 1.1
+        },
+        "Lost and Found 2048x1024": {
+          "median_ms": 891.9,
+          "p95_ms": 897.1,
+          "mean_ms": 892.3,
+          "fps_at_median": 1.1
+        }
+      }
+    },
+    "metric3d-v2-small-fp16": {
+      "gpu_at_start": {
+        "utilization_pct": 100,
+        "memory_used_mb": 1107,
+        "memory_total_mb": 8188,
+        "temperature_c": 63,
+        "sm_clock_mhz": 2775
+      },
+      "uses_our_focal_length": true,
+      "precision": "fp16 (autocast)",
+      "peak_gpu_memory_gb": 0.65,
+      "by_size": {
+        "KITTI 1242x375": {
+          "median_ms": 78.8,
+          "p95_ms": 81.6,
+          "mean_ms": 79.3,
+          "fps_at_median": 12.7
+        },
+        "nuScenes 1600x900": {
+          "median_ms": 82.1,
+          "p95_ms": 85.9,
+          "mean_ms": 82.6,
+          "fps_at_median": 12.2
+        },
+        "Lost and Found 2048x1024": {
+          "median_ms": 84.0,
+          "p95_ms": 86.0,
+          "mean_ms": 84.2,
+          "fps_at_median": 11.9
+        }
+      }
+    },
+    "metric3d-v2-large-fp16": {
+      "gpu_at_start": {
+        "utilization_pct": 82,
+        "memory_used_mb": 1109,
+        "memory_total_mb": 8188,
+        "temperature_c": 60,
+        "sm_clock_mhz": 2775
+      },
+      "uses_our_focal_length": true,
+      "precision": "fp16 (autocast)",
+      "peak_gpu_memory_gb": 3.17,
+      "by_size": {
+        "KITTI 1242x375": {
+          "median_ms": 353.2,
+          "p95_ms": 358.0,
+          "mean_ms": 353.9,
+          "fps_at_median": 2.8
+        },
+        "nuScenes 1600x900": {
+          "median_ms": 356.5,
+          "p95_ms": 359.8,
+          "mean_ms": 356.9,
+          "fps_at_median": 2.8
+        },
+        "Lost and Found 2048x1024": {
+          "median_ms": 358.7,
+          "p95_ms": 362.4,
+          "mean_ms": 359.1,
+          "fps_at_median": 2.8
+        }
+      }
+    },
+    "unidepth-v2-small": {
+      "gpu_at_start": {
+        "utilization_pct": 99,
+        "memory_used_mb": 1109,
+        "memory_total_mb": 8188,
+        "temperature_c": 63,
+        "sm_clock_mhz": 2775
+      },
+      "uses_our_focal_length": true,
+      "precision": "fp16 (library autocast)",
+      "peak_gpu_memory_gb": 0.82,
+      "by_size": {
+        "KITTI 1242x375": {
+          "median_ms": 57.6,
+          "p95_ms": 59.6,
+          "mean_ms": 57.8,
+          "fps_at_median": 17.4
+        },
+        "nuScenes 1600x900": {
+          "median_ms": 61.4,
+          "p95_ms": 63.1,
+          "mean_ms": 61.6,
+          "fps_at_median": 16.3
+        },
+        "Lost and Found 2048x1024": {
+          "median_ms": 64.1,
+          "p95_ms": 65.5,
+          "mean_ms": 64.2,
+          "fps_at_median": 15.6
+        }
+      }
+    },
+    "unidepth-v2-base": {
+      "gpu_at_start": {
+        "utilization_pct": 34,
+        "memory_used_mb": 1141,
+        "memory_total_mb": 8188,
+        "temperature_c": 56,
+        "sm_clock_mhz": 2775
+      },
+      "uses_our_focal_length": true,
+      "precision": "fp16 (library autocast)",
+      "peak_gpu_memory_gb": 1.59,
+      "by_size": {
+        "KITTI 1242x375": {
+          "median_ms": 108.0,
+          "p95_ms": 109.4,
+          "mean_ms": 108.1,
+          "fps_at_median": 9.3
+        },
+        "nuScenes 1600x900": {
+          "median_ms": 111.2,
+          "p95_ms": 113.0,
+          "mean_ms": 111.4,
+          "fps_at_median": 9.0
+        },
+        "Lost and Found 2048x1024": {
+          "median_ms": 115.3,
+          "p95_ms": 116.7,
+          "mean_ms": 115.5,
+          "fps_at_median": 8.7
+        }
+      }
+    },
+    "unidepth-v2-large": {
+      "gpu_at_start": {
+        "utilization_pct": 93,
+        "memory_used_mb": 1141,
+        "memory_total_mb": 8188,
+        "temperature_c": 61,
+        "sm_clock_mhz": 2775
+      },
+      "uses_our_focal_length": true,
+      "precision": "fp16 (library autocast)",
+      "peak_gpu_memory_gb": 3.41,
+      "by_size": {
+        "KITTI 1242x375": {
+          "median_ms": 209.5,
+          "p95_ms": 211.8,
+          "mean_ms": 209.6,
+          "fps_at_median": 4.8
+        },
+        "nuScenes 1600x900": {
+          "median_ms": 214.1,
+          "p95_ms": 216.4,
+          "mean_ms": 214.2,
+          "fps_at_median": 4.7
+        },
+        "Lost and Found 2048x1024": {
+          "median_ms": 218.1,
+          "p95_ms": 220.4,
+          "mean_ms": 218.3,
+          "fps_at_median": 4.6
+        }
+      }
+    },
+    "da3-metric-large": {
+      "gpu_at_start": {
+        "utilization_pct": 98,
+        "memory_used_mb": 1141,
+        "memory_total_mb": 8188,
+        "temperature_c": 58,
+        "sm_clock_mhz": 2775
+      },
+      "uses_our_focal_length": true,
+      "precision": "bf16 or fp16 (library autocast)",
+      "peak_gpu_memory_gb": 2.15,
+      "by_size": {
+        "KITTI 1242x375": {
+          "median_ms": 51.6,
+          "p95_ms": 53.9,
+          "mean_ms": 52.0,
+          "fps_at_median": 19.4
+        },
+        "nuScenes 1600x900": {
+          "median_ms": 79.1,
+          "p95_ms": 81.1,
+          "mean_ms": 79.3,
+          "fps_at_median": 12.6
+        },
+        "Lost and Found 2048x1024": {
+          "median_ms": 83.6,
+          "p95_ms": 86.8,
+          "mean_ms": 83.8,
+          "fps_at_median": 12.0
+        }
+      }
+    },
+    "depth-pro": {
+      "gpu_at_start": {
+        "utilization_pct": 60,
+        "memory_used_mb": 1149,
+        "memory_total_mb": 8188,
+        "temperature_c": 58,
+        "sm_clock_mhz": 2775
+      },
+      "uses_our_focal_length": true,
+      "precision": "fp16",
+      "peak_gpu_memory_gb": 3.97,
+      "by_size": {
+        "KITTI 1242x375": {
+          "median_ms": 852.5,
+          "p95_ms": 858.3,
+          "mean_ms": 852.9,
+          "fps_at_median": 1.2
+        },
+        "nuScenes 1600x900": {
+          "median_ms": 858.1,
+          "p95_ms": 863.4,
+          "mean_ms": 858.5,
+          "fps_at_median": 1.2
+        },
+        "Lost and Found 2048x1024": {
+          "median_ms": 862.7,
+          "p95_ms": 867.8,
+          "mean_ms": 863.4,
+          "fps_at_median": 1.2
+        }
+      }
+    },
+    "da2-metric-small": {
+      "gpu_at_start": {
+        "utilization_pct": 100,
+        "memory_used_mb": 1160,
+        "memory_total_mb": 8188,
+        "temperature_c": 65,
+        "sm_clock_mhz": 2760
+      },
+      "uses_our_focal_length": false,
+      "precision": "fp16",
+      "peak_gpu_memory_gb": 0.27,
+      "by_size": {
+        "KITTI 1242x375": {
+          "median_ms": 48.4,
+          "p95_ms": 51.2,
+          "mean_ms": 48.6,
+          "fps_at_median": 20.7
+        },
+        "nuScenes 1600x900": {
+          "median_ms": 32.0,
+          "p95_ms": 34.8,
+          "mean_ms": 32.2,
+          "fps_at_median": 31.2
+        },
+        "Lost and Found 2048x1024": {
+          "median_ms": 37.9,
+          "p95_ms": 39.7,
+          "mean_ms": 37.9,
+          "fps_at_median": 26.4
+        }
+      }
+    },
+    "da2-metric-base": {
+      "gpu_at_start": {
+        "utilization_pct": 63,
+        "memory_used_mb": 1160,
+        "memory_total_mb": 8188,
+        "temperature_c": 58,
+        "sm_clock_mhz": 2775
+      },
+      "uses_our_focal_length": false,
+      "precision": "fp16",
+      "peak_gpu_memory_gb": 0.71,
+      "by_size": {
+        "KITTI 1242x375": {
+          "median_ms": 98.3,
+          "p95_ms": 102.4,
+          "mean_ms": 98.5,
+          "fps_at_median": 10.2
+        },
+        "nuScenes 1600x900": {
+          "median_ms": 56.2,
+          "p95_ms": 59.0,
+          "mean_ms": 56.3,
+          "fps_at_median": 17.8
+        },
+        "Lost and Found 2048x1024": {
+          "median_ms": 68.1,
+          "p95_ms": 72.0,
+          "mean_ms": 68.2,
+          "fps_at_median": 14.7
+        }
+      }
+    },
+    "da2-metric-large": {
+      "gpu_at_start": {
+        "utilization_pct": 73,
+        "memory_used_mb": 1165,
+        "memory_total_mb": 8188,
+        "temperature_c": 65,
+        "sm_clock_mhz": 2730
+      },
+      "uses_our_focal_length": false,
+      "precision": "fp16",
+      "peak_gpu_memory_gb": 1.52,
+      "by_size": {
+        "KITTI 1242x375": {
+          "median_ms": 264.5,
+          "p95_ms": 269.2,
+          "mean_ms": 264.6,
+          "fps_at_median": 3.8
+        },
+        "nuScenes 1600x900": {
+          "median_ms": 135.6,
+          "p95_ms": 140.0,
+          "mean_ms": 136.2,
+          "fps_at_median": 7.4
+        },
+        "Lost and Found 2048x1024": {
+          "median_ms": 156.5,
+          "p95_ms": 159.8,
+          "mean_ms": 156.5,
+          "fps_at_median": 6.4
+        }
+      }
+    },
+    "yolo26s-depth": {
+      "gpu_at_start": {
+        "utilization_pct": 59,
+        "memory_used_mb": 1157,
+        "memory_total_mb": 8188,
+        "temperature_c": 57,
+        "sm_clock_mhz": 2760
+      },
+      "uses_our_focal_length": false,
+      "precision": "fp16",
+      "peak_gpu_memory_gb": 0.1,
+      "by_size": {
+        "KITTI 1242x375": {
+          "median_ms": 10.8,
+          "p95_ms": 15.8,
+          "mean_ms": 11.8,
+          "fps_at_median": 92.9
+        },
+        "nuScenes 1600x900": {
+          "median_ms": 13.0,
+          "p95_ms": 19.9,
+          "mean_ms": 13.9,
+          "fps_at_median": 76.7
+        },
+        "Lost and Found 2048x1024": {
+          "median_ms": 13.7,
+          "p95_ms": 17.0,
+          "mean_ms": 14.0,
+          "fps_at_median": 73.1
+        }
+      }
+    }
+  },
+  "detector": {
+    "weights": "weights/yolo26s-seg.pt",
+    "imgsz": 1280,
+    "gpu_at_start": {
+      "utilization_pct": 0,
+      "memory_used_mb": 964,
+      "memory_total_mb": 8188,
+      "temperature_c": 57,
+      "sm_clock_mhz": 2505
+    },
+    "by_size": {
+      "KITTI 1242x375": {
+        "median_ms": 19.2,
+        "p95_ms": 28.8,
+        "mean_ms": 20.4,
+        "fps_at_median": 52.0
+      },
+      "nuScenes 1600x900": {
+        "median_ms": 29.3,
+        "p95_ms": 40.0,
+        "mean_ms": 30.1,
+        "fps_at_median": 34.1
+      },
+      "Lost and Found 2048x1024": {
+        "median_ms": 19.9,
+        "p95_ms": 24.1,
+        "mean_ms": 20.4,
+        "fps_at_median": 50.2
+      }
+    }
+  }
+}

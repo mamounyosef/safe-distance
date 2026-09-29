@@ -382,7 +382,7 @@ def run(ds: NuScenesMini, run_name: str, estimators: list) -> None:
     depth_model = None
     for b in backends.values():
         t = b.times_ms[1:] or b.times_ms
-        depth_model = {"name": b.name, "uses_our_focal_length": b.uses_focal_length,
+        depth_model = {"name": b.name, "uses_our_focal_length": b.uses_focal_length, "precision": b.precision,
                        "inference_ms_median": round(float(np.median(t)), 1),
                        "inference_ms_p95": round(float(np.percentile(t, 95)), 1)}
     save_run(build_results(rows, methods, len(ds.frames), n_labelled, provenance(), run_name, depth_model), rows)

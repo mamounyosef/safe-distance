@@ -61,6 +61,8 @@ class DepthBackend:
 
     name = "base"
     uses_focal_length = False
+    # The numeric precision inference actually runs in, for the reports.
+    precision = "fp32"
 
     def __init__(self) -> None:
         self._model = None
@@ -101,6 +103,7 @@ class HuggingFaceBackend(DepthBackend):
         self.name = name
         self.model_id = model_id
         self.uses_focal_length = pass_focal_length
+        self.precision = "fp16"
 
     def load(self) -> None:
         from transformers import AutoImageProcessor, AutoModelForDepthEstimation
@@ -140,10 +143,14 @@ class Metric3DBackend(DepthBackend):
     MEAN = torch.tensor([123.675, 116.28, 103.53]).view(3, 1, 1)
     STD = torch.tensor([58.395, 57.12, 57.375]).view(3, 1, 1)
 
-    def __init__(self, name: str, hub_name: str) -> None:
+    def __init__(self, name: str, hub_name: str, fp16: bool = False) -> None:
         super().__init__()
         self.name = name
         self.hub_name = hub_name
+        # The library runs in full FP32 precision; fp16=True wraps inference
+        # in automatic mixed precision (FP16), like UniDepth does internally.
+        self.fp16 = fp16
+        self.precision = "fp16 (autocast)" if fp16 else "fp32"
 
     def load(self) -> None:
         self._model = torch.hub.load("yvanyin/metric3d", self.hub_name, pretrain=True, trust_repo=True)
@@ -161,8 +168,9 @@ class Metric3DBackend(DepthBackend):
         rgb = cv2.copyMakeBorder(rgb, pad[0], pad[1], pad[2], pad[3], cv2.BORDER_CONSTANT,
                                  value=[123.675, 116.28, 103.53])
         x = (torch.from_numpy(rgb.transpose(2, 0, 1)).float() - self.MEAN) / self.STD
-        pred, _, _ = self._model.inference({"input": x[None].cuda()})
-        pred = pred[0, 0]
+        with torch.autocast(device_type="cuda", dtype=torch.float16, enabled=self.fp16):
+            pred, _, _ = self._model.inference({"input": x[None].cuda()})
+        pred = pred[0, 0].float()
         pred = pred[pad[0]: pred.shape[0] - pad[1], pad[2]: pred.shape[1] - pad[3]]
         depth = _resize_depth(pred, h, w)
         return depth * (focal / 1000.0)  # canonical camera -> our camera
@@ -172,6 +180,7 @@ class UniDepthBackend(DepthBackend):
     """UniDepth v2, given our camera's intrinsic matrix."""
 
     uses_focal_length = True
+    precision = "fp16 (library autocast)"
 
     def __init__(self, name: str, model_id: str) -> None:
         super().__init__()
@@ -200,6 +209,7 @@ class DepthAnything3MetricBackend(DepthBackend):
     """
 
     uses_focal_length = True
+    precision = "bf16 or fp16 (library autocast)"
 
     def __init__(self, name: str = "da3-metric-large", model_id: str = "depth-anything/DA3METRIC-LARGE") -> None:
         super().__init__()
@@ -223,6 +233,8 @@ class DepthAnything3MetricBackend(DepthBackend):
 
 class YoloDepthBackend(DepthBackend):
     """YOLO26-depth through Ultralytics, used as shipped (no calibration)."""
+
+    precision = "fp16"
 
     def __init__(self, name: str = "yolo26s-depth", weights: str = "weights/yolo26s-depth.pt",
                  imgsz: int = 768) -> None:
@@ -249,6 +261,8 @@ BACKENDS = {
     "depth-pro": lambda: HuggingFaceBackend("depth-pro", "apple/DepthPro-hf", pass_focal_length=True),
     "metric3d-v2-small": lambda: Metric3DBackend("metric3d-v2-small", "metric3d_vit_small"),
     "metric3d-v2-large": lambda: Metric3DBackend("metric3d-v2-large", "metric3d_vit_large"),
+    "metric3d-v2-small-fp16": lambda: Metric3DBackend("metric3d-v2-small-fp16", "metric3d_vit_small", fp16=True),
+    "metric3d-v2-large-fp16": lambda: Metric3DBackend("metric3d-v2-large-fp16", "metric3d_vit_large", fp16=True),
     "unidepth-v2-small": lambda: UniDepthBackend("unidepth-v2-small", "lpiccinelli/unidepth-v2-vits14"),
     "unidepth-v2-base": lambda: UniDepthBackend("unidepth-v2-base", "lpiccinelli/unidepth-v2-vitb14"),
     "unidepth-v2-large": lambda: UniDepthBackend("unidepth-v2-large", "lpiccinelli/unidepth-v2-vitl14"),
