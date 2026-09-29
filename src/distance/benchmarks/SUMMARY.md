@@ -2,7 +2,7 @@
 
 Generated automatically by `summarize_distance.py` from each benchmark's `results.json`
 (the exact source file of every number is listed in `summary.json`). Do not edit by hand.
-Generated at git commit `a44a1a5`, 2026-09-29T15:35:52+00:00 UTC.
+Generated at git commit `afa2151`, 2026-09-29T16:08:19+00:00 UTC.
 
 All accuracy figures are the share of objects whose estimated distance is within 10% of the
 true distance to their nearest surface (laser ground truth; stereo for Lost and Found).
@@ -15,8 +15,8 @@ true distance to their nearest surface (laser ground truth; stereo for Lost and 
 | Metric3D v2 Large FP16 | 92% | 84% | 69% | 81% | 39% | 57% |
 | UniDepth v2 Base | 90% | 31% | 83% | 87% | 71% | 64% |
 | UniDepth v2 Large | 90% | 66% | 85% | 86% | 81% | 62% |
-| UniDepth v2 Base, camera not given | - | - | - | - | - | - |
-| UniDepth v2 Large, camera not given | - | - | - | - | - | - |
+| UniDepth v2 Base, camera not given | 64% | 19% | 52% | 57% | 41% | - |
+| UniDepth v2 Large, camera not given | 77% | 44% | 64% | 71% | 47% | - |
 | min(Metric3D v2 Large, UniDepth v2 Large) | 90% | 89% | 90% | 94% | 81% | 54% |
 | Known size (geometric) | 77% | - | 52% | 51% | 55% | - |
 | Ground plane (geometric) | 46% | 41% | 24% | 13% | 47% | 47% |
@@ -33,8 +33,8 @@ the focal length given is 10% too low / too high.
 | Metric3D v2 Large FP16 | 1.1% | 3.05 m/s | 1.02 m/s | 356.5 | 71% | 29% | - | BSD-2-Clause |
 | UniDepth v2 Base | 1.1% | 3.15 m/s | 1.12 m/s | 111.2 | - | - | - | CC BY-NC 4.0 (non-commercial) |
 | UniDepth v2 Large | 1.0% | 3.25 m/s | 1.16 m/s | 214.1 | - | - | - | CC BY-NC 4.0 (non-commercial) |
-| UniDepth v2 Base, camera not given | - | - | - | 111.2 | - | - | - | CC BY-NC 4.0 (non-commercial) |
-| UniDepth v2 Large, camera not given | - | - | - | 214.1 | - | - | - | CC BY-NC 4.0 (non-commercial) |
+| UniDepth v2 Base, camera not given | - | - | - | 111.2 | - | - | 1369.7 | CC BY-NC 4.0 (non-commercial) |
+| UniDepth v2 Large, camera not given | - | - | - | 214.1 | - | - | 1328.7 | CC BY-NC 4.0 (non-commercial) |
 | min(Metric3D v2 Large, UniDepth v2 Large) | - | - | - | 570.6 | - | - | - | CC BY-NC 4.0 (UniDepth part) |
 | Known size (geometric) | 1.1% | 3.95 m/s | 0.97 m/s | 0.0 | 46% | 46% | - | own code |
 | Ground plane (geometric) | 1.6% | 15.37 m/s | 7.31 m/s | 0.0 | - | - | - | own code |
