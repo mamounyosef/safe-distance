@@ -324,3 +324,65 @@ def depth_estimators(backend_name: str) -> list[DepthModelEstimator]:
     """One estimator per statistic, all sharing one backend (one inference per frame)."""
     backend = BACKENDS[backend_name]()
     return [DepthModelEstimator(backend, s) for s in STATISTICS]
+
+
+# Image enhancements for dark scenes, applied to the image the depth model
+# sees (never to the detector's). In the car, an ambient light sensor, the
+# one that switches on automatic headlights, would decide when to use them.
+def _clahe(frame: np.ndarray, clip: float) -> np.ndarray:
+    """CLAHE (Contrast-Limited Adaptive Histogram Equalization) on lightness only,
+    so colours are kept; clip limits how much noise gets amplified."""
+    lab = cv2.cvtColor(frame, cv2.COLOR_BGR2LAB)
+    lab[:, :, 0] = cv2.createCLAHE(clipLimit=clip, tileGridSize=(8, 8)).apply(lab[:, :, 0])
+    return cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
+
+
+def _gamma(frame: np.ndarray, gamma: float) -> np.ndarray:
+    """Gamma below 1 lifts dark tones strongly and bright tones only slightly."""
+    lut = (255.0 * (np.arange(256) / 255.0) ** gamma).clip(0, 255).astype(np.uint8)
+    return cv2.LUT(frame, lut)
+
+
+ENHANCEMENTS = {
+    "clahe2": lambda f: _clahe(f, 2.0),
+    "clahe4": lambda f: _clahe(f, 4.0),
+    "gamma06": lambda f: _gamma(f, 0.6),
+    "gamma06-clahe2": lambda f: _clahe(_gamma(f, 0.6), 2.0),
+    # Plain brightness and contrast: out = 1.4 * in + 25, clipped to 0-255.
+    "bright-contrast": lambda f: cv2.convertScaleAbs(f, alpha=1.4, beta=25),
+}
+
+
+class EnhancedBackend(DepthBackend):
+    """A depth backend that enhances each image before the model sees it."""
+
+    def __init__(self, base: DepthBackend, enhancement: str) -> None:
+        super().__init__()
+        self.base = base
+        self.enhancement = enhancement
+        self.name = f"{base.name}+{enhancement}"
+        self.uses_focal_length = base.uses_focal_length
+        self.precision = base.precision
+        self._enhance = ENHANCEMENTS[enhancement]
+
+    def load(self) -> None:
+        self._model = True  # the base backend loads itself on first use
+
+    def _predict(self, frame: np.ndarray, camera: Camera) -> np.ndarray:
+        return self.base._predict_loaded(self._enhance(frame), camera)
+
+
+def _predict_loaded(self: DepthBackend, frame: np.ndarray, camera: Camera) -> np.ndarray:
+    """Predict without timing or caching (the wrapper does both), loading first if needed."""
+    if self._model is None:
+        self.load()
+    return self._predict(frame, camera)
+
+
+DepthBackend._predict_loaded = _predict_loaded
+
+
+def enhanced_depth_estimators(backend_name: str, enhancement: str) -> list[DepthModelEstimator]:
+    """Like depth_estimators, with the image enhanced before the model sees it."""
+    backend = EnhancedBackend(BACKENDS[backend_name](), enhancement)
+    return [DepthModelEstimator(backend, s) for s in STATISTICS]
