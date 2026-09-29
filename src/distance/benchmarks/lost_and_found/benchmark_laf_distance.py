@@ -117,6 +117,27 @@ RANK_RANGE_M = (0, 20)
 # Where run folders are written: results/ next to this file.
 OUT_DIR = Path(__file__).resolve().parent / "results"
 
+# Realistic runs: the real pipeline. The detector finds the obstacles, and
+# each estimator only gets the detector's mask of the obstacles it found, not
+# the labelled outline. Shows how many obstacles survive detection AND how
+# accurate the distance is for those. Written to their own folder and
+# comparison. YOLOE with road prompts is the detector: on Lost and Found it
+# finds far more obstacles than YOLO26 (see the detection benchmark).
+DETECTED_RUNS = [
+    ("geometric_detected", "geometric", 1),
+    ("metric3d-v2-small-fp16_detected", "metric3d-v2-small-fp16", 1),
+    ("metric3d-v2-large-fp16_detected", "metric3d-v2-large-fp16", 1),
+    ("unidepth-v2-base_detected", "unidepth-v2-base", 1),
+    ("unidepth-v2-large_detected", "unidepth-v2-large", 1),
+]
+DETECTED_OUT_DIR = Path(__file__).resolve().parent / "results_detected"
+DETECTOR_WEIGHTS = "weights/yoloe-11s-seg.pt"
+DETECTOR_IMGSZ = 1280
+DETECTOR_CONF = 0.05
+# A detection finds an obstacle if their boxes overlap with IoU (Intersection
+# over Union) of at least this; same rule as the detection benchmark.
+DETECTION_MIN_IOU = 0.3
+
 # True: skip runs whose results.json already exists (resume a batch).
 SKIP_EXISTING = True
 
@@ -244,8 +265,92 @@ def run(frames: list[Path], run_name: str, estimators: list, frame_step: int) ->
     save_run(results, rows)
 
 
+def greedy_match(boxes_a: list[tuple], boxes_b: list[tuple], min_iou: float) -> dict[int, int]:
+    """One-to-one matching of boxes_a to boxes_b by descending IoU."""
+    from src.detection.benchmarks.common import iou
+
+    pairs = sorted(((iou(a, b), i, j) for i, a in enumerate(boxes_a) for j, b in enumerate(boxes_b)), reverse=True)
+    used_a, used_b, out = set(), set(), {}
+    for o, i, j in pairs:
+        if o < min_iou:
+            break
+        if i not in used_a and j not in used_b:
+            out[i] = j
+            used_a.add(i)
+            used_b.add(j)
+    return out
+
+
+def run_detected(frames: list[Path], run_name: str, estimators: list, frame_step: int) -> None:
+    """The real pipeline: estimators get the detector's masks of found obstacles."""
+    from src.detection.detector import Detector
+
+    detector = Detector(weights=DETECTOR_WEIGHTS, conf=DETECTOR_CONF, imgsz=DETECTOR_IMGSZ)
+    methods = [e.name for e in estimators]
+    rows, skipped_no_depth, labelled = [], 0, 0
+    for i, path in enumerate(frames, 1):
+        stem = path.name.replace("_leftImg8bit.png", "")
+        scene = path.parent.name
+        img = cv2.imread(str(path))
+        camera = Camera.from_lost_and_found(DATA / "camera" / "test" / scene / f"{stem}_camera.json")
+        labels = json.loads((DATA / "gtCoarse" / "test" / scene / f"{stem}_gtCoarse_polygons.json").read_text())
+        stereo = disparity_to_depth(
+            cv2.imread(str(DATA / "disparity" / "test" / scene / f"{stem}_disparity.png"), cv2.IMREAD_UNCHANGED),
+            camera.fx, BASELINE_M,
+        )
+        objects = []
+        for obj in labels["objects"]:
+            if obj["label"] not in TYPES or obj["label"] in NON_HAZARD_LABELS:
+                continue
+            truth = stereo[polygon_mask(obj["polygon"], img.shape[:2])]
+            truth = truth[np.isfinite(truth)]
+            if truth.size == 0:
+                skipped_no_depth += 1
+                continue
+            objects.append((obj, float(np.median(truth)), outline_detection(obj["polygon"])))
+        labelled += len(objects)
+
+        dets = detector.detect(img)
+        matches = greedy_match([(o[2].x1, o[2].y1, o[2].x2, o[2].y2) for o in objects],
+                               [(d.x1, d.y1, d.x2, d.y2) for d in dets], DETECTION_MIN_IOU)
+        matched = sorted(matches.items())
+        chosen = [dets[j] for _, j in matched]
+        estimates = {e.name: e.estimate(img, chosen, camera) for e in estimators}
+        for k, (oi, j) in enumerate(matched):
+            obj, true_m, outline = objects[oi]
+            obstacle_type, group = TYPES[obj["label"]]
+            rows.append({
+                "frame": stem,
+                "label": obj["label"],
+                "type": obstacle_type,
+                "group": group,
+                "predicted_class": dets[j].class_name,
+                "box_height_px": round(outline.y2 - outline.y1, 1),
+                "true_m": round(true_m, 2),
+                **{m: (None if estimates[m][k] is None else round(estimates[m][k], 2)) for m in methods},
+            })
+        if i % 100 == 0 or i == len(frames):
+            print(f"  {i}/{len(frames)} frames, {len(rows)} of {labelled} obstacles detected", flush=True)
+
+    backends = {id(e.backend): e.backend for e in estimators if hasattr(e, "backend")}
+    depth_model = None
+    for b in backends.values():
+        t = b.times_ms[1:] or b.times_ms
+        depth_model = {"name": b.name, "uses_our_focal_length": b.uses_focal_length, "precision": b.precision,
+                       "inference_ms_median": round(float(np.median(t)), 1),
+                       "inference_ms_p95": round(float(np.percentile(t, 95)), 1)}
+    detector_info = {"weights": DETECTOR_WEIGHTS, "imgsz": DETECTOR_IMGSZ, "conf": DETECTOR_CONF,
+                     "min_iou": DETECTION_MIN_IOU, "prompts": detector.prompts}
+    results = build_results(rows, methods, len(frames), skipped_no_depth, provenance(), run_name, depth_model,
+                            frame_step, "the detector's mask of each obstacle it found (real pipeline)",
+                            labelled, detector_info)
+    save_run(results, rows, DETECTED_OUT_DIR)
+
+
 def build_results(rows: list[dict], methods: list[str], n_frames: int, skipped: int, prov: dict,
-                  run_name: str, depth_model: dict | None, frame_step: int) -> dict:
+                  run_name: str, depth_model: dict | None, frame_step: int,
+                  estimator_input: str = "the labelled outline (distance quality only, independent of detection)",
+                  labelled: int | None = None, detector: dict | None = None) -> dict:
     band_order = [band_name(lo, hi) for lo, hi in BANDS]
     lo, hi = RANK_RANGE_M
     ranked = [r for r in rows if lo <= r["true_m"] < hi]
@@ -264,7 +369,10 @@ def build_results(rows: list[dict], methods: list[str], n_frames: int, skipped: 
             "obstacles_skipped_no_stereo_depth": skipped,
             "excluded_labels": "random non-hazards (30, 32, 33, 35-38), per the dataset definition",
             "ground_truth": "median stereo depth inside the labelled outline",
-            "estimator_input": "the labelled outline (distance quality only, independent of detection)",
+            "estimator_input": estimator_input,
+            "labelled_obstacles": labelled if labelled is not None else len(rows),
+            "detected_share": round(len(rows) / labelled, 4) if labelled else None,
+            "detector": detector,
         },
         "config": {
             "run_name": run_name,
@@ -286,8 +394,8 @@ def build_results(rows: list[dict], methods: list[str], n_frames: int, skipped: 
     }
 
 
-def save_run(results: dict, rows: list[dict]) -> None:
-    run_dir = OUT_DIR / results["config"]["run_name"]
+def save_run(results: dict, rows: list[dict], out_dir: Path = OUT_DIR) -> None:
+    run_dir = out_dir / results["config"]["run_name"]
     run_dir.mkdir(parents=True, exist_ok=True)
     (run_dir / "results.json").write_text(json.dumps(results, indent=2))
     with (run_dir / "obstacles.csv").open("w", newline="") as f:
@@ -316,8 +424,11 @@ def rescore(run_dir: Path) -> None:
     results = build_results(rows, methods, old["dataset"]["frames"],
                             old["dataset"]["obstacles_skipped_no_stereo_depth"], prov,
                             old["config"]["run_name"], old["config"].get("depth_model"),
-                            old["dataset"]["frame_step"])
-    save_run(results, rows)
+                            old["dataset"]["frame_step"],
+                            old["dataset"].get("estimator_input",
+                                               "the labelled outline (distance quality only, independent of detection)"),
+                            old["dataset"].get("labelled_obstacles"), old["dataset"].get("detector"))
+    save_run(results, rows, run_dir.parent)
 
 
 def fmt_pct(v) -> str:
@@ -367,6 +478,11 @@ def write_report(run_dir: Path) -> None:
             ["Excluded", ds["excluded_labels"]],
             ["Ground truth", ds["ground_truth"]],
             ["Estimator input", ds["estimator_input"]],
+            *([["Detector", f"`{ds['detector']['weights']}`, input size {ds['detector']['imgsz']}, "
+                            f"confidence {ds['detector']['conf']}, match IoU >= {ds['detector']['min_iou']}"],
+               ["Detected", f"{ds['obstacles']} of {ds['labelled_obstacles']} labelled obstacles "
+                            f"({ds['detected_share']:.0%}); statistics cover the detected ones"]]
+              if ds.get("detector") else []),
             ["Hardware", prov["gpu"]],
             ["Software", f"Python {prov['python']}, torch {prov['torch']}, ultralytics {prov['ultralytics']}"],
             ["Git commit", f"`{prov['git_commit']}`{dirty}"],
@@ -406,10 +522,11 @@ def write_report(run_dir: Path) -> None:
     (run_dir / "RESULTS.md").write_text("\n".join(out))
 
 
-def write_comparison() -> None:
-    """Generate COMPARISON.md: every (run, estimator), ranked by accuracy under 20 m."""
+def write_comparison(out_dir: Path = OUT_DIR, file_name: str = "COMPARISON.md",
+                     title: str = "Lost and Found distance benchmark: comparison") -> None:
+    """Generate the comparison: every (run, estimator), ranked by accuracy under 20 m."""
     runs = {p.name: json.loads((p / "results.json").read_text())
-            for p in sorted(OUT_DIR.iterdir()) if (p / "results.json").exists()}
+            for p in sorted(out_dir.iterdir()) if (p / "results.json").exists()}
     if not runs:
         return
     band_names = [band_name(lo, hi) for lo, hi in BANDS]
@@ -430,7 +547,7 @@ def write_comparison() -> None:
               f"Median error (m), {lo}-{hi} m", *[f"Within 10%, {b}" for b in band_names],
               "Within 10%, all", "Depth model ms"]
     out = [
-        "# Lost and Found distance benchmark: comparison",
+        f"# {title}",
         "",
         "Generated automatically from every `results/<run>/results.json` by `benchmark_laf_distance.py`. "
         "Do not edit by hand. Each run's full results are in `results/<run>/RESULTS.md`.",
@@ -441,39 +558,45 @@ def write_comparison() -> None:
         "",
         *md_table(header, [[i, *row] for i, (_, row) in enumerate(rows, 1)]),
     ]
-    path = OUT_DIR.parent / "COMPARISON.md"
+    path = out_dir.parent / file_name
     path.write_text("\n".join(out))
     print(f"regenerated {path}")
 
 
 def main() -> None:
-    if RESCORE_ONLY:
-        for run_dir in sorted(p for p in OUT_DIR.iterdir() if (p / "obstacles.csv").exists()):
-            rescore(run_dir)
-        write_comparison()
-        return
-    if REPORT_ONLY:
-        for run_dir in sorted(p for p in OUT_DIR.iterdir() if (p / "results.json").exists()):
-            write_report(run_dir)
-        write_comparison()
+    folders = [(OUT_DIR, "COMPARISON.md", "Lost and Found distance benchmark: comparison"),
+               (DETECTED_OUT_DIR, "COMPARISON_DETECTED.md",
+                "Lost and Found distance benchmark: real pipeline (detector masks)")]
+    if RESCORE_ONLY or REPORT_ONLY:
+        for out_dir, file_name, title in folders:
+            if not out_dir.exists():
+                continue
+            for run_dir in sorted(p for p in out_dir.iterdir() if (p / "results.json").exists()):
+                if RESCORE_ONLY:
+                    rescore(run_dir)
+                else:
+                    write_report(run_dir)
+            write_comparison(out_dir, file_name, title)
         return
 
     import torch
 
-    for run_name, set_name, frame_step in RUNS:
-        if SKIP_EXISTING and (OUT_DIR / run_name / "results.json").exists():
-            print(f"=== {run_name}: already done, skipped ===")
-            continue
-        frames = list_frames(frame_step)
-        print(f"=== {run_name} ({len(frames)} frames) ===", flush=True)
-        t0 = time.perf_counter()
-        estimators = estimator_set(set_name)
-        run(frames, run_name, estimators, frame_step)
-        estimators = None
-        gc.collect()
-        torch.cuda.empty_cache()
-        write_comparison()
-        print(f"  took {time.perf_counter() - t0:.0f} s", flush=True)
+    groups = [(RUNS, OUT_DIR, run, folders[0]), (DETECTED_RUNS, DETECTED_OUT_DIR, run_detected, folders[1])]
+    for runs, out_dir, runner, (_, file_name, title) in groups:
+        for run_name, set_name, frame_step in runs:
+            if SKIP_EXISTING and (out_dir / run_name / "results.json").exists():
+                print(f"=== {out_dir.name}/{run_name}: already done, skipped ===")
+                continue
+            frames = list_frames(frame_step)
+            print(f"=== {out_dir.name}/{run_name} ({len(frames)} frames) ===", flush=True)
+            t0 = time.perf_counter()
+            estimators = estimator_set(set_name)
+            runner(frames, run_name, estimators, frame_step)
+            estimators = None
+            gc.collect()
+            torch.cuda.empty_cache()
+            write_comparison(out_dir, file_name, title)
+            print(f"  took {time.perf_counter() - t0:.0f} s", flush=True)
 
 
 if __name__ == "__main__":
