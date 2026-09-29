@@ -2,24 +2,24 @@
 
 Generated automatically by `summarize_distance.py` from each benchmark's `results.json`
 (the exact source file of every number is listed in `summary.json`). Do not edit by hand.
-Generated at git commit `afa2151`, 2026-09-29T16:08:19+00:00 UTC.
+Generated at git commit `2c59c75`, 2026-09-29T16:41:41+00:00 UTC.
 
 All accuracy figures are the share of objects whose estimated distance is within 10% of the
 true distance to their nearest surface (laser ground truth; stereo for Lost and Found).
 
 ## Accuracy
 
-| Candidate | KITTI road users, in path | Lost and Found obstacles, under 20 m | nuScenes in path | nuScenes day | nuScenes night | nuScenes cones and barriers |
-| --- | --- | --- | --- | --- | --- | --- |
-| Metric3D v2 Small FP16 | 88% | 76% | 76% | 85% | 55% | 33% |
-| Metric3D v2 Large FP16 | 92% | 84% | 69% | 81% | 39% | 57% |
-| UniDepth v2 Base | 90% | 31% | 83% | 87% | 71% | 64% |
-| UniDepth v2 Large | 90% | 66% | 85% | 86% | 81% | 62% |
-| UniDepth v2 Base, camera not given | 64% | 19% | 52% | 57% | 41% | - |
-| UniDepth v2 Large, camera not given | 77% | 44% | 64% | 71% | 47% | - |
-| min(Metric3D v2 Large, UniDepth v2 Large) | 90% | 89% | 90% | 94% | 81% | 54% |
-| Known size (geometric) | 77% | - | 52% | 51% | 55% | - |
-| Ground plane (geometric) | 46% | 41% | 24% | 13% | 47% | 47% |
+| Candidate | KITTI road users, in path | Lost and Found obstacles, under 20 m | Lost and Found, real pipeline (detector masks), under 20 m | nuScenes in path | nuScenes day | nuScenes night | nuScenes cones and barriers |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Metric3D v2 Small FP16 | 88% | 76% | 75% | 76% | 85% | 55% | 33% |
+| Metric3D v2 Large FP16 | 92% | 84% | 83% | 69% | 81% | 39% | 57% |
+| UniDepth v2 Base | 90% | 31% | 26% | 83% | 87% | 71% | 64% |
+| UniDepth v2 Large | 90% | 66% | 62% | 85% | 86% | 81% | 62% |
+| UniDepth v2 Base, camera not given | 64% | 19% | - | 52% | 57% | 41% | - |
+| UniDepth v2 Large, camera not given | 77% | 44% | - | 64% | 71% | 47% | - |
+| min(Metric3D v2 Large, UniDepth v2 Large) | 90% | 89% | - | 90% | 94% | 81% | 54% |
+| Known size (geometric) | 77% | - | - | 52% | 51% | 55% | - |
+| Ground plane (geometric) | 46% | 41% | 35% | 24% | 13% | 47% | 47% |
 
 ## Stability, speed, robustness, licence
 
@@ -42,7 +42,8 @@ the focal length given is 10% too low / too high.
 ## Where each benchmark is
 
 - KITTI accuracy: `src/distance/benchmarks/kitti/COMPARISON.md`
-- Lost and Found obstacles: `src/distance/benchmarks/lost_and_found/COMPARISON.md`
+- Lost and Found obstacles: `src/distance/benchmarks/lost_and_found/COMPARISON.md` (labelled outlines)
+  and `COMPARISON_DETECTED.md` (real pipeline: YOLOE detections and masks)
 - nuScenes: `src/distance/benchmarks/nuscenes/COMPARISON.md` and `COMPARISON_OBSTACLES.md`
 - Stability: `src/distance/benchmarks/kitti_tracking/COMPARISON.md`
 - Speed: `src/distance/benchmarks/speed/results/`

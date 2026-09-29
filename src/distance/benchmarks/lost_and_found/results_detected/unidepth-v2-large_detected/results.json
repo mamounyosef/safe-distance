@@ -1,0 +1,449 @@
+{
+  "benchmark": "lost_and_found_distance",
+  "provenance": {
+    "created_utc": "2026-09-29T16:39:22+00:00",
+    "git_commit": "2c59c75",
+    "git_uncommitted_changes": true,
+    "python": "3.12.0",
+    "torch": "2.6.0+cu124",
+    "ultralytics": "8.4.155",
+    "gpu": "NVIDIA GeForce RTX 4060"
+  },
+  "dataset": {
+    "name": "Lost and Found",
+    "source": "https://huggingface.co/datasets/kumuji/lost_and_found",
+    "split": "test",
+    "scenes": [
+      "02_Hanns_Klemm_Str_44",
+      "04_Maurener_Weg_8",
+      "05_Schafgasse_1",
+      "07_Festplatz_Flugfeld",
+      "15_Rechbergstr_Deckenpfronn"
+    ],
+    "frames": 1203,
+    "frame_step": 1,
+    "obstacles": 718,
+    "obstacles_skipped_no_stereo_depth": 0,
+    "excluded_labels": "random non-hazards (30, 32, 33, 35-38), per the dataset definition",
+    "ground_truth": "median stereo depth inside the labelled outline",
+    "estimator_input": "the detector's mask of each obstacle it found (real pipeline)",
+    "labelled_obstacles": 1724,
+    "detected_share": 0.4165,
+    "detector": {
+      "weights": "weights/yoloe-11s-seg.pt",
+      "imgsz": 1280,
+      "conf": 0.05,
+      "min_iou": 0.3,
+      "prompts": [
+        "car",
+        "van",
+        "truck",
+        "bus",
+        "motorcycle",
+        "bicycle",
+        "person",
+        "traffic cone",
+        "construction barrier",
+        "traffic barricade",
+        "animal",
+        "dog",
+        "cat",
+        "ball",
+        "obstacle",
+        "box",
+        "bucket"
+      ]
+    }
+  },
+  "config": {
+    "run_name": "unidepth-v2-large_detected",
+    "depth_model": {
+      "name": "unidepth-v2-large",
+      "uses_our_focal_length": true,
+      "precision": "fp16 (library autocast)",
+      "inference_ms_median": 226.6,
+      "inference_ms_p95": 238.6
+    },
+    "estimators": [
+      "unidepth-v2-large_median",
+      "unidepth-v2-large_p10",
+      "unidepth-v2-large_p25"
+    ],
+    "distance_bands_m": [
+      [
+        0,
+        10
+      ],
+      [
+        10,
+        20
+      ],
+      [
+        20,
+        30
+      ],
+      [
+        30,
+        50
+      ],
+      [
+        50,
+        1000
+      ]
+    ],
+    "rank_range_m": [
+      0,
+      20
+    ]
+  },
+  "methods": {
+    "unidepth-v2-large_median": {
+      "overall": {
+        "obstacles": 718,
+        "answered": 718,
+        "coverage": 1.0,
+        "median_abs_error_m": 1.41,
+        "mean_abs_error_m": 2.93,
+        "mean_rel_error": 0.0978,
+        "within_10pct": 0.5919,
+        "bias": 0.0435
+      },
+      "rank_range": {
+        "obstacles": 310,
+        "answered": 310,
+        "coverage": 1.0,
+        "median_abs_error_m": 1.08,
+        "mean_abs_error_m": 1.2,
+        "mean_rel_error": 0.1057,
+        "within_10pct": 0.5452,
+        "bias": 0.1032
+      },
+      "by_distance": {
+        "0-10 m": {
+          "obstacles": 87,
+          "answered": 87,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.28,
+          "mean_abs_error_m": 1.32,
+          "mean_rel_error": 0.1651,
+          "within_10pct": 0.1954,
+          "bias": 0.1651
+        },
+        "10-20 m": {
+          "obstacles": 223,
+          "answered": 223,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.03,
+          "mean_abs_error_m": 1.15,
+          "mean_rel_error": 0.0825,
+          "within_10pct": 0.6816,
+          "bias": 0.079
+        },
+        "20-30 m": {
+          "obstacles": 137,
+          "answered": 137,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.16,
+          "mean_abs_error_m": 1.47,
+          "mean_rel_error": 0.0595,
+          "within_10pct": 0.8613,
+          "bias": -0.0024
+        },
+        "30-50 m": {
+          "obstacles": 155,
+          "answered": 155,
+          "coverage": 1.0,
+          "median_abs_error_m": 2.35,
+          "mean_abs_error_m": 3.4,
+          "mean_rel_error": 0.0865,
+          "within_10pct": 0.6581,
+          "bias": -0.0336
+        },
+        "50+ m": {
+          "obstacles": 116,
+          "answered": 116,
+          "coverage": 1.0,
+          "median_abs_error_m": 8.04,
+          "mean_abs_error_m": 8.64,
+          "mean_rel_error": 0.1372,
+          "within_10pct": 0.3103,
+          "bias": 0.0411
+        }
+      },
+      "by_group": {
+        "emotional hazards": {
+          "obstacles": 203,
+          "answered": 203,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.36,
+          "mean_abs_error_m": 3.02,
+          "mean_rel_error": 0.1075,
+          "within_10pct": 0.5911,
+          "bias": 0.0192
+        },
+        "random hazards": {
+          "obstacles": 202,
+          "answered": 202,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.39,
+          "mean_abs_error_m": 2.95,
+          "mean_rel_error": 0.1019,
+          "within_10pct": 0.5644,
+          "bias": 0.0237
+        },
+        "humans": {
+          "obstacles": 171,
+          "answered": 171,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.58,
+          "mean_abs_error_m": 3.38,
+          "mean_rel_error": 0.0709,
+          "within_10pct": 0.6725,
+          "bias": 0.0668
+        },
+        "standard objects": {
+          "obstacles": 142,
+          "answered": 142,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.35,
+          "mean_abs_error_m": 2.21,
+          "mean_rel_error": 0.1105,
+          "within_10pct": 0.5352,
+          "bias": 0.0781
+        }
+      }
+    },
+    "unidepth-v2-large_p10": {
+      "overall": {
+        "obstacles": 718,
+        "answered": 718,
+        "coverage": 1.0,
+        "median_abs_error_m": 1.32,
+        "mean_abs_error_m": 2.73,
+        "mean_rel_error": 0.0912,
+        "within_10pct": 0.6407,
+        "bias": 0.0183
+      },
+      "rank_range": {
+        "obstacles": 310,
+        "answered": 310,
+        "coverage": 1.0,
+        "median_abs_error_m": 0.96,
+        "mean_abs_error_m": 1.07,
+        "mean_rel_error": 0.0943,
+        "within_10pct": 0.6226,
+        "bias": 0.0899
+      },
+      "by_distance": {
+        "0-10 m": {
+          "obstacles": 87,
+          "answered": 87,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.11,
+          "mean_abs_error_m": 1.19,
+          "mean_rel_error": 0.1492,
+          "within_10pct": 0.2529,
+          "bias": 0.1492
+        },
+        "10-20 m": {
+          "obstacles": 223,
+          "answered": 223,
+          "coverage": 1.0,
+          "median_abs_error_m": 0.89,
+          "mean_abs_error_m": 1.01,
+          "mean_rel_error": 0.0728,
+          "within_10pct": 0.7668,
+          "bias": 0.0668
+        },
+        "20-30 m": {
+          "obstacles": 137,
+          "answered": 137,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.24,
+          "mean_abs_error_m": 1.52,
+          "mean_rel_error": 0.061,
+          "within_10pct": 0.8467,
+          "bias": -0.0201
+        },
+        "30-50 m": {
+          "obstacles": 155,
+          "answered": 155,
+          "coverage": 1.0,
+          "median_abs_error_m": 2.64,
+          "mean_abs_error_m": 3.5,
+          "mean_rel_error": 0.0892,
+          "within_10pct": 0.6194,
+          "bias": -0.0636
+        },
+        "50+ m": {
+          "obstacles": 116,
+          "answered": 116,
+          "coverage": 1.0,
+          "median_abs_error_m": 6.42,
+          "mean_abs_error_m": 7.59,
+          "mean_rel_error": 0.121,
+          "within_10pct": 0.4741,
+          "bias": -0.0181
+        }
+      },
+      "by_group": {
+        "emotional hazards": {
+          "obstacles": 203,
+          "answered": 203,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.37,
+          "mean_abs_error_m": 2.9,
+          "mean_rel_error": 0.1015,
+          "within_10pct": 0.5813,
+          "bias": -0.003
+        },
+        "random hazards": {
+          "obstacles": 202,
+          "answered": 202,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.35,
+          "mean_abs_error_m": 3.17,
+          "mean_rel_error": 0.1018,
+          "within_10pct": 0.5644,
+          "bias": -0.0114
+        },
+        "humans": {
+          "obstacles": 171,
+          "answered": 171,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.33,
+          "mean_abs_error_m": 2.42,
+          "mean_rel_error": 0.053,
+          "within_10pct": 0.8421,
+          "bias": 0.0402
+        },
+        "standard objects": {
+          "obstacles": 142,
+          "answered": 142,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.27,
+          "mean_abs_error_m": 2.23,
+          "mean_rel_error": 0.1072,
+          "within_10pct": 0.5915,
+          "bias": 0.0647
+        }
+      }
+    },
+    "unidepth-v2-large_p25": {
+      "overall": {
+        "obstacles": 718,
+        "answered": 718,
+        "coverage": 1.0,
+        "median_abs_error_m": 1.36,
+        "mean_abs_error_m": 2.75,
+        "mean_rel_error": 0.093,
+        "within_10pct": 0.6198,
+        "bias": 0.0266
+      },
+      "rank_range": {
+        "obstacles": 310,
+        "answered": 310,
+        "coverage": 1.0,
+        "median_abs_error_m": 1.01,
+        "mean_abs_error_m": 1.11,
+        "mean_rel_error": 0.0984,
+        "within_10pct": 0.5935,
+        "bias": 0.0948
+      },
+      "by_distance": {
+        "0-10 m": {
+          "obstacles": 87,
+          "answered": 87,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.16,
+          "mean_abs_error_m": 1.24,
+          "mean_rel_error": 0.1551,
+          "within_10pct": 0.2299,
+          "bias": 0.1551
+        },
+        "10-20 m": {
+          "obstacles": 223,
+          "answered": 223,
+          "coverage": 1.0,
+          "median_abs_error_m": 0.96,
+          "mean_abs_error_m": 1.06,
+          "mean_rel_error": 0.0762,
+          "within_10pct": 0.7354,
+          "bias": 0.0713
+        },
+        "20-30 m": {
+          "obstacles": 137,
+          "answered": 137,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.22,
+          "mean_abs_error_m": 1.5,
+          "mean_rel_error": 0.0603,
+          "within_10pct": 0.8467,
+          "bias": -0.0146
+        },
+        "30-50 m": {
+          "obstacles": 155,
+          "answered": 155,
+          "coverage": 1.0,
+          "median_abs_error_m": 2.6,
+          "mean_abs_error_m": 3.47,
+          "mean_rel_error": 0.0886,
+          "within_10pct": 0.6258,
+          "bias": -0.0526
+        },
+        "50+ m": {
+          "obstacles": 116,
+          "answered": 116,
+          "coverage": 1.0,
+          "median_abs_error_m": 6.93,
+          "mean_abs_error_m": 7.67,
+          "mean_rel_error": 0.123,
+          "within_10pct": 0.4138,
+          "bias": -0.0013
+        }
+      },
+      "by_group": {
+        "emotional hazards": {
+          "obstacles": 203,
+          "answered": 203,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.41,
+          "mean_abs_error_m": 2.98,
+          "mean_rel_error": 0.1044,
+          "within_10pct": 0.5813,
+          "bias": 0.0046
+        },
+        "random hazards": {
+          "obstacles": 202,
+          "answered": 202,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.41,
+          "mean_abs_error_m": 2.94,
+          "mean_rel_error": 0.0999,
+          "within_10pct": 0.5644,
+          "bias": -0.0014
+        },
+        "humans": {
+          "obstacles": 171,
+          "answered": 171,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.32,
+          "mean_abs_error_m": 2.71,
+          "mean_rel_error": 0.0584,
+          "within_10pct": 0.7778,
+          "bias": 0.0493
+        },
+        "standard objects": {
+          "obstacles": 142,
+          "answered": 142,
+          "coverage": 1.0,
+          "median_abs_error_m": 1.3,
+          "mean_abs_error_m": 2.22,
+          "mean_rel_error": 0.1083,
+          "within_10pct": 0.5634,
+          "bias": 0.0705
+        }
+      }
+    }
+  }
+}

@@ -36,19 +36,19 @@ from src.detection.benchmarks.common import md_table, provenance
 # Candidates, as (label, estimator, run names per benchmark, speed model name,
 # licence). A run name of None means that benchmark has no such run.
 CANDIDATES = [
-    {"label": "Metric3D v2 Small FP16", "estimator": "metric3d-v2-small-fp16_p10",
+    {"label": "Metric3D v2 Small FP16", "laf_detected": "metric3d-v2-small-fp16_detected", "estimator": "metric3d-v2-small-fp16_p10",
      "kitti": "metric3d-v2-small-fp16_full", "laf": "metric3d-v2-small-fp16_full",
      "nuscenes": "metric3d-v2-small-fp16", "nuscenes_obstacles": "metric3d-v2-small-fp16",
      "stability": "metric3d-v2-small-fp16_f150", "speed": "metric3d-v2-small-fp16", "licence": "BSD-2-Clause"},
-    {"label": "Metric3D v2 Large FP16", "estimator": "metric3d-v2-large-fp16_p25",
+    {"label": "Metric3D v2 Large FP16", "laf_detected": "metric3d-v2-large-fp16_detected", "estimator": "metric3d-v2-large-fp16_p25",
      "kitti": "metric3d-v2-large-fp16_full", "laf": "metric3d-v2-large-fp16_full",
      "nuscenes": "metric3d-v2-large-fp16", "nuscenes_obstacles": "metric3d-v2-large-fp16",
      "stability": "metric3d-v2-large-fp16_f150", "speed": "metric3d-v2-large-fp16", "licence": "BSD-2-Clause"},
-    {"label": "UniDepth v2 Base", "estimator": "unidepth-v2-base_p10",
+    {"label": "UniDepth v2 Base", "laf_detected": "unidepth-v2-base_detected", "estimator": "unidepth-v2-base_p10",
      "kitti": "unidepth-v2-base_full", "laf": "unidepth-v2-base_full",
      "nuscenes": "unidepth-v2-base", "nuscenes_obstacles": "unidepth-v2-base",
      "stability": "unidepth-v2-base_f150", "speed": "unidepth-v2-base", "licence": "CC BY-NC 4.0 (non-commercial)"},
-    {"label": "UniDepth v2 Large", "estimator": "unidepth-v2-large_p10",
+    {"label": "UniDepth v2 Large", "laf_detected": "unidepth-v2-large_detected", "estimator": "unidepth-v2-large_p10",
      "kitti": "unidepth-v2-large_full", "laf": "unidepth-v2-large_full",
      "nuscenes": "unidepth-v2-large", "nuscenes_obstacles": "unidepth-v2-large",
      "stability": "unidepth-v2-large_f150", "speed": "unidepth-v2-large", "licence": "CC BY-NC 4.0 (non-commercial)"},
@@ -69,7 +69,7 @@ CANDIDATES = [
     {"label": "Known size (geometric)", "estimator": "known_size",
      "kitti": "geometric_full", "laf": None, "nuscenes": "geometric", "nuscenes_obstacles": None,
      "stability": "geometric_f150", "speed": None, "licence": "own code"},
-    {"label": "Ground plane (geometric)", "estimator": "ground_plane",
+    {"label": "Ground plane (geometric)", "laf_detected": "geometric_detected", "estimator": "ground_plane",
      "kitti": "geometric_full", "laf": "geometric_full", "nuscenes": "geometric",
      "nuscenes_obstacles": "geometric", "stability": "geometric_f150", "speed": None, "licence": "own code"},
 ]
@@ -83,6 +83,7 @@ FOCAL_RUN = "focal_scaling_v1"
 PATHS = {
     "kitti": HERE / "kitti" / "results",
     "laf": HERE / "lost_and_found" / "results",
+    "laf_detected": HERE / "lost_and_found" / "results_detected",
     "nuscenes": HERE / "nuscenes" / "results",
     "nuscenes_obstacles": HERE / "nuscenes" / "results_obstacles",
     "stability": HERE / "kitti_tracking" / "results",
@@ -120,6 +121,10 @@ def collect(c: dict) -> dict:
     r, src = load("laf", c["laf"])
     row["laf_under_20m_within_10pct"] = dig(r, "methods", e, "rank_range", "within_10pct")
     sources["laf"] = src
+
+    r, src = load("laf_detected", c.get("laf_detected"))
+    row["laf_real_pipeline_under_20m_within_10pct"] = dig(r, "methods", e, "rank_range", "within_10pct")
+    sources["laf_detected"] = src
 
     r, src = load("nuscenes", c["nuscenes"])
     n = dig(r, "methods", e, "nearest_surface")
@@ -186,8 +191,10 @@ def main() -> None:
         "## Accuracy",
         "",
         *md_table(["Candidate", "KITTI road users, in path", "Lost and Found obstacles, under 20 m",
+                   "Lost and Found, real pipeline (detector masks), under 20 m",
                    "nuScenes in path", "nuScenes day", "nuScenes night", "nuScenes cones and barriers"],
                   [[r["label"], pct(r["kitti_in_path_within_10pct"]), pct(r["laf_under_20m_within_10pct"]),
+                    pct(r["laf_real_pipeline_under_20m_within_10pct"]),
                     pct(r["nuscenes_in_path_within_10pct"]), pct(r["nuscenes_day_in_path_within_10pct"]),
                     pct(r["nuscenes_night_in_path_within_10pct"]), pct(r["nuscenes_cones_barriers_within_10pct"])]
                    for r in rows]),
@@ -207,7 +214,8 @@ def main() -> None:
         "## Where each benchmark is",
         "",
         "- KITTI accuracy: `src/distance/benchmarks/kitti/COMPARISON.md`",
-        "- Lost and Found obstacles: `src/distance/benchmarks/lost_and_found/COMPARISON.md`",
+        "- Lost and Found obstacles: `src/distance/benchmarks/lost_and_found/COMPARISON.md` (labelled outlines)",
+        "  and `COMPARISON_DETECTED.md` (real pipeline: YOLOE detections and masks)",
         "- nuScenes: `src/distance/benchmarks/nuscenes/COMPARISON.md` and `COMPARISON_OBSTACLES.md`",
         "- Stability: `src/distance/benchmarks/kitti_tracking/COMPARISON.md`",
         "- Speed: `src/distance/benchmarks/speed/results/`",

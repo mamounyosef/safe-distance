@@ -1,7 +1,7 @@
 {
   "provenance": {
-    "created_utc": "2026-09-29T16:08:19+00:00",
-    "git_commit": "afa2151",
+    "created_utc": "2026-09-29T16:41:41+00:00",
+    "git_commit": "2c59c75",
     "git_uncommitted_changes": true,
     "python": "3.12.0",
     "torch": "2.6.0+cu124",
@@ -16,6 +16,7 @@
       "kitti_in_path_within_10pct": 0.8765,
       "kitti_in_path_median_error_m": 0.91,
       "laf_under_20m_within_10pct": 0.7649,
+      "laf_real_pipeline_under_20m_within_10pct": 0.7516,
       "nuscenes_in_path_within_10pct": 0.7632,
       "nuscenes_day_in_path_within_10pct": 0.8502,
       "nuscenes_night_in_path_within_10pct": 0.5532,
@@ -30,6 +31,7 @@
       "sources": {
         "kitti": "src/distance/benchmarks/kitti/results/metric3d-v2-small-fp16_full/results.json",
         "laf": "src/distance/benchmarks/lost_and_found/results/metric3d-v2-small-fp16_full/results.json",
+        "laf_detected": "src/distance/benchmarks/lost_and_found/results_detected/metric3d-v2-small-fp16_detected/results.json",
         "nuscenes": "src/distance/benchmarks/nuscenes/results/metric3d-v2-small-fp16/results.json",
         "nuscenes_obstacles": "src/distance/benchmarks/nuscenes/results_obstacles/metric3d-v2-small-fp16/results.json",
         "stability": "src/distance/benchmarks/kitti_tracking/results/metric3d-v2-small-fp16_f150/results.json",
@@ -44,6 +46,7 @@
       "kitti_in_path_within_10pct": 0.9235,
       "kitti_in_path_median_error_m": 0.78,
       "laf_under_20m_within_10pct": 0.8442,
+      "laf_real_pipeline_under_20m_within_10pct": 0.8258,
       "nuscenes_in_path_within_10pct": 0.6854,
       "nuscenes_day_in_path_within_10pct": 0.8062,
       "nuscenes_night_in_path_within_10pct": 0.3936,
@@ -58,6 +61,7 @@
       "sources": {
         "kitti": "src/distance/benchmarks/kitti/results/metric3d-v2-large-fp16_full/results.json",
         "laf": "src/distance/benchmarks/lost_and_found/results/metric3d-v2-large-fp16_full/results.json",
+        "laf_detected": "src/distance/benchmarks/lost_and_found/results_detected/metric3d-v2-large-fp16_detected/results.json",
         "nuscenes": "src/distance/benchmarks/nuscenes/results/metric3d-v2-large-fp16/results.json",
         "nuscenes_obstacles": "src/distance/benchmarks/nuscenes/results_obstacles/metric3d-v2-large-fp16/results.json",
         "stability": "src/distance/benchmarks/kitti_tracking/results/metric3d-v2-large-fp16_f150/results.json",
@@ -72,6 +76,7 @@
       "kitti_in_path_within_10pct": 0.8961,
       "kitti_in_path_median_error_m": 1.02,
       "laf_under_20m_within_10pct": 0.3144,
+      "laf_real_pipeline_under_20m_within_10pct": 0.2645,
       "nuscenes_in_path_within_10pct": 0.8255,
       "nuscenes_day_in_path_within_10pct": 0.8722,
       "nuscenes_night_in_path_within_10pct": 0.7128,
@@ -86,6 +91,7 @@
       "sources": {
         "kitti": "src/distance/benchmarks/kitti/results/unidepth-v2-base_full/results.json",
         "laf": "src/distance/benchmarks/lost_and_found/results/unidepth-v2-base_full/results.json",
+        "laf_detected": "src/distance/benchmarks/lost_and_found/results_detected/unidepth-v2-base_detected/results.json",
         "nuscenes": "src/distance/benchmarks/nuscenes/results/unidepth-v2-base/results.json",
         "nuscenes_obstacles": "src/distance/benchmarks/nuscenes/results_obstacles/unidepth-v2-base/results.json",
         "stability": "src/distance/benchmarks/kitti_tracking/results/unidepth-v2-base_f150/results.json",
@@ -100,6 +106,7 @@
       "kitti_in_path_within_10pct": 0.9,
       "kitti_in_path_median_error_m": 1.12,
       "laf_under_20m_within_10pct": 0.6572,
+      "laf_real_pipeline_under_20m_within_10pct": 0.6226,
       "nuscenes_in_path_within_10pct": 0.8474,
       "nuscenes_day_in_path_within_10pct": 0.8634,
       "nuscenes_night_in_path_within_10pct": 0.8085,
@@ -114,6 +121,7 @@
       "sources": {
         "kitti": "src/distance/benchmarks/kitti/results/unidepth-v2-large_full/results.json",
         "laf": "src/distance/benchmarks/lost_and_found/results/unidepth-v2-large_full/results.json",
+        "laf_detected": "src/distance/benchmarks/lost_and_found/results_detected/unidepth-v2-large_detected/results.json",
         "nuscenes": "src/distance/benchmarks/nuscenes/results/unidepth-v2-large/results.json",
         "nuscenes_obstacles": "src/distance/benchmarks/nuscenes/results_obstacles/unidepth-v2-large/results.json",
         "stability": "src/distance/benchmarks/kitti_tracking/results/unidepth-v2-large_f150/results.json",
@@ -128,6 +136,7 @@
       "kitti_in_path_within_10pct": 0.6431,
       "kitti_in_path_median_error_m": 1.92,
       "laf_under_20m_within_10pct": 0.1926,
+      "laf_real_pipeline_under_20m_within_10pct": null,
       "nuscenes_in_path_within_10pct": 0.5234,
       "nuscenes_day_in_path_within_10pct": 0.5683,
       "nuscenes_night_in_path_within_10pct": 0.4149,
@@ -142,6 +151,7 @@
       "sources": {
         "kitti": "src/distance/benchmarks/kitti/results/unidepth-v2-base-nocam_full/results.json",
         "laf": "src/distance/benchmarks/lost_and_found/results/unidepth-v2-base-nocam_full/results.json",
+        "laf_detected": null,
         "nuscenes": "src/distance/benchmarks/nuscenes/results/unidepth-v2-base-nocam/results.json",
         "nuscenes_obstacles": null,
         "stability": null,
@@ -156,6 +166,7 @@
       "kitti_in_path_within_10pct": 0.7657,
       "kitti_in_path_median_error_m": 1.6,
       "laf_under_20m_within_10pct": 0.4419,
+      "laf_real_pipeline_under_20m_within_10pct": null,
       "nuscenes_in_path_within_10pct": 0.6386,
       "nuscenes_day_in_path_within_10pct": 0.7093,
       "nuscenes_night_in_path_within_10pct": 0.4681,
@@ -170,6 +181,7 @@
       "sources": {
         "kitti": "src/distance/benchmarks/kitti/results/unidepth-v2-large-nocam_full/results.json",
         "laf": "src/distance/benchmarks/lost_and_found/results/unidepth-v2-large-nocam_full/results.json",
+        "laf_detected": null,
         "nuscenes": "src/distance/benchmarks/nuscenes/results/unidepth-v2-large-nocam/results.json",
         "nuscenes_obstacles": null,
         "stability": null,
@@ -184,6 +196,7 @@
       "kitti_in_path_within_10pct": 0.9049,
       "kitti_in_path_median_error_m": 1.11,
       "laf_under_20m_within_10pct": 0.8895,
+      "laf_real_pipeline_under_20m_within_10pct": null,
       "nuscenes_in_path_within_10pct": 0.9003,
       "nuscenes_day_in_path_within_10pct": 0.9383,
       "nuscenes_night_in_path_within_10pct": 0.8085,
@@ -198,6 +211,7 @@
       "sources": {
         "kitti": "src/distance/benchmarks/kitti/results/combinations_full/results.json",
         "laf": "src/distance/benchmarks/lost_and_found/results/combinations_full/results.json",
+        "laf_detected": null,
         "nuscenes": "src/distance/benchmarks/nuscenes/results/combinations/results.json",
         "nuscenes_obstacles": "src/distance/benchmarks/nuscenes/results_obstacles/combinations/results.json",
         "stability": null,
@@ -212,6 +226,7 @@
       "kitti_in_path_within_10pct": 0.7721,
       "kitti_in_path_median_error_m": 1.46,
       "laf_under_20m_within_10pct": null,
+      "laf_real_pipeline_under_20m_within_10pct": null,
       "nuscenes_in_path_within_10pct": 0.5234,
       "nuscenes_day_in_path_within_10pct": 0.511,
       "nuscenes_night_in_path_within_10pct": 0.5532,
@@ -226,6 +241,7 @@
       "sources": {
         "kitti": "src/distance/benchmarks/kitti/results/geometric_full/results.json",
         "laf": null,
+        "laf_detected": null,
         "nuscenes": "src/distance/benchmarks/nuscenes/results/geometric/results.json",
         "nuscenes_obstacles": null,
         "stability": "src/distance/benchmarks/kitti_tracking/results/geometric_f150/results.json",
@@ -240,6 +256,7 @@
       "kitti_in_path_within_10pct": 0.4573,
       "kitti_in_path_median_error_m": 2.47,
       "laf_under_20m_within_10pct": 0.4136,
+      "laf_real_pipeline_under_20m_within_10pct": 0.3452,
       "nuscenes_in_path_within_10pct": 0.2371,
       "nuscenes_day_in_path_within_10pct": 0.1269,
       "nuscenes_night_in_path_within_10pct": 0.4681,
@@ -254,6 +271,7 @@
       "sources": {
         "kitti": "src/distance/benchmarks/kitti/results/geometric_full/results.json",
         "laf": "src/distance/benchmarks/lost_and_found/results/geometric_full/results.json",
+        "laf_detected": "src/distance/benchmarks/lost_and_found/results_detected/geometric_detected/results.json",
         "nuscenes": "src/distance/benchmarks/nuscenes/results/geometric/results.json",
         "nuscenes_obstacles": "src/distance/benchmarks/nuscenes/results_obstacles/geometric/results.json",
         "stability": "src/distance/benchmarks/kitti_tracking/results/geometric_f150/results.json",
