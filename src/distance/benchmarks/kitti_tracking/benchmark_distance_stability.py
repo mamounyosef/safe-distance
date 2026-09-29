@@ -89,7 +89,7 @@ CAMERA_HEIGHT_M = 1.65
 FPS = 10.0
 
 # Speed windows, in frames.
-SPEED_WINDOWS = [1, 5]
+SPEED_WINDOWS = [1, 5, 10, 20]
 
 # In-path corridor, same as the accuracy benchmarks.
 CORRIDOR_HALF_WIDTH_M = 1.2
