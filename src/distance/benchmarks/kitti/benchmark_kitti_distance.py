@@ -83,6 +83,8 @@ RUNS = [
     ("metric3d-v2-large_full", "metric3d-v2-large", 0),
     ("unidepth-v2-base_full", "unidepth-v2-base", 0),
     ("unidepth-v2-large_full", "unidepth-v2-large", 0),
+    ("metric3d-v2-small-fp16_full", "metric3d-v2-small-fp16", 0),
+    ("metric3d-v2-large-fp16_full", "metric3d-v2-large-fp16", 0),
 ]
 
 # Detector settings. Only detections matched to a real object are scored, so

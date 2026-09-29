@@ -70,6 +70,8 @@ RUNS = [
     ("geometric", "geometric"),
     ("metric3d-v2-small", "metric3d-v2-small"),
     ("metric3d-v2-large", "metric3d-v2-large"),
+    ("metric3d-v2-small-fp16", "metric3d-v2-small-fp16"),
+    ("metric3d-v2-large-fp16", "metric3d-v2-large-fp16"),
     ("unidepth-v2-small", "unidepth-v2-small"),
     ("unidepth-v2-base", "unidepth-v2-base"),
     ("unidepth-v2-large", "unidepth-v2-large"),
@@ -99,6 +101,22 @@ MIN_VISIBILITY = "v40-60"
 MIN_BOX_HEIGHT_PX = 10
 
 OUT_DIR = Path(__file__).resolve().parent / "results"
+
+# Obstacle runs: traffic cones and barriers, scored at their LABELLED box
+# (projected into the image) instead of a detection, because the detector's
+# COCO classes do not include them. Measures distance quality alone, like the
+# Lost and Found benchmark. Written to their own folder and comparison.
+OBSTACLE_CLASSES = {"traffic cone", "barrier"}
+OBSTACLE_RUNS = [
+    ("geometric", "geometric"),
+    ("metric3d-v2-small", "metric3d-v2-small"),
+    ("metric3d-v2-small-fp16", "metric3d-v2-small-fp16"),
+    ("metric3d-v2-large", "metric3d-v2-large"),
+    ("metric3d-v2-large-fp16", "metric3d-v2-large-fp16"),
+    ("unidepth-v2-base", "unidepth-v2-base"),
+    ("unidepth-v2-large", "unidepth-v2-large"),
+]
+OBSTACLE_OUT_DIR = Path(__file__).resolve().parent / "results_obstacles"
 SKIP_EXISTING = True
 RESCORE_ONLY = False
 REPORT_ONLY = False
@@ -252,7 +270,10 @@ def frame_labels(ds: NuScenesMini, frame: dict, geo: dict) -> list[dict]:
         centre = ego[:2].mean(axis=1)
         ys = footprint[1]
         lateral = 0.0 if ys.min() <= 0.0 <= ys.max() else float(min(abs(ys.min()), abs(ys.max())))
+        hull = cv2.convexHull(np.stack([np.clip(uv[0], 0, width - 1), np.clip(uv[1], 0, height - 1)], axis=1)
+                              .astype(np.float32)).reshape(-1, 2)
         out.append({
+            "outline": hull,
             "class": cls,
             "category": a["category"],
             "visibility": vis,
@@ -275,7 +296,8 @@ def by_distance(rows: list[dict], m: str, t: str) -> dict:
 
 
 def build_results(rows: list[dict], methods: list[str], n_frames: int, n_labelled: int, prov: dict,
-                  run_name: str, depth_model: dict | None) -> dict:
+                  run_name: str, depth_model: dict | None,
+                  estimator_input: str = "detections matched to labels (IoU >= 0.5)") -> dict:
     for r in rows:
         r["in_path"] = r["lateral_gap_m"] <= CORRIDOR_HALF_WIDTH_M
     classes = sorted({r["class"] for r in rows}, key=lambda c: -sum(r["class"] == c for r in rows))
@@ -298,6 +320,7 @@ def build_results(rows: list[dict], methods: list[str], n_frames: int, n_labelle
             "in_path_objects": len(in_path),
             "min_visibility": MIN_VISIBILITY,
             "ground_truth": "LiDAR 3D boxes; ground distance from the road point below the camera",
+            "estimator_input": estimator_input,
         },
         "config": {
             "run_name": run_name,
@@ -331,8 +354,8 @@ def build_results(rows: list[dict], methods: list[str], n_frames: int, n_labelle
     }
 
 
-def save_run(results: dict, rows: list[dict]) -> None:
-    run_dir = OUT_DIR / results["config"]["run_name"]
+def save_run(results: dict, rows: list[dict], out_dir: Path = OUT_DIR) -> None:
+    run_dir = out_dir / results["config"]["run_name"]
     run_dir.mkdir(parents=True, exist_ok=True)
     (run_dir / "results.json").write_text(json.dumps(results, indent=2))
     with (run_dir / "objects.csv").open("w", newline="") as f:
@@ -388,6 +411,50 @@ def run(ds: NuScenesMini, run_name: str, estimators: list) -> None:
     save_run(build_results(rows, methods, len(ds.frames), n_labelled, provenance(), run_name, depth_model), rows)
 
 
+def run_outlines(ds: NuScenesMini, run_name: str, estimators: list) -> None:
+    """Score estimators on every labelled cone and barrier, given its outline."""
+    from src.detection.detector import Detection
+
+    methods = [e.name for e in estimators]
+    rows, n_labelled = [], 0
+    for i, frame in enumerate(ds.frames, 1):
+        img = cv2.imread(str(ds.root / frame["filename"]))
+        camera, geo = frame_geometry(ds, frame)
+        labels = [g for g in frame_labels(ds, frame, geo) if g["class"] in OBSTACLE_CLASSES]
+        n_labelled += len(labels)
+        dets = [Detection(x1=g["box"][0], y1=g["box"][1], x2=g["box"][2], y2=g["box"][3], class_id=-1,
+                          class_name="obstacle", confidence=1.0, mask=g["outline"]) for g in labels]
+        estimates = {e.name: e.estimate(img, dets, camera) for e in estimators}
+        for k, g in enumerate(labels):
+            rows.append({
+                "frame": frame["token"],
+                "scene": ds.scene_name(frame),
+                "condition": "night" if ds.is_night(frame) else "day",
+                "class": g["class"],
+                "category": g["category"],
+                "predicted_class": "labelled outline",
+                "visibility": g["visibility"],
+                "box_height_px": round(g["box"][3] - g["box"][1], 1),
+                "true_centre_m": round(g["true_centre_m"], 2),
+                "true_nearest_surface_m": round(g["true_nearest_surface_m"], 2),
+                "lateral_gap_m": round(g["lateral_gap_m"], 2),
+                **{m: (None if estimates[m][k] is None else round(estimates[m][k], 2)) for m in methods},
+            })
+        if i % 100 == 0 or i == len(ds.frames):
+            print(f"  {i}/{len(ds.frames)} frames, {len(rows)} obstacles", flush=True)
+
+    backends = {id(e.backend): e.backend for e in estimators if hasattr(e, "backend")}
+    depth_model = None
+    for b in backends.values():
+        t = b.times_ms[1:] or b.times_ms
+        depth_model = {"name": b.name, "uses_our_focal_length": b.uses_focal_length, "precision": b.precision,
+                       "inference_ms_median": round(float(np.median(t)), 1),
+                       "inference_ms_p95": round(float(np.percentile(t, 95)), 1)}
+    save_run(build_results(rows, methods, len(ds.frames), n_labelled, provenance(), run_name, depth_model,
+                           "labelled 3D box projected into the image (convex hull of its corners)"),
+             rows, OBSTACLE_OUT_DIR)
+
+
 def rescore(run_dir: Path) -> None:
     """Recompute all statistics of one run from its objects.csv. No GPU."""
     old = json.loads((run_dir / "results.json").read_text())
@@ -400,7 +467,9 @@ def rescore(run_dir: Path) -> None:
     prov = {**old["provenance"], "rescored_utc": provenance()["created_utc"],
             "rescored_git_commit": provenance()["git_commit"]}
     save_run(build_results(rows, methods, old["dataset"]["frames"], old["dataset"]["labelled_objects"], prov,
-                           old["config"]["run_name"], old["config"].get("depth_model")), rows)
+                           old["config"]["run_name"], old["config"].get("depth_model"),
+                           old["dataset"].get("estimator_input", "detections matched to labels (IoU >= 0.5)")),
+             rows, run_dir.parent)
 
 
 def write_report(run_dir: Path) -> None:
@@ -472,14 +541,15 @@ def write_report(run_dir: Path) -> None:
     (run_dir / "RESULTS.md").write_text("\n".join(out))
 
 
-def write_comparison() -> None:
+def write_comparison(out_dir: Path = OUT_DIR, file_name: str = "COMPARISON.md",
+                     title: str = "nuScenes distance benchmark: comparison") -> None:
     runs = {p.name: json.loads((p / "results.json").read_text())
-            for p in sorted(OUT_DIR.iterdir()) if (p / "results.json").exists()}
+            for p in sorted(out_dir.iterdir()) if (p / "results.json").exists()}
     if not runs:
         return
     band_names = [band_name(lo, hi) for lo, hi in BANDS]
     out = [
-        "# nuScenes distance benchmark: comparison",
+        f"# {title}",
         "",
         "Generated automatically from every `results/<run>/results.json` by `benchmark_nuscenes_distance.py`. "
         "Do not edit by hand. Each run's full results are in `results/<run>/RESULTS.md`.",
@@ -507,37 +577,43 @@ def write_comparison() -> None:
                   "In path, day", "In path, night", *[f"In path, {b}" for b in band_names],
                   "All objects within 10%", "Depth model ms"]
         out += [f"## vs {t.replace('_', ' ')}", "", *md_table(header, [[i, *row] for i, (_, row) in enumerate(rows, 1)])]
-    path = OUT_DIR.parent / "COMPARISON.md"
+    path = out_dir.parent / file_name
     path.write_text("\n".join(out))
     print(f"regenerated {path}")
 
 
 def main() -> None:
-    if RESCORE_ONLY:
-        for run_dir in sorted(p for p in OUT_DIR.iterdir() if (p / "objects.csv").exists()):
-            rescore(run_dir)
-        write_comparison()
-        return
-    if REPORT_ONLY:
-        for run_dir in sorted(p for p in OUT_DIR.iterdir() if (p / "results.json").exists()):
-            write_report(run_dir)
-        write_comparison()
+    folders = [(OUT_DIR, "COMPARISON.md", "nuScenes distance benchmark: comparison"),
+               (OBSTACLE_OUT_DIR, "COMPARISON_OBSTACLES.md",
+                "nuScenes distance benchmark: traffic cones and barriers (labelled outlines)")]
+    if RESCORE_ONLY or REPORT_ONLY:
+        for out_dir, file_name, title in folders:
+            if not out_dir.exists():
+                continue
+            for run_dir in sorted(p for p in out_dir.iterdir() if (p / "results.json").exists()):
+                if RESCORE_ONLY:
+                    rescore(run_dir)
+                else:
+                    write_report(run_dir)
+            write_comparison(out_dir, file_name, title)
         return
 
     import torch
 
     ds = NuScenesMini(DATA, VERSION)
-    for run_name, set_name in RUNS:
-        if SKIP_EXISTING and (OUT_DIR / run_name / "results.json").exists():
-            print(f"=== {run_name}: already done, skipped ===")
-            continue
-        print(f"=== {run_name} ({len(ds.frames)} frames) ===", flush=True)
-        estimators = estimator_set(set_name)
-        run(ds, run_name, estimators)
-        estimators = None
-        gc.collect()
-        torch.cuda.empty_cache()
-        write_comparison()
+    groups = [(RUNS, OUT_DIR, run, folders[0]), (OBSTACLE_RUNS, OBSTACLE_OUT_DIR, run_outlines, folders[1])]
+    for runs, out_dir, runner, (_, file_name, title) in groups:
+        for run_name, set_name in runs:
+            if SKIP_EXISTING and (out_dir / run_name / "results.json").exists():
+                print(f"=== {out_dir.name}/{run_name}: already done, skipped ===")
+                continue
+            print(f"=== {out_dir.name}/{run_name} ({len(ds.frames)} frames) ===", flush=True)
+            estimators = estimator_set(set_name)
+            runner(ds, run_name, estimators)
+            estimators = None
+            gc.collect()
+            torch.cuda.empty_cache()
+            write_comparison(out_dir, file_name, title)
 
 
 if __name__ == "__main__":

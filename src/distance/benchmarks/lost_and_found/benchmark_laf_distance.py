@@ -104,6 +104,8 @@ RUNS = [
     ("metric3d-v2-large_full", "metric3d-v2-large", 1),
     ("unidepth-v2-base_full", "unidepth-v2-base", 1),
     ("unidepth-v2-large_full", "unidepth-v2-large", 1),
+    ("metric3d-v2-small-fp16_full", "metric3d-v2-small-fp16", 1),
+    ("metric3d-v2-large-fp16_full", "metric3d-v2-large-fp16", 1),
 ]
 
 # Distance bands in metres, and the range runs are ranked by.
