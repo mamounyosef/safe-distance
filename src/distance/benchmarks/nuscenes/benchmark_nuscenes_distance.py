@@ -135,6 +135,19 @@ NIGHT_RUNS = [
     ("metric3d-v2-small-fp16+bright-contrast_night", "metric3d-v2-small-fp16", "bright-contrast"),
 ]
 NIGHT_OUT_DIR = Path(__file__).resolve().parent / "results_night_enhancement"
+
+# Night confirmation: the enhancement chosen on the mini night scenes (clahe4),
+# fixed in advance, against no enhancement, on 82 NEVER-SEEN night scenes from
+# the full nuScenes dataset (part 10; the 3 mini night scenes excluded). Tables
+# cut down by scripts/nuscenes_subset_tables.py, images by
+# scripts/stream_extract_nuscenes.py. Same runs format as NIGHT_RUNS.
+CONFIRM_DATA = Path(r"C:\safe-distance-data\nuscenes-trainval")
+CONFIRM_VERSION = "v1.0-night"
+CONFIRM_RUNS = [
+    ("metric3d-v2-small-fp16_night", "metric3d-v2-small-fp16", None),
+    ("metric3d-v2-small-fp16+clahe4_night", "metric3d-v2-small-fp16", "clahe4"),
+]
+CONFIRM_OUT_DIR = Path(__file__).resolve().parent / "results_night_confirm"
 SKIP_EXISTING = True
 RESCORE_ONLY = False
 REPORT_ONLY = False
@@ -211,6 +224,7 @@ class NuScenesMini:
             return json.loads((root / version / f"{name}.json").read_text())
 
         self.root = root
+        self.version = version
         self.scenes = {s["token"]: s for s in table("scene")}
         logs = {l["token"]: l for l in table("log")}
         self.samples = {s["token"]: s for s in table("sample")}
@@ -315,7 +329,8 @@ def by_distance(rows: list[dict], m: str, t: str) -> dict:
 
 def build_results(rows: list[dict], methods: list[str], n_frames: int, n_labelled: int, prov: dict,
                   run_name: str, depth_model: dict | None,
-                  estimator_input: str = "detections matched to labels (IoU >= 0.5)") -> dict:
+                  estimator_input: str = "detections matched to labels (IoU >= 0.5)",
+                  dataset_name: str = f"nuScenes {VERSION}") -> dict:
     for r in rows:
         r["in_path"] = r["lateral_gap_m"] <= CORRIDOR_HALF_WIDTH_M
     classes = sorted({r["class"] for r in rows}, key=lambda c: -sum(r["class"] == c for r in rows))
@@ -328,7 +343,7 @@ def build_results(rows: list[dict], methods: list[str], n_frames: int, n_labelle
         "benchmark": "nuscenes_distance",
         "provenance": prov,
         "dataset": {
-            "name": f"nuScenes {VERSION}",
+            "name": dataset_name,
             "source": "https://www.nuscenes.org/nuscenes",
             "camera": CAMERA,
             "frames": n_frames,
@@ -429,7 +444,8 @@ def run(ds: NuScenesMini, run_name: str, estimators: list, out_dir: Path = OUT_D
         if getattr(b, "estimated_fx", None):
             depth_model["estimated_focal_px_median"] = round(float(np.median(b.estimated_fx)), 1)
             depth_model["estimated_focal_px_p10_p90"] = [round(float(np.percentile(b.estimated_fx, q)), 1) for q in (10, 90)]
-    save_run(build_results(rows, methods, len(ds.frames), n_labelled, provenance(), run_name, depth_model),
+    save_run(build_results(rows, methods, len(ds.frames), n_labelled, provenance(), run_name, depth_model,
+                           dataset_name=f"nuScenes {ds.version}"),
              rows, out_dir)
 
 
@@ -493,7 +509,8 @@ def rescore(run_dir: Path) -> None:
             "rescored_git_commit": provenance()["git_commit"]}
     save_run(build_results(rows, methods, old["dataset"]["frames"], old["dataset"]["labelled_objects"], prov,
                            old["config"]["run_name"], old["config"].get("depth_model"),
-                           old["dataset"].get("estimator_input", "detections matched to labels (IoU >= 0.5)")),
+                           old["dataset"].get("estimator_input", "detections matched to labels (IoU >= 0.5)"),
+                           old["dataset"]["name"]),
              rows, run_dir.parent)
 
 
@@ -612,7 +629,9 @@ def main() -> None:
                (OBSTACLE_OUT_DIR, "COMPARISON_OBSTACLES.md",
                 "nuScenes distance benchmark: traffic cones and barriers (labelled outlines)"),
                (NIGHT_OUT_DIR, "COMPARISON_NIGHT_ENHANCEMENT.md",
-                "nuScenes distance benchmark: night image enhancement (night frames only)")]
+                "nuScenes distance benchmark: night image enhancement (night frames only)"),
+               (CONFIRM_OUT_DIR, "COMPARISON_NIGHT_CONFIRM.md",
+                "nuScenes distance benchmark: night enhancement confirmed on 82 never-seen night scenes")]
     if RESCORE_ONLY or REPORT_ONLY:
         for out_dir, file_name, title in folders:
             if not out_dir.exists():
@@ -648,18 +667,25 @@ def main() -> None:
             torch.cuda.empty_cache()
             write_comparison(out_dir, file_name, title)
 
-    _, file_name, title = folders[2]
-    for run_name, model, enhancement in NIGHT_RUNS:
-        if SKIP_EXISTING and (NIGHT_OUT_DIR / run_name / "results.json").exists():
-            print(f"=== {NIGHT_OUT_DIR.name}/{run_name}: already done, skipped ===")
-            continue
-        print(f"=== {NIGHT_OUT_DIR.name}/{run_name} ({len(night.frames)} night frames) ===", flush=True)
-        estimators = estimator_set(model) if enhancement is None else enhanced_depth_estimators(model, enhancement)
-        run(night, run_name, estimators, NIGHT_OUT_DIR)
-        estimators = None
-        gc.collect()
-        torch.cuda.empty_cache()
-        write_comparison(NIGHT_OUT_DIR, file_name, title)
+    confirm = None
+    for runs, out_dir, (_, file_name, title) in [(NIGHT_RUNS, NIGHT_OUT_DIR, folders[2]),
+                                                 (CONFIRM_RUNS, CONFIRM_OUT_DIR, folders[3])]:
+        for run_name, model, enhancement in runs:
+            if SKIP_EXISTING and (out_dir / run_name / "results.json").exists():
+                print(f"=== {out_dir.name}/{run_name}: already done, skipped ===")
+                continue
+            if out_dir == CONFIRM_OUT_DIR:
+                confirm = confirm or NuScenesMini(CONFIRM_DATA, CONFIRM_VERSION)
+                frames_ds = confirm
+            else:
+                frames_ds = night
+            print(f"=== {out_dir.name}/{run_name} ({len(frames_ds.frames)} night frames) ===", flush=True)
+            estimators = estimator_set(model) if enhancement is None else enhanced_depth_estimators(model, enhancement)
+            run(frames_ds, run_name, estimators, out_dir)
+            estimators = None
+            gc.collect()
+            torch.cuda.empty_cache()
+            write_comparison(out_dir, file_name, title)
 
 
 if __name__ == "__main__":
