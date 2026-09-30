@@ -13,7 +13,8 @@ import urllib.request
 from pathlib import Path
 
 # ---- CONFIG ----
-URL = "https://motional-nuscenes.s3.amazonaws.com/public/v1.0/v1.0-trainval01_blobs.tgz"
+# CloudFront mirror: 4.7 MB/s vs 0.5 MB/s from the S3 host on 2026-09-30.
+URL = "https://d36yt3mvayqw5m.cloudfront.net/public/v1.0/v1.0-trainval10_blobs.tgz"   # part 10: 85 of the 99 night scenes
 OUT_DIR = Path(r"C:\safe-distance-data\nuscenes-trainval")
 KEEP_PREFIXES = ("samples/CAM_FRONT/",)   # keyframe images of the front camera only
 LOG_EVERY_S = 30
