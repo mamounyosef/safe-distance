@@ -1,0 +1,381 @@
+{
+  "provenance": {
+    "created_utc": "2026-09-30T19:40:29+00:00",
+    "git_commit": "83793d9",
+    "git_uncommitted_changes": true,
+    "python": "3.12.0",
+    "torch": "2.6.0+cu124",
+    "ultralytics": "8.4.155",
+    "gpu": "NVIDIA GeForce RTX 4060"
+  },
+  "folder": "results_night_confirm",
+  "baseline": "metric3d-v2-small-fp16_p10",
+  "candidate": "metric3d-v2-small-fp16+clahe4_p10",
+  "truth": "true_nearest_surface_m",
+  "tolerance": 0.1,
+  "unit_of_evidence": "scene",
+  "objects_in_path_paired": 1680,
+  "unpaired_objects": 0,
+  "scenes": 69,
+  "baseline_within": 856,
+  "candidate_within": 1145,
+  "baseline_share": 0.5095,
+  "candidate_share": 0.6815,
+  "gain_share": 0.172,
+  "gain_share_95ci_scene_bootstrap": [
+    0.1068,
+    0.2372
+  ],
+  "scenes_better": 45,
+  "scenes_worse": 12,
+  "scenes_equal": 12,
+  "sign_test_p": 1.3e-05,
+  "share_of_gain_from_best_scene": 0.093,
+  "per_scene": {
+    "scene-1007": {
+      "objects": 8,
+      "baseline_within": 6,
+      "candidate_within": 8
+    },
+    "scene-1008": {
+      "objects": 1,
+      "baseline_within": 0,
+      "candidate_within": 0
+    },
+    "scene-1010": {
+      "objects": 1,
+      "baseline_within": 1,
+      "candidate_within": 1
+    },
+    "scene-1011": {
+      "objects": 1,
+      "baseline_within": 1,
+      "candidate_within": 1
+    },
+    "scene-1012": {
+      "objects": 11,
+      "baseline_within": 8,
+      "candidate_within": 5
+    },
+    "scene-1014": {
+      "objects": 1,
+      "baseline_within": 0,
+      "candidate_within": 0
+    },
+    "scene-1016": {
+      "objects": 6,
+      "baseline_within": 1,
+      "candidate_within": 1
+    },
+    "scene-1017": {
+      "objects": 43,
+      "baseline_within": 15,
+      "candidate_within": 34
+    },
+    "scene-1018": {
+      "objects": 17,
+      "baseline_within": 2,
+      "candidate_within": 13
+    },
+    "scene-1019": {
+      "objects": 29,
+      "baseline_within": 14,
+      "candidate_within": 14
+    },
+    "scene-1020": {
+      "objects": 2,
+      "baseline_within": 0,
+      "candidate_within": 2
+    },
+    "scene-1021": {
+      "objects": 1,
+      "baseline_within": 1,
+      "candidate_within": 0
+    },
+    "scene-1022": {
+      "objects": 5,
+      "baseline_within": 0,
+      "candidate_within": 2
+    },
+    "scene-1023": {
+      "objects": 12,
+      "baseline_within": 5,
+      "candidate_within": 9
+    },
+    "scene-1024": {
+      "objects": 15,
+      "baseline_within": 6,
+      "candidate_within": 11
+    },
+    "scene-1044": {
+      "objects": 43,
+      "baseline_within": 13,
+      "candidate_within": 39
+    },
+    "scene-1045": {
+      "objects": 41,
+      "baseline_within": 35,
+      "candidate_within": 41
+    },
+    "scene-1046": {
+      "objects": 40,
+      "baseline_within": 34,
+      "candidate_within": 40
+    },
+    "scene-1047": {
+      "objects": 41,
+      "baseline_within": 40,
+      "candidate_within": 41
+    },
+    "scene-1048": {
+      "objects": 40,
+      "baseline_within": 34,
+      "candidate_within": 33
+    },
+    "scene-1049": {
+      "objects": 38,
+      "baseline_within": 12,
+      "candidate_within": 27
+    },
+    "scene-1050": {
+      "objects": 39,
+      "baseline_within": 10,
+      "candidate_within": 28
+    },
+    "scene-1051": {
+      "objects": 33,
+      "baseline_within": 1,
+      "candidate_within": 18
+    },
+    "scene-1053": {
+      "objects": 2,
+      "baseline_within": 0,
+      "candidate_within": 0
+    },
+    "scene-1054": {
+      "objects": 12,
+      "baseline_within": 1,
+      "candidate_within": 2
+    },
+    "scene-1055": {
+      "objects": 3,
+      "baseline_within": 2,
+      "candidate_within": 2
+    },
+    "scene-1056": {
+      "objects": 4,
+      "baseline_within": 0,
+      "candidate_within": 3
+    },
+    "scene-1062": {
+      "objects": 7,
+      "baseline_within": 6,
+      "candidate_within": 6
+    },
+    "scene-1063": {
+      "objects": 4,
+      "baseline_within": 0,
+      "candidate_within": 0
+    },
+    "scene-1064": {
+      "objects": 12,
+      "baseline_within": 5,
+      "candidate_within": 9
+    },
+    "scene-1065": {
+      "objects": 32,
+      "baseline_within": 7,
+      "candidate_within": 21
+    },
+    "scene-1066": {
+      "objects": 32,
+      "baseline_within": 9,
+      "candidate_within": 16
+    },
+    "scene-1067": {
+      "objects": 42,
+      "baseline_within": 4,
+      "candidate_within": 30
+    },
+    "scene-1068": {
+      "objects": 42,
+      "baseline_within": 9,
+      "candidate_within": 23
+    },
+    "scene-1069": {
+      "objects": 37,
+      "baseline_within": 23,
+      "candidate_within": 32
+    },
+    "scene-1070": {
+      "objects": 41,
+      "baseline_within": 28,
+      "candidate_within": 36
+    },
+    "scene-1071": {
+      "objects": 45,
+      "baseline_within": 30,
+      "candidate_within": 40
+    },
+    "scene-1072": {
+      "objects": 57,
+      "baseline_within": 19,
+      "candidate_within": 46
+    },
+    "scene-1073": {
+      "objects": 40,
+      "baseline_within": 23,
+      "candidate_within": 25
+    },
+    "scene-1074": {
+      "objects": 40,
+      "baseline_within": 30,
+      "candidate_within": 34
+    },
+    "scene-1075": {
+      "objects": 40,
+      "baseline_within": 33,
+      "candidate_within": 35
+    },
+    "scene-1076": {
+      "objects": 41,
+      "baseline_within": 26,
+      "candidate_within": 28
+    },
+    "scene-1078": {
+      "objects": 10,
+      "baseline_within": 5,
+      "candidate_within": 10
+    },
+    "scene-1079": {
+      "objects": 48,
+      "baseline_within": 28,
+      "candidate_within": 37
+    },
+    "scene-1080": {
+      "objects": 66,
+      "baseline_within": 49,
+      "candidate_within": 56
+    },
+    "scene-1081": {
+      "objects": 39,
+      "baseline_within": 14,
+      "candidate_within": 24
+    },
+    "scene-1082": {
+      "objects": 40,
+      "baseline_within": 0,
+      "candidate_within": 1
+    },
+    "scene-1083": {
+      "objects": 40,
+      "baseline_within": 14,
+      "candidate_within": 24
+    },
+    "scene-1084": {
+      "objects": 27,
+      "baseline_within": 11,
+      "candidate_within": 13
+    },
+    "scene-1085": {
+      "objects": 14,
+      "baseline_within": 4,
+      "candidate_within": 7
+    },
+    "scene-1086": {
+      "objects": 3,
+      "baseline_within": 3,
+      "candidate_within": 0
+    },
+    "scene-1087": {
+      "objects": 3,
+      "baseline_within": 1,
+      "candidate_within": 3
+    },
+    "scene-1088": {
+      "objects": 15,
+      "baseline_within": 1,
+      "candidate_within": 12
+    },
+    "scene-1090": {
+      "objects": 2,
+      "baseline_within": 2,
+      "candidate_within": 1
+    },
+    "scene-1091": {
+      "objects": 14,
+      "baseline_within": 13,
+      "candidate_within": 13
+    },
+    "scene-1092": {
+      "objects": 28,
+      "baseline_within": 26,
+      "candidate_within": 18
+    },
+    "scene-1093": {
+      "objects": 41,
+      "baseline_within": 39,
+      "candidate_within": 27
+    },
+    "scene-1095": {
+      "objects": 20,
+      "baseline_within": 16,
+      "candidate_within": 14
+    },
+    "scene-1096": {
+      "objects": 31,
+      "baseline_within": 22,
+      "candidate_within": 14
+    },
+    "scene-1097": {
+      "objects": 37,
+      "baseline_within": 24,
+      "candidate_within": 20
+    },
+    "scene-1098": {
+      "objects": 24,
+      "baseline_within": 18,
+      "candidate_within": 21
+    },
+    "scene-1099": {
+      "objects": 34,
+      "baseline_within": 23,
+      "candidate_within": 24
+    },
+    "scene-1101": {
+      "objects": 2,
+      "baseline_within": 0,
+      "candidate_within": 1
+    },
+    "scene-1102": {
+      "objects": 21,
+      "baseline_within": 17,
+      "candidate_within": 8
+    },
+    "scene-1104": {
+      "objects": 48,
+      "baseline_within": 11,
+      "candidate_within": 19
+    },
+    "scene-1105": {
+      "objects": 7,
+      "baseline_within": 3,
+      "candidate_within": 3
+    },
+    "scene-1108": {
+      "objects": 18,
+      "baseline_within": 0,
+      "candidate_within": 1
+    },
+    "scene-1109": {
+      "objects": 22,
+      "baseline_within": 2,
+      "candidate_within": 3
+    },
+    "scene-1110": {
+      "objects": 25,
+      "baseline_within": 16,
+      "candidate_within": 15
+    }
+  }
+}
