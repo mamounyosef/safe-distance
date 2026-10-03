@@ -45,6 +45,7 @@ MODE = "kitti"              # "kitti" or "braking"
 SEQUENCE = "0017"           # KITTI recording; 0017 and 0019 have cars really approaching
 SPEED = 1.0                 # playback speed (1.0 = real time, 10 frames per second)
 SAVE_VIDEO = None           # e.g. "out/ttc_demo.mp4" to also save what is shown
+WINDOW_SCALE = 1.3          # window size (1.0 = 1242 px wide); the window can also be resized by dragging
 
 # The best method so far (from src/ttc/benchmarks/kitti_tracking/results):
 # the COMBINED filter, fed with the depth model's distance AND the box height.
@@ -317,14 +318,20 @@ def main() -> None:
     frames = kitti_frames() if MODE == "kitti" else braking_frames()
     writer, paused = None, False
     delay = max(1, int(1000 / (FPS * SPEED)))
+    window = "Time To Collision demo"
+    cv2.namedWindow(window, cv2.WINDOW_NORMAL)   # resizable window
+    sized = False
     for pic in frames:
+        if not sized:   # open the window at WINDOW_SCALE x the picture size
+            cv2.resizeWindow(window, int(pic.shape[1] * WINDOW_SCALE), int(pic.shape[0] * WINDOW_SCALE))
+            sized = True
         if SAVE_VIDEO:
             if writer is None:
                 Path(SAVE_VIDEO).parent.mkdir(parents=True, exist_ok=True)
                 writer = cv2.VideoWriter(SAVE_VIDEO, cv2.VideoWriter_fourcc(*"mp4v"), FPS * SPEED,
                                          (pic.shape[1], pic.shape[0]))
             writer.write(pic)
-        cv2.imshow("Time To Collision demo", pic)
+        cv2.imshow(window, pic)
         while True:
             key = cv2.waitKey(0 if paused else delay) & 0xFF
             if key == ord("q"):
