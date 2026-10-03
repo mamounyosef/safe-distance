@@ -115,8 +115,30 @@ def timeline(width: int, t_now: float, duration: float, labels: dict, warnings: 
     return bar
 
 
-def main() -> None:
-    video = Path(VIDEO)
+class Models:
+    """The networks, loaded once and reused for every clip (loading takes seconds)."""
+
+    def __init__(self) -> None:
+        self.detector = Detector(weights=WEIGHTS, conf=CONF, imgsz=IMGSZ)
+        base = BACKENDS[DEPTH_MODEL]()
+        self.depth_day = DepthModelEstimator(base, "p10")
+        self.depth_night = DepthModelEstimator(EnhancedBackend(base, "clahe4"), "p10")  # same network, CLAHE first
+
+
+def warning_episodes(times: list[float], gap_s: float = 0.5) -> list[list[float]]:
+    """Group warning moments into episodes: [start, end] of each stretch of warnings."""
+    episodes = []
+    for t in times:
+        if episodes and t - episodes[-1][1] <= gap_s:
+            episodes[-1][1] = t
+        else:
+            episodes.append([t, t])
+    return episodes
+
+
+def run_clip(video: Path, models: Models, window: str, allow_skip: bool = False) -> str:
+    """Process one clip live in `window` and save it. Returns "done" at the end of
+    the clip, "quit" if Q was pressed, or "next" if R was pressed (allow_skip)."""
     cap = cv2.VideoCapture(str(video))
     fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
     n_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -133,22 +155,16 @@ def main() -> None:
     ok, first = cap.read()
     night = ok and float(cv2.cvtColor(first, cv2.COLOR_BGR2GRAY).mean()) < NIGHT_BRIGHTNESS
     cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
-    backend = BACKENDS[DEPTH_MODEL]()
-    if night:
-        backend = EnhancedBackend(backend, "clahe4")
-    depth = DepthModelEstimator(backend, "p10")
+    depth = models.depth_night if night else models.depth_day
 
-    detector = Detector(weights=WEIGHTS, conf=CONF, imgsz=IMGSZ)
-    tracker = Tracker(detector, "botsort", track_low_thresh=0.05)
+    tracker = Tracker(models.detector, "botsort", track_low_thresh=0.05)   # fresh IDs for every clip
     states: dict[int, ObjectState] = {}
     warn_times: list[float] = []
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     out_path = OUT_DIR / f"{labels['source'] or 'video'}_{video.stem}.mp4"
     writer = None
-    window = "Safe distance: full pipeline"
-    cv2.namedWindow(window, cv2.WINDOW_NORMAL)
-    paused, focus, k = False, None, 0
+    paused, focus, k, result = False, None, 0, "done"
     print(f"{video.name}: {w}x{h}, {fps:.1f} fps, {duration:.1f} s; processing every {step} frame(s); "
           f"{'night: CLAHE on' if night else 'day'}; focal length {fx:.0f} px (assumed {HFOV_DEG:g} deg)")
 
@@ -206,24 +222,43 @@ def main() -> None:
         if writer is None:
             writer = cv2.VideoWriter(str(out_path), cv2.VideoWriter_fourcc(*"mp4v"), fps / step,
                                      (pic.shape[1], pic.shape[0]))
-            cv2.resizeWindow(window, pic.shape[1], int(pic.shape[0] * 0.95))
         writer.write(pic)
         cv2.imshow(window, pic)
         key = cv2.waitKey(0 if paused else 1) & 0xFF
         if key == ord(" "):
             paused = not paused
         if key == ord("q"):
+            result = "quit"
+            break
+        if allow_skip and key == ord("r"):
+            result = "next"
             break
 
     if writer:
         writer.release()
+    # Every warning episode is kept. The one that counts for the crash is the
+    # first episode starting in the 4 s before the event; earlier ones are
+    # false warnings (nothing about to happen yet).
+    episodes = warning_episodes(warn_times)
     summary = {"video": str(video), "labels": labels, "night_clahe": bool(night), "focal_px": round(fx, 1),
-               "first_warning_s": warn_times[0] if warn_times else None, "warning_frames": len(warn_times)}
-    if labels["crash_s"] and warn_times:
-        summary["warning_before_crash_s"] = round(labels["crash_s"][0] - warn_times[0], 2)
+               "finished": result == "done", "warning_episodes_s": [[round(a, 2), round(b, 2)] for a, b in episodes]}
+    if labels["crash_s"]:
+        event = labels["crash_s"][0]
+        before = [a for a, _ in episodes if event - 4.0 <= a <= event + 0.5]
+        summary["crash_warning_s"] = round(before[0], 2) if before else None
+        summary["crash_warning_before_event_s"] = round(event - before[0], 2) if before else None
+        summary["early_false_warnings"] = sum(1 for a, _ in episodes if a < event - 4.0)
     (OUT_DIR / f"{out_path.stem}.json").write_text(json.dumps(summary, indent=2))
     print(json.dumps(summary, indent=2))
     print(f"saved {out_path}")
+    return result
+
+
+def main() -> None:
+    window = "Safe distance: full pipeline"
+    cv2.namedWindow(window, cv2.WINDOW_NORMAL)
+    out_path = OUT_DIR / f"{crash_labels(Path(VIDEO))['source'] or 'video'}_{Path(VIDEO).stem}.mp4"
+    run_clip(Path(VIDEO), Models(), window)
     cv2.destroyAllWindows()
     if OPEN_VIEWER:
         from view_video import view   # same folder
