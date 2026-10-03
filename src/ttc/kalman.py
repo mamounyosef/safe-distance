@@ -76,6 +76,33 @@ class DistanceKalman:
         return None if self.x is None else float(-self.x[1])
 
 
+class LogSizeKalman(DistanceKalman):
+    """Kalman filter on the LOG of an object's image size ("looming").
+
+    An object's image size is proportional to 1 / distance, so the growth rate
+    of log(size) is closing speed / distance = 1 / TTC. This needs no distance
+    at all, so a depth model's slow drift does not affect it.
+
+    State: [log size, growth rate g (1/s)]. TTC = 1 / g while g > 0.
+        accel_noise   how suddenly g may change (1/s^2).
+        meas_noise    noise of log(size) per reading (0.011 = 1.1% size wobble).
+    """
+
+    def __init__(self, accel_noise: float, meas_noise: float, initial_rate_sigma: float = 1.0) -> None:
+        super().__init__(accel_noise, meas_noise, initial_speed_sigma=initial_rate_sigma, min_meas_sigma_m=0.0)
+
+    def _meas_var(self, z: float) -> float:
+        return self.meas_noise ** 2
+
+    @property
+    def growth_rate(self) -> float | None:
+        return None if self.x is None else float(self.x[1])
+
+    @property
+    def growth_rate_sigma(self) -> float | None:
+        return self.speed_sigma
+
+
 def time_to_collision(distance: float | None, closing_speed: float | None) -> float:
     """Seconds until contact at constant speed; infinity if not closing."""
     if distance is None or closing_speed is None or closing_speed <= 0:

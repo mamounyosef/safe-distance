@@ -1,0 +1,18 @@
+{
+  "provenance": {
+    "created_utc": "2026-10-03T08:11:25+00:00",
+    "git_commit": "4480518",
+    "git_uncommitted_changes": true,
+    "python": "3.12.0",
+    "torch": "2.6.0+cu124",
+    "ultralytics": "8.4.155",
+    "gpu": "NVIDIA GeForce RTX 4060"
+  },
+  "weights": "weights/yolo26s-seg.pt",
+  "imgsz": 1280,
+  "conf": 0.25,
+  "frames": 3023,
+  "sequences": 21,
+  "observations": 14444,
+  "edge_margin_px": 3
+}
