@@ -9,7 +9,7 @@ Hugging Face (the login token is passed to the job for this run only).
 
 RUN IT (PowerShell, from the repo root):
 
-    $env:MODAL_CONFIG_PATH = "$HOME\\.modal_session22.toml"
+    $env:MODAL_CONFIG_PATH = "$HOME\\.modal_session22.toml"   # Modal account ahmad-yonis
     .venv\\Scripts\\modal.exe run scripts\\modal_nexar_download.py
 """
 
