@@ -60,9 +60,11 @@ def main() -> None:
             img = cv2.imread(str(path))
             h, w = img.shape[:2]
             dets = detector.detect(img)
+            # Pair each labelled object with the detector box that overlaps it most
+            # (same rule as the stability benchmark), then save that box's sizes.
             for gi, bi in match(gt, [(d.x1, d.y1, d.x2, d.y2) for d in dets]).items():
                 g, d = gt[gi], dets[bi]
-                has_mask = d.mask is not None and len(d.mask) >= 3
+                has_mask = d.mask is not None and len(d.mask) >= 3   # mask = outline polygon in pixels
                 rows.append({
                     "sequence": seq, "frame": frame_no, "track_id": g["track_id"], "class": CLASSES[g["type"]],
                     "x1": round(d.x1, 2), "y1": round(d.y1, 2), "x2": round(d.x2, 2), "y2": round(d.y2, 2),

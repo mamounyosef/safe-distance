@@ -32,6 +32,11 @@ Methods compared (all causal: they only use the current and past frames):
                              square root of the mask area. Measurement noise =
                              the wobble measured on the data. Objects touching
                              the image edge give no size reading that frame.
+    fused_a{A}_d{D}[_g{G}]   ONE filter fed with both the distance and the box
+                             height (src/ttc/kalman.py FusedKalman): the distance
+                             sets how far, the box growth sets how fast. A =
+                             growth-rate noise, D = depth noise (higher = trust
+                             the distance less for motion), G = speed gate.
 
 Warning confirmation (part A of step 3): a warning is raised when the estimated
 TTC is under 2.5 s for N frames in a row (N = 1, 2, 3).
@@ -78,7 +83,7 @@ REPO = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(REPO))
 
 from src.detection.benchmarks.common import md_table, provenance  # noqa: E402
-from src.ttc.kalman import DistanceKalman, LogSizeKalman, time_to_collision  # noqa: E402
+from src.ttc.kalman import DistanceKalman, FusedKalman, LogSizeKalman, time_to_collision  # noqa: E402
 
 # ----------------------------------------------------------------------------
 # CONFIG
@@ -118,6 +123,14 @@ LOOMING_ACCELS = [0.1, 0.2, 0.4, 0.8]
 LOOMING_GATES = [None, 1.0]
 LOOMING_DISTANCE_FILTER = (4.0, 0.015)   # (acceleration noise, measurement noise)
 
+# Fused filter (distance + box size in one, src/ttc/kalman.py FusedKalman):
+# growth-rate noise (1/s^2) x depth noise (share; 0.015 = measured, higher =
+# trust the distance less for motion) x speed gate (m/s).
+FUSED_SIZE_KIND = "box_height"
+FUSED_ACCELS = [0.1, 0.2, 0.4]
+FUSED_DEPTH_NOISES = [0.015, 0.03, 0.06]
+FUSED_GATES = [None, 1.0]
+
 # A track unseen for more than this many frames is restarted.
 MAX_GAP_FRAMES = 5
 
@@ -152,6 +165,7 @@ OUT_DIR = Path(__file__).resolve().parent / "results"
 
 # ----------------------------------------------------------------------------
 
+# How to read each kind of image size (pixels) from a row of the sizes file.
 SIZE_OF = {
     "box_height": lambda r: float(r["y2"]) - float(r["y1"]),
     "mask_height": lambda r: float(r["mask_height_px"]) if r["mask_height_px"] else None,
@@ -160,7 +174,12 @@ SIZE_OF = {
 
 
 def load(run_folder: str, column: str) -> dict[tuple, list[dict]]:
-    """Observations per track, in frame order: distance column plus image sizes."""
+    """Read both saved files and group them per object.
+
+    Returns {(sequence, track ID): [one dict per frame, in time order]}, each
+    with the depth model's distance, the true distance and the image sizes.
+    A box touching the image edge gets no size (None): a cut-off object does
+    not grow normally as it approaches."""
     sizes = {}
     with SIZES.open(newline="") as f:
         for r in csv.DictReader(f):
@@ -185,7 +204,12 @@ def load(run_folder: str, column: str) -> dict[tuple, list[dict]]:
 
 
 def add_truth(obs: list[dict]) -> None:
-    """True closing speed: centred linear fit of the true distance over +-0.5 s."""
+    """Add the TRUE closing speed and TRUE TTC to each frame of one object.
+
+    True closing speed = slope of a straight line fitted through the laser
+    distances from 0.5 s before to 0.5 s after the frame (smooths the labels'
+    own wobble). True TTC = true distance / true closing speed; infinity if the
+    gap shrinks by less than MIN_TRUE_CLOSING_MPS."""
     frames = np.array([o["frame"] for o in obs])
     true = np.array([o["true_m"] for o in obs])
     for o in obs:
@@ -199,11 +223,17 @@ def add_truth(obs: list[dict]) -> None:
             o["true_ttc_s"] = None
 
 
-# ---- methods: each takes (frames, distance readings, size readings) of one
-# ---- track, returns per reading (distance, closing speed or None, frames
-# ---- since the track started). Size readings: dicts {kind: pixels or None}.
+# ---- The methods being compared --------------------------------------------
+# Each method is a function run(frames, readings, sizes) for ONE object:
+#     frames    frame numbers (10 per second)
+#     readings  depth model distance per frame (m)
+#     sizes     image sizes per frame: {kind: pixels, or None if unknown}
+# It returns, per frame: (distance, closing speed or None if not sure yet,
+# frames since the object was first seen). TTC is computed from these later.
+# The *_method(...) functions below build one such function per setting.
 
 def window_method(w: int):
+    """Simplest method: speed = change in distance over the last w frames."""
     def run(frames, readings, sizes):
         at = dict(zip(frames, readings))
         out = []
@@ -215,10 +245,12 @@ def window_method(w: int):
 
 
 def kalman_method(accel: float, meas: float, gate: float | None):
+    """Distance Kalman filter. Speed is reported only once the filter's own
+    speed uncertainty is under `gate` m/s (None = from the 2nd reading)."""
     def run(frames, readings, sizes):
         out, kf, prev, start = [], None, None, None
         for f, z in zip(frames, readings):
-            if kf is None or f - prev > MAX_GAP_FRAMES:
+            if kf is None or f - prev > MAX_GAP_FRAMES:   # new object, or lost too long: start over
                 kf, start = DistanceKalman(accel, meas), f
             else:
                 kf.predict((f - prev) / FPS)
@@ -231,6 +263,8 @@ def kalman_method(accel: float, meas: float, gate: float | None):
 
 
 def looming_method(kind: str, accel: float, meas: float, gate: float | None):
+    """Box-growth filter (TTC = 1 / growth rate). A separate distance filter
+    runs alongside only to turn TTC into a closing speed (distance x growth)."""
     def run(frames, readings, sizes):
         out, kd, ks, prev, start = [], None, None, None, None
         for f, z, s in zip(frames, readings, sizes):
@@ -240,7 +274,7 @@ def looming_method(kind: str, accel: float, meas: float, gate: float | None):
                 kd.predict((f - prev) / FPS)
                 ks.predict((f - prev) / FPS)
             kd.update(z)
-            if s.get(kind):
+            if s.get(kind):   # no size this frame (box at the image edge): predict only
                 ks.update(math.log(s[kind]))
             prev = f
             closing = None
@@ -253,7 +287,26 @@ def looming_method(kind: str, accel: float, meas: float, gate: float | None):
     return run
 
 
+def fused_method(accel: float, depth_noise: float, size_noise: float, gate: float | None):
+    """One filter fed with both the distance and the box height every frame."""
+    def run(frames, readings, sizes):
+        out, kf, prev, start = [], None, None, None
+        for f, z, s in zip(frames, readings, sizes):
+            if kf is None or f - prev > MAX_GAP_FRAMES:
+                kf, start = FusedKalman(accel, depth_noise, size_noise), f
+            else:
+                kf.predict((f - prev) / FPS)
+            kf.update(z, s.get(FUSED_SIZE_KIND))
+            prev = f
+            ready = kf.updates >= 2 and (gate is None or kf.closing_sigma <= gate)
+            out.append((kf.distance, kf.closing_speed if ready else None, f - start))
+        return out
+    return run
+
+
 def all_methods(size_noise: dict) -> dict:
+    """Every method x setting listed in CONFIG, by name, e.g. "kalman_a4_r0.015_g1"
+    = distance filter, acceleration noise 4, measurement noise 1.5%, gate 1 m/s."""
     methods = {f"window_{w}": window_method(w) for w in WINDOWS}
     for a in ACCEL_NOISES:
         for r in MEAS_NOISES:
@@ -264,12 +317,18 @@ def all_methods(size_noise: dict) -> dict:
             for g in LOOMING_GATES:
                 methods[f"looming_{kind}_a{a:g}" + ("" if g is None else f"_g{g:g}")] = \
                     looming_method(kind, a, size_noise[kind]["equivalent_per_reading_noise"], g)
+    s_noise = size_noise[FUSED_SIZE_KIND]["equivalent_per_reading_noise"]
+    for a in FUSED_ACCELS:
+        for d in FUSED_DEPTH_NOISES:
+            for g in FUSED_GATES:
+                methods[f"fused_a{a:g}_d{d:g}" + ("" if g is None else f"_g{g:g}")] = fused_method(a, d, s_noise, g)
     return methods
 
 
 def confirmed(frames: list[int], ttc: list[float | None], n: int) -> list[bool]:
-    """Warning active at each reading: TTC under the threshold for the last n
-    readings in a row (consecutive frames)."""
+    """Warning rule: is the warning on at each frame? On = TTC under WARN_TTC_S
+    for the last n frames in a row. n = 1 warns at once; n = 2 or 3 ignores a
+    single noisy frame, at the cost of 0.1 or 0.2 s. A missing frame resets it."""
     out, run, prev = [], 0, None
     for f, t in zip(frames, ttc):
         if prev is not None and f - prev != 1:
@@ -281,6 +340,8 @@ def confirmed(frames: list[int], ttc: list[float | None], n: int) -> list[bool]:
 
 
 def apply(tracks: dict, methods: dict) -> None:
+    """Run every method on every real object; store its distance, closing speed,
+    TTC and warning state on each frame, under the method's name."""
     for obs in tracks.values():
         frames = [o["frame"] for o in obs]
         readings = [o["measured_m"] for o in obs]
@@ -326,6 +387,8 @@ def ttc_stats(rows: list[dict], name: str, all_rows: list[dict]) -> dict:
 
 
 def score_real(tracks: dict, names: list[str]) -> dict:
+    """Part 1: score every method on the real in-path frames, in two groups:
+    settled (object seen for 2 s or more) and early (its first 2 s)."""
     rows = [o for obs in tracks.values() for o in obs
             if o["lateral_gap_m"] <= CORRIDOR_HALF_WIDTH_M and o["true_closing_mps"] is not None]
     longest = f"window_{max(WINDOWS)}"
@@ -346,6 +409,8 @@ def score_real(tracks: dict, names: list[str]) -> dict:
 
 
 def noise_summary(steps: list[float]) -> dict:
+    """Median and p90 of the frame-to-frame error changes, plus the equivalent
+    per-reading noise (used as the filters' measurement noise)."""
     steps = np.abs(steps)
     # If each reading had independent noise of size s, the change between two
     # readings would have a median of 0.6745 * sqrt(2) * s.
@@ -410,9 +475,13 @@ def real_error_runs(tracks: dict) -> list[dict]:
 
 
 def braking_test(methods: dict, noise: dict, error_runs: list[dict], noise_kind: str) -> dict:
-    """Simulated braking of the car ahead, with independent noise of the
-    measured size ("independent"), or with real error sequences replayed
-    ("replayed": every unbroken real stretch long enough, cut into pieces)."""
+    """Part 2: a simulated car ahead brakes; how late does each method warn?
+
+    The truth is exact because it is simulated: the gap stays constant for
+    BRAKE_AFTER_S, then shrinks as the car ahead brakes. Noisy readings are
+    made from it, either with real error sequences replayed from KITTI
+    ("replayed") or with random noise of the measured size ("independent").
+    Each noise draw is one simulated run; results are over all draws."""
     rng = np.random.default_rng(SEED)
     out = {}
     for name, gap, decel in SCENARIOS:
@@ -423,7 +492,7 @@ def braking_test(methods: dict, noise: dict, error_runs: list[dict], noise_kind:
         tb = np.clip(t - BRAKE_AFTER_S, 0, None)
         true_d = np.maximum(gap - 0.5 * decel * tb ** 2, 0.1)
         true_ttc = np.array([time_to_collision(d, decel * x) for d, x in zip(true_d, tb)])
-        t_true_warn = float(t[np.argmax(true_ttc < WARN_TTC_S)])
+        t_true_warn = float(t[np.argmax(true_ttc < WARN_TTC_S)])   # when a perfect sensor would warn
         n = len(true_d)
         if noise_kind == "independent":
             draws = [{"distance": noise["distance"]["equivalent_per_reading_noise"] * rng.standard_normal(n),
@@ -442,6 +511,8 @@ def braking_test(methods: dict, noise: dict, error_runs: list[dict], noise_kind:
                "perfect_warning_after_brake_s": round(t_true_warn - BRAKE_AFTER_S, 2),
                "perfect_warning_margin_s": round(t_impact - t_true_warn, 2), "noise": noise_kind,
                "draws": len(draws), "methods": {}}
+        # Turn each noise draw into noisy readings: distance = truth x (1 + error),
+        # box size = SIM_SIZE_PX_M / true distance x (1 + size wobble).
         sims = []
         for dr in draws:
             z = list(np.maximum(true_d * (1 + dr["distance"]), 0.1))
@@ -456,9 +527,9 @@ def braking_test(methods: dict, noise: dict, error_runs: list[dict], noise_kind:
                 for c in CONFIRM_FRAMES:
                     warn = np.array(confirmed(frames, ttc, c))
                     s = stats[c]
-                    if warn[t < BRAKE_AFTER_S].any():
+                    if warn[t < BRAKE_AFTER_S].any():    # warned before the car even braked: false
                         s["early"] += 1
-                    after = (t >= BRAKE_AFTER_S) & warn
+                    after = (t >= BRAKE_AFTER_S) & warn  # the real warning: first one after braking starts
                     if not after.any():
                         s["missed"] += 1
                         continue
@@ -500,7 +571,7 @@ def main() -> None:
                 "run_name": run_name, "corridor_half_width_m": CORRIDOR_HALF_WIDTH_M, "windows": WINDOWS,
                 "accel_noises": ACCEL_NOISES, "meas_noises": MEAS_NOISES, "speed_gates": SPEED_GATES,
                 "size_kinds": SIZE_KINDS, "looming_accels": LOOMING_ACCELS, "looming_gates": LOOMING_GATES,
-                "looming_distance_filter": LOOMING_DISTANCE_FILTER, "max_gap_frames": MAX_GAP_FRAMES,
+                "looming_distance_filter": LOOMING_DISTANCE_FILTER, "fused_size_kind": FUSED_SIZE_KIND, "fused_accels": FUSED_ACCELS, "fused_depth_noises": FUSED_DEPTH_NOISES, "fused_gates": FUSED_GATES, "max_gap_frames": MAX_GAP_FRAMES,
                 "settled_after_frames": SETTLED_AFTER_FRAMES, "ttc_relevant_s": TTC_RELEVANT_S,
                 "ttc_tolerance": TTC_TOLERANCE, "min_true_closing_mps": MIN_TRUE_CLOSING_MPS,
                 "warn_ttc_s": WARN_TTC_S, "safe_ttc_s": SAFE_TTC_S, "confirm_frames": CONFIRM_FRAMES,
