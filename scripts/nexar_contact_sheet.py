@@ -6,6 +6,7 @@ Run: .venv\\Scripts\\python.exe scripts\\nexar_contact_sheet.py
 """
 
 import csv
+import sys
 from pathlib import Path
 
 import cv2
@@ -22,7 +23,10 @@ PER_SHEET = 10
 
 def main() -> None:
     meta = {r["file_name"][:-4]: r for r in csv.DictReader((SPLIT_DIR / "metadata.csv").open())}
-    clips = sorted(p.stem for p in SPLIT_DIR.glob("*.mp4"))
+    # Clip ids given on the command line, or every downloaded clip.
+    clips = sys.argv[1:] or sorted(p.stem for p in SPLIT_DIR.glob("*.mp4"))
+    for old in OUT.glob("sheet_*.jpg"):
+        old.unlink()
     OUT.mkdir(parents=True, exist_ok=True)
     rows = []
     for clip in clips:
