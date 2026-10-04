@@ -13,10 +13,10 @@ Saved per clip (Modal Volume, /data/results/<RUN>/<split>/<clip>.json.gz):
     object: track ID, class, confidence, box (x1, y1, x2, y2), distance (m)
     from Metric3D plain and with CLAHE (10th percentile inside the mask).
 
-Clips: every collision / near-miss clip (train/positive) from 6 s before its
-event to 1 s after, and 100 random normal-driving clips (train/negative), 20 s
-of each, to count false warnings. The CLAHE depth is only computed on darker
-frames (mean brightness under 100), to save GPU time.
+Clips: 300 random collision / near-miss clips (train/positive) from 6 s before
+their event to 1 s after, and 50 random normal-driving clips (train/negative),
+20 s of each, to count false warnings. The CLAHE depth is only computed on
+clips Nexar labels Dark or Twilight, to save GPU time.
 
 RUN IT (PowerShell, from the repo root; Modal account ahmad-yonis):
 
@@ -30,7 +30,7 @@ from __future__ import annotations
 import modal
 
 # ---- CONFIG ----
-RUN = "v1"                       # results folder name; change to keep older results
+RUN = "v2"                       # results folder name; change to keep older results (v1 = 4-clip test)
 VOLUME = "safe-distance-data"
 GPU = "L4"                       # small GPU: Metric3D Small and YOLO need little memory
 MAX_CONTAINERS = 4               # clips processed in parallel (at most 4 GPUs at once)
@@ -38,9 +38,10 @@ PROCESS_FPS = 10.0               # frames per second processed (the filter was t
 # Collision clips: from 6 s before the event (2 s for the filter to settle, then
 # the 4 s in which a warning matters) to 1 s after it.
 BEFORE_EVENT_S, AFTER_EVENT_S = 6.0, 1.0
-NEGATIVE_SAMPLE = 100            # normal-driving clips, to count false warnings ...
-NEGATIVE_WINDOW_S = (10.0, 30.0)  # ... 20 s of each (100 x 20 s = 33 min of driving)
-CLAHE_BELOW_BRIGHTNESS = 100     # run the CLAHE depth only on frames darker than this (0-255)
+POSITIVE_SAMPLE = 300            # random collision / near-miss clips (of 750)
+NEGATIVE_SAMPLE = 50             # normal-driving clips, to count false warnings ...
+NEGATIVE_WINDOW_S = (10.0, 30.0)  # ... 20 s of each (50 x 20 s = 17 min of driving)
+NIGHT_LIGHT = {"Dark", "Twilight"}  # Nexar light labels that count as night: only these get the CLAHE depth
 SEED = 0
 HFOV_DEG = 110.0                 # assumed dashcam horizontal field of view (lens unknown)
 # ----------------
@@ -61,7 +62,7 @@ image = (
 
 
 @app.function(image=image, gpu=GPU, volumes={"/data": volume}, timeout=3600, max_containers=MAX_CONTAINERS)
-def collect(split: str, clip: str, t_start: float, t_end: float) -> dict:
+def collect(split: str, clip: str, t_start: float, t_end: float, night: bool) -> dict:
     """Process one clip and save its per-frame results to the Volume."""
     import gzip
     import json
@@ -112,8 +113,8 @@ def collect(split: str, clip: str, t_start: float, t_end: float) -> dict:
         dets = tracker.update(img)
         brightness = float(cv2.cvtColor(img, cv2.COLOR_BGR2GRAY).mean())
         d_plain = plain.estimate(img, dets, camera)
-        # CLAHE (contrast boost) depth only on darker frames, where a night rule could use it.
-        d_clahe = clahe.estimate(img, dets, camera) if brightness < CLAHE_BELOW_BRIGHTNESS else [None] * len(dets)
+        # CLAHE (contrast boost) depth only on clips Nexar labels as night.
+        d_clahe = clahe.estimate(img, dets, camera) if night else [None] * len(dets)
         frames.append({
             "t": round(t, 3),
             "brightness": round(brightness, 1),
@@ -123,7 +124,7 @@ def collect(split: str, clip: str, t_start: float, t_end: float) -> dict:
                         for d, a, b in zip(dets, d_plain, d_clahe) if d.track_id is not None],
         })
     result = {"clip": clip, "split": split, "run": RUN, "width": w, "height": h, "fps": fps, "step": step,
-              "clahe_below_brightness": CLAHE_BELOW_BRIGHTNESS,
+              "night": night,
               "focal_px": round(fx, 2), "hfov_deg": HFOV_DEG, "window_s": [t_start, t_end],
               "frames": frames, "seconds": round(time.time() - start, 1)}
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -135,18 +136,22 @@ def collect(split: str, clip: str, t_start: float, t_end: float) -> dict:
 
 @app.function(image=image, volumes={"/data": volume})
 def clip_list(limit: int) -> list[tuple]:
-    """(split, clip, start, end) for every clip to process, read from the metadata."""
+    """(split, clip, start, end, night) for every clip to process, read from the metadata."""
     import csv
     import random
 
+    rng = random.Random(SEED)
+    # Random sample of collision clips (sorted first so the sample is repeatable).
+    positives = sorted((r for r in csv.DictReader(open("/data/nexar/train/positive/metadata.csv"))
+                        if r["time_of_event"]), key=lambda r: r["file_name"])
     jobs = []
-    for r in csv.DictReader(open("/data/nexar/train/positive/metadata.csv")):
-        if r["time_of_event"]:
-            e = float(r["time_of_event"])
-            jobs.append(("train/positive", r["file_name"][:-4], max(e - BEFORE_EVENT_S, 0.0), e + AFTER_EVENT_S))
-    negatives = sorted(r["file_name"][:-4] for r in csv.DictReader(open("/data/nexar/train/negative/metadata.csv")))
-    for clip in random.Random(SEED).sample(negatives, NEGATIVE_SAMPLE):
-        jobs.append(("train/negative", clip, *NEGATIVE_WINDOW_S))
+    for r in rng.sample(positives, min(POSITIVE_SAMPLE, len(positives))):
+        e = float(r["time_of_event"])
+        jobs.append(("train/positive", r["file_name"][:-4], max(e - BEFORE_EVENT_S, 0.0), e + AFTER_EVENT_S,
+                     r.get("light_conditions") in NIGHT_LIGHT))
+    negatives = sorted(csv.DictReader(open("/data/nexar/train/negative/metadata.csv")), key=lambda r: r["file_name"])
+    for r in rng.sample(negatives, NEGATIVE_SAMPLE):
+        jobs.append(("train/negative", r["file_name"][:-4], *NEGATIVE_WINDOW_S, r.get("light_conditions") in NIGHT_LIGHT))
     if limit:   # test run: a few of each kind
         jobs = [j for j in jobs if j[0] == "train/positive"][:limit] + \
                [j for j in jobs if j[0] == "train/negative"][:limit]
