@@ -66,7 +66,7 @@ def clip_warnings(clip: dict) -> list[dict]:
             if out["warning"] and gap <= sn.CORRIDOR_M:
                 ago = [hh for tt, hh in hist if t - tt >= 1.0]       # box height about 1 s ago
                 raised.append({
-                    "t": t, "cls": o["cls"], "conf": o["conf"], "measured_m": round(d, 2),
+                    "t": t, "box": o["box"], "cls": o["cls"], "conf": o["conf"], "measured_m": round(d, 2),
                     "distance_m": round(out["distance"], 2), "closing_mps": round(out["closing"], 2),
                     "ttc_s": round(out["ttc"], 2), "lateral_gap_m": round(gap, 2),
                     "age_s": round(t - hist[0][0], 2), "at_edge": at_edge,

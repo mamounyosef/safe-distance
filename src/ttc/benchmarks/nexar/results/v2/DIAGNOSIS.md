@@ -14,8 +14,8 @@ Objects that raised a warning, at the first frame of each warning episode.
 | car | 43 | 123 |
 | truck | 5 | 22 |
 | other | 3 | 10 |
-| bus | 1 | 1 |
 | motorcycle | 1 | 1 |
+| bus | 1 | 1 |
 | train | 0 | 1 |
 
 ## Medians

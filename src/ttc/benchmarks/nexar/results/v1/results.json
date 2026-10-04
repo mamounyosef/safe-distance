@@ -1,0 +1,321 @@
+{
+ "run": "v1",
+ "variants": {
+  "as_now": {
+   "rules": {
+    "min_age_s": 0.0,
+    "clahe": true
+   },
+   "crash_clips": 2,
+   "warned_before_event": {
+    "k": 0,
+    "n": 2,
+    "share": 0.0,
+    "ci95": [
+     0.0,
+     0.658
+    ]
+   },
+   "warned_by_due_time": {
+    "k": 0,
+    "n": 2,
+    "share": 0.0,
+    "ci95": [
+     0.0,
+     0.658
+    ]
+   },
+   "warned_before_event_day": {
+    "k": 0,
+    "n": 2,
+    "share": 0.0,
+    "ci95": [
+     0.0,
+     0.658
+    ]
+   },
+   "warned_before_event_night": {
+    "k": 0,
+    "n": 0,
+    "share": null,
+    "ci95": [
+     NaN,
+     NaN
+    ]
+   },
+   "lead_s": {
+    "median": null,
+    "p25": null,
+    "p75": null
+   },
+   "early_warnings_per_crash_clip": 0.0,
+   "normal_clips": 2,
+   "normal_hours": 0.011,
+   "false_warnings": 3,
+   "false_warnings_per_hour": 270.0,
+   "per_clip": [
+    {
+     "clip": "00208",
+     "night": false,
+     "light": "Normal",
+     "event_s": 19.8,
+     "due_s": 19.233,
+     "first_warning_s": null,
+     "lead_s": null,
+     "by_due": false,
+     "early_warnings": 0,
+     "warned": false
+    },
+    {
+     "clip": "00822",
+     "night": false,
+     "light": "Normal",
+     "event_s": 19.5,
+     "due_s": 18.633,
+     "first_warning_s": null,
+     "lead_s": null,
+     "by_due": false,
+     "early_warnings": 0,
+     "warned": false
+    }
+   ]
+  },
+  "min_age_0.5s": {
+   "rules": {
+    "min_age_s": 0.5,
+    "clahe": true
+   },
+   "crash_clips": 2,
+   "warned_before_event": {
+    "k": 0,
+    "n": 2,
+    "share": 0.0,
+    "ci95": [
+     0.0,
+     0.658
+    ]
+   },
+   "warned_by_due_time": {
+    "k": 0,
+    "n": 2,
+    "share": 0.0,
+    "ci95": [
+     0.0,
+     0.658
+    ]
+   },
+   "warned_before_event_day": {
+    "k": 0,
+    "n": 2,
+    "share": 0.0,
+    "ci95": [
+     0.0,
+     0.658
+    ]
+   },
+   "warned_before_event_night": {
+    "k": 0,
+    "n": 0,
+    "share": null,
+    "ci95": [
+     NaN,
+     NaN
+    ]
+   },
+   "lead_s": {
+    "median": null,
+    "p25": null,
+    "p75": null
+   },
+   "early_warnings_per_crash_clip": 0.0,
+   "normal_clips": 2,
+   "normal_hours": 0.011,
+   "false_warnings": 3,
+   "false_warnings_per_hour": 270.0,
+   "per_clip": [
+    {
+     "clip": "00208",
+     "night": false,
+     "light": "Normal",
+     "event_s": 19.8,
+     "due_s": 19.233,
+     "first_warning_s": null,
+     "lead_s": null,
+     "by_due": false,
+     "early_warnings": 0,
+     "warned": false
+    },
+    {
+     "clip": "00822",
+     "night": false,
+     "light": "Normal",
+     "event_s": 19.5,
+     "due_s": 18.633,
+     "first_warning_s": null,
+     "lead_s": null,
+     "by_due": false,
+     "early_warnings": 0,
+     "warned": false
+    }
+   ]
+  },
+  "min_age_1.0s": {
+   "rules": {
+    "min_age_s": 1.0,
+    "clahe": true
+   },
+   "crash_clips": 2,
+   "warned_before_event": {
+    "k": 0,
+    "n": 2,
+    "share": 0.0,
+    "ci95": [
+     0.0,
+     0.658
+    ]
+   },
+   "warned_by_due_time": {
+    "k": 0,
+    "n": 2,
+    "share": 0.0,
+    "ci95": [
+     0.0,
+     0.658
+    ]
+   },
+   "warned_before_event_day": {
+    "k": 0,
+    "n": 2,
+    "share": 0.0,
+    "ci95": [
+     0.0,
+     0.658
+    ]
+   },
+   "warned_before_event_night": {
+    "k": 0,
+    "n": 0,
+    "share": null,
+    "ci95": [
+     NaN,
+     NaN
+    ]
+   },
+   "lead_s": {
+    "median": null,
+    "p25": null,
+    "p75": null
+   },
+   "early_warnings_per_crash_clip": 0.0,
+   "normal_clips": 2,
+   "normal_hours": 0.011,
+   "false_warnings": 3,
+   "false_warnings_per_hour": 270.0,
+   "per_clip": [
+    {
+     "clip": "00208",
+     "night": false,
+     "light": "Normal",
+     "event_s": 19.8,
+     "due_s": 19.233,
+     "first_warning_s": null,
+     "lead_s": null,
+     "by_due": false,
+     "early_warnings": 0,
+     "warned": false
+    },
+    {
+     "clip": "00822",
+     "night": false,
+     "light": "Normal",
+     "event_s": 19.5,
+     "due_s": 18.633,
+     "first_warning_s": null,
+     "lead_s": null,
+     "by_due": false,
+     "early_warnings": 0,
+     "warned": false
+    }
+   ]
+  },
+  "no_clahe": {
+   "rules": {
+    "min_age_s": 0.0,
+    "clahe": false
+   },
+   "crash_clips": 2,
+   "warned_before_event": {
+    "k": 0,
+    "n": 2,
+    "share": 0.0,
+    "ci95": [
+     0.0,
+     0.658
+    ]
+   },
+   "warned_by_due_time": {
+    "k": 0,
+    "n": 2,
+    "share": 0.0,
+    "ci95": [
+     0.0,
+     0.658
+    ]
+   },
+   "warned_before_event_day": {
+    "k": 0,
+    "n": 2,
+    "share": 0.0,
+    "ci95": [
+     0.0,
+     0.658
+    ]
+   },
+   "warned_before_event_night": {
+    "k": 0,
+    "n": 0,
+    "share": null,
+    "ci95": [
+     NaN,
+     NaN
+    ]
+   },
+   "lead_s": {
+    "median": null,
+    "p25": null,
+    "p75": null
+   },
+   "early_warnings_per_crash_clip": 0.0,
+   "normal_clips": 2,
+   "normal_hours": 0.011,
+   "false_warnings": 3,
+   "false_warnings_per_hour": 270.0,
+   "per_clip": [
+    {
+     "clip": "00208",
+     "night": false,
+     "light": "Normal",
+     "event_s": 19.8,
+     "due_s": 19.233,
+     "first_warning_s": null,
+     "lead_s": null,
+     "by_due": false,
+     "early_warnings": 0,
+     "warned": false
+    },
+    {
+     "clip": "00822",
+     "night": false,
+     "light": "Normal",
+     "event_s": 19.5,
+     "due_s": 18.633,
+     "first_warning_s": null,
+     "lead_s": null,
+     "by_due": false,
+     "early_warnings": 0,
+     "warned": false
+    }
+   ]
+  }
+ }
+}
