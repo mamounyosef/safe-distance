@@ -44,7 +44,10 @@ NEAR_M, NEAR_TTC_S = 5.0, 1.0
 # Other systems' scores (submission CSVs: id,score), scored the same way, and
 # each one combined with ours: the mean of the two RANKS (0 = lowest risk,
 # 1 = highest), so neither system's number scale dominates.
-OTHERS = {"badas_open": "submission_badas_open.csv"}
+OTHERS = {"badas_open": "submission_badas_open.csv",
+          "op_brake3": "submission_op_brake3.csv",      # openpilot (openpilot_submissions.py)
+          "op_brake5": "submission_op_brake5.csv",
+          "op_fcw": "submission_op_fcw.csv"}
 COMBINE_WITH = "inv_ttc"
 OUT = Path(__file__).resolve().parent / "results" / RUN
 # ----------------

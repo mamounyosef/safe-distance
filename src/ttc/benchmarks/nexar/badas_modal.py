@@ -17,6 +17,10 @@ RUN IT (PowerShell, from the repo root; Modal account ahmad-yonis):
     .venv\\Scripts\\modal.exe run src\\ttc\\benchmarks\\nexar\\badas_modal.py              # all 1,344
 
 Writes results/test1/submission_badas_open.csv (id,score).
+
+With --series: a reading every 0.5 s through every clip instead (as it would
+run live), saved to results/test1/badas_series.json, for false warnings per
+hour of normal driving and how early it warns.
 """
 
 from __future__ import annotations
@@ -35,6 +39,9 @@ REPO = "nexar-ai/BADAS-Open"
 BASE_MODEL = "facebook/vjepa2-vitl-fpc16-256-ssv2"   # backbone named in badas_loader.py
 CACHE = "/data/models/hf"                            # Hugging Face downloads kept in the Volume
 OUT = Path(__file__).resolve().parent / "results" / "test1" / "submission_badas_open.csv"
+SERIES_OUT = Path(__file__).resolve().parent / "results" / "test1" / "badas_series.json"
+SERIES_STEP = 4               # --series: one reading every 4 frames at 8 per second = every 0.5 s
+SERIES_BATCH = 8              # windows per GPU pass
 # ----------------
 
 app = modal.App("safe-distance-badas")
@@ -78,6 +85,28 @@ class Badas:
         probs = self.model.predict(f"/data/nexar/{sub}/{clip}.mp4")
         return clip, float(probs[-1])
 
+    @modal.method()
+    def series(self, sub: str, clip: str) -> tuple[str, list]:
+        """Collision probability every SERIES_STEP frames (0.5 s) through the whole clip, as it
+        would run live in the car: each reading uses the 16 frames (2 s) up to that moment.
+        Returns [(time in s at the end of the window, probability), ...]."""
+        import torch
+        from utils.video import apply_temperature_scaling, load_full_video_frames
+
+        frames = load_full_video_frames(video_path=f"/data/nexar/{sub}/{clip}.mp4", target_size=(224, 224),
+                                        target_fps=8.0)
+        ends = list(range(16, len(frames) + 1, SERIES_STEP))
+        out = []
+        for i in range(0, len(ends), SERIES_BATCH):
+            # Same preprocessing and output as BADAS's own sliding window (vjepa.py).
+            batch = [self.model.processor(videos=frames[e - 16:e], return_tensors="pt")["pixel_values_videos"]
+                     .squeeze(0) for e in ends[i:i + SERIES_BATCH]]
+            with torch.no_grad():
+                logits = self.model.model(torch.stack(batch).to(self.model.device))
+                probs = torch.softmax(apply_temperature_scaling(logits, temperature=2.0), dim=1)[:, 1]
+            out += [(round(e / 8.0, 3), round(float(p), 5)) for e, p in zip(ends[i:i + SERIES_BATCH], probs)]
+        return clip, out
+
 
 @app.function(image=image, volumes={"/data": volume})
 def test_clips() -> list[tuple[str, str]]:
@@ -90,11 +119,25 @@ def test_clips() -> list[tuple[str, str]]:
 
 
 @app.local_entrypoint()
-def main(limit: int = 0) -> None:
+def main(limit: int = 0, series: bool = False) -> None:
+    import json
+
     jobs = test_clips.remote()
     jobs = jobs[:limit] if limit else jobs
     print(f"{len(jobs)} clips")
     badas = Badas()
+    if series:   # readings every 0.5 s through every clip (for false warnings per hour and warning time)
+        res, failed = {}, 0
+        for r in badas.series.starmap(jobs, return_exceptions=True):
+            if isinstance(r, Exception):
+                failed += 1
+                print(f"FAILED: {r}", flush=True)
+            else:
+                res[r[0]] = r[1]
+        path = SERIES_OUT if not limit else SERIES_OUT.with_name("badas_series_test.json")
+        path.write_text(json.dumps(res))
+        print(f"{len(res)} clips, {sum(len(v) for v in res.values())} readings, {failed} failed, saved {path}")
+        return
     first = badas.score.remote(*jobs[0])      # one first, alone: downloads the weights into the Volume once
     print(first)
     results = [first]
