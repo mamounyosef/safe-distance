@@ -22,6 +22,30 @@
   "badas_open+ours": {
    "Public": 0.8568,
    "Private": 0.8444
+  },
+  "op_brake3": {
+   "Public": 0.4936,
+   "Private": 0.5166
+  },
+  "op_brake3+ours": {
+   "Public": 0.6082,
+   "Private": 0.6431
+  },
+  "op_brake5": {
+   "Public": 0.5089,
+   "Private": 0.5117
+  },
+  "op_brake5+ours": {
+   "Public": 0.612,
+   "Private": 0.6431
+  },
+  "op_fcw": {
+   "Public": 0.5044,
+   "Private": 0.5085
+  },
+  "op_fcw+ours": {
+   "Public": 0.6639,
+   "Private": 0.6725
   }
  }
 }

@@ -11,3 +11,9 @@ Clips scored: 1344 (missing from the labels' list: 0, counted as score 0). mAP =
 | inv_ttc+near | 0.6596 | 0.6634 |
 | badas_open | 0.9089 | 0.9001 |
 | badas_open+ours | 0.8568 | 0.8444 |
+| op_brake3 | 0.4936 | 0.5166 |
+| op_brake3+ours | 0.6082 | 0.6431 |
+| op_brake5 | 0.5089 | 0.5117 |
+| op_brake5+ours | 0.612 | 0.6431 |
+| op_fcw | 0.5044 | 0.5085 |
+| op_fcw+ours | 0.6639 | 0.6725 |
