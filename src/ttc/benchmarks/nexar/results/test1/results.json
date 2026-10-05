@@ -1,0 +1,19 @@
+{
+ "run": "test1",
+ "clips_scored": 1344,
+ "clips_missing": 0,
+ "mAP": {
+  "inv_ttc": {
+   "Public": 0.669,
+   "Private": 0.6627
+  },
+  "warned": {
+   "Public": 0.5697,
+   "Private": 0.5557
+  },
+  "inv_ttc+near": {
+   "Public": 0.6596,
+   "Private": 0.6634
+  }
+ }
+}

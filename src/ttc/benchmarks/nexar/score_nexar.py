@@ -112,7 +112,8 @@ def filter_clip(clip: dict, clahe: bool) -> list[list[dict]]:
             x1, y1, x2, y2 = o["box"]
             at_edge = x1 <= EDGE_PX or y1 <= EDGE_PX or x2 >= w - EDGE_PX or y2 >= h - EDGE_PX
             out = states.setdefault(o["id"], ObjectState()).step(frame_no, d, None if at_edge else y2 - y1)
-            objs.append({"id": o["id"], "frame": frame_no, "ttc": out["ttc"],
+            objs.append({"id": o["id"], "frame": frame_no, "ttc": out["ttc"], "box": o["box"], "cls": o["cls"],
+                         "distance": out["distance"],
                          "gap": lateral_gap_m(o["box"], out["distance"], fx, cx),
                          "bottom": y2 / h, "age": t - first_seen[o["id"]]})
         frames.append((t, objs))

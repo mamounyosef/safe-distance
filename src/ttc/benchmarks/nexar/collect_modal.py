@@ -13,7 +13,8 @@ Saved per clip (Modal Volume, /data/results/<RUN>/<split>/<clip>.json.gz):
     object: track ID, class, confidence, box (x1, y1, x2, y2), distance (m)
     from Metric3D plain and with CLAHE (10th percentile inside the mask).
 
-Clips: 300 random collision / near-miss clips (train/positive) from 6 s before
+Clips (DATASET = "test"): all 1,345 clips of Nexar's held-out test set, the last
+TEST_LAST_S seconds of each. Clips (DATASET = "train"): 300 random collision / near-miss clips (train/positive) from 6 s before
 their event to 1 s after, and 50 random normal-driving clips (train/negative),
 20 s of each, to count false warnings. The CLAHE depth is only computed on
 clips Nexar labels Dark or Twilight, to save GPU time.
@@ -30,7 +31,10 @@ from __future__ import annotations
 import modal
 
 # ---- CONFIG ----
-RUN = "v2"                       # results folder name; change to keep older results (v1 = 4-clip test)
+RUN = "test1"                    # results folder name; change to keep older results (v1 = 4-clip test, v2 = train sample)
+DATASET = "test"                 # "train": sampled training clips (below); "test": every clip of Nexar's held-out test set
+TEST_LAST_S = 5.0                # test clips end 0.5 to 1.5 s before the event: process their last 5 s
+                                 # (2 s for the filter to settle + 3 s in which a warning matters)
 VOLUME = "safe-distance-data"
 GPU = "L4"                       # small GPU: Metric3D Small and YOLO need little memory
 MAX_CONTAINERS = 4               # clips processed in parallel (at most 4 GPUs at once)
@@ -88,6 +92,9 @@ def collect(split: str, clip: str, t_start: float, t_end: float, night: bool) ->
     fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
     w, h = int(cap.get(3)), int(cap.get(4))
     step = max(1, round(fps / PROCESS_FPS))
+    if t_start < 0:      # negative start = this many seconds before the end of the clip (test clips)
+        duration = cap.get(cv2.CAP_PROP_FRAME_COUNT) / fps
+        t_start, t_end = max(duration + t_start, 0.0), duration
     fx = (w / 2) / math.tan(math.radians(HFOV_DEG) / 2)
     camera = Camera(fx=fx, fy=fx, cx=w / 2, cy=h / 2, height_m=1.3, pitch_rad=0.0)
 
@@ -139,6 +146,13 @@ def clip_list(limit: int) -> list[tuple]:
     """(split, clip, start, end, night) for every clip to process, read from the metadata."""
     import csv
     import random
+
+    if DATASET == "test":   # every test clip: public and private, collisions and normal driving
+        jobs = []
+        for sub in ("test-public/positive", "test-public/negative", "test-private/positive", "test-private/negative"):
+            for r in csv.DictReader(open(f"/data/nexar/{sub}/metadata.csv")):
+                jobs.append((sub, r["file_name"][:-4], -TEST_LAST_S, 0.0, r.get("light_conditions") in NIGHT_LIGHT))
+        return jobs[:limit] if limit else jobs
 
     rng = random.Random(SEED)
     # Random sample of collision clips (sorted first so the sample is repeatable).
