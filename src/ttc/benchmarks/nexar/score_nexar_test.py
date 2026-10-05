@@ -41,6 +41,11 @@ RUN = "test1"
 SOLUTION = Path(r"C:\safe-distance-data\nexar\meta\solution.csv")   # official labels: id,target,Usage,group
 LAST_S = 1.0          # score uses the clip's last second (the moment the official metric asks about)
 NEAR_M, NEAR_TTC_S = 5.0, 1.0
+# Other systems' scores (submission CSVs: id,score), scored the same way, and
+# each one combined with ours: the mean of the two RANKS (0 = lowest risk,
+# 1 = highest), so neither system's number scale dominates.
+OTHERS = {"badas_open": "submission_badas_open.csv"}
+COMBINE_WITH = "inv_ttc"
 OUT = Path(__file__).resolve().parent / "results" / RUN
 # ----------------
 
@@ -62,6 +67,20 @@ def average_precision(labels: list[int], scores: list[float]) -> float:
         ap += (recall - prev_recall) * tp / (tp + fp)
         prev_recall, i = recall, j
     return ap
+
+
+def ranks(values: dict[str, float]) -> dict[str, float]:
+    """Each clip's rank from 0 (lowest score) to 1 (highest); tied scores share their average rank."""
+    order = sorted(values, key=values.get)
+    out, i = {}, 0
+    while i < len(order):
+        j = i
+        while j < len(order) and values[order[j]] == values[order[i]]:
+            j += 1
+        for k in range(i, j):
+            out[order[k]] = ((i + j - 1) / 2) / max(len(order) - 1, 1)
+        i = j
+    return out
 
 
 def clip_scores(clip: dict) -> dict:
@@ -91,6 +110,18 @@ def main() -> None:
             clip = json.load(fh)
         scores[clip["clip"]] = clip_scores(clip)
     names = ["inv_ttc", "warned", "inv_ttc+near"]
+    for other, file in OTHERS.items():
+        path = OUT / file
+        if not path.exists():
+            print(f"{path} not found, {other} skipped")
+            continue
+        theirs = {r["id"]: float(r["score"]) for r in csv.DictReader(path.open())}
+        ours = {cid: s[COMBINE_WITH] for cid, s in scores.items()}
+        r_theirs, r_ours = ranks(theirs), ranks(ours)
+        for cid in scores:
+            scores[cid][other] = theirs.get(cid, 0.0)
+            scores[cid][f"{other}+ours"] = (r_theirs.get(cid, 0.0) + r_ours[cid]) / 2
+        names += [other, f"{other}+ours"]
     missing = sum(1 for r in solution if r["id"] not in scores)
     results = {"run": RUN, "clips_scored": len(scores), "clips_missing": missing, "mAP": {}}
     for name in names:
@@ -106,6 +137,8 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "results.json").write_text(json.dumps(results, indent=1))
     for name in names:
+        if name in OTHERS:          # their own file already exists; do not overwrite it
+            continue
         with (OUT / f"submission_{name.replace('+', '_')}.csv").open("w", newline="") as f:
             w = csv.writer(f)
             w.writerow(["id", "score"])
@@ -116,7 +149,7 @@ def main() -> None:
              f"Clips scored: {len(scores)} (missing from the labels' list: {missing}, counted as score 0). "
              "mAP = mean average precision over the 0.5 / 1.0 / 1.5 s groups. A score that ranks at random "
              "gets about 0.5 (half the clips are collisions). Reference: BADAS-Open reports 0.86 on this set.", "",
-             "| Our score | mAP Public | mAP Private |", "|---|---|---|"]
+             "| Score | mAP Public | mAP Private |", "|---|---|---|"]
     for name in names:
         lines.append(f"| {name} | {results['mAP'][name]['Public']} | {results['mAP'][name]['Private']} |")
     (OUT / "RESULTS.md").write_text("\n".join(lines) + "\n")
