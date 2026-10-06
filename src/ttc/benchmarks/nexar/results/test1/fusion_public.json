@@ -1,0 +1,86 @@
+{
+ "clips": 667,
+ "collisions": 334,
+ "normal_hours": 0.286,
+ "fusion_weights_per_fold": [
+  {
+   "badas_logit": 0.263,
+   "inv_ttc": 0.165,
+   "near_dist": -1.153,
+   "closing": -1.332,
+   "in_path": -0.228
+  },
+  {
+   "badas_logit": 0.302,
+   "inv_ttc": 0.393,
+   "near_dist": -1.578,
+   "closing": -0.988,
+   "in_path": -0.433
+  },
+  {
+   "badas_logit": 0.264,
+   "inv_ttc": 0.243,
+   "near_dist": -1.409,
+   "closing": -1.555,
+   "in_path": -0.298
+  },
+  {
+   "badas_logit": 0.271,
+   "inv_ttc": 0.874,
+   "near_dist": -1.568,
+   "closing": -2.094,
+   "in_path": -0.377
+  },
+  {
+   "badas_logit": 0.271,
+   "inv_ttc": 0.337,
+   "near_dist": -1.475,
+   "closing": -1.524,
+   "in_path": -0.331
+  }
+ ],
+ "crashes_warned_at_false_rate": {
+  "BADAS alone": {
+   "20": 0.275,
+   "50": 0.413,
+   "100": 0.467,
+   "200": 0.644
+  },
+  "Ours alone (1 / TTC in our path)": {
+   "20": 0.045,
+   "50": 0.087,
+   "100": 0.144,
+   "200": 0.308
+  },
+  "Fusion": {
+   "20": 0.072,
+   "50": 0.231,
+   "100": 0.413,
+   "200": 0.554
+  },
+  "BADAS, only if something in our path": {
+   "20": 0.246,
+   "50": 0.359,
+   "100": 0.476,
+   "200": 0.599
+  },
+  "BADAS, only if something in our path is closing in": {
+   "20": 0.195,
+   "50": 0.278,
+   "100": 0.407,
+   "200": 0.518
+  },
+  "BADAS, only if something in our path within 20 m": {
+   "20": 0.201,
+   "50": 0.287,
+   "100": 0.425,
+   "200": 0.533
+  },
+  "BADAS, only if TTC in our path < 4 s": {
+   "20": 0.171,
+   "50": 0.219,
+   "100": 0.347,
+   "200": 0.467
+  }
+ }
+}
