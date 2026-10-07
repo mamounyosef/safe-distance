@@ -37,7 +37,7 @@ image = modal.Image.debian_slim(python_version="3.12").apt_install("aria2", "unz
 
 
 @app.function(image=image, volumes={"/data": volume}, cpu=2, memory=4096,
-              ephemeral_disk=80 * 1024, timeout=TIMEOUT_H * 3600)
+              timeout=TIMEOUT_H * 3600)     # default container disk (a custom size must be >= 512 GB)
 def download(torrent: bytes, file_index: int) -> dict:
     """Fetch file `file_index` of the torrent, unzip its videos into the Volume, report."""
     import subprocess
