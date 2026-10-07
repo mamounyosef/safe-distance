@@ -20,7 +20,13 @@ Writes results/test1/submission_badas_open.csv (id,score).
 
 With --series: a reading every 0.5 s through every clip instead (as it would
 run live), saved to results/test1/badas_series.json, for false warnings per
-hour of normal driving and how early it warns.
+hour of normal driving and how early it warns. Resume-safe: each clip is saved
+to the Volume (results/badas_series/...) as it finishes, a re-run skips saved
+clips, and progress = the number of saved files:
+    .venv\\Scripts\\modal.exe volume ls safe-distance-data results/badas_series/bdd100k_videos_sharegpt4video
+Add --dataset bdd100k to run it
+on the 608 BDD100K normal-driving clips instead (saved to
+src/ttc/benchmarks/bdd100k/results/badas_series.json).
 """
 
 from __future__ import annotations
@@ -40,7 +46,10 @@ BASE_MODEL = "facebook/vjepa2-vitl-fpc16-256-ssv2"   # backbone named in badas_l
 CACHE = "/data/models/hf"                            # Hugging Face downloads kept in the Volume
 OUT = Path(__file__).resolve().parent / "results" / "test1" / "submission_badas_open.csv"
 SERIES_OUT = Path(__file__).resolve().parent / "results" / "test1" / "badas_series.json"
-SERIES_STEP = 4               # --series: one reading every 4 frames at 8 per second = every 0.5 s
+BDD_DIR = "bdd100k/videos/sharegpt4video"     # --dataset bdd100k: 608 BDD100K normal-driving clips
+BDD_SERIES_OUT = Path(__file__).resolve().parents[1] / "bdd100k" / "results" / "badas_series.json"
+SERIES_SAVE_DIR = "results/badas_series"   # per-clip readings in the Volume (progress = number of files)
+SERIES_STEP = 4             # --series: one reading every 4 frames at 8 per second = every 0.5 s
 SERIES_BATCH = 8              # windows per GPU pass
 # ----------------
 
@@ -80,21 +89,27 @@ class Badas:
         volume.commit()   # keep the downloaded weights in the Volume for the other containers
 
     @modal.method()
-    def score(self, sub: str, clip: str) -> tuple[str, float]:
-        """Collision probability for one test clip."""
-        probs = self.model.predict(f"/data/nexar/{sub}/{clip}.mp4")
+    def score(self, video: str, clip: str) -> tuple[str, float]:
+        """Collision probability for one clip (video = its path inside the Volume)."""
+        probs = self.model.predict(f"/data/{video}")
         return clip, float(probs[-1])
 
     @modal.method()
-    def series(self, sub: str, clip: str) -> tuple[str, list]:
+    def series(self, video: str, clip: str) -> tuple[str, list]:
         """Collision probability every SERIES_STEP frames (0.5 s) through the whole clip, as it
         would run live in the car: each reading uses the 16 frames (2 s) up to that moment.
         Returns [(time in s at the end of the window, probability), ...]."""
+        import json
+
         import torch
         from utils.video import apply_temperature_scaling, load_full_video_frames
 
-        frames = load_full_video_frames(video_path=f"/data/nexar/{sub}/{clip}.mp4", target_size=(224, 224),
-                                        target_fps=8.0)
+        # Resume-safe: each clip's readings are saved to the Volume as soon as they are done,
+        # and a clip already saved by an earlier (stopped) run is not computed again.
+        saved = Path("/data", SERIES_SAVE_DIR, Path(video).parent.as_posix().replace("/", "_"), f"{clip}.json")
+        if saved.exists():
+            return clip, json.loads(saved.read_text())
+        frames = load_full_video_frames(video_path=f"/data/{video}", target_size=(224, 224), target_fps=8.0)
         ends = list(range(16, len(frames) + 1, SERIES_STEP))
         out = []
         for i in range(0, len(ends), SERIES_BATCH):
@@ -105,24 +120,30 @@ class Badas:
                 logits = self.model.model(torch.stack(batch).to(self.model.device))
                 probs = torch.softmax(apply_temperature_scaling(logits, temperature=2.0), dim=1)[:, 1]
             out += [(round(e / 8.0, 3), round(float(p), 5)) for e, p in zip(ends[i:i + SERIES_BATCH], probs)]
+        saved.parent.mkdir(parents=True, exist_ok=True)
+        saved.write_text(json.dumps(out))
+        volume.commit()
         return clip, out
 
 
 @app.function(image=image, volumes={"/data": volume})
-def test_clips() -> list[tuple[str, str]]:
-    """(folder, clip id) for every test clip."""
+def clip_list(dataset: str) -> list[tuple[str, str]]:
+    """(video path inside the Volume, clip id) for every clip of a dataset:
+    "nexar" = Nexar's test set, "bdd100k" = the 608 BDD100K normal-driving clips."""
     jobs = []
+    if dataset == "bdd100k":
+        return [(f"{BDD_DIR}/{p.name}", p.stem) for p in sorted(Path("/data", BDD_DIR).glob("*.mov"))]
     for sub in ("test-public/positive", "test-public/negative", "test-private/positive", "test-private/negative"):
         for r in csv.DictReader(open(f"/data/nexar/{sub}/metadata.csv")):
-            jobs.append((sub, r["file_name"][:-4]))
+            jobs.append((f"nexar/{sub}/{r['file_name']}", r["file_name"][:-4]))
     return jobs
 
 
 @app.local_entrypoint()
-def main(limit: int = 0, series: bool = False) -> None:
+def main(limit: int = 0, series: bool = False, dataset: str = "nexar") -> None:
     import json
 
-    jobs = test_clips.remote()
+    jobs = clip_list.remote(dataset)
     jobs = jobs[:limit] if limit else jobs
     print(f"{len(jobs)} clips")
     badas = Badas()
@@ -134,7 +155,9 @@ def main(limit: int = 0, series: bool = False) -> None:
                 print(f"FAILED: {r}", flush=True)
             else:
                 res[r[0]] = r[1]
-        path = SERIES_OUT if not limit else SERIES_OUT.with_name("badas_series_test.json")
+        path = SERIES_OUT if dataset == "nexar" else BDD_SERIES_OUT
+        path = path if not limit else path.with_name("badas_series_test.json")
+        path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(res))
         print(f"{len(res)} clips, {sum(len(v) for v in res.values())} readings, {failed} failed, saved {path}")
         return
