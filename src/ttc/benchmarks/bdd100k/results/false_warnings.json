@@ -1,0 +1,105 @@
+{
+ "bdd_clips": 608,
+ "bdd_hours": 6.36,
+ "nexar_public_collisions": 334,
+ "rows": [
+  {
+   "threshold": 0.5,
+   "in_a_row": 1,
+   "bdd_false_warnings": 2642,
+   "bdd_false_per_hour": 415.4,
+   "nexar_public_crashes_warned": 0.808
+  },
+  {
+   "threshold": 0.5,
+   "in_a_row": 2,
+   "bdd_false_warnings": 1606,
+   "bdd_false_per_hour": 252.5,
+   "nexar_public_crashes_warned": 0.698
+  },
+  {
+   "threshold": 0.7,
+   "in_a_row": 1,
+   "bdd_false_warnings": 2149,
+   "bdd_false_per_hour": 337.9,
+   "nexar_public_crashes_warned": 0.847
+  },
+  {
+   "threshold": 0.7,
+   "in_a_row": 2,
+   "bdd_false_warnings": 1249,
+   "bdd_false_per_hour": 196.4,
+   "nexar_public_crashes_warned": 0.647
+  },
+  {
+   "threshold": 0.8,
+   "in_a_row": 1,
+   "bdd_false_warnings": 1859,
+   "bdd_false_per_hour": 292.3,
+   "nexar_public_crashes_warned": 0.823
+  },
+  {
+   "threshold": 0.8,
+   "in_a_row": 2,
+   "bdd_false_warnings": 1022,
+   "bdd_false_per_hour": 160.7,
+   "nexar_public_crashes_warned": 0.584
+  },
+  {
+   "threshold": 0.9,
+   "in_a_row": 1,
+   "bdd_false_warnings": 1321,
+   "bdd_false_per_hour": 207.7,
+   "nexar_public_crashes_warned": 0.778
+  },
+  {
+   "threshold": 0.9,
+   "in_a_row": 2,
+   "bdd_false_warnings": 668,
+   "bdd_false_per_hour": 105.0,
+   "nexar_public_crashes_warned": 0.482
+  },
+  {
+   "threshold": 0.95,
+   "in_a_row": 1,
+   "bdd_false_warnings": 830,
+   "bdd_false_per_hour": 130.5,
+   "nexar_public_crashes_warned": 0.713
+  },
+  {
+   "threshold": 0.95,
+   "in_a_row": 2,
+   "bdd_false_warnings": 438,
+   "bdd_false_per_hour": 68.9,
+   "nexar_public_crashes_warned": 0.389
+  },
+  {
+   "threshold": 0.98,
+   "in_a_row": 1,
+   "bdd_false_warnings": 395,
+   "bdd_false_per_hour": 62.1,
+   "nexar_public_crashes_warned": 0.563
+  },
+  {
+   "threshold": 0.98,
+   "in_a_row": 2,
+   "bdd_false_warnings": 207,
+   "bdd_false_per_hour": 32.5,
+   "nexar_public_crashes_warned": 0.246
+  },
+  {
+   "threshold": 0.99,
+   "in_a_row": 1,
+   "bdd_false_warnings": 191,
+   "bdd_false_per_hour": 30.0,
+   "nexar_public_crashes_warned": 0.422
+  },
+  {
+   "threshold": 0.99,
+   "in_a_row": 2,
+   "bdd_false_warnings": 96,
+   "bdd_false_per_hour": 15.1,
+   "nexar_public_crashes_warned": 0.135
+  }
+ ]
+}
