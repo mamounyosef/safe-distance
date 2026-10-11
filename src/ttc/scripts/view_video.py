@@ -29,7 +29,7 @@ MARGIN = 20                             # empty space left and right of the bar
 
 def view(path: str, scale: float = 1.0) -> str:
     """Open the video at `path` in a window with a clickable seek bar.
-    Returns how it was closed: "quit" (Q or the window closed) or "stop" (ESC)."""
+    Returns how it was closed: "quit" (Q) or "stop" (ESC, or the window's X button)."""
     cap = cv2.VideoCapture(path)
     fps = cap.get(cv2.CAP_PROP_FPS) or 10.0
     # Keep every frame in memory, JPEG-compressed (about 0.2 MB each instead of
@@ -83,7 +83,9 @@ def view(path: str, scale: float = 1.0) -> str:
         cv2.imshow(WINDOW, np.vstack([img, bar]))
 
         key = cv2.waitKeyEx(max(1, int(1000 / (fps * state["speed"]))) if state["playing"] else 20)
-        if key in (ord("q"), 27) or cv2.getWindowProperty(WINDOW, cv2.WND_PROP_VISIBLE) < 1:
+        if cv2.getWindowProperty(WINDOW, cv2.WND_PROP_VISIBLE) < 1:   # closed with the window's X
+            return "stop"
+        if key in (ord("q"), 27):
             closed_by = "stop" if key == 27 else "quit"
             break
         if key == ord(" "):

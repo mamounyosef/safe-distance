@@ -3,8 +3,8 @@
 Picks a random clip, runs BADAS through it as it would run live in the car
 (a new risk reading every STEP_S seconds, each from the last 2 s of video),
 saves an annotated video and opens it in the viewer (seek bar, steps). When
-the viewer is closed with Q, the next random clip starts; press ESC in the
-viewer to stop.
+the viewer is closed with Q, the next random clip starts; press ESC (or close
+the window with its X) to stop.
 
 What you see:
     risk bar      BADAS's collision probability right now (0 to 1)
@@ -164,7 +164,7 @@ def main() -> None:
         first = next((t for t, p in risk if p > THRESHOLD), None)
         print(f"   peak risk {peak[1]:.2f} at {peak[0]:.1f} s; first warning at "
               f"{'never' if first is None else f'{first:.1f} s'}; crash label {labels['crash_s']}; saved {out}")
-        print("   viewer: Q = next random clip, ESC = stop", flush=True)
+        print("   viewer: Q = next random clip, ESC or the window's X = stop", flush=True)
         if view(str(out)) == "stop":
             break
     cv2.destroyAllWindows()
