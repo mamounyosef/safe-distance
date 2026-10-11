@@ -27,8 +27,9 @@ BAR_H = 40                              # height of the seek bar under the video
 MARGIN = 20                             # empty space left and right of the bar
 
 
-def view(path: str, scale: float = 1.0) -> None:
-    """Open the video at `path` in a window with a clickable seek bar."""
+def view(path: str, scale: float = 1.0) -> str:
+    """Open the video at `path` in a window with a clickable seek bar.
+    Returns how it was closed: "quit" (Q or the window closed) or "stop" (ESC)."""
     cap = cv2.VideoCapture(path)
     fps = cap.get(cv2.CAP_PROP_FPS) or 10.0
     # Keep every frame in memory, JPEG-compressed (about 0.2 MB each instead of
@@ -41,7 +42,7 @@ def view(path: str, scale: float = 1.0) -> None:
         frames.append(cv2.imencode(".jpg", img, [cv2.IMWRITE_JPEG_QUALITY, 90])[1])
     if not frames:
         print(f"cannot read {path}")
-        return
+        return "quit"
     n = len(frames)
     h, w = cv2.imdecode(frames[0], cv2.IMREAD_COLOR).shape[:2]
     state = {"pos": 0, "playing": True, "speed": 1.0, "dragging": False, "was_playing": False}
@@ -65,6 +66,7 @@ def view(path: str, scale: float = 1.0) -> None:
     cv2.namedWindow(WINDOW, cv2.WINDOW_NORMAL)
     cv2.resizeWindow(WINDOW, int(w * scale), int((h + BAR_H) * scale))
     cv2.setMouseCallback(WINDOW, on_mouse)
+    closed_by = "quit"
     while True:
         pos = state["pos"]
         img = cv2.imdecode(frames[pos], cv2.IMREAD_COLOR)
@@ -82,6 +84,7 @@ def view(path: str, scale: float = 1.0) -> None:
 
         key = cv2.waitKeyEx(max(1, int(1000 / (fps * state["speed"]))) if state["playing"] else 20)
         if key in (ord("q"), 27) or cv2.getWindowProperty(WINDOW, cv2.WND_PROP_VISIBLE) < 1:
+            closed_by = "stop" if key == 27 else "quit"
             break
         if key == ord(" "):
             state["playing"] = not state["playing"]
@@ -109,6 +112,7 @@ def view(path: str, scale: float = 1.0) -> None:
             else:
                 state["playing"] = False
     cv2.destroyWindow(WINDOW)
+    return closed_by
 
 
 if __name__ == "__main__":

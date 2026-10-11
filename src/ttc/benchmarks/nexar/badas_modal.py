@@ -68,7 +68,7 @@ image = (
 )
 secret = modal.Secret.from_dict({"HF_TOKEN": get_token() or ""})
 cpu_image = modal.Image.debian_slim(python_version="3.12").apt_install("libgl1", "libglib2.0-0") \
-    .pip_install("opencv-python-headless", "numpy")
+    .pip_install("opencv-python-headless", "numpy", "huggingface_hub")   # (this file imports huggingface_hub)
 
 
 def decode_frames(path: str):
