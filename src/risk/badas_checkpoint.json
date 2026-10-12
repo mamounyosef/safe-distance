@@ -1,0 +1,827 @@
+{
+ "checkpoint_keys": [
+  "epoch",
+  "model",
+  "optimizer",
+  "scheduler",
+  "val_acc",
+  "config",
+  "model_info"
+ ],
+ "config": {
+  "model_name": "facebook/vjepa2-vitl-fpc16-256-ssv2",
+  "data_root": "../../../nexar-solution/balanced_dataset_2s",
+  "output_dir": "./results/future_prediction/facebook_vjepa2_vitl_fpc16_256_ssv2_future_temporal_mlp",
+  "num_classes": 2,
+  "seed": 42,
+  "epochs": 15,
+  "batch_size": 8,
+  "learning_rate": 1e-05,
+  "weight_decay": 0.0001,
+  "accumulation_steps": 8,
+  "num_workers": 6,
+  "early_stopping_patience": 2,
+  "early_stopping_min_delta": 0.001,
+  "early_stopping_metric": "accuracy",
+  "disable_early_stopping": false,
+  "use_classification_model": false,
+  "use_custom_head": false,
+  "use_frame_level": false,
+  "use_future_prediction": true,
+  "predictor_combination_method": "concat",
+  "future_prediction_seconds": 1.0,
+  "original_fps": 4,
+  "temporal_method": "attention",
+  "temporal_hidden_dim": 512,
+  "temporal_num_heads": 8,
+  "head_type": "mlp",
+  "head_hidden_dim": 768,
+  "head_num_layers": 3,
+  "head_num_heads": 8,
+  "head_dropout": 0.1,
+  "frame_count": 16,
+  "img_size": 224,
+  "vjepa2_crop_size": 256,
+  "use_temperature_scaling": true,
+  "temperature": 2.0,
+  "drop_path_rate": 0.1,
+  "scheduler_step_size": 600,
+  "scheduler_T_max": 2,
+  "scheduler_eta_min": 1e-06
+ },
+ "params_total": 353640194,
+ "dtypes": {
+  "torch.float32": 353640194
+ },
+ "params_by_part": {
+  "backbone.encoder.layer": 302309376,
+  "backbone.predictor.layer": 21293568,
+  "temporal_processor.attention.in_proj_weight": 3145728,
+  "predictor.layer.0": 1774464,
+  "predictor.layer.1": 1774464,
+  "predictor.layer.2": 1774464,
+  "predictor.layer.3": 1774464,
+  "predictor.layer.4": 1774464,
+  "predictor.layer.5": 1774464,
+  "predictor.layer.6": 1774464,
+  "predictor.layer.7": 1774464,
+  "predictor.layer.8": 1774464,
+  "predictor.layer.9": 1774464,
+  "predictor.layer.10": 1774464,
+  "predictor.layer.11": 1774464,
+  "backbone.encoder.embeddings": 1573888,
+  "temporal_processor.attention.out_proj": 1049600,
+  "classifier.classifier.0": 787200,
+  "classifier.classifier.4": 590592,
+  "backbone.predictor.embeddings": 397440,
+  "backbone.predictor.proj": 394240,
+  "predictor.embeddings.predictor_embeddings": 393600,
+  "predictor.proj.weight": 393216,
+  "predictor.embeddings.mask_tokens": 3840,
+  "temporal_processor.attention.in_proj_bias": 3072,
+  "backbone.encoder.layernorm": 2048,
+  "classifier.classifier.8": 1538,
+  "classifier.classifier.2": 1536,
+  "classifier.classifier.6": 1536,
+  "predictor.proj.bias": 1024,
+  "temporal_processor.norm.weight": 1024,
+  "temporal_processor.norm.bias": 1024,
+  "backbone.predictor.layernorm": 768,
+  "predictor.layernorm.weight": 384,
+  "predictor.layernorm.bias": 384
+ },
+ "transformer_blocks": {
+  "backbone.encoder": 24,
+  "predictor": 12,
+  "backbone.predictor": 12
+ },
+ "head_weights": {
+  "predictor.embeddings.mask_tokens": [
+   10,
+   1,
+   1,
+   384
+  ],
+  "predictor.embeddings.predictor_embeddings.weight": [
+   384,
+   1024
+  ],
+  "predictor.embeddings.predictor_embeddings.bias": [
+   384
+  ],
+  "predictor.layer.0.norm1.weight": [
+   384
+  ],
+  "predictor.layer.0.norm1.bias": [
+   384
+  ],
+  "predictor.layer.0.attention.query.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.0.attention.query.bias": [
+   384
+  ],
+  "predictor.layer.0.attention.key.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.0.attention.key.bias": [
+   384
+  ],
+  "predictor.layer.0.attention.value.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.0.attention.value.bias": [
+   384
+  ],
+  "predictor.layer.0.attention.proj.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.0.attention.proj.bias": [
+   384
+  ],
+  "predictor.layer.0.norm2.weight": [
+   384
+  ],
+  "predictor.layer.0.norm2.bias": [
+   384
+  ],
+  "predictor.layer.0.mlp.fc1.weight": [
+   1536,
+   384
+  ],
+  "predictor.layer.0.mlp.fc1.bias": [
+   1536
+  ],
+  "predictor.layer.0.mlp.fc2.weight": [
+   384,
+   1536
+  ],
+  "predictor.layer.0.mlp.fc2.bias": [
+   384
+  ],
+  "predictor.layer.1.norm1.weight": [
+   384
+  ],
+  "predictor.layer.1.norm1.bias": [
+   384
+  ],
+  "predictor.layer.1.attention.query.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.1.attention.query.bias": [
+   384
+  ],
+  "predictor.layer.1.attention.key.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.1.attention.key.bias": [
+   384
+  ],
+  "predictor.layer.1.attention.value.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.1.attention.value.bias": [
+   384
+  ],
+  "predictor.layer.1.attention.proj.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.1.attention.proj.bias": [
+   384
+  ],
+  "predictor.layer.1.norm2.weight": [
+   384
+  ],
+  "predictor.layer.1.norm2.bias": [
+   384
+  ],
+  "predictor.layer.1.mlp.fc1.weight": [
+   1536,
+   384
+  ],
+  "predictor.layer.1.mlp.fc1.bias": [
+   1536
+  ],
+  "predictor.layer.1.mlp.fc2.weight": [
+   384,
+   1536
+  ],
+  "predictor.layer.1.mlp.fc2.bias": [
+   384
+  ],
+  "predictor.layer.2.norm1.weight": [
+   384
+  ],
+  "predictor.layer.2.norm1.bias": [
+   384
+  ],
+  "predictor.layer.2.attention.query.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.2.attention.query.bias": [
+   384
+  ],
+  "predictor.layer.2.attention.key.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.2.attention.key.bias": [
+   384
+  ],
+  "predictor.layer.2.attention.value.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.2.attention.value.bias": [
+   384
+  ],
+  "predictor.layer.2.attention.proj.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.2.attention.proj.bias": [
+   384
+  ],
+  "predictor.layer.2.norm2.weight": [
+   384
+  ],
+  "predictor.layer.2.norm2.bias": [
+   384
+  ],
+  "predictor.layer.2.mlp.fc1.weight": [
+   1536,
+   384
+  ],
+  "predictor.layer.2.mlp.fc1.bias": [
+   1536
+  ],
+  "predictor.layer.2.mlp.fc2.weight": [
+   384,
+   1536
+  ],
+  "predictor.layer.2.mlp.fc2.bias": [
+   384
+  ],
+  "predictor.layer.3.norm1.weight": [
+   384
+  ],
+  "predictor.layer.3.norm1.bias": [
+   384
+  ],
+  "predictor.layer.3.attention.query.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.3.attention.query.bias": [
+   384
+  ],
+  "predictor.layer.3.attention.key.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.3.attention.key.bias": [
+   384
+  ],
+  "predictor.layer.3.attention.value.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.3.attention.value.bias": [
+   384
+  ],
+  "predictor.layer.3.attention.proj.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.3.attention.proj.bias": [
+   384
+  ],
+  "predictor.layer.3.norm2.weight": [
+   384
+  ],
+  "predictor.layer.3.norm2.bias": [
+   384
+  ],
+  "predictor.layer.3.mlp.fc1.weight": [
+   1536,
+   384
+  ],
+  "predictor.layer.3.mlp.fc1.bias": [
+   1536
+  ],
+  "predictor.layer.3.mlp.fc2.weight": [
+   384,
+   1536
+  ],
+  "predictor.layer.3.mlp.fc2.bias": [
+   384
+  ],
+  "predictor.layer.4.norm1.weight": [
+   384
+  ],
+  "predictor.layer.4.norm1.bias": [
+   384
+  ],
+  "predictor.layer.4.attention.query.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.4.attention.query.bias": [
+   384
+  ],
+  "predictor.layer.4.attention.key.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.4.attention.key.bias": [
+   384
+  ],
+  "predictor.layer.4.attention.value.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.4.attention.value.bias": [
+   384
+  ],
+  "predictor.layer.4.attention.proj.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.4.attention.proj.bias": [
+   384
+  ],
+  "predictor.layer.4.norm2.weight": [
+   384
+  ],
+  "predictor.layer.4.norm2.bias": [
+   384
+  ],
+  "predictor.layer.4.mlp.fc1.weight": [
+   1536,
+   384
+  ],
+  "predictor.layer.4.mlp.fc1.bias": [
+   1536
+  ],
+  "predictor.layer.4.mlp.fc2.weight": [
+   384,
+   1536
+  ],
+  "predictor.layer.4.mlp.fc2.bias": [
+   384
+  ],
+  "predictor.layer.5.norm1.weight": [
+   384
+  ],
+  "predictor.layer.5.norm1.bias": [
+   384
+  ],
+  "predictor.layer.5.attention.query.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.5.attention.query.bias": [
+   384
+  ],
+  "predictor.layer.5.attention.key.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.5.attention.key.bias": [
+   384
+  ],
+  "predictor.layer.5.attention.value.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.5.attention.value.bias": [
+   384
+  ],
+  "predictor.layer.5.attention.proj.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.5.attention.proj.bias": [
+   384
+  ],
+  "predictor.layer.5.norm2.weight": [
+   384
+  ],
+  "predictor.layer.5.norm2.bias": [
+   384
+  ],
+  "predictor.layer.5.mlp.fc1.weight": [
+   1536,
+   384
+  ],
+  "predictor.layer.5.mlp.fc1.bias": [
+   1536
+  ],
+  "predictor.layer.5.mlp.fc2.weight": [
+   384,
+   1536
+  ],
+  "predictor.layer.5.mlp.fc2.bias": [
+   384
+  ],
+  "predictor.layer.6.norm1.weight": [
+   384
+  ],
+  "predictor.layer.6.norm1.bias": [
+   384
+  ],
+  "predictor.layer.6.attention.query.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.6.attention.query.bias": [
+   384
+  ],
+  "predictor.layer.6.attention.key.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.6.attention.key.bias": [
+   384
+  ],
+  "predictor.layer.6.attention.value.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.6.attention.value.bias": [
+   384
+  ],
+  "predictor.layer.6.attention.proj.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.6.attention.proj.bias": [
+   384
+  ],
+  "predictor.layer.6.norm2.weight": [
+   384
+  ],
+  "predictor.layer.6.norm2.bias": [
+   384
+  ],
+  "predictor.layer.6.mlp.fc1.weight": [
+   1536,
+   384
+  ],
+  "predictor.layer.6.mlp.fc1.bias": [
+   1536
+  ],
+  "predictor.layer.6.mlp.fc2.weight": [
+   384,
+   1536
+  ],
+  "predictor.layer.6.mlp.fc2.bias": [
+   384
+  ],
+  "predictor.layer.7.norm1.weight": [
+   384
+  ],
+  "predictor.layer.7.norm1.bias": [
+   384
+  ],
+  "predictor.layer.7.attention.query.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.7.attention.query.bias": [
+   384
+  ],
+  "predictor.layer.7.attention.key.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.7.attention.key.bias": [
+   384
+  ],
+  "predictor.layer.7.attention.value.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.7.attention.value.bias": [
+   384
+  ],
+  "predictor.layer.7.attention.proj.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.7.attention.proj.bias": [
+   384
+  ],
+  "predictor.layer.7.norm2.weight": [
+   384
+  ],
+  "predictor.layer.7.norm2.bias": [
+   384
+  ],
+  "predictor.layer.7.mlp.fc1.weight": [
+   1536,
+   384
+  ],
+  "predictor.layer.7.mlp.fc1.bias": [
+   1536
+  ],
+  "predictor.layer.7.mlp.fc2.weight": [
+   384,
+   1536
+  ],
+  "predictor.layer.7.mlp.fc2.bias": [
+   384
+  ],
+  "predictor.layer.8.norm1.weight": [
+   384
+  ],
+  "predictor.layer.8.norm1.bias": [
+   384
+  ],
+  "predictor.layer.8.attention.query.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.8.attention.query.bias": [
+   384
+  ],
+  "predictor.layer.8.attention.key.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.8.attention.key.bias": [
+   384
+  ],
+  "predictor.layer.8.attention.value.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.8.attention.value.bias": [
+   384
+  ],
+  "predictor.layer.8.attention.proj.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.8.attention.proj.bias": [
+   384
+  ],
+  "predictor.layer.8.norm2.weight": [
+   384
+  ],
+  "predictor.layer.8.norm2.bias": [
+   384
+  ],
+  "predictor.layer.8.mlp.fc1.weight": [
+   1536,
+   384
+  ],
+  "predictor.layer.8.mlp.fc1.bias": [
+   1536
+  ],
+  "predictor.layer.8.mlp.fc2.weight": [
+   384,
+   1536
+  ],
+  "predictor.layer.8.mlp.fc2.bias": [
+   384
+  ],
+  "predictor.layer.9.norm1.weight": [
+   384
+  ],
+  "predictor.layer.9.norm1.bias": [
+   384
+  ],
+  "predictor.layer.9.attention.query.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.9.attention.query.bias": [
+   384
+  ],
+  "predictor.layer.9.attention.key.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.9.attention.key.bias": [
+   384
+  ],
+  "predictor.layer.9.attention.value.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.9.attention.value.bias": [
+   384
+  ],
+  "predictor.layer.9.attention.proj.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.9.attention.proj.bias": [
+   384
+  ],
+  "predictor.layer.9.norm2.weight": [
+   384
+  ],
+  "predictor.layer.9.norm2.bias": [
+   384
+  ],
+  "predictor.layer.9.mlp.fc1.weight": [
+   1536,
+   384
+  ],
+  "predictor.layer.9.mlp.fc1.bias": [
+   1536
+  ],
+  "predictor.layer.9.mlp.fc2.weight": [
+   384,
+   1536
+  ],
+  "predictor.layer.9.mlp.fc2.bias": [
+   384
+  ],
+  "predictor.layer.10.norm1.weight": [
+   384
+  ],
+  "predictor.layer.10.norm1.bias": [
+   384
+  ],
+  "predictor.layer.10.attention.query.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.10.attention.query.bias": [
+   384
+  ],
+  "predictor.layer.10.attention.key.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.10.attention.key.bias": [
+   384
+  ],
+  "predictor.layer.10.attention.value.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.10.attention.value.bias": [
+   384
+  ],
+  "predictor.layer.10.attention.proj.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.10.attention.proj.bias": [
+   384
+  ],
+  "predictor.layer.10.norm2.weight": [
+   384
+  ],
+  "predictor.layer.10.norm2.bias": [
+   384
+  ],
+  "predictor.layer.10.mlp.fc1.weight": [
+   1536,
+   384
+  ],
+  "predictor.layer.10.mlp.fc1.bias": [
+   1536
+  ],
+  "predictor.layer.10.mlp.fc2.weight": [
+   384,
+   1536
+  ],
+  "predictor.layer.10.mlp.fc2.bias": [
+   384
+  ],
+  "predictor.layer.11.norm1.weight": [
+   384
+  ],
+  "predictor.layer.11.norm1.bias": [
+   384
+  ],
+  "predictor.layer.11.attention.query.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.11.attention.query.bias": [
+   384
+  ],
+  "predictor.layer.11.attention.key.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.11.attention.key.bias": [
+   384
+  ],
+  "predictor.layer.11.attention.value.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.11.attention.value.bias": [
+   384
+  ],
+  "predictor.layer.11.attention.proj.weight": [
+   384,
+   384
+  ],
+  "predictor.layer.11.attention.proj.bias": [
+   384
+  ],
+  "predictor.layer.11.norm2.weight": [
+   384
+  ],
+  "predictor.layer.11.norm2.bias": [
+   384
+  ],
+  "predictor.layer.11.mlp.fc1.weight": [
+   1536,
+   384
+  ],
+  "predictor.layer.11.mlp.fc1.bias": [
+   1536
+  ],
+  "predictor.layer.11.mlp.fc2.weight": [
+   384,
+   1536
+  ],
+  "predictor.layer.11.mlp.fc2.bias": [
+   384
+  ],
+  "predictor.layernorm.weight": [
+   384
+  ],
+  "predictor.layernorm.bias": [
+   384
+  ],
+  "predictor.proj.weight": [
+   1024,
+   384
+  ],
+  "predictor.proj.bias": [
+   1024
+  ],
+  "temporal_processor.attention.in_proj_weight": [
+   3072,
+   1024
+  ],
+  "temporal_processor.attention.in_proj_bias": [
+   3072
+  ],
+  "temporal_processor.attention.out_proj.weight": [
+   1024,
+   1024
+  ],
+  "temporal_processor.attention.out_proj.bias": [
+   1024
+  ],
+  "temporal_processor.norm.weight": [
+   1024
+  ],
+  "temporal_processor.norm.bias": [
+   1024
+  ],
+  "classifier.classifier.0.weight": [
+   768,
+   1024
+  ],
+  "classifier.classifier.0.bias": [
+   768
+  ],
+  "classifier.classifier.2.weight": [
+   768
+  ],
+  "classifier.classifier.2.bias": [
+   768
+  ],
+  "classifier.classifier.4.weight": [
+   768,
+   768
+  ],
+  "classifier.classifier.4.bias": [
+   768
+  ],
+  "classifier.classifier.6.weight": [
+   768
+  ],
+  "classifier.classifier.6.bias": [
+   768
+  ],
+  "classifier.classifier.8.weight": [
+   2,
+   768
+  ],
+  "classifier.classifier.8.bias": [
+   2
+  ]
+ }
+}
