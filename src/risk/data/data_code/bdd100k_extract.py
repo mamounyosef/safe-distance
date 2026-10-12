@@ -28,8 +28,10 @@ from pathlib import Path
 import modal
 from huggingface_hub import get_token
 
-REPO = Path(__file__).resolve().parents[4]
-sys.path.insert(0, str(REPO / "scripts"))         # split_zip_remote.py (byte-range reader for the zip)
+# Repo paths exist only on this PC; inside a Modal container the script sits alone in /root.
+REPO = Path(__file__).resolve().parents[4] if modal.is_local() else Path("/root")
+if modal.is_local():
+    sys.path.insert(0, str(REPO / "scripts"))     # split_zip_remote.py (byte-range reader for the zip)
 
 # ---- CONFIG ----
 VOLUME = "safe-distance-data"
@@ -141,7 +143,7 @@ def main(limit: int = 0) -> None:
     start, recs, failed = time.time(), [], []
     for r in extract.starmap(jobs, return_exceptions=True, order_outputs=False):
         if isinstance(r, Exception):
-            failed.append(str(r))
+            failed.append(repr(r))                     # repr: shows the error type even with no message
             print(f"  FAILED: {r}", flush=True)
         else:
             recs.append(r)
