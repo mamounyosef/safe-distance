@@ -1,0 +1,80 @@
+{
+ "clips": 8,
+ "new": 8,
+ "skipped": 0,
+ "failed": 0,
+ "failures": [],
+ "wall_s": 14,
+ "container_s": 45,
+ "cost_usd_estimate": 0.001,
+ "per_clip": [
+  {
+   "video": "nexar/test-public/negative/01044.mp4",
+   "skipped": false,
+   "frames": 81,
+   "fps": 30.5,
+   "seconds": 10.1,
+   "decode_s": 4.7
+  },
+  {
+   "video": "nexar/test-public/negative/01056.mp4",
+   "skipped": false,
+   "frames": 79,
+   "fps": 30.0,
+   "seconds": 9.9,
+   "decode_s": 4.6
+  },
+  {
+   "video": "nexar/test-public/positive/00002.mp4",
+   "skipped": false,
+   "frames": 81,
+   "fps": 29.7,
+   "seconds": 10.1,
+   "decode_s": 2.5
+  },
+  {
+   "video": "nexar/test-public/positive/00009.mp4",
+   "skipped": false,
+   "frames": 77,
+   "fps": 30.6,
+   "seconds": 9.6,
+   "decode_s": 5.8
+  },
+  {
+   "video": "nexar/train/negative/01040.mp4",
+   "skipped": false,
+   "frames": 315,
+   "fps": 30.0,
+   "seconds": 39.4,
+   "decode_s": 10.1
+  },
+  {
+   "video": "nexar/train/negative/01041.mp4",
+   "skipped": false,
+   "frames": 315,
+   "fps": 30.0,
+   "seconds": 39.4,
+   "decode_s": 6.9
+  },
+  {
+   "video": "nexar/train/positive/00000.mp4",
+   "skipped": false,
+   "frames": 321,
+   "fps": 28.9,
+   "seconds": 40.1,
+   "decode_s": 3.9
+  },
+  {
+   "video": "nexar/train/positive/00003.mp4",
+   "skipped": false,
+   "frames": 321,
+   "fps": 30.0,
+   "seconds": 40.1,
+   "decode_s": 6.9
+  }
+ ],
+ "full_run_estimate": {
+  "cost_usd": 0.38,
+  "wall_s": 769
+ }
+}
