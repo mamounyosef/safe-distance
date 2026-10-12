@@ -227,3 +227,5 @@ mobileclip_blt.ts
 
 # Datasets
 data/
+# ...but src/risk/data holds code and clip-ID lists, not datasets
+!src/risk/data/
