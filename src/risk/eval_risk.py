@@ -38,17 +38,18 @@ REPO = Path(__file__).resolve().parents[2] if LOCAL else Path("/root")
 
 # ---- CONFIG ----
 VOLUME = "safe-distance-data"
-GPU, GPU_PRICE_H = "L4", 0.80
+GPU, GPU_PRICE_H = "A100-40GB", 2.10
 MAX_CONTAINERS = 4
 BADAS_REPO = "nexar-ai/BADAS-Open"
 BASE_MODEL = "facebook/vjepa2-vitl-fpc16-256-ssv2"
 HF_CACHE = "/data/models/hf"
 SETS = {"bdd_val": ["cache/badas224/bdd100k_videos_100k_val"],
         "nexar_public": ["cache/badas224/nexar_test-public_positive", "cache/badas224/nexar_test-public_negative"]}
-SAVE_DIR = "results/risk_eval_fast"    # in the Volume: <SAVE_DIR>/<model>/<set>/<clip>.json
+SAVE_DIR = "results/risk_eval"         # in the Volume: <SAVE_DIR>/<model>/<set>/<clip>.json
 RESIZE, CROP = 292, 256                # V-JEPA 2 video processor: shortest edge 292 (bilinear), centre crop 256
 MEAN, STD = (0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
 MAX_DIFF_OK = 0.01                     # fast preprocessing must give readings within this of BADAS's own
+FAST_PREP = False                      # GPU preprocessing: only 1.2x faster and up to 0.04 off, so BADAS's own is used
 STEP = 4                               # a reading every 4 frames at 8 per second = every 0.5 s
 BATCH = 16                             # windows per GPU pass
 FP16 = True
@@ -115,7 +116,7 @@ class Scorer:
             return {"set": set_name, "clip": clip, "series": json.loads(saved.read_text()), "gpu_s": 0.0}
         t0 = time.time()
         frames = np.load(f"/data/{frames_path}")
-        out = self._readings(frames, fast=True)
+        out = self._readings(frames, fast=FAST_PREP)
         saved.parent.mkdir(parents=True, exist_ok=True)
         saved.write_text(json.dumps(out))
         volume.commit()
@@ -283,13 +284,13 @@ def clock(sec: float) -> str:
 
 
 @app.local_entrypoint()
-def main(model: str = "baseline_badas_open", limit: int = 0) -> None:
+def main(model: str = "baseline_badas_open", limit: int = 0, check: bool = False) -> None:
     jobs = clip_list.remote(limit)
     per_set = {s: sum(j[0] == s for j in jobs) for s in SETS}
     print(f"model={model}  {len(jobs):,} clips {per_set}  {MAX_CONTAINERS} x {GPU}")
     scorer = Scorer(model_name=model)
     # Safety check first: the fast GPU preprocessing must match BADAS's own on a crash and a normal clip.
-    for probe in (next(j for j in jobs if j[0] == "nexar_public"), next(j for j in jobs if j[0] == "bdd_val")):
+    for probe in ((next(j for j in jobs if j[0] == "nexar_public"),) if check else ()):
         c = scorer.check.remote(probe[1])
         print(f"check {c['clip']}: max difference {c['max_prob_difference']} over {c['readings']} readings, "
               f"{c['seconds_badas_processor']} s -> {c['seconds_fast']} s ({c['speedup']}x faster)", flush=True)
