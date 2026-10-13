@@ -1,0 +1,99 @@
+{
+ "clips": 4677,
+ "in_metadata_train_or_val": 4677,
+ "ignored": 61,
+ "ego": {
+  "ego": 2724,
+  "other": 1953
+ },
+ "night": {
+  "False": 4090,
+  "True": 587
+ },
+ "type_ego": {
+  "turning": 951,
+  "lateral": 478,
+  "moving_ahead_or_waiting": 417,
+  "oncoming": 371,
+  "leave_to_left": 179,
+  "leave_to_right": 144,
+  "unknown": 48,
+  "obstacle": 48,
+  "pedestrian": 44,
+  "start_stop_or_stationary": 44
+ },
+ "type_other": {
+  "turning": 745,
+  "lateral": 248,
+  "moving_ahead_or_waiting": 246,
+  "leave_to_right": 218,
+  "leave_to_left": 191,
+  "oncoming": 107,
+  "pedestrian": 56,
+  "start_stop_or_stationary": 51,
+  "obstacle": 47,
+  "unknown": 44
+ },
+ "object_categories": {
+  "car": 4675,
+  "truck": 599,
+  "rider": 460,
+  "motor": 395,
+  "person": 101,
+  "bus": 100,
+  "bike": 44
+ },
+ "first_box_vs_anomaly_start_frames": {
+  "0": 4352,
+  "2": 1,
+  "4": 1,
+  "5": 2,
+  "6": 1,
+  "9": 1,
+  "10": 1,
+  "11": 1,
+  "13": 1,
+  "15": 1,
+  "16": 2,
+  "17": 1,
+  "18": 1,
+  "19": 1,
+  "25": 1
+ },
+ "clips_with_boxes": 4376,
+ "seconds_before_anomaly": {
+  "median": 3.6,
+  "p10": 1.9,
+  "p90": 5.8
+ },
+ "anomaly_seconds": {
+  "median": 2.9,
+  "p10": 1.4,
+  "p90": 5.8
+ },
+ "clip_seconds": {
+  "median": 9.9,
+  "p10": 6.9,
+  "p90": 13.9
+ },
+ "example_frame_with_boxes": {
+  "frame_id": 57,
+  "image_path": "frames/0qfbmt4G8Rw_000435/images/000057.jpg",
+  "accident_id": 3,
+  "accident_name": "lateral",
+  "objects": [
+   {
+    "obj_track_id": 0,
+    "bbox": [
+     662.271714922049,
+     165.16703786191536,
+     1279.643652561247,
+     633.4075723830734
+    ],
+    "category": "truck",
+    "category ID": 5,
+    "trunc": true
+   }
+  ]
+ }
+}

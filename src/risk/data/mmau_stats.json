@@ -1,0 +1,197 @@
+{
+ "types": {
+  "1": "ego-car hits a crossing pedestrian",
+  "2": "ego-car hits a pedestrian",
+  "3": "ego-car hits a crossing cyclist",
+  "4": "ego-car hits a cyclist",
+  "5": "ego-car hits a crossing motorbike",
+  "6": "ego-car hits a motorbike",
+  "7": "ego-car hits a crossing truck",
+  "8": "ego-car hits a truck",
+  "9": "ego-car is overtaken by a truck",
+  "10": "ego-car hits a crossing car",
+  "11": "ego-car hits a car",
+  "12": "ego-car is overtaken by a car",
+  "13": "ego-car hits large roadblocks",
+  "14": "ego-car hits a curb",
+  "15": "ego-car hits small roadblocks road pothholes",
+  "16": "ego-car hits trees",
+  "17": "ego-car hits telegraphpoles",
+  "18": "ego-car hits other road facilties",
+  "19": "motorbike hits large roadblocks",
+  "20": "truck hits large roadblocks",
+  "21": "car hits large roadblocks",
+  "22": "motorbike hits a curb",
+  "23": "truck hits a curb",
+  "24": "car hits a curb",
+  "26": "truck hits small roadblocks road pothholes",
+  "27": "car hits small roadblocks road pothholes",
+  "29": "truck hits trees",
+  "30": "car hits trees",
+  "32": "truck hits telegraphpoles",
+  "33": "car hits telegraphpoles",
+  "34": "motorbike hits other road facilities",
+  "35": "truck hits other road facilities",
+  "36": "car hits other road facilities",
+  "37": "motorbike falls down",
+  "38": "motorbike hits motorbike",
+  "39": "truck is out of control",
+  "40": "truck hits truck",
+  "41": "truck has failure of components",
+  "42": "car is out of control",
+  "43": "car hits car",
+  "44": "car has failure of components",
+  "45": "truck hits motorbike",
+  "47": "motorbike scratches truck",
+  "48": "truck hits car",
+  "49": "car scratches truck",
+  "50": "car hits motorbike",
+  "51": "motorbike scratches car",
+  "52": "motorbike hits pedestrian",
+  "53": "motorbike hits cyclist",
+  "54": "truck hits pedestrian",
+  "55": "truck hits cyclist",
+  "56": "car hits pedestrian",
+  "57": "car hits cyclist",
+  "58": "pedestrian falls down",
+  "59": "cyclist falls down",
+  "60": "cyclist hits cyclist",
+  "61": "ego-car is out of control",
+  "62": "ego-car has failure of components"
+ },
+ "sources": {
+  "DADA-2000": {
+   "videos": 1962,
+   "accident_occurred": 1945,
+   "ego_car_involved": 988,
+   "other_road_users_only": 974,
+   "types_used": 52,
+   "total_frames": {
+    "median": 322.0,
+    "p10": 184.0,
+    "p90": 460.0
+   },
+   "frames_abnormal_start_to_collision": {
+    "median": 45.0,
+    "p10": 26.0,
+    "p90": 79.0
+   },
+   "top_types": {
+    "11: ego-car hits a car": 252,
+    "43: car hits car": 209,
+    "50: car hits motorbike": 201,
+    "10: ego-car hits a crossing car": 167,
+    "5: ego-car hits a crossing motorbike": 157,
+    "6: ego-car hits a motorbike": 119,
+    "37: motorbike falls down": 85,
+    "48: truck hits car": 82,
+    "38: motorbike hits motorbike": 67,
+    "8: ego-car hits a truck": 57,
+    "1: ego-car hits a crossing pedestrian": 53,
+    "57: car hits cyclist": 45
+   },
+   "light": {
+    "1": 1771,
+    "2": 191
+   }
+  },
+  "CAP": {
+   "videos": 9768,
+   "accident_occurred": 9768,
+   "ego_car_involved": 5405,
+   "other_road_users_only": 4363,
+   "types_used": 57,
+   "total_frames": {
+    "median": 135.0,
+    "p10": 50.0,
+    "p90": 301.0
+   },
+   "frames_abnormal_start_to_collision": {
+    "median": 21.0,
+    "p10": 15.0,
+    "p90": 93.0
+   },
+   "top_types": {
+    "11: ego-car hits a car": 3083,
+    "43: car hits car": 2150,
+    "10: ego-car hits a crossing car": 845,
+    "48: truck hits car": 562,
+    "50: car hits motorbike": 345,
+    "8: ego-car hits a truck": 296,
+    "14: ego-car hits a curb": 246,
+    "24: car hits a curb": 238,
+    "12: ego-car is overtaken by a car": 217,
+    "21: car hits large roadblocks": 152,
+    "56: car hits pedestrian": 133,
+    "6: ego-car hits a motorbike": 130
+   },
+   "light": {
+    "1": 8697,
+    "2": 1071
+   }
+  }
+ },
+ "boxes_test_split": {
+  "keys": [
+   "categories",
+   "images",
+   "annotations"
+  ],
+  "categories": [
+   {
+    "id": 1,
+    "name": "motorcycle"
+   },
+   {
+    "id": 2,
+    "name": "truck"
+   },
+   {
+    "id": 3,
+    "name": "bus"
+   },
+   {
+    "id": 4,
+    "name": "traffic light"
+   },
+   {
+    "id": 5,
+    "name": "person"
+   },
+   {
+    "id": 6,
+    "name": "bicycle"
+   },
+   {
+    "id": 7,
+    "name": "car"
+   }
+  ],
+  "images": 63473,
+  "annotations": 338475,
+  "example_image": {
+   "id": 1,
+   "file_name": "36_011164_000170.jpg",
+   "width": 1280,
+   "height": 720
+  },
+  "example_annotation": {
+   "id": 1,
+   "image_id": 1,
+   "category_id": 2,
+   "bbox": [
+    640.0,
+    236.988,
+    173.05599999999998,
+    187.992
+   ],
+   "area": 32533.143551999994,
+   "iscrowd": 0
+  }
+ },
+ "boxes_txt_example": {
+  "file": "labels/test/10_000859/10_000859_000005.txt",
+  "content": "6 0.8797 0.6222 0.2391 0.3028\r\n6 0.6066 0.5868 0.1273 0.1042\r\n6 0.3254 0.5778 0.1023 0.0806\r\n6 0.8125 0.5639 0.0625 0.0583\r\n4 0.2281 0.5819 0.0531 0.2528\r\n6 0.098 0.6278 0.1961 0.2361\r\n6 0.6687 0.5757 0.0734 0.0708\r\n6 0.4512 0.5681 0.0445 0.0306\r\n6 0.2477 0.5778 0.1219 0.1056\r\n6 0.5488 0.5618 0.032 0.0486\r\n6 0.1602 0.5917 0.1219 0.15\r\n4 0.4801 0.5736 0.018 0.0528\r\n6 0.4988 0.8861 0.9992 0.1889\r\n",
+  "txt_files": 427874
+ }
+}
