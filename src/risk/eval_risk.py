@@ -40,6 +40,8 @@ REPO = Path(__file__).resolve().parents[2] if LOCAL else Path("/root")
 VOLUME = "safe-distance-data"
 GPU, GPU_PRICE_H = "A100-40GB", 2.10
 MAX_CONTAINERS = 4
+CPU_CORES = 8                          # per container: room for CLIPS_PER_CONTAINER preprocessing at once
+CLIPS_PER_CONTAINER = 3                # clips handled at the same time in one container (keeps the GPU busy)
 BADAS_REPO = "nexar-ai/BADAS-Open"
 BASE_MODEL = "facebook/vjepa2-vitl-fpc16-256-ssv2"
 HF_CACHE = "/data/models/hf"
@@ -69,7 +71,7 @@ secret = modal.Secret.from_dict({"HF_TOKEN": get_token() or ""})
 image = (modal.Image.debian_slim(python_version="3.12").apt_install("libgl1", "libglib2.0-0")
          .pip_install("torch==2.6.0", "torchvision==0.21.0", index_url="https://download.pytorch.org/whl/cu124")
          .pip_install("transformers==4.53.0", "huggingface_hub", "opencv-python-headless", "numpy", "pillow",
-                      "albumentations", "psutil")
+                      "albumentations", "psutil", "nvidia-ml-py")
          .env({"HF_HOME": HF_CACHE}))
 
 
@@ -85,15 +87,30 @@ def clip_list(limit: int) -> list[tuple[str, str]]:
     return jobs
 
 
-@app.cls(image=image, gpu=GPU, volumes={"/data": volume}, secrets=[secret], timeout=3600,
-         max_containers=MAX_CONTAINERS, retries=2)
+@app.cls(image=image, gpu=GPU, cpu=CPU_CORES, memory=32768, volumes={"/data": volume}, secrets=[secret],
+         timeout=3600, max_containers=MAX_CONTAINERS, retries=2)
+@modal.concurrent(max_inputs=CLIPS_PER_CONTAINER)   # several clips at once: CPU preprocessing overlaps GPU work
 class Scorer:
     model_name: str = modal.parameter()
 
     @modal.enter()
     def load(self) -> None:
-        """Load the model once per container."""
+        """Load the model once per container, and start sampling how busy the GPU is."""
+        import socket
+        import threading
+
+        import pynvml
         from huggingface_hub import snapshot_download
+
+        self.host, self.t_up, self.util = socket.gethostname(), time.time(), []
+        pynvml.nvmlInit()
+        h = pynvml.nvmlDeviceGetHandleByIndex(0)
+
+        def sample():                                   # GPU busy % every 0.5 s: (time, percent)
+            while True:
+                self.util.append((time.time(), pynvml.nvmlDeviceGetUtilizationRates(h).gpu))
+                time.sleep(0.5)
+        threading.Thread(target=sample, daemon=True).start()
 
         if self.model_name != "baseline_badas_open":
             raise ValueError(f"unknown model {self.model_name}")
@@ -113,14 +130,18 @@ class Scorer:
         clip = Path(frames_path).stem
         saved = Path("/data", SAVE_DIR, self.model_name, set_name, f"{clip}.json")
         if saved.exists():
-            return {"set": set_name, "clip": clip, "series": json.loads(saved.read_text()), "gpu_s": 0.0}
+            return {"set": set_name, "clip": clip, "series": json.loads(saved.read_text()), "gpu_s": 0.0,
+                    "host": self.host, "up_s": round(time.time() - self.t_up, 1), "gpu_busy": None}
         t0 = time.time()
         frames = np.load(f"/data/{frames_path}")
         out = self._readings(frames, fast=FAST_PREP)
         saved.parent.mkdir(parents=True, exist_ok=True)
         saved.write_text(json.dumps(out))
         volume.commit()
-        return {"set": set_name, "clip": clip, "series": out, "gpu_s": round(time.time() - t0, 2)}
+        busy = [u for t, u in list(self.util) if t >= t0]           # GPU busy % while this clip ran
+        return {"set": set_name, "clip": clip, "series": out, "gpu_s": round(time.time() - t0, 2),
+                "host": self.host, "up_s": round(time.time() - self.t_up, 1),
+                "gpu_busy": round(sum(busy) / len(busy)) if busy else None}
 
     def _prep_fast(self, frames):
         """BADAS's preprocessing (V-JEPA 2 video processor: resize to 292 bilinear, center crop 256,
@@ -297,6 +318,8 @@ def main(model: str = "baseline_badas_open", limit: int = 0, check: bool = False
         if c["max_prob_difference"] > MAX_DIFF_OK:
             raise SystemExit(f"fast preprocessing differs by more than {MAX_DIFF_OK}: stopping")
     start, res, failed, gpu_s, new = time.time(), {s: {} for s in SETS}, [], 0.0, 0
+    up = {}                                            # container -> its uptime so far (s): what Modal bills
+    busy = []                                          # GPU busy % of each newly scored clip
     for r in scorer.series.starmap(jobs, return_exceptions=True, order_outputs=False):
         if isinstance(r, Exception):
             failed.append(repr(r))
@@ -305,21 +328,31 @@ def main(model: str = "baseline_badas_open", limit: int = 0, check: bool = False
             res[r["set"]][r["clip"]] = r["series"]
             gpu_s += r["gpu_s"]
             new += r["gpu_s"] > 0
+            up[r["host"]] = max(up.get(r["host"], 0.0), r["up_s"])
+            if r["gpu_busy"] is not None:
+                busy.append(r["gpu_busy"])
         done = sum(len(v) for v in res.values()) + len(failed)
         if done % 25 == 0 or done == len(jobs):
             el = time.time() - start
+            recent = busy[-25:]
             print(f"  {done:,}/{len(jobs):,} clips  new={new} failed={len(failed)}  elapsed={clock(el)}  "
-                  f"ETA={clock((len(jobs) - done) * el / done)}  gpu time={clock(gpu_s)}  "
-                  f"cost so far=${gpu_s / 3600 * GPU_PRICE_H:.2f}", flush=True)
+                  f"ETA={clock((len(jobs) - done) * el / done)}  containers={len(up)}  "
+                  f"GPU busy={sum(recent) / len(recent) if recent else 0:.0f}% (last {len(recent)} clips)  "
+                  f"cost so far=${sum(up.values()) / 3600 * GPU_PRICE_H:.2f}", flush=True)
     out = REPO / "src/risk/runs" / model / "results" / ("eval_test" if limit else "eval")
     out.mkdir(parents=True, exist_ok=True)
     for s, v in res.items():
         (out / f"series_{s}.json").write_text(json.dumps(v))
     run = {"model": model, "clips": len(jobs), "failed": len(failed), "failures": failed,
-           "wall_s": round(time.time() - start), "gpu_s": round(gpu_s),
-           "cost_usd_estimate": round(gpu_s / 3600 * GPU_PRICE_H, 3)}
+           "wall_s": round(time.time() - start), "clip_seconds": round(gpu_s),
+           "container_seconds": round(sum(up.values())), "containers": len(up),
+           "gpu_busy_mean_pct": round(sum(busy) / len(busy)) if busy else None,
+           "cost_usd_estimate": round(sum(up.values()) / 3600 * GPU_PRICE_H, 3)}
+    print(f"GPU busy while scoring: {run['gpu_busy_mean_pct']}% on average; "
+          f"{run['containers']} containers, {run['container_seconds']} s billed")
     if limit and new:
-        full = 1167 * gpu_s / new                       # 500 BDD val + 667 Nexar Public
+        # clip seconds overlap CLIPS_PER_CONTAINER-fold inside a container; GPU seconds per clip = that / overlap
+        full = 1167 * gpu_s / new / CLIPS_PER_CONTAINER   # 500 BDD val + 667 Nexar Public
         run["full_run_estimate"] = {"cost_usd": round(full / 3600 * GPU_PRICE_H, 2),
                                     "wall_s": round(full / MAX_CONTAINERS)}
         print(f"full run estimate (1,167 clips): ${run['full_run_estimate']['cost_usd']:.2f}, "
