@@ -1,0 +1,24 @@
+{
+ "clips": 2000,
+ "clips_moving": 1925,
+ "limit": 2000,
+ "download_s": 28,
+ "scan_s": 7,
+ "repeated_uuids": 0,
+ "wall_s": 43,
+ "cost_usd_estimate": 0.003,
+ "max_brake_percentiles": {
+  "50": 0.96,
+  "90": 2.42,
+  "99": 3.55,
+  "99.9": 5.19
+ },
+ "clips_braking_at_least": {
+  "3 m/s2": 68,
+  "4 m/s2": 12,
+  "5 m/s2": 4,
+  "6 m/s2": 0,
+  "8 m/s2": 0
+ },
+ "full_run_estimate_s": 865
+}
