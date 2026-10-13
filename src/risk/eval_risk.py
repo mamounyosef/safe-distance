@@ -50,8 +50,8 @@ SETS = {"bdd_val": ["cache/badas224/bdd100k_videos_100k_val"],
 SAVE_DIR = "results/risk_eval"         # in the Volume: <SAVE_DIR>/<model>/<set>/<clip>.json
 RESIZE, CROP = 292, 256                # V-JEPA 2 video processor: shortest edge 292 (bilinear), centre crop 256
 MEAN, STD = (0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
-MAX_DIFF_OK = 0.01                     # fast preprocessing must give readings within this of BADAS's own
-FAST_PREP = False                      # GPU preprocessing: only 1.2x faster and up to 0.04 off, so BADAS's own is used
+MAX_DIFF_OK = 0.002                    # fast preprocessing must give readings within this of BADAS's own
+FAST_PREP = True                       # BADAS's processor once per clip on the GPU (check() must match per-window)
 STEP = 4                               # a reading every 4 frames at 8 per second = every 0.5 s
 BATCH = 16                             # windows per GPU pass
 FP16 = True
@@ -147,15 +147,12 @@ class Scorer:
         """BADAS's preprocessing (V-JEPA 2 video processor: resize to 292 bilinear, center crop 256,
         scale to 0..1, ImageNet normalize), done ONCE per frame on the GPU instead of per window on the CPU."""
         import torch
-        import torch.nn.functional as F
 
-        x = torch.from_numpy(frames).to(self.badas.device).permute(0, 3, 1, 2).float()   # n, 3, 224, 224
-        x = F.interpolate(x, size=(RESIZE, RESIZE), mode="bilinear", align_corners=False, antialias=True)
-        o = (RESIZE - CROP) // 2
-        x = x[:, :, o:o + CROP, o:o + CROP] / 255.0
-        mean = torch.tensor(MEAN, device=x.device).view(1, 3, 1, 1)
-        std = torch.tensor(STD, device=x.device).view(1, 3, 1, 1)
-        return (x - mean) / std                                                               # n, 3, 256, 256
+        # BADAS's own processor, run ONCE on all the clip's frames, on the GPU. It treats every frame
+        # separately (resize, crop, scale, normalise), so slicing 16 frames out of the result gives the
+        # same input as running it per window; check() verifies that on a real clip.
+        return self.badas.processor(videos=frames, return_tensors="pt",
+                                    device=str(self.badas.device))["pixel_values_videos"][0]   # n, 3, 256, 256
 
     def _readings(self, frames, fast: bool) -> list:
         """Probability every STEP frames (+ one at the clip's end), each from the 16 frames ending there."""
@@ -194,7 +191,11 @@ class Scorer:
         torch.cuda.synchronize()
         t_fast = time.time() - t
         d = np.abs(np.array([p for _, p in slow]) - np.array([p for _, p in fast]))
+        # Also compare the model inputs themselves for the last window.
+        own = self.badas.processor(videos=frames[-16:], return_tensors="pt")["pixel_values_videos"][0]
+        ours = self._prep_fast(frames)[-16:].float().cpu()
         return {"clip": frames_path, "readings": len(fast), "max_prob_difference": round(float(d.max()), 5),
+                "max_input_difference": round(float((own - ours).abs().max()), 5),
                 "mean_prob_difference": round(float(d.mean()), 6), "seconds_badas_processor": round(t_slow, 1),
                 "seconds_fast": round(t_fast, 1), "speedup": round(t_slow / max(t_fast, 1e-6), 1)}
 
@@ -310,10 +311,10 @@ def main(model: str = "baseline_badas_open", limit: int = 0, check: bool = False
     per_set = {s: sum(j[0] == s for j in jobs) for s in SETS}
     print(f"model={model}  {len(jobs):,} clips {per_set}  {MAX_CONTAINERS} x {GPU}")
     scorer = Scorer(model_name=model)
-    # Safety check first: the fast GPU preprocessing must match BADAS's own on a crash and a normal clip.
-    for probe in ((next(j for j in jobs if j[0] == "nexar_public"),) if check else ()):
+    # Safety check first: once-per-clip GPU preprocessing must match BADAS's per-window CPU path.
+    for probe in ((next(j for j in jobs if j[0] == "nexar_public"),) if (check or FAST_PREP) else ()):
         c = scorer.check.remote(probe[1])
-        print(f"check {c['clip']}: max difference {c['max_prob_difference']} over {c['readings']} readings, "
+        print(f"check {c['clip']}: inputs differ by {c['max_input_difference']}, readings by {c['max_prob_difference']} over {c['readings']} readings, "
               f"{c['seconds_badas_processor']} s -> {c['seconds_fast']} s ({c['speedup']}x faster)", flush=True)
         if c["max_prob_difference"] > MAX_DIFF_OK:
             raise SystemExit(f"fast preprocessing differs by more than {MAX_DIFF_OK}: stopping")
