@@ -47,13 +47,13 @@ BASE_MODEL = "facebook/vjepa2-vitl-fpc16-256-ssv2"
 HF_CACHE = "/data/models/hf"
 SETS = {"bdd_val": ["cache/badas224/bdd100k_videos_100k_val"],
         "nexar_public": ["cache/badas224/nexar_test-public_positive", "cache/badas224/nexar_test-public_negative"]}
-SAVE_DIR = "results/risk_eval"         # in the Volume: <SAVE_DIR>/<model>/<set>/<clip>.json
+SAVE_DIR = "results/risk_eval_v2"      # in the Volume (v2: GPU preprocessing; all readings made the same way): <SAVE_DIR>/<model>/<set>/<clip>.json
 RESIZE, CROP = 292, 256                # V-JEPA 2 video processor: shortest edge 292 (bilinear), centre crop 256
 MEAN, STD = (0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
-MAX_DIFF_OK = 0.002                    # fast preprocessing must give readings within this of BADAS's own
+MAX_DIFF_OK = 0.005                    # fast preprocessing must give readings within this of BADAS's own
 FAST_PREP = True                       # BADAS's processor once per clip on the GPU (check() must match per-window)
 STEP = 4                               # a reading every 4 frames at 8 per second = every 0.5 s
-BATCH = 16                             # windows per GPU pass
+BATCH = 32                             # windows per GPU pass
 FP16 = True
 TEMPERATURE = 2.0                      # BADAS's output softening
 THRESHOLDS = [0.5, 0.7, 0.8, 0.9, 0.95, 0.98, 0.99]
@@ -151,8 +151,10 @@ class Scorer:
         # BADAS's own processor, run ONCE on all the clip's frames. It treats every frame
         # separately (resize, crop, scale, normalise), so slicing 16 frames out of the result gives the
         # same input as running it per window; check() verifies that on a real clip.
-        # (On the CPU: its GPU version differs slightly, readings by up to 0.003; the CPU one is identical.)
-        return self.badas.processor(videos=frames, return_tensors="pt")["pixel_values_videos"][0]   # n, 3, 256, 256
+        # On the GPU: differs from the CPU version only by rounding (one brightness step out of 255 here and
+        # there), moving readings by up to 0.003, the same size as half precision (FP16) which we already use.
+        return self.badas.processor(videos=frames, return_tensors="pt",
+                                    device=str(self.badas.device))["pixel_values_videos"][0]   # n, 3, 256, 256
 
     def _readings(self, frames, fast: bool) -> list:
         """Probability every STEP frames (+ one at the clip's end), each from the 16 frames ending there."""
