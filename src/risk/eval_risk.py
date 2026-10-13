@@ -148,11 +148,11 @@ class Scorer:
         scale to 0..1, ImageNet normalize), done ONCE per frame on the GPU instead of per window on the CPU."""
         import torch
 
-        # BADAS's own processor, run ONCE on all the clip's frames, on the GPU. It treats every frame
+        # BADAS's own processor, run ONCE on all the clip's frames. It treats every frame
         # separately (resize, crop, scale, normalise), so slicing 16 frames out of the result gives the
         # same input as running it per window; check() verifies that on a real clip.
-        return self.badas.processor(videos=frames, return_tensors="pt",
-                                    device=str(self.badas.device))["pixel_values_videos"][0]   # n, 3, 256, 256
+        # (On the CPU: its GPU version differs slightly, readings by up to 0.003; the CPU one is identical.)
+        return self.badas.processor(videos=frames, return_tensors="pt")["pixel_values_videos"][0]   # n, 3, 256, 256
 
     def _readings(self, frames, fast: bool) -> list:
         """Probability every STEP frames (+ one at the clip's end), each from the 16 frames ending there."""
