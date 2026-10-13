@@ -60,10 +60,18 @@ def text(img, s, xy, scale=0.8, colour=(255, 255, 255), thick=2):
 
 
 def main() -> None:
+    global OUT
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--seed", type=int, default=SEED)
+    ap.add_argument("--out", type=Path, default=OUT)
+    a = ap.parse_args()
+    OUT = a.out
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     videos, labels = listing(VIDEO_FOLDER), listing(FEATURE_FOLDER)
     names = sorted(set(videos) & set(labels))
     print(f"{len(videos)} videos, {len(labels)} label files, {len(names)} with both")
-    picks = random.Random(SEED).sample(names, N)
+    picks = random.Random(a.seed).sample(names, N)
     wr, size, fps_out, shown = None, None, None, []
     for k, name in enumerate(picks, 1):
         d = np.load(fetch(labels[name], CACHE / f"{name}.npz"))

@@ -51,7 +51,15 @@ def labels() -> list[dict]:
 
 
 def main() -> None:
-    picks = random.Random(SEED).sample(labels(), N)
+    global OUT
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--seed", type=int, default=SEED)
+    ap.add_argument("--out", type=Path, default=OUT)
+    a = ap.parse_args()
+    OUT = a.out
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    picks = random.Random(a.seed).sample(labels(), N)
     wr, shown = Writer(OUT, SIZE, LABEL_FPS), []
     for k, c in enumerate(picks, 1):
         cap = cv2.VideoCapture(str(CCD / f"{c['id']}.mp4"))

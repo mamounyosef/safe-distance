@@ -51,8 +51,16 @@ def volume_get(remote: str, local: Path) -> Path:
 
 
 def main() -> None:
+    global OUT
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--seed", type=int, default=SEED)
+    ap.add_argument("--out", type=Path, default=OUT)
+    a = ap.parse_args()
+    OUT = a.out
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     meta = list(csv.DictReader(volume_get("nexar/train/positive/metadata.csv", CACHE / "metadata.csv").open()))
-    picks = random.Random(SEED).sample(meta, N)
+    picks = random.Random(a.seed).sample(meta, N)
     wr, shown = Writer(OUT, SIZE, FPS), []
     for k, r in enumerate(picks, 1):
         event, alert = float(r["time_of_event"]), float(r["time_of_alert"])

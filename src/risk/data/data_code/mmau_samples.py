@@ -97,8 +97,9 @@ def labels() -> dict[tuple[int, int], dict]:
     return out
 
 
-def clips_from(parts: list[str], keep: int, every: int):
-    """Yield (type, video, [frame bytes]) for every `every`-th clip met in the archive, `keep` of them."""
+def clips_from(parts: list[str], keep: int, every: int, offset: int = 0):
+    """Yield (type, video, [frame bytes]) for every `every`-th clip met in the archive, `keep` of them,
+    after skipping the first `offset` clips (a different offset gives different clips)."""
     tf = tarfile.open(fileobj=io.BufferedReader(Parts(parts), 1 << 22), mode="r|gz")
     current, frames, seen, kept = None, [], 0, 0
     for m in tf:
@@ -115,17 +116,26 @@ def clips_from(parts: list[str], keep: int, every: int):
                     return
             current, frames = key, []
             seen += 1
-        if (seen - 1) % every == 0:                            # only read frames of clips we keep
+        if not (seen > offset and (seen - 1 - offset) % every == 0):
+            continue
+        if seen > offset and (seen - 1 - offset) % every == 0:  # only read frames of clips we keep
             frames.append((p[-1], tf.extractfile(m).read()))
     if frames and kept < keep:
         yield current, frames
 
 
 def main() -> None:
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--offset", type=int, default=0, help="skip this many clips at the start of each archive")
+    ap.add_argument("--out", type=Path, default=OUT)
+    a = ap.parse_args()
+    a.out.parent.mkdir(parents=True, exist_ok=True)
     lab = labels()
-    wr, shown, n_total = Writer(OUT, SIZE, PLAY_FPS), [], sum(k for _, k, _ in ARCHIVES.values())
+    wr, shown, n_total = Writer(a.out, SIZE, PLAY_FPS), [], sum(k for _, k, _ in ARCHIVES.values())
     for arch, (parts, keep, every) in ARCHIVES.items():
-        for key, frames in clips_from(parts, keep, every):
+        # DADA clips are big (PNG): skip fewer of them.
+        for key, frames in clips_from(parts, keep, every, a.offset if every > 1 else a.offset // 5):
             L = lab.get(key)
             k = len(shown) + 1
             frames.sort()
@@ -150,8 +160,8 @@ def main() -> None:
                 wr.write(img, FREEZE_S if j in (L["start"], L["collision"]) else 0.0)
             shown.append({"n": k, "archive": arch, "type": key[0], "video": key[1], **L, "frames": len(frames)})
     wr.close()
-    OUT.with_suffix(".json").write_text(json.dumps(shown, indent=1, ensure_ascii=False))
-    print(f"saved {OUT} ({len(shown)} clips)")
+    a.out.with_suffix(".json").write_text(json.dumps(shown, indent=1, ensure_ascii=False))
+    print(f"saved {a.out} ({len(shown)} clips)")
 
 
 if __name__ == "__main__":
