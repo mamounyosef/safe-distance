@@ -45,7 +45,10 @@ BASE_MODEL = "facebook/vjepa2-vitl-fpc16-256-ssv2"
 HF_CACHE = "/data/models/hf"
 SETS = {"bdd_val": ["cache/badas224/bdd100k_videos_100k_val"],
         "nexar_public": ["cache/badas224/nexar_test-public_positive", "cache/badas224/nexar_test-public_negative"]}
-SAVE_DIR = "results/risk_eval"         # in the Volume: <SAVE_DIR>/<model>/<set>/<clip>.json
+SAVE_DIR = "results/risk_eval_fast"    # in the Volume: <SAVE_DIR>/<model>/<set>/<clip>.json
+RESIZE, CROP = 292, 256                # V-JEPA 2 video processor: shortest edge 292 (bilinear), centre crop 256
+MEAN, STD = (0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
+MAX_DIFF_OK = 0.01                     # fast preprocessing must give readings within this of BADAS's own
 STEP = 4                               # a reading every 4 frames at 8 per second = every 0.5 s
 BATCH = 16                             # windows per GPU pass
 FP16 = True
@@ -112,21 +115,66 @@ class Scorer:
             return {"set": set_name, "clip": clip, "series": json.loads(saved.read_text()), "gpu_s": 0.0}
         t0 = time.time()
         frames = np.load(f"/data/{frames_path}")
-        ends = list(range(16, len(frames) + 1, STEP))
-        if ends and ends[-1] != len(frames):
-            ends.append(len(frames))                   # one reading at the very end of the clip
-        out = []
-        for i in range(0, len(ends), BATCH):
-            batch = [self.badas.processor(videos=frames[e - 16:e], return_tensors="pt")["pixel_values_videos"]
-                     .squeeze(0) for e in ends[i:i + BATCH]]
-            with torch.no_grad(), torch.autocast("cuda", dtype=torch.float16, enabled=FP16):
-                logits = self.badas.model(torch.stack(batch).to(self.badas.device)).float()
-            probs = torch.softmax(logits / TEMPERATURE, dim=1)[:, 1]
-            out += [(round(e / 8.0, 3), round(float(p), 5)) for e, p in zip(ends[i:i + BATCH], probs)]
+        out = self._readings(frames, fast=True)
         saved.parent.mkdir(parents=True, exist_ok=True)
         saved.write_text(json.dumps(out))
         volume.commit()
         return {"set": set_name, "clip": clip, "series": out, "gpu_s": round(time.time() - t0, 2)}
+
+    def _prep_fast(self, frames):
+        """BADAS's preprocessing (V-JEPA 2 video processor: resize to 292 bilinear, center crop 256,
+        scale to 0..1, ImageNet normalize), done ONCE per frame on the GPU instead of per window on the CPU."""
+        import torch
+        import torch.nn.functional as F
+
+        x = torch.from_numpy(frames).to(self.badas.device).permute(0, 3, 1, 2).float()   # n, 3, 224, 224
+        x = F.interpolate(x, size=(RESIZE, RESIZE), mode="bilinear", align_corners=False, antialias=True)
+        o = (RESIZE - CROP) // 2
+        x = x[:, :, o:o + CROP, o:o + CROP] / 255.0
+        mean = torch.tensor(MEAN, device=x.device).view(1, 3, 1, 1)
+        std = torch.tensor(STD, device=x.device).view(1, 3, 1, 1)
+        return (x - mean) / std                                                               # n, 3, 256, 256
+
+    def _readings(self, frames, fast: bool) -> list:
+        """Probability every STEP frames (+ one at the clip's end), each from the 16 frames ending there."""
+        import torch
+
+        ends = list(range(16, len(frames) + 1, STEP))
+        if ends and ends[-1] != len(frames):
+            ends.append(len(frames))                   # one reading at the very end of the clip
+        prepped = self._prep_fast(frames) if fast else None
+        out = []
+        for i in range(0, len(ends), BATCH):
+            if fast:
+                batch = torch.stack([prepped[e - 16:e] for e in ends[i:i + BATCH]])          # B, 16, 3, 256, 256
+            else:                                      # BADAS's own processor (slow, CPU), for --check
+                batch = torch.stack([self.badas.processor(videos=frames[e - 16:e], return_tensors="pt")
+                                     ["pixel_values_videos"].squeeze(0) for e in ends[i:i + BATCH]])
+            with torch.no_grad(), torch.autocast("cuda", dtype=torch.float16, enabled=FP16):
+                logits = self.badas.model(batch.to(self.badas.device)).float()
+            probs = torch.softmax(logits / TEMPERATURE, dim=1)[:, 1]
+            out += [(round(e / 8.0, 3), round(float(p), 5)) for e, p in zip(ends[i:i + BATCH], probs)]
+        return out
+
+    @modal.method()
+    def check(self, frames_path: str) -> dict:
+        """Fast GPU preprocessing vs BADAS's own processor on one clip: same readings? how much faster?"""
+        import numpy as np
+        import torch
+
+        frames = np.load(f"/data/{frames_path}")
+        torch.cuda.synchronize()
+        t = time.time()
+        slow = self._readings(frames, fast=False)
+        t_slow = time.time() - t
+        t = time.time()
+        fast = self._readings(frames, fast=True)
+        torch.cuda.synchronize()
+        t_fast = time.time() - t
+        d = np.abs(np.array([p for _, p in slow]) - np.array([p for _, p in fast]))
+        return {"clip": frames_path, "readings": len(fast), "max_prob_difference": round(float(d.max()), 5),
+                "mean_prob_difference": round(float(d.mean()), 6), "seconds_badas_processor": round(t_slow, 1),
+                "seconds_fast": round(t_fast, 1), "speedup": round(t_slow / max(t_fast, 1e-6), 1)}
 
 
 # ---------------------------------------------------------------- metrics (this PC)
@@ -240,6 +288,13 @@ def main(model: str = "baseline_badas_open", limit: int = 0) -> None:
     per_set = {s: sum(j[0] == s for j in jobs) for s in SETS}
     print(f"model={model}  {len(jobs):,} clips {per_set}  {MAX_CONTAINERS} x {GPU}")
     scorer = Scorer(model_name=model)
+    # Safety check first: the fast GPU preprocessing must match BADAS's own on a crash and a normal clip.
+    for probe in (next(j for j in jobs if j[0] == "nexar_public"), next(j for j in jobs if j[0] == "bdd_val")):
+        c = scorer.check.remote(probe[1])
+        print(f"check {c['clip']}: max difference {c['max_prob_difference']} over {c['readings']} readings, "
+              f"{c['seconds_badas_processor']} s -> {c['seconds_fast']} s ({c['speedup']}x faster)", flush=True)
+        if c["max_prob_difference"] > MAX_DIFF_OK:
+            raise SystemExit(f"fast preprocessing differs by more than {MAX_DIFF_OK}: stopping")
     start, res, failed, gpu_s, new = time.time(), {s: {} for s in SETS}, [], 0.0, 0
     for r in scorer.series.starmap(jobs, return_exceptions=True, order_outputs=False):
         if isinstance(r, Exception):
