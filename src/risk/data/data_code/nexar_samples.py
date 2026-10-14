@@ -56,11 +56,14 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--seed", type=int, default=SEED)
     ap.add_argument("--out", type=Path, default=OUT)
+    ap.add_argument("--min-lead", type=float, default=0.0, help="only clips whose alert is at least this many s before the event")
     a = ap.parse_args()
     OUT = a.out
     OUT.parent.mkdir(parents=True, exist_ok=True)
     meta = list(csv.DictReader(volume_get("nexar/train/positive/metadata.csv", CACHE / "metadata.csv").open()))
-    picks = random.Random(a.seed).sample(meta, N)
+    meta = [r for r in meta if float(r["time_of_event"]) - float(r["time_of_alert"]) >= a.min_lead]
+    print(f"{len(meta)} crash clips with the alert at least {a.min_lead} s before the event")
+    picks = random.Random(a.seed).sample(meta, min(N, len(meta)))
     wr, shown = Writer(OUT, SIZE, FPS), []
     for k, r in enumerate(picks, 1):
         event, alert = float(r["time_of_event"]), float(r["time_of_alert"])
