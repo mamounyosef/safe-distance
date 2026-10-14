@@ -14,6 +14,10 @@ RUN IT (from the repo root, after nvidia_av_braking.py):
     .venv\\Scripts\\python.exe src\\risk\\data\\data_code\\nvidia_av_samples.py
 
 Output: C:\\Users\\mamou\\Downloads\\nvidia_av_braking_samples.mp4 (+ .json).
+
+Everyday driving instead (20 random clips of any kind, each shown whole, no braking marks):
+
+    .venv\\Scripts\\python.exe src\\risk\\data\\data_code\\nvidia_av_samples.py --random --out "%USERPROFILE%\\Downloads\\nvidia_av_random_samples.mp4"
 """
 
 from __future__ import annotations
@@ -102,13 +106,22 @@ def fetch(uuid: str, shard: int) -> Path | None:
 
 
 def main() -> None:
+    global OUT
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--random", action="store_true", help="random clips of any kind, shown whole")
+    ap.add_argument("--seed", type=int, default=SEED)
+    ap.add_argument("--out", type=Path, default=OUT)
+    a = ap.parse_args()
+    OUT = a.out
     df = pd.read_csv(BRAKING_CSV)                           # rows in manifest order
     pos = {u: i for i, u in enumerate(df["uuid"])}
     firsts: dict[int, int] = {}
     last_present = pos[first_clip(N_SHARDS_PRESENT - 1)] + 600   # clips beyond the uploaded shards: skip
-    cand = df[(df["max_brake"] >= MIN_BRAKE) & (df.index < last_present)]
-    picks = cand.sample(n=N, random_state=SEED)
-    print(f"{len(cand)} clips brake at >= {MIN_BRAKE} m/s^2 in the uploaded shards; drawing {N}")
+    min_brake = -1e9 if a.random else MIN_BRAKE
+    cand = df[(df["max_brake"] >= min_brake) & (df.index < last_present)]
+    picks = cand.sample(n=N, random_state=a.seed)
+    print(f"{len(cand)} candidate clips in the uploaded shards; drawing {N}")
     jobs = [(r.uuid, find_shard(pos[r.uuid], pos, firsts)) for r in picks.itertuples()]
     with ThreadPoolExecutor(3) as ex:                       # fetch a few clips in parallel (rate limits)
         paths = list(ex.map(lambda j: fetch(*j), jobs))
@@ -119,6 +132,25 @@ def main() -> None:
             continue
         cap = cv2.VideoCapture(str(path))
         fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
+        if a.random:                                       # everyday clip: show it whole
+            w, h = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            wr.write(card(SIZE, [f"NVIDIA AV clip {k}/{N}   ({r.uuid[:8]})",
+                                 f"random clip, {w}x{h} at {fps:.0f} fps",
+                                 f"hardest brake in it: {r.max_brake:.1f} m/s2"]), 1.5)
+            f = 0
+            while True:
+                ok, img = cap.read()
+                if not ok:
+                    break
+                img = cv2.resize(img, SIZE)
+                text(img, f"{r.uuid[:8]}   {f / fps:.1f} s", (15, 40), 0.9)
+                wr.write(img)
+                f += 1
+            cap.release()
+            shown.append({"n": k, "uuid": r.uuid, "width": w, "height": h, "fps": round(fps, 2),
+                          "length_s": round(f / fps, 1), "max_brake": r.max_brake})
+            print(f"[{k}/{N}] {r.uuid[:8]}: {w}x{h}, {f / fps:.1f} s", flush=True)
+            continue
         wr.write(card(SIZE, [f"NVIDIA AV clip {k}/{N}   ({r.uuid[:8]})",
                              f"hardest brake {r.max_brake:.1f} m/s2 at {r.at_s:.1f} s",
                              f"speed {r.speed_before * 3.6:.0f} km/h -> {r.speed_after * 3.6:.0f} km/h one second later"]),
