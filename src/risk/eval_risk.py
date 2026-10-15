@@ -60,6 +60,7 @@ MEAN_DIFF_OK = 0.005                   # average reading gap allowed vs the exac
 COMPILE = True                         # torch.compile the model (2.6x faster on A100; about 4.5 min to compile)
 FAST_PREP = True                       # BADAS's processor once per clip on the GPU (check() must match per-window)
 STEP = 4                               # a reading every 4 frames at 8 per second = every 0.5 s
+STEP_BY_SET = {"bdd_train": 8}         # cleaning only needs each clip's riskiest moment: every 1 s (half the cost)
 BATCH = 32                             # windows per GPU pass
 FP16 = True
 TEMPERATURE = 2.0                      # BADAS's output softening
@@ -159,7 +160,7 @@ class Scorer:
         t0 = time.time()
         frames = np.load(f"/data/{frames_path}")
         tm = {"load_s": time.time() - t0}                         # where this clip's time goes
-        out = self._readings(frames, fast=FAST_PREP, tm=tm)
+        out = self._readings(frames, fast=FAST_PREP, tm=tm, step=STEP_BY_SET.get(set_name, STEP))
         t1 = time.time()
         saved.parent.mkdir(parents=True, exist_ok=True)
         saved.write_text(json.dumps(out))
@@ -184,11 +185,11 @@ class Scorer:
         return self.badas.processor(videos=frames, return_tensors="pt",
                                     device=str(self.badas.device))["pixel_values_videos"][0]   # n, 3, 256, 256
 
-    def _readings(self, frames, fast: bool, tm: dict | None = None) -> list:
-        """Probability every STEP frames (+ one at the clip's end), each from the 16 frames ending there."""
+    def _readings(self, frames, fast: bool, tm: dict | None = None, step: int = STEP) -> list:
+        """Probability every `step` frames (+ one at the clip's end), each from the 16 frames ending there."""
         import torch
 
-        ends = list(range(16, len(frames) + 1, STEP))
+        ends = list(range(16, len(frames) + 1, step))
         if ends and ends[-1] != len(frames):
             ends.append(len(frames))                   # one reading at the very end of the clip
         tm = {} if tm is None else tm
