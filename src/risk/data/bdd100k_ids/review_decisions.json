@@ -114,6 +114,60 @@
      "real": 0
     }
    }
+  },
+  {
+   "date": "2026-10-15",
+   "video": "5_cleaning_boundary.mp4 (10 random clips from ranks 101-200, 10 from 201-638)",
+   "decision": "#1-16 real dangers, #17-20 not; #19 and #20 almost danger",
+   "real_near_miss_clips": [
+    "7b2c55a4-17647e4a",
+    "66d2f3f8-85405c57",
+    "19dfa8da-d788fb94",
+    "04b72436-876582fc",
+    "2702ecdc-3bd5d76a",
+    "6eab80fa-53ab72c3",
+    "207a3f70-f71f630c",
+    "a4a4e648-7f6c95a6",
+    "691a5a55-11837f34",
+    "3e5f8c31-426750be",
+    "2a81f1f3-e53795a3",
+    "721f9d4c-a1018ce3",
+    "a01ff535-cdb88902",
+    "9acfa5be-6bff0dbb",
+    "08993d00-386a4ee4",
+    "149b1e98-2b7069c2"
+   ],
+   "real_near_miss_ranks": [
+    106,
+    111,
+    117,
+    118,
+    125,
+    130,
+    132,
+    148,
+    149,
+    191,
+    216,
+    308,
+    400,
+    406,
+    433,
+    436
+   ],
+   "borderline_clips": [
+    "508522be-281351be",
+    "22221942-793964c5"
+   ],
+   "borderline_ranks": [
+    529,
+    616
+   ],
+   "normal_ranks": [
+    450,
+    460
+   ],
+   "note": "Rank 529 was judged normal in 4_cleaning_bands (#14) and almost danger here (#19); ranks 139/160/172/189 were judged normal in 4_cleaning_bands while all 10 of ranks 106-191 here were judged real. Short clips make the call hard: these labels are noisy."
   }
  ]
 }
