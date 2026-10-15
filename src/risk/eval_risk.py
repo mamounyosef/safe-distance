@@ -3,6 +3,8 @@
 Sets (raw frames already cached in the Volume, 8 per second, 224x224):
     bdd_val        BDD100K val, 500 normal-driving clips: every warning is false
     nexar_public   Nexar test, Public half, 667 clips (334 crash, 333 normal)
+    bdd_train      (--sets bdd_train) BDD100K train, our 3,000 clips: only to find possible real
+                   near-misses for a person to review before training (no metrics)
 A reading every 0.5 s, each from the 16 frames (2 s) ending then, plus one at the
 very end of each clip (the moment Nexar's official metric asks about).
 
@@ -22,6 +24,7 @@ RUN IT (see current_modal_commands.txt):
 
     python -m modal run src\\risk\\eval_risk.py --limit 4       # timed test: 4 clips per set
     python -m modal run src\\risk\\eval_risk.py                 # everything
+    python -m modal run src\\risk\\eval_risk.py --sets bdd_train   # cleaning: rank BDD100K train clips by risk
 """
 
 # (No "from __future__ import annotations": Modal needs real types for its class parameters.)
@@ -46,7 +49,9 @@ BADAS_REPO = "nexar-ai/BADAS-Open"
 BASE_MODEL = "facebook/vjepa2-vitl-fpc16-256-ssv2"
 HF_CACHE = "/data/models/hf"
 SETS = {"bdd_val": ["cache/badas224/bdd100k_videos_100k_val"],
-        "nexar_public": ["cache/badas224/nexar_test-public_positive", "cache/badas224/nexar_test-public_negative"]}
+        "nexar_public": ["cache/badas224/nexar_test-public_positive", "cache/badas224/nexar_test-public_negative"],
+        "bdd_train": ["cache/badas224/bdd100k_videos_100k_train"]}
+SET_GROUPS = {"dev": ["bdd_val", "nexar_public"], "bdd_train": ["bdd_train"]}   # --sets picks one group
 SAVE_DIR = "results/risk_eval_v3"      # in the Volume (v2: GPU preprocessing; all readings made the same way): <SAVE_DIR>/<model>/<set>/<clip>.json
 RESIZE, CROP = 292, 256                # V-JEPA 2 video processor: shortest edge 292 (bilinear), centre crop 256
 MEAN, STD = (0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
@@ -79,10 +84,11 @@ image = (modal.Image.debian_slim(python_version="3.12").apt_install("libgl1", "l
 
 
 @app.function(image=image, volumes={"/data": volume})
-def clip_list(limit: int) -> list[tuple[str, str]]:
-    """(set name, cached frames path inside the Volume) for every clip; `limit` per folder if > 0."""
+def clip_list(limit: int, names: list[str]) -> list[tuple[str, str]]:
+    """(set name, cached frames path inside the Volume) for every clip of the named sets; `limit` per folder if > 0."""
     jobs = []
-    for name, folders in SETS.items():
+    for name in names:
+        folders = SETS[name]
         for f in folders:
             files = sorted(Path("/data", f).glob("*.npy"))
             files = [p for p in files if not p.name.endswith(".part.npy")]
@@ -419,9 +425,10 @@ def clock(sec: float) -> str:
 
 @app.local_entrypoint()
 def main(model: str = "baseline_badas_open", limit: int = 0, check: bool = False,
-         profile: bool = False, speedtest: bool = False) -> None:
-    jobs = clip_list.remote(limit)
-    per_set = {s: sum(j[0] == s for j in jobs) for s in SETS}
+         profile: bool = False, speedtest: bool = False, sets: str = "dev") -> None:
+    names = SET_GROUPS[sets]
+    jobs = clip_list.remote(limit, names)
+    per_set = {s: sum(j[0] == s for j in jobs) for s in names}
     print(f"model={model}  {len(jobs):,} clips {per_set}  {MAX_CONTAINERS} x {GPU}")
     scorer = Scorer(model_name=model)
     if speedtest:                                      # diagnosis only: faster model variants, then stop
@@ -433,13 +440,14 @@ def main(model: str = "baseline_badas_open", limit: int = 0, check: bool = False
         print(json.dumps(r, indent=1))
         return
     # Safety check first: once-per-clip GPU preprocessing must match BADAS's per-window CPU path.
-    for probe in ((next(j for j in jobs if j[0] == "nexar_public"),) if (check or FAST_PREP) else ()):
+    probe_clip = clip_list.remote(1, ["nexar_public"])[0] if jobs and jobs[0][0] != "nexar_public" else None
+    for probe in ((probe_clip or next(j for j in jobs if j[0] == "nexar_public"),) if (check or FAST_PREP) else ()):
         c = scorer.check.remote(probe[1])
         print(f"check {c['clip']}: inputs differ by {c['max_input_difference']}, readings by {c['max_prob_difference']} at most, {c['mean_prob_difference']} on average, over {c['readings']} readings, "
               f"{c['seconds_badas_processor']} s -> {c['seconds_fast']} s ({c['speedup']}x faster)", flush=True)
         if c["max_prob_difference"] > MAX_DIFF_OK or c["mean_prob_difference"] > MEAN_DIFF_OK:
             raise SystemExit(f"fast path differs from the exact reference by more than {MAX_DIFF_OK} (worst) or {MEAN_DIFF_OK} (average): stopping")
-    start, res, failed, gpu_s, new = time.time(), {s: {} for s in SETS}, [], 0.0, 0
+    start, res, failed, gpu_s, new = time.time(), {s: {} for s in names}, [], 0.0, 0
     up = {}                                            # container -> its uptime so far (s): what Modal bills
     busy = []                                          # GPU busy % of each newly scored clip
     times = []                                         # per clip: seconds loading, preprocessing, model, saving
@@ -464,7 +472,7 @@ def main(model: str = "baseline_badas_open", limit: int = 0, check: bool = False
                   f"ETA={clock((len(jobs) - done) * el / done)}  containers={len(up)}  "
                   f"GPU busy={sum(recent) / len(recent) if recent else 0:.0f}% (last {len(recent)} clips)  "
                   f"cost so far=${sum(up.values()) / 3600 * GPU_PRICE_H:.2f}", flush=True)
-    out = REPO / "src/risk/runs" / model / "results" / ("eval_test" if limit else "eval")
+    out = REPO / "src/risk/runs" / model / "results" / (("eval_test" if limit else "eval") if sets == "dev" else sets)
     out.mkdir(parents=True, exist_ok=True)
     for s, v in res.items():
         (out / f"series_{s}.json").write_text(json.dumps(v))
@@ -480,14 +488,22 @@ def main(model: str = "baseline_badas_open", limit: int = 0, check: bool = False
           f"{run['containers']} containers, {run['container_seconds']} s billed")
     if limit and new:
         # clip seconds overlap CLIPS_PER_CONTAINER-fold inside a container; GPU seconds per clip = that / overlap
-        full = 1167 * gpu_s / new / CLIPS_PER_CONTAINER   # 500 BDD val + 667 Nexar Public
+        n_full = {"dev": 1167, "bdd_train": 3000}[sets]   # dev: 500 BDD val + 667 Nexar Public
+        full = n_full * gpu_s / new / CLIPS_PER_CONTAINER
         run["full_run_estimate"] = {"cost_usd": round(full / 3600 * GPU_PRICE_H, 2),
                                     "wall_s": round(full / MAX_CONTAINERS)}
-        print(f"full run estimate (1,167 clips): ${run['full_run_estimate']['cost_usd']:.2f}, "
+        print(f"full run estimate ({n_full:,} clips): ${run['full_run_estimate']['cost_usd']:.2f}, "
               f"about {clock(run['full_run_estimate']['wall_s'])} with {MAX_CONTAINERS} x {GPU} "
               f"(plus model loading)")
     (out / "run.json").write_text(json.dumps(run, indent=1))
-    if not limit:
+    if sets == "bdd_train":
+        # Cleaning: rank clips by their highest risk reading (candidates for a person to review, never auto-removed)
+        top = sorted(((max(p for _, p in s), max(s, key=lambda r: r[1])[0], c) for c, s in res["bdd_train"].items() if s),
+                     reverse=True)
+        (out / "ranked.json").write_text(json.dumps([{"clip": c, "max_risk": p, "at_s": t} for p, t, c in top], indent=1))
+        for thr in (0.9, 0.95, 0.98, 0.99):
+            print(f"clips with a reading over {thr}: {sum(p > thr for p, _, _ in top)} of {len(top)}")
+    elif not limit:
         m = metrics(res["bdd_val"], res["nexar_public"])
         (out / "metrics.json").write_text(json.dumps(m, indent=1))
         (out / "RESULTS.md").write_text(report(model, m))
