@@ -45,6 +45,9 @@ BEFORE_S, AFTER_S = 6.0, 2.0     # seconds shown around the riskiest moment
 BANDS = [("ranks 16-100", 16, 100), ("ranks 101-638 (peak over 0.99)", 101, 638),
          ("peak 0.98-0.99", 639, 1107), ("peak 0.95-0.98", 1108, 1685), ("peak 0.90-0.95", 1686, 2049)]
 PER_BAND, SEED = 8, 7
+# --boundary: where do real near-misses stop? Ranks 16-100 were all real (8/8), 101-638 almost all normal (0/8).
+BOUNDARY = [("ranks 101-200", 101, 200), ("ranks 201-638", 201, 638)]
+BOUNDARY_PER_BAND = 10
 BAND_BEFORE_S, BAND_AFTER_S = 2.5, 1.0     # short: enough to identify the moment and move on
 BAND_OUT = Path.home() / "Downloads" / "safe-distance-testing" / "bdd100k" / "4_cleaning_bands.mp4"
 SIZE, FPS = (1280, 720), 30.0
@@ -74,18 +77,21 @@ def risk_at(s: list, t: float) -> float | None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--bands", action="store_true", help="random clips per risk band (short) instead of the top 60")
+    ap.add_argument("--boundary", action="store_true", help="more clips from ranks 101-638 (short)")
     a = ap.parse_args()
     series = json.loads(SERIES.read_text())
     full = rank(series)
     for i, r in enumerate(full, 1):
         r["rank"] = i
-    if a.bands:
-        rng = random.Random(SEED)
+    if a.bands or a.boundary:
+        rng = random.Random(SEED + (1 if a.boundary else 0))
+        bands, per = (BOUNDARY, BOUNDARY_PER_BAND) if a.boundary else (BANDS, PER_BAND)
         ranked = []
-        for name, lo, hi in BANDS:
-            for r in sorted(rng.sample(full[lo - 1:hi], PER_BAND), key=lambda r: r["rank"]):
+        for name, lo, hi in bands:
+            for r in sorted(rng.sample(full[lo - 1:hi], per), key=lambda r: r["rank"]):
                 ranked.append({**r, "band": name})
-        out, before, after = BAND_OUT, BAND_BEFORE_S, BAND_AFTER_S
+        out = BAND_OUT.with_name("5_cleaning_boundary.mp4") if a.boundary else BAND_OUT
+        before, after = BAND_BEFORE_S, BAND_AFTER_S
     else:
         ranked, out, before, after = full[:TOP], OUT, BEFORE_S, AFTER_S
     print(f"{len(series)} clips scanned; reviewing {len(ranked)}")
@@ -97,7 +103,7 @@ def main() -> None:
         fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
         wr.write(card(SIZE, [f"#{k}/{len(ranked)}   {r.get('band', '')}",
                              f"rank {r['rank']}, highest risk {r['max_risk']:.3f}",
-                             "Real near-miss? Note the number."]), 0.8 if a.bands else 1.5)
+                             "Real near-miss? Note the number."]), 0.8 if (a.bands or a.boundary) else 1.5)
         start = max(0.0, r["peak_s"] - before)
         cap.set(cv2.CAP_PROP_POS_FRAMES, int(start * fps))
         f = int(start * fps)

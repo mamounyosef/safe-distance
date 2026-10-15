@@ -57,6 +57,63 @@
     0.99639,
     0.99639
    ]
+  },
+  {
+   "date": "2026-10-15",
+   "video": "4_cleaning_bands.mp4 (8 random clips per band, bdd100k_review.py --bands)",
+   "decision": "#1-8 (ranks 16-100) all real near-collisions; #9-16 (ranks 101-638) almost normal, mostly stopping close behind a car; #17-40 (peak 0.90-0.99) almost normal; maybe 1-2 exceptions overall (not identified)",
+   "real_near_miss_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "real_near_miss_clips": [
+    "59fef43b-abf159a2",
+    "880e73c5-4ddd5f69",
+    "af56505d-d1320e51",
+    "58198565-0937094a",
+    "03567106-32193027",
+    "508d3fc3-3a007c03",
+    "20cfbf81-f274348c",
+    "10b87c7a-bf849ddd"
+   ],
+   "real_near_miss_ranks": [
+    22,
+    25,
+    28,
+    35,
+    57,
+    62,
+    66,
+    84
+   ],
+   "per_band": {
+    "ranks 16-100": {
+     "shown": 8,
+     "real": 8
+    },
+    "ranks 101-638 (peak over 0.99)": {
+     "shown": 8,
+     "real": 0
+    },
+    "peak 0.98-0.99": {
+     "shown": 8,
+     "real": 0
+    },
+    "peak 0.95-0.98": {
+     "shown": 8,
+     "real": 0
+    },
+    "peak 0.90-0.95": {
+     "shown": 8,
+     "real": 0
+    }
+   }
   }
  ]
 }
