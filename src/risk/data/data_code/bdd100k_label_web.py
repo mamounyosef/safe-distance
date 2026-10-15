@@ -7,7 +7,8 @@ and format, plus "by" = who labelled), but as a small web server so several peop
     so two people never do the same clip by accident
   - arrows move freely through all clips (shows the existing label and who gave it)
   - every label is saved at once (atomic write, a lock for simultaneous clicks)
-Keys: 1 normal, 2 crash (real danger), 3 unsure, right/left arrow (or d/a) next/previous, space replay.
+Keys: 1 normal, 2 risk (real danger), 3 unsure, 4 bad example (never train on it),
+right/left arrow (or d/a) next/previous, space replay.
 
 The page needs ?key=<KEY> (printed at start) so only people with the link can open it.
 Share it with:  ngrok http 8765   (then send the https link + ?key=...)
@@ -37,7 +38,7 @@ from bdd100k_review import SERIES  # noqa: E402
 PORT = 8765
 KEY_FILE = LABELS.with_name(".label_web_key")     # the access key, kept between restarts (not in git)
 CLAIM_S = 180                                     # a clip shown to one person is skipped by "next" for others
-LABEL_NAMES = {"1": "normal", "2": "real", "3": "unsure"}
+LABEL_NAMES = {"1": "normal", "2": "risk", "3": "unsure", "4": "bad"}   # bad = poor example, never train on it
 # ----------------
 
 ROWS = todo()                                     # clips in rank order
@@ -161,7 +162,7 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><meta name="viewport
  video{width:100%;background:#000;border-radius:4px}
  .risk{font:600 22px ui-monospace,Consolas,monospace}
  .btn{font:600 16px system-ui;padding:10px 16px;border:0;border-radius:6px;cursor:pointer}
- .n{background:#2e7d32;color:#fff}.c{background:#c62828;color:#fff}.u{background:#f9a825;color:#000}.g{background:#444;color:#fff}
+ .n{background:#2e7d32;color:#fff}.c{background:#c62828;color:#fff}.u{background:#f9a825;color:#000}.b{background:#8e24aa;color:#fff}.g{background:#444;color:#fff}
  .lab{font-weight:700}.muted{color:#aaa}
 </style></head><body><div class="wrap">
 <div class="bar"><span id="pos"></span><span id="done" class="muted"></span><span id="me" class="muted"></span></div>
@@ -170,13 +171,14 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><meta name="viewport
 <div class="bar"><span>Label: <span id="lab" class="lab"></span></span></div>
 <div class="bar">
  <button class="btn n" onclick="label('1')">1 normal</button>
- <button class="btn c" onclick="label('2')">2 crash</button>
+ <button class="btn c" onclick="label('2')">2 risk</button>
  <button class="btn u" onclick="label('3')">3 unsure</button>
+ <button class="btn b" onclick="label('4')">4 bad example</button>
  <button class="btn g" onclick="go(cur.i-1)">&larr; previous</button>
  <button class="btn g" onclick="go(cur.i+1)">next &rarr;</button>
  <button class="btn g" onclick="nextFree()">next unlabelled</button>
 </div>
-<p class="muted">Keys: 1 normal, 2 crash, 3 unsure, arrows previous/next, space replay. Labels save immediately.</p>
+<p class="muted">Keys: 1 normal, 2 risk, 3 unsure, 4 bad example (never train on it), arrows previous/next, space replay. Labels save immediately.</p>
 </div><script>
 const key=new URLSearchParams(location.search).get('key');
 let user=null; try{user=localStorage.getItem('labeller')}catch(e){}
@@ -184,7 +186,7 @@ while(!user){user=(window.prompt('Your name (saved with each label):')||'').trim
 try{localStorage.setItem('labeller',user)}catch(e){}
 document.getElementById('me').textContent='you: '+user;
 let cur=null; const v=document.getElementById('v');
-const colours={normal:'#66bb6a',real:'#ef5350',unsure:'#ffca28'};
+const colours={normal:'#66bb6a',risk:'#ef5350',unsure:'#ffca28',bad:'#ba68c8'};
 async function api(p){const r=await fetch(p+(p.includes('?')?'&':'?')+'key='+key+'&user='+encodeURIComponent(user));return r.json()}
 async function go(i){ if(cur&&(i<0||i>=cur.n))return; cur=await api('/api/clip?i='+i); show() }
 async function nextFree(){ const r=await api('/api/next?after='+(cur?cur.i:-1)); go(r.i) }
@@ -204,7 +206,7 @@ async function label(k){ const r=await fetch('/api/label?key='+key,{method:'POST
  body:JSON.stringify({i:cur.i,key:k,user})}); if(!r.ok){alert('not saved: '+r.status);return}
  const j=await r.json(); go(j.next) }
 document.addEventListener('keydown',e=>{ if(!cur)return;
- if(['1','2','3'].includes(e.key))label(e.key);
+ if(['1','2','3','4'].includes(e.key))label(e.key);
  else if(e.key==='ArrowRight'||e.key==='d')go(cur.i+1);
  else if(e.key==='ArrowLeft'||e.key==='a')go(cur.i-1);
  else if(e.key===' '){e.preventDefault();v.currentTime=0;v.play()} });

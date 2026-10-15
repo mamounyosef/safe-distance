@@ -10,7 +10,8 @@ Two steps:
   2. (default) : the labelling window. Clips in rank order; the BADAS risk is drawn on the frame.
 
 Keys in the window:
-    1 = normal      2 = real danger (crash)      3 = unsure          (label, then jump to the next clip)
+    1 = normal      2 = risk (real danger)      3 = unsure      4 = bad example (never train on it)
+    (label, then jump to the next clip)
     right arrow / d = next clip    left arrow / a = previous clip    space = replay    q / Esc = quit
 Every key press is saved at once to src/risk/data/bdd100k_ids/manual_labels.json (safe to quit any time;
 the next start opens at the first clip without a label).
@@ -46,9 +47,10 @@ VOLUME, PROFILE = "safe-distance-data", Path.home() / ".modal_session18.toml"
 BEFORE_S, AFTER_S = 2.5, 1.0                # seconds kept around the riskiest moment
 SIZE = (960, 540)                           # cut clip size (enough to judge, small on disk)
 WORKERS = 4
-KEYS = {ord("1"): "normal", ord("2"): "real", ord("3"): "unsure"}
+KEYS = {ord("1"): "normal", ord("2"): "risk", ord("3"): "unsure", ord("4"): "bad"}   # bad = poor example, never train on it
 NEXT, PREV = (2555904, ord("d")), (2424832, ord("a"))          # right / left arrow codes on Windows
-COLOURS = {"real": (0, 0, 255), "normal": (0, 200, 0), "unsure": (0, 200, 255), None: (200, 200, 200)}
+COLOURS = {"risk": (0, 0, 255), "normal": (0, 200, 0), "unsure": (0, 200, 255), "bad": (200, 0, 200),
+           None: (200, 200, 200)}
 # ----------------
 
 
@@ -147,7 +149,7 @@ def label() -> None:
     series = json.loads(SERIES.read_text())
     labels = load_labels()
     i = next((k for k, r in enumerate(rows) if r["clip"] not in labels), len(rows) - 1)
-    win = "BDD100K labelling  (1 normal, 2 crash, 3 unsure, arrows/a/d move, space replay, q quit)"
+    win = "BDD100K labelling  (1 normal, 2 risk, 3 unsure, 4 bad, arrows/a/d move, space replay, q quit)"
     cv2.namedWindow(win, cv2.WINDOW_NORMAL)
     cv2.resizeWindow(win, *SIZE)
     while 0 <= i < len(rows):
