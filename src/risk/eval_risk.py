@@ -80,8 +80,12 @@ image = (modal.Image.debian_slim(python_version="3.12").apt_install("libgl1", "l
          .pip_install("torch==2.6.0", "torchvision==0.21.0", index_url="https://download.pytorch.org/whl/cu124")
          .pip_install("transformers==4.53.0", "huggingface_hub", "opencv-python-headless", "numpy", "pillow",
                       "albumentations", "psutil", "nvidia-ml-py")
-         .env({"HF_HOME": HF_CACHE, "TORCHINDUCTOR_CACHE_DIR": "/data/cache/torchinductor",
-               "TORCHINDUCTOR_FX_GRAPH_CACHE": "1", "TORCHINDUCTOR_AUTOGRAD_CACHE": "1"}))
+         # Compile cache on the container's own disk: several containers sharing one cache folder in the
+         # Volume crashed ("FakeTensorMode" error). Each container copies the saved cache in at start (see load).
+         .env({"HF_HOME": HF_CACHE, "TORCHINDUCTOR_CACHE_DIR": "/tmp/torchinductor",
+               "TORCHINDUCTOR_FX_GRAPH_CACHE": "1", "TORCHINDUCTOR_AUTOGRAD_CACHE": "1",
+               "TORCHINDUCTOR_COMPILE_THREADS": "1"}))
+INDUCTOR_SAVED = "/data/cache/torchinductor"   # the compile cache kept in the Volume between runs
 
 
 @app.function(image=image, volumes={"/data": volume})
@@ -135,7 +139,12 @@ class Scorer:
         if COMPILE:
             # torch.compile fuses V-JEPA 2's ~60k tiny GPU operations per call (2.6x faster, readings within
             # 0.0025). Compiled once here for a fixed batch of BATCH windows (shorter batches are padded).
+            import shutil
+
             import torch
+            saved = Path(INDUCTOR_SAVED)
+            if saved.exists():                          # private copy of the saved cache: no sharing while compiling
+                shutil.copytree(saved, "/tmp/torchinductor", dirs_exist_ok=True)
             self.net = torch.compile(self.badas.model)
             t = time.time()
             dummy = torch.zeros(BATCH, 16, 3, CROP, CROP, device=self.badas.device)
@@ -144,7 +153,9 @@ class Scorer:
                     self.net(dummy)
             torch.cuda.synchronize()
             print(f"compiled in {time.time() - t:.0f} s", flush=True)
-        volume.commit()                                 # keep the compile cache for the next containers / runs
+            if not saved.exists():                      # first compile ever: keep the cache for later runs
+                shutil.copytree("/tmp/torchinductor", saved)
+                volume.commit()
 
     @modal.method()
     def series(self, set_name: str, frames_path: str) -> dict:
