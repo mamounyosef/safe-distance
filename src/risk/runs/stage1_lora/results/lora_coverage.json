@@ -1,0 +1,54 @@
+{
+ "provenance": {
+  "git_commit": "95a80b1",
+  "peft": "0.21.2",
+  "torch": "2.6.0+cu124",
+  "python": "3.12.0"
+ },
+ "config": {
+  "r": 16,
+  "lora_alpha": 32,
+  "lora_dropout": 0.1,
+  "target_modules": ".*backbone\\.(encoder\\.(embeddings\\.patch_embeddings\\.proj|layer\\.\\d+\\.(attention\\.(query|key|value|proj)|mlp\\.fc[12]))|predictor\\.(embeddings\\.predictor_embeddings|proj|layer\\.\\d+\\.(attention\\.(query|key|value|proj)|mlp\\.fc[12])))",
+  "modules_to_save": [
+   "temporal_processor",
+   "classifier.classifier"
+  ],
+  "fully_trained_extra": "all LayerNorms + predictor mask tokens"
+ },
+ "module_types_owning_weights": {
+  "Conv3d": 1,
+  "LayerNorm": 77,
+  "Linear": 221,
+  "VJEPA2PredictorEmbeddings": 1,
+  "MultiheadAttention": 1,
+  "NonDynamicallyQuantizableLinear": 1
+ },
+ "predictor_listed_twice_same_object": true,
+ "lora_layers": 219,
+ "lora_layers_by_type": {
+  "Conv3d": 1,
+  "Linear": 218
+ },
+ "conv3d_patch_embedding_has_lora": true,
+ "predictor_embeddings_has_lora": true,
+ "predictor_proj_has_lora": true,
+ "predictor_still_shared_after_lora": true,
+ "fully_trained_copies": [
+  "base_model.model.temporal_processor",
+  "base_model.model.classifier.classifier"
+ ],
+ "left_out_weights": {
+  "tensors": 0,
+  "values": 0,
+  "names": []
+ },
+ "trainable_millions": 14.2,
+ "total_millions": 345.6,
+ "max_logit_difference_after_adding_lora": 0.0,
+ "trainable_tensors_without_gradient": {
+  "count": 0,
+  "names": []
+ },
+ "passed": true
+}

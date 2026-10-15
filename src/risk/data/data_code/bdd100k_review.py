@@ -21,7 +21,9 @@ Output: C:\\Users\\mamou\\Downloads\\bdd100k_review.mp4 + bdd100k_review.json (r
 
 from __future__ import annotations
 
+import argparse
 import json
+import random
 import sys
 from pathlib import Path
 
@@ -38,6 +40,13 @@ OUT = Path.home() / "Downloads" / "bdd100k_review.mp4"
 TOP = 60                         # clips to review
 HIGH = 0.99                      # "very high" risk level used for the tie-break and the red marking
 BEFORE_S, AFTER_S = 6.0, 2.0     # seconds shown around the riskiest moment
+# --bands: a few random clips from each risk band, to estimate how many real near-misses each band holds.
+# Band = (name, first rank, last rank) in the ranked list (rank 1 = riskiest). Ranks 1-15 were already reviewed.
+BANDS = [("ranks 16-100", 16, 100), ("ranks 101-638 (peak over 0.99)", 101, 638),
+         ("peak 0.98-0.99", 639, 1107), ("peak 0.95-0.98", 1108, 1685), ("peak 0.90-0.95", 1686, 2049)]
+PER_BAND, SEED = 8, 7
+BAND_BEFORE_S, BAND_AFTER_S = 2.5, 1.0     # short: enough to identify the moment and move on
+BAND_OUT = Path.home() / "Downloads" / "safe-distance-testing" / "bdd100k" / "4_cleaning_bands.mp4"
 SIZE, FPS = (1280, 720), 30.0
 # ----------------
 
@@ -63,22 +72,36 @@ def risk_at(s: list, t: float) -> float | None:
 
 
 def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--bands", action="store_true", help="random clips per risk band (short) instead of the top 60")
+    a = ap.parse_args()
     series = json.loads(SERIES.read_text())
-    ranked = rank(series)[:TOP]
-    print(f"{len(series)} clips scanned; reviewing the top {len(ranked)}")
-    wr = Writer(OUT, SIZE, FPS)
+    full = rank(series)
+    for i, r in enumerate(full, 1):
+        r["rank"] = i
+    if a.bands:
+        rng = random.Random(SEED)
+        ranked = []
+        for name, lo, hi in BANDS:
+            for r in sorted(rng.sample(full[lo - 1:hi], PER_BAND), key=lambda r: r["rank"]):
+                ranked.append({**r, "band": name})
+        out, before, after = BAND_OUT, BAND_BEFORE_S, BAND_AFTER_S
+    else:
+        ranked, out, before, after = full[:TOP], OUT, BEFORE_S, AFTER_S
+    print(f"{len(series)} clips scanned; reviewing {len(ranked)}")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    wr = Writer(out, SIZE, FPS)
     for k, r in enumerate(ranked, 1):
         path = volume_get(f"bdd100k/videos/100k/train/{r['clip']}.mov", CACHE / f"{r['clip']}.mov")
         cap = cv2.VideoCapture(str(path))
         fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
-        wr.write(card(SIZE, [f"Review {k}/{len(ranked)}   ({r['clip']})",
-                             f"highest risk {r['max_risk']:.3f} at {r['peak_s']:.1f} s; "
-                             f"{r['seconds_high']:.0f} s at or above {HIGH}",
-                             "Real near-miss? Note the number."]), 1.5)
-        start = max(0.0, r["peak_s"] - BEFORE_S)
+        wr.write(card(SIZE, [f"#{k}/{len(ranked)}   {r.get('band', '')}",
+                             f"rank {r['rank']}, highest risk {r['max_risk']:.3f}",
+                             "Real near-miss? Note the number."]), 0.8 if a.bands else 1.5)
+        start = max(0.0, r["peak_s"] - before)
         cap.set(cv2.CAP_PROP_POS_FRAMES, int(start * fps))
         f = int(start * fps)
-        while f < (r["peak_s"] + AFTER_S) * fps:
+        while f < (r["peak_s"] + after) * fps:
             ok, img = cap.read()
             if not ok:
                 break
@@ -95,8 +118,8 @@ def main() -> None:
         cap.release()
         print(f"[{k}/{len(ranked)}] {r['clip']}: max {r['max_risk']:.3f}, {r['seconds_high']} s high", flush=True)
     wr.close()
-    OUT.with_suffix(".json").write_text(json.dumps([{"n": k, **r} for k, r in enumerate(ranked, 1)], indent=1))
-    print(f"saved {OUT}")
+    out.with_suffix(".json").write_text(json.dumps([{"n": k, **r} for k, r in enumerate(ranked, 1)], indent=1))
+    print(f"saved {out}")
 
 
 if __name__ == "__main__":

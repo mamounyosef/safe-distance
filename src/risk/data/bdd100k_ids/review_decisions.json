@@ -1,0 +1,62 @@
+{
+ "about": "Person's review of BDD100K train clips that plain BADAS-Open scored as risky. real_near_miss = true means the 'normal driving' label is wrong: remove the clip from training. Clip ids and ranks come from Downloads/safe-distance-testing/bdd100k/3_cleaning_review_top60.json (bdd100k_review.py).",
+ "reviews": [
+  {
+   "date": "2026-10-15",
+   "video": "3_cleaning_review_top60.mp4",
+   "watched_ranks": "1-15",
+   "decision": "all 15 are real, very near crashes",
+   "real_near_miss_ranks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "real_near_miss_clips": [
+    "304e5dfd-a7c8b1d7",
+    "a936f6e9-73712ef4",
+    "0c13b339-aa4c659e",
+    "7048fd62-8851bc2c",
+    "a8ff598e-cf186f1e",
+    "5cc1f61a-8cf3056a",
+    "4e0661c5-7aa68c73",
+    "60e6a464-667d421d",
+    "4f373a67-837163f2",
+    "924c642e-234a0dae",
+    "8c65a075-fa2b98f5",
+    "4d076f23-c8e8ac9b",
+    "14942896-ea3755fc",
+    "441e0bd4-81d5c99e",
+    "37e67607-926875ce"
+   ],
+   "max_risk_of_these": [
+    0.99706,
+    0.99694,
+    0.99692,
+    0.9968,
+    0.99676,
+    0.99673,
+    0.99665,
+    0.99661,
+    0.99656,
+    0.99654,
+    0.99648,
+    0.99648,
+    0.99639,
+    0.99639,
+    0.99639
+   ]
+  }
+ ]
+}
