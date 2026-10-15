@@ -44,7 +44,8 @@ VOLUME = "safe-distance-data"
 GPU, GPU_PRICE_H = "A100-40GB", 2.10
 MAX_CONTAINERS = 4
 CPU_CORES = 8                          # per container: room for CLIPS_PER_CONTAINER preprocessing at once
-CLIPS_PER_CONTAINER = 3                # clips handled at the same time in one container (keeps the GPU busy)
+CLIPS_PER_CONTAINER = 5                # clips handled at the same time in one container (keeps the GPU busy)
+COMMIT_EVERY = 20                      # save to the Volume every N clips (each save took ~1.8 s per clip)
 BADAS_REPO = "nexar-ai/BADAS-Open"
 BASE_MODEL = "facebook/vjepa2-vitl-fpc16-256-ssv2"
 HF_CACHE = "/data/models/hf"
@@ -102,7 +103,7 @@ def clip_list(limit: int, names: list[str]) -> list[tuple[str, str]]:
 
 
 @app.cls(image=image, gpu=GPU, cpu=CPU_CORES, memory=32768, volumes={"/data": volume}, secrets=[secret],
-         timeout=3600, max_containers=MAX_CONTAINERS, retries=2)
+         timeout=3600, max_containers=MAX_CONTAINERS, min_containers=MAX_CONTAINERS, retries=2)   # all GPUs start at once
 @modal.concurrent(max_inputs=CLIPS_PER_CONTAINER)   # several clips at once: CPU preprocessing overlaps GPU work
 class Scorer:
     model_name: str = modal.parameter()
@@ -135,6 +136,7 @@ class Scorer:
                                 frame_count=16, img_size=224, target_fps=8.0, use_sliding_window=False)
         self.badas.load()
         self.lock = threading.Lock()                    # one clip at a time on the model; others load/prep/save
+        self.save_lock, self.unsaved = threading.Lock(), 0
         self.net = self.badas.model
         if COMPILE:
             # torch.compile fuses V-JEPA 2's ~60k tiny GPU operations per call (2.6x faster, readings within
@@ -157,6 +159,11 @@ class Scorer:
                 shutil.copytree("/tmp/torchinductor", saved)
                 volume.commit()
 
+    @modal.exit()
+    def flush(self) -> None:
+        """Save what is left when the container stops."""
+        volume.commit()
+
     @modal.method()
     def series(self, set_name: str, frames_path: str) -> dict:
         """Readings through one clip: [(time in s at the window's end, probability), ...]."""
@@ -175,7 +182,11 @@ class Scorer:
         t1 = time.time()
         saved.parent.mkdir(parents=True, exist_ok=True)
         saved.write_text(json.dumps(out))
-        volume.commit()
+        with self.save_lock:                            # Volume save every COMMIT_EVERY clips (resume points)
+            self.unsaved += 1
+            if self.unsaved >= COMMIT_EVERY:
+                volume.commit()
+                self.unsaved = 0
         tm["save_s"] = time.time() - t1
         busy = [u for t, u in list(self.util) if t >= t0]           # GPU busy % while this clip ran
         return {"set": set_name, "clip": clip, "series": out, "gpu_s": round(time.time() - t0, 2),
