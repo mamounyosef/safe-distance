@@ -103,7 +103,7 @@ def clip_list(limit: int, names: list[str]) -> list[tuple[str, str]]:
 
 
 @app.cls(image=image, gpu=GPU, cpu=CPU_CORES, memory=32768, volumes={"/data": volume}, secrets=[secret],
-         timeout=3600, max_containers=MAX_CONTAINERS, min_containers=MAX_CONTAINERS, retries=2)   # all GPUs start at once
+         timeout=3600, max_containers=MAX_CONTAINERS, retries=2)
 @modal.concurrent(max_inputs=CLIPS_PER_CONTAINER)   # several clips at once: CPU preprocessing overlaps GPU work
 class Scorer:
     model_name: str = modal.parameter()
@@ -454,6 +454,7 @@ def main(model: str = "baseline_badas_open", limit: int = 0, check: bool = False
     per_set = {s: sum(j[0] == s for j in jobs) for s in names}
     print(f"model={model}  {len(jobs):,} clips {per_set}  {MAX_CONTAINERS} x {GPU}")
     scorer = Scorer(model_name=model)
+    scorer.update_autoscaler(min_containers=MAX_CONTAINERS)   # start all GPUs at once (not allowed in the decorator)
     if speedtest:                                      # diagnosis only: faster model variants, then stop
         print(json.dumps(scorer.speedtest.remote(next(j for j in jobs if j[0] == "nexar_public")[1]), indent=1))
         return
