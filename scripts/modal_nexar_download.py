@@ -24,7 +24,7 @@ TARGET = "/data/nexar"                 # where the dataset lands inside the Volu
 
 app = modal.App("safe-distance-nexar-download")
 volume = modal.Volume.from_name(VOLUME, create_if_missing=True)
-image = modal.Image.debian_slim(python_version="3.12").pip_install("huggingface_hub[hf_transfer]")
+image = modal.Image.debian_slim(python_version="3.12").pip_install("huggingface_hub[hf_transfer]==0.36.0")   # pinned: the newest version sent an empty login header
 
 
 @app.function(image=image, volumes={"/data": volume}, timeout=4 * 3600, cpu=4, memory=8192,

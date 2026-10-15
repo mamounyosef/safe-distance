@@ -1,0 +1,103 @@
+"""Review video for cleaning BDD100K train: the clips plain BADAS-Open finds riskiest, for a PERSON to judge (this PC, free).
+
+BDD100K is used as "normal driving" (label 0). If a clip holds a real near-miss, that label is wrong,
+so the person watching decides which clips to remove. BADAS only orders the list (never removes anything).
+
+Ranking: highest risk reading first; ties (many clips reach 0.99+) broken by how long the risk stays
+at or above HIGH, since a real near-miss usually stays high for a while, and many false alarms are short spikes.
+Each clip: title card with its rank, then BEFORE_S before to AFTER_S after its riskiest moment, with the
+live risk reading drawn on the frame (red when >= HIGH).
+
+Needs the scan first (src/risk/runs/baseline_badas_open/results/bdd_train/series_bdd_train.json):
+
+    python -m modal run src\\risk\\eval_risk.py --sets bdd_train
+
+RUN IT (from the repo root):
+
+    .venv\\Scripts\\python.exe src\\risk\\data\\data_code\\bdd100k_review.py
+
+Output: C:\\Users\\mamou\\Downloads\\bdd100k_review.mp4 + bdd100k_review.json (rank -> clip id, to note your decisions).
+"""
+
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+import cv2
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from nexar_samples import volume_get  # noqa: E402
+from sample_video import Writer, card, text  # noqa: E402
+
+# ---- CONFIG ----
+SERIES = Path(__file__).resolve().parents[2] / "runs/baseline_badas_open/results/bdd_train/series_bdd_train.json"
+CACHE = Path(r"C:\safe-distance-data\bdd100k\samples")
+OUT = Path.home() / "Downloads" / "bdd100k_review.mp4"
+TOP = 60                         # clips to review
+HIGH = 0.99                      # "very high" risk level used for the tie-break and the red marking
+BEFORE_S, AFTER_S = 6.0, 2.0     # seconds shown around the riskiest moment
+SIZE, FPS = (1280, 720), 30.0
+# ----------------
+
+
+def rank(series: dict) -> list[dict]:
+    """Clips ordered by (highest risk, seconds at or above HIGH), riskiest first."""
+    rows = []
+    for clip, s in series.items():
+        if not s:
+            continue
+        t_peak, p_peak = max(s, key=lambda r: r[1])
+        times = [t for t, _ in s]
+        step = min((b - a for a, b in zip(times, times[1:]) if b > a), default=1.0)
+        rows.append({"clip": clip, "max_risk": p_peak, "peak_s": t_peak,
+                     "seconds_high": round(sum(p >= HIGH for _, p in s) * step, 1)})
+    return sorted(rows, key=lambda r: (r["max_risk"], r["seconds_high"]), reverse=True)
+
+
+def risk_at(s: list, t: float) -> float | None:
+    """The latest reading at or before time t (what the system would show live)."""
+    past = [p for tt, p in s if tt <= t]
+    return past[-1] if past else None
+
+
+def main() -> None:
+    series = json.loads(SERIES.read_text())
+    ranked = rank(series)[:TOP]
+    print(f"{len(series)} clips scanned; reviewing the top {len(ranked)}")
+    wr = Writer(OUT, SIZE, FPS)
+    for k, r in enumerate(ranked, 1):
+        path = volume_get(f"bdd100k/videos/100k/train/{r['clip']}.mov", CACHE / f"{r['clip']}.mov")
+        cap = cv2.VideoCapture(str(path))
+        fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
+        wr.write(card(SIZE, [f"Review {k}/{len(ranked)}   ({r['clip']})",
+                             f"highest risk {r['max_risk']:.3f} at {r['peak_s']:.1f} s; "
+                             f"{r['seconds_high']:.0f} s at or above {HIGH}",
+                             "Real near-miss? Note the number."]), 1.5)
+        start = max(0.0, r["peak_s"] - BEFORE_S)
+        cap.set(cv2.CAP_PROP_POS_FRAMES, int(start * fps))
+        f = int(start * fps)
+        while f < (r["peak_s"] + AFTER_S) * fps:
+            ok, img = cap.read()
+            if not ok:
+                break
+            t = f / fps
+            img = cv2.resize(img, SIZE)
+            p = risk_at(series[r["clip"]], t)
+            colour = (0, 0, 255) if p is not None and p >= HIGH else (255, 255, 255)
+            text(img, f"#{k}   {t - r['peak_s']:+.1f} s from riskiest moment", (15, 40), 0.9)
+            text(img, f"BADAS risk: {'-' if p is None else f'{p:.3f}'}", (15, 85), 1.0, colour)
+            if p is not None and p >= HIGH:
+                cv2.rectangle(img, (0, 0), (SIZE[0] - 1, SIZE[1] - 1), (0, 0, 255), 8)
+            wr.write(img)
+            f += 1
+        cap.release()
+        print(f"[{k}/{len(ranked)}] {r['clip']}: max {r['max_risk']:.3f}, {r['seconds_high']} s high", flush=True)
+    wr.close()
+    OUT.with_suffix(".json").write_text(json.dumps([{"n": k, **r} for k, r in enumerate(ranked, 1)], indent=1))
+    print(f"saved {OUT}")
+
+
+if __name__ == "__main__":
+    main()
