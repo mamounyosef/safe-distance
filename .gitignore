@@ -229,3 +229,4 @@ mobileclip_blt.ts
 data/
 # ...but src/risk/data holds code and clip-ID lists, not datasets
 !src/risk/data/
+src/risk/data/bdd100k_ids/.label_web_key
