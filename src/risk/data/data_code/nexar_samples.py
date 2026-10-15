@@ -44,7 +44,7 @@ def volume_get(remote: str, local: Path) -> Path:
     """Copy one file from the Modal Volume (account from MODAL_CONFIG_PATH)."""
     if not local.exists():
         local.parent.mkdir(parents=True, exist_ok=True)
-        env = {**os.environ, "MODAL_CONFIG_PATH": str(Path.home() / ".modal_session22.toml")}
+        env = {**os.environ, "MODAL_CONFIG_PATH": str(Path.home() / ".modal_session18.toml")}
         subprocess.run([sys.executable, "-m", "modal", "volume", "get", "--force", VOLUME, remote, str(local)],
                        check=True, env=env, capture_output=True)
     return local
