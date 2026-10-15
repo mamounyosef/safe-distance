@@ -31,7 +31,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from bdd100k_label import BEFORE_S, CLIPS, LABELS, load_labels, save_labels, todo  # noqa: E402
+from bdd100k_label import BEFORE_S, CLIPS, LABELS, OLD_CLIPS, load_labels, save_labels, todo  # noqa: E402
 from bdd100k_review import SERIES  # noqa: E402
 
 # ---- CONFIG ----
@@ -113,7 +113,8 @@ class Handler(BaseHTTPRequestHandler):
                 i = next_free(q.get("user", ["?"])[0], int(q.get("after", ["-1"])[0]))
             self._json({"i": i})
         elif u.path.startswith("/clips/") and re.fullmatch(r"/clips/\d{4}_[\w-]+\.mp4", u.path):
-            self._video(CLIPS / u.path.split("/")[-1])
+            name = u.path.split("/")[-1]
+            self._video(CLIPS / name if (CLIPS / name).exists() else OLD_CLIPS / name)   # new cut, else first cut
         else:
             self._ok(b"not found", "text/plain", 404)
 
@@ -198,6 +199,12 @@ function show(){
  const l=document.getElementById('lab'); l.textContent=cur.label?(cur.label+(cur.by?' (by '+cur.by+')':'')):'-';
  l.style.color=colours[cur.label]||'#ccc';
 }
+// Never stay frozen: restart at the end, and if the picture stops moving for 1.5 s while it should
+// be playing, reload the clip and play it from the start.
+v.addEventListener('ended',()=>{v.currentTime=0;v.play().catch(()=>{})});
+let lastT=-1,stuck=0;
+setInterval(()=>{ if(!cur||v.paused)return; if(v.currentTime===lastT){stuck+=500}else{stuck=0;lastT=v.currentTime}
+ if(stuck>=1500){stuck=0;const s=v.src;v.src='';v.src=s;v.play().catch(()=>{})} },500);
 v.addEventListener('timeupdate',()=>{ if(!cur)return; const t=cur.start_s+v.currentTime; let p=null;
  for(const [tt,pp] of cur.series){ if(tt<=t)p=pp }
  document.getElementById('risk').textContent='BADAS risk '+(p===null?'-':p.toFixed(3))+`   ${(t-cur.peak_s).toFixed(1)} s from peak`;

@@ -41,10 +41,11 @@ from bdd100k_review import SERIES, rank, risk_at  # noqa: E402
 
 # ---- CONFIG ----
 FIRST, LAST = 201, 638                      # ranks to label (1 = riskiest)
-CLIPS = Path(r"D:\safe-distance-label-clips")                  # small cut clips (C: is nearly full)
+CLIPS = Path(r"D:\safe-distance-label-clips-v2")               # small cut clips (C: is nearly full)
+OLD_CLIPS = Path(r"D:\safe-distance-label-clips")              # first cut (1 s after the peak; froze in browsers)
 LABELS = Path(__file__).resolve().parents[1] / "bdd100k_ids" / "manual_labels.json"
 VOLUME, PROFILE = "safe-distance-data", Path.home() / ".modal_session18.toml"
-BEFORE_S, AFTER_S = 2.5, 1.0                # seconds kept around the riskiest moment
+BEFORE_S, AFTER_S = 2.5, 2.0                # seconds kept around the riskiest moment (2 s after: see how it ends)
 SIZE = (960, 540)                           # cut clip size (enough to judge, small on disk)
 WORKERS = 4
 KEYS = {ord("1"): "normal", ord("2"): "risk", ord("3"): "unsure", ord("4"): "bad"}   # bad = poor example, never train on it
@@ -84,7 +85,8 @@ def prepare_one(r: dict) -> str:
     tmp = out.with_suffix(".part.mp4")
     p = subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{start:.2f}", "-i", str(full),
                         "-t", f"{BEFORE_S + AFTER_S:.2f}", "-vf", f"scale={SIZE[0]}:{SIZE[1]}", "-an",
-                        "-c:v", "libx264", "-crf", "26", "-pix_fmt", "yuv420p", str(tmp)],
+                        "-c:v", "libx264", "-crf", "26", "-pix_fmt", "yuv420p",
+                        "-movflags", "+faststart", str(tmp)],      # index at the start: browsers stream it smoothly
                        capture_output=True, text=True)
     full.unlink(missing_ok=True)
     if p.returncode != 0:
@@ -155,6 +157,8 @@ def label() -> None:
     while 0 <= i < len(rows):
         r = rows[i]
         path = CLIPS / f"{r['rank']:04d}_{r['clip']}.mp4"
+        if not path.exists():                # new cut not ready yet: fall back to the first cut
+            path = OLD_CLIPS / path.name
         frames, fps = read_frames(path) if path.exists() else ([], 30.0)
         if not frames:                       # not prepared (or broken): show a message, allow moving on
             frames = [np.zeros((SIZE[1], SIZE[0], 3), np.uint8)]
