@@ -160,13 +160,16 @@ def label() -> None:
         else:
             missing = False
         start = max(0.0, r["peak_s"] - BEFORE_S)
-        key, f = -1, 0
+        got = labels.get(r["clip"], {}).get("label")
+        done = sum(1 for x in rows if x["clip"] in labels)
+        key, t0 = -1, time.perf_counter()
         while key == -1:                     # loop the clip until a key is pressed
+            # Frame chosen from the real clock (not a frame counter), so playback runs at true speed
+            # however long drawing takes; slow moments skip a frame instead of slowing down.
+            f = int((time.perf_counter() - t0) * fps)
             img = frames[f % len(frames)]
             t = start + (f % len(frames)) / fps
             p = risk_at(series[r["clip"]], t)
-            got = labels.get(r["clip"], {}).get("label")
-            done = sum(1 for x in rows if x["clip"] in labels)
             lines = [(f"{i + 1}/{len(rows)}   rank {r['rank']}   labelled {done}/{len(rows)}", (255, 255, 255)),
                      (f"BADAS risk now {'-' if p is None else f'{p:.3f}'}   peak {r['max_risk']:.3f}"
                       f"   {t - r['peak_s']:+.1f} s from peak", (255, 255, 255)),
@@ -174,12 +177,12 @@ def label() -> None:
             if missing:
                 lines.append(("clip not prepared: run with --prepare (arrows to move on)", (0, 0, 255)))
             cv2.imshow(win, draw(img, lines))
-            key = cv2.waitKeyEx(max(1, int(1000 / fps)))
+            wait = (f + 1) / fps - (time.perf_counter() - t0)            # time left until the next frame
+            key = cv2.waitKeyEx(max(1, int(wait * 1000)))
             if cv2.getWindowProperty(win, cv2.WND_PROP_VISIBLE) < 1:    # window closed with the X
                 key = ord("q")
-            f += 1
             if key == ord(" "):              # replay from the start
-                key, f = -1, 0
+                key, t0 = -1, time.perf_counter()
         if key in (ord("q"), 27):
             break
         if key in KEYS:
