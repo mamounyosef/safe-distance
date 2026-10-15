@@ -117,6 +117,15 @@ def load_labels() -> dict:
     return json.loads(LABELS.read_text()) if LABELS.exists() else {}
 
 
+def set_label(clip: str, entry: dict) -> dict:
+    """Add ONE label to the file and return all labels. Re-reads the file first, so labels saved meanwhile by
+    another tool or person (the web page) are kept, never overwritten."""
+    labels = load_labels()
+    labels[clip] = entry
+    save_labels(labels)
+    return labels
+
+
 def save_labels(labels: dict) -> None:
     """Write atomically: a crash mid-write never leaves a broken file."""
     tmp = LABELS.with_suffix(".tmp")
@@ -166,6 +175,7 @@ def label() -> None:
         else:
             missing = False
         start = max(0.0, r["peak_s"] - BEFORE_S)
+        labels = load_labels()               # fresh: include labels made on the web page meanwhile
         got = labels.get(r["clip"], {}).get("label")
         done = sum(1 for x in rows if x["clip"] in labels)
         key, t0 = -1, time.perf_counter()
@@ -192,9 +202,9 @@ def label() -> None:
         if key in (ord("q"), 27):
             break
         if key in KEYS:
-            labels[r["clip"]] = {"rank": r["rank"], "label": KEYS[key], "max_risk": r["max_risk"],
-                                 "peak_s": r["peak_s"], "at": time.strftime("%Y-%m-%d %H:%M:%S")}
-            save_labels(labels)
+            labels = set_label(r["clip"], {"rank": r["rank"], "label": KEYS[key], "max_risk": r["max_risk"],
+                                           "peak_s": r["peak_s"], "by": "desktop",
+                                           "at": time.strftime("%Y-%m-%d %H:%M:%S")})
             i += 1
         elif key in NEXT:
             i = min(i + 1, len(rows) - 1)

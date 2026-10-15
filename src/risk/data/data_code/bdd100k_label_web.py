@@ -31,7 +31,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from bdd100k_label import BEFORE_S, CLIPS, LABELS, OLD_CLIPS, load_labels, save_labels, todo  # noqa: E402
+from bdd100k_label import BEFORE_S, CLIPS, LABELS, OLD_CLIPS, load_labels, set_label, todo  # noqa: E402
 from bdd100k_review import SERIES  # noqa: E402
 
 # ---- CONFIG ----
@@ -48,6 +48,12 @@ LABELS_NOW = load_labels()
 CLAIMS: dict[str, tuple[str, float]] = {}         # clip -> (person, time claimed)
 KEY = KEY_FILE.read_text().strip() if KEY_FILE.exists() else secrets.token_urlsafe(12)
 KEY_FILE.write_text(KEY)
+
+
+def refresh() -> None:
+    """Re-read the labels file (the desktop tool may have added labels). Call under LOCK."""
+    LABELS_NOW.clear()
+    LABELS_NOW.update(load_labels())
 
 
 def clip_info(i: int) -> dict:
@@ -105,11 +111,13 @@ class Handler(BaseHTTPRequestHandler):
         elif u.path == "/api/clip":              # one clip by index, and claim it for this person
             i = max(0, min(int(q.get("i", ["0"])[0]), len(ROWS) - 1))
             with LOCK:
+                refresh()
                 if ROWS[i]["clip"] not in LABELS_NOW:
                     CLAIMS[ROWS[i]["clip"]] = (q.get("user", ["?"])[0], time.time())
                 self._json(clip_info(i))
         elif u.path == "/api/next":              # next clip nobody has done
             with LOCK:
+                refresh()
                 i = next_free(q.get("user", ["?"])[0], int(q.get("after", ["-1"])[0]))
             self._json({"i": i})
         elif u.path.startswith("/clips/") and re.fullmatch(r"/clips/\d{4}_[\w-]+\.mp4", u.path):
@@ -146,9 +154,10 @@ class Handler(BaseHTTPRequestHandler):
             return
         r = ROWS[i]
         with LOCK:                               # simultaneous clicks from two people: one at a time
-            LABELS_NOW[r["clip"]] = {"rank": r["rank"], "label": LABEL_NAMES[key], "max_risk": r["max_risk"],
-                                     "peak_s": r["peak_s"], "by": user, "at": time.strftime("%Y-%m-%d %H:%M:%S")}
-            save_labels(LABELS_NOW)
+            merged = set_label(r["clip"], {"rank": r["rank"], "label": LABEL_NAMES[key], "max_risk": r["max_risk"],
+                                           "peak_s": r["peak_s"], "by": user, "at": time.strftime("%Y-%m-%d %H:%M:%S")})
+            LABELS_NOW.clear()
+            LABELS_NOW.update(merged)
             CLAIMS.pop(r["clip"], None)
             nxt = next_free(user, i)
         self._json({"saved": True, "next": nxt})
