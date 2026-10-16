@@ -1,0 +1,898 @@
+{
+ "bbe95ad4-8870089d": {
+  "rank": 26,
+  "label": "normal",
+  "max_risk": 0.99563,
+  "peak_s": 5.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:57:44"
+ },
+ "b1ff4656-0435391e": {
+  "rank": 27,
+  "label": "bad",
+  "max_risk": 0.99558,
+  "peak_s": 23.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:57:47"
+ },
+ "bd0db9ed-cdca9422": {
+  "rank": 28,
+  "label": "unsure",
+  "max_risk": 0.99554,
+  "peak_s": 22.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:57:56"
+ },
+ "b33ced12-423ec0dc": {
+  "rank": 29,
+  "label": "risk",
+  "max_risk": 0.99551,
+  "peak_s": 19.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:01"
+ },
+ "b84eef86-eb4bb6e0": {
+  "rank": 30,
+  "label": "risk",
+  "max_risk": 0.99546,
+  "peak_s": 35.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:05"
+ },
+ "b4c86653-3594c3a4": {
+  "rank": 31,
+  "label": "risk",
+  "max_risk": 0.99544,
+  "peak_s": 28.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:08"
+ },
+ "c324a11d-eaaeb859": {
+  "rank": 32,
+  "label": "risk",
+  "max_risk": 0.99542,
+  "peak_s": 20.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:10"
+ },
+ "c0ca172c-5f15e9fb": {
+  "rank": 33,
+  "label": "normal",
+  "max_risk": 0.99541,
+  "peak_s": 17.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:14"
+ },
+ "ca0eb18c-907cd101": {
+  "rank": 34,
+  "label": "risk",
+  "max_risk": 0.9954,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:17"
+ },
+ "bf3d49bf-b543e245": {
+  "rank": 35,
+  "label": "risk",
+  "max_risk": 0.99537,
+  "peak_s": 19.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:21"
+ },
+ "b9ca94a2-7f349303": {
+  "rank": 36,
+  "label": "risk",
+  "max_risk": 0.99526,
+  "peak_s": 20.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:23"
+ },
+ "c3639d96-b9928b16": {
+  "rank": 37,
+  "label": "risk",
+  "max_risk": 0.99523,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:25"
+ },
+ "c9b9fef4-a58bf3d5": {
+  "rank": 38,
+  "label": "risk",
+  "max_risk": 0.99519,
+  "peak_s": 10.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:32"
+ },
+ "c14e8180-ec624140": {
+  "rank": 39,
+  "label": "normal",
+  "max_risk": 0.99509,
+  "peak_s": 6.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:36"
+ },
+ "b3c9eef1-dcb3d0e7": {
+  "rank": 40,
+  "label": "normal",
+  "max_risk": 0.99499,
+  "peak_s": 29.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:43"
+ },
+ "c50d0b3f-3a8df0bf": {
+  "rank": 41,
+  "label": "normal",
+  "max_risk": 0.99494,
+  "peak_s": 21.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:46"
+ },
+ "b92d48c3-f7812f84": {
+  "rank": 42,
+  "label": "normal",
+  "max_risk": 0.99483,
+  "peak_s": 24.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:49"
+ },
+ "c9c778b5-86bddb7e": {
+  "rank": 43,
+  "label": "normal",
+  "max_risk": 0.99482,
+  "peak_s": 36.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:53"
+ },
+ "c55dc887-58fc27e7": {
+  "rank": 44,
+  "label": "normal",
+  "max_risk": 0.9948,
+  "peak_s": 20.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:58:57"
+ },
+ "c9aa50be-62caa81b": {
+  "rank": 45,
+  "label": "risk",
+  "max_risk": 0.99479,
+  "peak_s": 19.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:59:00"
+ },
+ "c8bf003e-a663547a": {
+  "rank": 46,
+  "label": "normal",
+  "max_risk": 0.99471,
+  "peak_s": 16.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:59:03"
+ },
+ "c65d48bf-11a2512b": {
+  "rank": 47,
+  "label": "normal",
+  "max_risk": 0.99471,
+  "peak_s": 16.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:59:09"
+ },
+ "b726c429-8f45fe47": {
+  "rank": 48,
+  "label": "normal",
+  "max_risk": 0.99468,
+  "peak_s": 37.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:59:12"
+ },
+ "b8affcd1-29901d90": {
+  "rank": 49,
+  "label": "normal",
+  "max_risk": 0.99468,
+  "peak_s": 19.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:59:15"
+ },
+ "c83d3fa4-c385cce0": {
+  "rank": 50,
+  "label": "normal",
+  "max_risk": 0.99466,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:59:18"
+ },
+ "b1cd1e94-549d0bfe": {
+  "rank": 51,
+  "label": "normal",
+  "max_risk": 0.99464,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:59:25"
+ },
+ "c8628ccd-a4bc1f43": {
+  "rank": 52,
+  "label": "risk",
+  "max_risk": 0.99463,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:59:27"
+ },
+ "bf593f19-ebbb7e5d": {
+  "rank": 53,
+  "label": "risk",
+  "max_risk": 0.99449,
+  "peak_s": 23.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:59:28"
+ },
+ "c37388ef-99765627": {
+  "rank": 54,
+  "label": "unsure",
+  "max_risk": 0.99446,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:59:40"
+ },
+ "ca1c6003-aad4464c": {
+  "rank": 55,
+  "label": "bad",
+  "max_risk": 0.9944,
+  "peak_s": 21.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:59:51"
+ },
+ "b91cdc5d-bce994ce": {
+  "rank": 56,
+  "label": "risk",
+  "max_risk": 0.99436,
+  "peak_s": 19.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:59:55"
+ },
+ "bc8ccccd-bbc93b76": {
+  "rank": 57,
+  "label": "risk",
+  "max_risk": 0.99431,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:00:02"
+ },
+ "b6f8a510-6f70445f": {
+  "rank": 58,
+  "label": "risk",
+  "max_risk": 0.9943,
+  "peak_s": 21.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:00:04"
+ },
+ "c4fd6567-49ef2209": {
+  "rank": 59,
+  "label": "normal",
+  "max_risk": 0.99428,
+  "peak_s": 4.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:00:13"
+ },
+ "b7d13f97-3df013fa": {
+  "rank": 60,
+  "label": "unsure",
+  "max_risk": 0.99415,
+  "peak_s": 14.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:00:18"
+ },
+ "c5c7c186-9381f4a2": {
+  "rank": 61,
+  "label": "risk",
+  "max_risk": 0.99397,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:00:23"
+ },
+ "c7fa148b-89df90c1": {
+  "rank": 62,
+  "label": "risk",
+  "max_risk": 0.99396,
+  "peak_s": 21.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:00:27"
+ },
+ "c1fdd182-ee635148": {
+  "rank": 63,
+  "label": "normal",
+  "max_risk": 0.99394,
+  "peak_s": 34.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:00:30"
+ },
+ "bd931a20-031fbc84": {
+  "rank": 64,
+  "label": "normal",
+  "max_risk": 0.99377,
+  "peak_s": 22.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:00:34"
+ },
+ "bbec733f-32b81849": {
+  "rank": 65,
+  "label": "normal",
+  "max_risk": 0.99375,
+  "peak_s": 21.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:00:37"
+ },
+ "b7b7c088-2fda29df": {
+  "rank": 66,
+  "label": "normal",
+  "max_risk": 0.99371,
+  "peak_s": 15.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:00:41"
+ },
+ "b4863201-6521c146": {
+  "rank": 67,
+  "label": "risk",
+  "max_risk": 0.99354,
+  "peak_s": 21.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:00:43"
+ },
+ "c1bd4140-1f2bd79e": {
+  "rank": 68,
+  "label": "risk",
+  "max_risk": 0.99352,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:00:44"
+ },
+ "b473c3c3-f52b760e": {
+  "rank": 69,
+  "label": "normal",
+  "max_risk": 0.99344,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:00:49"
+ },
+ "c488f6a3-cffdf85a": {
+  "rank": 70,
+  "label": "normal",
+  "max_risk": 0.99341,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:00:55"
+ },
+ "b5b7d0a6-e63e539f": {
+  "rank": 71,
+  "label": "normal",
+  "max_risk": 0.99336,
+  "peak_s": 7.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:01:01"
+ },
+ "c75dff4f-c91e6880": {
+  "rank": 72,
+  "label": "normal",
+  "max_risk": 0.99318,
+  "peak_s": 21.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:01:07"
+ },
+ "b9ed70c8-edc3834b": {
+  "rank": 73,
+  "label": "normal",
+  "max_risk": 0.99316,
+  "peak_s": 11.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:01:14"
+ },
+ "c5ffb92c-67f32de8": {
+  "rank": 74,
+  "label": "normal",
+  "max_risk": 0.99315,
+  "peak_s": 23.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:01:17"
+ },
+ "b62bef56-b08de744": {
+  "rank": 75,
+  "label": "normal",
+  "max_risk": 0.99307,
+  "peak_s": 23.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:01:20"
+ },
+ "b6241b17-301c2e2e": {
+  "rank": 76,
+  "label": "unsure",
+  "max_risk": 0.99292,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:01:25"
+ },
+ "bbc4e74d-7ae9336b": {
+  "rank": 77,
+  "label": "normal",
+  "max_risk": 0.99291,
+  "peak_s": 21.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:01:32"
+ },
+ "b4c8a6c7-56206227": {
+  "rank": 78,
+  "label": "normal",
+  "max_risk": 0.99285,
+  "peak_s": 4.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:01:36"
+ },
+ "b3121071-c0fd88c4": {
+  "rank": 79,
+  "label": "bad",
+  "max_risk": 0.99267,
+  "peak_s": 19.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:01:39"
+ },
+ "bb46f3cd-b72d2152": {
+  "rank": 80,
+  "label": "unsure",
+  "max_risk": 0.99255,
+  "peak_s": 36.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:01:53"
+ },
+ "c569c251-411184c2": {
+  "rank": 81,
+  "label": "normal",
+  "max_risk": 0.9925,
+  "peak_s": 6.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:02:03"
+ },
+ "c60c04c3-b48a4e84": {
+  "rank": 82,
+  "label": "normal",
+  "max_risk": 0.9925,
+  "peak_s": 33.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:02:07"
+ },
+ "b202cae2-f46c74a6": {
+  "rank": 83,
+  "label": "normal",
+  "max_risk": 0.99247,
+  "peak_s": 26.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:02:11"
+ },
+ "b760329b-611024b4": {
+  "rank": 84,
+  "label": "bad",
+  "max_risk": 0.99244,
+  "peak_s": 17.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:02:16"
+ },
+ "c5a178bf-637d1750": {
+  "rank": 85,
+  "label": "risk",
+  "max_risk": 0.99239,
+  "peak_s": 24.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:02:19"
+ },
+ "bbcf6d54-a28d17b9": {
+  "rank": 86,
+  "label": "normal",
+  "max_risk": 0.99229,
+  "peak_s": 23.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:02:23"
+ },
+ "c93f8df2-d683a18b": {
+  "rank": 87,
+  "label": "risk",
+  "max_risk": 0.99218,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:02:25"
+ },
+ "c74a122c-e7005b78": {
+  "rank": 88,
+  "label": "unsure",
+  "max_risk": 0.99215,
+  "peak_s": 7.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:02:30"
+ },
+ "c31a04de-a3a5bc29": {
+  "rank": 89,
+  "label": "normal",
+  "max_risk": 0.99214,
+  "peak_s": 10.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:02:37"
+ },
+ "c970d004-efeb8b97": {
+  "rank": 90,
+  "label": "bad",
+  "max_risk": 0.99214,
+  "peak_s": 31.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:02:40"
+ },
+ "c2592033-8052ef77": {
+  "rank": 91,
+  "label": "normal",
+  "max_risk": 0.99209,
+  "peak_s": 36.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:02:51"
+ },
+ "c396b7c0-cf46a981": {
+  "rank": 92,
+  "label": "risk",
+  "max_risk": 0.99202,
+  "peak_s": 19.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:02:53"
+ },
+ "b3e83de5-c5e9dcca": {
+  "rank": 93,
+  "label": "normal",
+  "max_risk": 0.99189,
+  "peak_s": 24.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:02:57"
+ },
+ "bc978e82-e82eee23": {
+  "rank": 94,
+  "label": "normal",
+  "max_risk": 0.99188,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:03:12"
+ },
+ "b87a03a9-c9da2b1a": {
+  "rank": 95,
+  "label": "normal",
+  "max_risk": 0.99186,
+  "peak_s": 17.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:03:18"
+ },
+ "c6bb8a0c-bdba1c5d": {
+  "rank": 96,
+  "label": "normal",
+  "max_risk": 0.99172,
+  "peak_s": 15.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:03:22"
+ },
+ "b6e591bd-d509b54b": {
+  "rank": 97,
+  "label": "normal",
+  "max_risk": 0.9917,
+  "peak_s": 22.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:03:26"
+ },
+ "ca2c7c84-39bf84ee": {
+  "rank": 98,
+  "label": "unsure",
+  "max_risk": 0.9916,
+  "peak_s": 20.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:03:43"
+ },
+ "c62664f1-e2a87cef": {
+  "rank": 99,
+  "label": "unsure",
+  "max_risk": 0.99144,
+  "peak_s": 19.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:03:53"
+ },
+ "c2e294a9-93e364f0": {
+  "rank": 100,
+  "label": "normal",
+  "max_risk": 0.99129,
+  "peak_s": 34.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:04:05"
+ },
+ "bda60c48-07ab78ed": {
+  "rank": 101,
+  "label": "normal",
+  "max_risk": 0.99127,
+  "peak_s": 31.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:04:09"
+ },
+ "ca3bf9b0-ab1201eb": {
+  "rank": 102,
+  "label": "normal",
+  "max_risk": 0.9912,
+  "peak_s": 8.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:04:12"
+ },
+ "c94d8213-847662eb": {
+  "rank": 103,
+  "label": "normal",
+  "max_risk": 0.9911,
+  "peak_s": 7.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:04:16"
+ },
+ "c3b1694b-79c97ac2": {
+  "rank": 104,
+  "label": "normal",
+  "max_risk": 0.99108,
+  "peak_s": 19.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:04:19"
+ },
+ "b28cb5d3-f800ecd2": {
+  "rank": 105,
+  "label": "normal",
+  "max_risk": 0.99093,
+  "peak_s": 16.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:04:31"
+ },
+ "b4542860-e818b412": {
+  "rank": 106,
+  "label": "normal",
+  "max_risk": 0.99087,
+  "peak_s": 22.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:04:34"
+ },
+ "b90327ce-86c1d1f4": {
+  "rank": 107,
+  "label": "normal",
+  "max_risk": 0.99087,
+  "peak_s": 35.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:04:38"
+ },
+ "c98258a4-b78aa787": {
+  "rank": 108,
+  "label": "normal",
+  "max_risk": 0.99087,
+  "peak_s": 13.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:04:41"
+ },
+ "be60191c-813aa925": {
+  "rank": 109,
+  "label": "normal",
+  "max_risk": 0.99086,
+  "peak_s": 19.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:04:45"
+ },
+ "b5ac257d-5a34b3fa": {
+  "rank": 110,
+  "label": "risk",
+  "max_risk": 0.99084,
+  "peak_s": 19.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:05:25"
+ },
+ "ba87390f-22dabe83": {
+  "rank": 111,
+  "label": "normal",
+  "max_risk": 0.99082,
+  "peak_s": 16.5,
+  "by": "desktop",
+  "at": "2026-10-16 12:05:20"
+ },
+ "b2fa3e5f-8c4b06d0": {
+  "rank": 113,
+  "label": "normal",
+  "max_risk": 0.9907,
+  "peak_s": 4.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:05:29"
+ },
+ "b9c7f347-97b374b1": {
+  "rank": 114,
+  "label": "normal",
+  "max_risk": 0.9907,
+  "peak_s": 24.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:05:33"
+ },
+ "c7648772-fc04b1c3": {
+  "rank": 115,
+  "label": "bad",
+  "max_risk": 0.99062,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 12:05:41"
+ },
+ "c1f8d9b3-e7a69cc0": {
+  "rank": 112,
+  "label": "normal",
+  "max_risk": 0.99073,
+  "peak_s": 4.5,
+  "by": "Mamoun Phone",
+  "at": "2026-10-16 13:09:06"
+ },
+ "c56915dc-1eb8abe1": {
+  "rank": 116,
+  "label": "normal",
+  "max_risk": 0.99062,
+  "peak_s": 23.5,
+  "by": "Mamoun Phone",
+  "at": "2026-10-16 13:09:16"
+ },
+ "c8257ea8-ea7235f8": {
+  "rank": 117,
+  "label": "normal",
+  "max_risk": 0.99048,
+  "peak_s": 5.0,
+  "by": "Mamoun Phone",
+  "at": "2026-10-16 13:11:43"
+ },
+ "c330c787-ae1c841a": {
+  "rank": 118,
+  "label": "normal",
+  "max_risk": 0.99048,
+  "peak_s": 2.5,
+  "by": "Mamoun Phone",
+  "at": "2026-10-16 13:13:00"
+ },
+ "bed07392-75beda90": {
+  "rank": 119,
+  "label": "normal",
+  "max_risk": 0.99042,
+  "peak_s": 31.5,
+  "by": "Mamoun Phone",
+  "at": "2026-10-16 13:13:16"
+ },
+ "bbc357f2-ddaa5e79": {
+  "rank": 120,
+  "label": "normal",
+  "max_risk": 0.99038,
+  "peak_s": 3.0,
+  "by": "Mamoun Phone",
+  "at": "2026-10-16 13:13:22"
+ },
+ "bc9f8a23-228d01e9": {
+  "rank": 121,
+  "label": "normal",
+  "max_risk": 0.99038,
+  "peak_s": 34.5,
+  "by": "Mamoun Phone",
+  "at": "2026-10-16 13:13:49"
+ },
+ "bab48a4e-43fa0dfe": {
+  "rank": 122,
+  "label": "normal",
+  "max_risk": 0.99037,
+  "peak_s": 33.0,
+  "by": "Mamoun Phone",
+  "at": "2026-10-16 13:19:43"
+ },
+ "c2e294a9-8b108774": {
+  "rank": 123,
+  "label": "normal",
+  "max_risk": 0.99029,
+  "peak_s": 23.0,
+  "by": "Mamoun Phone",
+  "at": "2026-10-16 13:25:33"
+ },
+ "bf80599d-c04f3cbb": {
+  "rank": 124,
+  "label": "normal",
+  "max_risk": 0.99024,
+  "peak_s": 21.0,
+  "by": "Mamoun Phone",
+  "at": "2026-10-16 13:25:37"
+ },
+ "bfb6d7c1-d607f837": {
+  "rank": 125,
+  "label": "normal",
+  "max_risk": 0.99022,
+  "peak_s": 19.0,
+  "by": "Mamoun Phone",
+  "at": "2026-10-16 13:25:42"
+ },
+ "b2102d00-a8c09be1": {
+  "rank": 126,
+  "label": "normal",
+  "max_risk": 0.99018,
+  "peak_s": 19.5,
+  "by": "Mamoun Phone",
+  "at": "2026-10-16 13:25:55"
+ },
+ "b2bceb54-0b1f3332": {
+  "rank": 127,
+  "label": "normal",
+  "max_risk": 0.9901,
+  "peak_s": 19.5,
+  "by": "Mamoun Phone",
+  "at": "2026-10-16 13:28:10"
+ },
+ "c0082590-c1533b81": {
+  "rank": 128,
+  "label": "normal",
+  "max_risk": 0.98989,
+  "peak_s": 9.0,
+  "by": "Mamoun",
+  "at": "2026-10-16 14:34:28"
+ },
+ "bc896c2e-27a21506": {
+  "rank": 129,
+  "label": "risk",
+  "max_risk": 0.98983,
+  "peak_s": 19.0,
+  "by": "Mamoun",
+  "at": "2026-10-16 14:34:37"
+ },
+ "c7c39101-837064cb": {
+  "rank": 130,
+  "label": "normal",
+  "max_risk": 0.98971,
+  "peak_s": 8.5,
+  "by": "Mamoun",
+  "at": "2026-10-16 14:34:56"
+ },
+ "c4e00603-9f2734d0": {
+  "rank": 131,
+  "label": "normal",
+  "max_risk": 0.98953,
+  "peak_s": 20.0,
+  "by": "Mamoun",
+  "at": "2026-10-16 14:35:12"
+ },
+ "c4353b9c-9d50cbe9": {
+  "rank": 132,
+  "label": "normal",
+  "max_risk": 0.98951,
+  "peak_s": 37.0,
+  "by": "Mamoun",
+  "at": "2026-10-16 14:35:34"
+ },
+ "b4946e87-165efbb5": {
+  "rank": 133,
+  "label": "normal",
+  "max_risk": 0.98935,
+  "peak_s": 26.0,
+  "by": "Mamoun",
+  "at": "2026-10-16 14:35:47"
+ },
+ "bde0caa6-d7d428b5": {
+  "rank": 134,
+  "label": "bad",
+  "max_risk": 0.98935,
+  "peak_s": 29.5,
+  "by": "Mamoun",
+  "at": "2026-10-16 14:36:08"
+ },
+ "b7db31d1-7ccff061": {
+  "rank": 135,
+  "label": "normal",
+  "max_risk": 0.98931,
+  "peak_s": 23.0,
+  "by": "Mamoun",
+  "at": "2026-10-16 14:36:29"
+ },
+ "baefbbd2-83ba702b": {
+  "rank": 136,
+  "label": "unsure",
+  "max_risk": 0.98929,
+  "peak_s": 29.5,
+  "by": "Mamoun",
+  "at": "2026-10-16 14:36:44"
+ },
+ "c8f61b8f-81c16429": {
+  "rank": 137,
+  "label": "bad",
+  "max_risk": 0.98924,
+  "peak_s": 13.0,
+  "by": "Mamoun",
+  "at": "2026-10-16 14:36:56"
+ }
+}

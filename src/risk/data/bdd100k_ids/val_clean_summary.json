@@ -1,0 +1,20 @@
+{
+ "made": "2026-10-16 14:40:15",
+ "rule": "ranks 1-25 removed; 26-137 kept only if labelled normal; 138+ kept",
+ "val_clips": 500,
+ "clips_without_readings": 0,
+ "kept": 434,
+ "removed_total": 66,
+ "removed": {
+  "ranks 1-25": 25,
+  "ranks 26-137 labelled bad": 8,
+  "ranks 26-137 labelled unsure": 9,
+  "ranks 26-137 labelled risk": 24
+ },
+ "labels": {
+  "normal": 71,
+  "bad": 8,
+  "unsure": 9,
+  "risk": 24
+ }
+}
