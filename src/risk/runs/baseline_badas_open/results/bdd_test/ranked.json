@@ -1,0 +1,5002 @@
+[
+ {
+  "clip": "d0492e54-bf480860",
+  "max_risk": 0.99687,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e53014d6-693824c3",
+  "max_risk": 0.99683,
+  "at_s": 21.5
+ },
+ {
+  "clip": "d8717ba9-a93287c6",
+  "max_risk": 0.99679,
+  "at_s": 20.0
+ },
+ {
+  "clip": "cb6e5ba7-c6b079ba",
+  "max_risk": 0.99673,
+  "at_s": 19.5
+ },
+ {
+  "clip": "f3ad1946-b66f2cbe",
+  "max_risk": 0.99661,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f6a35ca8-07277ea1",
+  "max_risk": 0.9965,
+  "at_s": 20.0
+ },
+ {
+  "clip": "dcdf49cb-7acae4f3",
+  "max_risk": 0.99649,
+  "at_s": 20.5
+ },
+ {
+  "clip": "d2e86030-5bd910b6",
+  "max_risk": 0.99644,
+  "at_s": 20.0
+ },
+ {
+  "clip": "fc6896a7-9433880b",
+  "max_risk": 0.99643,
+  "at_s": 19.5
+ },
+ {
+  "clip": "f391ff30-e490ab19",
+  "max_risk": 0.99638,
+  "at_s": 22.5
+ },
+ {
+  "clip": "e226ee7c-c2982e58",
+  "max_risk": 0.99635,
+  "at_s": 19.5
+ },
+ {
+  "clip": "ee873bce-7f497634",
+  "max_risk": 0.99632,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f36b39af-00f8b868",
+  "max_risk": 0.9963,
+  "at_s": 20.0
+ },
+ {
+  "clip": "eb6b86ee-a20b3aab",
+  "max_risk": 0.99623,
+  "at_s": 20.0
+ },
+ {
+  "clip": "faedc0e0-a56b726e",
+  "max_risk": 0.99622,
+  "at_s": 20.0
+ },
+ {
+  "clip": "fa61b5c2-1f1cfa8a",
+  "max_risk": 0.99622,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d93f9141-fe2b6b65",
+  "max_risk": 0.99615,
+  "at_s": 19.5
+ },
+ {
+  "clip": "de97f7ea-f5cad159",
+  "max_risk": 0.99611,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d78f9ed3-302073ad",
+  "max_risk": 0.99608,
+  "at_s": 23.5
+ },
+ {
+  "clip": "f010b38e-95ba3241",
+  "max_risk": 0.99601,
+  "at_s": 20.0
+ },
+ {
+  "clip": "dc70651c-5877495b",
+  "max_risk": 0.996,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d8a6fd60-ba1c2748",
+  "max_risk": 0.99599,
+  "at_s": 20.0
+ },
+ {
+  "clip": "cf8e9b81-d2771ed6",
+  "max_risk": 0.99599,
+  "at_s": 19.5
+ },
+ {
+  "clip": "d385e918-84801fb3",
+  "max_risk": 0.99598,
+  "at_s": 21.0
+ },
+ {
+  "clip": "e8f8e8c7-d260620c",
+  "max_risk": 0.99598,
+  "at_s": 20.5
+ },
+ {
+  "clip": "f49c337d-49a8a47d",
+  "max_risk": 0.99595,
+  "at_s": 29.0
+ },
+ {
+  "clip": "e62088bc-742bfe09",
+  "max_risk": 0.99594,
+  "at_s": 20.5
+ },
+ {
+  "clip": "e6d56a62-431a0b05",
+  "max_risk": 0.99594,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e600c5a9-fcb9b2b6",
+  "max_risk": 0.99592,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e67b2fea-3f9985f2",
+  "max_risk": 0.99591,
+  "at_s": 38.0
+ },
+ {
+  "clip": "d1e57a83-ec39ed45",
+  "max_risk": 0.9959,
+  "at_s": 25.5
+ },
+ {
+  "clip": "da430082-167d4897",
+  "max_risk": 0.99588,
+  "at_s": 19.5
+ },
+ {
+  "clip": "eaecb41a-2215c360",
+  "max_risk": 0.99587,
+  "at_s": 40.125
+ },
+ {
+  "clip": "f702ebe5-a6e93006",
+  "max_risk": 0.99587,
+  "at_s": 22.0
+ },
+ {
+  "clip": "caf56f7a-1407df75",
+  "max_risk": 0.99585,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e82943ed-3b499ebe",
+  "max_risk": 0.99582,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d970ab92-29643e88",
+  "max_risk": 0.99577,
+  "at_s": 21.0
+ },
+ {
+  "clip": "e3f97760-91f1857d",
+  "max_risk": 0.99574,
+  "at_s": 21.0
+ },
+ {
+  "clip": "d306b3ce-ad2cb708",
+  "max_risk": 0.99566,
+  "at_s": 22.5
+ },
+ {
+  "clip": "eff6d28d-09d81d5c",
+  "max_risk": 0.99563,
+  "at_s": 38.0
+ },
+ {
+  "clip": "e4aeed6b-e95e7651",
+  "max_risk": 0.99563,
+  "at_s": 21.0
+ },
+ {
+  "clip": "cd389564-8be2128e",
+  "max_risk": 0.99563,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d3f34243-e480b223",
+  "max_risk": 0.99557,
+  "at_s": 21.0
+ },
+ {
+  "clip": "d06160b3-d1c0cfee",
+  "max_risk": 0.99556,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e37de756-cb7786f6",
+  "max_risk": 0.99555,
+  "at_s": 20.5
+ },
+ {
+  "clip": "d29e9b91-054254ab",
+  "max_risk": 0.99554,
+  "at_s": 20.5
+ },
+ {
+  "clip": "eebb319c-8ecffbaf",
+  "max_risk": 0.99544,
+  "at_s": 20.5
+ },
+ {
+  "clip": "f247a833-6b99ca4d",
+  "max_risk": 0.99542,
+  "at_s": 20.5
+ },
+ {
+  "clip": "e5e5df34-105daaf8",
+  "max_risk": 0.99532,
+  "at_s": 22.5
+ },
+ {
+  "clip": "f3ec1f6d-d7bafe1d",
+  "max_risk": 0.99528,
+  "at_s": 21.5
+ },
+ {
+  "clip": "de18f099-394efbbc",
+  "max_risk": 0.99527,
+  "at_s": 28.0
+ },
+ {
+  "clip": "f4ade0fc-7621a84d",
+  "max_risk": 0.99526,
+  "at_s": 20.5
+ },
+ {
+  "clip": "ccd901f5-e45892d1",
+  "max_risk": 0.99525,
+  "at_s": 13.5
+ },
+ {
+  "clip": "f3ad1946-a96a9cac",
+  "max_risk": 0.99524,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e2c97a4d-bf7f2715",
+  "max_risk": 0.99524,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f6caed45-2b42f2b7",
+  "max_risk": 0.9952,
+  "at_s": 21.0
+ },
+ {
+  "clip": "fa14f678-6e52cdd1",
+  "max_risk": 0.99518,
+  "at_s": 20.0
+ },
+ {
+  "clip": "dbf47aa7-35944ebc",
+  "max_risk": 0.99516,
+  "at_s": 21.0
+ },
+ {
+  "clip": "ed1994a1-ea34db26",
+  "max_risk": 0.99515,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e4fb4514-944f3e03",
+  "max_risk": 0.99515,
+  "at_s": 2.5
+ },
+ {
+  "clip": "ec50cd9b-463acc9a",
+  "max_risk": 0.99514,
+  "at_s": 19.5
+ },
+ {
+  "clip": "e2987c78-6d97646b",
+  "max_risk": 0.99511,
+  "at_s": 19.5
+ },
+ {
+  "clip": "e504da79-d7d7f4c0",
+  "max_risk": 0.99509,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e3bd31b8-45083e92",
+  "max_risk": 0.99508,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d4551b2d-24edb0c4",
+  "max_risk": 0.99505,
+  "at_s": 31.5
+ },
+ {
+  "clip": "e5333787-91f9b5dd",
+  "max_risk": 0.99505,
+  "at_s": 27.5
+ },
+ {
+  "clip": "fad11eea-5cdc57ed",
+  "max_risk": 0.99505,
+  "at_s": 21.0
+ },
+ {
+  "clip": "db213720-6389f304",
+  "max_risk": 0.99503,
+  "at_s": 20.0
+ },
+ {
+  "clip": "dbd043d8-4d51af2f",
+  "max_risk": 0.99499,
+  "at_s": 19.5
+ },
+ {
+  "clip": "ec53a7a4-cb01948b",
+  "max_risk": 0.99499,
+  "at_s": 17.5
+ },
+ {
+  "clip": "e7eaab1a-7f123ad2",
+  "max_risk": 0.99496,
+  "at_s": 32.0
+ },
+ {
+  "clip": "f219924c-9ff9ce5d",
+  "max_risk": 0.99492,
+  "at_s": 23.0
+ },
+ {
+  "clip": "f4a388d4-a695ab2a",
+  "max_risk": 0.99492,
+  "at_s": 22.5
+ },
+ {
+  "clip": "d0dd79cc-9545b424",
+  "max_risk": 0.99489,
+  "at_s": 20.0
+ },
+ {
+  "clip": "ce27b85b-159674ec",
+  "max_risk": 0.99486,
+  "at_s": 30.0
+ },
+ {
+  "clip": "f6007327-d36171df",
+  "max_risk": 0.99486,
+  "at_s": 20.0
+ },
+ {
+  "clip": "fa3ab43d-4bd221d0",
+  "max_risk": 0.99483,
+  "at_s": 22.5
+ },
+ {
+  "clip": "d7711cac-44bbd142",
+  "max_risk": 0.99483,
+  "at_s": 5.0
+ },
+ {
+  "clip": "cc4d418c-6070d7f8",
+  "max_risk": 0.99481,
+  "at_s": 21.0
+ },
+ {
+  "clip": "f3b22697-8fb1cb54",
+  "max_risk": 0.99479,
+  "at_s": 28.0
+ },
+ {
+  "clip": "efb159ce-afb33c4c",
+  "max_risk": 0.99478,
+  "at_s": 25.5
+ },
+ {
+  "clip": "e2978fa4-f71b3f0c",
+  "max_risk": 0.99478,
+  "at_s": 21.5
+ },
+ {
+  "clip": "cfd19f61-abe48309",
+  "max_risk": 0.99473,
+  "at_s": 34.0
+ },
+ {
+  "clip": "d8284f6d-1fdbf7d7",
+  "max_risk": 0.99468,
+  "at_s": 28.5
+ },
+ {
+  "clip": "e8630616-aa69cbf2",
+  "max_risk": 0.99466,
+  "at_s": 19.5
+ },
+ {
+  "clip": "de212ad8-db23c21d",
+  "max_risk": 0.99466,
+  "at_s": 19.0
+ },
+ {
+  "clip": "e6e9fe71-13d8ffac",
+  "max_risk": 0.99465,
+  "at_s": 12.0
+ },
+ {
+  "clip": "f5407be2-71b6111c",
+  "max_risk": 0.99462,
+  "at_s": 39.5
+ },
+ {
+  "clip": "d3aa739f-94cd0a71",
+  "max_risk": 0.99456,
+  "at_s": 20.0
+ },
+ {
+  "clip": "cdae6e60-b729f2e6",
+  "max_risk": 0.99455,
+  "at_s": 30.5
+ },
+ {
+  "clip": "dc85184b-53b44b05",
+  "max_risk": 0.99455,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d03cfaf5-a4ea1442",
+  "max_risk": 0.99455,
+  "at_s": 19.5
+ },
+ {
+  "clip": "f000ee4b-6a8c7692",
+  "max_risk": 0.99454,
+  "at_s": 40.125
+ },
+ {
+  "clip": "fa940df3-b7e9c74c",
+  "max_risk": 0.99453,
+  "at_s": 19.5
+ },
+ {
+  "clip": "f1495426-726b1479",
+  "max_risk": 0.99452,
+  "at_s": 12.5
+ },
+ {
+  "clip": "dec39d60-9631eb7f",
+  "max_risk": 0.99451,
+  "at_s": 29.5
+ },
+ {
+  "clip": "e8aed4af-26b8d98a",
+  "max_risk": 0.99448,
+  "at_s": 31.5
+ },
+ {
+  "clip": "eda7758a-5a0f303c",
+  "max_risk": 0.99448,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e86fc9b4-f0f58352",
+  "max_risk": 0.99447,
+  "at_s": 21.0
+ },
+ {
+  "clip": "f693069b-e464c27b",
+  "max_risk": 0.99446,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f3fba5b7-2ac7b3e6",
+  "max_risk": 0.99443,
+  "at_s": 36.0
+ },
+ {
+  "clip": "dadd9dae-0fd9fc02",
+  "max_risk": 0.99443,
+  "at_s": 32.5
+ },
+ {
+  "clip": "cd042a64-ceb9f17a",
+  "max_risk": 0.99442,
+  "at_s": 22.0
+ },
+ {
+  "clip": "ce0d4861-afacfb74",
+  "max_risk": 0.99439,
+  "at_s": 20.5
+ },
+ {
+  "clip": "e182faac-7a4cbcb5",
+  "max_risk": 0.99437,
+  "at_s": 34.5
+ },
+ {
+  "clip": "eb845c95-da36ed46",
+  "max_risk": 0.99428,
+  "at_s": 19.5
+ },
+ {
+  "clip": "f8764be8-2a844fb1",
+  "max_risk": 0.99426,
+  "at_s": 10.0
+ },
+ {
+  "clip": "eee2f6d2-86a2cf8f",
+  "max_risk": 0.99423,
+  "at_s": 30.5
+ },
+ {
+  "clip": "d2331b26-7daa6053",
+  "max_risk": 0.99423,
+  "at_s": 19.0
+ },
+ {
+  "clip": "d4c08810-6e774772",
+  "max_risk": 0.99419,
+  "at_s": 22.0
+ },
+ {
+  "clip": "cd31bcc0-07b8e93f",
+  "max_risk": 0.99418,
+  "at_s": 25.0
+ },
+ {
+  "clip": "f9845b47-459e77ac",
+  "max_risk": 0.99408,
+  "at_s": 20.5
+ },
+ {
+  "clip": "df825b39-0dd10692",
+  "max_risk": 0.99402,
+  "at_s": 21.0
+ },
+ {
+  "clip": "db047b09-ef4174e0",
+  "max_risk": 0.99398,
+  "at_s": 20.0
+ },
+ {
+  "clip": "dbfb8b31-4e566eeb",
+  "max_risk": 0.99397,
+  "at_s": 20.5
+ },
+ {
+  "clip": "d99c431c-9b302991",
+  "max_risk": 0.99397,
+  "at_s": 19.5
+ },
+ {
+  "clip": "faf5f9b3-98f3ed8d",
+  "max_risk": 0.99396,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d8b54d0a-49cac455",
+  "max_risk": 0.99395,
+  "at_s": 21.0
+ },
+ {
+  "clip": "e6234cfc-96c180f6",
+  "max_risk": 0.99393,
+  "at_s": 27.0
+ },
+ {
+  "clip": "dd2518f0-808988a5",
+  "max_risk": 0.99391,
+  "at_s": 34.0
+ },
+ {
+  "clip": "e74820e1-9781ca1e",
+  "max_risk": 0.99391,
+  "at_s": 27.5
+ },
+ {
+  "clip": "f9246ae1-b0468188",
+  "max_risk": 0.99391,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d7f56a92-4a14cfe3",
+  "max_risk": 0.99385,
+  "at_s": 32.5
+ },
+ {
+  "clip": "d6c76403-c4f3e958",
+  "max_risk": 0.99384,
+  "at_s": 21.0
+ },
+ {
+  "clip": "f14dc740-85d1a0b1",
+  "max_risk": 0.9938,
+  "at_s": 19.5
+ },
+ {
+  "clip": "db39db50-d1bdd0ea",
+  "max_risk": 0.99376,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e1e0f8d2-4cc9df6b",
+  "max_risk": 0.99375,
+  "at_s": 6.5
+ },
+ {
+  "clip": "e1402e78-e191559e",
+  "max_risk": 0.99373,
+  "at_s": 31.0
+ },
+ {
+  "clip": "cfde9345-8ac3a73c",
+  "max_risk": 0.99373,
+  "at_s": 22.0
+ },
+ {
+  "clip": "ef9bd39b-13e1f681",
+  "max_risk": 0.99372,
+  "at_s": 15.5
+ },
+ {
+  "clip": "fcfe0f44-896256df",
+  "max_risk": 0.9937,
+  "at_s": 25.0
+ },
+ {
+  "clip": "f4723730-cdb3e7ef",
+  "max_risk": 0.9937,
+  "at_s": 21.5
+ },
+ {
+  "clip": "e2109a84-ef95e8a0",
+  "max_risk": 0.9937,
+  "at_s": 19.0
+ },
+ {
+  "clip": "fa34bad7-fcaf985a",
+  "max_risk": 0.99366,
+  "at_s": 33.0
+ },
+ {
+  "clip": "dbd77e73-1f065bee",
+  "max_risk": 0.9936,
+  "at_s": 7.0
+ },
+ {
+  "clip": "f1a78d7f-29197f42",
+  "max_risk": 0.99359,
+  "at_s": 21.0
+ },
+ {
+  "clip": "d81db423-61b04763",
+  "max_risk": 0.99359,
+  "at_s": 19.5
+ },
+ {
+  "clip": "d919ab8a-0f2836a8",
+  "max_risk": 0.99356,
+  "at_s": 34.5
+ },
+ {
+  "clip": "f39c5efd-e94a45f7",
+  "max_risk": 0.99356,
+  "at_s": 21.5
+ },
+ {
+  "clip": "f94e9b81-dcad3dbf",
+  "max_risk": 0.99356,
+  "at_s": 17.0
+ },
+ {
+  "clip": "e4d00501-c09c1212",
+  "max_risk": 0.99354,
+  "at_s": 20.0
+ },
+ {
+  "clip": "ef971028-103ff2f6",
+  "max_risk": 0.99354,
+  "at_s": 10.5
+ },
+ {
+  "clip": "d510ec96-fa7f90c8",
+  "max_risk": 0.99351,
+  "at_s": 40.0
+ },
+ {
+  "clip": "e4d96fa5-3e84dfbb",
+  "max_risk": 0.9935,
+  "at_s": 21.5
+ },
+ {
+  "clip": "fc916487-b89a7d4b",
+  "max_risk": 0.9935,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e37f49da-733b43ec",
+  "max_risk": 0.99349,
+  "at_s": 19.5
+ },
+ {
+  "clip": "cd8f8f54-e7d915d5",
+  "max_risk": 0.99346,
+  "at_s": 20.0
+ },
+ {
+  "clip": "cc5ebf55-ae19944e",
+  "max_risk": 0.99341,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e68e55f0-1853e68c",
+  "max_risk": 0.99337,
+  "at_s": 16.0
+ },
+ {
+  "clip": "fa7b3300-f5c63c37",
+  "max_risk": 0.99332,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f14e01b6-993f8942",
+  "max_risk": 0.99332,
+  "at_s": 5.5
+ },
+ {
+  "clip": "e27b6ce1-ef301cc3",
+  "max_risk": 0.99329,
+  "at_s": 23.0
+ },
+ {
+  "clip": "fba1b549-52f20f0d",
+  "max_risk": 0.99329,
+  "at_s": 20.0
+ },
+ {
+  "clip": "ccad4f69-ebc3f954",
+  "max_risk": 0.99329,
+  "at_s": 3.5
+ },
+ {
+  "clip": "f354d815-671250a9",
+  "max_risk": 0.99327,
+  "at_s": 17.0
+ },
+ {
+  "clip": "fd6bd828-63ffa217",
+  "max_risk": 0.99327,
+  "at_s": 7.0
+ },
+ {
+  "clip": "e6453d3a-67eeaa4f",
+  "max_risk": 0.99319,
+  "at_s": 35.5
+ },
+ {
+  "clip": "e48bc887-62759877",
+  "max_risk": 0.99318,
+  "at_s": 15.5
+ },
+ {
+  "clip": "dfab1116-07d50e11",
+  "max_risk": 0.99314,
+  "at_s": 20.5
+ },
+ {
+  "clip": "d198988a-bd0e5edf",
+  "max_risk": 0.99314,
+  "at_s": 20.5
+ },
+ {
+  "clip": "f4395b12-e0923d94",
+  "max_risk": 0.99314,
+  "at_s": 20.0
+ },
+ {
+  "clip": "fc467ff8-4fe78255",
+  "max_risk": 0.99312,
+  "at_s": 14.5
+ },
+ {
+  "clip": "f527cfb9-f86a3064",
+  "max_risk": 0.9931,
+  "at_s": 36.5
+ },
+ {
+  "clip": "e009f970-481afd93",
+  "max_risk": 0.9931,
+  "at_s": 21.0
+ },
+ {
+  "clip": "f364086d-bdd9f231",
+  "max_risk": 0.993,
+  "at_s": 28.0
+ },
+ {
+  "clip": "e5cdf827-3eb71c3c",
+  "max_risk": 0.993,
+  "at_s": 20.0
+ },
+ {
+  "clip": "ced33a3e-5db87887",
+  "max_risk": 0.99296,
+  "at_s": 26.5
+ },
+ {
+  "clip": "f55e5322-09dbc178",
+  "max_risk": 0.99295,
+  "at_s": 26.5
+ },
+ {
+  "clip": "f9a85d87-6295d850",
+  "max_risk": 0.99291,
+  "at_s": 16.5
+ },
+ {
+  "clip": "eb063ac4-d4f6e53f",
+  "max_risk": 0.99289,
+  "at_s": 5.5
+ },
+ {
+  "clip": "fa940df3-f8fafa12",
+  "max_risk": 0.99281,
+  "at_s": 28.0
+ },
+ {
+  "clip": "dafd0184-834659e1",
+  "max_risk": 0.9928,
+  "at_s": 20.5
+ },
+ {
+  "clip": "f354b0f3-888d8b9f",
+  "max_risk": 0.99277,
+  "at_s": 9.0
+ },
+ {
+  "clip": "f8bc806d-1ce27ddc",
+  "max_risk": 0.99271,
+  "at_s": 14.0
+ },
+ {
+  "clip": "d4363b32-b4196839",
+  "max_risk": 0.9927,
+  "at_s": 20.0
+ },
+ {
+  "clip": "daf542b0-8a727327",
+  "max_risk": 0.99265,
+  "at_s": 23.5
+ },
+ {
+  "clip": "d1040abf-2e4f8570",
+  "max_risk": 0.99264,
+  "at_s": 29.5
+ },
+ {
+  "clip": "f9f5d26f-b1c2f53e",
+  "max_risk": 0.9926,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d0ba3e5a-cda4d170",
+  "max_risk": 0.99255,
+  "at_s": 7.0
+ },
+ {
+  "clip": "dc6936a6-23966dbc",
+  "max_risk": 0.99241,
+  "at_s": 24.0
+ },
+ {
+  "clip": "daa9d119-a78919c4",
+  "max_risk": 0.99241,
+  "at_s": 21.0
+ },
+ {
+  "clip": "ebfe09dc-399078b5",
+  "max_risk": 0.99239,
+  "at_s": 14.5
+ },
+ {
+  "clip": "d6a03ef9-1a0dab1d",
+  "max_risk": 0.99239,
+  "at_s": 10.0
+ },
+ {
+  "clip": "fa076119-8938b1a0",
+  "max_risk": 0.99232,
+  "at_s": 19.0
+ },
+ {
+  "clip": "f5c54dc9-32286d9c",
+  "max_risk": 0.99229,
+  "at_s": 20.5
+ },
+ {
+  "clip": "d2ee3713-5d14d7a1",
+  "max_risk": 0.99229,
+  "at_s": 20.5
+ },
+ {
+  "clip": "edac5311-fffababe",
+  "max_risk": 0.99227,
+  "at_s": 13.5
+ },
+ {
+  "clip": "d190167f-c91b924e",
+  "max_risk": 0.9922,
+  "at_s": 20.0
+ },
+ {
+  "clip": "eec3422e-52475d2c",
+  "max_risk": 0.99214,
+  "at_s": 34.0
+ },
+ {
+  "clip": "d5b9be84-b755c63f",
+  "max_risk": 0.99212,
+  "at_s": 24.5
+ },
+ {
+  "clip": "ebfdc705-03b746b1",
+  "max_risk": 0.99209,
+  "at_s": 19.5
+ },
+ {
+  "clip": "daab3ef8-f05153fa",
+  "max_risk": 0.99208,
+  "at_s": 38.0
+ },
+ {
+  "clip": "dc73918e-7d487209",
+  "max_risk": 0.99208,
+  "at_s": 22.0
+ },
+ {
+  "clip": "fa2c9206-9921f1da",
+  "max_risk": 0.99197,
+  "at_s": 25.5
+ },
+ {
+  "clip": "e819f244-e4e4f49d",
+  "max_risk": 0.99195,
+  "at_s": 19.5
+ },
+ {
+  "clip": "f9279c09-1a9c9c4d",
+  "max_risk": 0.99191,
+  "at_s": 37.0
+ },
+ {
+  "clip": "fced98e8-36d613e1",
+  "max_risk": 0.99188,
+  "at_s": 19.5
+ },
+ {
+  "clip": "daaeb989-a7a15478",
+  "max_risk": 0.99184,
+  "at_s": 24.0
+ },
+ {
+  "clip": "ed5547d8-86d3e6f2",
+  "max_risk": 0.99178,
+  "at_s": 22.0
+ },
+ {
+  "clip": "d0d605e7-2a2417ed",
+  "max_risk": 0.99175,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d618d991-2fac94f5",
+  "max_risk": 0.99173,
+  "at_s": 32.0
+ },
+ {
+  "clip": "e4bdba69-bf8a95ba",
+  "max_risk": 0.9917,
+  "at_s": 22.0
+ },
+ {
+  "clip": "d96e7ae0-bcf6744e",
+  "max_risk": 0.9917,
+  "at_s": 20.5
+ },
+ {
+  "clip": "e3f8a1e6-1683ab5f",
+  "max_risk": 0.99165,
+  "at_s": 30.0
+ },
+ {
+  "clip": "eb14906d-4e9501cb",
+  "max_risk": 0.99165,
+  "at_s": 6.5
+ },
+ {
+  "clip": "eb62b231-b624c4e9",
+  "max_risk": 0.99164,
+  "at_s": 6.0
+ },
+ {
+  "clip": "eaf292f0-7fffcb7a",
+  "max_risk": 0.9916,
+  "at_s": 21.0
+ },
+ {
+  "clip": "f7a01754-28919675",
+  "max_risk": 0.9916,
+  "at_s": 6.5
+ },
+ {
+  "clip": "f6920aca-85a32939",
+  "max_risk": 0.99159,
+  "at_s": 20.5
+ },
+ {
+  "clip": "e26c20f1-9389d21f",
+  "max_risk": 0.99159,
+  "at_s": 20.5
+ },
+ {
+  "clip": "f0e21627-d92ff998",
+  "max_risk": 0.99151,
+  "at_s": 22.5
+ },
+ {
+  "clip": "e1f9a002-a109be81",
+  "max_risk": 0.99147,
+  "at_s": 23.5
+ },
+ {
+  "clip": "e281e621-6473cfa3",
+  "max_risk": 0.99134,
+  "at_s": 39.0
+ },
+ {
+  "clip": "f8a48562-dd428ddc",
+  "max_risk": 0.99129,
+  "at_s": 19.5
+ },
+ {
+  "clip": "f3560189-ca07d104",
+  "max_risk": 0.99129,
+  "at_s": 5.5
+ },
+ {
+  "clip": "ea28d93c-b0f84943",
+  "max_risk": 0.9912,
+  "at_s": 22.5
+ },
+ {
+  "clip": "ef324ede-9d16605f",
+  "max_risk": 0.9912,
+  "at_s": 21.0
+ },
+ {
+  "clip": "f7c6ee02-ff0bd8f3",
+  "max_risk": 0.9912,
+  "at_s": 19.5
+ },
+ {
+  "clip": "e6c49a43-1ab899c8",
+  "max_risk": 0.99119,
+  "at_s": 22.0
+ },
+ {
+  "clip": "d6b2fcf1-1980fbdd",
+  "max_risk": 0.99119,
+  "at_s": 19.0
+ },
+ {
+  "clip": "f664da3e-98899834",
+  "max_risk": 0.99115,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d89507f2-5a0f4861",
+  "max_risk": 0.99115,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f03a2244-5d7b4993",
+  "max_risk": 0.99114,
+  "at_s": 21.5
+ },
+ {
+  "clip": "f4d94a6f-7d48bfe6",
+  "max_risk": 0.99112,
+  "at_s": 20.5
+ },
+ {
+  "clip": "fc79205c-1764cb83",
+  "max_risk": 0.99107,
+  "at_s": 4.5
+ },
+ {
+  "clip": "cb25d8ec-1c06a707",
+  "max_risk": 0.99101,
+  "at_s": 19.5
+ },
+ {
+  "clip": "d5137427-89c116ae",
+  "max_risk": 0.991,
+  "at_s": 31.5
+ },
+ {
+  "clip": "cd4bf816-2abb75c9",
+  "max_risk": 0.99098,
+  "at_s": 31.5
+ },
+ {
+  "clip": "d7a5e7c4-1a632fa9",
+  "max_risk": 0.99096,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f8df4bf4-7fd832e0",
+  "max_risk": 0.99086,
+  "at_s": 20.5
+ },
+ {
+  "clip": "f4b1a3b9-f5b30cea",
+  "max_risk": 0.9908,
+  "at_s": 4.0
+ },
+ {
+  "clip": "cf8fcbe8-c1ce3cc7",
+  "max_risk": 0.99079,
+  "at_s": 19.0
+ },
+ {
+  "clip": "f3c744e5-0e36ed78",
+  "max_risk": 0.99079,
+  "at_s": 17.5
+ },
+ {
+  "clip": "eebf7b91-9ef941e5",
+  "max_risk": 0.9907,
+  "at_s": 20.5
+ },
+ {
+  "clip": "e8686243-30f1394b",
+  "max_risk": 0.99066,
+  "at_s": 35.0
+ },
+ {
+  "clip": "cd26264b-73b63f34",
+  "max_risk": 0.99061,
+  "at_s": 10.0
+ },
+ {
+  "clip": "f95238e4-e86bf629",
+  "max_risk": 0.99059,
+  "at_s": 22.0
+ },
+ {
+  "clip": "cf1c7da9-3141ccda",
+  "max_risk": 0.99053,
+  "at_s": 21.5
+ },
+ {
+  "clip": "e64fe064-ac1330c1",
+  "max_risk": 0.99051,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e473f25e-1fc08168",
+  "max_risk": 0.99048,
+  "at_s": 19.0
+ },
+ {
+  "clip": "f4a2dfeb-28fecdc1",
+  "max_risk": 0.99046,
+  "at_s": 28.0
+ },
+ {
+  "clip": "f0e21627-98bef373",
+  "max_risk": 0.9904,
+  "at_s": 39.375
+ },
+ {
+  "clip": "d6bfb1d7-c4f31d84",
+  "max_risk": 0.9904,
+  "at_s": 8.0
+ },
+ {
+  "clip": "f3dd1cde-1dd05329",
+  "max_risk": 0.99038,
+  "at_s": 6.5
+ },
+ {
+  "clip": "dc671185-8db2e773",
+  "max_risk": 0.99035,
+  "at_s": 22.0
+ },
+ {
+  "clip": "d28c63bd-1f43d87e",
+  "max_risk": 0.99033,
+  "at_s": 20.5
+ },
+ {
+  "clip": "f902a2f4-6fc83219",
+  "max_risk": 0.99031,
+  "at_s": 20.5
+ },
+ {
+  "clip": "e84e6633-7da92b68",
+  "max_risk": 0.99029,
+  "at_s": 33.5
+ },
+ {
+  "clip": "dd19e8ce-b6a9f575",
+  "max_risk": 0.99029,
+  "at_s": 21.5
+ },
+ {
+  "clip": "eea7c122-139a26ef",
+  "max_risk": 0.99024,
+  "at_s": 31.0
+ },
+ {
+  "clip": "dc092abd-412e88f3",
+  "max_risk": 0.9902,
+  "at_s": 29.5
+ },
+ {
+  "clip": "daa50f3c-16c72165",
+  "max_risk": 0.9901,
+  "at_s": 30.5
+ },
+ {
+  "clip": "d9178760-e14dbe61",
+  "max_risk": 0.99008,
+  "at_s": 21.5
+ },
+ {
+  "clip": "db3740df-4ab02dcb",
+  "max_risk": 0.99004,
+  "at_s": 19.0
+ },
+ {
+  "clip": "d78f9ed3-3989123f",
+  "max_risk": 0.99003,
+  "at_s": 21.0
+ },
+ {
+  "clip": "ccb252e0-23351b09",
+  "max_risk": 0.98999,
+  "at_s": 21.5
+ },
+ {
+  "clip": "d346be7a-85025885",
+  "max_risk": 0.98993,
+  "at_s": 7.5
+ },
+ {
+  "clip": "df739c81-b3c3dbe4",
+  "max_risk": 0.98991,
+  "at_s": 12.0
+ },
+ {
+  "clip": "cf7f5c97-6cbb0590",
+  "max_risk": 0.98985,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f7c1b807-bf31a454",
+  "max_risk": 0.98979,
+  "at_s": 25.0
+ },
+ {
+  "clip": "edf84a87-3e0d3c7a",
+  "max_risk": 0.98973,
+  "at_s": 24.0
+ },
+ {
+  "clip": "f5217be4-bb7eb118",
+  "max_risk": 0.98965,
+  "at_s": 22.0
+ },
+ {
+  "clip": "ef1c9ed4-4f050e8e",
+  "max_risk": 0.98965,
+  "at_s": 20.5
+ },
+ {
+  "clip": "f3609550-6a903a3e",
+  "max_risk": 0.98965,
+  "at_s": 8.5
+ },
+ {
+  "clip": "ec23dbbf-efbfaccc",
+  "max_risk": 0.98965,
+  "at_s": 7.5
+ },
+ {
+  "clip": "f44a183d-050b3b5a",
+  "max_risk": 0.98961,
+  "at_s": 14.5
+ },
+ {
+  "clip": "e7ea2d0f-3bca6494",
+  "max_risk": 0.98955,
+  "at_s": 22.0
+ },
+ {
+  "clip": "e52cdb94-38ac6cdc",
+  "max_risk": 0.98955,
+  "at_s": 20.5
+ },
+ {
+  "clip": "d20c6591-f5099773",
+  "max_risk": 0.98955,
+  "at_s": 2.5
+ },
+ {
+  "clip": "fbfcbcb9-2e40db22",
+  "max_risk": 0.98951,
+  "at_s": 27.5
+ },
+ {
+  "clip": "f010b38e-4a9b32e4",
+  "max_risk": 0.98949,
+  "at_s": 28.0
+ },
+ {
+  "clip": "d70d2836-fb65b1c2",
+  "max_risk": 0.98947,
+  "at_s": 37.5
+ },
+ {
+  "clip": "d273793b-c8ed56cf",
+  "max_risk": 0.98947,
+  "at_s": 3.0
+ },
+ {
+  "clip": "d970be77-e00fe2bc",
+  "max_risk": 0.98945,
+  "at_s": 12.0
+ },
+ {
+  "clip": "d9f50712-578871dc",
+  "max_risk": 0.98943,
+  "at_s": 20.5
+ },
+ {
+  "clip": "d131281d-1d5741b4",
+  "max_risk": 0.98941,
+  "at_s": 30.0
+ },
+ {
+  "clip": "d819b375-11e9a5bb",
+  "max_risk": 0.98931,
+  "at_s": 32.5
+ },
+ {
+  "clip": "d3d53e91-62f25121",
+  "max_risk": 0.98931,
+  "at_s": 25.0
+ },
+ {
+  "clip": "fba39e82-b99f00a2",
+  "max_risk": 0.98912,
+  "at_s": 13.5
+ },
+ {
+  "clip": "fc720e33-b4d8c98a",
+  "max_risk": 0.98908,
+  "at_s": 27.5
+ },
+ {
+  "clip": "fce6b08a-1c2c56a5",
+  "max_risk": 0.98908,
+  "at_s": 11.0
+ },
+ {
+  "clip": "fad50b32-0660d431",
+  "max_risk": 0.98906,
+  "at_s": 10.5
+ },
+ {
+  "clip": "e5f72a93-aadb89ac",
+  "max_risk": 0.98901,
+  "at_s": 37.0
+ },
+ {
+  "clip": "d2f5b905-bb6d1e9a",
+  "max_risk": 0.98899,
+  "at_s": 16.5
+ },
+ {
+  "clip": "d85f0b2d-3527d69c",
+  "max_risk": 0.98897,
+  "at_s": 2.0
+ },
+ {
+  "clip": "ce53c349-86e434ca",
+  "max_risk": 0.98893,
+  "at_s": 3.5
+ },
+ {
+  "clip": "e1258476-2e2d35df",
+  "max_risk": 0.98882,
+  "at_s": 21.0
+ },
+ {
+  "clip": "ce20f7fa-2e3d9106",
+  "max_risk": 0.98882,
+  "at_s": 21.0
+ },
+ {
+  "clip": "ee1ae8c5-d757a58c",
+  "max_risk": 0.98878,
+  "at_s": 20.5
+ },
+ {
+  "clip": "cbd12311-435e80c9",
+  "max_risk": 0.98873,
+  "at_s": 10.5
+ },
+ {
+  "clip": "cd16841e-c07027d1",
+  "max_risk": 0.98865,
+  "at_s": 27.5
+ },
+ {
+  "clip": "cad180c4-d05b49f1",
+  "max_risk": 0.9886,
+  "at_s": 29.5
+ },
+ {
+  "clip": "d4b0848d-83b6dd99",
+  "max_risk": 0.98854,
+  "at_s": 39.0
+ },
+ {
+  "clip": "e88eee83-3afb9653",
+  "max_risk": 0.98838,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e13424ea-d0ae20ea",
+  "max_risk": 0.98831,
+  "at_s": 20.0
+ },
+ {
+  "clip": "eae17284-d7715f62",
+  "max_risk": 0.98829,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e425195a-1fccbec2",
+  "max_risk": 0.98829,
+  "at_s": 6.0
+ },
+ {
+  "clip": "d82dc138-41c3b2c1",
+  "max_risk": 0.98815,
+  "at_s": 39.5
+ },
+ {
+  "clip": "d73d1caf-4f2b9740",
+  "max_risk": 0.98815,
+  "at_s": 26.5
+ },
+ {
+  "clip": "f7f1aab2-35088a41",
+  "max_risk": 0.98813,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f0773760-2988f001",
+  "max_risk": 0.98808,
+  "at_s": 8.5
+ },
+ {
+  "clip": "e0c2eb02-6ed546ac",
+  "max_risk": 0.98802,
+  "at_s": 13.0
+ },
+ {
+  "clip": "d1a0ac2a-abd5df17",
+  "max_risk": 0.98797,
+  "at_s": 38.5
+ },
+ {
+  "clip": "cb3e5d46-784f9106",
+  "max_risk": 0.98797,
+  "at_s": 8.0
+ },
+ {
+  "clip": "f072603e-0cb04f10",
+  "max_risk": 0.98795,
+  "at_s": 26.0
+ },
+ {
+  "clip": "e88fcbf8-6c6e524c",
+  "max_risk": 0.98795,
+  "at_s": 22.0
+ },
+ {
+  "clip": "cdae6e60-334ffc87",
+  "max_risk": 0.98788,
+  "at_s": 8.0
+ },
+ {
+  "clip": "eefa0763-a7067e09",
+  "max_risk": 0.98774,
+  "at_s": 36.0
+ },
+ {
+  "clip": "cb0676bb-c22aecec",
+  "max_risk": 0.98771,
+  "at_s": 3.5
+ },
+ {
+  "clip": "ea3e9497-68c48acb",
+  "max_risk": 0.98766,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d8dae3c3-2ca138f9",
+  "max_risk": 0.98766,
+  "at_s": 15.0
+ },
+ {
+  "clip": "ed160250-a3b39379",
+  "max_risk": 0.98762,
+  "at_s": 15.5
+ },
+ {
+  "clip": "db9829af-89827b2c",
+  "max_risk": 0.98757,
+  "at_s": 21.5
+ },
+ {
+  "clip": "d3317f88-837a24b1",
+  "max_risk": 0.98757,
+  "at_s": 20.0
+ },
+ {
+  "clip": "fb12e7d8-90a6d8d0",
+  "max_risk": 0.9875,
+  "at_s": 32.0
+ },
+ {
+  "clip": "fb6cddef-f00cd38e",
+  "max_risk": 0.98745,
+  "at_s": 21.5
+ },
+ {
+  "clip": "cb1294f1-fba3ff7d",
+  "max_risk": 0.9874,
+  "at_s": 33.0
+ },
+ {
+  "clip": "e0db27d1-5f2be321",
+  "max_risk": 0.98738,
+  "at_s": 7.0
+ },
+ {
+  "clip": "f262f0a0-39363bb7",
+  "max_risk": 0.98723,
+  "at_s": 35.0
+ },
+ {
+  "clip": "fa1c6995-c0b4fb04",
+  "max_risk": 0.9872,
+  "at_s": 11.0
+ },
+ {
+  "clip": "f6a8d5e7-9f273727",
+  "max_risk": 0.98715,
+  "at_s": 21.5
+ },
+ {
+  "clip": "d389c316-9bdf3e46",
+  "max_risk": 0.98708,
+  "at_s": 18.0
+ },
+ {
+  "clip": "d2f3e8c3-5efecc05",
+  "max_risk": 0.98708,
+  "at_s": 7.5
+ },
+ {
+  "clip": "f875bf12-1cbb6d3c",
+  "max_risk": 0.98708,
+  "at_s": 7.0
+ },
+ {
+  "clip": "debac8c2-8a466450",
+  "max_risk": 0.98703,
+  "at_s": 31.5
+ },
+ {
+  "clip": "d21db1b5-efdecf9d",
+  "max_risk": 0.98703,
+  "at_s": 20.5
+ },
+ {
+  "clip": "e19fbfbe-7f795ffe",
+  "max_risk": 0.987,
+  "at_s": 38.0
+ },
+ {
+  "clip": "eabb826b-b4de5ff1",
+  "max_risk": 0.98698,
+  "at_s": 37.0
+ },
+ {
+  "clip": "fb36bb12-438a86b5",
+  "max_risk": 0.98695,
+  "at_s": 29.5
+ },
+ {
+  "clip": "d59e3847-14d0c3cc",
+  "max_risk": 0.98685,
+  "at_s": 10.5
+ },
+ {
+  "clip": "e506a205-991e661f",
+  "max_risk": 0.98683,
+  "at_s": 23.0
+ },
+ {
+  "clip": "d8e42358-c5edafa1",
+  "max_risk": 0.98678,
+  "at_s": 25.5
+ },
+ {
+  "clip": "e82a909f-dd3ca785",
+  "max_risk": 0.98678,
+  "at_s": 20.5
+ },
+ {
+  "clip": "d86afd0b-8c6700fa",
+  "max_risk": 0.98673,
+  "at_s": 24.5
+ },
+ {
+  "clip": "e2158510-e3bda5e7",
+  "max_risk": 0.98667,
+  "at_s": 26.5
+ },
+ {
+  "clip": "d38d949c-de625c39",
+  "max_risk": 0.98662,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d43ecf59-88148bbe",
+  "max_risk": 0.98649,
+  "at_s": 12.5
+ },
+ {
+  "clip": "d764e361-112e59e2",
+  "max_risk": 0.98649,
+  "at_s": 11.5
+ },
+ {
+  "clip": "ee18eab3-7fd9ce17",
+  "max_risk": 0.98647,
+  "at_s": 3.0
+ },
+ {
+  "clip": "cbe73da0-11c8b8bb",
+  "max_risk": 0.98636,
+  "at_s": 25.5
+ },
+ {
+  "clip": "e0132234-2a8e71c1",
+  "max_risk": 0.98631,
+  "at_s": 10.0
+ },
+ {
+  "clip": "de875548-1e0593d5",
+  "max_risk": 0.98631,
+  "at_s": 8.5
+ },
+ {
+  "clip": "d059ce76-0c70e0be",
+  "max_risk": 0.9863,
+  "at_s": 27.5
+ },
+ {
+  "clip": "daa9d119-3cb4d109",
+  "max_risk": 0.98628,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e8b17319-f9580c9a",
+  "max_risk": 0.98628,
+  "at_s": 15.0
+ },
+ {
+  "clip": "e7d12027-b8cede9f",
+  "max_risk": 0.98612,
+  "at_s": 7.0
+ },
+ {
+  "clip": "d53a3460-37d1ab79",
+  "max_risk": 0.98612,
+  "at_s": 3.5
+ },
+ {
+  "clip": "df07359b-835ec176",
+  "max_risk": 0.98607,
+  "at_s": 15.5
+ },
+ {
+  "clip": "d0d1cb43-ba593ea3",
+  "max_risk": 0.98607,
+  "at_s": 7.5
+ },
+ {
+  "clip": "f5bee277-467a363d",
+  "max_risk": 0.98604,
+  "at_s": 22.5
+ },
+ {
+  "clip": "e23d7894-c1288925",
+  "max_risk": 0.98599,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d3eb8f7b-464d14a5",
+  "max_risk": 0.98572,
+  "at_s": 30.5
+ },
+ {
+  "clip": "decf18e7-73f631c5",
+  "max_risk": 0.98569,
+  "at_s": 11.0
+ },
+ {
+  "clip": "e3793867-6e30e987",
+  "max_risk": 0.98564,
+  "at_s": 29.5
+ },
+ {
+  "clip": "dee956b2-a4b0dd00",
+  "max_risk": 0.98564,
+  "at_s": 17.5
+ },
+ {
+  "clip": "d5a964ad-f55cce01",
+  "max_risk": 0.98564,
+  "at_s": 7.0
+ },
+ {
+  "clip": "e4d043c5-04b467b3",
+  "max_risk": 0.98561,
+  "at_s": 22.0
+ },
+ {
+  "clip": "e366074d-5a4363f7",
+  "max_risk": 0.9855,
+  "at_s": 35.0
+ },
+ {
+  "clip": "ea3770b4-a459b355",
+  "max_risk": 0.98547,
+  "at_s": 19.5
+ },
+ {
+  "clip": "d483fd6d-46122319",
+  "max_risk": 0.98536,
+  "at_s": 22.5
+ },
+ {
+  "clip": "fd6272ad-05501841",
+  "max_risk": 0.98533,
+  "at_s": 11.0
+ },
+ {
+  "clip": "f405a4c0-1b324c73",
+  "max_risk": 0.98527,
+  "at_s": 7.5
+ },
+ {
+  "clip": "ed884222-fdd7f4e6",
+  "max_risk": 0.98516,
+  "at_s": 20.0
+ },
+ {
+  "clip": "eb063ac4-33f5bf2e",
+  "max_risk": 0.98507,
+  "at_s": 16.0
+ },
+ {
+  "clip": "e955b76f-230caf5b",
+  "max_risk": 0.98493,
+  "at_s": 24.0
+ },
+ {
+  "clip": "f041b34d-aaedeb59",
+  "max_risk": 0.98484,
+  "at_s": 34.5
+ },
+ {
+  "clip": "ea08240d-738da6cc",
+  "max_risk": 0.98475,
+  "at_s": 35.0
+ },
+ {
+  "clip": "f208ae8a-188a4a35",
+  "max_risk": 0.98466,
+  "at_s": 33.5
+ },
+ {
+  "clip": "e4127fd0-30e5630c",
+  "max_risk": 0.98463,
+  "at_s": 17.5
+ },
+ {
+  "clip": "dde6fde7-d961492e",
+  "max_risk": 0.98458,
+  "at_s": 24.0
+ },
+ {
+  "clip": "d3cc2001-1cabc484",
+  "max_risk": 0.98437,
+  "at_s": 28.5
+ },
+ {
+  "clip": "e36751ae-b8240388",
+  "max_risk": 0.98434,
+  "at_s": 38.0
+ },
+ {
+  "clip": "d0fddf9c-f35e96e8",
+  "max_risk": 0.98434,
+  "at_s": 10.0
+ },
+ {
+  "clip": "ef289a50-a0d55319",
+  "max_risk": 0.98422,
+  "at_s": 19.5
+ },
+ {
+  "clip": "d69496ca-3c45f0a5",
+  "max_risk": 0.98412,
+  "at_s": 24.5
+ },
+ {
+  "clip": "d59b4d2d-9605866b",
+  "max_risk": 0.98412,
+  "at_s": 19.5
+ },
+ {
+  "clip": "f2dff522-f0a38141",
+  "max_risk": 0.98399,
+  "at_s": 17.5
+ },
+ {
+  "clip": "f3b6f256-821c20b1",
+  "max_risk": 0.98397,
+  "at_s": 7.0
+ },
+ {
+  "clip": "fbc3759e-56fec0f7",
+  "max_risk": 0.98391,
+  "at_s": 23.5
+ },
+ {
+  "clip": "ebea55ad-bd196f2b",
+  "max_risk": 0.98388,
+  "at_s": 15.0
+ },
+ {
+  "clip": "f8ea9965-da0ebeb5",
+  "max_risk": 0.98386,
+  "at_s": 20.0
+ },
+ {
+  "clip": "dee7a90d-b7a9fbea",
+  "max_risk": 0.98383,
+  "at_s": 22.0
+ },
+ {
+  "clip": "cff48f8c-388af3b4",
+  "max_risk": 0.98383,
+  "at_s": 6.0
+ },
+ {
+  "clip": "ea9b6bd2-bc51f39c",
+  "max_risk": 0.98375,
+  "at_s": 27.5
+ },
+ {
+  "clip": "e8ef2f02-a12c35cb",
+  "max_risk": 0.98371,
+  "at_s": 22.0
+ },
+ {
+  "clip": "ee85cd33-1df57994",
+  "max_risk": 0.98363,
+  "at_s": 21.5
+ },
+ {
+  "clip": "fa348354-ee6733a5",
+  "max_risk": 0.98363,
+  "at_s": 5.5
+ },
+ {
+  "clip": "dab1cfb8-a602c39f",
+  "max_risk": 0.98358,
+  "at_s": 33.5
+ },
+ {
+  "clip": "d23f98c3-a7a91607",
+  "max_risk": 0.98353,
+  "at_s": 20.0
+ },
+ {
+  "clip": "fa6f4245-85eff445",
+  "max_risk": 0.9835,
+  "at_s": 38.0
+ },
+ {
+  "clip": "fd22d3cc-a2e0e00b",
+  "max_risk": 0.98344,
+  "at_s": 40.25
+ },
+ {
+  "clip": "fb12e7d8-315315a8",
+  "max_risk": 0.98344,
+  "at_s": 4.0
+ },
+ {
+  "clip": "d876f70c-a5c077e9",
+  "max_risk": 0.98344,
+  "at_s": 4.0
+ },
+ {
+  "clip": "d93a1687-eacab06f",
+  "max_risk": 0.98339,
+  "at_s": 20.0
+ },
+ {
+  "clip": "dfe722f6-71aba375",
+  "max_risk": 0.98334,
+  "at_s": 31.5
+ },
+ {
+  "clip": "f90aef17-76d7f8a5",
+  "max_risk": 0.98333,
+  "at_s": 14.0
+ },
+ {
+  "clip": "f34aae8c-cb8856e3",
+  "max_risk": 0.98325,
+  "at_s": 21.0
+ },
+ {
+  "clip": "cebfec23-2e48260d",
+  "max_risk": 0.98318,
+  "at_s": 10.0
+ },
+ {
+  "clip": "cd89be98-5ac11972",
+  "max_risk": 0.98295,
+  "at_s": 35.5
+ },
+ {
+  "clip": "e65a9e6b-23f79c1a",
+  "max_risk": 0.98295,
+  "at_s": 3.0
+ },
+ {
+  "clip": "e0003b8b-367bea13",
+  "max_risk": 0.98292,
+  "at_s": 24.0
+ },
+ {
+  "clip": "ef39c44c-624a64eb",
+  "max_risk": 0.98284,
+  "at_s": 19.5
+ },
+ {
+  "clip": "ceb1d62d-7e8859a0",
+  "max_risk": 0.98276,
+  "at_s": 8.0
+ },
+ {
+  "clip": "ea2a38c7-ceb15a64",
+  "max_risk": 0.98272,
+  "at_s": 11.5
+ },
+ {
+  "clip": "dfc11d36-efbe27c4",
+  "max_risk": 0.98267,
+  "at_s": 38.0
+ },
+ {
+  "clip": "d83e7aa1-ffb58c08",
+  "max_risk": 0.98246,
+  "at_s": 28.0
+ },
+ {
+  "clip": "e92f012b-79cc6ca1",
+  "max_risk": 0.98239,
+  "at_s": 16.5
+ },
+ {
+  "clip": "ec9738bb-e2975f62",
+  "max_risk": 0.9823,
+  "at_s": 10.0
+ },
+ {
+  "clip": "d670766c-6af1d0d6",
+  "max_risk": 0.98217,
+  "at_s": 21.5
+ },
+ {
+  "clip": "e980ffa2-dd8b7459",
+  "max_risk": 0.98205,
+  "at_s": 17.5
+ },
+ {
+  "clip": "d4d6d0df-ae373047",
+  "max_risk": 0.98201,
+  "at_s": 28.0
+ },
+ {
+  "clip": "e6067d1e-fa87a67f",
+  "max_risk": 0.982,
+  "at_s": 35.5
+ },
+ {
+  "clip": "e3d5ada5-747e9321",
+  "max_risk": 0.98194,
+  "at_s": 31.5
+ },
+ {
+  "clip": "d766a87b-af72f724",
+  "max_risk": 0.98191,
+  "at_s": 25.5
+ },
+ {
+  "clip": "e598a5c0-0733c912",
+  "max_risk": 0.98145,
+  "at_s": 30.5
+ },
+ {
+  "clip": "d98457bb-6e42ca93",
+  "max_risk": 0.98144,
+  "at_s": 12.0
+ },
+ {
+  "clip": "fbd5779f-0d6089d5",
+  "max_risk": 0.98133,
+  "at_s": 30.5
+ },
+ {
+  "clip": "cbfc4658-93e25fbf",
+  "max_risk": 0.98113,
+  "at_s": 21.0
+ },
+ {
+  "clip": "d9cd00ad-12e3bb4a",
+  "max_risk": 0.98113,
+  "at_s": 2.5
+ },
+ {
+  "clip": "f2e625ad-ca49571f",
+  "max_risk": 0.98108,
+  "at_s": 19.0
+ },
+ {
+  "clip": "ebbdc4aa-df63135a",
+  "max_risk": 0.98099,
+  "at_s": 5.0
+ },
+ {
+  "clip": "fa76cb4f-69edeb93",
+  "max_risk": 0.98075,
+  "at_s": 37.5
+ },
+ {
+  "clip": "d91577f3-39a5c5dc",
+  "max_risk": 0.98064,
+  "at_s": 27.5
+ },
+ {
+  "clip": "d45b1962-19f5841d",
+  "max_risk": 0.98062,
+  "at_s": 22.0
+ },
+ {
+  "clip": "fcd0d22e-ba552940",
+  "max_risk": 0.98056,
+  "at_s": 9.5
+ },
+ {
+  "clip": "ea08240d-79731fdf",
+  "max_risk": 0.98052,
+  "at_s": 7.5
+ },
+ {
+  "clip": "ed881aa5-fc7c63ad",
+  "max_risk": 0.98051,
+  "at_s": 14.5
+ },
+ {
+  "clip": "fc5233bc-58b1f6fe",
+  "max_risk": 0.98047,
+  "at_s": 28.5
+ },
+ {
+  "clip": "cc32aa15-c9fc611a",
+  "max_risk": 0.98045,
+  "at_s": 17.5
+ },
+ {
+  "clip": "ea02fca6-365636ba",
+  "max_risk": 0.98039,
+  "at_s": 17.5
+ },
+ {
+  "clip": "d06e9c67-852f2724",
+  "max_risk": 0.98036,
+  "at_s": 37.5
+ },
+ {
+  "clip": "f4bb6ace-8f97785d",
+  "max_risk": 0.98036,
+  "at_s": 26.0
+ },
+ {
+  "clip": "d99950fc-9156dd42",
+  "max_risk": 0.98034,
+  "at_s": 20.5
+ },
+ {
+  "clip": "fad02535-9c38657f",
+  "max_risk": 0.98034,
+  "at_s": 10.0
+ },
+ {
+  "clip": "d1db178c-4ae662e9",
+  "max_risk": 0.9803,
+  "at_s": 21.0
+ },
+ {
+  "clip": "d52ff7ef-c64a78b0",
+  "max_risk": 0.98022,
+  "at_s": 2.5
+ },
+ {
+  "clip": "e8a4dbb0-10008671",
+  "max_risk": 0.98021,
+  "at_s": 36.0
+ },
+ {
+  "clip": "fbc7a91a-1a0afbc5",
+  "max_risk": 0.98013,
+  "at_s": 22.0
+ },
+ {
+  "clip": "e17682a1-36ee8a9f",
+  "max_risk": 0.98013,
+  "at_s": 12.0
+ },
+ {
+  "clip": "f2e22aae-c2a0ec54",
+  "max_risk": 0.98005,
+  "at_s": 21.0
+ },
+ {
+  "clip": "d6fe3907-491b3b82",
+  "max_risk": 0.9799,
+  "at_s": 5.0
+ },
+ {
+  "clip": "dc9b1eb8-2a64bc8b",
+  "max_risk": 0.97976,
+  "at_s": 15.5
+ },
+ {
+  "clip": "d29d2844-0773dba9",
+  "max_risk": 0.97971,
+  "at_s": 5.5
+ },
+ {
+  "clip": "ef468a16-4a669497",
+  "max_risk": 0.97971,
+  "at_s": 2.5
+ },
+ {
+  "clip": "ed906f72-dcd73f90",
+  "max_risk": 0.97967,
+  "at_s": 19.0
+ },
+ {
+  "clip": "ea895677-19700088",
+  "max_risk": 0.97967,
+  "at_s": 4.5
+ },
+ {
+  "clip": "d4aac1d3-9af4a7ce",
+  "max_risk": 0.97957,
+  "at_s": 21.0
+ },
+ {
+  "clip": "d76da589-21ff5ad2",
+  "max_risk": 0.97957,
+  "at_s": 16.0
+ },
+ {
+  "clip": "ce0fca60-865217aa",
+  "max_risk": 0.97929,
+  "at_s": 2.5
+ },
+ {
+  "clip": "e90fbd88-2a201107",
+  "max_risk": 0.97918,
+  "at_s": 19.0
+ },
+ {
+  "clip": "e99f27c3-fa5c785a",
+  "max_risk": 0.979,
+  "at_s": 8.0
+ },
+ {
+  "clip": "e7b664bb-2b4477a6",
+  "max_risk": 0.97892,
+  "at_s": 31.5
+ },
+ {
+  "clip": "f64c0b67-455821a2",
+  "max_risk": 0.97883,
+  "at_s": 14.5
+ },
+ {
+  "clip": "f46bd6f1-b6050d0f",
+  "max_risk": 0.97881,
+  "at_s": 20.5
+ },
+ {
+  "clip": "f9e751c4-cdba7c8c",
+  "max_risk": 0.97863,
+  "at_s": 21.5
+ },
+ {
+  "clip": "dd08b579-e16fdefc",
+  "max_risk": 0.97847,
+  "at_s": 23.0
+ },
+ {
+  "clip": "f8346d7a-5c33c44c",
+  "max_risk": 0.97826,
+  "at_s": 20.5
+ },
+ {
+  "clip": "eddce5e0-582ce3e8",
+  "max_risk": 0.97824,
+  "at_s": 33.5
+ },
+ {
+  "clip": "cc188009-c910d3c1",
+  "max_risk": 0.97822,
+  "at_s": 18.5
+ },
+ {
+  "clip": "eb023301-c9cd1411",
+  "max_risk": 0.9782,
+  "at_s": 15.5
+ },
+ {
+  "clip": "cade2084-71df1a4e",
+  "max_risk": 0.97814,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e346510e-3fce1f7f",
+  "max_risk": 0.97795,
+  "at_s": 19.5
+ },
+ {
+  "clip": "fce235bc-2523b6b1",
+  "max_risk": 0.97784,
+  "at_s": 22.0
+ },
+ {
+  "clip": "eaa6a943-b126f0b2",
+  "max_risk": 0.97782,
+  "at_s": 7.5
+ },
+ {
+  "clip": "eda4b5c2-72298b41",
+  "max_risk": 0.9778,
+  "at_s": 27.0
+ },
+ {
+  "clip": "dc0bd980-813c2f9c",
+  "max_risk": 0.97771,
+  "at_s": 37.0
+ },
+ {
+  "clip": "cb547251-ce16ab57",
+  "max_risk": 0.97765,
+  "at_s": 20.0
+ },
+ {
+  "clip": "fa82da87-fe5f2ae8",
+  "max_risk": 0.97759,
+  "at_s": 25.0
+ },
+ {
+  "clip": "fbae28e4-147b1f91",
+  "max_risk": 0.97754,
+  "at_s": 15.5
+ },
+ {
+  "clip": "e979921f-fcb76633",
+  "max_risk": 0.97737,
+  "at_s": 5.5
+ },
+ {
+  "clip": "cba826ea-b70f5b1f",
+  "max_risk": 0.97711,
+  "at_s": 18.0
+ },
+ {
+  "clip": "f1146f5e-a16ff8fb",
+  "max_risk": 0.97707,
+  "at_s": 39.0
+ },
+ {
+  "clip": "fd68cd59-3ab5a9f5",
+  "max_risk": 0.977,
+  "at_s": 24.0
+ },
+ {
+  "clip": "f55b7236-09d42995",
+  "max_risk": 0.97696,
+  "at_s": 21.0
+ },
+ {
+  "clip": "f0d34668-855db02f",
+  "max_risk": 0.97693,
+  "at_s": 31.5
+ },
+ {
+  "clip": "e3679ea3-b5e529ed",
+  "max_risk": 0.97687,
+  "at_s": 20.5
+ },
+ {
+  "clip": "f3244804-7d804f48",
+  "max_risk": 0.9768,
+  "at_s": 26.5
+ },
+ {
+  "clip": "e8edaad1-869899d8",
+  "max_risk": 0.97678,
+  "at_s": 19.0
+ },
+ {
+  "clip": "d2f3e8c3-b2fd5b2b",
+  "max_risk": 0.97676,
+  "at_s": 9.5
+ },
+ {
+  "clip": "cb32ab44-f15d148d",
+  "max_risk": 0.97671,
+  "at_s": 29.0
+ },
+ {
+  "clip": "ccb3da66-7288e775",
+  "max_risk": 0.97669,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f7c8da94-d6f8b77e",
+  "max_risk": 0.97665,
+  "at_s": 7.0
+ },
+ {
+  "clip": "e923a468-bc9ab196",
+  "max_risk": 0.97656,
+  "at_s": 38.0
+ },
+ {
+  "clip": "cf8a3784-ae491cbd",
+  "max_risk": 0.97656,
+  "at_s": 37.5
+ },
+ {
+  "clip": "ce32682a-247bf89d",
+  "max_risk": 0.97647,
+  "at_s": 20.5
+ },
+ {
+  "clip": "fcca2dae-38df2591",
+  "max_risk": 0.97638,
+  "at_s": 19.5
+ },
+ {
+  "clip": "cfa68e6c-601b1150",
+  "max_risk": 0.97627,
+  "at_s": 8.0
+ },
+ {
+  "clip": "db3e20d2-66b8e020",
+  "max_risk": 0.97617,
+  "at_s": 8.0
+ },
+ {
+  "clip": "d88bf478-0fd79220",
+  "max_risk": 0.97611,
+  "at_s": 21.5
+ },
+ {
+  "clip": "dddab2e0-4de0e12d",
+  "max_risk": 0.97606,
+  "at_s": 6.0
+ },
+ {
+  "clip": "cd5a94cf-345f214a",
+  "max_risk": 0.97599,
+  "at_s": 20.5
+ },
+ {
+  "clip": "d41c9d53-3fdc0fb9",
+  "max_risk": 0.97597,
+  "at_s": 20.5
+ },
+ {
+  "clip": "de467c20-b8547438",
+  "max_risk": 0.97597,
+  "at_s": 10.5
+ },
+ {
+  "clip": "fbcd4fdc-28ad90cc",
+  "max_risk": 0.97588,
+  "at_s": 19.5
+ },
+ {
+  "clip": "ee9d41c5-8d8373f5",
+  "max_risk": 0.97581,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d992b15b-38839ab3",
+  "max_risk": 0.97539,
+  "at_s": 7.5
+ },
+ {
+  "clip": "e11c7569-6ca8f8a5",
+  "max_risk": 0.97518,
+  "at_s": 33.5
+ },
+ {
+  "clip": "ec082206-8577a612",
+  "max_risk": 0.97511,
+  "at_s": 22.5
+ },
+ {
+  "clip": "f3066c29-25cb5ed9",
+  "max_risk": 0.97489,
+  "at_s": 10.5
+ },
+ {
+  "clip": "cce8ee4f-ed9bff06",
+  "max_risk": 0.9748,
+  "at_s": 10.0
+ },
+ {
+  "clip": "ef58f34d-2d332322",
+  "max_risk": 0.97477,
+  "at_s": 3.5
+ },
+ {
+  "clip": "f0056341-f281456c",
+  "max_risk": 0.97468,
+  "at_s": 35.5
+ },
+ {
+  "clip": "d955cf58-4bcebe8e",
+  "max_risk": 0.97456,
+  "at_s": 15.0
+ },
+ {
+  "clip": "ed1fef96-470f2c36",
+  "max_risk": 0.97443,
+  "at_s": 40.125
+ },
+ {
+  "clip": "f8c3e0db-f5a530e9",
+  "max_risk": 0.97439,
+  "at_s": 27.0
+ },
+ {
+  "clip": "e0033258-3c76a245",
+  "max_risk": 0.97439,
+  "at_s": 20.5
+ },
+ {
+  "clip": "f8d0599e-b86c0358",
+  "max_risk": 0.97429,
+  "at_s": 22.5
+ },
+ {
+  "clip": "f9258f80-dcc94bc1",
+  "max_risk": 0.97424,
+  "at_s": 8.5
+ },
+ {
+  "clip": "e30be1e0-15771e05",
+  "max_risk": 0.97417,
+  "at_s": 13.0
+ },
+ {
+  "clip": "e53ff002-bd857b8d",
+  "max_risk": 0.97397,
+  "at_s": 22.0
+ },
+ {
+  "clip": "d0bf2335-ea711599",
+  "max_risk": 0.97374,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f32390d9-4abfe411",
+  "max_risk": 0.97359,
+  "at_s": 21.0
+ },
+ {
+  "clip": "e0b2d45b-c93e243b",
+  "max_risk": 0.97337,
+  "at_s": 35.5
+ },
+ {
+  "clip": "df916371-0ea221f8",
+  "max_risk": 0.97332,
+  "at_s": 6.5
+ },
+ {
+  "clip": "e09c9fa1-66da7455",
+  "max_risk": 0.97319,
+  "at_s": 21.5
+ },
+ {
+  "clip": "de875548-e165e4f9",
+  "max_risk": 0.97316,
+  "at_s": 24.0
+ },
+ {
+  "clip": "d8b0b170-e39c98cb",
+  "max_risk": 0.97314,
+  "at_s": 39.5
+ },
+ {
+  "clip": "d795d9d8-8b894765",
+  "max_risk": 0.97309,
+  "at_s": 5.0
+ },
+ {
+  "clip": "e12d4017-cf434551",
+  "max_risk": 0.97306,
+  "at_s": 23.5
+ },
+ {
+  "clip": "ecc887ef-700b799c",
+  "max_risk": 0.97304,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d8e15519-567be90e",
+  "max_risk": 0.97291,
+  "at_s": 4.0
+ },
+ {
+  "clip": "e1c9a6ee-d3261f08",
+  "max_risk": 0.97288,
+  "at_s": 4.0
+ },
+ {
+  "clip": "e5b7af35-b816d607",
+  "max_risk": 0.9727,
+  "at_s": 25.0
+ },
+ {
+  "clip": "f897b993-344b88e1",
+  "max_risk": 0.97265,
+  "at_s": 6.0
+ },
+ {
+  "clip": "d078f730-2d6f7f4e",
+  "max_risk": 0.97249,
+  "at_s": 23.0
+ },
+ {
+  "clip": "cb408cd1-03899cff",
+  "max_risk": 0.97236,
+  "at_s": 35.5
+ },
+ {
+  "clip": "e04814a9-fba4d862",
+  "max_risk": 0.97236,
+  "at_s": 32.0
+ },
+ {
+  "clip": "f4c0540e-8ffe5e65",
+  "max_risk": 0.9721,
+  "at_s": 34.5
+ },
+ {
+  "clip": "e4a54a6d-26c346b2",
+  "max_risk": 0.97199,
+  "at_s": 17.5
+ },
+ {
+  "clip": "eb36f6b7-7896391e",
+  "max_risk": 0.97181,
+  "at_s": 9.0
+ },
+ {
+  "clip": "ef61402e-7366db3f",
+  "max_risk": 0.97146,
+  "at_s": 21.5
+ },
+ {
+  "clip": "e061e21c-bf747e2b",
+  "max_risk": 0.97143,
+  "at_s": 27.0
+ },
+ {
+  "clip": "ddb5af91-a76c668a",
+  "max_risk": 0.97121,
+  "at_s": 22.5
+ },
+ {
+  "clip": "f5b3f31e-cf8f0f07",
+  "max_risk": 0.97085,
+  "at_s": 5.5
+ },
+ {
+  "clip": "d7b8d87b-2584a391",
+  "max_risk": 0.97083,
+  "at_s": 23.5
+ },
+ {
+  "clip": "e9e6028e-17618e80",
+  "max_risk": 0.9708,
+  "at_s": 13.5
+ },
+ {
+  "clip": "ed6a97db-c14763db",
+  "max_risk": 0.97074,
+  "at_s": 13.5
+ },
+ {
+  "clip": "d9f3876d-0cb95ce8",
+  "max_risk": 0.97069,
+  "at_s": 38.0
+ },
+ {
+  "clip": "edf75929-ace81248",
+  "max_risk": 0.97063,
+  "at_s": 13.5
+ },
+ {
+  "clip": "ee78f050-0f0e8cc7",
+  "max_risk": 0.97049,
+  "at_s": 21.5
+ },
+ {
+  "clip": "d9ba93ec-0d91f628",
+  "max_risk": 0.97049,
+  "at_s": 13.0
+ },
+ {
+  "clip": "e6b63a82-82305df9",
+  "max_risk": 0.97032,
+  "at_s": 19.5
+ },
+ {
+  "clip": "e14727e1-12cc9749",
+  "max_risk": 0.97004,
+  "at_s": 28.0
+ },
+ {
+  "clip": "e0fef0d1-754a168e",
+  "max_risk": 0.96996,
+  "at_s": 26.5
+ },
+ {
+  "clip": "da9851c9-202c9976",
+  "max_risk": 0.96964,
+  "at_s": 21.5
+ },
+ {
+  "clip": "cfa87208-58375584",
+  "max_risk": 0.9695,
+  "at_s": 25.5
+ },
+ {
+  "clip": "e8d1f167-21eab816",
+  "max_risk": 0.96944,
+  "at_s": 23.0
+ },
+ {
+  "clip": "dfc69ebb-2e1ada7c",
+  "max_risk": 0.96938,
+  "at_s": 18.5
+ },
+ {
+  "clip": "dad5c376-c1e19cf8",
+  "max_risk": 0.96927,
+  "at_s": 3.0
+ },
+ {
+  "clip": "fb1323a3-e0fd8a12",
+  "max_risk": 0.969,
+  "at_s": 25.5
+ },
+ {
+  "clip": "eb1b4cc5-fea91d09",
+  "max_risk": 0.96886,
+  "at_s": 2.0
+ },
+ {
+  "clip": "d60fffab-77da82e9",
+  "max_risk": 0.96883,
+  "at_s": 35.0
+ },
+ {
+  "clip": "cdcbc2dc-6ed6e5e1",
+  "max_risk": 0.9688,
+  "at_s": 11.0
+ },
+ {
+  "clip": "f6f90595-b5a7a6d3",
+  "max_risk": 0.96877,
+  "at_s": 11.0
+ },
+ {
+  "clip": "dbd77e73-d048247d",
+  "max_risk": 0.96874,
+  "at_s": 34.0
+ },
+ {
+  "clip": "f936cf91-62106e09",
+  "max_risk": 0.96865,
+  "at_s": 6.5
+ },
+ {
+  "clip": "ecb7bb2c-917d31af",
+  "max_risk": 0.96826,
+  "at_s": 12.5
+ },
+ {
+  "clip": "e5d3260d-88c792d7",
+  "max_risk": 0.96823,
+  "at_s": 20.5
+ },
+ {
+  "clip": "e11c7569-a53b3048",
+  "max_risk": 0.96744,
+  "at_s": 19.0
+ },
+ {
+  "clip": "d095d925-76e6fa09",
+  "max_risk": 0.96741,
+  "at_s": 2.5
+ },
+ {
+  "clip": "f02682be-b68ed393",
+  "max_risk": 0.96691,
+  "at_s": 13.5
+ },
+ {
+  "clip": "ef75d9e8-1d947d5b",
+  "max_risk": 0.96663,
+  "at_s": 39.0
+ },
+ {
+  "clip": "ddb9660e-404bae69",
+  "max_risk": 0.96651,
+  "at_s": 2.5
+ },
+ {
+  "clip": "f64e57fe-744744b0",
+  "max_risk": 0.96644,
+  "at_s": 25.5
+ },
+ {
+  "clip": "e617c033-efa5a247",
+  "max_risk": 0.96625,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e032c82b-91290a06",
+  "max_risk": 0.96606,
+  "at_s": 40.375
+ },
+ {
+  "clip": "cfa901b4-db6e1ca8",
+  "max_risk": 0.96558,
+  "at_s": 12.0
+ },
+ {
+  "clip": "f7393059-c5d1ffae",
+  "max_risk": 0.96532,
+  "at_s": 17.5
+ },
+ {
+  "clip": "f572f2f3-14345fdd",
+  "max_risk": 0.96525,
+  "at_s": 5.5
+ },
+ {
+  "clip": "ce3e6a6b-fda95439",
+  "max_risk": 0.96518,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f37e8df0-ba312de3",
+  "max_risk": 0.96518,
+  "at_s": 19.0
+ },
+ {
+  "clip": "e942a3ac-6fe1be3e",
+  "max_risk": 0.96509,
+  "at_s": 25.0
+ },
+ {
+  "clip": "d3cd5b65-ae909838",
+  "max_risk": 0.96499,
+  "at_s": 16.5
+ },
+ {
+  "clip": "dabbe0ea-9a4491cb",
+  "max_risk": 0.96476,
+  "at_s": 24.5
+ },
+ {
+  "clip": "fd576317-45078418",
+  "max_risk": 0.96449,
+  "at_s": 13.0
+ },
+ {
+  "clip": "d18b46cf-e55ce7da",
+  "max_risk": 0.96442,
+  "at_s": 27.5
+ },
+ {
+  "clip": "fbbe1f4c-72d0d61e",
+  "max_risk": 0.96435,
+  "at_s": 18.0
+ },
+ {
+  "clip": "db6b1b2f-eb551b1f",
+  "max_risk": 0.96425,
+  "at_s": 25.5
+ },
+ {
+  "clip": "da21a2e5-be1fbcad",
+  "max_risk": 0.96419,
+  "at_s": 28.5
+ },
+ {
+  "clip": "cfba56eb-42ff59db",
+  "max_risk": 0.96419,
+  "at_s": 3.5
+ },
+ {
+  "clip": "f4fd5037-00992f21",
+  "max_risk": 0.96409,
+  "at_s": 13.0
+ },
+ {
+  "clip": "f6e0f500-fe24bb23",
+  "max_risk": 0.96388,
+  "at_s": 18.0
+ },
+ {
+  "clip": "f7e5e564-6a4fad8d",
+  "max_risk": 0.96371,
+  "at_s": 22.5
+ },
+ {
+  "clip": "e342c025-10034b75",
+  "max_risk": 0.96302,
+  "at_s": 14.0
+ },
+ {
+  "clip": "cfe1046f-9fc19d13",
+  "max_risk": 0.96281,
+  "at_s": 4.0
+ },
+ {
+  "clip": "f38253c0-ca57a148",
+  "max_risk": 0.9625,
+  "at_s": 18.5
+ },
+ {
+  "clip": "ed6bf160-d81912dd",
+  "max_risk": 0.9625,
+  "at_s": 15.0
+ },
+ {
+  "clip": "ee3ce4fc-af35e2c6",
+  "max_risk": 0.96196,
+  "at_s": 3.0
+ },
+ {
+  "clip": "fb12e7d8-9d8a4af2",
+  "max_risk": 0.96161,
+  "at_s": 3.0
+ },
+ {
+  "clip": "eb41a667-1f8aef9a",
+  "max_risk": 0.9615,
+  "at_s": 2.5
+ },
+ {
+  "clip": "e4bdba69-732128ef",
+  "max_risk": 0.96121,
+  "at_s": 13.0
+ },
+ {
+  "clip": "df024f70-26459c9b",
+  "max_risk": 0.96117,
+  "at_s": 3.0
+ },
+ {
+  "clip": "f57191b8-2f40a397",
+  "max_risk": 0.9611,
+  "at_s": 19.5
+ },
+ {
+  "clip": "d649b46f-6ed39520",
+  "max_risk": 0.96102,
+  "at_s": 28.0
+ },
+ {
+  "clip": "f32722a1-440bf5f3",
+  "max_risk": 0.96099,
+  "at_s": 36.0
+ },
+ {
+  "clip": "eb8682a9-da6c2d78",
+  "max_risk": 0.96092,
+  "at_s": 23.5
+ },
+ {
+  "clip": "e5ac8a86-a0cdf72f",
+  "max_risk": 0.96092,
+  "at_s": 20.0
+ },
+ {
+  "clip": "dbf26783-91aadb21",
+  "max_risk": 0.96073,
+  "at_s": 23.5
+ },
+ {
+  "clip": "da01d159-5b664315",
+  "max_risk": 0.96029,
+  "at_s": 13.5
+ },
+ {
+  "clip": "ee3ce4fc-e6067359",
+  "max_risk": 0.96021,
+  "at_s": 17.5
+ },
+ {
+  "clip": "e651912d-33a50c8d",
+  "max_risk": 0.96014,
+  "at_s": 36.5
+ },
+ {
+  "clip": "f31fe3ce-903b43e6",
+  "max_risk": 0.96006,
+  "at_s": 10.0
+ },
+ {
+  "clip": "dab0f60a-a84e569c",
+  "max_risk": 0.95999,
+  "at_s": 22.5
+ },
+ {
+  "clip": "ef5cfdd9-0ed1724b",
+  "max_risk": 0.95984,
+  "at_s": 7.5
+ },
+ {
+  "clip": "db04ff36-29aee725",
+  "max_risk": 0.95972,
+  "at_s": 5.5
+ },
+ {
+  "clip": "ed7cb8a0-34c77638",
+  "max_risk": 0.95957,
+  "at_s": 35.0
+ },
+ {
+  "clip": "d46f417b-4e740c8b",
+  "max_risk": 0.95896,
+  "at_s": 6.0
+ },
+ {
+  "clip": "fc528386-d4f3929b",
+  "max_risk": 0.95892,
+  "at_s": 10.5
+ },
+ {
+  "clip": "f0e03837-03907a96",
+  "max_risk": 0.95842,
+  "at_s": 10.5
+ },
+ {
+  "clip": "e7954e0c-ef59ed01",
+  "max_risk": 0.95838,
+  "at_s": 10.5
+ },
+ {
+  "clip": "fc528386-cd98cc60",
+  "max_risk": 0.9583,
+  "at_s": 25.0
+ },
+ {
+  "clip": "ef15e015-bb90c28e",
+  "max_risk": 0.95827,
+  "at_s": 21.5
+ },
+ {
+  "clip": "f1632035-bcced8b9",
+  "max_risk": 0.95827,
+  "at_s": 18.0
+ },
+ {
+  "clip": "d6bfb1d7-c19ff1cf",
+  "max_risk": 0.95803,
+  "at_s": 15.0
+ },
+ {
+  "clip": "dd7132ab-06fe5d97",
+  "max_risk": 0.95799,
+  "at_s": 33.5
+ },
+ {
+  "clip": "df3cf9fa-2a357eb1",
+  "max_risk": 0.95779,
+  "at_s": 29.5
+ },
+ {
+  "clip": "f0056341-93ea5b4e",
+  "max_risk": 0.95764,
+  "at_s": 20.0
+ },
+ {
+  "clip": "cd828461-e7eeaf07",
+  "max_risk": 0.95764,
+  "at_s": 13.0
+ },
+ {
+  "clip": "edd85428-c0e3ca6f",
+  "max_risk": 0.95756,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d2331b26-3098d692",
+  "max_risk": 0.95736,
+  "at_s": 5.5
+ },
+ {
+  "clip": "eb7459b0-c6ccebc0",
+  "max_risk": 0.95708,
+  "at_s": 35.0
+ },
+ {
+  "clip": "eaa78bd4-eb108804",
+  "max_risk": 0.95647,
+  "at_s": 14.0
+ },
+ {
+  "clip": "d0a961fd-1f7335b5",
+  "max_risk": 0.95623,
+  "at_s": 12.0
+ },
+ {
+  "clip": "dc2ab2b6-88fb9f49",
+  "max_risk": 0.95606,
+  "at_s": 21.0
+ },
+ {
+  "clip": "cfba56eb-dca9e4e9",
+  "max_risk": 0.95594,
+  "at_s": 28.5
+ },
+ {
+  "clip": "d4657116-902d2d55",
+  "max_risk": 0.95578,
+  "at_s": 21.5
+ },
+ {
+  "clip": "cba59791-174972fb",
+  "max_risk": 0.95532,
+  "at_s": 4.0
+ },
+ {
+  "clip": "f0a5f526-6709a722",
+  "max_risk": 0.95482,
+  "at_s": 39.0
+ },
+ {
+  "clip": "fd17e462-9baa6ea9",
+  "max_risk": 0.95397,
+  "at_s": 16.5
+ },
+ {
+  "clip": "edd796d7-44462bfd",
+  "max_risk": 0.95388,
+  "at_s": 16.0
+ },
+ {
+  "clip": "db55c4fe-d89a15b6",
+  "max_risk": 0.95371,
+  "at_s": 11.0
+ },
+ {
+  "clip": "db39db50-2ef6680a",
+  "max_risk": 0.95293,
+  "at_s": 27.5
+ },
+ {
+  "clip": "cb063b6c-158d56f6",
+  "max_risk": 0.95137,
+  "at_s": 8.0
+ },
+ {
+  "clip": "d29052d3-7185f8d5",
+  "max_risk": 0.95105,
+  "at_s": 7.5
+ },
+ {
+  "clip": "fd68cd59-550747c5",
+  "max_risk": 0.95101,
+  "at_s": 9.0
+ },
+ {
+  "clip": "e9032704-2783083d",
+  "max_risk": 0.95091,
+  "at_s": 38.5
+ },
+ {
+  "clip": "df7da714-80d8d5b3",
+  "max_risk": 0.95073,
+  "at_s": 4.5
+ },
+ {
+  "clip": "f5a83d81-cbf195d3",
+  "max_risk": 0.9505,
+  "at_s": 29.0
+ },
+ {
+  "clip": "cadfb2fe-f43878a3",
+  "max_risk": 0.95046,
+  "at_s": 13.5
+ },
+ {
+  "clip": "f93b3ce8-5c867248",
+  "max_risk": 0.95041,
+  "at_s": 19.5
+ },
+ {
+  "clip": "d9cf3989-4b024f57",
+  "max_risk": 0.94934,
+  "at_s": 4.5
+ },
+ {
+  "clip": "d53118d2-edda8e8e",
+  "max_risk": 0.94915,
+  "at_s": 20.5
+ },
+ {
+  "clip": "dce8dd14-2a3fde00",
+  "max_risk": 0.94892,
+  "at_s": 6.0
+ },
+ {
+  "clip": "cc79bd30-027662c7",
+  "max_risk": 0.94887,
+  "at_s": 11.5
+ },
+ {
+  "clip": "ec1e0b6c-0c0835df",
+  "max_risk": 0.94854,
+  "at_s": 13.0
+ },
+ {
+  "clip": "d185bdda-9706533c",
+  "max_risk": 0.94849,
+  "at_s": 8.0
+ },
+ {
+  "clip": "f2b659fc-071d2bbc",
+  "max_risk": 0.94815,
+  "at_s": 23.0
+ },
+ {
+  "clip": "cdefb026-a5b006c2",
+  "max_risk": 0.94753,
+  "at_s": 6.5
+ },
+ {
+  "clip": "f428a343-47ab665c",
+  "max_risk": 0.94728,
+  "at_s": 2.0
+ },
+ {
+  "clip": "cec45966-50edbd1e",
+  "max_risk": 0.94704,
+  "at_s": 6.0
+ },
+ {
+  "clip": "e3f63ed3-2ff72c58",
+  "max_risk": 0.94694,
+  "at_s": 18.5
+ },
+ {
+  "clip": "d49af90b-a3552daf",
+  "max_risk": 0.94689,
+  "at_s": 10.5
+ },
+ {
+  "clip": "f8cf7e2a-5064577d",
+  "max_risk": 0.94684,
+  "at_s": 6.5
+ },
+ {
+  "clip": "d306eadc-3558d2c9",
+  "max_risk": 0.94635,
+  "at_s": 35.5
+ },
+ {
+  "clip": "fa82da87-77a13b02",
+  "max_risk": 0.94605,
+  "at_s": 14.5
+ },
+ {
+  "clip": "d9c19a75-8d126449",
+  "max_risk": 0.94585,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f78ed2bf-53aa0096",
+  "max_risk": 0.9455,
+  "at_s": 34.0
+ },
+ {
+  "clip": "d62a2906-434b143e",
+  "max_risk": 0.94545,
+  "at_s": 6.5
+ },
+ {
+  "clip": "cc12dd7f-15268c57",
+  "max_risk": 0.9454,
+  "at_s": 19.5
+ },
+ {
+  "clip": "fa67d486-d319137d",
+  "max_risk": 0.94525,
+  "at_s": 8.0
+ },
+ {
+  "clip": "f1c71754-f2070fa0",
+  "max_risk": 0.9452,
+  "at_s": 13.0
+ },
+ {
+  "clip": "d31b2b60-55e8f979",
+  "max_risk": 0.94499,
+  "at_s": 29.5
+ },
+ {
+  "clip": "e811391d-a4735dd1",
+  "max_risk": 0.94448,
+  "at_s": 32.0
+ },
+ {
+  "clip": "fc2ea3f4-532fbefb",
+  "max_risk": 0.94428,
+  "at_s": 21.5
+ },
+ {
+  "clip": "fb7315d0-f79882fa",
+  "max_risk": 0.94402,
+  "at_s": 21.5
+ },
+ {
+  "clip": "e0f7f853-e91a200f",
+  "max_risk": 0.94382,
+  "at_s": 13.0
+ },
+ {
+  "clip": "eeca6b19-939eb5cc",
+  "max_risk": 0.94376,
+  "at_s": 27.5
+ },
+ {
+  "clip": "dc54cf60-ff6f9c1d",
+  "max_risk": 0.94293,
+  "at_s": 22.0
+ },
+ {
+  "clip": "d14ec80d-bad3bc9c",
+  "max_risk": 0.94277,
+  "at_s": 19.0
+ },
+ {
+  "clip": "e52cdb94-cffac4cf",
+  "max_risk": 0.94235,
+  "at_s": 20.0
+ },
+ {
+  "clip": "fc8f5b5c-42190f6a",
+  "max_risk": 0.94208,
+  "at_s": 19.0
+ },
+ {
+  "clip": "e8fba4ab-2783ab6d",
+  "max_risk": 0.94187,
+  "at_s": 23.0
+ },
+ {
+  "clip": "d3ea0fd5-a1a51078",
+  "max_risk": 0.94122,
+  "at_s": 21.0
+ },
+ {
+  "clip": "e5fde33e-21bc3aa3",
+  "max_risk": 0.94074,
+  "at_s": 3.5
+ },
+ {
+  "clip": "e6f4b47a-2b2cc22c",
+  "max_risk": 0.94035,
+  "at_s": 20.5
+ },
+ {
+  "clip": "ecbd3032-766fd6b5",
+  "max_risk": 0.94019,
+  "at_s": 32.0
+ },
+ {
+  "clip": "f2835d81-aba30afd",
+  "max_risk": 0.93991,
+  "at_s": 13.5
+ },
+ {
+  "clip": "e79e8e92-b68f5566",
+  "max_risk": 0.93953,
+  "at_s": 21.5
+ },
+ {
+  "clip": "cfd44479-d67c778c",
+  "max_risk": 0.93897,
+  "at_s": 31.5
+ },
+ {
+  "clip": "f69f3549-a0b8c28e",
+  "max_risk": 0.93886,
+  "at_s": 10.0
+ },
+ {
+  "clip": "f53afc66-73586f8a",
+  "max_risk": 0.93858,
+  "at_s": 8.5
+ },
+ {
+  "clip": "dde6fde7-3c7586e2",
+  "max_risk": 0.93846,
+  "at_s": 24.5
+ },
+ {
+  "clip": "d63e1966-52503104",
+  "max_risk": 0.93801,
+  "at_s": 27.5
+ },
+ {
+  "clip": "e8d3754d-c90999bc",
+  "max_risk": 0.9375,
+  "at_s": 28.0
+ },
+ {
+  "clip": "e7402a6a-e9a37877",
+  "max_risk": 0.93721,
+  "at_s": 6.0
+ },
+ {
+  "clip": "de937549-66fd6370",
+  "max_risk": 0.93681,
+  "at_s": 20.0
+ },
+ {
+  "clip": "cff9aa3c-13d9bb96",
+  "max_risk": 0.93646,
+  "at_s": 27.0
+ },
+ {
+  "clip": "f1f44e2b-fd9b461c",
+  "max_risk": 0.93634,
+  "at_s": 3.0
+ },
+ {
+  "clip": "f4cfb17b-f7af7f0c",
+  "max_risk": 0.93599,
+  "at_s": 8.0
+ },
+ {
+  "clip": "d00f2e49-005694c0",
+  "max_risk": 0.93475,
+  "at_s": 9.0
+ },
+ {
+  "clip": "edd1ad57-9e32957a",
+  "max_risk": 0.93463,
+  "at_s": 14.5
+ },
+ {
+  "clip": "fa780818-2173d894",
+  "max_risk": 0.93361,
+  "at_s": 22.0
+ },
+ {
+  "clip": "f8961219-003d1373",
+  "max_risk": 0.93331,
+  "at_s": 6.5
+ },
+ {
+  "clip": "d3bac44e-e8e3e956",
+  "max_risk": 0.93313,
+  "at_s": 29.0
+ },
+ {
+  "clip": "e32fef58-30ef1bec",
+  "max_risk": 0.93282,
+  "at_s": 21.5
+ },
+ {
+  "clip": "cf9acfda-205d615f",
+  "max_risk": 0.93245,
+  "at_s": 8.5
+ },
+ {
+  "clip": "f6a4c050-9d0e577a",
+  "max_risk": 0.93202,
+  "at_s": 14.5
+ },
+ {
+  "clip": "dd1ee5e5-19a6262d",
+  "max_risk": 0.93058,
+  "at_s": 16.0
+ },
+ {
+  "clip": "de8dd3d8-2b26e396",
+  "max_risk": 0.93046,
+  "at_s": 12.5
+ },
+ {
+  "clip": "f1bc0365-66c9d3ee",
+  "max_risk": 0.93008,
+  "at_s": 19.5
+ },
+ {
+  "clip": "f6afd6ba-8c30328e",
+  "max_risk": 0.93001,
+  "at_s": 12.5
+ },
+ {
+  "clip": "dccd43d6-de4eaf01",
+  "max_risk": 0.92957,
+  "at_s": 17.5
+ },
+ {
+  "clip": "d5f1e85e-5b9386de",
+  "max_risk": 0.92931,
+  "at_s": 31.5
+ },
+ {
+  "clip": "cf3e60d2-8144c9aa",
+  "max_risk": 0.92918,
+  "at_s": 22.5
+ },
+ {
+  "clip": "dcc955a4-01f2e5ad",
+  "max_risk": 0.92873,
+  "at_s": 29.5
+ },
+ {
+  "clip": "dd6b4c7f-413ed9c2",
+  "max_risk": 0.92847,
+  "at_s": 39.0
+ },
+ {
+  "clip": "d7c206cf-aef1ff5a",
+  "max_risk": 0.92847,
+  "at_s": 30.0
+ },
+ {
+  "clip": "f12c0edb-5897b7a8",
+  "max_risk": 0.92815,
+  "at_s": 31.0
+ },
+ {
+  "clip": "cfba56eb-29d39a60",
+  "max_risk": 0.92749,
+  "at_s": 10.0
+ },
+ {
+  "clip": "eb4db3cf-f01fa529",
+  "max_risk": 0.92743,
+  "at_s": 11.5
+ },
+ {
+  "clip": "eed71422-e11b81f5",
+  "max_risk": 0.92736,
+  "at_s": 27.5
+ },
+ {
+  "clip": "ecab9145-24c08f54",
+  "max_risk": 0.9269,
+  "at_s": 8.0
+ },
+ {
+  "clip": "cf917d34-acba0c6f",
+  "max_risk": 0.92644,
+  "at_s": 20.5
+ },
+ {
+  "clip": "d5a87ecf-1bd573e2",
+  "max_risk": 0.92604,
+  "at_s": 21.0
+ },
+ {
+  "clip": "fb119376-99d58be7",
+  "max_risk": 0.92597,
+  "at_s": 40.0
+ },
+ {
+  "clip": "ef45ccf6-024f05fa",
+  "max_risk": 0.92563,
+  "at_s": 14.0
+ },
+ {
+  "clip": "f37474b3-9e52706a",
+  "max_risk": 0.92516,
+  "at_s": 19.5
+ },
+ {
+  "clip": "d1f86887-db47a32d",
+  "max_risk": 0.92352,
+  "at_s": 10.0
+ },
+ {
+  "clip": "d1ef88b1-debb3c5a",
+  "max_risk": 0.92311,
+  "at_s": 19.5
+ },
+ {
+  "clip": "fc765f57-c9ab735c",
+  "max_risk": 0.92297,
+  "at_s": 28.0
+ },
+ {
+  "clip": "daca67b3-baee6c1a",
+  "max_risk": 0.9229,
+  "at_s": 40.125
+ },
+ {
+  "clip": "d775e570-81da44f0",
+  "max_risk": 0.92255,
+  "at_s": 27.5
+ },
+ {
+  "clip": "ecb710ec-3ce2f9a5",
+  "max_risk": 0.92227,
+  "at_s": 6.0
+ },
+ {
+  "clip": "ecfdceb0-d20024db",
+  "max_risk": 0.92192,
+  "at_s": 17.0
+ },
+ {
+  "clip": "d867a339-0ddbd422",
+  "max_risk": 0.92178,
+  "at_s": 16.0
+ },
+ {
+  "clip": "d5f03fe7-acc77bd2",
+  "max_risk": 0.92171,
+  "at_s": 15.0
+ },
+ {
+  "clip": "ce74f994-67d25782",
+  "max_risk": 0.92143,
+  "at_s": 10.0
+ },
+ {
+  "clip": "eddd7289-3131edbb",
+  "max_risk": 0.92093,
+  "at_s": 17.5
+ },
+ {
+  "clip": "d6bf9e05-011a5d9f",
+  "max_risk": 0.92086,
+  "at_s": 20.0
+ },
+ {
+  "clip": "eded941c-e6674564",
+  "max_risk": 0.9205,
+  "at_s": 29.5
+ },
+ {
+  "clip": "ce6f689f-0d42eb29",
+  "max_risk": 0.92029,
+  "at_s": 14.0
+ },
+ {
+  "clip": "f368b915-166071c5",
+  "max_risk": 0.92022,
+  "at_s": 31.0
+ },
+ {
+  "clip": "df739c81-8f80097d",
+  "max_risk": 0.92015,
+  "at_s": 32.0
+ },
+ {
+  "clip": "d088ceda-16556b82",
+  "max_risk": 0.91993,
+  "at_s": 4.0
+ },
+ {
+  "clip": "ea1f2a40-782e9b81",
+  "max_risk": 0.91986,
+  "at_s": 17.5
+ },
+ {
+  "clip": "ee9360c5-34bdde6a",
+  "max_risk": 0.91855,
+  "at_s": 39.5
+ },
+ {
+  "clip": "db39141d-71814903",
+  "max_risk": 0.91855,
+  "at_s": 38.0
+ },
+ {
+  "clip": "d70cef90-d83d027d",
+  "max_risk": 0.91811,
+  "at_s": 20.5
+ },
+ {
+  "clip": "eae1650e-a80c7845",
+  "max_risk": 0.91782,
+  "at_s": 15.5
+ },
+ {
+  "clip": "d312e1bf-53cd09cc",
+  "max_risk": 0.91775,
+  "at_s": 20.5
+ },
+ {
+  "clip": "f09fe037-c6b9b5b9",
+  "max_risk": 0.91641,
+  "at_s": 3.5
+ },
+ {
+  "clip": "fb96a9a2-7b4095d4",
+  "max_risk": 0.91633,
+  "at_s": 37.0
+ },
+ {
+  "clip": "dc764c09-98331b90",
+  "max_risk": 0.91581,
+  "at_s": 21.0
+ },
+ {
+  "clip": "f80444c6-30c6cec1",
+  "max_risk": 0.91551,
+  "at_s": 8.5
+ },
+ {
+  "clip": "ec6f6106-6580c778",
+  "max_risk": 0.91543,
+  "at_s": 12.0
+ },
+ {
+  "clip": "f150d359-f1a58fd7",
+  "max_risk": 0.91513,
+  "at_s": 24.0
+ },
+ {
+  "clip": "e5702ae4-754312e0",
+  "max_risk": 0.91513,
+  "at_s": 2.5
+ },
+ {
+  "clip": "f5860cb5-be64073b",
+  "max_risk": 0.91498,
+  "at_s": 18.5
+ },
+ {
+  "clip": "d1095424-955f3d14",
+  "max_risk": 0.91398,
+  "at_s": 17.0
+ },
+ {
+  "clip": "f9b78c98-4348e4e1",
+  "max_risk": 0.91298,
+  "at_s": 12.0
+ },
+ {
+  "clip": "fcdb0995-39902da3",
+  "max_risk": 0.91267,
+  "at_s": 22.0
+ },
+ {
+  "clip": "fa704172-0b888692",
+  "max_risk": 0.91259,
+  "at_s": 12.5
+ },
+ {
+  "clip": "e7fde1db-35ef2983",
+  "max_risk": 0.91047,
+  "at_s": 16.5
+ },
+ {
+  "clip": "e7ad0111-58c33b55",
+  "max_risk": 0.90926,
+  "at_s": 12.5
+ },
+ {
+  "clip": "e665462c-d2e21176",
+  "max_risk": 0.90902,
+  "at_s": 19.5
+ },
+ {
+  "clip": "f05e5915-66013881",
+  "max_risk": 0.90878,
+  "at_s": 40.125
+ },
+ {
+  "clip": "e40df1e6-3cfd9d02",
+  "max_risk": 0.90846,
+  "at_s": 20.0
+ },
+ {
+  "clip": "ccb9e408-e2281189",
+  "max_risk": 0.90809,
+  "at_s": 15.0
+ },
+ {
+  "clip": "e1345788-dd3a8f87",
+  "max_risk": 0.90756,
+  "at_s": 17.5
+ },
+ {
+  "clip": "fcb81340-e2b8a771",
+  "max_risk": 0.90756,
+  "at_s": 13.5
+ },
+ {
+  "clip": "e71d32c5-eb762c49",
+  "max_risk": 0.90748,
+  "at_s": 2.5
+ },
+ {
+  "clip": "cee33ec4-46f3d625",
+  "max_risk": 0.90665,
+  "at_s": 22.5
+ },
+ {
+  "clip": "cdaee377-2b38ae2c",
+  "max_risk": 0.90448,
+  "at_s": 4.0
+ },
+ {
+  "clip": "eef00887-39ea4fea",
+  "max_risk": 0.90423,
+  "at_s": 15.5
+ },
+ {
+  "clip": "d40354b1-dfeb7a0b",
+  "max_risk": 0.90397,
+  "at_s": 9.0
+ },
+ {
+  "clip": "ccece5b4-22291259",
+  "max_risk": 0.9038,
+  "at_s": 38.5
+ },
+ {
+  "clip": "f22b24e3-19eef558",
+  "max_risk": 0.90346,
+  "at_s": 24.5
+ },
+ {
+  "clip": "f1edfa9d-b3673975",
+  "max_risk": 0.90329,
+  "at_s": 22.5
+ },
+ {
+  "clip": "d3352e23-c9c21734",
+  "max_risk": 0.90312,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f6b7656b-022b9f40",
+  "max_risk": 0.90175,
+  "at_s": 19.0
+ },
+ {
+  "clip": "d9cc5ae2-faa435ab",
+  "max_risk": 0.9014,
+  "at_s": 15.0
+ },
+ {
+  "clip": "d8471819-ceac000e",
+  "max_risk": 0.90035,
+  "at_s": 7.5
+ },
+ {
+  "clip": "de1f863a-50c972ab",
+  "max_risk": 0.89992,
+  "at_s": 19.5
+ },
+ {
+  "clip": "cfcbcf90-7f9c6a78",
+  "max_risk": 0.89992,
+  "at_s": 19.5
+ },
+ {
+  "clip": "f08c5434-e877122a",
+  "max_risk": 0.8981,
+  "at_s": 22.0
+ },
+ {
+  "clip": "fbae28e4-9177373e",
+  "max_risk": 0.89698,
+  "at_s": 29.0
+ },
+ {
+  "clip": "d4352b0e-56a3b6f3",
+  "max_risk": 0.89689,
+  "at_s": 20.5
+ },
+ {
+  "clip": "e9c22c82-5eb23cc6",
+  "max_risk": 0.8967,
+  "at_s": 2.5
+ },
+ {
+  "clip": "e1b84e11-17bee6b3",
+  "max_risk": 0.89557,
+  "at_s": 29.0
+ },
+ {
+  "clip": "cbdc7b52-0b848407",
+  "max_risk": 0.89516,
+  "at_s": 21.5
+ },
+ {
+  "clip": "e02f2f0f-e3323f3b",
+  "max_risk": 0.89479,
+  "at_s": 39.0
+ },
+ {
+  "clip": "f0600889-777c7dbc",
+  "max_risk": 0.89433,
+  "at_s": 19.0
+ },
+ {
+  "clip": "ee83c9d1-c46809ce",
+  "max_risk": 0.89377,
+  "at_s": 21.0
+ },
+ {
+  "clip": "ef20d594-ea1a4c99",
+  "max_risk": 0.89368,
+  "at_s": 7.5
+ },
+ {
+  "clip": "dd2b674e-f24b4bd7",
+  "max_risk": 0.89284,
+  "at_s": 18.0
+ },
+ {
+  "clip": "ee95d039-aa178dc7",
+  "max_risk": 0.89167,
+  "at_s": 3.5
+ },
+ {
+  "clip": "cfff6327-82940b2b",
+  "max_risk": 0.89077,
+  "at_s": 14.5
+ },
+ {
+  "clip": "dd45ebca-f430c5fa",
+  "max_risk": 0.89039,
+  "at_s": 15.0
+ },
+ {
+  "clip": "dcabd8e7-889d1cb0",
+  "max_risk": 0.88953,
+  "at_s": 17.0
+ },
+ {
+  "clip": "d3a4c21e-fc94eb46",
+  "max_risk": 0.88876,
+  "at_s": 8.0
+ },
+ {
+  "clip": "d61db1bd-687fe350",
+  "max_risk": 0.88764,
+  "at_s": 10.0
+ },
+ {
+  "clip": "cf09b696-c011ebeb",
+  "max_risk": 0.8872,
+  "at_s": 19.5
+ },
+ {
+  "clip": "e4d11da0-738ebb9f",
+  "max_risk": 0.88469,
+  "at_s": 13.0
+ },
+ {
+  "clip": "ee9a687e-32b9bd51",
+  "max_risk": 0.88424,
+  "at_s": 8.5
+ },
+ {
+  "clip": "e252132f-6c6e6df0",
+  "max_risk": 0.88161,
+  "at_s": 10.0
+ },
+ {
+  "clip": "ded0c0e7-d0b6a516",
+  "max_risk": 0.8811,
+  "at_s": 24.5
+ },
+ {
+  "clip": "efc0446a-47565c15",
+  "max_risk": 0.88018,
+  "at_s": 19.5
+ },
+ {
+  "clip": "f90e1792-6dd6903d",
+  "max_risk": 0.88013,
+  "at_s": 7.0
+ },
+ {
+  "clip": "dacb1879-37b37a13",
+  "max_risk": 0.87982,
+  "at_s": 20.0
+ },
+ {
+  "clip": "fc300fa1-bcf2750e",
+  "max_risk": 0.8793,
+  "at_s": 18.0
+ },
+ {
+  "clip": "e8d4bb5e-69c522aa",
+  "max_risk": 0.87878,
+  "at_s": 12.0
+ },
+ {
+  "clip": "d777793b-db55b4fb",
+  "max_risk": 0.87642,
+  "at_s": 17.0
+ },
+ {
+  "clip": "e70380d3-bc1829ec",
+  "max_risk": 0.87616,
+  "at_s": 16.5
+ },
+ {
+  "clip": "f1f2fbfc-62143536",
+  "max_risk": 0.86966,
+  "at_s": 34.0
+ },
+ {
+  "clip": "eabbdd7a-b713b0ee",
+  "max_risk": 0.86754,
+  "at_s": 4.5
+ },
+ {
+  "clip": "f461a17e-ac4d715d",
+  "max_risk": 0.86471,
+  "at_s": 5.0
+ },
+ {
+  "clip": "dbee4308-12b0008e",
+  "max_risk": 0.86425,
+  "at_s": 8.0
+ },
+ {
+  "clip": "f1a70b34-b3fe8be5",
+  "max_risk": 0.86258,
+  "at_s": 20.125
+ },
+ {
+  "clip": "d86bbd90-10060e61",
+  "max_risk": 0.86195,
+  "at_s": 27.5
+ },
+ {
+  "clip": "f5f47857-6a05e29c",
+  "max_risk": 0.86136,
+  "at_s": 4.5
+ },
+ {
+  "clip": "f48f197c-378d9605",
+  "max_risk": 0.86078,
+  "at_s": 18.5
+ },
+ {
+  "clip": "df6b3158-a17cf457",
+  "max_risk": 0.86013,
+  "at_s": 21.5
+ },
+ {
+  "clip": "ef45ccf6-c7d4537b",
+  "max_risk": 0.85955,
+  "at_s": 22.0
+ },
+ {
+  "clip": "d4efd04f-f4640569",
+  "max_risk": 0.85907,
+  "at_s": 37.0
+ },
+ {
+  "clip": "fcd9dfd8-f77645c0",
+  "max_risk": 0.85872,
+  "at_s": 34.0
+ },
+ {
+  "clip": "fd1eba0b-6a75b5ce",
+  "max_risk": 0.85759,
+  "at_s": 21.0
+ },
+ {
+  "clip": "e5769da7-e90e71a2",
+  "max_risk": 0.85591,
+  "at_s": 3.5
+ },
+ {
+  "clip": "e6470b36-f4988f65",
+  "max_risk": 0.8533,
+  "at_s": 29.0
+ },
+ {
+  "clip": "e64bda51-3df5e5bf",
+  "max_risk": 0.85251,
+  "at_s": 4.5
+ },
+ {
+  "clip": "dbda1e2f-1f87f2e8",
+  "max_risk": 0.85201,
+  "at_s": 29.0
+ },
+ {
+  "clip": "e6ab798f-8957ff99",
+  "max_risk": 0.85171,
+  "at_s": 33.5
+ },
+ {
+  "clip": "de8bfe8d-00c9cb99",
+  "max_risk": 0.84897,
+  "at_s": 20.0
+ },
+ {
+  "clip": "f247eb6d-55b1d702",
+  "max_risk": 0.84897,
+  "at_s": 19.5
+ },
+ {
+  "clip": "dfb12576-9224e19b",
+  "max_risk": 0.84872,
+  "at_s": 9.5
+ },
+ {
+  "clip": "e26c96e8-19ce0804",
+  "max_risk": 0.84835,
+  "at_s": 8.5
+ },
+ {
+  "clip": "d5daf4a4-5eb6e457",
+  "max_risk": 0.84632,
+  "at_s": 5.0
+ },
+ {
+  "clip": "d7ccb5ef-26251f84",
+  "max_risk": 0.84543,
+  "at_s": 8.5
+ },
+ {
+  "clip": "dc605c47-e2377562",
+  "max_risk": 0.84524,
+  "at_s": 20.5
+ },
+ {
+  "clip": "e02c10d5-8ba1fc7d",
+  "max_risk": 0.84486,
+  "at_s": 10.0
+ },
+ {
+  "clip": "cd0c8cf0-d78ca88f",
+  "max_risk": 0.84422,
+  "at_s": 9.5
+ },
+ {
+  "clip": "cd6cc4f9-54312104",
+  "max_risk": 0.84364,
+  "at_s": 14.5
+ },
+ {
+  "clip": "f4ca0abd-fa5cda0b",
+  "max_risk": 0.83954,
+  "at_s": 10.5
+ },
+ {
+  "clip": "f78e49ec-23266c05",
+  "max_risk": 0.83914,
+  "at_s": 4.0
+ },
+ {
+  "clip": "ef9bd39b-85e1da25",
+  "max_risk": 0.83842,
+  "at_s": 27.0
+ },
+ {
+  "clip": "cbdc7b52-739066ba",
+  "max_risk": 0.83515,
+  "at_s": 22.5
+ },
+ {
+  "clip": "e7a4ade8-bace7a48",
+  "max_risk": 0.83366,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d3333d23-fa23c7ac",
+  "max_risk": 0.83025,
+  "at_s": 22.0
+ },
+ {
+  "clip": "f7f3806c-d1f23b2c",
+  "max_risk": 0.82852,
+  "at_s": 21.0
+ },
+ {
+  "clip": "f6209592-cfc9096c",
+  "max_risk": 0.82706,
+  "at_s": 10.0
+ },
+ {
+  "clip": "dd45ebca-3808a867",
+  "max_risk": 0.82538,
+  "at_s": 25.0
+ },
+ {
+  "clip": "e048de5e-4004a794",
+  "max_risk": 0.82076,
+  "at_s": 6.0
+ },
+ {
+  "clip": "f5f3865a-c455e9e3",
+  "max_risk": 0.81975,
+  "at_s": 20.5
+ },
+ {
+  "clip": "dea55841-0d763a2a",
+  "max_risk": 0.81779,
+  "at_s": 20.5
+ },
+ {
+  "clip": "d93cfa7c-4c91dcbe",
+  "max_risk": 0.8156,
+  "at_s": 28.5
+ },
+ {
+  "clip": "e655866e-b31ac44c",
+  "max_risk": 0.81538,
+  "at_s": 20.0
+ },
+ {
+  "clip": "eec03da6-afe04c94",
+  "max_risk": 0.8139,
+  "at_s": 6.0
+ },
+ {
+  "clip": "d06f7aba-4b40302f",
+  "max_risk": 0.81294,
+  "at_s": 33.5
+ },
+ {
+  "clip": "ceb40a99-622c2f18",
+  "max_risk": 0.8125,
+  "at_s": 18.5
+ },
+ {
+  "clip": "f5466958-77d33478",
+  "max_risk": 0.8122,
+  "at_s": 18.5
+ },
+ {
+  "clip": "d2864b07-ce2cb4ec",
+  "max_risk": 0.81205,
+  "at_s": 2.5
+ },
+ {
+  "clip": "d6b805b0-0a875a21",
+  "max_risk": 0.81063,
+  "at_s": 38.0
+ },
+ {
+  "clip": "f0a6122d-2d77e968",
+  "max_risk": 0.81003,
+  "at_s": 18.5
+ },
+ {
+  "clip": "f25876a3-365e8377",
+  "max_risk": 0.80965,
+  "at_s": 27.5
+ },
+ {
+  "clip": "fd9c4a4a-b62a624a",
+  "max_risk": 0.80792,
+  "at_s": 2.5
+ },
+ {
+  "clip": "efb61ad1-9a17aa9b",
+  "max_risk": 0.80769,
+  "at_s": 22.0
+ },
+ {
+  "clip": "e8e16e1f-b6020eac",
+  "max_risk": 0.80548,
+  "at_s": 16.0
+ },
+ {
+  "clip": "d0f1043b-4e0fa733",
+  "max_risk": 0.80348,
+  "at_s": 12.5
+ },
+ {
+  "clip": "d3751f5f-940ed876",
+  "max_risk": 0.80317,
+  "at_s": 8.0
+ },
+ {
+  "clip": "d1826447-43f7cf91",
+  "max_risk": 0.79889,
+  "at_s": 8.0
+ },
+ {
+  "clip": "db86a93d-c36df2ac",
+  "max_risk": 0.79764,
+  "at_s": 8.5
+ },
+ {
+  "clip": "ee745abc-cb634daa",
+  "max_risk": 0.79158,
+  "at_s": 30.0
+ },
+ {
+  "clip": "e1ee5b70-7a342ccd",
+  "max_risk": 0.78801,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d9e70a8e-a89ad7b5",
+  "max_risk": 0.78646,
+  "at_s": 5.0
+ },
+ {
+  "clip": "dea9246f-4fad0f49",
+  "max_risk": 0.78621,
+  "at_s": 36.5
+ },
+ {
+  "clip": "cfa901b4-64ac9de2",
+  "max_risk": 0.7784,
+  "at_s": 16.5
+ },
+ {
+  "clip": "e41c5b67-76981cbf",
+  "max_risk": 0.77458,
+  "at_s": 9.5
+ },
+ {
+  "clip": "ef20d594-d43c757e",
+  "max_risk": 0.77364,
+  "at_s": 9.5
+ },
+ {
+  "clip": "e8a4dbb0-d80be838",
+  "max_risk": 0.77287,
+  "at_s": 3.5
+ },
+ {
+  "clip": "e65cf86e-0e888563",
+  "max_risk": 0.77184,
+  "at_s": 2.5
+ },
+ {
+  "clip": "f72cbf24-7cf59856",
+  "max_risk": 0.77098,
+  "at_s": 25.0
+ },
+ {
+  "clip": "fb04691f-3996d6bf",
+  "max_risk": 0.77081,
+  "at_s": 9.5
+ },
+ {
+  "clip": "e5333787-7bbf64fa",
+  "max_risk": 0.76934,
+  "at_s": 8.0
+ },
+ {
+  "clip": "f8d8898c-7297919d",
+  "max_risk": 0.76795,
+  "at_s": 11.0
+ },
+ {
+  "clip": "f5fc23af-92164c4d",
+  "max_risk": 0.76577,
+  "at_s": 2.0
+ },
+ {
+  "clip": "fd1db704-e5aa13aa",
+  "max_risk": 0.76436,
+  "at_s": 21.5
+ },
+ {
+  "clip": "d79af817-65a5e75b",
+  "max_risk": 0.76322,
+  "at_s": 2.5
+ },
+ {
+  "clip": "e8c25acd-f1bbf853",
+  "max_risk": 0.75976,
+  "at_s": 19.5
+ },
+ {
+  "clip": "d186596b-70530b77",
+  "max_risk": 0.75905,
+  "at_s": 5.5
+ },
+ {
+  "clip": "d72ca3bb-cd3d50f0",
+  "max_risk": 0.7577,
+  "at_s": 6.5
+ },
+ {
+  "clip": "f4a3c0a9-f9edc6c9",
+  "max_risk": 0.75233,
+  "at_s": 20.5
+ },
+ {
+  "clip": "d203730c-7162378c",
+  "max_risk": 0.74844,
+  "at_s": 13.5
+ },
+ {
+  "clip": "cb031b03-0f3ed476",
+  "max_risk": 0.74702,
+  "at_s": 31.0
+ },
+ {
+  "clip": "eab49075-36309af8",
+  "max_risk": 0.74614,
+  "at_s": 9.5
+ },
+ {
+  "clip": "d636fb81-d99699b7",
+  "max_risk": 0.74158,
+  "at_s": 20.5
+ },
+ {
+  "clip": "f4fbd798-4fb57b6c",
+  "max_risk": 0.74135,
+  "at_s": 37.0
+ },
+ {
+  "clip": "eb50529c-4c12669c",
+  "max_risk": 0.73815,
+  "at_s": 40.0
+ },
+ {
+  "clip": "d2bc4a71-29fb1e2a",
+  "max_risk": 0.73791,
+  "at_s": 16.0
+ },
+ {
+  "clip": "f9791570-797cee8f",
+  "max_risk": 0.73725,
+  "at_s": 31.5
+ },
+ {
+  "clip": "ee3af62b-5b39714a",
+  "max_risk": 0.73207,
+  "at_s": 21.0
+ },
+ {
+  "clip": "e91d3209-012c904c",
+  "max_risk": 0.73197,
+  "at_s": 2.0
+ },
+ {
+  "clip": "f20d1282-e4ec02c5",
+  "max_risk": 0.72904,
+  "at_s": 18.0
+ },
+ {
+  "clip": "cea3a1e4-7412459c",
+  "max_risk": 0.72899,
+  "at_s": 39.0
+ },
+ {
+  "clip": "e8a4dbb0-dc6ebfb3",
+  "max_risk": 0.72744,
+  "at_s": 12.5
+ },
+ {
+  "clip": "e6bdca9e-3df1b2aa",
+  "max_risk": 0.72497,
+  "at_s": 38.5
+ },
+ {
+  "clip": "fce915e7-c81e720a",
+  "max_risk": 0.7236,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e17682a1-705878be",
+  "max_risk": 0.72253,
+  "at_s": 38.5
+ },
+ {
+  "clip": "cde3eefa-5f9ee049",
+  "max_risk": 0.72145,
+  "at_s": 33.5
+ },
+ {
+  "clip": "cb573aeb-d82b66c3",
+  "max_risk": 0.69946,
+  "at_s": 18.5
+ },
+ {
+  "clip": "ddbe542b-525d45df",
+  "max_risk": 0.69792,
+  "at_s": 5.0
+ },
+ {
+  "clip": "e72a2a7e-5ef356fb",
+  "max_risk": 0.69627,
+  "at_s": 2.0
+ },
+ {
+  "clip": "daae775f-5ef36de2",
+  "max_risk": 0.69139,
+  "at_s": 23.5
+ },
+ {
+  "clip": "dd45ebca-d32e81c2",
+  "max_risk": 0.69087,
+  "at_s": 10.0
+ },
+ {
+  "clip": "f7f3806c-1a538554",
+  "max_risk": 0.69072,
+  "at_s": 2.5
+ },
+ {
+  "clip": "f21f7d33-2a1fbf36",
+  "max_risk": 0.68173,
+  "at_s": 18.0
+ },
+ {
+  "clip": "d491c604-eb9a894d",
+  "max_risk": 0.67694,
+  "at_s": 21.5
+ },
+ {
+  "clip": "f1eccbb2-33fbb674",
+  "max_risk": 0.67512,
+  "at_s": 33.0
+ },
+ {
+  "clip": "f4349895-b767adee",
+  "max_risk": 0.67491,
+  "at_s": 9.0
+ },
+ {
+  "clip": "d74da9b6-8ee3bf29",
+  "max_risk": 0.67319,
+  "at_s": 31.5
+ },
+ {
+  "clip": "e0260213-2abfb6ff",
+  "max_risk": 0.67303,
+  "at_s": 17.5
+ },
+ {
+  "clip": "e9c2f822-8ab3fdd1",
+  "max_risk": 0.66712,
+  "at_s": 40.125
+ },
+ {
+  "clip": "f626989c-c9947adb",
+  "max_risk": 0.66356,
+  "at_s": 10.0
+ },
+ {
+  "clip": "e770464d-148177a6",
+  "max_risk": 0.66318,
+  "at_s": 17.5
+ },
+ {
+  "clip": "eea6d52d-98ac9ea6",
+  "max_risk": 0.65633,
+  "at_s": 27.0
+ },
+ {
+  "clip": "d9d9bd60-9f96c234",
+  "max_risk": 0.65257,
+  "at_s": 11.5
+ },
+ {
+  "clip": "e626841e-a3033f64",
+  "max_risk": 0.64997,
+  "at_s": 10.5
+ },
+ {
+  "clip": "efe2846d-e95af344",
+  "max_risk": 0.639,
+  "at_s": 40.25
+ },
+ {
+  "clip": "faab7d89-9ae5669d",
+  "max_risk": 0.6294,
+  "at_s": 20.0
+ },
+ {
+  "clip": "dadd4ad9-59d3a9f8",
+  "max_risk": 0.62915,
+  "at_s": 14.0
+ },
+ {
+  "clip": "daf158ce-f5fde1cc",
+  "max_risk": 0.62013,
+  "at_s": 37.0
+ },
+ {
+  "clip": "d369da7f-09011b4e",
+  "max_risk": 0.61315,
+  "at_s": 3.0
+ },
+ {
+  "clip": "e62898fe-09803405",
+  "max_risk": 0.60731,
+  "at_s": 34.5
+ },
+ {
+  "clip": "f5f342d2-497b9d06",
+  "max_risk": 0.60691,
+  "at_s": 21.0
+ },
+ {
+  "clip": "e765bdf4-4c29dee4",
+  "max_risk": 0.60517,
+  "at_s": 20.125
+ },
+ {
+  "clip": "e9ce26f0-c253139d",
+  "max_risk": 0.60016,
+  "at_s": 30.5
+ },
+ {
+  "clip": "f4af273e-9b825c01",
+  "max_risk": 0.59432,
+  "at_s": 4.5
+ },
+ {
+  "clip": "d3cb9538-90091599",
+  "max_risk": 0.59028,
+  "at_s": 6.5
+ },
+ {
+  "clip": "e5633554-4e29b690",
+  "max_risk": 0.57323,
+  "at_s": 40.0
+ },
+ {
+  "clip": "dc2e5d67-7327bede",
+  "max_risk": 0.55417,
+  "at_s": 4.5
+ },
+ {
+  "clip": "f4ed39e9-b6e136e3",
+  "max_risk": 0.55271,
+  "at_s": 6.0
+ },
+ {
+  "clip": "fceead05-0392078a",
+  "max_risk": 0.54868,
+  "at_s": 25.5
+ },
+ {
+  "clip": "f0c08d2b-2a0ad9d3",
+  "max_risk": 0.54611,
+  "at_s": 18.0
+ },
+ {
+  "clip": "e5a8acf0-40a43684",
+  "max_risk": 0.53027,
+  "at_s": 19.5
+ },
+ {
+  "clip": "fd3d0a50-8842f8db",
+  "max_risk": 0.52359,
+  "at_s": 22.0
+ },
+ {
+  "clip": "ef309def-9e8b0fae",
+  "max_risk": 0.51534,
+  "at_s": 2.0
+ },
+ {
+  "clip": "f539bdbb-82e3b8ac",
+  "max_risk": 0.51357,
+  "at_s": 7.0
+ },
+ {
+  "clip": "e7d31f5d-4fd9f98f",
+  "max_risk": 0.50752,
+  "at_s": 13.0
+ },
+ {
+  "clip": "d7198a85-f5ee4856",
+  "max_risk": 0.50012,
+  "at_s": 14.0
+ },
+ {
+  "clip": "e8691a7e-9b850e96",
+  "max_risk": 0.49426,
+  "at_s": 19.5
+ },
+ {
+  "clip": "e5faafbe-767085ad",
+  "max_risk": 0.49079,
+  "at_s": 20.0
+ },
+ {
+  "clip": "d3ae986b-ba0ac7ca",
+  "max_risk": 0.46946,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e5fd7fa7-183ba75d",
+  "max_risk": 0.46615,
+  "at_s": 19.5
+ },
+ {
+  "clip": "e7189427-dfe3502d",
+  "max_risk": 0.45758,
+  "at_s": 18.5
+ },
+ {
+  "clip": "f6c1407b-f1540b4a",
+  "max_risk": 0.45111,
+  "at_s": 22.5
+ },
+ {
+  "clip": "d3898c33-b970984a",
+  "max_risk": 0.44765,
+  "at_s": 22.5
+ },
+ {
+  "clip": "e0dcb43b-973b8b7d",
+  "max_risk": 0.44337,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e4395aa3-128fa67f",
+  "max_risk": 0.43249,
+  "at_s": 21.5
+ },
+ {
+  "clip": "fbbe1f4c-cf2646a7",
+  "max_risk": 0.40686,
+  "at_s": 16.5
+ },
+ {
+  "clip": "f50d767b-bc2c5ea7",
+  "max_risk": 0.40279,
+  "at_s": 4.0
+ },
+ {
+  "clip": "d0f5f208-b71f777c",
+  "max_risk": 0.39722,
+  "at_s": 14.5
+ },
+ {
+  "clip": "d1d5ea79-28e01967",
+  "max_risk": 0.38949,
+  "at_s": 23.5
+ },
+ {
+  "clip": "f2c5ca69-9247faf2",
+  "max_risk": 0.38905,
+  "at_s": 5.0
+ },
+ {
+  "clip": "e01c8108-5444d85a",
+  "max_risk": 0.38665,
+  "at_s": 13.0
+ },
+ {
+  "clip": "db86a93d-ecbcee27",
+  "max_risk": 0.38448,
+  "at_s": 11.5
+ },
+ {
+  "clip": "fa445bdd-6e2ea909",
+  "max_risk": 0.37918,
+  "at_s": 19.0
+ },
+ {
+  "clip": "e3eee3eb-1feccc65",
+  "max_risk": 0.36294,
+  "at_s": 2.0
+ },
+ {
+  "clip": "d6f2e089-2393c7d2",
+  "max_risk": 0.3619,
+  "at_s": 11.0
+ },
+ {
+  "clip": "f11c6721-6dc798aa",
+  "max_risk": 0.35793,
+  "at_s": 12.0
+ },
+ {
+  "clip": "e3e5abea-676717a7",
+  "max_risk": 0.33972,
+  "at_s": 16.5
+ },
+ {
+  "clip": "f4f91915-aad77d69",
+  "max_risk": 0.33748,
+  "at_s": 17.5
+ },
+ {
+  "clip": "e301d643-216af5d9",
+  "max_risk": 0.32945,
+  "at_s": 9.5
+ },
+ {
+  "clip": "d70290cc-fdc176a0",
+  "max_risk": 0.3188,
+  "at_s": 3.0
+ },
+ {
+  "clip": "e90889c3-455cd035",
+  "max_risk": 0.31007,
+  "at_s": 20.0
+ },
+ {
+  "clip": "e7472964-f7b08c06",
+  "max_risk": 0.30327,
+  "at_s": 23.0
+ },
+ {
+  "clip": "fb3645df-53c7c76e",
+  "max_risk": 0.29635,
+  "at_s": 4.5
+ },
+ {
+  "clip": "f1e4aa78-633e89b9",
+  "max_risk": 0.29254,
+  "at_s": 23.5
+ },
+ {
+  "clip": "ce6f689f-1065ccce",
+  "max_risk": 0.29138,
+  "at_s": 3.0
+ },
+ {
+  "clip": "f2cd8c56-7b83223c",
+  "max_risk": 0.28712,
+  "at_s": 5.0
+ },
+ {
+  "clip": "e7fc7483-ab3f3739",
+  "max_risk": 0.28687,
+  "at_s": 39.0
+ },
+ {
+  "clip": "eef9a03f-c4619aed",
+  "max_risk": 0.26947,
+  "at_s": 9.0
+ },
+ {
+  "clip": "f70e1d66-65e15b7c",
+  "max_risk": 0.25215,
+  "at_s": 18.5
+ },
+ {
+  "clip": "ea755991-434680a5",
+  "max_risk": 0.24171,
+  "at_s": 10.0
+ },
+ {
+  "clip": "fc038b5a-e85799d2",
+  "max_risk": 0.22529,
+  "at_s": 7.0
+ },
+ {
+  "clip": "dfa62cdc-794e1170",
+  "max_risk": 0.21767,
+  "at_s": 29.5
+ },
+ {
+  "clip": "ea621c7d-0963d1b3",
+  "max_risk": 0.19395,
+  "at_s": 22.0
+ },
+ {
+  "clip": "d93cfa7c-1a59f805",
+  "max_risk": 0.13461,
+  "at_s": 39.5
+ },
+ {
+  "clip": "e87ef6d9-732bfcc3",
+  "max_risk": 0.12722,
+  "at_s": 17.0
+ },
+ {
+  "clip": "f39ee2d1-60a9676d",
+  "max_risk": 0.12342,
+  "at_s": 19.0
+ },
+ {
+  "clip": "ec54d4f2-68123bed",
+  "max_risk": 0.11476,
+  "at_s": 3.0
+ },
+ {
+  "clip": "e19684a6-c9957ba4",
+  "max_risk": 0.11447,
+  "at_s": 17.0
+ },
+ {
+  "clip": "d84ebd3a-47c27682",
+  "max_risk": 0.10669,
+  "at_s": 13.0
+ },
+ {
+  "clip": "e37813ce-fa4dc507",
+  "max_risk": 0.10284,
+  "at_s": 6.5
+ },
+ {
+  "clip": "e961d392-25276a4d",
+  "max_risk": 0.09228,
+  "at_s": 6.5
+ },
+ {
+  "clip": "fdb05876-8933e8d1",
+  "max_risk": 0.09049,
+  "at_s": 4.0
+ },
+ {
+  "clip": "e64480a5-7b6910c6",
+  "max_risk": 0.08945,
+  "at_s": 11.5
+ },
+ {
+  "clip": "da46b1b7-86c14224",
+  "max_risk": 0.08382,
+  "at_s": 25.5
+ },
+ {
+  "clip": "e19275ad-f10c1c0e",
+  "max_risk": 0.0737,
+  "at_s": 17.0
+ },
+ {
+  "clip": "e9244dac-56ea38f4",
+  "max_risk": 0.06792,
+  "at_s": 19.0
+ },
+ {
+  "clip": "f4d6153f-f9c06b4f",
+  "max_risk": 0.06749,
+  "at_s": 33.5
+ },
+ {
+  "clip": "f983af4e-249746b4",
+  "max_risk": 0.05455,
+  "at_s": 29.0
+ },
+ {
+  "clip": "dd68d952-4286f046",
+  "max_risk": 0.03687,
+  "at_s": 2.0
+ },
+ {
+  "clip": "fcc3c5e7-0431be89",
+  "max_risk": 0.03462,
+  "at_s": 21.5
+ },
+ {
+  "clip": "d79c6f29-6d031c83",
+  "max_risk": 0.03144,
+  "at_s": 5.5
+ },
+ {
+  "clip": "fd993158-5538010c",
+  "max_risk": 0.01987,
+  "at_s": 9.5
+ },
+ {
+  "clip": "f108a082-ffcca52e",
+  "max_risk": 0.01748,
+  "at_s": 4.0
+ },
+ {
+  "clip": "e37813ce-30d4c327",
+  "max_risk": 0.01721,
+  "at_s": 28.0
+ },
+ {
+  "clip": "daadbbff-1b4f5e7d",
+  "max_risk": 0.01501,
+  "at_s": 39.5
+ },
+ {
+  "clip": "da425e7a-88e5a121",
+  "max_risk": 0.01333,
+  "at_s": 28.5
+ },
+ {
+  "clip": "ea08240d-a150acd3",
+  "max_risk": 0.00789,
+  "at_s": 40.5
+ },
+ {
+  "clip": "e9e2e502-c4f82515",
+  "max_risk": 0.00664,
+  "at_s": 29.0
+ },
+ {
+  "clip": "d16e6bfb-bd0b2e5b",
+  "max_risk": 0.00628,
+  "at_s": 19.5
+ }
+]

@@ -5,6 +5,8 @@ Sets (raw frames already cached in the Volume, 8 per second, 224x224):
     nexar_public   Nexar test, Public half, 667 clips (334 crash, 333 normal)
     bdd_train      (--sets bdd_train) BDD100K train, our 3,000 clips: only to find possible real
                    near-misses for a person to review before training (no metrics)
+    bdd_test       (--sets bdd_test) BDD100K test, 1,000 clips, every 0.5 s: only to rank clips for the person
+                   to clean, like val (no metrics; the final score is computed once, at the very end)
 A reading every 0.5 s, each from the 16 frames (2 s) ending then, plus one at the
 very end of each clip (the moment Nexar's official metric asks about).
 
@@ -25,6 +27,7 @@ RUN IT (see current_modal_commands.txt):
     python -m modal run src\\risk\\eval_risk.py --limit 4       # timed test: 4 clips per set
     python -m modal run src\\risk\\eval_risk.py                 # everything
     python -m modal run src\\risk\\eval_risk.py --sets bdd_train   # cleaning: rank BDD100K train clips by risk
+    python -m modal run src\\risk\\eval_risk.py --sets bdd_test    # cleaning: rank BDD100K test clips by risk
 """
 
 # (No "from __future__ import annotations": Modal needs real types for its class parameters.)
@@ -51,8 +54,10 @@ BASE_MODEL = "facebook/vjepa2-vitl-fpc16-256-ssv2"
 HF_CACHE = "/data/models/hf"
 SETS = {"bdd_val": ["cache/badas224/bdd100k_videos_100k_val"],
         "nexar_public": ["cache/badas224/nexar_test-public_positive", "cache/badas224/nexar_test-public_negative"],
-        "bdd_train": ["cache/badas224/bdd100k_videos_100k_train"]}
-SET_GROUPS = {"dev": ["bdd_val", "nexar_public"], "bdd_train": ["bdd_train"]}   # --sets picks one group
+        "bdd_train": ["cache/badas224/bdd100k_videos_100k_train"],
+        "bdd_test": ["cache/badas224/bdd100k_videos_100k_test"]}
+SET_GROUPS = {"dev": ["bdd_val", "nexar_public"], "bdd_train": ["bdd_train"],   # --sets picks one group
+              "bdd_test": ["bdd_test"]}   # BDD100K test: readings every 0.5 s like val, to clean it (no metrics)
 SAVE_DIR = "results/risk_eval_v3"      # in the Volume (v2: GPU preprocessing; all readings made the same way): <SAVE_DIR>/<model>/<set>/<clip>.json
 RESIZE, CROP = 292, 256                # V-JEPA 2 video processor: shortest edge 292 (bilinear), centre crop 256
 MEAN, STD = (0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
@@ -512,7 +517,7 @@ def main(model: str = "baseline_badas_open", limit: int = 0, check: bool = False
           f"{run['containers']} containers, {run['container_seconds']} s billed")
     if limit and new:
         # clip seconds overlap CLIPS_PER_CONTAINER-fold inside a container; GPU seconds per clip = that / overlap
-        n_full = {"dev": 1167, "bdd_train": 3000}[sets]   # dev: 500 BDD val + 667 Nexar Public
+        n_full = {"dev": 1167, "bdd_train": 3000, "bdd_test": 1000}[sets]   # dev: 500 BDD val + 667 Nexar Public
         full = n_full * gpu_s / new / CLIPS_PER_CONTAINER
         run["full_run_estimate"] = {"cost_usd": round(full / 3600 * GPU_PRICE_H, 2),
                                     "wall_s": round(full / MAX_CONTAINERS)}
@@ -520,9 +525,9 @@ def main(model: str = "baseline_badas_open", limit: int = 0, check: bool = False
               f"about {clock(run['full_run_estimate']['wall_s'])} with {MAX_CONTAINERS} x {GPU} "
               f"(plus model loading)")
     (out / "run.json").write_text(json.dumps(run, indent=1))
-    if sets == "bdd_train":
+    if sets in ("bdd_train", "bdd_test"):
         # Cleaning: rank clips by their highest risk reading (candidates for a person to review, never auto-removed)
-        top = sorted(((max(p for _, p in s), max(s, key=lambda r: r[1])[0], c) for c, s in res["bdd_train"].items() if s),
+        top = sorted(((max(p for _, p in s), max(s, key=lambda r: r[1])[0], c) for c, s in res[sets].items() if s),
                      reverse=True)
         (out / "ranked.json").write_text(json.dumps([{"clip": c, "max_risk": p, "at_s": t} for p, t, c in top], indent=1))
         for thr in (0.9, 0.95, 0.98, 0.99):

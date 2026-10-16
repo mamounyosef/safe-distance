@@ -44,21 +44,35 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from bdd100k_review import SERIES as TRAIN_SERIES, rank, risk_at  # noqa: E402
 
 # ---- CONFIG ----
-# LABEL_SET=val: label BDD100K val instead (ranks 26-137 by plain BADAS-Open, shorter clips, own labels file).
+# LABEL_SET=val / test: label BDD100K val or test instead (shorter clips, own labels file).
 # Val ranks 1-25 match train ranks 3-93, where the reviews found 23/23 real near-misses: removed without labelling.
-VAL = os.environ.get("LABEL_SET") == "val"
-SPLIT = "val" if VAL else "train"
-SERIES = (Path(__file__).resolve().parents[2] / "runs/baseline_badas_open/results/eval/series_bdd_val.json"
-          if VAL else TRAIN_SERIES)
-FIRST, LAST = (26, 137) if VAL else (201, 638)                   # ranks to label (1 = riskiest)
+# Test uses the same BADAS peak limits as val: peak >= TEST_REMOVE_PEAK removed without labelling (like val ranks
+# 1-25), peak >= TEST_LABEL_PEAK labelled (like val ranks 26-137, which match train ranks up to about 692).
+SPLIT = os.environ.get("LABEL_SET", "train")
+VAL = SPLIT in ("val", "test")                                    # the short-clip modes
+RUNS = Path(__file__).resolve().parents[2] / "runs/baseline_badas_open/results"
+SERIES = {"train": TRAIN_SERIES, "val": RUNS / "eval/series_bdd_val.json",
+          "test": RUNS / "bdd_test/series_bdd_test.json"}[SPLIT]
+TEST_REMOVE_PEAK, TEST_LABEL_PEAK = 0.99565, 0.98915             # between val ranks 25/26 and 137/138
+
+
+def _test_ranks() -> tuple[int, int]:
+    """Test ranks to label, from the peak limits (the test set gets its own ranking by plain BADAS-Open)."""
+    peaks = [r["max_risk"] for r in rank(json.loads(SERIES.read_text()))]
+    return sum(p >= TEST_REMOVE_PEAK for p in peaks) + 1, sum(p >= TEST_LABEL_PEAK for p in peaks)
+
+
+FIRST, LAST = {"train": (201, 638), "val": (26, 137)}.get(SPLIT) or _test_ranks()   # ranks to label (1 = riskiest)
 SPOT_SEED = 20261016                        # spot checks below the labelled ranks: LABEL_SPOT=<check> picks one
 SPOTS = {"1": [(639, 700, 20)],                                  # (first rank, last rank, random clips)
          "2": [(701, 900, 10), (901, 1107, 10)],
          "3": [(639, 700, 20)]}                                  # 20 more from 639-700 (the rest get removed)
 SPOT_EXCLUDE = {"3": "1"}                   # check 3 never redraws the clips check 1 already showed
-CLIPS = Path(r"D:\safe-distance-label-clips-val" if VAL else r"D:\safe-distance-label-clips-v2")   # small cut clips
+CLIPS = Path({"train": r"D:\safe-distance-label-clips-v2", "val": r"D:\safe-distance-label-clips-val",
+              "test": r"D:\safe-distance-label-clips-test"}[SPLIT])                          # small cut clips
 OLD_CLIPS = Path(r"D:\safe-distance-label-clips")              # first cut (1 s after the peak; froze in browsers)
-LABELS = Path(__file__).resolve().parents[1] / "bdd100k_ids" / ("val_labels.json" if VAL else "manual_labels.json")
+LABELS = Path(__file__).resolve().parents[1] / "bdd100k_ids" / {"train": "manual_labels.json", "val": "val_labels.json",
+                                                                  "test": "test_labels.json"}[SPLIT]
 VOLUME, PROFILE = "safe-distance-data", Path.home() / ".modal_session18.toml"
 # Seconds kept around the riskiest moment. BADAS reads the 2 s before each reading, so 2 s before the peak shows
 # what alarmed it; after the peak shows how it ends. Val: 3 s clips (train had 4.5 s) to label faster.
