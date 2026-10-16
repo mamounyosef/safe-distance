@@ -5,12 +5,13 @@ labelled by its end time t, measured against two Nexar labels of the crash clip:
     alert = the moment a person could first see the danger (median of 10 annotators)
     event = the collision / near-collision itself
 
-The rule (agreed with the person; times as "seconds before the crash" = event - t):
+The rule for CRASH clips (agreed with the person; "before" = seconds left until the crash = event - t):
 
     window ends ...                                                       label
     after the crash                                                       never used
     in the clip's first 2 s (no full 2 s of history)                      never used
-    before the alert                                                      0
+    before the alert, more than 4 s before the crash                      0 (safe)
+    before the alert, 4 s or less before the crash                        not used (maybe slight signs of danger)
     EARLY alert (more than 2.4 s before the crash, also more than 4 s):
         between the alert and 2.4 s before the crash                      ramp: 0.25 at the alert -> 1 at -2.4 s
         in the last 2.4 s                                                 1
@@ -18,11 +19,17 @@ The rule (agreed with the person; times as "seconds before the crash" = event - 
         less than 0.4 s after the alert                                   not used (window is mostly normal driving)
         0.4 s or more after the alert                                     1
 
-Why: a window ending just after the alert still shows mostly normal driving, so it must not get a full 1.
-For early alerts the ramp starts low (0.25) and does that job; for late alerts the label would jump straight to 1,
-so the first 0.4 s after the alert is skipped instead. Alerts more than 4 s early follow the same ramp from the
-alert (decided 2026-10-16: no window after the alert is ever labelled 0, since the danger is already visible).
-Alerts less than 0.4 s before the crash give no danger windows (alert + 0.4 s is after the crash).
+A crash clip with no danger window at all (alert less than 0.4 s before the crash, or a danger zone too short to
+hold one frame) is not used at all, not even its safe part: crash_clip_used() says so.
+
+Why:
+  - A window ending just after the alert still shows mostly normal driving, so it must not get a full 1. For
+    early alerts the ramp starts low (0.25) and does that job; for late alerts the label would jump straight to 1,
+    so the first 0.4 s after the alert is skipped instead (0.4 s: person, 2026-10-16, was 0.5).
+  - Alerts more than 4 s early follow the same ramp from the alert: no window after the alert is ever labelled 0,
+    since the danger is already visible (person, 2026-10-16).
+  - Safe windows from crash clips must end more than 4 s before the crash: closer than that, the danger may
+    already show slightly even before the annotators' alert (person, 2026-10-16).
 Normal clips (no crash) are 0 everywhere, except their first 2 s (no full history).
 Clips listed in src/risk/data/nexar_excluded.json are never used at all (checked by the sampler, not here).
 """
@@ -31,10 +38,12 @@ from __future__ import annotations
 
 # ---- CONFIG ----
 WINDOW_S = 2.0          # length of video BADAS reads (16 frames at 8 fps)
+FRAME_S = 0.125         # window end points lie on the frame grid (8 fps cache)
 HARD_S = 2.4            # label is 1 in the last 2.4 s before the crash
+SAFE_BEFORE_S = 4.0     # crash clips: a safe (0) window must end more than this before the crash
 VERY_EARLY_S = 4.0      # only names a case for the demos (alerts this early); the label rule does not use it
 RAMP_START = 0.25       # early alerts: label at the alert, rising linearly to 1 at HARD_S before the crash
-MARGIN_S = 0.4          # late alerts: windows ending less than this after the alert are not used (was 0.5; person, 2026-10-16)
+MARGIN_S = 0.4          # late alerts: windows ending less than this after the alert are not used
 # ----------------
 
 # Zone names (what the demo draws, and what training counts)
@@ -54,8 +63,10 @@ def window_label(t_end: float, alert: float | None = None, event: float | None =
     if t_end > event:                          # after the crash: never a training window
         return None, AFTER
     before = event - t_end                     # seconds left until the crash
-    if t_end < alert:                          # before the danger was visible
-        return 0.0, ZERO
+    if t_end < alert:                          # before the danger was visible ...
+        if before <= SAFE_BEFORE_S:            # ... but close to the crash: maybe slight signs already, skip
+            return None, SKIP
+        return 0.0, ZERO                       # ... and far from the crash: a safe window
     lead = event - alert                       # how early the danger was visible
     if lead > HARD_S:
         # EARLY alert: ramp from RAMP_START at the alert up to 1 at HARD_S before the crash, then 1.
@@ -67,3 +78,14 @@ def window_label(t_end: float, alert: float | None = None, event: float | None =
     if t_end < alert + MARGIN_S:
         return None, SKIP
     return 1.0, ONE
+
+
+def danger_ends(alert: float, event: float) -> list[float]:
+    """All window end points (on the frame grid) of a crash clip whose label is above 0: the danger pool."""
+    n = int(event / FRAME_S + 1e-9)
+    return [k * FRAME_S for k in range(n + 1) if (window_label(k * FRAME_S, alert, event)[0] or 0.0) > 0.0]
+
+
+def crash_clip_used(alert: float, event: float) -> bool:
+    """A crash clip is used only if it has at least one danger window; otherwise it is dropped entirely."""
+    return bool(danger_ends(alert, event))

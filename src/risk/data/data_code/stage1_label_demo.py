@@ -40,13 +40,13 @@ OUT_DIR = Path.home() / "Downloads" / "safe-distance-testing" / "nexar" / "6_lab
 # One video per case: (alert lead range in s before the crash, title, what the rule does)
 CASES = {
     "A_late": (L.MARGIN_S, L.HARD_S, "LATE alert (0.4-2.4 s before the crash)",
-               "skip the first 0.4 s after the alert, then label 1"),
+               "safe only before -4 s; skip -4 s to alert + 0.4 s; then label 1"),
     "B_early": (L.HARD_S, L.VERY_EARLY_S, "EARLY alert (2.4-4 s before the crash)",
-                "ramp 0.25 at the alert -> 1 at -2.4 s, then 1"),
+                "safe only before -4 s; skip -4 s to the alert; ramp 0.25 -> 1 at -2.4 s; then 1"),
     "C_very_early": (L.VERY_EARLY_S, 99.0, "VERY EARLY alert (more than 4 s before the crash)",
-                     "same ramp: 0.25 at the alert -> 1 at -2.4 s, then 1"),
+                     "safe before the alert; ramp 0.25 at the alert -> 1 at -2.4 s; then 1"),
     "D_alert_under_0.4s": (0.0, L.MARGIN_S, "ALERT UNDER 0.4 s before the crash",
-                           "alert + 0.4 s is after the crash: NO danger window (only safe windows before the alert)"),
+                           "alert + 0.4 s is after the crash: no danger window, so the WHOLE CLIP is not used"),
 }
 N, SEED = 5, 16
 EXCLUDED = HERE.parents[0] / "nexar_excluded.json"            # clips the person removed (never shown, never used)
@@ -65,6 +65,8 @@ def markers(alert: float, event: float) -> list[tuple[float, str]]:
     """The moments worth a line on the timeline (and a short freeze), in time order."""
     lead = event - alert
     m = [(alert, "ALERT")]
+    if event - L.SAFE_BEFORE_S < alert:                       # safe windows stop 4 s before the crash
+        m.append((event - L.SAFE_BEFORE_S, "-4 s: safe zone ends"))
     if lead <= L.HARD_S:
         m.append((alert + L.MARGIN_S, f"ALERT+{L.MARGIN_S:g} s: label 1"))
     else:
@@ -158,6 +160,8 @@ def make_video(name: str, meta: list[dict]) -> None:
             text(img, f"{abs(event - t):.2f} s {'before' if t <= event else 'after'} the crash", (25, 120), 1.0)
             text(img, f"label: {f'ramp {v:.2f}' if z == L.RAMP else NAMES[z]}", (25, 170), 1.3, (255, 255, 255), 3)
             text(img, f"case {name[0]}  clip {k}/{len(clips)}  alert {lead:.2f} s", (VIDEO[0] - 400, 120), 0.7)
+            if not L.crash_clip_used(alert, event):              # no danger window: clip dropped entirely
+                text(img, "WHOLE CLIP NOT USED IN TRAINING", (25, 280), 1.1, (0, 0, 255), 3)
             img[VIDEO[1]:] = panel(t, t0, t1, alert, event)
             wr.write(img)
             while todo and t >= todo[0][0]:                       # hold the first frame at each marker
