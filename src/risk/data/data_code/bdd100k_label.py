@@ -10,7 +10,7 @@ Two steps:
   2. (default) : the labelling window. Clips in rank order; the BADAS risk is drawn on the frame.
 
 Keys in the window:
-    1 = normal      2 = risk (real danger)      3 = unsure      4 = bad example (never train on it)
+    1 = normal      2 = risk (real danger)      3 = unsure      4 = bad example: camera not straight (never train on it)
     (label, then jump to the next clip)
     right arrow / d = next clip    left arrow / a = previous clip    space = replay    q / Esc = quit
 Every key press is saved at once to src/risk/data/bdd100k_ids/manual_labels.json (safe to quit any time;
@@ -21,7 +21,8 @@ RUN IT (from the repo root):
     .venv\\Scripts\\python.exe src\\risk\\data\\data_code\\bdd100k_label.py --prepare
     .venv\\Scripts\\python.exe src\\risk\\data\\data_code\\bdd100k_label.py
 
-Spot check (20 random clips from ranks 639-700): set LABEL_SPOT=1 first, same commands (also for the web tool).
+Spot checks (see SPOTS: 1 = 20 clips from 639-700, 2 = 10 from 701-900 + 10 from 901-1107): set LABEL_SPOT=<check>
+first, same commands (also for the web tool).
 """
 
 from __future__ import annotations
@@ -44,7 +45,11 @@ from bdd100k_review import SERIES, rank, risk_at  # noqa: E402
 
 # ---- CONFIG ----
 FIRST, LAST = 201, 638                      # ranks to label (1 = riskiest)
-SPOT_FIRST, SPOT_LAST, SPOT_N, SPOT_SEED = 639, 700, 20, 20261016   # spot check below the labelled ranks
+SPOT_SEED = 20261016                        # spot checks below the labelled ranks: LABEL_SPOT=<check> picks one
+SPOTS = {"1": [(639, 700, 20)],                                  # (first rank, last rank, random clips)
+         "2": [(701, 900, 10), (901, 1107, 10)],
+         "3": [(639, 700, 20)]}                                  # 20 more from 639-700 (the rest get removed)
+SPOT_EXCLUDE = {"3": "1"}                   # check 3 never redraws the clips check 1 already showed
 CLIPS = Path(r"D:\safe-distance-label-clips-v2")               # small cut clips (C: is nearly full)
 OLD_CLIPS = Path(r"D:\safe-distance-label-clips")              # first cut (1 s after the peak; froze in browsers)
 LABELS = Path(__file__).resolve().parents[1] / "bdd100k_ids" / "manual_labels.json"
@@ -52,7 +57,7 @@ VOLUME, PROFILE = "safe-distance-data", Path.home() / ".modal_session18.toml"
 BEFORE_S, AFTER_S = 2.5, 2.0                # seconds kept around the riskiest moment (2 s after: see how it ends)
 SIZE = (960, 540)                           # cut clip size (enough to judge, small on disk)
 WORKERS = 4
-KEYS = {ord("1"): "normal", ord("2"): "risk", ord("3"): "unsure", ord("4"): "bad"}   # bad = poor example, never train on it
+KEYS = {ord("1"): "normal", ord("2"): "risk", ord("3"): "unsure", ord("4"): "bad"}   # bad = camera not straight (tilted mount), never train on it
 NEXT, PREV = (2555904, ord("d")), (2424832, ord("a"))          # right / left arrow codes on Windows
 COLOURS = {"risk": (0, 0, 255), "normal": (0, 200, 0), "unsure": (0, 200, 255), "bad": (200, 0, 200),
            None: (200, 200, 200)}
@@ -61,16 +66,24 @@ COLOURS = {"risk": (0, 0, 255), "normal": (0, 200, 0), "unsure": (0, 200, 255), 
 
 def todo() -> list[dict]:
     """The clips to label, in rank order, with their riskiest moment.
-    With LABEL_SPOT=1 set: the spot check instead (SPOT_N random clips from ranks SPOT_FIRST-SPOT_LAST, fixed seed),
-    to see whether real dangers still appear just below rank 638."""
+    With LABEL_SPOT=<check> set: that spot check instead (random clips per rank band in SPOTS, fixed seed),
+    to see how deep below rank 638 real dangers still appear."""
     series = json.loads(SERIES.read_text())
     full = rank(series)
     for i, r in enumerate(full, 1):
         r["rank"] = i
-    if os.environ.get("LABEL_SPOT") == "1":
-        pick = random.Random(SPOT_SEED).sample(full[SPOT_FIRST - 1:SPOT_LAST], SPOT_N)
-        return sorted(pick, key=lambda r: r["rank"])
-    return full[FIRST - 1:LAST]
+    check = os.environ.get("LABEL_SPOT")
+    return spot_pick(full, check) if check else full[FIRST - 1:LAST]
+
+
+def spot_pick(full: list[dict], check: str) -> list[dict]:
+    """The clips of one spot check: a fixed random draw per rank band, so the same clips come back every run."""
+    # check 1 keeps its original draw; later checks get their own seed
+    rng = random.Random(SPOT_SEED if check == "1" else SPOT_SEED + int(check))
+    skip = {r["clip"] for r in spot_pick(full, SPOT_EXCLUDE[check])} if check in SPOT_EXCLUDE else set()
+    pick = [r for lo, hi, n in SPOTS[check]
+            for r in rng.sample([x for x in full[lo - 1:hi] if x["clip"] not in skip], n)]
+    return sorted(pick, key=lambda r: r["rank"])
 
 
 def prepare_one(r: dict) -> str:

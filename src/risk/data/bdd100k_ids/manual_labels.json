@@ -3654,5 +3654,325 @@
   "peak_s": 20.0,
   "by": "desktop",
   "at": "2026-10-16 11:02:46"
+ },
+ "02065c11-dbd5d35b": {
+  "rank": 715,
+  "label": "normal",
+  "max_risk": 0.98878,
+  "peak_s": 17.5,
+  "by": "desktop",
+  "at": "2026-10-16 11:11:26"
+ },
+ "2064c648-912f7dfa": {
+  "rank": 717,
+  "label": "normal",
+  "max_risk": 0.98871,
+  "peak_s": 25.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:11:31"
+ },
+ "9a101dc0-f591047a": {
+  "rank": 730,
+  "label": "unsure",
+  "max_risk": 0.98845,
+  "peak_s": 2.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:12:08"
+ },
+ "9f3091e4-248c42d0": {
+  "rank": 752,
+  "label": "normal",
+  "max_risk": 0.98808,
+  "peak_s": 22.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:11:45"
+ },
+ "59b77a88-98c9a7ba": {
+  "rank": 757,
+  "label": "normal",
+  "max_risk": 0.98802,
+  "peak_s": 4.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:11:59"
+ },
+ "83a53eac-b2c08a1c": {
+  "rank": 785,
+  "label": "normal",
+  "max_risk": 0.98764,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:12:16"
+ },
+ "6d07f826-5fb21377": {
+  "rank": 818,
+  "label": "normal",
+  "max_risk": 0.98725,
+  "peak_s": 25.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:12:21"
+ },
+ "77883a39-4226ea7a": {
+  "rank": 829,
+  "label": "normal",
+  "max_risk": 0.98705,
+  "peak_s": 37.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:12:26"
+ },
+ "4c938e54-f653fecc": {
+  "rank": 840,
+  "label": "normal",
+  "max_risk": 0.98693,
+  "peak_s": 6.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:12:30"
+ },
+ "428357e0-26b84afe": {
+  "rank": 900,
+  "label": "normal",
+  "max_risk": 0.98591,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:12:39"
+ },
+ "6ca36e77-1be4a28a": {
+  "rank": 913,
+  "label": "normal",
+  "max_risk": 0.98555,
+  "peak_s": 18.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:12:44"
+ },
+ "30eada74-b65267dd": {
+  "rank": 948,
+  "label": "normal",
+  "max_risk": 0.98463,
+  "peak_s": 8.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:12:50"
+ },
+ "5ea96a8f-c66f70dc": {
+  "rank": 962,
+  "label": "normal",
+  "max_risk": 0.9844,
+  "peak_s": 2.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:12:58"
+ },
+ "0a8aa157-38e8ed64": {
+  "rank": 966,
+  "label": "normal",
+  "max_risk": 0.98428,
+  "peak_s": 12.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:13:03"
+ },
+ "897accce-0c9131b2": {
+  "rank": 970,
+  "label": "normal",
+  "max_risk": 0.98419,
+  "peak_s": 27.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:13:07"
+ },
+ "5fb8db4c-8470ec72": {
+  "rank": 1031,
+  "label": "bad",
+  "max_risk": 0.98252,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:13:17"
+ },
+ "6bbcd8f1-cb48feb8": {
+  "rank": 1039,
+  "label": "bad",
+  "max_risk": 0.98229,
+  "peak_s": 34.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:13:27"
+ },
+ "03c239e4-54df0d61": {
+  "rank": 1048,
+  "label": "bad",
+  "max_risk": 0.98201,
+  "peak_s": 30.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:13:31"
+ },
+ "35c30051-966950b2": {
+  "rank": 1059,
+  "label": "normal",
+  "max_risk": 0.98182,
+  "peak_s": 13.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:13:37"
+ },
+ "8a672f97-88f2a3b3": {
+  "rank": 1088,
+  "label": "bad",
+  "max_risk": 0.98077,
+  "peak_s": 18.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:13:47"
+ },
+ "3dac6c03-922be44e": {
+  "rank": 639,
+  "label": "risk",
+  "max_risk": 0.98997,
+  "peak_s": 27.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:18:15"
+ },
+ "0771e291-1f94c519": {
+  "rank": 640,
+  "label": "risk",
+  "max_risk": 0.98995,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:18:19"
+ },
+ "945e24d2-555b97d5": {
+  "rank": 651,
+  "label": "unsure",
+  "max_risk": 0.98985,
+  "peak_s": 11.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:18:28"
+ },
+ "2074b19a-de77cea8": {
+  "rank": 652,
+  "label": "normal",
+  "max_risk": 0.98983,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:18:33"
+ },
+ "39421873-8dfae76f": {
+  "rank": 654,
+  "label": "normal",
+  "max_risk": 0.98981,
+  "peak_s": 23.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:18:38"
+ },
+ "04116552-c4673a7c": {
+  "rank": 655,
+  "label": "bad",
+  "max_risk": 0.98975,
+  "peak_s": 32.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:18:46"
+ },
+ "78d34361-10c676e3": {
+  "rank": 660,
+  "label": "bad",
+  "max_risk": 0.98971,
+  "peak_s": 3.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:18:48"
+ },
+ "12ac9ce5-0e3644b4": {
+  "rank": 661,
+  "label": "normal",
+  "max_risk": 0.98967,
+  "peak_s": 28.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:18:53"
+ },
+ "3653188d-cd568eef": {
+  "rank": 664,
+  "label": "normal",
+  "max_risk": 0.98963,
+  "peak_s": 7.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:18:58"
+ },
+ "6a974319-a33b53bd": {
+  "rank": 666,
+  "label": "risk",
+  "max_risk": 0.98961,
+  "peak_s": 21.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:18:59"
+ },
+ "7424dbd8-d4bd3279": {
+  "rank": 669,
+  "label": "normal",
+  "max_risk": 0.98957,
+  "peak_s": 17.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:19:06"
+ },
+ "2b605c48-8dfe352b": {
+  "rank": 673,
+  "label": "normal",
+  "max_risk": 0.98955,
+  "peak_s": 23.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:19:11"
+ },
+ "518d427e-3c709c4b": {
+  "rank": 675,
+  "label": "normal",
+  "max_risk": 0.98951,
+  "peak_s": 5.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:19:15"
+ },
+ "23b127f3-a3ad0213": {
+  "rank": 683,
+  "label": "normal",
+  "max_risk": 0.98937,
+  "peak_s": 35.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:19:20"
+ },
+ "71ae6276-81724033": {
+  "rank": 688,
+  "label": "normal",
+  "max_risk": 0.98933,
+  "peak_s": 29.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:19:23"
+ },
+ "10425a11-febf988c": {
+  "rank": 689,
+  "label": "unsure",
+  "max_risk": 0.98931,
+  "peak_s": 31.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:19:37"
+ },
+ "865e74e4-360a5187": {
+  "rank": 692,
+  "label": "normal",
+  "max_risk": 0.98926,
+  "peak_s": 36.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:19:48"
+ },
+ "9f36e9a9-05c865a5": {
+  "rank": 694,
+  "label": "normal",
+  "max_risk": 0.9892,
+  "peak_s": 35.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:19:52"
+ },
+ "517c819d-6fe102dc": {
+  "rank": 695,
+  "label": "risk",
+  "max_risk": 0.98918,
+  "peak_s": 20.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:19:54"
+ },
+ "025ce5d9-afedd5c5": {
+  "rank": 699,
+  "label": "normal",
+  "max_risk": 0.98914,
+  "peak_s": 35.0,
+  "by": "desktop",
+  "at": "2026-10-16 11:20:00"
  }
 }

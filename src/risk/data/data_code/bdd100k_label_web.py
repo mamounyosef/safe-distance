@@ -38,7 +38,7 @@ from bdd100k_review import SERIES  # noqa: E402
 PORT = 8765
 KEY_FILE = LABELS.with_name(".label_web_key")     # the access key, kept between restarts (not in git)
 CLAIM_S = 180                                     # a clip shown to one person is skipped by "next" for others
-LABEL_NAMES = {"1": "normal", "2": "risk", "3": "unsure", "4": "bad"}   # bad = poor example, never train on it
+LABEL_NAMES = {"1": "normal", "2": "risk", "3": "unsure", "4": "bad"}   # bad = camera not straight (tilted mount), never train on it
 # ----------------
 
 ROWS = todo()                                     # clips in rank order

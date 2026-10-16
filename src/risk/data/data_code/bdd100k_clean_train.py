@@ -3,7 +3,8 @@
 Rule (decided with the person, from the reviews in review_decisions.json):
   ranks 1-200   (riskiest by plain BADAS-Open): removed, mostly real near-misses
   ranks 201-638 : kept only if hand-labelled "normal" in manual_labels.json (risk / unsure / bad removed)
-  ranks 639+    : kept as normal (unless the 639-700 spot check labelled it otherwise)
+  ranks 639-700 : kept only if spot-checked "normal" (unchecked removed: dangers still common here)
+  ranks 701+    : kept as normal (unless a spot check labelled it otherwise; 0/20 risk found in 701-1107)
 
 Writes:
   src/risk/data/bdd100k_ids/train_clean.txt           one clip id per line
@@ -29,6 +30,8 @@ IDS = Path(__file__).resolve().parents[1] / "bdd100k_ids"
 LABELS = IDS / "manual_labels.json"
 TRAIN = IDS / "train_3000.txt"
 REMOVE_TOP, LABEL_LAST = 200, 638          # ranks 1-200 removed; 201-638 decided by hand labels
+UNCHECKED_REMOVE_LAST = 700                 # 639-700: spot checks found 4/20 risk, so unchecked clips are removed;
+                                            # 701-1107 spot check found 0/20 risk, so unchecked clips below 700 stay
 # ----------------
 
 
@@ -57,6 +60,8 @@ def main() -> None:
                 keep.append(clip)
             else:
                 removed[f"ranks 201-638 labelled {lab}"] += 1
+        elif i <= UNCHECKED_REMOVE_LAST and clip not in labels:          # dangers still common here: unchecked out
+            removed[f"ranks 639-{UNCHECKED_REMOVE_LAST} not checked"] += 1
         elif labels.get(clip, {}).get("label", "normal") == "normal":   # spot-checked clips can be removed too
             keep.append(clip)
         else:
@@ -66,7 +71,7 @@ def main() -> None:
     band_labels = Counter(labels[c]["label"] for c in band)
     summary = {
         "made": time.strftime("%Y-%m-%d %H:%M:%S"),
-        "rule": "ranks 1-200 removed; 201-638 kept only if labelled normal; 639+ kept unless spot-checked as not normal",
+        "rule": "ranks 1-200 removed; 201-700 kept only if labelled normal; 701+ kept unless spot-checked as not normal",
         "train_clips": len(train),
         "kept": len(keep),
         "removed_total": sum(removed.values()),
@@ -75,10 +80,12 @@ def main() -> None:
         "ranks_201_638_labelled_by": dict(Counter(labels[c].get("by", "?") for c in band)),
         "kept_from_ranks_201_638": band_labels["normal"],
         "kept_from_ranks_639_plus": len(keep) - band_labels["normal"],
-        "spot_check_639_700": dict(Counter(labels[c]["label"] for c in ranked_ids[LABEL_LAST:] if c in labels)),
-        # Open limit: risk share fell 70% -> 5% across 201-638 (label_bands.json), but the 20-clip spot check of
-        # ranks 639-700 found 4 risk (20%), so real dangers continue below 638 among the unlabelled clips.
-        "known_limit": "ranks 639+ mostly unlabelled; spot check 639-700 found 4/20 risk, so real dangers remain",
+        # Spot checks below 638, per band (labels by rank, so each check's result can be read separately)
+        "spot_checks": {f"{lo}-{hi}": dict(Counter(labels[c]["label"] for c in ranked_ids[lo - 1:hi] if c in labels))
+                        for lo, hi in ((639, 700), (701, 900), (901, 1107))},
+        # Open limit: risk share fell 70% -> 5% across 201-638 (label_bands.json), 639-700 still had dangers
+        # (unchecked clips there removed), 701-1107 had none in 20 clips; tilted cameras below 700 may remain.
+        "known_limit": "ranks 701+ mostly unlabelled; spot check 701-1107 found 0/20 risk but 4/10 tilted cameras in 901-1107",
     }
     (IDS / "train_clean_summary.json").write_text(json.dumps(summary, indent=1))
     print(json.dumps(summary, indent=1))

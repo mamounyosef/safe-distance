@@ -1,17 +1,18 @@
 {
- "made": "2026-10-16 11:03:05",
- "rule": "ranks 1-200 removed; 201-638 kept only if labelled normal; 639+ kept unless spot-checked as not normal",
+ "made": "2026-10-16 11:20:05",
+ "rule": "ranks 1-200 removed; 201-700 kept only if labelled normal; 701+ kept unless spot-checked as not normal",
  "train_clips": 3000,
- "kept": 2611,
- "removed_total": 389,
+ "kept": 2576,
+ "removed_total": 424,
  "removed": {
   "ranks 1-200": 200,
   "ranks 201-638 labelled unsure": 27,
   "ranks 201-638 labelled risk": 141,
   "ranks 201-638 labelled bad": 14,
-  "ranks 639+ spot check labelled unsure": 1,
-  "ranks 639+ spot check labelled bad": 2,
-  "ranks 639+ spot check labelled risk": 4
+  "ranks 639+ spot check labelled risk": 8,
+  "ranks 639-700 not checked": 22,
+  "ranks 639+ spot check labelled unsure": 4,
+  "ranks 639+ spot check labelled bad": 8
  },
  "ranks_201_638_labels": {
   "normal": 256,
@@ -25,12 +26,22 @@
   "Mamoun phone": 103
  },
  "kept_from_ranks_201_638": 256,
- "kept_from_ranks_639_plus": 2355,
- "spot_check_639_700": {
-  "normal": 13,
-  "unsure": 1,
-  "bad": 2,
-  "risk": 4
+ "kept_from_ranks_639_plus": 2320,
+ "spot_checks": {
+  "639-700": {
+   "risk": 8,
+   "normal": 25,
+   "unsure": 3,
+   "bad": 4
+  },
+  "701-900": {
+   "normal": 9,
+   "unsure": 1
+  },
+  "901-1107": {
+   "normal": 6,
+   "bad": 4
+  }
  },
- "known_limit": "ranks 639+ mostly unlabelled; spot check 639-700 found 4/20 risk, so real dangers remain"
+ "known_limit": "ranks 701+ mostly unlabelled; spot check 701-1107 found 0/20 risk but 4/10 tilted cameras in 901-1107"
 }
