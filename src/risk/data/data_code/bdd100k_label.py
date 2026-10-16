@@ -73,14 +73,14 @@ if SPLIT == "test":                         # test spot check 1: 6 random clips 
                                               (201, 240), (241, 278), (279, 400))]}                   # dangers are
     SPOT_EXCLUDE = {}
 CLIPS = Path({"train": r"D:\safe-distance-label-clips-v2", "val": r"D:\safe-distance-label-clips-val",
-              "test": r"D:\safe-distance-label-clips-test-2s"}[SPLIT])                          # small cut clips
+              "test": r"D:\safe-distance-label-clips-test"}[SPLIT])                          # small cut clips
 OLD_CLIPS = Path(r"D:\safe-distance-label-clips")              # first cut (1 s after the peak; froze in browsers)
 LABELS = Path(__file__).resolve().parents[1] / "bdd100k_ids" / {"train": "manual_labels.json", "val": "val_labels.json",
                                                                   "test": "test_labels.json"}[SPLIT]
 VOLUME, PROFILE = "safe-distance-data", Path.home() / ".modal_session18.toml"
 # Seconds kept around the riskiest moment. BADAS reads the 2 s before each reading, so 2 s before the peak shows
 # what alarmed it; after the peak shows how it ends. Val: 3 s clips (train had 4.5 s) to label faster.
-BEFORE_S, AFTER_S = {"train": (2.5, 2.0), "val": (2.0, 1.0), "test": (1.5, 0.5)}[SPLIT]   # test: 2 s (quicker)
+BEFORE_S, AFTER_S = {"train": (2.5, 2.0), "val": (2.0, 1.0), "test": (2.0, 1.0)}[SPLIT]   # 2 s clips were too short
 SIZE = (960, 540)                           # cut clip size (enough to judge, small on disk)
 WORKERS = 4
 KEYS = {ord("1"): "normal", ord("2"): "risk", ord("3"): "unsure", ord("4"): "bad"}   # bad = camera not straight (tilted mount), never train on it
