@@ -68,6 +68,10 @@ SPOTS = {"1": [(639, 700, 20)],                                  # (first rank, 
          "2": [(701, 900, 10), (901, 1107, 10)],
          "3": [(639, 700, 20)]}                                  # 20 more from 639-700 (the rest get removed)
 SPOT_EXCLUDE = {"3": "1"}                   # check 3 never redraws the clips check 1 already showed
+if SPLIT == "test":                         # test spot check 1: 6 random clips per BADAS rank band, to see where the
+    SPOTS = {"1": [(lo, hi, 6) for lo, hi in ((1, 39), (40, 80), (81, 120), (121, 160), (161, 200),   # real
+                                              (201, 240), (241, 278), (279, 400))]}                   # dangers are
+    SPOT_EXCLUDE = {}
 CLIPS = Path({"train": r"D:\safe-distance-label-clips-v2", "val": r"D:\safe-distance-label-clips-val",
               "test": r"D:\safe-distance-label-clips-test"}[SPLIT])                          # small cut clips
 OLD_CLIPS = Path(r"D:\safe-distance-label-clips")              # first cut (1 s after the peak; froze in browsers)

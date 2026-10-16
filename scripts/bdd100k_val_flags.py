@@ -22,10 +22,14 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src/risk/data/data_code"))
 from bdd100k_review import SERIES, rank  # noqa: E402
 
-VAL = ROOT / "src/risk/runs/baseline_badas_open/results/eval/series_bdd_val.json"
+TEST = "--test" in sys.argv                 # --test: the BDD100K test split instead of val (same 0.5 s readings)
+VAL = ROOT / ("src/risk/runs/baseline_badas_open/results/bdd_test/series_bdd_test.json" if TEST
+              else "src/risk/runs/baseline_badas_open/results/eval/series_bdd_val.json")
 LABELS = ROOT / "src/risk/data/bdd100k_ids/manual_labels.json"
-OUT = ROOT / "src/risk/data/bdd100k_ids/val_flags.json"
-BANDS = [(1, 25), (26, 49), (50, 75), (76, 100), (101, 137), (138, 200), (201, 300), (301, 400), (401, 500)]
+OUT = ROOT / "src/risk/data/bdd100k_ids" / ("test_flags.json" if TEST else "val_flags.json")
+BANDS = ([(1, 39), (40, 80), (81, 120), (121, 160), (161, 200), (201, 240), (241, 278), (279, 400), (401, 600),
+          (601, 1000)] if TEST else
+         [(1, 25), (26, 49), (50, 75), (76, 100), (101, 137), (138, 200), (201, 300), (301, 400), (401, 500)])
 STEP_S = 0.5                                # val reading interval
 
 
