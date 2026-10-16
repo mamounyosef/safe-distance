@@ -1,0 +1,9 @@
+{
+ "about": "Nexar train clips never used in training (person's review). Keys: file name in nexar/train/<positive|negative>/.",
+ "clips": {
+  "00164.mp4": {"split": "positive", "reason": "camera points too high, road barely visible", "by": "person",
+                "date": "2026-10-16", "seen_in": "5_stage1_label_rule.mp4 clip 3"},
+  "00678.mp4": {"split": "positive", "reason": "camera points too high, road barely visible (useless)", "by": "person",
+                "date": "2026-10-16", "seen_in": "5_stage1_label_rule.mp4 clip 8"}
+ }
+}
