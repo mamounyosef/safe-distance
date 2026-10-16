@@ -116,13 +116,15 @@ class Scorer:
     @modal.enter()
     def load(self) -> None:
         """Load the model once per container, and start sampling how busy the GPU is."""
-        import socket
         import threading
+        import uuid
 
         import pynvml
         from huggingface_hub import snapshot_download
 
-        self.host, self.t_up, self.util = socket.gethostname(), time.time(), []
+        # A random id per container (the hostname was the same in every container, so the cost counter saw only 1
+        # container while 4 ran and under-counted the cost about 4x).
+        self.host, self.t_up, self.util = uuid.uuid4().hex[:12], time.time(), []
         pynvml.nvmlInit()
         h = pynvml.nvmlDeviceGetHandleByIndex(0)
 
