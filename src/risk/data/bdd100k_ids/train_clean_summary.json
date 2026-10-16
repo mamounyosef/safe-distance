@@ -1,5 +1,5 @@
 {
- "made": "2026-10-16 10:42:01",
+ "made": "2026-10-16 10:53:17",
  "rule": "ranks 1-200 removed; 201-638 kept only if labelled normal; 639+ kept",
  "train_clips": 3000,
  "kept": 2618,
@@ -22,5 +22,6 @@
   "Mamoun phone": 103
  },
  "kept_from_ranks_201_638": 256,
- "kept_from_ranks_639_plus": 2362
+ "kept_from_ranks_639_plus": 2362,
+ "known_limit": "ranks 639+ not hand-checked beyond a 24-clip spot check; possibly 10-20 real dangers (<1%)"
 }

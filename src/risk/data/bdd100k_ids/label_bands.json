@@ -1,0 +1,134 @@
+{
+ "step": 50,
+ "bands": [
+  {
+   "ranks": "201-250",
+   "clips": 50,
+   "normal": 9,
+   "risk": 35,
+   "unsure": 5,
+   "bad": 1,
+   "risk_pct": 70.0,
+   "max_risk_range": [
+    0.9942,
+    0.9947
+   ]
+  },
+  {
+   "ranks": "251-300",
+   "clips": 50,
+   "normal": 21,
+   "risk": 24,
+   "unsure": 3,
+   "bad": 2,
+   "risk_pct": 48.0,
+   "max_risk_range": [
+    0.9937,
+    0.9942
+   ]
+  },
+  {
+   "ranks": "301-350",
+   "clips": 50,
+   "normal": 27,
+   "risk": 19,
+   "unsure": 4,
+   "bad": 0,
+   "risk_pct": 38.0,
+   "max_risk_range": [
+    0.9933,
+    0.9937
+   ]
+  },
+  {
+   "ranks": "351-400",
+   "clips": 50,
+   "normal": 34,
+   "risk": 14,
+   "unsure": 2,
+   "bad": 0,
+   "risk_pct": 28.0,
+   "max_risk_range": [
+    0.9928,
+    0.9933
+   ]
+  },
+  {
+   "ranks": "401-450",
+   "clips": 50,
+   "normal": 30,
+   "risk": 16,
+   "unsure": 2,
+   "bad": 2,
+   "risk_pct": 32.0,
+   "max_risk_range": [
+    0.9922,
+    0.9928
+   ]
+  },
+  {
+   "ranks": "451-500",
+   "clips": 50,
+   "normal": 31,
+   "risk": 16,
+   "unsure": 2,
+   "bad": 1,
+   "risk_pct": 32.0,
+   "max_risk_range": [
+    0.9916,
+    0.9922
+   ]
+  },
+  {
+   "ranks": "501-550",
+   "clips": 50,
+   "normal": 36,
+   "risk": 5,
+   "unsure": 5,
+   "bad": 4,
+   "risk_pct": 10.0,
+   "max_risk_range": [
+    0.991,
+    0.9916
+   ]
+  },
+  {
+   "ranks": "551-600",
+   "clips": 50,
+   "normal": 37,
+   "risk": 10,
+   "unsure": 1,
+   "bad": 2,
+   "risk_pct": 20.0,
+   "max_risk_range": [
+    0.9904,
+    0.991
+   ]
+  },
+  {
+   "ranks": "601-638",
+   "clips": 38,
+   "normal": 31,
+   "risk": 2,
+   "unsure": 3,
+   "bad": 2,
+   "risk_pct": 5.3,
+   "max_risk_range": [
+    0.99,
+    0.9904
+   ]
+  }
+ ],
+ "last_10_risk_ranks": [
+  561,
+  563,
+  564,
+  570,
+  576,
+  577,
+  583,
+  589,
+  623,
+  636
+ ]
+}

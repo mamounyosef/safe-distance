@@ -73,6 +73,9 @@ def main() -> None:
         "ranks_201_638_labelled_by": dict(Counter(labels[c].get("by", "?") for c in band)),
         "kept_from_ranks_201_638": band_labels["normal"],
         "kept_from_ranks_639_plus": len(ranked_ids) - LABEL_LAST,
+        # Accepted limit: risk share fell 70% -> 5% across 201-638 (label_bands.json), 0/24 below 638 in a spot
+        # check. Ranks 639+ were not labelled further (person's decision); maybe 10-20 real dangers remain (<1%).
+        "known_limit": "ranks 639+ not hand-checked beyond a 24-clip spot check; possibly 10-20 real dangers (<1%)",
     }
     (IDS / "train_clean_summary.json").write_text(json.dumps(summary, indent=1))
     print(json.dumps(summary, indent=1))
