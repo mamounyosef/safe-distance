@@ -3,7 +3,7 @@
 Rule (decided with the person, from the reviews in review_decisions.json):
   ranks 1-200   (riskiest by plain BADAS-Open): removed, mostly real near-misses
   ranks 201-638 : kept only if hand-labelled "normal" in manual_labels.json (risk / unsure / bad removed)
-  ranks 639+    : kept as normal
+  ranks 639+    : kept as normal (unless the 639-700 spot check labelled it otherwise)
 
 Writes:
   src/risk/data/bdd100k_ids/train_clean.txt           one clip id per line
@@ -57,14 +57,16 @@ def main() -> None:
                 keep.append(clip)
             else:
                 removed[f"ranks 201-638 labelled {lab}"] += 1
-        else:
+        elif labels.get(clip, {}).get("label", "normal") == "normal":   # spot-checked clips can be removed too
             keep.append(clip)
+        else:
+            removed[f"ranks 639+ spot check labelled {labels[clip]['label']}"] += 1
 
     (IDS / "train_clean.txt").write_text("\n".join(keep) + "\n")
     band_labels = Counter(labels[c]["label"] for c in band)
     summary = {
         "made": time.strftime("%Y-%m-%d %H:%M:%S"),
-        "rule": "ranks 1-200 removed; 201-638 kept only if labelled normal; 639+ kept",
+        "rule": "ranks 1-200 removed; 201-638 kept only if labelled normal; 639+ kept unless spot-checked as not normal",
         "train_clips": len(train),
         "kept": len(keep),
         "removed_total": sum(removed.values()),
@@ -72,10 +74,11 @@ def main() -> None:
         "ranks_201_638_labels": dict(band_labels),
         "ranks_201_638_labelled_by": dict(Counter(labels[c].get("by", "?") for c in band)),
         "kept_from_ranks_201_638": band_labels["normal"],
-        "kept_from_ranks_639_plus": len(ranked_ids) - LABEL_LAST,
-        # Accepted limit: risk share fell 70% -> 5% across 201-638 (label_bands.json), 0/24 below 638 in a spot
-        # check. Ranks 639+ were not labelled further (person's decision); maybe 10-20 real dangers remain (<1%).
-        "known_limit": "ranks 639+ not hand-checked beyond a 24-clip spot check; possibly 10-20 real dangers (<1%)",
+        "kept_from_ranks_639_plus": len(keep) - band_labels["normal"],
+        "spot_check_639_700": dict(Counter(labels[c]["label"] for c in ranked_ids[LABEL_LAST:] if c in labels)),
+        # Open limit: risk share fell 70% -> 5% across 201-638 (label_bands.json), but the 20-clip spot check of
+        # ranks 639-700 found 4 risk (20%), so real dangers continue below 638 among the unlabelled clips.
+        "known_limit": "ranks 639+ mostly unlabelled; spot check 639-700 found 4/20 risk, so real dangers remain",
     }
     (IDS / "train_clean_summary.json").write_text(json.dumps(summary, indent=1))
     print(json.dumps(summary, indent=1))

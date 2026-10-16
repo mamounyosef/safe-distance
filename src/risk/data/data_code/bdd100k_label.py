@@ -20,6 +20,8 @@ RUN IT (from the repo root):
 
     .venv\\Scripts\\python.exe src\\risk\\data\\data_code\\bdd100k_label.py --prepare
     .venv\\Scripts\\python.exe src\\risk\\data\\data_code\\bdd100k_label.py
+
+Spot check (20 random clips from ranks 639-700): set LABEL_SPOT=1 first, same commands (also for the web tool).
 """
 
 from __future__ import annotations
@@ -27,6 +29,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import random
 import subprocess
 import sys
 import time
@@ -41,6 +44,7 @@ from bdd100k_review import SERIES, rank, risk_at  # noqa: E402
 
 # ---- CONFIG ----
 FIRST, LAST = 201, 638                      # ranks to label (1 = riskiest)
+SPOT_FIRST, SPOT_LAST, SPOT_N, SPOT_SEED = 639, 700, 20, 20261016   # spot check below the labelled ranks
 CLIPS = Path(r"D:\safe-distance-label-clips-v2")               # small cut clips (C: is nearly full)
 OLD_CLIPS = Path(r"D:\safe-distance-label-clips")              # first cut (1 s after the peak; froze in browsers)
 LABELS = Path(__file__).resolve().parents[1] / "bdd100k_ids" / "manual_labels.json"
@@ -56,11 +60,16 @@ COLOURS = {"risk": (0, 0, 255), "normal": (0, 200, 0), "unsure": (0, 200, 255), 
 
 
 def todo() -> list[dict]:
-    """The clips to label, in rank order, with their riskiest moment."""
+    """The clips to label, in rank order, with their riskiest moment.
+    With LABEL_SPOT=1 set: the spot check instead (SPOT_N random clips from ranks SPOT_FIRST-SPOT_LAST, fixed seed),
+    to see whether real dangers still appear just below rank 638."""
     series = json.loads(SERIES.read_text())
     full = rank(series)
     for i, r in enumerate(full, 1):
         r["rank"] = i
+    if os.environ.get("LABEL_SPOT") == "1":
+        pick = random.Random(SPOT_SEED).sample(full[SPOT_FIRST - 1:SPOT_LAST], SPOT_N)
+        return sorted(pick, key=lambda r: r["rank"])
     return full[FIRST - 1:LAST]
 
 
