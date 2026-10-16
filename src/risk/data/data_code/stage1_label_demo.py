@@ -4,17 +4,17 @@ The label comes from src/risk/stage1_labels.py, the same code training will use.
 the label a 2 s window ENDING at that frame would get, plus a timeline under the video:
     coloured zones   green = 0, orange = ramp, red = 1, grey = not used (skip / no 2 s history), purple = after crash
     white curve      the label value (bottom of the strip = 0, top = 1)
-    yellow lines     ALERT, ALERT + 0.5 s (late alerts), 2.4 s before (label reaches 1), CRASH
+    yellow lines     ALERT, ALERT + 0.4 s (late alerts), 2.4 s before (label reaches 1), CRASH
     white cursor     now; the shaded bracket behind it is the 2 s of video the window covers
 The picture freezes for a moment at each of those lines.
 
-Cases (alert lead = seconds from the alert to the crash; see CASES): A late 0.5-2.4 s, B early 2.4-4 s,
-C very early over 4 s, D under 0.5 s. Fixed random clips, never one listed in src/risk/data/nexar_excluded.json.
+Cases (alert lead = seconds from the alert to the crash; see CASES): A late 0.4-2.4 s, B early 2.4-4 s,
+C very early over 4 s, D under 0.4 s. Fixed random clips, never one listed in src/risk/data/nexar_excluded.json.
 
 RUN IT (from the repo root):
     .venv\\Scripts\\python.exe src\\risk\\data\\data_code\\stage1_label_demo.py
 
-Output: Downloads\\safe-distance-testing\\nexar\\6_label_case_<case>.mp4 (+ .json with every clip's numbers).
+Output: Downloads\\safe-distance-testing\\nexar\\6_label_cases\case_<case>.mp4 (+ .json with every clip's numbers).
 """
 
 from __future__ import annotations
@@ -36,17 +36,17 @@ from sample_video import Writer, card, text  # noqa: E402
 import stage1_labels as L  # noqa: E402
 
 # ---- CONFIG ----
-OUT_DIR = Path.home() / "Downloads" / "safe-distance-testing" / "nexar"
+OUT_DIR = Path.home() / "Downloads" / "safe-distance-testing" / "nexar" / "6_label_cases"
 # One video per case: (alert lead range in s before the crash, title, what the rule does)
 CASES = {
-    "A_late": (L.MARGIN_S, L.HARD_S, "LATE alert (0.5-2.4 s before the crash)",
-               "skip the first 0.5 s after the alert, then label 1"),
+    "A_late": (L.MARGIN_S, L.HARD_S, "LATE alert (0.4-2.4 s before the crash)",
+               "skip the first 0.4 s after the alert, then label 1"),
     "B_early": (L.HARD_S, L.VERY_EARLY_S, "EARLY alert (2.4-4 s before the crash)",
                 "ramp 0.25 at the alert -> 1 at -2.4 s, then 1"),
     "C_very_early": (L.VERY_EARLY_S, 99.0, "VERY EARLY alert (more than 4 s before the crash)",
                      "same ramp: 0.25 at the alert -> 1 at -2.4 s, then 1"),
-    "D_alert_under_0.5s": (0.0, L.MARGIN_S, "ALERT UNDER 0.5 s before the crash",
-                           "alert + 0.5 s is after the crash: NO danger window (only safe windows before the alert)"),
+    "D_alert_under_0.4s": (0.0, L.MARGIN_S, "ALERT UNDER 0.4 s before the crash",
+                           "alert + 0.4 s is after the crash: NO danger window (only safe windows before the alert)"),
 }
 N, SEED = 5, 16
 EXCLUDED = HERE.parents[0] / "nexar_excluded.json"            # clips the person removed (never shown, never used)
@@ -66,7 +66,7 @@ def markers(alert: float, event: float) -> list[tuple[float, str]]:
     lead = event - alert
     m = [(alert, "ALERT")]
     if lead <= L.HARD_S:
-        m.append((alert + L.MARGIN_S, "ALERT+0.5 s: label 1"))
+        m.append((alert + L.MARGIN_S, f"ALERT+{L.MARGIN_S:g} s: label 1"))
     else:
         m.append((event - L.HARD_S, "-2.4 s: label 1"))
     m.append((event, "CRASH"))
@@ -127,7 +127,7 @@ def make_video(name: str, meta: list[dict]) -> None:
     """One video for one case: a title card, then N clips with the label of the window ending at each frame."""
     lo, hi, title, rule = CASES[name]
     clips, pool = pick_clips(meta, lo, hi)
-    out = OUT_DIR / f"6_label_case_{name}.mp4"
+    out = OUT_DIR / f"case_{name}.mp4"
     wr, shown = Writer(out, SIZE, FPS), []
     wr.write(card(SIZE, [f"Case {name[0]}: {title}", f"rule: {rule}",
                          f"{pool} of the 750 Nexar train crash clips are this case (excluded clips not counted)",

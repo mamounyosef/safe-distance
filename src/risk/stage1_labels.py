@@ -15,14 +15,14 @@ The rule (agreed with the person; times as "seconds before the crash" = event - 
         between the alert and 2.4 s before the crash                      ramp: 0.25 at the alert -> 1 at -2.4 s
         in the last 2.4 s                                                 1
     LATE alert (2.4 s or less before the crash):
-        less than 0.5 s after the alert                                   not used (window is mostly normal driving)
-        0.5 s or more after the alert                                     1
+        less than 0.4 s after the alert                                   not used (window is mostly normal driving)
+        0.4 s or more after the alert                                     1
 
 Why: a window ending just after the alert still shows mostly normal driving, so it must not get a full 1.
 For early alerts the ramp starts low (0.25) and does that job; for late alerts the label would jump straight to 1,
-so the first 0.5 s after the alert is skipped instead. Alerts more than 4 s early follow the same ramp from the
+so the first 0.4 s after the alert is skipped instead. Alerts more than 4 s early follow the same ramp from the
 alert (decided 2026-10-16: no window after the alert is ever labelled 0, since the danger is already visible).
-Alerts less than 0.5 s before the crash give no danger windows (alert + 0.5 s is after the crash).
+Alerts less than 0.4 s before the crash give no danger windows (alert + 0.4 s is after the crash).
 Normal clips (no crash) are 0 everywhere, except their first 2 s (no full history).
 Clips listed in src/risk/data/nexar_excluded.json are never used at all (checked by the sampler, not here).
 """
@@ -34,7 +34,7 @@ WINDOW_S = 2.0          # length of video BADAS reads (16 frames at 8 fps)
 HARD_S = 2.4            # label is 1 in the last 2.4 s before the crash
 VERY_EARLY_S = 4.0      # only names a case for the demos (alerts this early); the label rule does not use it
 RAMP_START = 0.25       # early alerts: label at the alert, rising linearly to 1 at HARD_S before the crash
-MARGIN_S = 0.5          # late alerts: windows ending less than this after the alert are not used
+MARGIN_S = 0.4          # late alerts: windows ending less than this after the alert are not used (was 0.5; person, 2026-10-16)
 # ----------------
 
 # Zone names (what the demo draws, and what training counts)
