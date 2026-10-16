@@ -1,0 +1,153 @@
+{
+ "val_clips": 500,
+ "train_clips": 3000,
+ "levels": [
+  {
+   "peak_at_least": 0.995,
+   "val_clips": 39,
+   "train_clips": 173
+  },
+  {
+   "peak_at_least": 0.994,
+   "val_clips": 60,
+   "train_clips": 273
+  },
+  {
+   "peak_at_least": 0.993,
+   "val_clips": 75,
+   "train_clips": 384
+  },
+  {
+   "peak_at_least": 0.992,
+   "val_clips": 92,
+   "train_clips": 468
+  },
+  {
+   "peak_at_least": 0.991,
+   "val_clips": 104,
+   "train_clips": 550
+  },
+  {
+   "peak_at_least": 0.99,
+   "val_clips": 127,
+   "train_clips": 638
+  },
+  {
+   "peak_at_least": 0.98,
+   "val_clips": 230,
+   "train_clips": 1107
+  },
+  {
+   "peak_at_least": 0.95,
+   "val_clips": 349,
+   "train_clips": 1685
+  },
+  {
+   "peak_at_least": 0.9,
+   "val_clips": 402,
+   "train_clips": 2049
+  }
+ ],
+ "val_top20": [
+  {
+   "rank": 1,
+   "clip": "c3784403-0c68fd6c",
+   "max_risk": 0.9969
+  },
+  {
+   "rank": 2,
+   "clip": "b989ad0d-b8f7d12a",
+   "max_risk": 0.9969
+  },
+  {
+   "rank": 3,
+   "clip": "c0be0e03-3ab88509",
+   "max_risk": 0.9968
+  },
+  {
+   "rank": 4,
+   "clip": "c68bb3b7-ae8ce5d9",
+   "max_risk": 0.9966
+  },
+  {
+   "rank": 5,
+   "clip": "bb8dba97-90b88fdf",
+   "max_risk": 0.9966
+  },
+  {
+   "rank": 6,
+   "clip": "b643ea5a-af37c824",
+   "max_risk": 0.9965
+  },
+  {
+   "rank": 7,
+   "clip": "b8c7c957-b05e784c",
+   "max_risk": 0.9965
+  },
+  {
+   "rank": 8,
+   "clip": "bab98f04-a1010c10",
+   "max_risk": 0.9965
+  },
+  {
+   "rank": 9,
+   "clip": "b23fe89b-c704fe97",
+   "max_risk": 0.9963
+  },
+  {
+   "rank": 10,
+   "clip": "c684b9be-e666905f",
+   "max_risk": 0.9963
+  },
+  {
+   "rank": 11,
+   "clip": "be2ad3df-225b267d",
+   "max_risk": 0.9963
+  },
+  {
+   "rank": 12,
+   "clip": "b483a180-56a9db7c",
+   "max_risk": 0.9963
+  },
+  {
+   "rank": 13,
+   "clip": "b901a3e5-7ca95a7c",
+   "max_risk": 0.9963
+  },
+  {
+   "rank": 14,
+   "clip": "c2edec5a-cb5f109b",
+   "max_risk": 0.9961
+  },
+  {
+   "rank": 15,
+   "clip": "c54e3b28-168e2176",
+   "max_risk": 0.9961
+  },
+  {
+   "rank": 16,
+   "clip": "bda35230-332be7ac",
+   "max_risk": 0.996
+  },
+  {
+   "rank": 17,
+   "clip": "ca23fea0-97c90df7",
+   "max_risk": 0.9959
+  },
+  {
+   "rank": 18,
+   "clip": "c815ee48-72c1bb07",
+   "max_risk": 0.9959
+  },
+  {
+   "rank": 19,
+   "clip": "b9f30ada-2c42a2f8",
+   "max_risk": 0.9958
+  },
+  {
+   "rank": 20,
+   "clip": "c0e6d0ec-17a4eb38",
+   "max_risk": 0.9958
+  }
+ ]
+}
