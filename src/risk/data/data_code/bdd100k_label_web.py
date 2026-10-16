@@ -31,8 +31,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from bdd100k_label import BEFORE_S, CLIPS, LABELS, OLD_CLIPS, load_labels, set_label, todo  # noqa: E402
-from bdd100k_review import SERIES  # noqa: E402
+from bdd100k_label import BEFORE_S, CLIPS, LABELS, OLD_CLIPS, SERIES, load_labels, set_label, todo  # noqa: E402
 
 # ---- CONFIG ----
 PORT = 8765

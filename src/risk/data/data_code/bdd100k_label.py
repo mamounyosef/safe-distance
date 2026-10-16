@@ -41,20 +41,28 @@ import cv2
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from bdd100k_review import SERIES, rank, risk_at  # noqa: E402
+from bdd100k_review import SERIES as TRAIN_SERIES, rank, risk_at  # noqa: E402
 
 # ---- CONFIG ----
-FIRST, LAST = 201, 638                      # ranks to label (1 = riskiest)
+# LABEL_SET=val: label BDD100K val instead (ranks 26-137 by plain BADAS-Open, shorter clips, own labels file).
+# Val ranks 1-25 match train ranks 3-93, where the reviews found 23/23 real near-misses: removed without labelling.
+VAL = os.environ.get("LABEL_SET") == "val"
+SPLIT = "val" if VAL else "train"
+SERIES = (Path(__file__).resolve().parents[2] / "runs/baseline_badas_open/results/eval/series_bdd_val.json"
+          if VAL else TRAIN_SERIES)
+FIRST, LAST = (26, 137) if VAL else (201, 638)                   # ranks to label (1 = riskiest)
 SPOT_SEED = 20261016                        # spot checks below the labelled ranks: LABEL_SPOT=<check> picks one
 SPOTS = {"1": [(639, 700, 20)],                                  # (first rank, last rank, random clips)
          "2": [(701, 900, 10), (901, 1107, 10)],
          "3": [(639, 700, 20)]}                                  # 20 more from 639-700 (the rest get removed)
 SPOT_EXCLUDE = {"3": "1"}                   # check 3 never redraws the clips check 1 already showed
-CLIPS = Path(r"D:\safe-distance-label-clips-v2")               # small cut clips (C: is nearly full)
+CLIPS = Path(r"D:\safe-distance-label-clips-val" if VAL else r"D:\safe-distance-label-clips-v2")   # small cut clips
 OLD_CLIPS = Path(r"D:\safe-distance-label-clips")              # first cut (1 s after the peak; froze in browsers)
-LABELS = Path(__file__).resolve().parents[1] / "bdd100k_ids" / "manual_labels.json"
+LABELS = Path(__file__).resolve().parents[1] / "bdd100k_ids" / ("val_labels.json" if VAL else "manual_labels.json")
 VOLUME, PROFILE = "safe-distance-data", Path.home() / ".modal_session18.toml"
-BEFORE_S, AFTER_S = 2.5, 2.0                # seconds kept around the riskiest moment (2 s after: see how it ends)
+# Seconds kept around the riskiest moment. BADAS reads the 2 s before each reading, so 2 s before the peak shows
+# what alarmed it; after the peak shows how it ends. Val: 3 s clips (train had 4.5 s) to label faster.
+BEFORE_S, AFTER_S = (2.0, 1.0) if VAL else (2.5, 2.0)
 SIZE = (960, 540)                           # cut clip size (enough to judge, small on disk)
 WORKERS = 4
 KEYS = {ord("1"): "normal", ord("2"): "risk", ord("3"): "unsure", ord("4"): "bad"}   # bad = camera not straight (tilted mount), never train on it
@@ -96,7 +104,7 @@ def prepare_one(r: dict) -> str:
     env = {**os.environ, "MODAL_CONFIG_PATH": str(PROFILE)}
     for attempt in range(3):                 # the download sometimes drops: retry
         p = subprocess.run([sys.executable, "-m", "modal", "volume", "get", "--force", VOLUME,
-                            f"bdd100k/videos/100k/train/{r['clip']}.mov", str(full)],
+                            f"bdd100k/videos/100k/{SPLIT}/{r['clip']}.mov", str(full)],
                            env=env, capture_output=True, text=True)
         if p.returncode == 0 and full.exists():
             break
