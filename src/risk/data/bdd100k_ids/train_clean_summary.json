@@ -1,0 +1,26 @@
+{
+ "made": "2026-10-16 10:42:01",
+ "rule": "ranks 1-200 removed; 201-638 kept only if labelled normal; 639+ kept",
+ "train_clips": 3000,
+ "kept": 2618,
+ "removed_total": 382,
+ "removed": {
+  "ranks 1-200": 200,
+  "ranks 201-638 labelled unsure": 27,
+  "ranks 201-638 labelled risk": 141,
+  "ranks 201-638 labelled bad": 14
+ },
+ "ranks_201_638_labels": {
+  "normal": 256,
+  "unsure": 27,
+  "risk": 141,
+  "bad": 14
+ },
+ "ranks_201_638_labelled_by": {
+  "?": 8,
+  "Mamoun": 327,
+  "Mamoun phone": 103
+ },
+ "kept_from_ranks_201_638": 256,
+ "kept_from_ranks_639_plus": 2362
+}
