@@ -1,153 +1,3145 @@
 {
  "val_clips": 500,
- "train_clips": 3000,
- "levels": [
+ "val_seconds_ge_0.9": 1822.0,
+ "val_seconds_ge_0.99": 170.0,
+ "note": "train ranks 1-200 were removed without labels (reviews: 33/37 real); risk % only covers labelled ranks",
+ "bands": [
   {
-   "peak_at_least": 0.995,
-   "val_clips": 39,
-   "train_clips": 173
+   "val_ranks": "1-25",
+   "clips": 25,
+   "peak": [
+    0.9957,
+    0.9969
+   ],
+   "same_peak_train_ranks": "3-93",
+   "train_labelled": 0,
+   "train_risk_pct": null,
+   "seconds_ge_0.9": 211.0,
+   "pct_of_val_time_ge_0.9": 11.6,
+   "seconds_ge_0.99": 55.0,
+   "pct_of_val_time_ge_0.99": 32.4
   },
   {
-   "peak_at_least": 0.994,
-   "val_clips": 60,
-   "train_clips": 273
+   "val_ranks": "26-49",
+   "clips": 24,
+   "peak": [
+    0.9947,
+    0.9956
+   ],
+   "same_peak_train_ranks": "96-199",
+   "train_labelled": 0,
+   "train_risk_pct": null,
+   "seconds_ge_0.9": 180.0,
+   "pct_of_val_time_ge_0.9": 9.9,
+   "seconds_ge_0.99": 40.5,
+   "pct_of_val_time_ge_0.99": 23.8
   },
   {
-   "peak_at_least": 0.993,
-   "val_clips": 75,
-   "train_clips": 384
+   "val_ranks": "50-75",
+   "clips": 26,
+   "peak": [
+    0.9931,
+    0.9947
+   ],
+   "same_peak_train_ranks": "202-375",
+   "train_labelled": 174,
+   "train_risk_pct": 48.0,
+   "seconds_ge_0.9": 173.5,
+   "pct_of_val_time_ge_0.9": 9.5,
+   "seconds_ge_0.99": 36.5,
+   "pct_of_val_time_ge_0.99": 21.5
   },
   {
-   "peak_at_least": 0.992,
-   "val_clips": 92,
-   "train_clips": 468
+   "val_ranks": "76-100",
+   "clips": 25,
+   "peak": [
+    0.9913,
+    0.9929
+   ],
+   "same_peak_train_ranks": "390-529",
+   "train_labelled": 140,
+   "train_risk_pct": 31.0,
+   "seconds_ge_0.9": 206.0,
+   "pct_of_val_time_ge_0.9": 11.3,
+   "seconds_ge_0.99": 22.5,
+   "pct_of_val_time_ge_0.99": 13.2
   },
   {
-   "peak_at_least": 0.991,
-   "val_clips": 104,
-   "train_clips": 550
+   "val_ranks": "101-137",
+   "clips": 37,
+   "peak": [
+    0.9892,
+    0.9913
+   ],
+   "same_peak_train_ranks": "532-692",
+   "train_labelled": 143,
+   "train_risk_pct": 14.0,
+   "seconds_ge_0.9": 217.5,
+   "pct_of_val_time_ge_0.9": 11.9,
+   "seconds_ge_0.99": 15.5,
+   "pct_of_val_time_ge_0.99": 9.1
   },
   {
-   "peak_at_least": 0.99,
-   "val_clips": 127,
-   "train_clips": 638
+   "val_ranks": "138-200",
+   "clips": 63,
+   "peak": [
+    0.984,
+    0.9891
+   ],
+   "same_peak_train_ranks": "703-976",
+   "train_labelled": 15,
+   "train_risk_pct": 0.0,
+   "seconds_ge_0.9": 320.0,
+   "pct_of_val_time_ge_0.9": 17.6,
+   "seconds_ge_0.99": 0.0,
+   "pct_of_val_time_ge_0.99": 0.0
   },
   {
-   "peak_at_least": 0.98,
-   "val_clips": 230,
-   "train_clips": 1107
+   "val_ranks": "201-300",
+   "clips": 100,
+   "peak": [
+    0.9668,
+    0.984
+   ],
+   "same_peak_train_ranks": "983-1438",
+   "train_labelled": 5,
+   "train_risk_pct": 0.0,
+   "seconds_ge_0.9": 356.0,
+   "pct_of_val_time_ge_0.9": 19.5,
+   "seconds_ge_0.99": 0.0,
+   "pct_of_val_time_ge_0.99": 0.0
   },
   {
-   "peak_at_least": 0.95,
-   "val_clips": 349,
-   "train_clips": 1685
+   "val_ranks": "301-400",
+   "clips": 100,
+   "peak": [
+    0.9084,
+    0.9666
+   ],
+   "same_peak_train_ranks": "1442-1995",
+   "train_labelled": 0,
+   "train_risk_pct": null,
+   "seconds_ge_0.9": 157.0,
+   "pct_of_val_time_ge_0.9": 8.6,
+   "seconds_ge_0.99": 0.0,
+   "pct_of_val_time_ge_0.99": 0.0
   },
   {
-   "peak_at_least": 0.9,
-   "val_clips": 402,
-   "train_clips": 2049
+   "val_ranks": "401-500",
+   "clips": 100,
+   "peak": [
+    0.0045,
+    0.9066
+   ],
+   "same_peak_train_ranks": "2008-3000",
+   "train_labelled": 0,
+   "train_risk_pct": null,
+   "seconds_ge_0.9": 1.0,
+   "pct_of_val_time_ge_0.9": 0.1,
+   "seconds_ge_0.99": 0.0,
+   "pct_of_val_time_ge_0.99": 0.0
   }
  ],
- "val_top20": [
+ "ranking": [
   {
    "rank": 1,
    "clip": "c3784403-0c68fd6c",
-   "max_risk": 0.9969
+   "max_risk": 0.9969,
+   "train_rank_same_peak": 3
   },
   {
    "rank": 2,
    "clip": "b989ad0d-b8f7d12a",
-   "max_risk": 0.9969
+   "max_risk": 0.9969,
+   "train_rank_same_peak": 3
   },
   {
    "rank": 3,
    "clip": "c0be0e03-3ab88509",
-   "max_risk": 0.9968
+   "max_risk": 0.9968,
+   "train_rank_same_peak": 5
   },
   {
    "rank": 4,
    "clip": "c68bb3b7-ae8ce5d9",
-   "max_risk": 0.9966
+   "max_risk": 0.9966,
+   "train_rank_same_peak": 7
   },
   {
    "rank": 5,
    "clip": "bb8dba97-90b88fdf",
-   "max_risk": 0.9966
+   "max_risk": 0.9966,
+   "train_rank_same_peak": 8
   },
   {
    "rank": 6,
    "clip": "b643ea5a-af37c824",
-   "max_risk": 0.9965
+   "max_risk": 0.9965,
+   "train_rank_same_peak": 10
   },
   {
    "rank": 7,
    "clip": "b8c7c957-b05e784c",
-   "max_risk": 0.9965
+   "max_risk": 0.9965,
+   "train_rank_same_peak": 10
   },
   {
    "rank": 8,
    "clip": "bab98f04-a1010c10",
-   "max_risk": 0.9965
+   "max_risk": 0.9965,
+   "train_rank_same_peak": 12
   },
   {
    "rank": 9,
    "clip": "b23fe89b-c704fe97",
-   "max_risk": 0.9963
+   "max_risk": 0.9963,
+   "train_rank_same_peak": 20
   },
   {
    "rank": 10,
    "clip": "c684b9be-e666905f",
-   "max_risk": 0.9963
+   "max_risk": 0.9963,
+   "train_rank_same_peak": 24
   },
   {
    "rank": 11,
    "clip": "be2ad3df-225b267d",
-   "max_risk": 0.9963
+   "max_risk": 0.9963,
+   "train_rank_same_peak": 25
   },
   {
    "rank": 12,
    "clip": "b483a180-56a9db7c",
-   "max_risk": 0.9963
+   "max_risk": 0.9963,
+   "train_rank_same_peak": 25
   },
   {
    "rank": 13,
    "clip": "b901a3e5-7ca95a7c",
-   "max_risk": 0.9963
+   "max_risk": 0.9963,
+   "train_rank_same_peak": 25
   },
   {
    "rank": 14,
    "clip": "c2edec5a-cb5f109b",
-   "max_risk": 0.9961
+   "max_risk": 0.9961,
+   "train_rank_same_peak": 46
   },
   {
    "rank": 15,
    "clip": "c54e3b28-168e2176",
-   "max_risk": 0.9961
+   "max_risk": 0.9961,
+   "train_rank_same_peak": 46
   },
   {
    "rank": 16,
    "clip": "bda35230-332be7ac",
-   "max_risk": 0.996
+   "max_risk": 0.996,
+   "train_rank_same_peak": 51
   },
   {
    "rank": 17,
    "clip": "ca23fea0-97c90df7",
-   "max_risk": 0.9959
+   "max_risk": 0.9959,
+   "train_rank_same_peak": 64
   },
   {
    "rank": 18,
    "clip": "c815ee48-72c1bb07",
-   "max_risk": 0.9959
+   "max_risk": 0.9959,
+   "train_rank_same_peak": 64
   },
   {
    "rank": 19,
    "clip": "b9f30ada-2c42a2f8",
-   "max_risk": 0.9958
+   "max_risk": 0.9958,
+   "train_rank_same_peak": 72
   },
   {
    "rank": 20,
    "clip": "c0e6d0ec-17a4eb38",
-   "max_risk": 0.9958
+   "max_risk": 0.9958,
+   "train_rank_same_peak": 72
+  },
+  {
+   "rank": 21,
+   "clip": "bf9e3b67-2d5736bc",
+   "max_risk": 0.9958,
+   "train_rank_same_peak": 75
+  },
+  {
+   "rank": 22,
+   "clip": "c5030241-68561ce7",
+   "max_risk": 0.9958,
+   "train_rank_same_peak": 75
+  },
+  {
+   "rank": 23,
+   "clip": "b7348a27-496f5f92",
+   "max_risk": 0.9957,
+   "train_rank_same_peak": 80
+  },
+  {
+   "rank": 24,
+   "clip": "b25fd5d3-fa4bfca0",
+   "max_risk": 0.9957,
+   "train_rank_same_peak": 85
+  },
+  {
+   "rank": 25,
+   "clip": "bf0fd4de-7db956ab",
+   "max_risk": 0.9957,
+   "train_rank_same_peak": 93
+  },
+  {
+   "rank": 26,
+   "clip": "bbe95ad4-8870089d",
+   "max_risk": 0.9956,
+   "train_rank_same_peak": 96
+  },
+  {
+   "rank": 27,
+   "clip": "b1ff4656-0435391e",
+   "max_risk": 0.9956,
+   "train_rank_same_peak": 100
+  },
+  {
+   "rank": 28,
+   "clip": "bd0db9ed-cdca9422",
+   "max_risk": 0.9955,
+   "train_rank_same_peak": 105
+  },
+  {
+   "rank": 29,
+   "clip": "b33ced12-423ec0dc",
+   "max_risk": 0.9955,
+   "train_rank_same_peak": 106
+  },
+  {
+   "rank": 30,
+   "clip": "b84eef86-eb4bb6e0",
+   "max_risk": 0.9955,
+   "train_rank_same_peak": 113
+  },
+  {
+   "rank": 31,
+   "clip": "b4c86653-3594c3a4",
+   "max_risk": 0.9954,
+   "train_rank_same_peak": 121
+  },
+  {
+   "rank": 32,
+   "clip": "c324a11d-eaaeb859",
+   "max_risk": 0.9954,
+   "train_rank_same_peak": 126
+  },
+  {
+   "rank": 33,
+   "clip": "c0ca172c-5f15e9fb",
+   "max_risk": 0.9954,
+   "train_rank_same_peak": 129
+  },
+  {
+   "rank": 34,
+   "clip": "ca0eb18c-907cd101",
+   "max_risk": 0.9954,
+   "train_rank_same_peak": 129
+  },
+  {
+   "rank": 35,
+   "clip": "bf3d49bf-b543e245",
+   "max_risk": 0.9954,
+   "train_rank_same_peak": 131
+  },
+  {
+   "rank": 36,
+   "clip": "b9ca94a2-7f349303",
+   "max_risk": 0.9953,
+   "train_rank_same_peak": 140
+  },
+  {
+   "rank": 37,
+   "clip": "c3639d96-b9928b16",
+   "max_risk": 0.9952,
+   "train_rank_same_peak": 141
+  },
+  {
+   "rank": 38,
+   "clip": "c9b9fef4-a58bf3d5",
+   "max_risk": 0.9952,
+   "train_rank_same_peak": 148
+  },
+  {
+   "rank": 39,
+   "clip": "c14e8180-ec624140",
+   "max_risk": 0.9951,
+   "train_rank_same_peak": 162
+  },
+  {
+   "rank": 40,
+   "clip": "b3c9eef1-dcb3d0e7",
+   "max_risk": 0.995,
+   "train_rank_same_peak": 174
+  },
+  {
+   "rank": 41,
+   "clip": "c50d0b3f-3a8df0bf",
+   "max_risk": 0.9949,
+   "train_rank_same_peak": 182
+  },
+  {
+   "rank": 42,
+   "clip": "b92d48c3-f7812f84",
+   "max_risk": 0.9948,
+   "train_rank_same_peak": 190
+  },
+  {
+   "rank": 43,
+   "clip": "c9c778b5-86bddb7e",
+   "max_risk": 0.9948,
+   "train_rank_same_peak": 191
+  },
+  {
+   "rank": 44,
+   "clip": "c55dc887-58fc27e7",
+   "max_risk": 0.9948,
+   "train_rank_same_peak": 192
+  },
+  {
+   "rank": 45,
+   "clip": "c9aa50be-62caa81b",
+   "max_risk": 0.9948,
+   "train_rank_same_peak": 192
+  },
+  {
+   "rank": 46,
+   "clip": "c8bf003e-a663547a",
+   "max_risk": 0.9947,
+   "train_rank_same_peak": 198
+  },
+  {
+   "rank": 47,
+   "clip": "c65d48bf-11a2512b",
+   "max_risk": 0.9947,
+   "train_rank_same_peak": 198
+  },
+  {
+   "rank": 48,
+   "clip": "b726c429-8f45fe47",
+   "max_risk": 0.9947,
+   "train_rank_same_peak": 199
+  },
+  {
+   "rank": 49,
+   "clip": "b8affcd1-29901d90",
+   "max_risk": 0.9947,
+   "train_rank_same_peak": 199
+  },
+  {
+   "rank": 50,
+   "clip": "c83d3fa4-c385cce0",
+   "max_risk": 0.9947,
+   "train_rank_same_peak": 202
+  },
+  {
+   "rank": 51,
+   "clip": "b1cd1e94-549d0bfe",
+   "max_risk": 0.9946,
+   "train_rank_same_peak": 203
+  },
+  {
+   "rank": 52,
+   "clip": "c8628ccd-a4bc1f43",
+   "max_risk": 0.9946,
+   "train_rank_same_peak": 204
+  },
+  {
+   "rank": 53,
+   "clip": "bf593f19-ebbb7e5d",
+   "max_risk": 0.9945,
+   "train_rank_same_peak": 219
+  },
+  {
+   "rank": 54,
+   "clip": "c37388ef-99765627",
+   "max_risk": 0.9945,
+   "train_rank_same_peak": 221
+  },
+  {
+   "rank": 55,
+   "clip": "ca1c6003-aad4464c",
+   "max_risk": 0.9944,
+   "train_rank_same_peak": 226
+  },
+  {
+   "rank": 56,
+   "clip": "b91cdc5d-bce994ce",
+   "max_risk": 0.9944,
+   "train_rank_same_peak": 230
+  },
+  {
+   "rank": 57,
+   "clip": "bc8ccccd-bbc93b76",
+   "max_risk": 0.9943,
+   "train_rank_same_peak": 233
+  },
+  {
+   "rank": 58,
+   "clip": "b6f8a510-6f70445f",
+   "max_risk": 0.9943,
+   "train_rank_same_peak": 235
+  },
+  {
+   "rank": 59,
+   "clip": "c4fd6567-49ef2209",
+   "max_risk": 0.9943,
+   "train_rank_same_peak": 241
+  },
+  {
+   "rank": 60,
+   "clip": "b7d13f97-3df013fa",
+   "max_risk": 0.9941,
+   "train_rank_same_peak": 261
+  },
+  {
+   "rank": 61,
+   "clip": "c5c7c186-9381f4a2",
+   "max_risk": 0.994,
+   "train_rank_same_peak": 276
+  },
+  {
+   "rank": 62,
+   "clip": "c7fa148b-89df90c1",
+   "max_risk": 0.994,
+   "train_rank_same_peak": 278
+  },
+  {
+   "rank": 63,
+   "clip": "c1fdd182-ee635148",
+   "max_risk": 0.9939,
+   "train_rank_same_peak": 278
+  },
+  {
+   "rank": 64,
+   "clip": "bd931a20-031fbc84",
+   "max_risk": 0.9938,
+   "train_rank_same_peak": 295
+  },
+  {
+   "rank": 65,
+   "clip": "bbec733f-32b81849",
+   "max_risk": 0.9938,
+   "train_rank_same_peak": 296
+  },
+  {
+   "rank": 66,
+   "clip": "b7b7c088-2fda29df",
+   "max_risk": 0.9937,
+   "train_rank_same_peak": 299
+  },
+  {
+   "rank": 67,
+   "clip": "b4863201-6521c146",
+   "max_risk": 0.9935,
+   "train_rank_same_peak": 324
+  },
+  {
+   "rank": 68,
+   "clip": "c1bd4140-1f2bd79e",
+   "max_risk": 0.9935,
+   "train_rank_same_peak": 324
+  },
+  {
+   "rank": 69,
+   "clip": "b473c3c3-f52b760e",
+   "max_risk": 0.9934,
+   "train_rank_same_peak": 337
+  },
+  {
+   "rank": 70,
+   "clip": "c488f6a3-cffdf85a",
+   "max_risk": 0.9934,
+   "train_rank_same_peak": 339
+  },
+  {
+   "rank": 71,
+   "clip": "b5b7d0a6-e63e539f",
+   "max_risk": 0.9934,
+   "train_rank_same_peak": 344
+  },
+  {
+   "rank": 72,
+   "clip": "c75dff4f-c91e6880",
+   "max_risk": 0.9932,
+   "train_rank_same_peak": 363
+  },
+  {
+   "rank": 73,
+   "clip": "b9ed70c8-edc3834b",
+   "max_risk": 0.9932,
+   "train_rank_same_peak": 364
+  },
+  {
+   "rank": 74,
+   "clip": "c5ffb92c-67f32de8",
+   "max_risk": 0.9931,
+   "train_rank_same_peak": 364
+  },
+  {
+   "rank": 75,
+   "clip": "b62bef56-b08de744",
+   "max_risk": 0.9931,
+   "train_rank_same_peak": 375
+  },
+  {
+   "rank": 76,
+   "clip": "b6241b17-301c2e2e",
+   "max_risk": 0.9929,
+   "train_rank_same_peak": 390
+  },
+  {
+   "rank": 77,
+   "clip": "bbc4e74d-7ae9336b",
+   "max_risk": 0.9929,
+   "train_rank_same_peak": 390
+  },
+  {
+   "rank": 78,
+   "clip": "b4c8a6c7-56206227",
+   "max_risk": 0.9929,
+   "train_rank_same_peak": 394
+  },
+  {
+   "rank": 79,
+   "clip": "b3121071-c0fd88c4",
+   "max_risk": 0.9927,
+   "train_rank_same_peak": 409
+  },
+  {
+   "rank": 80,
+   "clip": "bb46f3cd-b72d2152",
+   "max_risk": 0.9926,
+   "train_rank_same_peak": 422
+  },
+  {
+   "rank": 81,
+   "clip": "c569c251-411184c2",
+   "max_risk": 0.9925,
+   "train_rank_same_peak": 427
+  },
+  {
+   "rank": 82,
+   "clip": "c60c04c3-b48a4e84",
+   "max_risk": 0.9925,
+   "train_rank_same_peak": 427
+  },
+  {
+   "rank": 83,
+   "clip": "b202cae2-f46c74a6",
+   "max_risk": 0.9925,
+   "train_rank_same_peak": 428
+  },
+  {
+   "rank": 84,
+   "clip": "b760329b-611024b4",
+   "max_risk": 0.9924,
+   "train_rank_same_peak": 429
+  },
+  {
+   "rank": 85,
+   "clip": "c5a178bf-637d1750",
+   "max_risk": 0.9924,
+   "train_rank_same_peak": 434
+  },
+  {
+   "rank": 86,
+   "clip": "bbcf6d54-a28d17b9",
+   "max_risk": 0.9923,
+   "train_rank_same_peak": 443
+  },
+  {
+   "rank": 87,
+   "clip": "c93f8df2-d683a18b",
+   "max_risk": 0.9922,
+   "train_rank_same_peak": 452
+  },
+  {
+   "rank": 88,
+   "clip": "c74a122c-e7005b78",
+   "max_risk": 0.9921,
+   "train_rank_same_peak": 457
+  },
+  {
+   "rank": 89,
+   "clip": "c31a04de-a3a5bc29",
+   "max_risk": 0.9921,
+   "train_rank_same_peak": 458
+  },
+  {
+   "rank": 90,
+   "clip": "c970d004-efeb8b97",
+   "max_risk": 0.9921,
+   "train_rank_same_peak": 458
+  },
+  {
+   "rank": 91,
+   "clip": "c2592033-8052ef77",
+   "max_risk": 0.9921,
+   "train_rank_same_peak": 464
+  },
+  {
+   "rank": 92,
+   "clip": "c396b7c0-cf46a981",
+   "max_risk": 0.992,
+   "train_rank_same_peak": 468
+  },
+  {
+   "rank": 93,
+   "clip": "b3e83de5-c5e9dcca",
+   "max_risk": 0.9919,
+   "train_rank_same_peak": 473
+  },
+  {
+   "rank": 94,
+   "clip": "bc978e82-e82eee23",
+   "max_risk": 0.9919,
+   "train_rank_same_peak": 475
+  },
+  {
+   "rank": 95,
+   "clip": "b87a03a9-c9da2b1a",
+   "max_risk": 0.9919,
+   "train_rank_same_peak": 477
+  },
+  {
+   "rank": 96,
+   "clip": "c6bb8a0c-bdba1c5d",
+   "max_risk": 0.9917,
+   "train_rank_same_peak": 493
+  },
+  {
+   "rank": 97,
+   "clip": "b6e591bd-d509b54b",
+   "max_risk": 0.9917,
+   "train_rank_same_peak": 495
+  },
+  {
+   "rank": 98,
+   "clip": "ca2c7c84-39bf84ee",
+   "max_risk": 0.9916,
+   "train_rank_same_peak": 500
+  },
+  {
+   "rank": 99,
+   "clip": "c62664f1-e2a87cef",
+   "max_risk": 0.9914,
+   "train_rank_same_peak": 512
+  },
+  {
+   "rank": 100,
+   "clip": "c2e294a9-93e364f0",
+   "max_risk": 0.9913,
+   "train_rank_same_peak": 529
+  },
+  {
+   "rank": 101,
+   "clip": "bda60c48-07ab78ed",
+   "max_risk": 0.9913,
+   "train_rank_same_peak": 532
+  },
+  {
+   "rank": 102,
+   "clip": "ca3bf9b0-ab1201eb",
+   "max_risk": 0.9912,
+   "train_rank_same_peak": 537
+  },
+  {
+   "rank": 103,
+   "clip": "c94d8213-847662eb",
+   "max_risk": 0.9911,
+   "train_rank_same_peak": 542
+  },
+  {
+   "rank": 104,
+   "clip": "c3b1694b-79c97ac2",
+   "max_risk": 0.9911,
+   "train_rank_same_peak": 543
+  },
+  {
+   "rank": 105,
+   "clip": "b28cb5d3-f800ecd2",
+   "max_risk": 0.9909,
+   "train_rank_same_peak": 558
+  },
+  {
+   "rank": 106,
+   "clip": "b4542860-e818b412",
+   "max_risk": 0.9909,
+   "train_rank_same_peak": 563
+  },
+  {
+   "rank": 107,
+   "clip": "b90327ce-86c1d1f4",
+   "max_risk": 0.9909,
+   "train_rank_same_peak": 563
+  },
+  {
+   "rank": 108,
+   "clip": "c98258a4-b78aa787",
+   "max_risk": 0.9909,
+   "train_rank_same_peak": 563
+  },
+  {
+   "rank": 109,
+   "clip": "be60191c-813aa925",
+   "max_risk": 0.9909,
+   "train_rank_same_peak": 564
+  },
+  {
+   "rank": 110,
+   "clip": "b5ac257d-5a34b3fa",
+   "max_risk": 0.9908,
+   "train_rank_same_peak": 566
+  },
+  {
+   "rank": 111,
+   "clip": "ba87390f-22dabe83",
+   "max_risk": 0.9908,
+   "train_rank_same_peak": 566
+  },
+  {
+   "rank": 112,
+   "clip": "c1f8d9b3-e7a69cc0",
+   "max_risk": 0.9907,
+   "train_rank_same_peak": 574
+  },
+  {
+   "rank": 113,
+   "clip": "b2fa3e5f-8c4b06d0",
+   "max_risk": 0.9907,
+   "train_rank_same_peak": 575
+  },
+  {
+   "rank": 114,
+   "clip": "b9c7f347-97b374b1",
+   "max_risk": 0.9907,
+   "train_rank_same_peak": 575
+  },
+  {
+   "rank": 115,
+   "clip": "c7648772-fc04b1c3",
+   "max_risk": 0.9906,
+   "train_rank_same_peak": 582
+  },
+  {
+   "rank": 116,
+   "clip": "c56915dc-1eb8abe1",
+   "max_risk": 0.9906,
+   "train_rank_same_peak": 582
+  },
+  {
+   "rank": 117,
+   "clip": "c8257ea8-ea7235f8",
+   "max_risk": 0.9905,
+   "train_rank_same_peak": 594
+  },
+  {
+   "rank": 118,
+   "clip": "c330c787-ae1c841a",
+   "max_risk": 0.9905,
+   "train_rank_same_peak": 594
+  },
+  {
+   "rank": 119,
+   "clip": "bed07392-75beda90",
+   "max_risk": 0.9904,
+   "train_rank_same_peak": 602
+  },
+  {
+   "rank": 120,
+   "clip": "bbc357f2-ddaa5e79",
+   "max_risk": 0.9904,
+   "train_rank_same_peak": 604
+  },
+  {
+   "rank": 121,
+   "clip": "bc9f8a23-228d01e9",
+   "max_risk": 0.9904,
+   "train_rank_same_peak": 604
+  },
+  {
+   "rank": 122,
+   "clip": "bab48a4e-43fa0dfe",
+   "max_risk": 0.9904,
+   "train_rank_same_peak": 606
+  },
+  {
+   "rank": 123,
+   "clip": "c2e294a9-8b108774",
+   "max_risk": 0.9903,
+   "train_rank_same_peak": 609
+  },
+  {
+   "rank": 124,
+   "clip": "bf80599d-c04f3cbb",
+   "max_risk": 0.9902,
+   "train_rank_same_peak": 614
+  },
+  {
+   "rank": 125,
+   "clip": "bfb6d7c1-d607f837",
+   "max_risk": 0.9902,
+   "train_rank_same_peak": 617
+  },
+  {
+   "rank": 126,
+   "clip": "b2102d00-a8c09be1",
+   "max_risk": 0.9902,
+   "train_rank_same_peak": 620
+  },
+  {
+   "rank": 127,
+   "clip": "b2bceb54-0b1f3332",
+   "max_risk": 0.9901,
+   "train_rank_same_peak": 629
+  },
+  {
+   "rank": 128,
+   "clip": "c0082590-c1533b81",
+   "max_risk": 0.9899,
+   "train_rank_same_peak": 646
+  },
+  {
+   "rank": 129,
+   "clip": "bc896c2e-27a21506",
+   "max_risk": 0.9898,
+   "train_rank_same_peak": 653
+  },
+  {
+   "rank": 130,
+   "clip": "c7c39101-837064cb",
+   "max_risk": 0.9897,
+   "train_rank_same_peak": 660
+  },
+  {
+   "rank": 131,
+   "clip": "c4e00603-9f2734d0",
+   "max_risk": 0.9895,
+   "train_rank_same_peak": 674
+  },
+  {
+   "rank": 132,
+   "clip": "c4353b9c-9d50cbe9",
+   "max_risk": 0.9895,
+   "train_rank_same_peak": 676
+  },
+  {
+   "rank": 133,
+   "clip": "b4946e87-165efbb5",
+   "max_risk": 0.9893,
+   "train_rank_same_peak": 684
+  },
+  {
+   "rank": 134,
+   "clip": "bde0caa6-d7d428b5",
+   "max_risk": 0.9893,
+   "train_rank_same_peak": 684
+  },
+  {
+   "rank": 135,
+   "clip": "b7db31d1-7ccff061",
+   "max_risk": 0.9893,
+   "train_rank_same_peak": 690
+  },
+  {
+   "rank": 136,
+   "clip": "baefbbd2-83ba702b",
+   "max_risk": 0.9893,
+   "train_rank_same_peak": 690
+  },
+  {
+   "rank": 137,
+   "clip": "c8f61b8f-81c16429",
+   "max_risk": 0.9892,
+   "train_rank_same_peak": 692
+  },
+  {
+   "rank": 138,
+   "clip": "bd505c1f-26a9accf",
+   "max_risk": 0.9891,
+   "train_rank_same_peak": 703
+  },
+  {
+   "rank": 139,
+   "clip": "c57a44ff-1a53cea4",
+   "max_risk": 0.989,
+   "train_rank_same_peak": 705
+  },
+  {
+   "rank": 140,
+   "clip": "ca0e9da5-f5507d00",
+   "max_risk": 0.989,
+   "train_rank_same_peak": 706
+  },
+  {
+   "rank": 141,
+   "clip": "bec5aa0b-27aa89d9",
+   "max_risk": 0.9889,
+   "train_rank_same_peak": 707
+  },
+  {
+   "rank": 142,
+   "clip": "b3c4e98b-8469f497",
+   "max_risk": 0.9889,
+   "train_rank_same_peak": 711
+  },
+  {
+   "rank": 143,
+   "clip": "b1f6c103-b00e8aad",
+   "max_risk": 0.9887,
+   "train_rank_same_peak": 717
+  },
+  {
+   "rank": 144,
+   "clip": "c69e5864-06a7595c",
+   "max_risk": 0.9887,
+   "train_rank_same_peak": 717
+  },
+  {
+   "rank": 145,
+   "clip": "c8c022ae-b7e1c0b5",
+   "max_risk": 0.9887,
+   "train_rank_same_peak": 717
+  },
+  {
+   "rank": 146,
+   "clip": "b2638d82-062aa1de",
+   "max_risk": 0.9887,
+   "train_rank_same_peak": 719
+  },
+  {
+   "rank": 147,
+   "clip": "c33ec7c6-ab13ff1b",
+   "max_risk": 0.9885,
+   "train_rank_same_peak": 725
+  },
+  {
+   "rank": 148,
+   "clip": "bbb46475-1bfc3090",
+   "max_risk": 0.9885,
+   "train_rank_same_peak": 729
+  },
+  {
+   "rank": 149,
+   "clip": "b41ace08-830c808c",
+   "max_risk": 0.9882,
+   "train_rank_same_peak": 743
+  },
+  {
+   "rank": 150,
+   "clip": "b56a8196-9b3b361b",
+   "max_risk": 0.9882,
+   "train_rank_same_peak": 743
+  },
+  {
+   "rank": 151,
+   "clip": "b3a238e3-de6b8b86",
+   "max_risk": 0.9882,
+   "train_rank_same_peak": 745
+  },
+  {
+   "rank": 152,
+   "clip": "c51321e5-033ac799",
+   "max_risk": 0.9881,
+   "train_rank_same_peak": 753
+  },
+  {
+   "rank": 153,
+   "clip": "b242f6b2-eaa39345",
+   "max_risk": 0.988,
+   "train_rank_same_peak": 760
+  },
+  {
+   "rank": 154,
+   "clip": "bc7a0adc-260a111d",
+   "max_risk": 0.988,
+   "train_rank_same_peak": 763
+  },
+  {
+   "rank": 155,
+   "clip": "bf234dae-f65aaae7",
+   "max_risk": 0.988,
+   "train_rank_same_peak": 763
+  },
+  {
+   "rank": 156,
+   "clip": "c6921a51-1735be44",
+   "max_risk": 0.988,
+   "train_rank_same_peak": 763
+  },
+  {
+   "rank": 157,
+   "clip": "b8b9ffae-d3cb2bbd",
+   "max_risk": 0.9879,
+   "train_rank_same_peak": 765
+  },
+  {
+   "rank": 158,
+   "clip": "c38cd3f6-bd22367b",
+   "max_risk": 0.9879,
+   "train_rank_same_peak": 767
+  },
+  {
+   "rank": 159,
+   "clip": "c7dc648e-dd181375",
+   "max_risk": 0.9879,
+   "train_rank_same_peak": 767
+  },
+  {
+   "rank": 160,
+   "clip": "b4253085-22b9e610",
+   "max_risk": 0.9878,
+   "train_rank_same_peak": 777
+  },
+  {
+   "rank": 161,
+   "clip": "b33ea6cb-ddf24803",
+   "max_risk": 0.9877,
+   "train_rank_same_peak": 779
+  },
+  {
+   "rank": 162,
+   "clip": "c6549c4a-6d2e9309",
+   "max_risk": 0.9877,
+   "train_rank_same_peak": 781
+  },
+  {
+   "rank": 163,
+   "clip": "b39fe3cd-2a77c651",
+   "max_risk": 0.9875,
+   "train_rank_same_peak": 790
+  },
+  {
+   "rank": 164,
+   "clip": "c1bf3315-d2d3b34f",
+   "max_risk": 0.9875,
+   "train_rank_same_peak": 791
+  },
+  {
+   "rank": 165,
+   "clip": "bee09035-01100c39",
+   "max_risk": 0.9874,
+   "train_rank_same_peak": 801
+  },
+  {
+   "rank": 166,
+   "clip": "bbaf54a0-217653b8",
+   "max_risk": 0.9873,
+   "train_rank_same_peak": 811
+  },
+  {
+   "rank": 167,
+   "clip": "b7a175e0-52e0bbc9",
+   "max_risk": 0.9872,
+   "train_rank_same_peak": 824
+  },
+  {
+   "rank": 168,
+   "clip": "c2f3e924-031246d8",
+   "max_risk": 0.9872,
+   "train_rank_same_peak": 825
+  },
+  {
+   "rank": 169,
+   "clip": "b946a4cf-ef1b308e",
+   "max_risk": 0.987,
+   "train_rank_same_peak": 831
+  },
+  {
+   "rank": 170,
+   "clip": "bef9fe55-0bba41cb",
+   "max_risk": 0.987,
+   "train_rank_same_peak": 833
+  },
+  {
+   "rank": 171,
+   "clip": "c6ca1dcf-635b762f",
+   "max_risk": 0.987,
+   "train_rank_same_peak": 833
+  },
+  {
+   "rank": 172,
+   "clip": "ba9f23d8-a50cd80e",
+   "max_risk": 0.9869,
+   "train_rank_same_peak": 847
+  },
+  {
+   "rank": 173,
+   "clip": "c6fe2d9d-833142b5",
+   "max_risk": 0.9868,
+   "train_rank_same_peak": 850
+  },
+  {
+   "rank": 174,
+   "clip": "b6accff3-eb28ad4f",
+   "max_risk": 0.9868,
+   "train_rank_same_peak": 854
+  },
+  {
+   "rank": 175,
+   "clip": "c3783c84-e38a9213",
+   "max_risk": 0.9867,
+   "train_rank_same_peak": 856
+  },
+  {
+   "rank": 176,
+   "clip": "b4d72ad8-ae73962e",
+   "max_risk": 0.9865,
+   "train_rank_same_peak": 867
+  },
+  {
+   "rank": 177,
+   "clip": "ca3bbb0a-cd13da9e",
+   "max_risk": 0.9865,
+   "train_rank_same_peak": 867
+  },
+  {
+   "rank": 178,
+   "clip": "c417a291-7ea03054",
+   "max_risk": 0.9864,
+   "train_rank_same_peak": 873
+  },
+  {
+   "rank": 179,
+   "clip": "b4626a3d-9361e0fd",
+   "max_risk": 0.9863,
+   "train_rank_same_peak": 877
+  },
+  {
+   "rank": 180,
+   "clip": "ba36b0a9-6c380330",
+   "max_risk": 0.9863,
+   "train_rank_same_peak": 877
+  },
+  {
+   "rank": 181,
+   "clip": "bb9d3fc8-c2a034bd",
+   "max_risk": 0.9861,
+   "train_rank_same_peak": 882
+  },
+  {
+   "rank": 182,
+   "clip": "c45e9809-f95fd1e2",
+   "max_risk": 0.9858,
+   "train_rank_same_peak": 905
+  },
+  {
+   "rank": 183,
+   "clip": "b3a6f586-23d13c49",
+   "max_risk": 0.9858,
+   "train_rank_same_peak": 908
+  },
+  {
+   "rank": 184,
+   "clip": "c2841851-644a8cfe",
+   "max_risk": 0.9857,
+   "train_rank_same_peak": 909
+  },
+  {
+   "rank": 185,
+   "clip": "b306fb3f-3118e8b6",
+   "max_risk": 0.9857,
+   "train_rank_same_peak": 909
+  },
+  {
+   "rank": 186,
+   "clip": "c3593016-ac7c536a",
+   "max_risk": 0.9856,
+   "train_rank_same_peak": 911
+  },
+  {
+   "rank": 187,
+   "clip": "c4031040-488a6ce0",
+   "max_risk": 0.9855,
+   "train_rank_same_peak": 915
+  },
+  {
+   "rank": 188,
+   "clip": "c0f5b0d0-6e438a33",
+   "max_risk": 0.9854,
+   "train_rank_same_peak": 917
+  },
+  {
+   "rank": 189,
+   "clip": "c1252e1f-c0640ea4",
+   "max_risk": 0.9852,
+   "train_rank_same_peak": 921
+  },
+  {
+   "rank": 190,
+   "clip": "b43eb946-b8bc931c",
+   "max_risk": 0.9852,
+   "train_rank_same_peak": 924
+  },
+  {
+   "rank": 191,
+   "clip": "bccd4f82-5c8f9f28",
+   "max_risk": 0.9852,
+   "train_rank_same_peak": 928
+  },
+  {
+   "rank": 192,
+   "clip": "c1e1f7c0-b6466fae",
+   "max_risk": 0.9851,
+   "train_rank_same_peak": 932
+  },
+  {
+   "rank": 193,
+   "clip": "bf7f98e7-026008d3",
+   "max_risk": 0.9849,
+   "train_rank_same_peak": 936
+  },
+  {
+   "rank": 194,
+   "clip": "bd65dd37-4c3cdf2d",
+   "max_risk": 0.9848,
+   "train_rank_same_peak": 936
+  },
+  {
+   "rank": 195,
+   "clip": "b4fce2f5-d8eee5bb",
+   "max_risk": 0.9848,
+   "train_rank_same_peak": 939
+  },
+  {
+   "rank": 196,
+   "clip": "b4f2a76c-6b0c22e6",
+   "max_risk": 0.9847,
+   "train_rank_same_peak": 944
+  },
+  {
+   "rank": 197,
+   "clip": "c7f97365-68b7e100",
+   "max_risk": 0.9847,
+   "train_rank_same_peak": 947
+  },
+  {
+   "rank": 198,
+   "clip": "b931fe93-5ee3a9ba",
+   "max_risk": 0.9842,
+   "train_rank_same_peak": 970
+  },
+  {
+   "rank": 199,
+   "clip": "c76e4ccc-86973001",
+   "max_risk": 0.9841,
+   "train_rank_same_peak": 975
+  },
+  {
+   "rank": 200,
+   "clip": "b6f4b139-d7311df5",
+   "max_risk": 0.984,
+   "train_rank_same_peak": 976
+  },
+  {
+   "rank": 201,
+   "clip": "c022e075-40907eff",
+   "max_risk": 0.984,
+   "train_rank_same_peak": 983
+  },
+  {
+   "rank": 202,
+   "clip": "c7b41787-4e83c33d",
+   "max_risk": 0.9837,
+   "train_rank_same_peak": 989
+  },
+  {
+   "rank": 203,
+   "clip": "b49a1b50-186fb520",
+   "max_risk": 0.9836,
+   "train_rank_same_peak": 992
+  },
+  {
+   "rank": 204,
+   "clip": "bec19328-e01f5679",
+   "max_risk": 0.9835,
+   "train_rank_same_peak": 993
+  },
+  {
+   "rank": 205,
+   "clip": "c124e51c-b3b1db34",
+   "max_risk": 0.9832,
+   "train_rank_same_peak": 1003
+  },
+  {
+   "rank": 206,
+   "clip": "c5e32cf6-89b8fb88",
+   "max_risk": 0.9832,
+   "train_rank_same_peak": 1008
+  },
+  {
+   "rank": 207,
+   "clip": "c146d100-917008e9",
+   "max_risk": 0.9831,
+   "train_rank_same_peak": 1010
+  },
+  {
+   "rank": 208,
+   "clip": "c2021f20-46a5823b",
+   "max_risk": 0.983,
+   "train_rank_same_peak": 1015
+  },
+  {
+   "rank": 209,
+   "clip": "c6db7763-bd0a64d2",
+   "max_risk": 0.9828,
+   "train_rank_same_peak": 1018
+  },
+  {
+   "rank": 210,
+   "clip": "b6ffe7bd-735e0b0a",
+   "max_risk": 0.9827,
+   "train_rank_same_peak": 1024
+  },
+  {
+   "rank": 211,
+   "clip": "c132df41-a4dbc930",
+   "max_risk": 0.9827,
+   "train_rank_same_peak": 1025
+  },
+  {
+   "rank": 212,
+   "clip": "bba9d58b-afdc737b",
+   "max_risk": 0.9826,
+   "train_rank_same_peak": 1026
+  },
+  {
+   "rank": 213,
+   "clip": "b61fda8b-fc0a3fe7",
+   "max_risk": 0.9826,
+   "train_rank_same_peak": 1027
+  },
+  {
+   "rank": 214,
+   "clip": "c9403737-33cab241",
+   "max_risk": 0.9824,
+   "train_rank_same_peak": 1035
+  },
+  {
+   "rank": 215,
+   "clip": "c4d25f00-158d0757",
+   "max_risk": 0.9822,
+   "train_rank_same_peak": 1043
+  },
+  {
+   "rank": 216,
+   "clip": "c69f536a-9d45ee3d",
+   "max_risk": 0.9821,
+   "train_rank_same_peak": 1044
+  },
+  {
+   "rank": 217,
+   "clip": "b3e137e5-fe7ef981",
+   "max_risk": 0.9821,
+   "train_rank_same_peak": 1046
+  },
+  {
+   "rank": 218,
+   "clip": "bcaf73c1-d7002106",
+   "max_risk": 0.982,
+   "train_rank_same_peak": 1050
+  },
+  {
+   "rank": 219,
+   "clip": "c1f9740a-41816cad",
+   "max_risk": 0.9819,
+   "train_rank_same_peak": 1054
+  },
+  {
+   "rank": 220,
+   "clip": "b953a340-d188ea90",
+   "max_risk": 0.9817,
+   "train_rank_same_peak": 1062
+  },
+  {
+   "rank": 221,
+   "clip": "bae92945-2f6f01d7",
+   "max_risk": 0.9817,
+   "train_rank_same_peak": 1063
+  },
+  {
+   "rank": 222,
+   "clip": "be85292c-a3fbba40",
+   "max_risk": 0.9817,
+   "train_rank_same_peak": 1063
+  },
+  {
+   "rank": 223,
+   "clip": "c4155f73-01f813b2",
+   "max_risk": 0.9815,
+   "train_rank_same_peak": 1068
+  },
+  {
+   "rank": 224,
+   "clip": "bbf38397-6c3d4ef5",
+   "max_risk": 0.9811,
+   "train_rank_same_peak": 1081
+  },
+  {
+   "rank": 225,
+   "clip": "b3a6f586-3ea7e1ad",
+   "max_risk": 0.981,
+   "train_rank_same_peak": 1082
+  },
+  {
+   "rank": 226,
+   "clip": "b3826fd8-774c2e0a",
+   "max_risk": 0.9807,
+   "train_rank_same_peak": 1089
+  },
+  {
+   "rank": 227,
+   "clip": "c50d0b3f-96a483e0",
+   "max_risk": 0.9806,
+   "train_rank_same_peak": 1090
+  },
+  {
+   "rank": 228,
+   "clip": "c540a708-48091e56",
+   "max_risk": 0.9804,
+   "train_rank_same_peak": 1098
+  },
+  {
+   "rank": 229,
+   "clip": "c31aa969-cfd19d38",
+   "max_risk": 0.9803,
+   "train_rank_same_peak": 1101
+  },
+  {
+   "rank": 230,
+   "clip": "c96ab7ea-3894685f",
+   "max_risk": 0.98,
+   "train_rank_same_peak": 1107
+  },
+  {
+   "rank": 231,
+   "clip": "c7140eaa-eb9d0128",
+   "max_risk": 0.9796,
+   "train_rank_same_peak": 1116
+  },
+  {
+   "rank": 232,
+   "clip": "b7cf9504-dfc7bd99",
+   "max_risk": 0.9794,
+   "train_rank_same_peak": 1125
+  },
+  {
+   "rank": 233,
+   "clip": "ca4bdfab-34ec6a3a",
+   "max_risk": 0.9794,
+   "train_rank_same_peak": 1125
+  },
+  {
+   "rank": 234,
+   "clip": "ba8df251-f17bd4a5",
+   "max_risk": 0.9793,
+   "train_rank_same_peak": 1128
+  },
+  {
+   "rank": 235,
+   "clip": "c8d1bc4e-9c43c393",
+   "max_risk": 0.9793,
+   "train_rank_same_peak": 1128
+  },
+  {
+   "rank": 236,
+   "clip": "c6a0e7c1-b9bc987c",
+   "max_risk": 0.9792,
+   "train_rank_same_peak": 1132
+  },
+  {
+   "rank": 237,
+   "clip": "c927d51b-99c8166b",
+   "max_risk": 0.9788,
+   "train_rank_same_peak": 1139
+  },
+  {
+   "rank": 238,
+   "clip": "b85fb98d-41e7213c",
+   "max_risk": 0.9787,
+   "train_rank_same_peak": 1139
+  },
+  {
+   "rank": 239,
+   "clip": "c6089c97-fb6682fb",
+   "max_risk": 0.9785,
+   "train_rank_same_peak": 1145
+  },
+  {
+   "rank": 240,
+   "clip": "c938658b-7aac4679",
+   "max_risk": 0.9785,
+   "train_rank_same_peak": 1145
+  },
+  {
+   "rank": 241,
+   "clip": "b5e387a7-9c4a9214",
+   "max_risk": 0.9785,
+   "train_rank_same_peak": 1147
+  },
+  {
+   "rank": 242,
+   "clip": "c38cd3f6-c74ca48b",
+   "max_risk": 0.9784,
+   "train_rank_same_peak": 1148
+  },
+  {
+   "rank": 243,
+   "clip": "bba4ee51-3badc9f8",
+   "max_risk": 0.9783,
+   "train_rank_same_peak": 1149
+  },
+  {
+   "rank": 244,
+   "clip": "b6579e76-4fee87d1",
+   "max_risk": 0.9783,
+   "train_rank_same_peak": 1150
+  },
+  {
+   "rank": 245,
+   "clip": "b20234fd-822029be",
+   "max_risk": 0.9779,
+   "train_rank_same_peak": 1163
+  },
+  {
+   "rank": 246,
+   "clip": "c32da93f-1463bf89",
+   "max_risk": 0.9779,
+   "train_rank_same_peak": 1164
+  },
+  {
+   "rank": 247,
+   "clip": "bb429905-efd7b1aa",
+   "max_risk": 0.9778,
+   "train_rank_same_peak": 1169
+  },
+  {
+   "rank": 248,
+   "clip": "c664605e-3e933e30",
+   "max_risk": 0.9778,
+   "train_rank_same_peak": 1170
+  },
+  {
+   "rank": 249,
+   "clip": "b70b64da-396bfbd3",
+   "max_risk": 0.9776,
+   "train_rank_same_peak": 1179
+  },
+  {
+   "rank": 250,
+   "clip": "c179d309-8939ab37",
+   "max_risk": 0.9773,
+   "train_rank_same_peak": 1187
+  },
+  {
+   "rank": 251,
+   "clip": "b486e8ba-a96e55e5",
+   "max_risk": 0.9771,
+   "train_rank_same_peak": 1192
+  },
+  {
+   "rank": 252,
+   "clip": "b3c39081-34b43a1c",
+   "max_risk": 0.9769,
+   "train_rank_same_peak": 1204
+  },
+  {
+   "rank": 253,
+   "clip": "bc101f0f-6b6d71e7",
+   "max_risk": 0.9768,
+   "train_rank_same_peak": 1207
+  },
+  {
+   "rank": 254,
+   "clip": "b57b533b-cabdbef5",
+   "max_risk": 0.9767,
+   "train_rank_same_peak": 1215
+  },
+  {
+   "rank": 255,
+   "clip": "b294386c-24ddd0c3",
+   "max_risk": 0.9765,
+   "train_rank_same_peak": 1217
+  },
+  {
+   "rank": 256,
+   "clip": "c19e69b1-d725a651",
+   "max_risk": 0.9765,
+   "train_rank_same_peak": 1217
+  },
+  {
+   "rank": 257,
+   "clip": "be39c92f-cef221af",
+   "max_risk": 0.9758,
+   "train_rank_same_peak": 1238
+  },
+  {
+   "rank": 258,
+   "clip": "b58f8128-5be35778",
+   "max_risk": 0.9756,
+   "train_rank_same_peak": 1242
+  },
+  {
+   "rank": 259,
+   "clip": "c6352da9-dbb06c04",
+   "max_risk": 0.9755,
+   "train_rank_same_peak": 1245
+  },
+  {
+   "rank": 260,
+   "clip": "c985e44f-024d63ab",
+   "max_risk": 0.9754,
+   "train_rank_same_peak": 1249
+  },
+  {
+   "rank": 261,
+   "clip": "c60144b6-62841efb",
+   "max_risk": 0.9754,
+   "train_rank_same_peak": 1249
+  },
+  {
+   "rank": 262,
+   "clip": "b6359092-fc2faab6",
+   "max_risk": 0.9752,
+   "train_rank_same_peak": 1254
+  },
+  {
+   "rank": 263,
+   "clip": "bba4ee51-12cbf4ff",
+   "max_risk": 0.9752,
+   "train_rank_same_peak": 1254
+  },
+  {
+   "rank": 264,
+   "clip": "b2fc7cb5-1635d64b",
+   "max_risk": 0.9746,
+   "train_rank_same_peak": 1268
+  },
+  {
+   "rank": 265,
+   "clip": "bc9880e2-42c6aaac",
+   "max_risk": 0.9745,
+   "train_rank_same_peak": 1269
+  },
+  {
+   "rank": 266,
+   "clip": "b1d9e136-6c94ea3f",
+   "max_risk": 0.9744,
+   "train_rank_same_peak": 1270
+  },
+  {
+   "rank": 267,
+   "clip": "b5bfa85b-f1387252",
+   "max_risk": 0.9743,
+   "train_rank_same_peak": 1274
+  },
+  {
+   "rank": 268,
+   "clip": "c030d423-3c82226c",
+   "max_risk": 0.9742,
+   "train_rank_same_peak": 1274
+  },
+  {
+   "rank": 269,
+   "clip": "c4c60257-a432f6b0",
+   "max_risk": 0.9738,
+   "train_rank_same_peak": 1286
+  },
+  {
+   "rank": 270,
+   "clip": "b66f7339-b14741dc",
+   "max_risk": 0.9737,
+   "train_rank_same_peak": 1286
+  },
+  {
+   "rank": 271,
+   "clip": "bb8f6c9a-9be5142a",
+   "max_risk": 0.9736,
+   "train_rank_same_peak": 1289
+  },
+  {
+   "rank": 272,
+   "clip": "b557d9d0-bff2bed2",
+   "max_risk": 0.9732,
+   "train_rank_same_peak": 1296
+  },
+  {
+   "rank": 273,
+   "clip": "bd415d27-9b1d4637",
+   "max_risk": 0.973,
+   "train_rank_same_peak": 1303
+  },
+  {
+   "rank": 274,
+   "clip": "b33ea6cb-8ef8b9c4",
+   "max_risk": 0.9728,
+   "train_rank_same_peak": 1311
+  },
+  {
+   "rank": 275,
+   "clip": "c6cde742-b3cceffb",
+   "max_risk": 0.9727,
+   "train_rank_same_peak": 1313
+  },
+  {
+   "rank": 276,
+   "clip": "b305fc0b-ec8916d5",
+   "max_risk": 0.9726,
+   "train_rank_same_peak": 1315
+  },
+  {
+   "rank": 277,
+   "clip": "b6c2a409-b0dacc13",
+   "max_risk": 0.9725,
+   "train_rank_same_peak": 1317
+  },
+  {
+   "rank": 278,
+   "clip": "bf838e9d-08f6fb44",
+   "max_risk": 0.9724,
+   "train_rank_same_peak": 1317
+  },
+  {
+   "rank": 279,
+   "clip": "b4fd3ecf-25548ea4",
+   "max_risk": 0.9722,
+   "train_rank_same_peak": 1322
+  },
+  {
+   "rank": 280,
+   "clip": "b4f49565-abd6b20b",
+   "max_risk": 0.972,
+   "train_rank_same_peak": 1331
+  },
+  {
+   "rank": 281,
+   "clip": "c2a6b1c9-c45dc6e2",
+   "max_risk": 0.9716,
+   "train_rank_same_peak": 1344
+  },
+  {
+   "rank": 282,
+   "clip": "c587d65a-90cbad97",
+   "max_risk": 0.9713,
+   "train_rank_same_peak": 1351
+  },
+  {
+   "rank": 283,
+   "clip": "b48fabad-9ef198f0",
+   "max_risk": 0.9706,
+   "train_rank_same_peak": 1361
+  },
+  {
+   "rank": 284,
+   "clip": "c52f53f8-70ad0125",
+   "max_risk": 0.9704,
+   "train_rank_same_peak": 1365
+  },
+  {
+   "rank": 285,
+   "clip": "c644bce5-310a172f",
+   "max_risk": 0.9703,
+   "train_rank_same_peak": 1365
+  },
+  {
+   "rank": 286,
+   "clip": "c86f5924-0ec535db",
+   "max_risk": 0.9702,
+   "train_rank_same_peak": 1368
+  },
+  {
+   "rank": 287,
+   "clip": "c5b76b45-6a9e676b",
+   "max_risk": 0.97,
+   "train_rank_same_peak": 1372
+  },
+  {
+   "rank": 288,
+   "clip": "c2c8b275-cd37b639",
+   "max_risk": 0.9698,
+   "train_rank_same_peak": 1374
+  },
+  {
+   "rank": 289,
+   "clip": "c88b26c5-0a03ff8e",
+   "max_risk": 0.9692,
+   "train_rank_same_peak": 1384
+  },
+  {
+   "rank": 290,
+   "clip": "c741a3b6-17ca1b7e",
+   "max_risk": 0.9691,
+   "train_rank_same_peak": 1388
+  },
+  {
+   "rank": 291,
+   "clip": "b25fdb41-4644e3f7",
+   "max_risk": 0.9691,
+   "train_rank_same_peak": 1389
+  },
+  {
+   "rank": 292,
+   "clip": "c100db13-71b423e5",
+   "max_risk": 0.9687,
+   "train_rank_same_peak": 1395
+  },
+  {
+   "rank": 293,
+   "clip": "b995df4d-4bf935df",
+   "max_risk": 0.9686,
+   "train_rank_same_peak": 1399
+  },
+  {
+   "rank": 294,
+   "clip": "b38580a1-f26eb052",
+   "max_risk": 0.9686,
+   "train_rank_same_peak": 1399
+  },
+  {
+   "rank": 295,
+   "clip": "c1dc04b3-0279aa42",
+   "max_risk": 0.9685,
+   "train_rank_same_peak": 1401
+  },
+  {
+   "rank": 296,
+   "clip": "c0c8ee02-431b9781",
+   "max_risk": 0.9684,
+   "train_rank_same_peak": 1404
+  },
+  {
+   "rank": 297,
+   "clip": "bdec2416-d18fb371",
+   "max_risk": 0.9681,
+   "train_rank_same_peak": 1409
+  },
+  {
+   "rank": 298,
+   "clip": "ca656c47-e483f464",
+   "max_risk": 0.968,
+   "train_rank_same_peak": 1410
+  },
+  {
+   "rank": 299,
+   "clip": "bc19c993-2b635099",
+   "max_risk": 0.9676,
+   "train_rank_same_peak": 1421
+  },
+  {
+   "rank": 300,
+   "clip": "b7fc87bf-8ac3359e",
+   "max_risk": 0.9668,
+   "train_rank_same_peak": 1438
+  },
+  {
+   "rank": 301,
+   "clip": "b6d2717a-a24fc378",
+   "max_risk": 0.9666,
+   "train_rank_same_peak": 1442
+  },
+  {
+   "rank": 302,
+   "clip": "c8152bfa-28181ba4",
+   "max_risk": 0.9663,
+   "train_rank_same_peak": 1450
+  },
+  {
+   "rank": 303,
+   "clip": "bcaf73c1-48814a50",
+   "max_risk": 0.9654,
+   "train_rank_same_peak": 1465
+  },
+  {
+   "rank": 304,
+   "clip": "b924005d-3e1ae14d",
+   "max_risk": 0.9645,
+   "train_rank_same_peak": 1486
+  },
+  {
+   "rank": 305,
+   "clip": "b4ccfe4f-6585fb74",
+   "max_risk": 0.9643,
+   "train_rank_same_peak": 1488
+  },
+  {
+   "rank": 306,
+   "clip": "c96e0b6a-0acdb8b5",
+   "max_risk": 0.9641,
+   "train_rank_same_peak": 1492
+  },
+  {
+   "rank": 307,
+   "clip": "c1b173ec-7c9f4aba",
+   "max_risk": 0.9635,
+   "train_rank_same_peak": 1501
+  },
+  {
+   "rank": 308,
+   "clip": "ba15261b-0cded4cf",
+   "max_risk": 0.9634,
+   "train_rank_same_peak": 1503
+  },
+  {
+   "rank": 309,
+   "clip": "b78a38de-5b7a6b2f",
+   "max_risk": 0.963,
+   "train_rank_same_peak": 1506
+  },
+  {
+   "rank": 310,
+   "clip": "c396e833-a3876e00",
+   "max_risk": 0.9628,
+   "train_rank_same_peak": 1510
+  },
+  {
+   "rank": 311,
+   "clip": "c40a2c98-3709f786",
+   "max_risk": 0.9624,
+   "train_rank_same_peak": 1519
+  },
+  {
+   "rank": 312,
+   "clip": "c389631f-34a8e513",
+   "max_risk": 0.9616,
+   "train_rank_same_peak": 1539
+  },
+  {
+   "rank": 313,
+   "clip": "c8db7252-6e20c65a",
+   "max_risk": 0.9616,
+   "train_rank_same_peak": 1539
+  },
+  {
+   "rank": 314,
+   "clip": "c7d0b0a7-a0e6b491",
+   "max_risk": 0.9615,
+   "train_rank_same_peak": 1542
+  },
+  {
+   "rank": 315,
+   "clip": "b9429f07-a95e6db3",
+   "max_risk": 0.961,
+   "train_rank_same_peak": 1545
+  },
+  {
+   "rank": 316,
+   "clip": "c93bd9ce-d2617cc7",
+   "max_risk": 0.9608,
+   "train_rank_same_peak": 1549
+  },
+  {
+   "rank": 317,
+   "clip": "bc83797e-8a4b2d6a",
+   "max_risk": 0.9606,
+   "train_rank_same_peak": 1553
+  },
+  {
+   "rank": 318,
+   "clip": "b39fe3cd-183566f9",
+   "max_risk": 0.9605,
+   "train_rank_same_peak": 1553
+  },
+  {
+   "rank": 319,
+   "clip": "b61f162d-b6e10f56",
+   "max_risk": 0.9604,
+   "train_rank_same_peak": 1555
+  },
+  {
+   "rank": 320,
+   "clip": "c174b1bd-6d940899",
+   "max_risk": 0.9599,
+   "train_rank_same_peak": 1560
+  },
+  {
+   "rank": 321,
+   "clip": "c5e41dc2-537a34c6",
+   "max_risk": 0.9598,
+   "train_rank_same_peak": 1564
+  },
+  {
+   "rank": 322,
+   "clip": "bd290539-e1efc276",
+   "max_risk": 0.9598,
+   "train_rank_same_peak": 1564
+  },
+  {
+   "rank": 323,
+   "clip": "bb94d14a-39633f6b",
+   "max_risk": 0.9594,
+   "train_rank_same_peak": 1567
+  },
+  {
+   "rank": 324,
+   "clip": "b6decb24-0de96f8c",
+   "max_risk": 0.9592,
+   "train_rank_same_peak": 1568
+  },
+  {
+   "rank": 325,
+   "clip": "c9123546-b647e40f",
+   "max_risk": 0.959,
+   "train_rank_same_peak": 1571
+  },
+  {
+   "rank": 326,
+   "clip": "c02d91b8-8b1bdadc",
+   "max_risk": 0.959,
+   "train_rank_same_peak": 1571
+  },
+  {
+   "rank": 327,
+   "clip": "c75d7961-49f17231",
+   "max_risk": 0.9585,
+   "train_rank_same_peak": 1575
+  },
+  {
+   "rank": 328,
+   "clip": "b705004b-c5606783",
+   "max_risk": 0.9584,
+   "train_rank_same_peak": 1575
+  },
+  {
+   "rank": 329,
+   "clip": "bcf483bd-153ab23c",
+   "max_risk": 0.9578,
+   "train_rank_same_peak": 1588
+  },
+  {
+   "rank": 330,
+   "clip": "b784ff27-14060d57",
+   "max_risk": 0.9572,
+   "train_rank_same_peak": 1598
+  },
+  {
+   "rank": 331,
+   "clip": "c0de5178-547765fc",
+   "max_risk": 0.9566,
+   "train_rank_same_peak": 1603
+  },
+  {
+   "rank": 332,
+   "clip": "ba087e53-ef362be0",
+   "max_risk": 0.9563,
+   "train_rank_same_peak": 1604
+  },
+  {
+   "rank": 333,
+   "clip": "bbc06e30-11e26c79",
+   "max_risk": 0.9561,
+   "train_rank_same_peak": 1609
+  },
+  {
+   "rank": 334,
+   "clip": "c35e0eea-7596f0bd",
+   "max_risk": 0.9555,
+   "train_rank_same_peak": 1614
+  },
+  {
+   "rank": 335,
+   "clip": "b6e264cf-d2600371",
+   "max_risk": 0.9552,
+   "train_rank_same_peak": 1618
+  },
+  {
+   "rank": 336,
+   "clip": "c1d9b74d-19748e56",
+   "max_risk": 0.9552,
+   "train_rank_same_peak": 1620
+  },
+  {
+   "rank": 337,
+   "clip": "c9bdd74a-9dc0ad2e",
+   "max_risk": 0.9552,
+   "train_rank_same_peak": 1620
+  },
+  {
+   "rank": 338,
+   "clip": "be651ed5-2feb0be6",
+   "max_risk": 0.9551,
+   "train_rank_same_peak": 1621
+  },
+  {
+   "rank": 339,
+   "clip": "b99aea27-68a2c988",
+   "max_risk": 0.955,
+   "train_rank_same_peak": 1621
+  },
+  {
+   "rank": 340,
+   "clip": "c72b8356-0bac66a5",
+   "max_risk": 0.9545,
+   "train_rank_same_peak": 1628
+  },
+  {
+   "rank": 341,
+   "clip": "c56915dc-8d1f7b7a",
+   "max_risk": 0.9542,
+   "train_rank_same_peak": 1634
+  },
+  {
+   "rank": 342,
+   "clip": "c00a8f2a-d84a9895",
+   "max_risk": 0.9533,
+   "train_rank_same_peak": 1646
+  },
+  {
+   "rank": 343,
+   "clip": "b3a4cbbb-73f71148",
+   "max_risk": 0.9523,
+   "train_rank_same_peak": 1666
+  },
+  {
+   "rank": 344,
+   "clip": "b4ba0552-53249a02",
+   "max_risk": 0.9521,
+   "train_rank_same_peak": 1666
+  },
+  {
+   "rank": 345,
+   "clip": "b6642e30-6d6af891",
+   "max_risk": 0.952,
+   "train_rank_same_peak": 1667
+  },
+  {
+   "rank": 346,
+   "clip": "b4448a1d-e9c03bb5",
+   "max_risk": 0.9516,
+   "train_rank_same_peak": 1670
+  },
+  {
+   "rank": 347,
+   "clip": "b4235ab3-a1c929ae",
+   "max_risk": 0.9514,
+   "train_rank_same_peak": 1670
+  },
+  {
+   "rank": 348,
+   "clip": "c50c20fc-39f5336c",
+   "max_risk": 0.9506,
+   "train_rank_same_peak": 1680
+  },
+  {
+   "rank": 349,
+   "clip": "c1fcdfd1-b34ce63c",
+   "max_risk": 0.9504,
+   "train_rank_same_peak": 1682
+  },
+  {
+   "rank": 350,
+   "clip": "b306fb3f-178fca4e",
+   "max_risk": 0.9496,
+   "train_rank_same_peak": 1689
+  },
+  {
+   "rank": 351,
+   "clip": "b415973a-b39bd6de",
+   "max_risk": 0.9486,
+   "train_rank_same_peak": 1703
+  },
+  {
+   "rank": 352,
+   "clip": "c776d10b-6732b55c",
+   "max_risk": 0.9483,
+   "train_rank_same_peak": 1708
+  },
+  {
+   "rank": 353,
+   "clip": "c0d1a6d9-54ae850d",
+   "max_risk": 0.9472,
+   "train_rank_same_peak": 1715
+  },
+  {
+   "rank": 354,
+   "clip": "be5b8df4-784c9d84",
+   "max_risk": 0.9471,
+   "train_rank_same_peak": 1715
+  },
+  {
+   "rank": 355,
+   "clip": "c5feca03-0f32ddcf",
+   "max_risk": 0.9459,
+   "train_rank_same_peak": 1729
+  },
+  {
+   "rank": 356,
+   "clip": "bded2d56-9a09a78b",
+   "max_risk": 0.9458,
+   "train_rank_same_peak": 1729
+  },
+  {
+   "rank": 357,
+   "clip": "c330c787-ac4f1ff5",
+   "max_risk": 0.9458,
+   "train_rank_same_peak": 1729
+  },
+  {
+   "rank": 358,
+   "clip": "bee41f4c-27a63e4b",
+   "max_risk": 0.9456,
+   "train_rank_same_peak": 1729
+  },
+  {
+   "rank": 359,
+   "clip": "ba0d2a3f-0c429b61",
+   "max_risk": 0.9447,
+   "train_rank_same_peak": 1739
+  },
+  {
+   "rank": 360,
+   "clip": "c0bbcd5e-f57df892",
+   "max_risk": 0.9442,
+   "train_rank_same_peak": 1741
+  },
+  {
+   "rank": 361,
+   "clip": "b9cabddd-e49dded9",
+   "max_risk": 0.944,
+   "train_rank_same_peak": 1744
+  },
+  {
+   "rank": 362,
+   "clip": "be18edca-1dac55eb",
+   "max_risk": 0.9435,
+   "train_rank_same_peak": 1748
+  },
+  {
+   "rank": 363,
+   "clip": "b818033e-f4657ed3",
+   "max_risk": 0.9435,
+   "train_rank_same_peak": 1750
+  },
+  {
+   "rank": 364,
+   "clip": "b6c2d715-ba5d6ecc",
+   "max_risk": 0.9431,
+   "train_rank_same_peak": 1754
+  },
+  {
+   "rank": 365,
+   "clip": "bab52aba-0b87a64b",
+   "max_risk": 0.9417,
+   "train_rank_same_peak": 1774
+  },
+  {
+   "rank": 366,
+   "clip": "b2e96aa8-3624f23d",
+   "max_risk": 0.9408,
+   "train_rank_same_peak": 1782
+  },
+  {
+   "rank": 367,
+   "clip": "c90a2111-04776fd3",
+   "max_risk": 0.9399,
+   "train_rank_same_peak": 1796
+  },
+  {
+   "rank": 368,
+   "clip": "c4327604-12a96366",
+   "max_risk": 0.9391,
+   "train_rank_same_peak": 1800
+  },
+  {
+   "rank": 369,
+   "clip": "c0bbcd5e-e207560d",
+   "max_risk": 0.9385,
+   "train_rank_same_peak": 1802
+  },
+  {
+   "rank": 370,
+   "clip": "b44fd543-a15ceadf",
+   "max_risk": 0.9366,
+   "train_rank_same_peak": 1813
+  },
+  {
+   "rank": 371,
+   "clip": "be651ed5-bdd56721",
+   "max_risk": 0.9359,
+   "train_rank_same_peak": 1821
+  },
+  {
+   "rank": 372,
+   "clip": "ca21055c-8a012812",
+   "max_risk": 0.9349,
+   "train_rank_same_peak": 1829
+  },
+  {
+   "rank": 373,
+   "clip": "b7ab6225-7a1edecd",
+   "max_risk": 0.934,
+   "train_rank_same_peak": 1830
+  },
+  {
+   "rank": 374,
+   "clip": "bbd63d3e-5e1ed924",
+   "max_risk": 0.9337,
+   "train_rank_same_peak": 1834
+  },
+  {
+   "rank": 375,
+   "clip": "bae552dc-4ee0cab7",
+   "max_risk": 0.9334,
+   "train_rank_same_peak": 1835
+  },
+  {
+   "rank": 376,
+   "clip": "b8cd6a1b-84ae1442",
+   "max_risk": 0.9334,
+   "train_rank_same_peak": 1835
+  },
+  {
+   "rank": 377,
+   "clip": "b8677b56-9edba15a",
+   "max_risk": 0.9333,
+   "train_rank_same_peak": 1835
+  },
+  {
+   "rank": 378,
+   "clip": "c59500f0-f26be735",
+   "max_risk": 0.9312,
+   "train_rank_same_peak": 1853
+  },
+  {
+   "rank": 379,
+   "clip": "c5b1e3f5-479118b6",
+   "max_risk": 0.93,
+   "train_rank_same_peak": 1862
+  },
+  {
+   "rank": 380,
+   "clip": "c1ba5ee6-1ac54091",
+   "max_risk": 0.9285,
+   "train_rank_same_peak": 1878
+  },
+  {
+   "rank": 381,
+   "clip": "c07733d0-974d1334",
+   "max_risk": 0.9283,
+   "train_rank_same_peak": 1880
+  },
+  {
+   "rank": 382,
+   "clip": "bff4bb8b-8a96fd04",
+   "max_risk": 0.9278,
+   "train_rank_same_peak": 1884
+  },
+  {
+   "rank": 383,
+   "clip": "c926408d-366b16ee",
+   "max_risk": 0.9276,
+   "train_rank_same_peak": 1886
+  },
+  {
+   "rank": 384,
+   "clip": "c993615f-350c682c",
+   "max_risk": 0.9274,
+   "train_rank_same_peak": 1889
+  },
+  {
+   "rank": 385,
+   "clip": "c65628b7-d705638d",
+   "max_risk": 0.9273,
+   "train_rank_same_peak": 1889
+  },
+  {
+   "rank": 386,
+   "clip": "b5a8594c-049fa1ef",
+   "max_risk": 0.9268,
+   "train_rank_same_peak": 1893
+  },
+  {
+   "rank": 387,
+   "clip": "b9d34460-809d2dd4",
+   "max_risk": 0.9238,
+   "train_rank_same_peak": 1907
+  },
+  {
+   "rank": 388,
+   "clip": "c0deebc1-16cfa791",
+   "max_risk": 0.9233,
+   "train_rank_same_peak": 1908
+  },
+  {
+   "rank": 389,
+   "clip": "bfe98b68-6e23d74e",
+   "max_risk": 0.9221,
+   "train_rank_same_peak": 1921
+  },
+  {
+   "rank": 390,
+   "clip": "c3259da7-7e61cbb1",
+   "max_risk": 0.921,
+   "train_rank_same_peak": 1926
+  },
+  {
+   "rank": 391,
+   "clip": "bb5cc516-3ac130c2",
+   "max_risk": 0.9203,
+   "train_rank_same_peak": 1931
+  },
+  {
+   "rank": 392,
+   "clip": "bee679f2-dd1ee975",
+   "max_risk": 0.9202,
+   "train_rank_same_peak": 1932
+  },
+  {
+   "rank": 393,
+   "clip": "c155d65b-01ae7aac",
+   "max_risk": 0.9177,
+   "train_rank_same_peak": 1945
+  },
+  {
+   "rank": 394,
+   "clip": "b312dcb5-ab4b0e08",
+   "max_risk": 0.9175,
+   "train_rank_same_peak": 1945
+  },
+  {
+   "rank": 395,
+   "clip": "c733594f-2568d430",
+   "max_risk": 0.9172,
+   "train_rank_same_peak": 1946
+  },
+  {
+   "rank": 396,
+   "clip": "b8a52657-f74f7fd0",
+   "max_risk": 0.9166,
+   "train_rank_same_peak": 1949
+  },
+  {
+   "rank": 397,
+   "clip": "becfc708-eaf36a96",
+   "max_risk": 0.9144,
+   "train_rank_same_peak": 1960
+  },
+  {
+   "rank": 398,
+   "clip": "c82b8f6c-bb5a30c7",
+   "max_risk": 0.9098,
+   "train_rank_same_peak": 1988
+  },
+  {
+   "rank": 399,
+   "clip": "ba4576b4-2b165aea",
+   "max_risk": 0.9096,
+   "train_rank_same_peak": 1989
+  },
+  {
+   "rank": 400,
+   "clip": "b96c88de-058de530",
+   "max_risk": 0.9084,
+   "train_rank_same_peak": 1995
+  },
+  {
+   "rank": 401,
+   "clip": "bfcd4491-8f55e55d",
+   "max_risk": 0.9066,
+   "train_rank_same_peak": 2008
+  },
+  {
+   "rank": 402,
+   "clip": "b6a8503c-4991b168",
+   "max_risk": 0.9034,
+   "train_rank_same_peak": 2029
+  },
+  {
+   "rank": 403,
+   "clip": "ca5e947c-c2f1d14b",
+   "max_risk": 0.8986,
+   "train_rank_same_peak": 2058
+  },
+  {
+   "rank": 404,
+   "clip": "b9ed6e80-1782fc7b",
+   "max_risk": 0.8966,
+   "train_rank_same_peak": 2077
+  },
+  {
+   "rank": 405,
+   "clip": "c0e74e90-15e1888e",
+   "max_risk": 0.8952,
+   "train_rank_same_peak": 2082
+  },
+  {
+   "rank": 406,
+   "clip": "c877c1e3-d9eaa422",
+   "max_risk": 0.8932,
+   "train_rank_same_peak": 2096
+  },
+  {
+   "rank": 407,
+   "clip": "c3981cf1-6e95c296",
+   "max_risk": 0.8923,
+   "train_rank_same_peak": 2099
+  },
+  {
+   "rank": 408,
+   "clip": "c3fd9aad-7e464a06",
+   "max_risk": 0.8899,
+   "train_rank_same_peak": 2111
+  },
+  {
+   "rank": 409,
+   "clip": "b2505382-1423f56a",
+   "max_risk": 0.8875,
+   "train_rank_same_peak": 2116
+  },
+  {
+   "rank": 410,
+   "clip": "c0f5b0d0-f7860ad8",
+   "max_risk": 0.8867,
+   "train_rank_same_peak": 2121
+  },
+  {
+   "rank": 411,
+   "clip": "bfe75427-6cd46203",
+   "max_risk": 0.8863,
+   "train_rank_same_peak": 2122
+  },
+  {
+   "rank": 412,
+   "clip": "bd512863-814ab9b3",
+   "max_risk": 0.8857,
+   "train_rank_same_peak": 2128
+  },
+  {
+   "rank": 413,
+   "clip": "b85f5cc9-44db10f1",
+   "max_risk": 0.8855,
+   "train_rank_same_peak": 2128
+  },
+  {
+   "rank": 414,
+   "clip": "b2f4a409-5ddff11a",
+   "max_risk": 0.884,
+   "train_rank_same_peak": 2131
+  },
+  {
+   "rank": 415,
+   "clip": "bd08d471-cb9e4be6",
+   "max_risk": 0.8809,
+   "train_rank_same_peak": 2140
+  },
+  {
+   "rank": 416,
+   "clip": "c9403737-9675db60",
+   "max_risk": 0.8744,
+   "train_rank_same_peak": 2155
+  },
+  {
+   "rank": 417,
+   "clip": "c90ecab0-68dc9839",
+   "max_risk": 0.8737,
+   "train_rank_same_peak": 2157
+  },
+  {
+   "rank": 418,
+   "clip": "c759b6f8-e906aa6a",
+   "max_risk": 0.8732,
+   "train_rank_same_peak": 2159
+  },
+  {
+   "rank": 419,
+   "clip": "b23c9e00-5506ddfb",
+   "max_risk": 0.8692,
+   "train_rank_same_peak": 2169
+  },
+  {
+   "rank": 420,
+   "clip": "b8fe9f2b-d63131a3",
+   "max_risk": 0.869,
+   "train_rank_same_peak": 2169
+  },
+  {
+   "rank": 421,
+   "clip": "b6658d33-6dbf3405",
+   "max_risk": 0.8674,
+   "train_rank_same_peak": 2177
+  },
+  {
+   "rank": 422,
+   "clip": "bb8debd8-700f312a",
+   "max_risk": 0.8556,
+   "train_rank_same_peak": 2225
+  },
+  {
+   "rank": 423,
+   "clip": "c76e6e4f-2915de4e",
+   "max_risk": 0.8523,
+   "train_rank_same_peak": 2237
+  },
+  {
+   "rank": 424,
+   "clip": "bdcd6f24-c646d15b",
+   "max_risk": 0.8519,
+   "train_rank_same_peak": 2239
+  },
+  {
+   "rank": 425,
+   "clip": "c566a4d9-0504c08b",
+   "max_risk": 0.8518,
+   "train_rank_same_peak": 2239
+  },
+  {
+   "rank": 426,
+   "clip": "c573ac02-6c5f037e",
+   "max_risk": 0.8455,
+   "train_rank_same_peak": 2259
+  },
+  {
+   "rank": 427,
+   "clip": "c7aa5575-7db02116",
+   "max_risk": 0.8406,
+   "train_rank_same_peak": 2269
+  },
+  {
+   "rank": 428,
+   "clip": "bd355fcc-c7aa3ca3",
+   "max_risk": 0.8289,
+   "train_rank_same_peak": 2303
+  },
+  {
+   "rank": 429,
+   "clip": "c6ca7b50-2ef0a79b",
+   "max_risk": 0.828,
+   "train_rank_same_peak": 2303
+  },
+  {
+   "rank": 430,
+   "clip": "c978b30e-673341ec",
+   "max_risk": 0.8234,
+   "train_rank_same_peak": 2312
+  },
+  {
+   "rank": 431,
+   "clip": "c7e25b5f-5c098837",
+   "max_risk": 0.822,
+   "train_rank_same_peak": 2314
+  },
+  {
+   "rank": 432,
+   "clip": "b4f9084d-86d982ab",
+   "max_risk": 0.8215,
+   "train_rank_same_peak": 2318
+  },
+  {
+   "rank": 433,
+   "clip": "c8f39d22-9e3f76f8",
+   "max_risk": 0.8173,
+   "train_rank_same_peak": 2334
+  },
+  {
+   "rank": 434,
+   "clip": "b74111eb-27276099",
+   "max_risk": 0.8162,
+   "train_rank_same_peak": 2337
+  },
+  {
+   "rank": 435,
+   "clip": "ba87390f-eebfd9d1",
+   "max_risk": 0.7909,
+   "train_rank_same_peak": 2386
+  },
+  {
+   "rank": 436,
+   "clip": "c281c4a6-21278370",
+   "max_risk": 0.7904,
+   "train_rank_same_peak": 2387
+  },
+  {
+   "rank": 437,
+   "clip": "bb425c3f-4e35dc9d",
+   "max_risk": 0.7869,
+   "train_rank_same_peak": 2391
+  },
+  {
+   "rank": 438,
+   "clip": "c1b16eee-24ccb54b",
+   "max_risk": 0.7805,
+   "train_rank_same_peak": 2400
+  },
+  {
+   "rank": 439,
+   "clip": "becfc708-b7f59377",
+   "max_risk": 0.7779,
+   "train_rank_same_peak": 2404
+  },
+  {
+   "rank": 440,
+   "clip": "b439d51b-5d88ba11",
+   "max_risk": 0.7768,
+   "train_rank_same_peak": 2406
+  },
+  {
+   "rank": 441,
+   "clip": "b5261cec-aac2f91a",
+   "max_risk": 0.7756,
+   "train_rank_same_peak": 2408
+  },
+  {
+   "rank": 442,
+   "clip": "ba60e97a-3b02b136",
+   "max_risk": 0.7755,
+   "train_rank_same_peak": 2408
+  },
+  {
+   "rank": 443,
+   "clip": "c5caf169-f75db8a9",
+   "max_risk": 0.7721,
+   "train_rank_same_peak": 2414
+  },
+  {
+   "rank": 444,
+   "clip": "b9597719-cd9a176f",
+   "max_risk": 0.771,
+   "train_rank_same_peak": 2415
+  },
+  {
+   "rank": 445,
+   "clip": "bf7b93b6-de7552a6",
+   "max_risk": 0.7652,
+   "train_rank_same_peak": 2429
+  },
+  {
+   "rank": 446,
+   "clip": "c31aa969-9a2a8c52",
+   "max_risk": 0.7573,
+   "train_rank_same_peak": 2440
+  },
+  {
+   "rank": 447,
+   "clip": "c8573105-4f2e7c11",
+   "max_risk": 0.7431,
+   "train_rank_same_peak": 2465
+  },
+  {
+   "rank": 448,
+   "clip": "c1f35f18-cc6a82e9",
+   "max_risk": 0.7409,
+   "train_rank_same_peak": 2468
+  },
+  {
+   "rank": 449,
+   "clip": "bae88538-8f433246",
+   "max_risk": 0.7397,
+   "train_rank_same_peak": 2470
+  },
+  {
+   "rank": 450,
+   "clip": "c6406d76-bbf7229f",
+   "max_risk": 0.7359,
+   "train_rank_same_peak": 2472
+  },
+  {
+   "rank": 451,
+   "clip": "bec7b5c0-177923dd",
+   "max_risk": 0.7326,
+   "train_rank_same_peak": 2477
+  },
+  {
+   "rank": 452,
+   "clip": "c7eab2ff-94d03413",
+   "max_risk": 0.7107,
+   "train_rank_same_peak": 2507
+  },
+  {
+   "rank": 453,
+   "clip": "b4f4bd95-a097514a",
+   "max_risk": 0.7092,
+   "train_rank_same_peak": 2511
+  },
+  {
+   "rank": 454,
+   "clip": "b70b64da-2a532ff1",
+   "max_risk": 0.7049,
+   "train_rank_same_peak": 2514
+  },
+  {
+   "rank": 455,
+   "clip": "b690989d-07e39c92",
+   "max_risk": 0.6958,
+   "train_rank_same_peak": 2524
+  },
+  {
+   "rank": 456,
+   "clip": "bfe0801e-20388316",
+   "max_risk": 0.6845,
+   "train_rank_same_peak": 2541
+  },
+  {
+   "rank": 457,
+   "clip": "bae47c98-102dd98e",
+   "max_risk": 0.6511,
+   "train_rank_same_peak": 2576
+  },
+  {
+   "rank": 458,
+   "clip": "c55f5f07-1d069cfd",
+   "max_risk": 0.6464,
+   "train_rank_same_peak": 2578
+  },
+  {
+   "rank": 459,
+   "clip": "c36ded7c-a435e454",
+   "max_risk": 0.6457,
+   "train_rank_same_peak": 2580
+  },
+  {
+   "rank": 460,
+   "clip": "b5296e2a-fde16219",
+   "max_risk": 0.6453,
+   "train_rank_same_peak": 2580
+  },
+  {
+   "rank": 461,
+   "clip": "c05df6d2-9959222a",
+   "max_risk": 0.6431,
+   "train_rank_same_peak": 2582
+  },
+  {
+   "rank": 462,
+   "clip": "ba336fcb-24158015",
+   "max_risk": 0.6378,
+   "train_rank_same_peak": 2587
+  },
+  {
+   "rank": 463,
+   "clip": "b94b1f35-b8e48adf",
+   "max_risk": 0.6353,
+   "train_rank_same_peak": 2587
+  },
+  {
+   "rank": 464,
+   "clip": "b3ce9f98-2b3d06d6",
+   "max_risk": 0.6341,
+   "train_rank_same_peak": 2588
+  },
+  {
+   "rank": 465,
+   "clip": "b54578dc-5a2c0b63",
+   "max_risk": 0.6249,
+   "train_rank_same_peak": 2596
+  },
+  {
+   "rank": 466,
+   "clip": "b9c71ec0-1a77e45e",
+   "max_risk": 0.6175,
+   "train_rank_same_peak": 2600
+  },
+  {
+   "rank": 467,
+   "clip": "ca00540c-261a3e99",
+   "max_risk": 0.6011,
+   "train_rank_same_peak": 2625
+  },
+  {
+   "rank": 468,
+   "clip": "b86f9b95-e4651840",
+   "max_risk": 0.5781,
+   "train_rank_same_peak": 2652
+  },
+  {
+   "rank": 469,
+   "clip": "b4c86653-a1c9c48e",
+   "max_risk": 0.5679,
+   "train_rank_same_peak": 2662
+  },
+  {
+   "rank": 470,
+   "clip": "b1d0091f-75824d0d",
+   "max_risk": 0.5363,
+   "train_rank_same_peak": 2692
+  },
+  {
+   "rank": 471,
+   "clip": "b5b17442-df28704b",
+   "max_risk": 0.5346,
+   "train_rank_same_peak": 2694
+  },
+  {
+   "rank": 472,
+   "clip": "b23c9e00-b425de1b",
+   "max_risk": 0.5268,
+   "train_rank_same_peak": 2696
+  },
+  {
+   "rank": 473,
+   "clip": "c6c1c9ad-c21d153e",
+   "max_risk": 0.5144,
+   "train_rank_same_peak": 2705
+  },
+  {
+   "rank": 474,
+   "clip": "bf688d4d-54210a91",
+   "max_risk": 0.4849,
+   "train_rank_same_peak": 2723
+  },
+  {
+   "rank": 475,
+   "clip": "ca59adc8-9001648c",
+   "max_risk": 0.4666,
+   "train_rank_same_peak": 2736
+  },
+  {
+   "rank": 476,
+   "clip": "c21fba09-38039a43",
+   "max_risk": 0.4108,
+   "train_rank_same_peak": 2766
+  },
+  {
+   "rank": 477,
+   "clip": "b4fcf852-0d288dba",
+   "max_risk": 0.3862,
+   "train_rank_same_peak": 2781
+  },
+  {
+   "rank": 478,
+   "clip": "c74bbfcc-5814e80f",
+   "max_risk": 0.379,
+   "train_rank_same_peak": 2786
+  },
+  {
+   "rank": 479,
+   "clip": "c4b3ce3d-2e77b39d",
+   "max_risk": 0.3783,
+   "train_rank_same_peak": 2786
+  },
+  {
+   "rank": 480,
+   "clip": "b9054a76-5266134b",
+   "max_risk": 0.3632,
+   "train_rank_same_peak": 2791
+  },
+  {
+   "rank": 481,
+   "clip": "bb1a255a-dc60ef57",
+   "max_risk": 0.3452,
+   "train_rank_same_peak": 2807
+  },
+  {
+   "rank": 482,
+   "clip": "c01c4d85-36b417ee",
+   "max_risk": 0.2706,
+   "train_rank_same_peak": 2835
+  },
+  {
+   "rank": 483,
+   "clip": "b539383c-b57307bc",
+   "max_risk": 0.2313,
+   "train_rank_same_peak": 2857
+  },
+  {
+   "rank": 484,
+   "clip": "bd735753-1451d21f",
+   "max_risk": 0.2143,
+   "train_rank_same_peak": 2872
+  },
+  {
+   "rank": 485,
+   "clip": "c81f9adc-855868f5",
+   "max_risk": 0.1931,
+   "train_rank_same_peak": 2879
+  },
+  {
+   "rank": 486,
+   "clip": "bb3a75fa-b0b71066",
+   "max_risk": 0.1895,
+   "train_rank_same_peak": 2880
+  },
+  {
+   "rank": 487,
+   "clip": "c7c5969b-f1bc3e3a",
+   "max_risk": 0.1645,
+   "train_rank_same_peak": 2892
+  },
+  {
+   "rank": 488,
+   "clip": "bf622d4e-cfdc02ae",
+   "max_risk": 0.162,
+   "train_rank_same_peak": 2894
+  },
+  {
+   "rank": 489,
+   "clip": "b65081c3-7ace0408",
+   "max_risk": 0.157,
+   "train_rank_same_peak": 2897
+  },
+  {
+   "rank": 490,
+   "clip": "c159a842-58ec61d9",
+   "max_risk": 0.1522,
+   "train_rank_same_peak": 2898
+  },
+  {
+   "rank": 491,
+   "clip": "b5dec5e7-58274881",
+   "max_risk": 0.1216,
+   "train_rank_same_peak": 2917
+  },
+  {
+   "rank": 492,
+   "clip": "be099a06-dc3c20e8",
+   "max_risk": 0.0828,
+   "train_rank_same_peak": 2934
+  },
+  {
+   "rank": 493,
+   "clip": "bf57ea07-3e2c4a5c",
+   "max_risk": 0.082,
+   "train_rank_same_peak": 2935
+  },
+  {
+   "rank": 494,
+   "clip": "b93a8e92-e5a0589d",
+   "max_risk": 0.0481,
+   "train_rank_same_peak": 2956
+  },
+  {
+   "rank": 495,
+   "clip": "b41ace08-88fb022d",
+   "max_risk": 0.0408,
+   "train_rank_same_peak": 2961
+  },
+  {
+   "rank": 496,
+   "clip": "c84744c1-4307c1e2",
+   "max_risk": 0.0257,
+   "train_rank_same_peak": 2976
+  },
+  {
+   "rank": 497,
+   "clip": "b97aa948-8ab1108f",
+   "max_risk": 0.0158,
+   "train_rank_same_peak": 2990
+  },
+  {
+   "rank": 498,
+   "clip": "c7ec3b49-2dea9747",
+   "max_risk": 0.0066,
+   "train_rank_same_peak": 3000
+  },
+  {
+   "rank": 499,
+   "clip": "b3fbc6ad-4ee78a0d",
+   "max_risk": 0.0049,
+   "train_rank_same_peak": 3000
+  },
+  {
+   "rank": 500,
+   "clip": "be5c5aae-50668a30",
+   "max_risk": 0.0045,
+   "train_rank_same_peak": 3000
   }
  ]
 }
