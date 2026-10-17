@@ -853,12 +853,37 @@ def detailed_scores(risk: np.ndarray) -> dict:
 VAL_SECS = [0.0]                           # seconds spent validating so far (taken out of the per-epoch estimate)
 
 
+def hours_minutes(seconds: float) -> str:
+    """Seconds as "12 h 05 min"."""
+    minutes = int(round(seconds / 60))
+    return f"{minutes // 60} h {minutes % 60:02d} min"
+
+
+def video_watched(step: int) -> dict:
+    """How much VIDEO the model has trained on after `step` weight updates, and how much is left in the whole run.
+
+    Each weight update uses BATCH_SIZE x ACCUM_STEPS = 32 windows, and each window is 2 s of video. So after `step`
+    updates the model has watched step x 32 x 2 s. The whole run is STEPS_PER_EPOCH x EPOCHS updates. (Counted in
+    windows seen: the same clip comes back each epoch, at a new random moment.)
+    """
+    window_s = WINDOW_FRAMES / FPS                                   # 2 s of video per window
+    per_step_s = BATCH_SIZE * ACCUM_STEPS * window_s                 # 32 windows x 2 s = 64 s per update
+    total_steps = STEPS_PER_EPOCH[0] * EPOCHS                        # every update of the whole run
+    seen_s = step * per_step_s
+    total_s = total_steps * per_step_s
+    return {"seen_s": seen_s, "left_s": max(total_s - seen_s, 0.0), "total_s": total_s}
+
+
 def on_epoch_start(epoch: int, model, loaders) -> None:
     """Print what this epoch trains on (TrainWindows.set_epoch has just drawn the plan)."""
     counts = TRAIN.plan_counts()
     rows = [[k.replace("windows_", "").replace("_", " "), v] for k, v in counts.items()]   # readable names
     ml._table(f"epoch {epoch}: training windows (one per source, new random end points)", ["windows", "count"],
               rows, "🎲")
+    # video watched before this epoch starts (all earlier epochs are complete)
+    vw = video_watched((epoch - 1) * STEPS_PER_EPOCH[0])
+    print(f"  🎞️  video watched so far: {hours_minutes(vw['seen_s'])}   left: {hours_minutes(vw['left_s'])}   "
+          f"whole run: {hours_minutes(vw['total_s'])}  ({EPOCHS} epochs; each window = 2 s)")
 
 
 def on_validation(row: dict, epoch: int, step: int) -> None:
@@ -872,6 +897,9 @@ def on_validation(row: dict, epoch: int, step: int) -> None:
     VAL_SECS[0] += row.get("val_secs", 0.0)                          # this validation's time
     train_s = max(row.get("elapsed_s", 0.0) - VAL_SECS[0], 0.0)      # time spent training (not validating)
     row["cost_usd_so_far"] = round(row.get("elapsed_s", 0.0) / 3600 * PRICE_H, 3)
+    vw = video_watched(step)                                          # hours of video trained on so far / left
+    row["video_hours_watched"] = round(vw["seen_s"] / 3600, 3)
+    row["video_hours_left"] = round(vw["left_s"] / 3600, 3)
     if step:                                                          # step 0 = before training: nothing to measure
         per_epoch_s = train_s / step * STEPS_PER_EPOCH[0] + row.get("val_secs", 0.0)
         row["est_minutes_per_epoch"] = round(per_epoch_s / 60, 1)
@@ -913,6 +941,11 @@ def on_validation(row: dict, epoch: int, step: int) -> None:
     ml._table("at each threshold: share of windows with risk above it",
               ["threshold", "crashes caught (Nexar crash)", "false alarms (Nexar normal)",
                "false alarms (BDD100K hard moments)"], threshold_rows, "🎚️")
+    ml._table("video the model has trained on (each window = 2 s of video)", ["", "hours"], [
+        ("watched so far", hours_minutes(vw["seen_s"])),
+        ("left in this run", hours_minutes(vw["left_s"])),
+        (f"whole run ({EPOCHS} epochs)", hours_minutes(vw["total_s"])),
+    ], "🎞️")
     cost = [("cost so far (GPU + CPU + memory)", f"${row['cost_usd_so_far']:.2f}  at ${PRICE_H:.2f} per hour")]
     if step:
         cost += [("estimated time per epoch", f"{row['est_minutes_per_epoch']} min"),
