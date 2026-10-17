@@ -32,6 +32,8 @@ from sample_video import Writer, card  # noqa: E402   (title cards + one H.264 v
 NEXAR_DIR = Path(r"C:\safe-distance-data\nexar\samples")          # local Nexar crash clips (+ metadata.csv)
 BDD_DIR = Path(r"C:\safe-distance-data\bdd100k\samples")          # local BDD100K clips
 OUT = Path.home() / "Downloads" / "safe-distance-testing" / "preprocessing" / "preprocessing_steps.mp4"
+OUT_WIDE = OUT.with_name("now_vs_256x448.mp4")                   # --wide: current input vs the 16:9 proposal
+WIDE_H, WIDE_W = 256, 448                                        # proposal: 16:9 kept, both multiples of 16
 BASE_MODEL = "facebook/vjepa2-vitl-fpc16-256-ssv2"                # BADAS's processor comes from this model
 N_EACH, SEED = 5, 3                                               # 5 Nexar + 5 BDD100K clips, fixed pick
 SEGMENT_S = 4.0                                                   # seconds shown per clip
@@ -71,6 +73,15 @@ def model_views(cache_frames: np.ndarray, proc) -> list[tuple[np.ndarray, np.nda
     return out
 
 
+def wide_input(orig: np.ndarray) -> np.ndarray:
+    """The 16:9 proposal: shrink the original 1280 x 720 frame to 455 x 256 (shape kept, no squash), then cut
+    448 x 256 out of the middle (only about 3 px off each side) so both sides are multiples of the 16-pixel patch."""
+    w = int(round(orig.shape[1] * WIDE_H / orig.shape[0]))                     # 1280 x 256 / 720 = 455
+    small = cv2.resize(orig, (w, WIDE_H), interpolation=cv2.INTER_AREA)       # INTER_AREA: best for shrinking
+    x0 = (w - WIDE_W) // 2
+    return small[:, x0:x0 + WIDE_W]
+
+
 def clip_frames(path: Path, t0: float, t1: float):
     """Every original frame between t0 and t1 (RGB), with its time, plus the video's frame rate."""
     cap = cv2.VideoCapture(str(path))
@@ -91,6 +102,8 @@ def clip_frames(path: Path, t0: float, t1: float):
 
 
 def main() -> None:
+    wide = "--wide" in sys.argv                                  # compare the current input with 256 x 448
+    out_path = OUT_WIDE if wide else OUT
     from transformers import AutoVideoProcessor
     proc = AutoVideoProcessor.from_pretrained(BASE_MODEL)         # the processor BADAS uses
     OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -122,7 +135,14 @@ def main() -> None:
             off, fx, fy = 18, orig_box.shape[1] / 292, orig_box.shape[0] / 292       # the kept area on the original
             cv2.rectangle(orig_box, (int(off * fx), int(off * fy)), (int((off + 256) * fx), int((off + 256) * fy)),
                           (255, 220, 0), 2)
-            panels = [label(orig_box, ["1) original 1280 x 720, 30 fps", "yellow = area the model keeps"]),
+            if wide:                                             # current input vs the 16:9 proposal
+                new_in = wide_input(kept[idx])                   # from the same 8-per-second frame
+                panels = [label(orig_box, ["original 1280 x 720", "yellow = what the CURRENT input keeps"]),
+                          label(blocks(model_in, SHOW_H), ["NOW: 256 x 256", "squashed 1.8x sideways"]),
+                          label(blocks(new_in, SHOW_H), ["PROPOSAL: 256 x 448 (true 16:9)",
+                                                         "shapes kept, almost the whole width"])]
+            else:
+              panels = [label(orig_box, ["1) original 1280 x 720, 30 fps", "yellow = area the model keeps"]),
                       label(blocks(cache[idx], SHOW_H), ["2) cache: 8 fps,", "squashed to 224 x 224"]),
                       label(blocks(enlarged, SHOW_H), ["3) enlarged to 292", "yellow = 256 crop"]),
                       label(blocks(model_in, SHOW_H), ["4) model input", "256 x 256"])]
@@ -134,16 +154,20 @@ def main() -> None:
             rows.append(np.vstack([title, row]))
         if wr is None:                                             # size from the first frame (even numbers)
             size = (rows[0].shape[1] // 2 * 2, rows[0].shape[0] // 2 * 2)
-            wr = Writer(OUT, size, VIDEO_FPS)
-            wr.write(card(size, ["How a dashcam frame becomes BADAS's input (the current pipeline)",
-                                 "1) original 1280 x 720  ->  2) 8 fps, squashed to 224 x 224",
-                                 "3) enlarged to 292 x 292  ->  4) middle 256 x 256 = model input"]), 5.0)
+            wr = Writer(out_path, size, VIDEO_FPS)
+            intro = (["The current model input vs the 16:9 proposal",
+                      "NOW: squashed to a square, then the middle 256 x 256 kept",
+                      "PROPOSAL: shape kept, 256 x 448 (about the whole width)"] if wide else
+                     ["How a dashcam frame becomes BADAS's input (the current pipeline)",
+                      "1) original 1280 x 720  ->  2) 8 fps, squashed to 224 x 224",
+                      "3) enlarged to 292 x 292  ->  4) middle 256 x 256 = model input"])
+            wr.write(card(size, intro), 5.0)
         wr.write(card(size, [f"{k}/10  {kind}", f"{path.name}: {what}"]), TITLE_S)
         for r in rows:
             wr.write(cv2.cvtColor(r, cv2.COLOR_RGB2BGR))          # Writer expects BGR (OpenCV order)
         print(f"[{k}/10] {kind} {path.name}: {len(rows)} frames", flush=True)
     wr.close()
-    print(f"saved {OUT}")
+    print(f"saved {out_path}")
 
 
 if __name__ == "__main__":
