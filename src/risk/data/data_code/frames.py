@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 
-def decode_frames(path: str):
-    """The frames BADAS sees, in ONE pass: frame round(i x fps / 8) for i = 0, 1, 2 ...,
-    resized to 224x224, BGR turned into RGB. Identical to badas_modal.decode_frames.
-    Returns (frames as uint8 array n x 224 x 224 x 3, video fps)."""
+def decode_frames(path: str, wide: bool = False):
+    """The frames BADAS sees, in ONE pass: frame round(i x fps / 8) for i = 0, 1, 2 ..., BGR turned into RGB.
+    wide=False: squashed to 224 x 224 (BADAS's released inference code; identical to badas_modal.decode_frames).
+    wide=True:  256 x 448 with the frame's shape kept (wide_input.wide_frame: no squash, ~3 px off each side).
+    Returns (frames as uint8 array n x H x W x 3, video fps)."""
     import cv2
     import numpy as np
+    if wide:
+        from wide_input import wide_frame
 
     cap = cv2.VideoCapture(path)
     fps, total = cap.get(cv2.CAP_PROP_FPS), int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -19,8 +22,9 @@ def decode_frames(path: str):
         if not ok:
             break
         while j < len(wanted) and wanted[j] == k:     # this video frame is one BADAS uses
-            frames.append(cv2.cvtColor(cv2.resize(img, (224, 224)), cv2.COLOR_BGR2RGB))
+            rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            frames.append(wide_frame(rgb) if wide else cv2.resize(rgb, (224, 224)))
             j += 1
         k += 1
     cap.release()
-    return (np.stack(frames) if frames else np.zeros((0, 224, 224, 3), np.uint8)), fps
+    return (np.stack(frames) if frames else np.zeros((0, 1, 1, 3), np.uint8)), fps

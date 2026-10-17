@@ -28,6 +28,7 @@ RUN IT (see current_modal_commands.txt):
     python -m modal run src\\risk\\eval_risk.py                 # everything
     python -m modal run src\\risk\\eval_risk.py --sets bdd_train   # cleaning: rank BDD100K train clips by risk
     python -m modal run src\\risk\\eval_risk.py --sets bdd_test    # cleaning: rank BDD100K test clips by risk
+    python -m modal run src\\risk\\eval_risk.py --wide             # the dev sets with the 16:9 input (256 x 448)
 """
 
 # (No "from __future__ import annotations": Modal needs real types for its class parameters.)
@@ -58,6 +59,9 @@ SETS = {"bdd_val": ["cache/badas224/bdd100k_videos_100k_val"],
         "bdd_test": ["cache/badas224/bdd100k_videos_100k_test"]}
 SET_GROUPS = {"dev": ["bdd_val", "nexar_public"], "bdd_train": ["bdd_train"],   # --sets picks one group
               "bdd_test": ["bdd_test"]}   # BDD100K test: readings every 0.5 s like val, to clean it (no metrics)
+WIDE = {"cache": "cache/wide256x448", "save": "results/risk_eval_wide", "inductor": "/data/cache/torchinductor_wide"}
+# --wide: the 16:9 input (256 x 448, shape kept; src/risk/wide_input.py) from cache/wide256x448, its own readings
+# folder and compile cache. Without it everything is exactly the original squashed pipeline.
 SAVE_DIR = "results/risk_eval_v3"      # in the Volume (v2: GPU preprocessing; all readings made the same way): <SAVE_DIR>/<model>/<set>/<clip>.json
 RESIZE, CROP = 292, 256                # V-JEPA 2 video processor: shortest edge 292 (bilinear), centre crop 256
 MEAN, STD = (0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
@@ -90,16 +94,17 @@ image = (modal.Image.debian_slim(python_version="3.12").apt_install("libgl1", "l
          # Volume crashed ("FakeTensorMode" error). Each container copies the saved cache in at start (see load).
          .env({"HF_HOME": HF_CACHE, "TORCHINDUCTOR_CACHE_DIR": "/tmp/torchinductor",
                "TORCHINDUCTOR_FX_GRAPH_CACHE": "1", "TORCHINDUCTOR_AUTOGRAD_CACHE": "1",
-               "TORCHINDUCTOR_COMPILE_THREADS": "1"}))
+               "TORCHINDUCTOR_COMPILE_THREADS": "1"})
+         .add_local_file(str(REPO / "src/risk/wide_input.py"), "/root/wide_input.py"))
 INDUCTOR_SAVED = "/data/cache/torchinductor"   # the compile cache kept in the Volume between runs
 
 
 @app.function(image=image, volumes={"/data": volume})
-def clip_list(limit: int, names: list[str]) -> list[tuple[str, str]]:
+def clip_list(limit: int, names: list[str], wide: bool = False) -> list[tuple[str, str]]:
     """(set name, cached frames path inside the Volume) for every clip of the named sets; `limit` per folder if > 0."""
     jobs = []
     for name in names:
-        folders = SETS[name]
+        folders = [f.replace("cache/badas224", WIDE["cache"]) if wide else f for f in SETS[name]]
         for f in folders:
             files = sorted(Path("/data", f).glob("*.npy"))
             files = [p for p in files if not p.name.endswith(".part.npy")]
@@ -112,6 +117,7 @@ def clip_list(limit: int, names: list[str]) -> list[tuple[str, str]]:
 @modal.concurrent(max_inputs=CLIPS_PER_CONTAINER)   # several clips at once: CPU preprocessing overlaps GPU work
 class Scorer:
     model_name: str = modal.parameter()
+    wide: bool = modal.parameter(default=False)        # True = the 16:9 input (256 x 448)
 
     @modal.enter()
     def load(self) -> None:
@@ -144,6 +150,10 @@ class Scorer:
         self.badas.load()
         self.lock = threading.Lock()                    # one clip at a time on the model; others load/prep/save
         self.save_lock, self.unsaved = threading.Lock(), 0
+        if self.wide:                                   # 16:9: V-JEPA 2 positions for the 16 x 28 patch grid
+            import wide_input
+            print(f"16:9 input: patched {wide_input.patch_positions(self.badas.model, 256, 448)} attention layers",
+                  flush=True)
         self.net = self.badas.model
         if COMPILE:
             # torch.compile fuses V-JEPA 2's ~60k tiny GPU operations per call (2.6x faster, readings within
@@ -151,12 +161,13 @@ class Scorer:
             import shutil
 
             import torch
-            saved = Path(INDUCTOR_SAVED)
+            saved = Path(WIDE["inductor"] if self.wide else INDUCTOR_SAVED)
             if saved.exists():                          # private copy of the saved cache: no sharing while compiling
                 shutil.copytree(saved, "/tmp/torchinductor", dirs_exist_ok=True)
             self.net = torch.compile(self.badas.model)
             t = time.time()
-            dummy = torch.zeros(BATCH, 16, 3, CROP, CROP, device=self.badas.device)
+            h, w = (256, 448) if self.wide else (CROP, CROP)
+            dummy = torch.zeros(BATCH, 16, 3, h, w, device=self.badas.device)
             with torch.no_grad(), torch.autocast("cuda", dtype=torch.float16, enabled=FP16):
                 for _ in range(2):
                     self.net(dummy)
@@ -178,7 +189,7 @@ class Scorer:
         import torch
 
         clip = Path(frames_path).stem
-        saved = Path("/data", SAVE_DIR, self.model_name, set_name, f"{clip}.json")
+        saved = Path("/data", WIDE["save"] if self.wide else SAVE_DIR, self.model_name, set_name, f"{clip}.json")
         if saved.exists():
             return {"set": set_name, "clip": clip, "series": json.loads(saved.read_text()), "gpu_s": 0.0,
                     "host": self.host, "up_s": round(time.time() - self.t_up, 1), "gpu_busy": None}
@@ -211,8 +222,18 @@ class Scorer:
         # same input as running it per window; check() verifies that on a real clip.
         # On the GPU: differs from the CPU version only by rounding (one brightness step out of 255 here and
         # there), moving readings by up to 0.003, the same size as half precision (FP16) which we already use.
+        if self.wide:                                   # 16:9 frames are already 256 x 448: only scale + normalise
+            import wide_input
+            x = torch.from_numpy(frames).to(self.badas.device)
+            return wide_input.normalise(x[None])[0]                                 # n, 3, 256, 448
         return self.badas.processor(videos=frames, return_tensors="pt",
                                     device=str(self.badas.device))["pixel_values_videos"][0]   # n, 3, 256, 256
+
+    def _wide_reference(self, frames):
+        """16:9 reference preprocessing (CPU, full precision, per window) for --check."""
+        import torch
+        import wide_input
+        return wide_input.normalise(torch.from_numpy(frames)[None])[0]
 
     def _readings(self, frames, fast: bool, tm: dict | None = None, step: int = STEP) -> list:
         """Probability every `step` frames (+ one at the clip's end), each from the 16 frames ending there."""
@@ -231,8 +252,11 @@ class Scorer:
             if fast:
                 batch = torch.stack([prepped[e - 16:e] for e in ends[i:i + BATCH]])          # B, 16, 3, 256, 256
             else:                                      # BADAS's own processor (slow, CPU), for --check
-                batch = torch.stack([self.badas.processor(videos=frames[e - 16:e], return_tensors="pt")
-                                     ["pixel_values_videos"].squeeze(0) for e in ends[i:i + BATCH]])
+                if self.wide:
+                    batch = torch.stack([self._wide_reference(frames[e - 16:e]) for e in ends[i:i + BATCH]])
+                else:
+                    batch = torch.stack([self.badas.processor(videos=frames[e - 16:e], return_tensors="pt")
+                                         ["pixel_values_videos"].squeeze(0) for e in ends[i:i + BATCH]])
             n = len(batch)
             if COMPILE and fast and n < BATCH:          # pad to the compiled batch size (no recompiling)
                 batch = torch.cat([batch, batch[-1:].expand(BATCH - n, *batch.shape[1:])])
@@ -340,7 +364,8 @@ class Scorer:
         t_fast = time.time() - t
         d = np.abs(np.array([p for _, p in slow]) - np.array([p for _, p in fast]))
         # Also compare the model inputs themselves for the last window.
-        own = self.badas.processor(videos=frames[-16:], return_tensors="pt")["pixel_values_videos"][0]
+        own = (self._wide_reference(frames[-16:]) if self.wide else
+               self.badas.processor(videos=frames[-16:], return_tensors="pt")["pixel_values_videos"][0])
         ours = self._prep_fast(frames)[-16:].float().cpu()
         return {"clip": frames_path, "readings": len(fast), "max_prob_difference": round(float(d.max()), 5),
                 "max_input_difference": round(float((own - ours).abs().max()), 5),
@@ -455,12 +480,12 @@ def clock(sec: float) -> str:
 
 @app.local_entrypoint()
 def main(model: str = "baseline_badas_open", limit: int = 0, check: bool = False,
-         profile: bool = False, speedtest: bool = False, sets: str = "dev") -> None:
+         profile: bool = False, speedtest: bool = False, sets: str = "dev", wide: bool = False) -> None:
     names = SET_GROUPS[sets]
-    jobs = clip_list.remote(limit, names)
+    jobs = clip_list.remote(limit, names, wide)
     per_set = {s: sum(j[0] == s for j in jobs) for s in names}
     print(f"model={model}  {len(jobs):,} clips {per_set}  {MAX_CONTAINERS} x {GPU}")
-    scorer = Scorer(model_name=model)
+    scorer = Scorer(model_name=model, wide=wide)
     scorer.update_autoscaler(min_containers=MAX_CONTAINERS)   # start all GPUs at once (not allowed in the decorator)
     if speedtest:                                      # diagnosis only: faster model variants, then stop
         print(json.dumps(scorer.speedtest.remote(next(j for j in jobs if j[0] == "nexar_public")[1]), indent=1))
@@ -471,7 +496,7 @@ def main(model: str = "baseline_badas_open", limit: int = 0, check: bool = False
         print(json.dumps(r, indent=1))
         return
     # Safety check first: once-per-clip GPU preprocessing must match BADAS's per-window CPU path.
-    probe_clip = clip_list.remote(1, ["nexar_public"])[0] if jobs and jobs[0][0] != "nexar_public" else None
+    probe_clip = clip_list.remote(1, ["nexar_public"], wide)[0] if jobs and jobs[0][0] != "nexar_public" else None
     for probe in ((probe_clip or next(j for j in jobs if j[0] == "nexar_public"),) if (check or FAST_PREP) else ()):
         c = scorer.check.remote(probe[1])
         print(f"check {c['clip']}: inputs differ by {c['max_input_difference']}, readings by {c['max_prob_difference']} at most, {c['mean_prob_difference']} on average, over {c['readings']} readings, "
@@ -503,7 +528,8 @@ def main(model: str = "baseline_badas_open", limit: int = 0, check: bool = False
                   f"ETA={clock((len(jobs) - done) * el / done)}  containers={len(up)}  "
                   f"GPU busy={sum(recent) / len(recent) if recent else 0:.0f}% (last {len(recent)} clips)  "
                   f"cost so far=${sum(up.values()) / 3600 * GPU_PRICE_H:.2f}", flush=True)
-    out = REPO / "src/risk/runs" / model / "results" / (("eval_test" if limit else "eval") if sets == "dev" else sets)
+    out = REPO / "src/risk/runs" / model / "results" / ((("eval_test" if limit else "eval") if sets == "dev" else sets)
+                                                       + ("_wide" if wide else ""))
     out.mkdir(parents=True, exist_ok=True)
     for s, v in res.items():
         (out / f"series_{s}.json").write_text(json.dumps(v))
