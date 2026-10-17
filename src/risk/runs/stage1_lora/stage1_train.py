@@ -65,6 +65,7 @@ EXP_DIR = PKG_ROOT / "runs" / EXP_NAME                # this run's folder: src/r
 sys.path.insert(0, str(PKG_ROOT))                     # so the two imports below are found
 import ml_utils as ml  # noqa: E402                   # the shared training engine (loop, logs, checkpoints, Modal)
 import stage1_labels as L  # noqa: E402               # the label rule (also used by the demo videos)
+import wide_input as W  # noqa: E402                  # the 16:9 input: frame shape, normalising, position patch
 
 # =====================================================================================================================
 # SETTINGS: every number this run uses
@@ -72,7 +73,7 @@ import stage1_labels as L  # noqa: E402               # the label rule (also use
 # ---- data (paths inside the Modal data volume, which is mounted at /data) ----
 DATA_VOLUME = "safe-distance-data"                    # Modal volume with the videos, frame cache and model downloads
 RUNS_VOLUME = "safe-distance-runs"                    # Modal volume where this run writes logs and checkpoints
-CACHE = "/data/cache/badas224"                        # the frame cache: one <clip>.npy per clip, 8 frames per second
+CACHE = "/data/cache/wide256x448"                     # the 16:9 frame cache: one <clip>.npy per clip, 8 frames per second
 NEXAR_CRASH_DIR = f"{CACHE}/nexar_train_positive"     # Nexar train crash clips (750)
 NEXAR_NORMAL_DIR = f"{CACHE}/nexar_train_negative"    # Nexar train normal clips (750)
 BDD_TRAIN_DIR = f"{CACHE}/bdd100k_videos_100k_train"  # BDD100K train clips (3,000; we use the 2,576 clean ones)
@@ -82,10 +83,10 @@ NEXAR_EXCLUDED = PKG_ROOT / "data/nexar_excluded.json"           # clips you rem
 VAL_WINDOWS = EXP_DIR / "val_windows.json"                       # the 2,202 fixed validation windows
 FPS = 8                                               # frames per second in the cache
 WINDOW_FRAMES = 16                                    # frames per window (16 / 8 = 2 s of video)
-# Frame size STORED in the cache (224 x 224). The model does not see this size: BADAS's own processor (the same one
-# its released code uses) enlarges each frame to 292 x 292 and cuts out the middle 256 x 256. So the model trains on
-# 256 x 256 frames, exactly like the baseline evaluation.
-FRAME_H, FRAME_W = 224, 224
+# Frame size in the cache = the model's input: 256 x 448, the dashcam's true 16:9 shape (wide_input.wide_frame: the
+# 1280 x 720 frame shrunk to 455 x 256, the middle 448 kept). Nothing is squashed: a truck keeps its real shape.
+# (The old cache squashed every frame to 224 x 224; see plan.md.)
+FRAME_H, FRAME_W = W.WIDE_H, W.WIDE_W
 
 # ---- model ----
 BADAS_REPO = "nexar-ai/BADAS-Open"                    # BADAS-Open on Hugging Face (its code + trained weights)
@@ -95,7 +96,7 @@ HF_CACHE = "/data/models/hf"                          # where Hugging Face downl
 # "temperature") before softmax: a softer, less extreme risk. We keep the same 2 so our risk means what BADAS's means.
 TEMPERATURE = 2.0
 PREDICTOR_CHECK_TOL = 1e-3                            # the batched predictor must match BADAS's loop to this
-CHECK_INPUT_SIZE = 256                                # size of the random test clips used by the start-up checks
+CHECK_H, CHECK_W = W.WIDE_H, W.WIDE_W                 # size of the random test clips used by the start-up checks
 GRAD_CHECKPOINTING = False                            # True = far less GPU memory, about 30% slower (if it won't fit)
 
 # ---- LoRA (agreed: every layer; the coverage check stops the run if anything is left out) ----
@@ -131,7 +132,7 @@ POS_WEIGHT = None                                     # e.g. 2.0 = danger window
 # ---- augmentation (one random draw per window, the same on all 16 frames) ----
 # Each type has its OWN chance, and each is decided by its own separate coin flip (independent of the others), so
 # any mix can happen on one window. *_P = chance that type is applied; the other number is its strength.
-CROP_P, CROP_MAX = 0.6, 0.05                          # 60%: crop up to 5% off each edge (stretched back to 224)
+CROP_P, CROP_MAX = 0.6, 0.05                          # 60%: crop up to 5% off each edge (stretched back to 256 x 448)
 ROTATE_P, ROTATE_DEG = 0.6, 2.0                       # 60%: rotate up to 2 degrees either way
 BRIGHTNESS_P, BRIGHTNESS = 0.6, 0.15                  # 60%: brightness x 0.85 .. 1.15
 CONTRAST_P, CONTRAST = 0.6, 0.15                      # 60%: contrast x 0.85 .. 1.15
@@ -315,7 +316,7 @@ def window_label(s: Source, end: int) -> float:
 
 # ===== CORE 2: augmentation ==========================================================================================
 def augment(frames: np.ndarray, rng: np.random.Generator) -> np.ndarray:
-    """Augment one window: 16 frames, each 224 x 224 x 3 (RGB, values 0-255).
+    """Augment one window: 16 frames, each 256 x 448 x 3 (RGB, values 0-255).
 
     Every random choice (crop box, angle, brightness, ...) is drawn ONCE for the window and applied to all 16 frames,
     so the window stays one consistent piece of video. Only the faint noise grain differs from frame to frame (like
@@ -323,16 +324,16 @@ def augment(frames: np.ndarray, rng: np.random.Generator) -> np.ndarray:
     """
     import cv2                                                      # OpenCV: image operations
 
-    h, w = frames.shape[1], frames.shape[2]                         # 224, 224
+    h, w = frames.shape[1], frames.shape[2]                         # 256, 448
 
     # --- 1) geometry: crop + rotate, combined into ONE warp so each frame is resampled only once ---
     # A warp is a 3 x 3 matrix that moves pixels. We start with "no change" (the identity) and add steps to it.
     warp = np.eye(3)
     if rng.random() < CROP_P:
         # CROP: cut 0-5% off each edge (left, top, right, bottom drawn separately), then stretch what is left
-        # back to the full 224 x 224.
+        # back to the full 256 x 448 (the same share of height and width, so shapes stay right).
         left, top, right, bottom = rng.uniform(0, CROP_MAX, 4) * [w, h, w, h]   # in pixels
-        stretch_x = w / (w - left - right)                          # e.g. 224 / 210 = 1.07
+        stretch_x = w / (w - left - right)                          # e.g. 448 / 420 = 1.07
         stretch_y = h / (h - top - bottom)
         crop = np.array([[stretch_x, 0, -left * stretch_x],         # x -> (x - left) x stretch_x
                          [0, stretch_y, -top * stretch_y],          # y -> (y - top) x stretch_y
@@ -549,7 +550,7 @@ def check_batched_predictor(net: nn.Module, device) -> float:
     come from the order of additions inside the GPU, not from a different computation).
     """
     net.eval()                                                        # no randomness (dropout off)
-    x = torch.randn(4, WINDOW_FRAMES, 3, CHECK_INPUT_SIZE, CHECK_INPUT_SIZE, device=device)   # 4 random clips
+    x = torch.randn(4, WINDOW_FRAMES, 3, CHECK_H, CHECK_W, device=device)   # 4 random clips
     with torch.no_grad():                                             # no gradients needed for a check
         present = net._extract_video_features(x)                      # the encoder's 2,048 tokens per clip
         loop = type(net)._predict_future_features(net, present)      # BADAS's own code (one clip at a time)
@@ -636,7 +637,7 @@ def check_gradients_reach_everything(model: nn.Module, device) -> None:
     for m in drop_path:
         m.eval()                                                      # eval mode = never skip
     with torch.autocast("cuda", dtype=torch.bfloat16):                # same 16-bit maths as training
-        out = model(torch.randn(2, WINDOW_FRAMES, 3, CHECK_INPUT_SIZE, CHECK_INPUT_SIZE, device=device))
+        out = model(torch.randn(2, WINDOW_FRAMES, 3, CHECK_H, CHECK_W, device=device))
     target = torch.tensor([[0.0], [1.0]], device=device)              # any labels will do
     nn.functional.binary_cross_entropy_with_logits(out.float(), target).backward()   # computes every gradient
     dead = [n for n, p in model.named_parameters() if p.requires_grad and p.grad is None]
@@ -648,15 +649,11 @@ def check_gradients_reach_everything(model: nn.Module, device) -> None:
         raise SystemExit(f"trainable weights with no gradient: {dead[:10]}")
 
 
-PROCESSOR = None                          # BADAS's video processor (set in RiskModel, used by the prepare hook)
-
-
 class RiskModel(nn.Module):
     """BADAS-Open + LoRA, giving ONE number per window: the crash-risk logit (its sigmoid = BADAS's risk, 0..1)."""
 
     def __init__(self, device):
         super().__init__()
-        global PROCESSOR
         from huggingface_hub import snapshot_download               # downloads from Hugging Face (or uses the cache)
 
         # --- load BADAS-Open exactly as its released code does (code + weights from Hugging Face) ---
@@ -667,15 +664,20 @@ class RiskModel(nn.Module):
                            device=str(device), frame_count=WINDOW_FRAMES, img_size=FRAME_H, target_fps=float(FPS),
                            use_sliding_window=False)
         badas.load()                                                # builds the network and loads its weights
-        PROCESSOR = badas.processor                                 # turns 224 frames into the 256 x 256 input
         net = badas.model                                           # the network: encoder, predictor, time-attention, head
+        # 16:9: tell every attention layer the real token grid (16 rows x 28 columns), see wide_input.py
+        n_patched = W.patch_positions(net, FRAME_H, FRAME_W)
+        print(f"  ✅ 16:9 input: {n_patched} attention layers use the {FRAME_H // 16} x {FRAME_W // 16} patch grid "
+              f"(expected 36)")
+        if n_patched != 36:
+            raise SystemExit("position patch: not every attention layer found: stopping")
         if GRAD_CHECKPOINTING and hasattr(net.backbone, "gradient_checkpointing_enable"):
             net.backbone.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
             print("  🧮 gradient checkpointing ON (less memory, slower)")
 
         # --- CORE 4: prove the batched predictor equals BADAS's loop, then switch to it ---
         check_batched_predictor(net, device)
-        x = torch.randn(2, WINDOW_FRAMES, 3, CHECK_INPUT_SIZE, CHECK_INPUT_SIZE, device=device)   # 2 random clips
+        x = torch.randn(2, WINDOW_FRAMES, 3, CHECK_H, CHECK_W, device=device)   # 2 random clips
         with torch.no_grad():
             before = net(x)                                         # plain BADAS-Open's 2 scores on them
         net._predict_future_features = types.MethodType(batched_predict_future, net)   # use ours from now on
@@ -697,7 +699,7 @@ class RiskModel(nn.Module):
 
     # ===== CORE 5: the risk number and the loss =====================================================================
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """x: a batch of windows, B x 16 x 3 x 256 x 256 (already through BADAS's processor). Returns B x 1.
+        """x: a batch of windows, B x 16 x 3 x 256 x 448 (already normalised by prepare). Returns B x 1.
 
         BADAS's head gives 2 scores per window: s_safe and s_crash. Its risk is softmax([s_safe, s_crash] / 2) for
         the crash class. With only two classes, that softmax is exactly sigmoid((s_crash - s_safe) / 2). So we pass
@@ -742,15 +744,11 @@ def build_model(cfg: dict) -> nn.Module:
 def prepare(x: torch.Tensor, device, cfg) -> torch.Tensor:
     """Turn a batch of raw windows into model input, on the GPU (ml_utils calls this for every batch).
 
-    In:  B x 16 x 224 x 224 x 3, values 0-255 (as stored in the cache).
-    Out: B x 16 x 3 x 256 x 256, through BADAS's own processor: enlarge to 292 x 292, keep the middle 256 x 256,
-         scale to 0..1, then normalise with the ImageNet mean / spread (what V-JEPA 2 was pretrained on).
-    The processor treats every frame on its own, so all B x 16 frames go through it in one call (as in eval_risk.py).
+    In:  B x 16 x 256 x 448 x 3, values 0-255 (as stored in the 16:9 cache: already the right size and shape).
+    Out: B x 16 x 3 x 256 x 448: scaled to 0..1, then normalised with the ImageNet mean / spread (what V-JEPA 2 was
+         pretrained on), colour channel moved before height and width. Same as eval_risk.py --wide.
     """
-    b = x.shape[0]                                                                   # windows in this batch
-    frames = x.reshape(b * WINDOW_FRAMES, FRAME_H, FRAME_W, 3).numpy()             # all frames in one list
-    px = PROCESSOR(videos=frames, return_tensors="pt", device=str(device))["pixel_values_videos"][0]
-    return px.reshape(b, WINDOW_FRAMES, *px.shape[1:])                               # back to B windows of 16
+    return W.normalise(x.to(device, non_blocking=True))               # done on the GPU (fast)
 
 
 def _ap(crash_risks: np.ndarray, normal_risks: np.ndarray) -> float:
