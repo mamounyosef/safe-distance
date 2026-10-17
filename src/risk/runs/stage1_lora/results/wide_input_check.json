@@ -1,0 +1,75 @@
+{
+ "transformers": "4.53.0",
+ "layers_patched": 36,
+ "square_grid_max_difference": 0.0,
+ "wide_positions_all_correct": true,
+ "future_tokens_time_slots": [
+  8,
+  9
+ ],
+ "wide_encoder_tokens": 3584,
+ "wide_future_tokens": 896,
+ "wide_output_shape": [
+  1,
+  2
+ ],
+ "real_windows": [
+  {
+   "kind": "nexar_crash",
+   "clip": "00048.mp4",
+   "t_end_s": 9.36,
+   "risk_now_squashed": 0.4638,
+   "risk_16x9": 0.3128
+  },
+  {
+   "kind": "nexar_crash",
+   "clip": "00630.mp4",
+   "t_end_s": 19.43,
+   "risk_now_squashed": 0.6546,
+   "risk_16x9": 0.7368
+  },
+  {
+   "kind": "nexar_crash",
+   "clip": "00879.mp4",
+   "t_end_s": 19.43,
+   "risk_now_squashed": 0.9947,
+   "risk_16x9": 0.9936
+  },
+  {
+   "kind": "nexar_crash",
+   "clip": "00715.mp4",
+   "t_end_s": 19.07,
+   "risk_now_squashed": 0.9884,
+   "risk_16x9": 0.9831
+  },
+  {
+   "kind": "bdd_normal",
+   "clip": "9b43293d-8ef1d539.mov",
+   "t_end_s": 20.0,
+   "risk_now_squashed": 0.8538,
+   "risk_16x9": 0.4302
+  },
+  {
+   "kind": "bdd_normal",
+   "clip": "099f3ab3-96c138a2.mov",
+   "t_end_s": 20.0,
+   "risk_now_squashed": 0.9354,
+   "risk_16x9": 0.9582
+  },
+  {
+   "kind": "bdd_normal",
+   "clip": "87a22ef5-f041985a.mov",
+   "t_end_s": 20.0,
+   "risk_now_squashed": 0.9834,
+   "risk_16x9": 0.97
+  },
+  {
+   "kind": "bdd_normal",
+   "clip": "4c45e4fb-0a16939d.mov",
+   "t_end_s": 20.0,
+   "risk_now_squashed": 0.0277,
+   "risk_16x9": 0.0335
+  }
+ ],
+ "passed_checks_1_to_3": true
+}
