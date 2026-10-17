@@ -172,7 +172,11 @@ PIP = ["torch==2.6.0", "torchvision==0.21.0", "transformers==4.53.0", "peft==0.2
 def cfg_for(smoke: bool) -> dict:
     """The settings above, in the form ml_utils reads (a nested dictionary). Anything not given here keeps
     ml_utils's default (listed in ml_utils.DEFAULTS_YAML). The smoke test writes to results_smoke/, so it never
-    mixes with the real run's checkpoints."""
+    mixes with the real run's checkpoints.
+
+    Arguments:
+        smoke: True = the short smoke test (20 updates, results_smoke/), False = the real run.
+    """
     cfg = {
         "experiment": {"name": EXP_NAME, "notes": "stage 1: BADAS-Open + LoRA, Nexar + clean BDD100K"},
         "task": {"type": "binary", "targets": ["crash_risk"]},          # one yes/no answer per window
@@ -229,7 +233,11 @@ class Source:
 
 
 def n_frames(path: str) -> int:
-    """Number of frames in a cached clip, read from the .npy file's header only (the frames are not loaded)."""
+    """Number of frames in a cached clip, read from the .npy file's header only (the frames are not loaded).
+
+    Arguments:
+        path: a cached clip's .npy file.
+    """
     return int(np.load(path, mmap_mode="r").shape[0])
 
 
@@ -308,7 +316,12 @@ def training_sources() -> list[Source]:
 
 
 def window_label(s: Source, end: int) -> float:
-    """The label of the window of source s that ends at frame `end` (normal clips: always 0)."""
+    """The label of the window of source s that ends at frame `end` (normal clips: always 0).
+
+    Arguments:
+        s:   the source the window comes from (its kind tells normal from crash; crash clips carry alert / event).
+        end: the window's end frame (the window is frames end-16 ... end-1, at time end / 8 s).
+    """
     if s.kind in ("nexar_normal", "bdd_normal"):
         return 0.0
     return float(L.window_label(end / FPS, s.alert, s.event)[0])   # the shared rule, at time end / 8 seconds
@@ -321,6 +334,10 @@ def augment(frames: np.ndarray, rng: np.random.Generator) -> np.ndarray:
     Every random choice (crop box, angle, brightness, ...) is drawn ONCE for the window and applied to all 16 frames,
     so the window stays one consistent piece of video. Only the faint noise grain differs from frame to frame (like
     real camera noise); its strength is the same for all 16.
+
+    Arguments:
+        frames: the window's 16 frames, 16 x 256 x 448 x 3, uint8 RGB.
+        rng:    this window's own random generator (the same window + epoch always gets the same draw).
     """
     import cv2                                                      # OpenCV: image operations
 
@@ -405,6 +422,15 @@ class TrainWindows(Dataset):
     """The training windows. Item i = this epoch's window of source i, returned as (16 frames, label, id)."""
 
     def __init__(self, sources: list[Source], seed: int):
+        """Keep the sources and draw the plan for epoch 1.
+
+        Arguments:
+            sources: every source of the epoch, from training_sources() (4,738): one Source per normal clip, and per
+                     crash clip one danger Source + one safe Source. Each says its kind, clip, frames file, the frames
+                     its window may end on, and (crash clips) the alert and crash times.
+            seed:    the number that fixes every random choice (window end points, augmentations), so a run can be
+                     repeated exactly.
+        """
         self.sources = sources
         self.seed = seed
         self.ids = [f"{s.kind}|{s.clip}" for s in sources]          # names used in logs, e.g. "bdd_normal|b1c..."
@@ -417,6 +443,9 @@ class TrainWindows(Dataset):
         The random generator is seeded with (seed, epoch): the same epoch always picks the same windows, also when
         a stopped run is resumed. Each new epoch picks new windows. ml_utils calls this before every epoch, and the
         worker processes that load the windows start after it, so they use this plan.
+
+        Arguments:
+            epoch: the epoch about to start (1, 2, ...); with the seed it decides this epoch's windows.
         """
         self.epoch = epoch
         rng = np.random.default_rng([self.seed, epoch])            # this epoch's own random generator
@@ -441,7 +470,11 @@ class TrainWindows(Dataset):
         return len(self.sources)                                    # one window per source
 
     def __getitem__(self, i: int):
-        """Load window i of this epoch (runs in a worker process): read its 16 frames, augment, return."""
+        """Load window i of this epoch (runs in a worker process): read its 16 frames, augment, return.
+
+        Arguments:
+            i: which item (0 ... number of items - 1), chosen by ml_utils's shuffled order.
+        """
         s = self.sources[i]
         end = int(self.plan[i])                                     # this epoch's end frame for source i
         # mmap_mode="r" opens the clip without reading it; slicing then reads only these 16 frames from disk
@@ -456,6 +489,12 @@ class ValWindows(Dataset):
     """The 2,202 FIXED validation windows (from val_windows.json): never augmented, the same every epoch."""
 
     def __init__(self, windows: list[dict]):
+        """Find each window's clip file and end frame, and the facts the scores need.
+
+        Arguments:
+            windows: the list read from val_windows.json, one dict per window (group, folder, clip, end / end_back,
+                     rank, label, nexar_group: see make_val_windows.py).
+        """
         # where each clip's frames are
         for w in windows:
             w["path"] = f"{CACHE}/{w['folder']}/{w['clip']}.npy"
@@ -490,7 +529,11 @@ STEPS_PER_EPOCH = [1]                    # weight updates per epoch (set in buil
 
 
 def build_data(cfg: dict) -> dict:
-    """Build the train and validation datasets (on Modal), and set the rolling checkpoint to once per epoch."""
+    """Build the train and validation datasets (on Modal), and set the rolling checkpoint to once per epoch.
+
+    Arguments:
+        cfg: the run's settings (ml_utils config); its rolling-checkpoint setting is filled in here.
+    """
     global TRAIN, VAL
     ml._banner("STAGE 1 DATA", "📦")
     TRAIN = TrainWindows(training_sources(), SEED)
@@ -523,6 +566,10 @@ def batched_predict_future(self, encoder_features: torch.Tensor) -> torch.Tensor
     BADAS's loop builds those lists for one clip; here the same lists are repeated for every clip of the batch, so
     one call does them all. check_batched_predictor() proves it gives the same numbers before training starts.
     `self` is BADAS's classifier object (this function replaces its own _predict_future_features).
+
+    Arguments:
+        self:             BADAS's classifier object (this function replaces its own method).
+        encoder_features: the encoder's tokens, batch x 3,584 x 1,024 (the 'present').
     """
     batch, n_present, width = encoder_features.shape                 # e.g. 8, 2048, 1024
 
@@ -548,6 +595,10 @@ def check_batched_predictor(net: nn.Module, device) -> float:
 
     4 random clips, full precision. "Same" = the largest difference is under PREDICTOR_CHECK_TOL (tiny differences
     come from the order of additions inside the GPU, not from a different computation).
+
+    Arguments:
+        net:    BADAS's classifier (before LoRA).
+        device: where to run the check (the GPU).
     """
     net.eval()                                                        # no randomness (dropout off)
     x = torch.randn(4, WINDOW_FRAMES, 3, CHECK_H, CHECK_W, device=device)   # 4 random clips
@@ -575,6 +626,9 @@ def add_lora(net: nn.Module) -> nn.Module:
       - the number of LoRA layers is not the 219 expected (a renamed layer would silently lose its LoRA),
       - any frozen weight is neither the base of a LoRA layer nor a backup copy (= it would be left out of training),
       - the predictor is no longer one shared object (BADAS lists it twice: predictor and backbone.predictor).
+
+    Arguments:
+        net: BADAS's classifier (the network to wrap).
     """
     from peft import LoraConfig, get_peft_model                      # peft: the library that adds LoRA
 
@@ -631,6 +685,10 @@ def check_gradients_reach_everything(model: nn.Module, device) -> None:
       - drop_path (training randomly skips whole blocks) is paused, else a skipped block would look dead;
       - LoRA's A matrices get a gradient of exactly zero on this first pass (B is still zero): zero is fine, MISSING
         (None) is not.
+
+    Arguments:
+        model:  the full RiskModel (BADAS + LoRA).
+        device: where to run the check (the GPU).
     """
     model.train()                                                     # training mode (as in real training)
     drop_path = [m for m in model.modules() if type(m).__name__ == "VJEPA2DropPath"]
@@ -653,6 +711,11 @@ class RiskModel(nn.Module):
     """BADAS-Open + LoRA, giving ONE number per window: the crash-risk logit (its sigmoid = BADAS's risk, 0..1)."""
 
     def __init__(self, device):
+        """Load BADAS-Open, patch it for 16:9, add LoRA, and run the start-up checks.
+
+        Arguments:
+            device: where the model lives (the GPU).
+        """
         super().__init__()
         from huggingface_hub import snapshot_download               # downloads from Hugging Face (or uses the cache)
 
@@ -707,6 +770,9 @@ class RiskModel(nn.Module):
 
         The loss (ml_utils, "bce") is binary cross-entropy between sigmoid(z) and the window's label (1, a ramp value
         from 0.7 to 1, or 0). That is the same loss as BADAS's own 2-class cross-entropy, with a soft target.
+
+        Arguments:
+            x: the batch from prepare(): B x 16 x 3 x 256 x 448, normalised.
         """
         scores = self.net(x)                                     # B x 2: column 0 = safe, column 1 = crash
         z = (scores[:, 1] - scores[:, 0]) / TEMPERATURE          # one number per window
@@ -717,11 +783,23 @@ class RiskModel(nn.Module):
     # 57 MB, plus the optimizer state); the frozen part is reloaded from BADAS-Open at every start. ml_utils calls
     # these two methods when it saves and loads.
     def state_dict(self, *args, **kwargs):
+        """The weights to save: only the trainable ones.
+
+        Arguments:
+            *args, **kwargs: passed on to PyTorch's own state_dict (prefix, keep_vars, ...).
+        """
         full = super().state_dict(*args, **kwargs)               # every weight, frozen and trainable
         prefix = kwargs.get("prefix", "")                        # (empty unless called from a parent module)
         return type(full)((k, v) for k, v in full.items() if k[len(prefix):] in self._trainable)   # trainable only
 
     def load_state_dict(self, state_dict, strict: bool = True, assign: bool = False):
+        """Load saved trainable weights; the frozen ones stay as loaded from BADAS-Open.
+
+        Arguments:
+            state_dict: the saved weights (from a checkpoint).
+            strict:     True = stop if any trainable weight is missing from it.
+            assign:     passed on to PyTorch (False = copy the values into the existing weights).
+        """
         missing = sorted(self._trainable - set(state_dict))        # a trainable weight the checkpoint lacks
         if strict and missing:
             raise RuntimeError(f"checkpoint is missing {len(missing)} trainable weights, e.g. {missing[:5]}")
@@ -732,7 +810,11 @@ class RiskModel(nn.Module):
 
 
 def build_model(cfg: dict) -> nn.Module:
-    """Called by ml_utils on Modal: the model to train."""
+    """Called by ml_utils on Modal: the model to train.
+
+    Arguments:
+        cfg: the run's settings (ml_utils config; used to pick the device).
+    """
     os.environ.setdefault("HF_HOME", HF_CACHE)                   # Hugging Face uses the volume's download cache
     ml._banner("STAGE 1 MODEL: BADAS-Open + LoRA", "🧠")
     return RiskModel(ml.pick_device(cfg))                         # pick_device: the GPU
@@ -747,13 +829,23 @@ def prepare(x: torch.Tensor, device, cfg) -> torch.Tensor:
     In:  B x 16 x 256 x 448 x 3, values 0-255 (as stored in the 16:9 cache: already the right size and shape).
     Out: B x 16 x 3 x 256 x 448: scaled to 0..1, then normalised with the ImageNet mean / spread (what V-JEPA 2 was
          pretrained on), colour channel moved before height and width. Same as eval_risk.py --wide.
+
+    Arguments:
+        x:      the batch as loaded, B x 16 x 256 x 448 x 3 uint8.
+        device: the GPU.
+        cfg:    the run's settings (not needed here; ml_utils passes it to every prepare hook).
     """
     return W.normalise(x.to(device, non_blocking=True))               # done on the GPU (fast)
 
 
 def _ap(crash_risks: np.ndarray, normal_risks: np.ndarray) -> float:
     """Average precision (AP): how well crash windows rank ABOVE normal ones. 1.0 = every crash window scores higher
-    than every normal window; lower = some normal windows score as high as crashes (false alarms)."""
+    than every normal window; lower = some normal windows score as high as crashes (false alarms).
+
+    Arguments:
+        crash_risks:  the model's risk on the crash windows.
+        normal_risks: the model's risk on the normal windows.
+    """
     from sklearn.metrics import average_precision_score
     if not len(crash_risks) or not len(normal_risks):              # needs both kinds
         return float("nan")
@@ -777,6 +869,10 @@ def validation_scores(y_true: np.ndarray, y_prob: np.ndarray) -> dict:
       nexar_official_map        Nexar's own score: AP within each test group (clip ends 0.5 / 1.0 / 1.5 s before
                                 the crash), on each clip's LAST-frame window only, averaged. Baseline: 0.903
       mean_risk_*               the average risk on each kind of window
+
+    Arguments:
+        y_true: the right answers per window (not needed: the window groups say which are crashes).
+        y_prob: the model's risk per window, N x 1, in val_windows.json order.
     """
     global LAST_RISK
     risk = y_prob[:, 0]                                 # one risk per window
@@ -814,6 +910,9 @@ def detailed_scores(risk: np.ndarray) -> dict:
       nexar_normal_alarm_pct_at_<t>  % of Nexar normal windows above t (false alarms)
       bdd_hard_alarm_pct_at_<t>      % of BDD100K hard moments above t (false alarms)
       calibration_error              0 = honest risk values (of windows given about 0.8, about 80% are crashes)
+
+    Arguments:
+        risk: the model's risk per validation window, in val_windows.json order.
     """
     is_crash = VAL.group == "nexar_crash"
     is_nexar_normal = VAL.group == "nexar_normal"
@@ -855,7 +954,11 @@ VAL_SECS = [0.0]                           # seconds spent validating so far (ta
 
 
 def hours_minutes(seconds: float) -> str:
-    """Seconds as "12 h 05 min"."""
+    """Seconds as "12 h 05 min".
+
+    Arguments:
+        seconds: a duration in seconds.
+    """
     minutes = int(round(seconds / 60))
     return f"{minutes // 60} h {minutes % 60:02d} min"
 
@@ -866,6 +969,9 @@ def video_watched(step: int) -> dict:
     Each weight update uses BATCH_SIZE x ACCUM_STEPS = 32 windows, and each window is 2 s of video. So after `step`
     updates the model has watched step x 32 x 2 s. The whole run is STEPS_PER_EPOCH x EPOCHS updates. (Counted in
     windows seen: the same clip comes back each epoch, at a new random moment.)
+
+    Arguments:
+        step: weight updates done so far.
     """
     window_s = WINDOW_FRAMES / FPS                                   # 2 s of video per window
     per_step_s = BATCH_SIZE * ACCUM_STEPS * window_s                 # 32 windows x 2 s = 64 s per update
@@ -876,7 +982,13 @@ def video_watched(step: int) -> dict:
 
 
 def on_epoch_start(epoch: int, model, loaders) -> None:
-    """Print what this epoch trains on (TrainWindows.set_epoch has just drawn the plan)."""
+    """Print what this epoch trains on (TrainWindows.set_epoch has just drawn the plan).
+
+    Arguments:
+        epoch:   the epoch about to start.
+        model:   the model (not needed here; ml_utils passes it to this hook).
+        loaders: the data loaders (not needed here).
+    """
     counts = TRAIN.plan_counts()
     rows = [[k.replace("windows_", "").replace("_", " "), v] for k, v in counts.items()]   # readable names
     ml._table(f"epoch {epoch}: training windows (one per source, new random end points)", ["windows", "count"],
@@ -889,7 +1001,13 @@ def on_epoch_start(epoch: int, model, loaders) -> None:
 
 def on_validation(row: dict, epoch: int, step: int) -> None:
     """After each validation: add the detailed numbers and the cost to the val_log.csv row, then print ONE clear
-    summary block (ml_utils's own lines above it list the same main numbers, plus its standard ones)."""
+    summary block (ml_utils's own lines above it list the same main numbers, plus its standard ones).
+
+    Arguments:
+        row:   this validation's val_log.csv row (val_<name> numbers so far); more columns are added to it.
+        epoch: the current epoch.
+        step:  weight updates done so far (0 = before any training).
+    """
     # --- more columns for val_log.csv ---
     row.update({f"val_{k}": v for k, v in detailed_scores(LAST_RISK).items()})
     row.update({f"train_{k}": v for k, v in TRAIN.plan_counts().items()})
@@ -977,7 +1095,12 @@ except Exception:
 # The container: the PIP packages + the src/risk code (ml_utils.modal_image), the two volumes, the A100.
 @app.function(image=ml.modal_image(CFG, PKG_ROOT), volumes=VOLUMES, secrets=[_HF], **ml.modal_resources(CFG))
 def train_remote(run_id: str = "", smoke: bool = False):
-    """Runs inside the Modal container on the A100: builds the model and data, then ml_utils trains."""
+    """Runs inside the Modal container on the A100: builds the model and data, then ml_utils trains.
+
+    Arguments:
+        run_id: run001, run002, ... (allocated on this PC by main).
+        smoke:  True = the short smoke test.
+    """
     os.environ["HF_HOME"] = HF_CACHE                       # must be set before transformers is imported
     cfg = cfg_for(smoke)                                   # the smoke test or the real run's settings
     ml.modal_train(cfg, EXP_DIR, build_model, build_data, hooks=HOOKS, run_id=run_id, volumes=VOLUMES)
@@ -986,7 +1109,11 @@ def train_remote(run_id: str = "", smoke: bool = False):
 @app.local_entrypoint()
 def main(smoke: bool = False):
     """Runs on THIS PC when you type `python -m modal run stage1_train.py [--smoke]`: starts the GPU job, waits,
-    then copies the results home. Ctrl+C stops the GPU first, then copies what is there."""
+    then copies the results home. Ctrl+C stops the GPU first, then copies what is there.
+
+    Arguments:
+        smoke: --smoke on the command line = the short smoke test.
+    """
     if not VAL_WINDOWS.exists():                           # the validation list must be built first (locally)
         raise SystemExit(f"{VAL_WINDOWS} missing: run make_val_windows.py first")
     cfg = cfg_for(smoke)
