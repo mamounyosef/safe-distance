@@ -60,22 +60,27 @@ def _position_ids(self, x, masks=None):
         ids = masks.unsqueeze(1).repeat(1, self.num_attention_heads, 1)
     else:                                                            # the encoder: tokens 0, 1, 2, ... in order
         ids = torch.arange(x.size(1), device=x.device)
-    per_slot = self.grid_h * self.grid_w                             # tokens per time slot (16 x 28 = 448)
+    grid_h = getattr(self, "grid_h", self.grid_size)                 # a layer never patched keeps the square grid
+    grid_w = getattr(self, "grid_w", self.grid_size)
+    per_slot = grid_h * grid_w                                       # tokens per time slot (16 x 28 = 448)
     slot = ids // per_slot
     within = ids - per_slot * slot                                   # number inside its time slot
-    row = within // self.grid_w
-    col = within - self.grid_w * row
+    row = within // grid_w
+    col = within - grid_w * row
     return slot, row, col
 
 
 def patch_positions(model, height: int, width: int) -> int:
     """Make every V-JEPA 2 attention layer in `model` (encoder and predictor) use a height/16 x width/16 grid.
-    Returns how many layers were patched (BADAS-Open: 24 encoder + 12 predictor = 36)."""
-    import types
+    Returns how many layers were patched (BADAS-Open: 24 encoder + 12 predictor = 36).
+
+    The replacement goes on the attention CLASS once (not as a separate bound method on each of the 36 layers):
+    torch.compile handles a plain class method well, while per-object methods crashed it (segmentation fault on
+    Modal). Each layer only stores its own grid size (two whole numbers)."""
     n = 0
     for m in model.modules():
         if type(m).__name__ == "VJEPA2RopeAttention":
             m.grid_h, m.grid_w = height // PATCH, width // PATCH
-            m.get_position_ids = types.MethodType(_position_ids, m)
+            type(m).get_position_ids = _position_ids              # same function for every layer
             n += 1
     return n
