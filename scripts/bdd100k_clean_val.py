@@ -29,8 +29,9 @@ from eval_risk import metrics, report  # noqa: E402
 
 # ---- CONFIG ----
 IDS = ROOT / "src/risk/data/bdd100k_ids"
-EVAL = ROOT / "src/risk/runs/baseline_badas_open/results/eval"
-OUT = ROOT / "src/risk/runs/baseline_badas_open/results/eval_val_clean"
+WIDE = "--wide" in sys.argv                 # --wide: the 16:9 baseline (eval_wide) instead of the squashed one
+EVAL = ROOT / "src/risk/runs/baseline_badas_open/results" / ("eval_wide" if WIDE else "eval")
+OUT = ROOT / "src/risk/runs/baseline_badas_open/results" / ("eval_val_clean_wide" if WIDE else "eval_val_clean")
 REMOVE_TOP, LABEL_LAST = 25, 137
 # ----------------
 
@@ -39,6 +40,12 @@ def main() -> None:
     val = json.loads((EVAL / "series_bdd_val.json").read_text())
     nexar = json.loads((EVAL / "series_nexar_public.json").read_text())
     labels = json.loads((IDS / "val_labels.json").read_text())
+    if WIDE:
+        # 16:9: the SAME clean clips as the squashed baseline (the cleaning was decided from the squashed ranking;
+        # re-ranking by 16:9 readings would move clips in and out of the labelled ranks)
+        keep = (IDS / "val_clean.txt").read_text().split()
+        rescore(val, nexar, keep)
+        return
     ranked = [r["clip"] for r in rank(val)]
     missing = [c for c in ranked[REMOVE_TOP:LABEL_LAST] if c not in labels]
     if missing:
@@ -62,12 +69,15 @@ def main() -> None:
                "removed_total": sum(removed.values()), "removed": dict(removed),
                "labels": dict(Counter(labels[c]["label"] for c in ranked[REMOVE_TOP:LABEL_LAST]))}
     (IDS / "val_clean_summary.json").write_text(json.dumps(summary, indent=1))
+    rescore(val, nexar, keep)
 
-    # Re-score the baseline on the cleaned val (same Nexar Public readings, same metric code)
+
+def rescore(val: dict, nexar: dict, keep: list) -> None:
+    """Re-score the baseline on the cleaned val (same Nexar Public readings, same metric code); compare."""
     m = metrics({c: val[c] for c in keep}, nexar)
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "metrics.json").write_text(json.dumps(m, indent=1))
-    (OUT / "RESULTS.md").write_text(report("baseline_badas_open (BDD100K val cleaned)", m))
+    (OUT / "RESULTS.md").write_text(report("baseline_badas_open (BDD100K val cleaned" + (", 16:9 input)" if WIDE else ")"), m))
     old = json.loads((EVAL / "metrics.json").read_text())
 
     def row(mm, thr, c):
@@ -81,7 +91,7 @@ def main() -> None:
                           for r in m["rows"]]}
     (OUT / "compare.json").write_text(json.dumps(cmp, indent=1))
 
-    print(json.dumps(summary, indent=1))
+    print(f"kept {len(keep)} clean val clips")
     print(f"\nval hours: {old['bdd_val_hours']} -> {m['bdd_val_hours']}")
     print(f"{'budget':>22} {'old warned':>10} {'old thr':>8} {'clean warned':>12} {'clean thr':>9}")
     for k, v in cmp["budgets"].items():

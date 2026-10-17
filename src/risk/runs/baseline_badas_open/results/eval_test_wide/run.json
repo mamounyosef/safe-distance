@@ -1,0 +1,22 @@
+{
+ "model": "baseline_badas_open",
+ "clips": 12,
+ "failed": 0,
+ "failures": [],
+ "wall_s": 23,
+ "clip_seconds": 77,
+ "container_seconds": 47,
+ "containers": 1,
+ "gpu_busy_mean_pct": 72,
+ "cost_usd_estimate": 0.027,
+ "seconds_per_clip": {
+  "load_s": 0.85,
+  "prep_s": 0.37,
+  "model_s": 11.59,
+  "save_s": 0.0
+ },
+ "full_run_estimate": {
+  "cost_usd": 1.75,
+  "wall_s": 751
+ }
+}
