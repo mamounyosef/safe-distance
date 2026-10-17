@@ -129,14 +129,17 @@ SEED = 20261017                                       # fixes all random choices
 POS_WEIGHT = None                                     # e.g. 2.0 = danger windows count twice in the loss (not used)
 
 # ---- augmentation (one random draw per window, the same on all 16 frames) ----
-AUG_P = 0.6                                           # chance of each main augmentation being applied
-CROP_MAX = 0.05                                       # crop up to 5% off each edge (then stretched back to 224 x 224)
-ROTATE_DEG = 2.0                                      # rotate up to 2 degrees either way
-BRIGHTNESS = 0.15                                     # brightness x 0.85 .. 1.15
-CONTRAST = 0.15                                       # contrast x 0.85 .. 1.15
-SATURATION = 0.15                                     # colour strength x 0.85 .. 1.15
-GAMMA = 0.15                                          # gamma 0.85 .. 1.15 (brighter / darker mid-tones)
-BLUR_P, SHARPEN_P = 0.2, 0.2                          # 20% light blur, 20% light sharpen (never both)
+# Each type has its OWN chance, and each is decided by its own separate coin flip (independent of the others), so
+# any mix can happen on one window. *_P = chance that type is applied; the other number is its strength.
+CROP_P, CROP_MAX = 0.6, 0.05                          # 60%: crop up to 5% off each edge (stretched back to 224)
+ROTATE_P, ROTATE_DEG = 0.6, 2.0                       # 60%: rotate up to 2 degrees either way
+BRIGHTNESS_P, BRIGHTNESS = 0.6, 0.15                  # 60%: brightness x 0.85 .. 1.15
+CONTRAST_P, CONTRAST = 0.6, 0.15                      # 60%: contrast x 0.85 .. 1.15
+SATURATION_P, SATURATION = 0.6, 0.15                  # 60%: colour strength x 0.85 .. 1.15
+GAMMA_P, GAMMA = 0.6, 0.15                            # 60%: gamma 0.85 .. 1.15 (brighter / darker mid-tones)
+# Blur and sharpen are the one exception: they undo each other, so ONE draw picks blur (20%), sharpen (20%) or
+# neither (60%); never both.
+BLUR_P, SHARPEN_P = 0.2, 0.2
 NOISE_P, NOISE_SIGMA = 0.15, (2.0, 5.0)               # 15%: faint grain of 2-5 brightness steps (out of 255)
 JPEG_P, JPEG_QUALITY = 0.15, (70, 90)                 # 15%: mild JPEG compression, quality 70-90 (100 = perfect)
 # never: horizontal flip, speed changes, cutout, mixing clips, time reversal
@@ -325,7 +328,7 @@ def augment(frames: np.ndarray, rng: np.random.Generator) -> np.ndarray:
     # --- 1) geometry: crop + rotate, combined into ONE warp so each frame is resampled only once ---
     # A warp is a 3 x 3 matrix that moves pixels. We start with "no change" (the identity) and add steps to it.
     warp = np.eye(3)
-    if rng.random() < AUG_P:
+    if rng.random() < CROP_P:
         # CROP: cut 0-5% off each edge (left, top, right, bottom drawn separately), then stretch what is left
         # back to the full 224 x 224.
         left, top, right, bottom = rng.uniform(0, CROP_MAX, 4) * [w, h, w, h]   # in pixels
@@ -335,7 +338,7 @@ def augment(frames: np.ndarray, rng: np.random.Generator) -> np.ndarray:
                          [0, stretch_y, -top * stretch_y],          # y -> (y - top) x stretch_y
                          [0, 0, 1]])
         warp = crop @ warp                                          # add the crop to the warp
-    if rng.random() < AUG_P:
+    if rng.random() < ROTATE_P:
         # ROTATE: turn the picture by -2 .. +2 degrees around its centre
         angle = rng.uniform(-ROTATE_DEG, ROTATE_DEG)
         rotate = np.vstack([cv2.getRotationMatrix2D((w / 2, h / 2), angle, 1.0), [0, 0, 1]])
@@ -350,20 +353,20 @@ def augment(frames: np.ndarray, rng: np.random.Generator) -> np.ndarray:
 
     # --- 2) colour: on all 16 frames at once, with pixel values as 0.0 .. 1.0 ---
     x = frames.astype(np.float32) / 255.0
-    if rng.random() < AUG_P:
+    if rng.random() < BRIGHTNESS_P:
         # BRIGHTNESS: multiply every pixel by 0.85 .. 1.15
         x = x * rng.uniform(1 - BRIGHTNESS, 1 + BRIGHTNESS)
-    if rng.random() < AUG_P:
+    if rng.random() < CONTRAST_P:
         # CONTRAST: push pixels away from (or towards) the window's average brightness, by 0.85 .. 1.15
         mean = x.mean()
         x = (x - mean) * rng.uniform(1 - CONTRAST, 1 + CONTRAST) + mean
-    if rng.random() < AUG_P:
+    if rng.random() < SATURATION_P:
         # SATURATION: move colours away from (or towards) grey, by 0.85 .. 1.15
         grey = x @ np.array([0.299, 0.587, 0.114], np.float32)     # each pixel's grey value (standard weights)
         grey = grey[..., None]                                      # same shape as x, to subtract per colour
         x = grey + (x - grey) * rng.uniform(1 - SATURATION, 1 + SATURATION)
     x = np.clip(x, 0.0, 1.0)                                        # back into the valid range
-    if rng.random() < AUG_P:
+    if rng.random() < GAMMA_P:
         # GAMMA: x ** g with g in 0.85 .. 1.15 brightens or darkens the mid-tones, keeps black and white
         x = x ** rng.uniform(1 - GAMMA, 1 + GAMMA)
 

@@ -1,110 +1,149 @@
-"""Show, step by step, what happens to a dashcam frame before BADAS-Open (and our stage 1 training) sees it.
+"""Show, step by step and as VIDEO, what happens to dashcam footage before BADAS-Open (and our stage 1 training) sees it.
 
-The exact steps of the current pipeline, on 10 real frames (5 Nexar crash clips at 1 s before the crash, 5 BDD100K
-normal clips at their middle):
-    1. original video frame                1280 x 720
-    2. frame cache (frames.py)             squashed to 224 x 224 (cv2.resize, bilinear): the 16:9 picture becomes square
+The exact steps of the current pipeline, on 10 real clips (5 Nexar crash clips: the 4 s up to the crash; 5 BDD100K
+normal clips: 4 s from the 20 s point):
+    1. original video                      1280 x 720, 30 frames per second
+    2. frame cache (frames.py)             8 frames per second, each squashed to 224 x 224 (cv2.resize, bilinear):
+                                           the 16:9 picture becomes square
     3. BADAS's processor, step 1           enlarged to 292 x 292 (bilinear)
     4. BADAS's processor, step 2           the middle 256 x 256 is kept  = what the model sees
-Each output image shows the 4 steps side by side, every step drawn at the same height (pixels enlarged as blocks, so
-the real detail of each step is visible), plus the area that survives the crop drawn on the original.
+Panels 2-4 change only 8 times per second, like the model's input (frame round(i x fps / 8), as in frames.py).
+Every panel is drawn at the same height with pixels enlarged as blocks, so the real detail of each step is visible.
+Steps 3-4 use BADAS's real video processor (V-JEPA 2's, from Hugging Face): exactly what training does.
 
-Uses BADAS's real video processor (V-JEPA 2's, from Hugging Face) for steps 3-4, so it is exactly what training does.
-
-RUN IT (from the repo root, this PC, free):
+RUN IT (from the repo root, this PC, free, about a minute):
     .venv\\Scripts\\python.exe scripts\\preprocess_demo.py
 
-Output: Downloads\\safe-distance-testing\\preprocessing\\01_... .png ... 10_... .png
+Output: Downloads\\safe-distance-testing\\preprocessing\\preprocessing_steps.mp4
 """
 
 import csv
 import random
+import sys
 from pathlib import Path
 
 import cv2
 import numpy as np
-import torch
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src/risk/data/data_code"))
+from sample_video import Writer, card  # noqa: E402   (title cards + one H.264 video)
 
 # ---- CONFIG ----
 NEXAR_DIR = Path(r"C:\safe-distance-data\nexar\samples")          # local Nexar crash clips (+ metadata.csv)
 BDD_DIR = Path(r"C:\safe-distance-data\bdd100k\samples")          # local BDD100K clips
-OUT = Path.home() / "Downloads" / "safe-distance-testing" / "preprocessing"
+OUT = Path.home() / "Downloads" / "safe-distance-testing" / "preprocessing" / "preprocessing_steps.mp4"
 BASE_MODEL = "facebook/vjepa2-vitl-fpc16-256-ssv2"                # BADAS's processor comes from this model
-N_EACH, SEED = 5, 3
+N_EACH, SEED = 5, 3                                               # 5 Nexar + 5 BDD100K clips, fixed pick
+SEGMENT_S = 4.0                                                   # seconds shown per clip
+BDD_START_S = 20.0                                                # BDD100K clips: start here
 SHOW_H = 360                                                      # every panel drawn at this height
-CACHE_SIZE = 224                                                  # frames.py: cv2.resize(img, (224, 224))
-MEAN, STD = np.array([0.485, 0.456, 0.406]), np.array([0.229, 0.224, 0.225])   # ImageNet (to undo for display)
+CACHE_SIZE, CACHE_FPS = 224, 8                                    # frames.py: 224 x 224, 8 per second
+MEAN, STD = np.array([0.485, 0.456, 0.406]), np.array([0.229, 0.224, 0.225])   # ImageNet (undone for display)
+VIDEO_FPS, TITLE_S = 30.0, 2.5
 # ----------------
 
 
-def read_frame(path: Path, t: float) -> np.ndarray:
-    """The video frame at time t (seconds), as RGB."""
-    cap = cv2.VideoCapture(str(path))
-    cap.set(cv2.CAP_PROP_POS_MSEC, t * 1000)
-    ok, img = cap.read()
-    cap.release()
-    return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
-
 def label(img: np.ndarray, lines: list[str]) -> np.ndarray:
-    """Write lines of text on the top of an image (with a dark outline so it reads on any picture)."""
-    img = img.copy()
+    """Put lines of text in a dark bar ABOVE the image (never over the picture)."""
+    bar = np.full((24 * len(lines) + 10, img.shape[1], 3), 20, np.uint8)
     for i, s in enumerate(lines):
-        y = 26 + 26 * i
-        cv2.putText(img, s, (8, y), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0, 0, 0), 4, cv2.LINE_AA)
-        cv2.putText(img, s, (8, y), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255, 255, 255), 1, cv2.LINE_AA)
-    return img
+        cv2.putText(bar, s, (8, 22 + 24 * i), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1, cv2.LINE_AA)
+    return np.vstack([bar, img])
 
 
 def blocks(img: np.ndarray, h: int) -> np.ndarray:
-    """Enlarge to height h with NEAREST pixels, so each real pixel shows as a block (no smoothing hides the loss)."""
+    """Enlarge to height h with NEAREST pixels: each real pixel shows as a block (no smoothing hides the loss)."""
     w = int(round(img.shape[1] * h / img.shape[0]))
     return cv2.resize(img, (w, h), interpolation=cv2.INTER_NEAREST)
+
+
+def model_views(cache_frames: np.ndarray, proc) -> list[tuple[np.ndarray, np.ndarray]]:
+    """For cached 224 frames: (step-3 picture 292 with the crop box, step-4 model input 256) per frame, using
+    BADAS's processor for the model input (one call on all frames, as in training)."""
+    px = proc(videos=cache_frames, return_tensors="pt")["pixel_values_videos"][0]          # n x 3 x 256 x 256
+    off = (292 - 256) // 2
+    out = []
+    for c, p in zip(cache_frames, px):
+        model_in = ((p.permute(1, 2, 0).numpy() * STD + MEAN).clip(0, 1) * 255).round().astype(np.uint8)
+        enlarged = cv2.resize(c, (292, 292), interpolation=cv2.INTER_LINEAR)
+        cv2.rectangle(enlarged, (off, off), (off + 256, off + 256), (255, 220, 0), 2)
+        out.append((enlarged, model_in))
+    return out
+
+
+def clip_frames(path: Path, t0: float, t1: float):
+    """Every original frame between t0 and t1 (RGB), with its time, plus the video's frame rate."""
+    cap = cv2.VideoCapture(str(path))
+    fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
+    frames, f = [], 0
+    while True:
+        ok, img = cap.read()
+        if not ok:
+            break
+        t = f / fps
+        f += 1
+        if t0 <= t < t1:
+            frames.append((t, cv2.cvtColor(img, cv2.COLOR_BGR2RGB)))
+        if t >= t1:
+            break
+    cap.release()
+    return frames, fps
 
 
 def main() -> None:
     from transformers import AutoVideoProcessor
     proc = AutoVideoProcessor.from_pretrained(BASE_MODEL)         # the processor BADAS uses
-    OUT.mkdir(parents=True, exist_ok=True)
+    OUT.parent.mkdir(parents=True, exist_ok=True)
 
     rng = random.Random(SEED)
-    meta = list(csv.DictReader((NEXAR_DIR / "metadata.csv").open()))
-    meta = [r for r in meta if (NEXAR_DIR / r["file_name"]).exists()]
-    picks = [("Nexar crash clip", NEXAR_DIR / r["file_name"], float(r["time_of_event"]) - 1.0, "1 s before the crash")
-             for r in rng.sample(meta, N_EACH)]
-    bdd = sorted(BDD_DIR.glob("*.mov"))
-    picks += [("BDD100K normal clip", p, 20.0, "20 s into the clip") for p in rng.sample(bdd, N_EACH)]
+    meta = [r for r in csv.DictReader((NEXAR_DIR / "metadata.csv").open()) if (NEXAR_DIR / r["file_name"]).exists()]
+    picks = []
+    for r in rng.sample(meta, N_EACH):                            # Nexar: the 4 s up to the crash
+        ev = float(r["time_of_event"])
+        picks.append(("Nexar crash clip", NEXAR_DIR / r["file_name"], ev - SEGMENT_S, ev, "the 4 s up to the crash"))
+    for p in rng.sample(sorted(BDD_DIR.glob("*.mov")), N_EACH):   # BDD100K: 4 s from 20 s in
+        picks.append(("BDD100K normal clip", p, BDD_START_S, BDD_START_S + SEGMENT_S, "4 s of normal driving"))
 
-    for k, (kind, path, t, when) in enumerate(picks, 1):
-        orig = read_frame(path, t)                                         # 1) 1280 x 720
-        cache = cv2.resize(orig, (CACHE_SIZE, CACHE_SIZE))                  # 2) frames.py: squash to 224 x 224
-        # 3-4) BADAS's processor on the cached frame: enlarge (shortest edge 292), then centre crop 256
-        px = proc(videos=cache[None], return_tensors="pt")["pixel_values_videos"][0, 0]   # 3 x 256 x 256, normalised
-        model_in = ((px.permute(1, 2, 0).numpy() * STD + MEAN).clip(0, 1) * 255).round().astype(np.uint8)
-        enlarged = cv2.resize(cache, (292, 292), interpolation=cv2.INTER_LINEAR)          # the step-3 picture
+    wr = None
+    for k, (kind, path, t0, t1, what) in enumerate(picks, 1):
+        frames, fps = clip_frames(path, t0, t1)
+        # the frames the cache keeps: frame round(i x fps / 8), i.e. 8 per second (frames.py)
+        keep = sorted({int(round(i * fps / CACHE_FPS)) for i in range(int(t0 * CACHE_FPS), int(t1 * CACHE_FPS) + 1)})
+        first = int(round(t0 * fps))
+        kept = {i: frames[i - first][1] for i in keep if 0 <= i - first < len(frames)}
+        cache = {i: cv2.resize(img, (CACHE_SIZE, CACHE_SIZE)) for i, img in kept.items()}      # step 2
+        views = dict(zip(cache, model_views(np.stack(list(cache.values())), proc)))            # steps 3-4
 
-        # where the 256 crop sits inside the 292 picture, and the same area on the original frame
-        off = (292 - 256) // 2
-        enl_box = enlarged.copy()
-        cv2.rectangle(enl_box, (off, off), (off + 256, off + 256), (255, 220, 0), 2)
-        orig_box = orig.copy()
-        fx, fy = orig.shape[1] / 292, orig.shape[0] / 292
-        cv2.rectangle(orig_box, (int(off * fx), int(off * fy)), (int((off + 256) * fx), int((off + 256) * fy)),
-                      (255, 220, 0), 4)
-
-        panels = [label(cv2.resize(orig_box, (int(SHOW_H * 16 / 9), SHOW_H)),
-                        ["1) original frame 1280 x 720", "yellow = area the model keeps"]),
-                  label(blocks(cache, SHOW_H), ["2) cache: squashed", "to 224 x 224"]),
-                  label(blocks(enl_box, SHOW_H), ["3) enlarged to 292", "yellow = 256 crop"]),
-                  label(blocks(model_in, SHOW_H), ["4) model input", "256 x 256"])]
-        gap = np.full((SHOW_H, 8, 3), 30, np.uint8)
-        row = np.hstack(sum([[p, gap] for p in panels], [])[:-1])
-        title = np.full((40, row.shape[1], 3), 20, np.uint8)
-        cv2.putText(title, f"{k}/10  {kind} {path.name}, frame at {when}", (10, 28), cv2.FONT_HERSHEY_SIMPLEX, 0.8,
-                    (255, 255, 255), 2, cv2.LINE_AA)
-        out = OUT / f"{k:02d}_{'nexar' if 'Nexar' in kind else 'bdd'}_{path.stem}.png"
-        cv2.imwrite(str(out), cv2.cvtColor(np.vstack([title, row]), cv2.COLOR_RGB2BGR))
-        print(f"saved {out}")
+        rows = []
+        for j, (t, orig) in enumerate(frames):
+            idx = max(i for i in cache if i <= first + j) if any(i <= first + j for i in cache) else min(cache)
+            enlarged, model_in = views[idx]                      # the latest 8-per-second frame (what the model has)
+            orig_box = cv2.resize(orig, (int(SHOW_H * 16 / 9), SHOW_H))
+            off, fx, fy = 18, orig_box.shape[1] / 292, orig_box.shape[0] / 292       # the kept area on the original
+            cv2.rectangle(orig_box, (int(off * fx), int(off * fy)), (int((off + 256) * fx), int((off + 256) * fy)),
+                          (255, 220, 0), 2)
+            panels = [label(orig_box, ["1) original 1280 x 720, 30 fps", "yellow = area the model keeps"]),
+                      label(blocks(cache[idx], SHOW_H), ["2) cache: 8 fps,", "squashed to 224 x 224"]),
+                      label(blocks(enlarged, SHOW_H), ["3) enlarged to 292", "yellow = 256 crop"]),
+                      label(blocks(model_in, SHOW_H), ["4) model input", "256 x 256"])]
+            gap = np.full((panels[0].shape[0], 8, 3), 30, np.uint8)
+            row = np.hstack(sum([[p, gap] for p in panels], [])[:-1])
+            title = np.full((44, row.shape[1], 3), 20, np.uint8)
+            cv2.putText(title, f"{k}/10  {kind} {path.name}: {what}   t = {t:.2f} s", (10, 30),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2, cv2.LINE_AA)
+            rows.append(np.vstack([title, row]))
+        if wr is None:                                             # size from the first frame (even numbers)
+            size = (rows[0].shape[1] // 2 * 2, rows[0].shape[0] // 2 * 2)
+            wr = Writer(OUT, size, VIDEO_FPS)
+            wr.write(card(size, ["How a dashcam frame becomes BADAS's input (the current pipeline)",
+                                 "1) original 1280 x 720  ->  2) 8 fps, squashed to 224 x 224",
+                                 "3) enlarged to 292 x 292  ->  4) middle 256 x 256 = model input"]), 5.0)
+        wr.write(card(size, [f"{k}/10  {kind}", f"{path.name}: {what}"]), TITLE_S)
+        for r in rows:
+            wr.write(cv2.cvtColor(r, cv2.COLOR_RGB2BGR))          # Writer expects BGR (OpenCV order)
+        print(f"[{k}/10] {kind} {path.name}: {len(rows)} frames", flush=True)
+    wr.close()
+    print(f"saved {OUT}")
 
 
 if __name__ == "__main__":
