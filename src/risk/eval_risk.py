@@ -72,6 +72,7 @@ FAST_PREP = True                       # BADAS's processor once per clip on the 
 STEP = 4                               # a reading every 4 frames at 8 per second = every 0.5 s
 STEP_BY_SET = {"bdd_train": 8}         # cleaning only needs each clip's riskiest moment: every 1 s (half the cost)
 BATCH = 32                             # windows per GPU pass
+BATCH_WIDE = 8                         # --wide: fewer at once (bigger input, no compile: 32 ran out of memory)
 FP16 = True
 TEMPERATURE = 2.0                      # BADAS's output softening
 THRESHOLDS = [0.5, 0.7, 0.8, 0.9, 0.95, 0.98, 0.99]
@@ -155,7 +156,10 @@ class Scorer:
             print(f"16:9 input: patched {wide_input.patch_positions(self.badas.model, 256, 448)} attention layers",
                   flush=True)
         self.net = self.badas.model
-        if COMPILE:
+        # torch.compile crashes (segmentation fault) at the 16:9 shape, so --wide runs the plain model in half
+        # precision (it ran fine that way on 100 Nexar clips, about 2.7 s per clip).
+        self.compiled = COMPILE and not self.wide
+        if self.compiled:
             # torch.compile fuses V-JEPA 2's ~60k tiny GPU operations per call (2.6x faster, readings within
             # 0.0025). Compiled once here for a fixed batch of BATCH windows (shorter batches are padded).
             import shutil
@@ -248,17 +252,18 @@ class Scorer:
         torch.cuda.synchronize()
         tm["prep_s"], tm["model_s"] = time.time() - t, 0.0
         out = []
-        for i in range(0, len(ends), BATCH):
+        bs = BATCH_WIDE if self.wide else BATCH            # windows per GPU pass
+        for i in range(0, len(ends), bs):
             if fast:
-                batch = torch.stack([prepped[e - 16:e] for e in ends[i:i + BATCH]])          # B, 16, 3, 256, 256
+                batch = torch.stack([prepped[e - 16:e] for e in ends[i:i + bs]])          # B, 16, 3, 256, 256
             else:                                      # BADAS's own processor (slow, CPU), for --check
                 if self.wide:
-                    batch = torch.stack([self._wide_reference(frames[e - 16:e]) for e in ends[i:i + BATCH]])
+                    batch = torch.stack([self._wide_reference(frames[e - 16:e]) for e in ends[i:i + bs]])
                 else:
                     batch = torch.stack([self.badas.processor(videos=frames[e - 16:e], return_tensors="pt")
-                                         ["pixel_values_videos"].squeeze(0) for e in ends[i:i + BATCH]])
+                                         ["pixel_values_videos"].squeeze(0) for e in ends[i:i + bs]])
             n = len(batch)
-            if COMPILE and fast and n < BATCH:          # pad to the compiled batch size (no recompiling)
+            if self.compiled and fast and n < BATCH:    # pad to the compiled batch size (no recompiling)
                 batch = torch.cat([batch, batch[-1:].expand(BATCH - n, *batch.shape[1:])])
             t = time.time()
             # Fast path: compiled model in half precision. Reference path (--check): plain model, full precision.
@@ -267,7 +272,7 @@ class Scorer:
                 logits = net(batch.to(self.badas.device)).float()[:n]
             probs = torch.softmax(logits / TEMPERATURE, dim=1)[:, 1].cpu()
             tm["model_s"] += time.time() - t
-            out += [(round(e / 8.0, 3), round(float(p), 5)) for e, p in zip(ends[i:i + BATCH], probs)]
+            out += [(round(e / 8.0, 3), round(float(p), 5)) for e, p in zip(ends[i:i + bs], probs)]
         return out
 
     @modal.method()
