@@ -234,3 +234,7 @@ current_modal_commands.txt
 
 # Stage 1 validation windows: hold Nexar test labels, built locally by make_val_windows.py
 src/risk/runs/stage1_lora/val_windows.json
+plan.md
+
+# Personal notes (not in git)
+outline.md
