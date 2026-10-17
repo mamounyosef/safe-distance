@@ -39,9 +39,9 @@ for r in rows:
 
 out = {"crash_clips": len(rows), "excluded_by_person": len(excluded), "dropped_no_danger_window": len(dropped),
        "used": used, "end_points_in_used_clips": dict(zones),
-       "danger_end_points": zones[L.RAMP] + zones[L.ONE], "safe_end_points": zones[L.ZERO],
+       "danger_end_points_drawn": sum(len(L.danger_ends(float(r["time_of_alert"]), float(r["time_of_event"]))) for r in rows if r["file_name"] not in excluded), "ramp_end_points_all": zones[L.RAMP], "label_1_end_points": zones[L.ONE], "safe_end_points": zones[L.ZERO],
        "rule": {"hard_s": L.HARD_S, "ramp_start": L.RAMP_START, "margin_s": L.MARGIN_S,
-                "safe_before_s": L.SAFE_BEFORE_S}, "dropped_clips": dropped}
+                "safe_before_s": L.SAFE_BEFORE_S, "danger_min_label": L.DANGER_MIN_LABEL}, "dropped_clips": dropped}
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(out, indent=1))
 print(json.dumps({k: v for k, v in out.items() if k != "dropped_clips"}, indent=1))

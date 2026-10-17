@@ -10,13 +10,16 @@
   "one": 6964,
   "ramp": 703
  },
- "danger_end_points": 7667,
+ "danger_end_points_drawn": 7247,
+ "ramp_end_points_all": 703,
+ "label_1_end_points": 6964,
  "safe_end_points": 74710,
  "rule": {
   "hard_s": 2.4,
   "ramp_start": 0.25,
   "margin_s": 0.4,
-  "safe_before_s": 4.0
+  "safe_before_s": 4.0,
+  "danger_min_label": 0.7
  },
  "dropped_clips": [
   "00072.mp4",

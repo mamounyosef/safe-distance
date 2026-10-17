@@ -19,8 +19,9 @@ The rule for CRASH clips (agreed with the person; "before" = seconds left until 
         less than 0.4 s after the alert                                   not used (window is mostly normal driving)
         0.4 s or more after the alert                                     1
 
-A crash clip with no danger window at all (alert less than 0.4 s before the crash, or a danger zone too short to
-hold one frame) is not used at all, not even its safe part: crash_clip_used() says so.
+Training draws danger windows only where the label is at least DANGER_MIN_LABEL (0.7): the low start of the ramp
+(0.25 to 0.7) is never drawn. A crash clip with no danger window at all (alert less than 0.4 s before the crash, or
+a danger zone too short to hold one frame) is not used at all, not even its safe part: crash_clip_used() says so.
 
 Why:
   - A window ending just after the alert still shows mostly normal driving, so it must not get a full 1. For
@@ -44,6 +45,8 @@ SAFE_BEFORE_S = 4.0     # crash clips: a safe (0) window must end more than this
 VERY_EARLY_S = 4.0      # only names a case for the demos (alerts this early); the label rule does not use it
 RAMP_START = 0.25       # early alerts: label at the alert, rising linearly to 1 at HARD_S before the crash
 MARGIN_S = 0.4          # late alerts: windows ending less than this after the alert are not used
+DANGER_MIN_LABEL = 0.7  # training draws danger windows only where the label is at least this (ramp values below
+                        # 0.7 are too close to normal driving to stand for a crash; person, 2026-10-17)
 # ----------------
 
 # Zone names (what the demo draws, and what training counts)
@@ -81,9 +84,11 @@ def window_label(t_end: float, alert: float | None = None, event: float | None =
 
 
 def danger_ends(alert: float, event: float) -> list[float]:
-    """All window end points (on the frame grid) of a crash clip whose label is above 0: the danger pool."""
+    """The danger pool: every window end point (on the frame grid) of a crash clip whose label is at least
+    DANGER_MIN_LABEL. Ramp points below it are not drawn at all (neither as danger nor as safe)."""
     n = int(event / FRAME_S + 1e-9)
-    return [k * FRAME_S for k in range(n + 1) if (window_label(k * FRAME_S, alert, event)[0] or 0.0) > 0.0]
+    return [k * FRAME_S for k in range(n + 1)
+            if (window_label(k * FRAME_S, alert, event)[0] or 0.0) >= DANGER_MIN_LABEL]
 
 
 def crash_clip_used(alert: float, event: float) -> bool:

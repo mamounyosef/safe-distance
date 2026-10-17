@@ -3611,7 +3611,19 @@ def _run_experiment(cfg: dict, model: nn.Module, out_dir: Path, data: dict, hook
                     _extra["sam_loss2"] = round(sum(sam_loss2) / len(sam_loss2), 5)
                     _extra["sam_n"] = len(sam_gn)
                     sam_gn.clear(); sam_loss2.clear()
+                # GPU use, logged every step (not only printed): MFU = share of the card's peak
+                # FLOP/s this step really used; SM / memory-controller busy = share of time busy.
+                # FLOPs are counted once, on the first step (one extra forward of one sample).
+                _mfu_pct = _sm_pct = _mc_pct = None
+                if device.type == "cuda":
+                    if flops_per_sample[0] is None:
+                        flops_per_sample[0] = (_measure_flops_per_sample(model, x, cfg, device, hooks)
+                                               if LG.get("flops_probe", True) else 0.0)
+                    _sm_pct, _mc_pct = _gpu_busy()
+                    if flops_per_sample[0] and _peak:
+                        _mfu_pct = round(100.0 * 3.0 * flops_per_sample[0] * (ips / per_sample) / 1e12 / _peak, 1)
                 train_log.log({**_extra, **ScaleProbe.row(_pb),
+                               "mfu_pct": _mfu_pct, "sm_busy_pct": _sm_pct, "mem_ctrl_busy_pct": _mc_pct,
                                "epoch": epoch, "epoch_step": -(-it // accum),
                                "global_step": gstep, "loss": round(l, 6), "lr": lr,
                                "lr_min": lr_lo, "lr_max": lr_hi,
