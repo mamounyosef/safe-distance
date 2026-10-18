@@ -573,8 +573,10 @@ def batched_predict_future(self, encoder_features: torch.Tensor) -> torch.Tensor
     """
     batch, n_present, width = encoder_features.shape                 # e.g. 8, 3584, 1024
 
-    # How many future slots: BADAS asks for 1 s of future and assumes 4 frames per second, so 1 s / (16 frames /
+    # How many future slots: BADAS's checkpoint config says 1 s of future and "original_fps" 4, so 1 s / (16 frames /
     # 4 per s) = a quarter of the present tokens = 896. (Same formula as BADAS's own code.)
+    # Note: we really feed 8 fps (16 frames = 2 s), so these 896 slots are 2 of 8 time steps = 0.5 s ahead, not 1 s.
+    # Kept as is: BADAS-Open was trained this way, so its weights expect exactly 896 future slots.
     future_s = getattr(self.config, "future_prediction_seconds", 1.0)
     present_s = self.config.frame_count / getattr(self.config, "original_fps", 4)
     n_future = max(int(n_present * (future_s / present_s)), 1)
