@@ -560,8 +560,8 @@ def build_data(cfg: dict) -> dict:
 def batched_predict_future(self, encoder_features: torch.Tensor) -> torch.Tensor:
     """BADAS's "future" prediction for the WHOLE batch in one call (BADAS's own code does one clip at a time).
 
-    What the predictor does: the encoder turns a window into 2,048 tokens (the "present"). The predictor gets those
-    plus 512 empty slots for the "future", fills the slots in, and returns them (each token = 1,024 numbers).
+    What the predictor does: the encoder turns a window into 3,584 tokens (the "present"). The predictor gets those
+    plus 896 empty slots for the "future", fills the slots in, and returns them (each token = 1,024 numbers).
     It is told which positions are present (context) and which to fill (target) by two lists of positions.
     BADAS's loop builds those lists for one clip; here the same lists are repeated for every clip of the batch, so
     one call does them all. check_batched_predictor() proves it gives the same numbers before training starts.
@@ -571,23 +571,23 @@ def batched_predict_future(self, encoder_features: torch.Tensor) -> torch.Tensor
         self:             BADAS's classifier object (this function replaces its own method).
         encoder_features: the encoder's tokens, batch x 3,584 x 1,024 (the 'present').
     """
-    batch, n_present, width = encoder_features.shape                 # e.g. 8, 2048, 1024
+    batch, n_present, width = encoder_features.shape                 # e.g. 8, 3584, 1024
 
     # How many future slots: BADAS asks for 1 s of future and assumes 4 frames per second, so 1 s / (16 frames /
-    # 4 per s) = a quarter of the present tokens = 512. (Same formula as BADAS's own code.)
+    # 4 per s) = a quarter of the present tokens = 896. (Same formula as BADAS's own code.)
     future_s = getattr(self.config, "future_prediction_seconds", 1.0)
     present_s = self.config.frame_count / getattr(self.config, "original_fps", 4)
     n_future = max(int(n_present * (future_s / present_s)), 1)
 
     # present tokens followed by empty (zero) future slots
     empty = encoder_features.new_zeros(batch, n_future, width)
-    tokens = torch.cat([encoder_features, empty], dim=1)              # batch x 2,560 x 1,024
+    tokens = torch.cat([encoder_features, empty], dim=1)              # batch x 4,480 x 1,024
 
-    # positions 0..2047 are the present (context), 2048..2559 the future to fill (target): one row per clip
+    # positions 0..3583 are the present (context), 3584..4479 the future to fill (target): one row per clip
     device = encoder_features.device
     context = torch.arange(n_present, device=device).unsqueeze(0).expand(batch, -1)
     target = torch.arange(n_present, n_present + n_future, device=device).unsqueeze(0).expand(batch, -1)
-    return self.predictor(tokens, context_mask=[context], target_mask=[target]).last_hidden_state   # batch x 512 x 1024
+    return self.predictor(tokens, context_mask=[context], target_mask=[target]).last_hidden_state   # batch x 896 x 1024
 
 
 def check_batched_predictor(net: nn.Module, device) -> float:
