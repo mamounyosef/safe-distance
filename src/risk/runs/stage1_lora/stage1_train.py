@@ -581,15 +581,22 @@ def batched_predict_future(self, encoder_features: torch.Tensor) -> torch.Tensor
     present_s = self.config.frame_count / getattr(self.config, "original_fps", 4)
     n_future = max(int(n_present * (future_s / present_s)), 1)
 
-    # present tokens followed by empty (zero) future slots
-    empty = encoder_features.new_zeros(batch, n_future, width)
-    tokens = torch.cat([encoder_features, empty], dim=1)              # batch x 4,480 x 1,024
+    # Build one long row of tokens per clip: the 3,584 real tokens from the encoder, then 896 placeholder tokens
+    # for the future (all zeros). BADAS's code passes the predictor this full-length row, so we do the same.
+    # The zeros are never used: the predictor throws them away and puts its own learned "fill me in" token there.
+    empty = encoder_features.new_zeros(batch, n_future, width)        # the 896 placeholders: batch x 896 x 1,024
+    tokens = torch.cat([encoder_features, empty], dim=1)              # real + placeholders: batch x 4,480 x 1,024
 
-    # positions 0..3583 are the present (context), 3584..4479 the future to fill (target): one row per clip
+    # Tell the predictor which token positions are which, as two lists of position numbers per clip:
+    #   context = positions 0 ... 3,583     -> "these are known (the 2 s we saw)"
+    #   target  = positions 3,584 ... 4,479 -> "predict these (the future)"
+    # Every clip uses the same numbers, so one list is copied once per clip in the batch (.expand).
     device = encoder_features.device
-    context = torch.arange(n_present, device=device).unsqueeze(0).expand(batch, -1)
-    target = torch.arange(n_present, n_present + n_future, device=device).unsqueeze(0).expand(batch, -1)
-    return self.predictor(tokens, context_mask=[context], target_mask=[target]).last_hidden_state   # batch x 896 x 1024
+    context = torch.arange(n_present, device=device).unsqueeze(0).expand(batch, -1)                       # batch x 3,584
+    target = torch.arange(n_present, n_present + n_future, device=device).unsqueeze(0).expand(batch, -1)  # batch x 896
+
+    # Run the predictor; it returns only its guesses for the future positions: batch x 896 tokens x 1,024 numbers
+    return self.predictor(tokens, context_mask=[context], target_mask=[target]).last_hidden_state
 
 
 def check_batched_predictor(net: nn.Module, device) -> float:
