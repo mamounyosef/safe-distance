@@ -612,7 +612,7 @@ def check_batched_predictor(net: nn.Module, device) -> float:
     net.eval()                                                        # no randomness (dropout off)
     x = torch.randn(4, WINDOW_FRAMES, 3, CHECK_H, CHECK_W, device=device)   # 4 random clips
     with torch.no_grad():                                             # no gradients needed for a check
-        present = net._extract_video_features(x)                      # the encoder's 2,048 tokens per clip
+        present = net._extract_video_features(x)                      # the encoder's 3,584 tokens per clip
         loop = type(net)._predict_future_features(net, present)      # BADAS's own code (one clip at a time)
         batched = batched_predict_future(net, present)               # ours (all clips at once)
     diff = float((loop - batched).abs().max())                        # the largest difference anywhere
