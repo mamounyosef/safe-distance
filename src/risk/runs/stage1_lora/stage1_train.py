@@ -54,7 +54,11 @@ EXP_NAME = "stage1_lora"                  # MUST equal this folder's name (it na
 def _pkg_root() -> Path:
     """Find the folder holding ml_utils.py and stage1_labels.py (src/risk).
     On Modal the code is copied to /root/runs; on this PC it is two folders above this file."""
-    for candidate in (Path("/root/runs"), Path(__file__).resolve().parents[2]):
+    here = Path(__file__).resolve()
+    candidates = [Path("/root/runs")]                 # Modal: the code folder is copied here
+    if len(here.parents) > 2:                         # this PC: src/risk (on Modal the file sits at /root, too shallow)
+        candidates.append(here.parents[2])
+    for candidate in candidates:
         if (candidate / "ml_utils.py").exists():
             return candidate
     raise FileNotFoundError("ml_utils.py not found")
@@ -675,7 +679,7 @@ def add_lora(net: nn.Module) -> nn.Module:
         by_type[kind] = by_type.get(kind, 0) + 1
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)   # values that will change
     total = sum(p.numel() for p in model.parameters())                          # all values
-    ml._table("LoRA coverage check", ["check", "result"], [
+    ml._table("LoRA coverage check", ["check", "re sult"], [
         ("LoRA layers", f"{len(lora_layers)} (expected {EXPECTED_LORA_LAYERS})  {by_type}"),
         ("weights left out of training", len(left_out)),
         ("predictor still one shared object", shared),
