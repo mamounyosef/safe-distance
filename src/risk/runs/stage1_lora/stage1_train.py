@@ -39,7 +39,6 @@ import json                                           # reads the small JSON lis
 import os                                             # environment variables (where Hugging Face keeps downloads)
 import sys                                            # lets Python find ml_utils.py and BADAS's own code
 import types                                          # attaches our batched predictor to BADAS's model object
-from concurrent.futures import ThreadPoolExecutor     # reads many file headers at the same time
 from dataclasses import dataclass                     # a short way to define the Source record
 from pathlib import Path                              # file paths
 
@@ -84,6 +83,7 @@ BDD_TRAIN_DIR = f"{CACHE}/bdd100k_videos_100k_train"  # BDD100K train clips (3,0
 NEXAR_CRASH_META = "/data/nexar/train/positive/metadata.csv"     # per crash clip: time_of_alert, time_of_event
 BDD_TRAIN_CLEAN = PKG_ROOT / "data/bdd100k_ids/train_clean.txt"  # the 2,576 clean clips (after your reviews)
 NEXAR_EXCLUDED = PKG_ROOT / "data/nexar_excluded.json"           # clips you removed (camera too high)
+FRAME_COUNTS = PKG_ROOT / "data/wide_frame_counts.json"          # frames per cached clip (wide_frame_counts.py)
 VAL_WINDOWS = EXP_DIR / "val_windows.json"                       # the 2,202 fixed validation windows
 FPS = 8                                               # frames per second in the cache
 WINDOW_FRAMES = 16                                    # frames per window (16 / 8 = 2 s of video)
@@ -236,13 +236,26 @@ class Source:
     event: float | None = None  # crash clips: when the crash happened
 
 
+_COUNTS: dict | None = None                # clip -> number of frames, read once from FRAME_COUNTS
+
+
 def n_frames(path: str) -> int:
-    """Number of frames in a cached clip, read from the .npy file's header only (the frames are not loaded).
+    """Number of frames in a cached clip, looked up in FRAME_COUNTS (counted once by wide_frame_counts.py).
+
+    Why not read the file: opening about 5,000 cache files on the Modal volume at start-up choked the GPU
+    container (no progress for 9 minutes). The counts file ships with the code, so this reads nothing from the volume.
 
     Arguments:
-        path: a cached clip's .npy file.
+        path: a cached clip's .npy file (.../<cache folder>/<clip>.npy).
     """
-    return int(np.load(path, mmap_mode="r").shape[0])
+    global _COUNTS
+    if _COUNTS is None:
+        _COUNTS = json.loads(FRAME_COUNTS.read_text())
+    p = Path(path)
+    key = f"{p.parent.name}/{p.stem}"                                 # e.g. nexar_train_positive/00266
+    if key not in _COUNTS:
+        raise SystemExit(f"{key} is not in {FRAME_COUNTS.name}: re-run wide_frame_counts.py")
+    return _COUNTS[key]
 
 
 def training_sources() -> list[Source]:
@@ -258,17 +271,17 @@ def training_sources() -> list[Source]:
         if r["file_name"] not in excluded:                                    # skip the removed ones
             crash_meta.append(r)
     normal_files = []                                                         # Nexar normal clips
-    for p in sorted(Path(NEXAR_NORMAL_DIR).glob("*.npy")):                    # every cached normal clip
-        if not p.name.endswith(".part.npy"):                                  # skip half-written cache files
-            normal_files.append(p)
+    folder = Path(NEXAR_NORMAL_DIR).name                                      # nexar_train_negative
+    for key in sorted(json.loads(FRAME_COUNTS.read_text())):                  # every cached clip (no volume listing)
+        if key.startswith(folder + "/"):
+            normal_files.append(Path(NEXAR_NORMAL_DIR) / f"{key.split('/')[1]}.npy")
     bdd_ids = BDD_TRAIN_CLEAN.read_text().split()                             # the 2,576 clean BDD100K clips
 
     # --- 2) how many frames each clip has (a window can only end inside the clip) ---
     crash_path = {r["file_name"]: f"{NEXAR_CRASH_DIR}/{Path(r['file_name']).stem}.npy" for r in crash_meta}
     bdd_path = {c: f"{BDD_TRAIN_DIR}/{c}.npy" for c in bdd_ids}
     all_paths = list(crash_path.values()) + [str(p) for p in normal_files] + list(bdd_path.values())
-    with ThreadPoolExecutor(32) as ex:                                        # read 32 headers at a time
-        n_of = dict(zip(all_paths, ex.map(n_frames, all_paths)))              # path -> number of frames
+    n_of = {p: n_frames(p) for p in all_paths}                                # path -> number of frames
 
     sources = []                                                              # what we build here
     dropped = []                                                              # crash clips with no danger window
@@ -504,8 +517,7 @@ class ValWindows(Dataset):
             w["path"] = f"{CACHE}/{w['folder']}/{w['clip']}.npy"
         # Nexar windows are given as "frames before the clip's last frame" (end_back), so we need each clip's
         # length to know the end frame. BDD windows already have their end frame.
-        with ThreadPoolExecutor(32) as ex:
-            lengths = list(ex.map(n_frames, [w["path"] for w in windows]))
+        lengths = [n_frames(w["path"]) for w in windows]              # from FRAME_COUNTS (no volume reads)
         for w, n in zip(windows, lengths):
             if w["end"] is None:
                 w["end"] = n - w["end_back"]                        # e.g. last frame (back 0) or 0.5 s before (4)
