@@ -248,6 +248,7 @@ def n_frames(path: str) -> int:
     Arguments:
         path: a cached clip's .npy file (.../<cache folder>/<clip>.npy).
     """
+    
     global _COUNTS
     if _COUNTS is None:
         _COUNTS = json.loads(FRAME_COUNTS.read_text())
@@ -494,8 +495,9 @@ class TrainWindows(Dataset):
         """
         s = self.sources[i]
         end = int(self.plan[i])                                     # this epoch's end frame for source i
-        # mmap_mode="r" opens the clip without reading it; slicing then reads only these 16 frames from disk
-        frames = np.ascontiguousarray(np.load(s.path, mmap_mode="r")[end - WINDOW_FRAMES:end])
+        # mmap_mode="r" opens the clip without reading it; slicing then reads only these 16 frames from disk;
+        # np.array makes them a normal, writable copy (PyTorch warns about read-only arrays)
+        frames = np.array(np.load(s.path, mmap_mode="r")[end - WINDOW_FRAMES:end])
         rng = np.random.default_rng([self.seed, self.epoch, i])    # this window's own augmentation draw
         frames = augment(frames, rng)
         label = torch.tensor([self.labels[i]])                      # shape (1,): one target per window
@@ -535,7 +537,7 @@ class ValWindows(Dataset):
 
     def __getitem__(self, i: int):
         w = self.windows[i]
-        frames = np.ascontiguousarray(np.load(w["path"], mmap_mode="r")[w["end"] - WINDOW_FRAMES:w["end"]])
+        frames = np.array(np.load(w["path"], mmap_mode="r")[w["end"] - WINDOW_FRAMES:w["end"]])   # writable copy
         return torch.from_numpy(frames), torch.tensor([w["label"]], dtype=torch.float32), self.ids[i]
 
 
@@ -1038,7 +1040,8 @@ def on_validation(row: dict, epoch: int, step: int) -> None:
     row.update({f"train_{k}": v for k, v in TRAIN.plan_counts().items()})
 
     # --- cost: time so far x price; per epoch = training seconds per update x updates per epoch + one validation ---
-    VAL_SECS[0] += row.get("val_secs", 0.0)                          # this validation's time
+    if step:                                                          # step 0 runs before the clock starts
+        VAL_SECS[0] += row.get("val_secs", 0.0)                      # this validation's time
     train_s = max(row.get("elapsed_s", 0.0) - VAL_SECS[0], 0.0)      # time spent training (not validating)
     row["cost_usd_so_far"] = round(row.get("elapsed_s", 0.0) / 3600 * PRICE_H, 3)
     vw = video_watched(step)                                          # hours of video trained on so far / left
