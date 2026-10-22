@@ -50,8 +50,10 @@ lora:
 # ---- training ----
 training:
   epochs: 10                                    # rounds over the data (smoke test: about 20 min and $1.1 each)
-  batch_size: 8                                 # windows per GPU pass (smoke test: 65.5 of 80 GB used)
-  accum_steps: 4                                # GPU passes per weight update: 8 x 4 = 32 windows per update
+  batch_size: 16                                # windows per GPU pass (A100 smoke test: 8 used 65.5 of 80 GB;
+                                                # the H200 has 141 GB, so 16 fit)
+  accum_steps: 2                                # GPU passes per weight update: 16 x 2 = 32 windows per update
+                                                # (same 32 as 8 x 4 before: the training maths is unchanged)
   lr: 0.00004                                   # learning rate: how big each weight update is (same for all); 4e-5,
                                                 # lowered from 1e-4 after the smoke test (17 of 20 updates clipped,
                                                 # big risk shifts while still warming up)
@@ -64,7 +66,8 @@ training:
   # quantization pass), so it stays OFF.
   compile: false
   early_stop_patience: 5                        # stop after 5 validations in a row without a new best
-  num_workers: 8                                # CPU processes that load and augment windows in parallel
+  num_workers: 16                               # CPU processes that load and augment windows in parallel
+                                                # (8 kept the A100 fed; the faster H200 needs about twice the data)
   val_batch_size: 16                            # windows per GPU pass in validation (no gradients: more fit)
   seed: 42                                      # fixes all random choices, so a run can be repeated exactly
   pos_weight: null                              # e.g. 2.0 = danger windows count twice in the loss (null = not used)
@@ -102,6 +105,10 @@ validation:
   thresholds: [0.5, 0.8, 0.9, 0.93, 0.95, 0.97, 0.98, 0.99, 0.993, 0.995, 0.997]   # risk lines we report results at
   monitor: ap_crash_vs_all_normal               # the number that picks best.pt (see validation_scores)
   group_seconds: [0.5, 1.0, 1.5]                # Nexar test groups 0, 1, 2: how many seconds before the crash they end
+  # How often: always at step 0 and at every epoch's end; from epoch `more_often_from_epoch` on, also halfway
+  # through each epoch (vals_per_epoch 2 = every half epoch). 1 = only at epoch ends.
+  vals_per_epoch: 2
+  more_often_from_epoch: 3
 
 # ---- checkpoints (each holds everything needed to continue: weights, optimizer, schedule, random states) ----
 checkpoints:
@@ -110,11 +117,11 @@ checkpoints:
 
 # ---- Modal (prices per hour, for the cost prints) ----
 modal:
-  gpu: A100-80GB                                # the GPU type
-  gpu_price_s: 0.000694                         # its price per second ($2.50 per hour)
+  gpu: H200                                     # the GPU type (was A100-80GB for epochs 1-2)
+  gpu_price_s: 0.001261                         # its price per second ($4.54 per hour)
   timeout_hours: 12                             # Modal stops the job after this long, whatever happens
-  cpu_cores: 10                                 # CPU cores reserved next to the GPU ($0.0473 per core per hour)
-  memory_gb: 48                                 # memory reserved next to the GPU ($0.008 per GB per hour)
+  cpu_cores: 20                                 # CPU cores reserved next to the GPU ($0.0473 per core per hour)
+  memory_gb: 64                                 # memory reserved next to the GPU ($0.008 per GB per hour)
   # Python packages installed in the Modal container (versions fixed, same as the baseline evaluation)
   pip: [torch==2.6.0, torchvision==0.21.0, transformers==4.53.0, peft==0.21.2, huggingface_hub,
         opencv-python-headless, numpy, pandas, scikit-learn, pyyaml, matplotlib, psutil, nvidia-ml-py,

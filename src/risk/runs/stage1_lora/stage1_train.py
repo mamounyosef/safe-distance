@@ -132,6 +132,8 @@ JPEG_P, JPEG_QUALITY = _A["jpeg_p"], tuple(_A["jpeg_quality"])
 # ---- validation ----
 THRESHOLDS = _V["thresholds"]
 MONITOR = _V["monitor"]
+VALS_PER_EPOCH = _V["vals_per_epoch"]                # validations per epoch (from MORE_OFTEN_FROM_EPOCH on)
+MORE_OFTEN_FROM_EPOCH = _V["more_often_from_epoch"]
 GROUP_SECONDS = dict(enumerate(_V["group_seconds"]))  # Nexar test group 0, 1, 2 -> seconds before the crash
 
 # ---- checkpoints ----
@@ -542,6 +544,10 @@ def build_data(cfg: dict) -> dict:
     steps = -(-passes // ACCUM_STEPS)                             # -(-a // b) = a / b rounded UP
     STEPS_PER_EPOCH[0] = steps
     cfg["output"]["checkpoint_every_steps"] = steps               # a rolling checkpoint at every epoch's end
+    if VALS_PER_EPOCH > 1:                                        # also validate inside the epoch, e.g. halfway
+        # ml_utils: from that epoch on, validate every N updates (148 / 2 = 74). The step that ends an epoch is
+        # validated once (ml_utils skips a second validation at the same step).
+        cfg["evaluation"]["eval_steps_schedule"] = [[MORE_OFTEN_FROM_EPOCH, steps // VALS_PER_EPOCH]]
     print(f"  one epoch = {len(TRAIN):,} windows = {passes} GPU passes of {BATCH_SIZE} = {steps} weight updates; "
           f"rolling checkpoint every {steps} updates (the last {KEEP_LAST_N} kept)")
     return {"train": TRAIN, "val": VAL}                           # ml_utils trains on "train", scores "val"
@@ -1024,7 +1030,8 @@ def on_validation(row: dict, epoch: int, step: int) -> None:
     row["video_hours_watched"] = round(vw["seen_s"] / 3600, 3)
     row["video_hours_left"] = round(vw["left_s"] / 3600, 3)
     if step:                                                          # step 0 = before training: nothing to measure
-        per_epoch_s = train_s / step * STEPS_PER_EPOCH[0] + row.get("val_secs", 0.0)
+        vals = VALS_PER_EPOCH if epoch >= MORE_OFTEN_FROM_EPOCH else 1   # validations in one epoch now
+        per_epoch_s = train_s / step * STEPS_PER_EPOCH[0] + vals * row.get("val_secs", 0.0)
         row["est_minutes_per_epoch"] = round(per_epoch_s / 60, 1)
         row["est_cost_usd_per_epoch"] = round(per_epoch_s / 3600 * PRICE_H, 2)
 
