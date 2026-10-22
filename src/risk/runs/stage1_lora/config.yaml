@@ -59,7 +59,10 @@ training:
   warmup_frac: 0.05                             # the first 5% of updates raise the learning rate from 0 to lr
   min_lr_mult: 0.01                             # then it falls along a cosine curve down to 1% of lr
   grad_clip: 3.0                                # an update whose gradient is longer than 3 is shortened to 3
-  early_stop_patience: 4                        # stop after 4 validations in a row without a new best
+  # torch.compile: turns the model into faster GPU code at the first batch (often 10-30% faster). It crashed once at
+  # 256 x 448 in the 16:9 evaluation, so it is ON only to be tested in the smoke test first.
+  compile: true
+  early_stop_patience: 5                        # stop after 5 validations in a row without a new best
   num_workers: 8                                # CPU processes that load and augment windows in parallel
   val_batch_size: 16                            # windows per GPU pass in validation (no gradients: more fit)
   seed: 42                                      # fixes all random choices, so a run can be repeated exactly

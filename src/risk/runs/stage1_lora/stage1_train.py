@@ -111,6 +111,7 @@ EPOCHS, BATCH_SIZE, ACCUM_STEPS = _T["epochs"], _T["batch_size"], _T["accum_step
 LR, WEIGHT_DECAY = _T["lr"], _T["weight_decay"]
 WARMUP_FRAC, MIN_LR_MULT = _T["warmup_frac"], _T["min_lr_mult"]
 GRAD_CLIP = _T["grad_clip"]
+COMPILE = _T["compile"]                               # torch.compile on / off
 EARLY_STOP_PATIENCE = _T["early_stop_patience"]
 NUM_WORKERS, VAL_BATCH_SIZE = _T["num_workers"], _T["val_batch_size"]
 SEED = _T["seed"]
@@ -166,6 +167,7 @@ def cfg_for(smoke: bool) -> dict:
                        "persistent_workers": False},   # workers restart each epoch, so they see the new plan
         "training": {"epochs": EPOCHS,
                      "amp": True, "amp_dtype": "bfloat16",               # 16-bit maths on the GPU (faster)
+                     "compile": COMPILE,                                 # torch.compile (config.yaml)
                      "grad_clip": GRAD_CLIP,
                      "loss": {"name": "bce", "pos_weight": POS_WEIGHT},  # binary cross-entropy (see forward)
                      "optimizer": {"name": "adamw", "lr": LR, "weight_decay": WEIGHT_DECAY},
