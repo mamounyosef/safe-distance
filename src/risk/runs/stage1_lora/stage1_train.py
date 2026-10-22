@@ -124,7 +124,8 @@ BRIGHTNESS_P, BRIGHTNESS = _A["brightness_p"], _A["brightness"]
 CONTRAST_P, CONTRAST = _A["contrast_p"], _A["contrast"]
 SATURATION_P, SATURATION = _A["saturation_p"], _A["saturation"]
 GAMMA_P, GAMMA = _A["gamma_p"], _A["gamma"]
-BLUR_P, SHARPEN_P = _A["blur_p"], _A["sharpen_p"]
+BLUR_P, BLUR_SIGMA = _A["blur_p"], tuple(_A["blur_sigma"])
+SHARPEN_P, SHARPEN_AMOUNT = _A["sharpen_p"], tuple(_A["sharpen_amount"])
 NOISE_P, NOISE_SIGMA = _A["noise_p"], tuple(_A["noise_sigma"])
 JPEG_P, JPEG_QUALITY = _A["jpeg_p"], tuple(_A["jpeg_quality"])
 
@@ -384,11 +385,11 @@ def augment(frames: np.ndarray, rng: np.random.Generator) -> np.ndarray:
     # --- 3) sharpness: light blur (20%) OR light sharpen (20%), never both ---
     u = rng.random()                                                # one draw decides: blur, sharpen or nothing
     if u < BLUR_P:
-        sigma = rng.uniform(0.5, 1.0)                               # blur strength in pixels
+        sigma = rng.uniform(*BLUR_SIGMA)                            # blur strength in pixels
         x = np.stack([cv2.GaussianBlur(f, (0, 0), sigma) for f in x])
     elif u < BLUR_P + SHARPEN_P:
         # sharpen = add back a share of (picture - blurred picture), which boosts the edges
-        amount = rng.uniform(0.3, 0.7)
+        amount = rng.uniform(*SHARPEN_AMOUNT)                       # how much the edges are boosted
         x = np.stack([f + amount * (f - cv2.GaussianBlur(f, (0, 0), 1.0)) for f in x])
         x = np.clip(x, 0.0, 1.0)
 

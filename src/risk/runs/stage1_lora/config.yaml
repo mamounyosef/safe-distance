@@ -87,11 +87,13 @@ augment:
   # Blur and sharpen are the one exception: they undo each other, so ONE draw picks blur (20%), sharpen (20%) or
   # neither (60%); never both.
   blur_p: 0.2
+  blur_sigma: [0.5, 1.0]                        # blur strength: Gaussian blur of 0.5-1.0 pixels
   sharpen_p: 0.2
+  sharpen_amount: [0.3, 0.7]                    # sharpen strength: edges boosted by 30-70%
   noise_p: 0.15
   noise_sigma: [2.0, 5.0]                       # faint grain of 2-5 brightness steps (out of 255)
   jpeg_p: 0.15
-  jpeg_quality: [70, 90]                        # mild JPEG compression, quality 70-90 (100 = perfect)
+  jpeg_quality: [80, 95]                        # mild JPEG compression, quality 80-95 (100 = perfect)
   # never: horizontal flip, speed changes, cutout, mixing clips, time reversal
 
 # ---- validation ----
