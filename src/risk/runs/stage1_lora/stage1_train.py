@@ -1099,6 +1099,7 @@ def on_validation(row: dict, epoch: int, step: int) -> None:
                  ("estimated cost per epoch", f"${row['est_cost_usd_per_epoch']:.2f}"),
                  (f"estimated cost for {EPOCHS} epochs", f"${row['est_cost_usd_per_epoch'] * EPOCHS:.2f}")]
     ml._table("cost", ["item", "value"], cost, "💰")
+    print("═" * 78 + "\n", flush=True)                   # a clear line: the summary block ends here
 
 
 # the functions ml_utils should call: prepare every batch, score every validation, and the two print hooks
