@@ -60,8 +60,9 @@ training:
   min_lr_mult: 0.01                             # then it falls along a cosine curve down to 1% of lr
   grad_clip: 3.0                                # an update whose gradient is longer than 3 is shortened to 3
   # torch.compile: turns the model into faster GPU code at the first batch (often 10-30% faster). It crashed once at
-  # 256 x 448 in the 16:9 evaluation, so it is ON only to be tested in the smoke test first.
-  compile: true
+  # 256 x 448 in the 16:9 evaluation, and the training smoke test failed too (PyTorch 2.6 BackendCompilerFailed in its
+  # quantization pass), so it stays OFF.
+  compile: false
   early_stop_patience: 5                        # stop after 5 validations in a row without a new best
   num_workers: 8                                # CPU processes that load and augment windows in parallel
   val_batch_size: 16                            # windows per GPU pass in validation (no gradients: more fit)
@@ -87,7 +88,7 @@ augment:
   # Blur and sharpen are the one exception: they undo each other, so ONE draw picks blur (20%), sharpen (20%) or
   # neither (60%); never both.
   blur_p: 0.2
-  blur_sigma: [0.5, 1.0]                        # blur strength: Gaussian blur of 0.5-1.0 pixels
+  blur_sigma: [0.5, 0.9]                        # blur strength: Gaussian blur of 0.5-1.0 pixels
   sharpen_p: 0.2
   sharpen_amount: [0.3, 0.7]                    # sharpen strength: edges boosted by 30-70%
   noise_p: 0.15
