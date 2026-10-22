@@ -1,0 +1,117 @@
+# Stage 1 settings: every number stage1_train.py uses. Edit here, not in the script.
+# (The script reads this file at start-up. Each run also saves the full, final config to
+#  results/train_config/<run>_config.yaml, so you can always see what a run really used.)
+
+# ---- data (paths inside the Modal data volume, which is mounted at /data) ----
+data:
+  data_volume: safe-distance-data               # Modal volume with the videos, frame cache and model downloads
+  runs_volume: safe-distance-runs               # Modal volume where this run writes logs and checkpoints
+  cache: /data/cache/wide256x448                # the 16:9 frame cache: one <clip>.npy per clip, 8 frames per second
+  nexar_crash_folder: nexar_train_positive      # inside the cache: Nexar train crash clips (750)
+  nexar_normal_folder: nexar_train_negative     # inside the cache: Nexar train normal clips (750)
+  bdd_train_folder: bdd100k_videos_100k_train   # inside the cache: BDD100K train clips (3,000; we use the 2,576 clean ones)
+  nexar_crash_meta: /data/nexar/train/positive/metadata.csv   # per crash clip: time_of_alert, time_of_event
+  # these three are inside src/risk (they ship with the code)
+  bdd_train_clean: data/bdd100k_ids/train_clean.txt   # the 2,576 clean clips (after your reviews)
+  nexar_excluded: data/nexar_excluded.json            # clips you removed (camera too high)
+  frame_counts: data/wide_frame_counts.json           # frames per cached clip (wide_frame_counts.py)
+  val_windows: val_windows.json                 # next to the script: the 2,202 fixed validation windows
+  fps: 8                                        # frames per second in the cache
+  window_frames: 16                             # frames per window (16 / 8 = 2 s of video)
+  # The frame size (256 x 448, the dashcam's true 16:9 shape) is not set here: it comes from src/risk/wide_input.py,
+  # which the cache was built with.
+
+# ---- model ----
+model:
+  badas_repo: nexar-ai/BADAS-Open               # BADAS-Open on Hugging Face (its code + trained weights)
+  base_model: facebook/vjepa2-vitl-fpc16-256-ssv2   # the V-JEPA 2 video network BADAS is built on
+  hf_cache: /data/models/hf                     # where Hugging Face downloads are kept (in the data volume)
+  # BADAS's head gives 2 raw scores per window (safe, crash). BADAS turns them into a risk by dividing both by 2 (the
+  # "temperature") before softmax: a softer, less extreme risk. We keep the same 2 so our risk means what BADAS's means.
+  temperature: 2.0
+  predictor_check_tol: 0.001                    # the batched predictor must match BADAS's loop to this
+  grad_checkpointing: false                     # true = far less GPU memory, about 30% slower (if it won't fit)
+
+# ---- LoRA (agreed: every layer; the coverage check stops the run if anything is left out) ----
+lora:
+  rank: 16                                      # size of each LoRA update (see add_lora)
+  alpha: 32                                     # LoRA's scale: the update is multiplied by alpha / rank = 2
+  dropout: 0.1                                  # LoRA randomly ignores 10% of its inputs in training
+  # Which layers get LoRA, written as a pattern of layer names: the Conv3d patch embedding (cuts the video into
+  # cubes), every attention (query/key/value/proj) and MLP (fc1/fc2) layer of the encoder (24 blocks) and of the
+  # predictor (12 blocks), and the predictor's two width-changing layers (1024 -> 384 and 384 -> 1024).
+  targets: '.*backbone\.(encoder\.(embeddings\.patch_embeddings\.proj|layer\.\d+\.(attention\.(query|key|value|proj)|mlp\.fc[12]))|predictor\.(embeddings\.predictor_embeddings|proj|layer\.\d+\.(attention\.(query|key|value|proj)|mlp\.fc[12])))'
+  expected_layers: 219                          # 218 Linear + 1 Conv3d (scripts/check_lora_coverage.py)
+  # Trained fully, not with LoRA (they are small): the time-attention and the head. The head must be named exactly
+  # "classifier.classifier": plain "classifier" also matches a layer inside it (a trap). All LayerNorms and the
+  # predictor's mask tokens are trained fully as well (switched on in add_lora).
+  fully_trained: [temporal_processor, classifier.classifier]
+
+# ---- training ----
+training:
+  epochs: 10                                    # rounds over the data (smoke test: about 20 min and $1.1 each)
+  batch_size: 8                                 # windows per GPU pass (smoke test: 65.5 of 80 GB used)
+  accum_steps: 4                                # GPU passes per weight update: 8 x 4 = 32 windows per update
+  lr: 0.0001                                    # learning rate: how big each weight update is (same for all)
+  weight_decay: 0.01                            # pulls weights slightly towards 0 each update (not biases/norms)
+  warmup_frac: 0.05                             # the first 5% of updates raise the learning rate from 0 to lr
+  min_lr_mult: 0.01                             # then it falls along a cosine curve down to 1% of lr
+  grad_clip: 3.0                                # an update whose gradient is longer than 3 is shortened to 3
+  early_stop_patience: 4                        # stop after 4 validations in a row without a new best
+  num_workers: 8                                # CPU processes that load and augment windows in parallel
+  val_batch_size: 16                            # windows per GPU pass in validation (no gradients: more fit)
+  seed: 20261017                                # fixes all random choices, so a run can be repeated exactly
+  pos_weight: null                              # e.g. 2.0 = danger windows count twice in the loss (null = not used)
+
+# ---- augmentation (one random draw per window, the same on all 16 frames) ----
+# Each type has its OWN chance, and each is decided by its own separate coin flip (independent of the others), so
+# any mix can happen on one window. *_p = chance that type is applied; the other number is its strength.
+augment:
+  crop_p: 0.6
+  crop_max: 0.05                                # crop up to 5% off each edge (stretched back to 256 x 448)
+  rotate_p: 0.6
+  rotate_deg: 2.0                               # rotate up to 2 degrees either way
+  brightness_p: 0.6
+  brightness: 0.15                              # brightness x 0.85 .. 1.15
+  contrast_p: 0.6
+  contrast: 0.15                                # contrast x 0.85 .. 1.15
+  saturation_p: 0.6
+  saturation: 0.15                              # colour strength x 0.85 .. 1.15
+  gamma_p: 0.6
+  gamma: 0.15                                   # gamma 0.85 .. 1.15 (brighter / darker mid-tones)
+  # Blur and sharpen are the one exception: they undo each other, so ONE draw picks blur (20%), sharpen (20%) or
+  # neither (60%); never both.
+  blur_p: 0.2
+  sharpen_p: 0.2
+  noise_p: 0.15
+  noise_sigma: [2.0, 5.0]                       # faint grain of 2-5 brightness steps (out of 255)
+  jpeg_p: 0.15
+  jpeg_quality: [70, 90]                        # mild JPEG compression, quality 70-90 (100 = perfect)
+  # never: horizontal flip, speed changes, cutout, mixing clips, time reversal
+
+# ---- validation ----
+validation:
+  thresholds: [0.5, 0.8, 0.9, 0.93, 0.95, 0.97, 0.98, 0.99, 0.993, 0.995, 0.997]   # risk lines we report results at
+  monitor: ap_crash_vs_all_normal               # the number that picks best.pt (see validation_scores)
+  group_seconds: [0.5, 1.0, 1.5]                # Nexar test groups 0, 1, 2: how many seconds before the crash they end
+
+# ---- checkpoints (each holds everything needed to continue: weights, optimizer, schedule, random states) ----
+checkpoints:
+  keep_last_n: 10                               # rolling: the checkpoints of the last 10 epochs
+  keep_top_k: 3                                 # the 3 best validations (for the live check afterwards)
+
+# ---- Modal (prices per hour, for the cost prints) ----
+modal:
+  gpu: A100-80GB                                # the GPU type
+  gpu_price_s: 0.000694                         # its price per second ($2.50 per hour)
+  timeout_hours: 12                             # Modal stops the job after this long, whatever happens
+  cpu_cores: 10                                 # CPU cores reserved next to the GPU ($0.0473 per core per hour)
+  memory_gb: 48                                 # memory reserved next to the GPU ($0.008 per GB per hour)
+  # Python packages installed in the Modal container (versions fixed, same as the baseline evaluation)
+  pip: [torch==2.6.0, torchvision==0.21.0, transformers==4.53.0, peft==0.21.2, huggingface_hub,
+        opencv-python-headless, numpy, pandas, scikit-learn, pyyaml, matplotlib, psutil, nvidia-ml-py,
+        albumentations]
+
+# ---- smoke test (--smoke): a short run that measures speed, memory and cost ----
+smoke:
+  steps: 20                                     # weight updates, then stop

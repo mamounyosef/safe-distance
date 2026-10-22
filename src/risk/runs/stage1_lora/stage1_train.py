@@ -71,105 +71,78 @@ import stage1_labels as L  # noqa: E402               # the label rule (also use
 import wide_input as W  # noqa: E402                  # the 16:9 input: frame shape, normalising, position patch
 
 # =====================================================================================================================
-# SETTINGS: every number this run uses
+# SETTINGS: every number lives in config.yaml (next to this script); here they are only read into named constants
 # =====================================================================================================================
-# ---- data (paths inside the Modal data volume, which is mounted at /data) ----
-DATA_VOLUME = "safe-distance-data"                    # Modal volume with the videos, frame cache and model downloads
-RUNS_VOLUME = "safe-distance-runs"                    # Modal volume where this run writes logs and checkpoints
-CACHE = "/data/cache/wide256x448"                     # the 16:9 frame cache: one <clip>.npy per clip, 8 frames per second
-NEXAR_CRASH_DIR = f"{CACHE}/nexar_train_positive"     # Nexar train crash clips (750)
-NEXAR_NORMAL_DIR = f"{CACHE}/nexar_train_negative"    # Nexar train normal clips (750)
-BDD_TRAIN_DIR = f"{CACHE}/bdd100k_videos_100k_train"  # BDD100K train clips (3,000; we use the 2,576 clean ones)
-NEXAR_CRASH_META = "/data/nexar/train/positive/metadata.csv"     # per crash clip: time_of_alert, time_of_event
-BDD_TRAIN_CLEAN = PKG_ROOT / "data/bdd100k_ids/train_clean.txt"  # the 2,576 clean clips (after your reviews)
-NEXAR_EXCLUDED = PKG_ROOT / "data/nexar_excluded.json"           # clips you removed (camera too high)
-FRAME_COUNTS = PKG_ROOT / "data/wide_frame_counts.json"          # frames per cached clip (wide_frame_counts.py)
-VAL_WINDOWS = EXP_DIR / "val_windows.json"                       # the 2,202 fixed validation windows
-FPS = 8                                               # frames per second in the cache
-WINDOW_FRAMES = 16                                    # frames per window (16 / 8 = 2 s of video)
-# Frame size in the cache = the model's input: 256 x 448, the dashcam's true 16:9 shape (wide_input.wide_frame: the
-# 1280 x 720 frame shrunk to 455 x 256, the middle 448 kept). Nothing is squashed: a truck keeps its real shape.
-# (The old cache squashed every frame to 224 x 224; see plan.md.)
-FRAME_H, FRAME_W = W.WIDE_H, W.WIDE_W
+import yaml  # noqa: E402                             # reads .yaml files (PyYAML)
+
+_C = yaml.safe_load((EXP_DIR / "config.yaml").read_text(encoding="utf-8"))   # the whole file, as nested dicts
+_D, _M, _LO, _T, _A = _C["data"], _C["model"], _C["lora"], _C["training"], _C["augment"]
+_V, _K, _MO = _C["validation"], _C["checkpoints"], _C["modal"]
+
+# ---- data ----
+DATA_VOLUME, RUNS_VOLUME = _D["data_volume"], _D["runs_volume"]
+CACHE = _D["cache"]
+NEXAR_CRASH_DIR = f"{CACHE}/{_D['nexar_crash_folder']}"
+NEXAR_NORMAL_DIR = f"{CACHE}/{_D['nexar_normal_folder']}"
+BDD_TRAIN_DIR = f"{CACHE}/{_D['bdd_train_folder']}"
+NEXAR_CRASH_META = _D["nexar_crash_meta"]
+BDD_TRAIN_CLEAN = PKG_ROOT / _D["bdd_train_clean"]
+NEXAR_EXCLUDED = PKG_ROOT / _D["nexar_excluded"]
+FRAME_COUNTS = PKG_ROOT / _D["frame_counts"]
+VAL_WINDOWS = EXP_DIR / _D["val_windows"]
+FPS, WINDOW_FRAMES = _D["fps"], _D["window_frames"]
+FRAME_H, FRAME_W = W.WIDE_H, W.WIDE_W                 # 256 x 448: from wide_input.py (what the cache was built with)
+CHECK_H, CHECK_W = W.WIDE_H, W.WIDE_W                 # size of the random test clips used by the start-up checks
 
 # ---- model ----
-BADAS_REPO = "nexar-ai/BADAS-Open"                    # BADAS-Open on Hugging Face (its code + trained weights)
-BASE_MODEL = "facebook/vjepa2-vitl-fpc16-256-ssv2"    # the V-JEPA 2 video network BADAS is built on
-HF_CACHE = "/data/models/hf"                          # where Hugging Face downloads are kept (in the data volume)
-# BADAS's head gives 2 raw scores per window (safe, crash). BADAS turns them into a risk by dividing both by 2 (the
-# "temperature") before softmax: a softer, less extreme risk. We keep the same 2 so our risk means what BADAS's means.
-TEMPERATURE = 2.0
-PREDICTOR_CHECK_TOL = 1e-3                            # the batched predictor must match BADAS's loop to this
-CHECK_H, CHECK_W = W.WIDE_H, W.WIDE_W                 # size of the random test clips used by the start-up checks
-GRAD_CHECKPOINTING = False                            # True = far less GPU memory, about 30% slower (if it won't fit)
+BADAS_REPO, BASE_MODEL, HF_CACHE = _M["badas_repo"], _M["base_model"], _M["hf_cache"]
+TEMPERATURE = _M["temperature"]
+PREDICTOR_CHECK_TOL = _M["predictor_check_tol"]
+GRAD_CHECKPOINTING = _M["grad_checkpointing"]
 
-# ---- LoRA (agreed: every layer; the coverage check stops the run if anything is left out) ----
-LORA_RANK = 16                                        # size of each LoRA update (see add_lora)
-LORA_ALPHA = 32                                       # LoRA's scale: the update is multiplied by alpha / rank = 2
-LORA_DROPOUT = 0.1                                    # LoRA randomly ignores 10% of its inputs in training
-# Which layers get LoRA, written as a pattern of layer names: the Conv3d patch embedding (cuts the video into
-# cubes), every attention (query/key/value/proj) and MLP (fc1/fc2) layer of the encoder (24 blocks) and of the
-# predictor (12 blocks), and the predictor's two width-changing layers (1024 -> 384 and 384 -> 1024).
-LORA_TARGETS = (r".*backbone\.(encoder\.(embeddings\.patch_embeddings\.proj|layer\.\d+\.(attention\.(query|key|value|proj)|mlp\.fc[12]))"
-                r"|predictor\.(embeddings\.predictor_embeddings|proj|layer\.\d+\.(attention\.(query|key|value|proj)|mlp\.fc[12])))")
-EXPECTED_LORA_LAYERS = 219                            # 218 Linear + 1 Conv3d (scripts/check_lora_coverage.py)
-# Trained fully, not with LoRA (they are small): the time-attention and the head. The head must be named exactly
-# "classifier.classifier": plain "classifier" also matches a layer inside it (a trap). All LayerNorms and the
-# predictor's mask tokens are trained fully as well (switched on in add_lora).
-FULLY_TRAINED = ["temporal_processor", "classifier.classifier"]
+# ---- LoRA ----
+LORA_RANK, LORA_ALPHA, LORA_DROPOUT = _LO["rank"], _LO["alpha"], _LO["dropout"]
+LORA_TARGETS = _LO["targets"]
+EXPECTED_LORA_LAYERS = _LO["expected_layers"]
+FULLY_TRAINED = _LO["fully_trained"]
 
 # ---- training ----
-EPOCHS = 10                                           # rounds over the data (set from the smoke test's cost estimate)
-BATCH_SIZE = 8                                        # windows per GPU pass (the smoke test checks they fit in memory)
-ACCUM_STEPS = 4                                       # GPU passes per weight update: 8 x 4 = 32 windows per update
-LR = 1.0e-4                                           # learning rate: how big each weight update is (same for all)
-WEIGHT_DECAY = 0.01                                   # pulls weights slightly towards 0 each update (not biases/norms)
-WARMUP_FRAC = 0.05                                    # the first 5% of updates raise the learning rate from 0 to LR
-MIN_LR_MULT = 0.01                                    # then it falls along a cosine curve down to 1% of LR
-GRAD_CLIP = 3.0                                       # an update whose gradient is longer than 3 is shortened to 3
-EARLY_STOP_PATIENCE = 4                               # stop after 4 validations in a row without a new best
-NUM_WORKERS = 8                                       # CPU processes that load and augment windows in parallel
-VAL_BATCH_SIZE = 16                                   # windows per GPU pass in validation (no gradients: more fit)
-SEED = 20261017                                       # fixes all random choices, so a run can be repeated exactly
-POS_WEIGHT = None                                     # e.g. 2.0 = danger windows count twice in the loss (not used)
+EPOCHS, BATCH_SIZE, ACCUM_STEPS = _T["epochs"], _T["batch_size"], _T["accum_steps"]
+LR, WEIGHT_DECAY = _T["lr"], _T["weight_decay"]
+WARMUP_FRAC, MIN_LR_MULT = _T["warmup_frac"], _T["min_lr_mult"]
+GRAD_CLIP = _T["grad_clip"]
+EARLY_STOP_PATIENCE = _T["early_stop_patience"]
+NUM_WORKERS, VAL_BATCH_SIZE = _T["num_workers"], _T["val_batch_size"]
+SEED = _T["seed"]
+POS_WEIGHT = _T["pos_weight"]                         # null in the file = not used
 
-# ---- augmentation (one random draw per window, the same on all 16 frames) ----
-# Each type has its OWN chance, and each is decided by its own separate coin flip (independent of the others), so
-# any mix can happen on one window. *_P = chance that type is applied; the other number is its strength.
-CROP_P, CROP_MAX = 0.6, 0.05                          # 60%: crop up to 5% off each edge (stretched back to 256 x 448)
-ROTATE_P, ROTATE_DEG = 0.6, 2.0                       # 60%: rotate up to 2 degrees either way
-BRIGHTNESS_P, BRIGHTNESS = 0.6, 0.15                  # 60%: brightness x 0.85 .. 1.15
-CONTRAST_P, CONTRAST = 0.6, 0.15                      # 60%: contrast x 0.85 .. 1.15
-SATURATION_P, SATURATION = 0.6, 0.15                  # 60%: colour strength x 0.85 .. 1.15
-GAMMA_P, GAMMA = 0.6, 0.15                            # 60%: gamma 0.85 .. 1.15 (brighter / darker mid-tones)
-# Blur and sharpen are the one exception: they undo each other, so ONE draw picks blur (20%), sharpen (20%) or
-# neither (60%); never both.
-BLUR_P, SHARPEN_P = 0.2, 0.2
-NOISE_P, NOISE_SIGMA = 0.15, (2.0, 5.0)               # 15%: faint grain of 2-5 brightness steps (out of 255)
-JPEG_P, JPEG_QUALITY = 0.15, (70, 90)                 # 15%: mild JPEG compression, quality 70-90 (100 = perfect)
-# never: horizontal flip, speed changes, cutout, mixing clips, time reversal
+# ---- augmentation ----
+CROP_P, CROP_MAX = _A["crop_p"], _A["crop_max"]
+ROTATE_P, ROTATE_DEG = _A["rotate_p"], _A["rotate_deg"]
+BRIGHTNESS_P, BRIGHTNESS = _A["brightness_p"], _A["brightness"]
+CONTRAST_P, CONTRAST = _A["contrast_p"], _A["contrast"]
+SATURATION_P, SATURATION = _A["saturation_p"], _A["saturation"]
+GAMMA_P, GAMMA = _A["gamma_p"], _A["gamma"]
+BLUR_P, SHARPEN_P = _A["blur_p"], _A["sharpen_p"]
+NOISE_P, NOISE_SIGMA = _A["noise_p"], tuple(_A["noise_sigma"])
+JPEG_P, JPEG_QUALITY = _A["jpeg_p"], tuple(_A["jpeg_quality"])
 
 # ---- validation ----
-THRESHOLDS = [0.5, 0.8, 0.9, 0.93, 0.95, 0.97, 0.98, 0.99, 0.993, 0.995, 0.997]   # risk lines we report results at
-MONITOR = "ap_crash_vs_all_normal"                    # the number that picks best.pt (see validation_scores)
-GROUP_SECONDS = {0: 0.5, 1: 1.0, 2: 1.5}              # Nexar test group -> how many seconds before the crash it ends
+THRESHOLDS = _V["thresholds"]
+MONITOR = _V["monitor"]
+GROUP_SECONDS = dict(enumerate(_V["group_seconds"]))  # Nexar test group 0, 1, 2 -> seconds before the crash
 
-# ---- checkpoints (each holds everything needed to continue: weights, optimizer, schedule, random states) ----
-KEEP_LAST_N = 10                                      # rolling: the checkpoints of the last 10 epochs
-KEEP_TOP_K = 3                                        # the 3 best validations (for the live check afterwards)
+# ---- checkpoints ----
+KEEP_LAST_N, KEEP_TOP_K = _K["keep_last_n"], _K["keep_top_k"]
 
-# ---- Modal (prices per hour, for the cost prints) ----
-GPU = "A100-80GB"                                     # the GPU type
-TIMEOUT_HOURS = 12                                    # Modal stops the job after this long, whatever happens
-CPU_CORES, MEMORY_GB = 10, 48                         # CPU cores and memory reserved next to the GPU
-PRICE_H = 0.000694 * 3600 + CPU_CORES * 0.0473 + MEMORY_GB * 0.008   # GPU + CPU + memory = about $3.36 per hour
+# ---- Modal ----
+GPU, TIMEOUT_HOURS = _MO["gpu"], _MO["timeout_hours"]
+CPU_CORES, MEMORY_GB = _MO["cpu_cores"], _MO["memory_gb"]
+PRICE_H = _MO["gpu_price_s"] * 3600 + CPU_CORES * 0.0473 + MEMORY_GB * 0.008   # GPU + CPU + memory, $ per hour
+PIP = _MO["pip"]
 
-# ---- smoke test (--smoke): a short run that measures speed, memory and cost ----
-SMOKE_STEPS = 20                                      # weight updates, then stop
-# Python packages installed in the Modal container (versions fixed, same as the baseline evaluation)
-PIP = ["torch==2.6.0", "torchvision==0.21.0", "transformers==4.53.0", "peft==0.21.2", "huggingface_hub",
-       "opencv-python-headless", "numpy", "pandas", "scikit-learn", "pyyaml", "matplotlib", "psutil",
-       "nvidia-ml-py", "albumentations"]
+# ---- smoke test ----
+SMOKE_STEPS = _C["smoke"]["steps"]
 # =====================================================================================================================
 
 
