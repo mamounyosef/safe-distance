@@ -65,7 +65,8 @@ training:
   # 256 x 448 in the 16:9 evaluation, and the training smoke test failed too (PyTorch 2.6 BackendCompilerFailed in its
   # quantization pass), so it stays OFF.
   compile: false
-  early_stop_patience: 5                        # stop after 5 validations in a row without a new best
+  early_stop_patience: 8                        # stop after 8 validations in a row without a new best (from epoch 3
+                                                # there are 2 per epoch, so about 4 epochs)
   num_workers: 16                               # CPU processes that load and augment windows in parallel
                                                 # (8 kept the A100 fed; the faster H200 needs about twice the data)
   val_batch_size: 16                            # windows per GPU pass in validation (no gradients: more fit)
