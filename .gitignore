@@ -239,3 +239,8 @@ plan.md
 # Personal notes (not in git)
 outline.md
 src/risk/data/prepare_workspace_*.log
+modal_setup_commands.txt
+
+# Run outputs that are not results: ml_utils run-id markers and smoke tests
+**/.run_ids/
+src/risk/runs/*/results_smoke/
