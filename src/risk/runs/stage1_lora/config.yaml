@@ -52,7 +52,9 @@ training:
   epochs: 10                                    # rounds over the data (smoke test: about 20 min and $1.1 each)
   batch_size: 8                                 # windows per GPU pass (smoke test: 65.5 of 80 GB used)
   accum_steps: 4                                # GPU passes per weight update: 8 x 4 = 32 windows per update
-  lr: 0.0001                                    # learning rate: how big each weight update is (same for all)
+  lr: 0.00004                                   # learning rate: how big each weight update is (same for all); 4e-5,
+                                                # lowered from 1e-4 after the smoke test (17 of 20 updates clipped,
+                                                # big risk shifts while still warming up)
   weight_decay: 0.01                            # pulls weights slightly towards 0 each update (not biases/norms)
   warmup_frac: 0.05                             # the first 5% of updates raise the learning rate from 0 to lr
   min_lr_mult: 0.01                             # then it falls along a cosine curve down to 1% of lr
@@ -60,7 +62,7 @@ training:
   early_stop_patience: 4                        # stop after 4 validations in a row without a new best
   num_workers: 8                                # CPU processes that load and augment windows in parallel
   val_batch_size: 16                            # windows per GPU pass in validation (no gradients: more fit)
-  seed: 20261017                                # fixes all random choices, so a run can be repeated exactly
+  seed: 42                                      # fixes all random choices, so a run can be repeated exactly
   pos_weight: null                              # e.g. 2.0 = danger windows count twice in the loss (null = not used)
 
 # ---- augmentation (one random draw per window, the same on all 16 frames) ----
