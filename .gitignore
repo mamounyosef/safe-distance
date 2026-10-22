@@ -244,3 +244,6 @@ modal_setup_commands.txt
 # Run outputs that are not results: ml_utils run-id markers and smoke tests
 **/.run_ids/
 src/risk/runs/*/results_smoke/
+
+# Per-window validation predictions: their ids name each Nexar clip's group (crash / normal) = test labels
+src/risk/runs/*/results/predictions/
