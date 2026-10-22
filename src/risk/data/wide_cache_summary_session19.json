@@ -1,0 +1,19 @@
+{
+ "clips": 6243,
+ "new": 6241,
+ "skipped": 2,
+ "failed": 0,
+ "failures": [],
+ "per_folder": {
+  "nexar_train_positive": 750,
+  "nexar_train_negative": 750,
+  "nexar_test-public_positive": 334,
+  "nexar_test-public_negative": 333,
+  "bdd100k_videos_100k_train": 2576,
+  "bdd100k_videos_100k_val": 500,
+  "bdd100k_videos_100k_test": 1000
+ },
+ "wall_s": 926,
+ "container_s": 53450,
+ "cost_usd_estimate": 1.761
+}
