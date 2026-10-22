@@ -113,7 +113,8 @@ validation:
 
 # ---- checkpoints (each holds everything needed to continue: weights, optimizer, schedule, random states) ----
 checkpoints:
-  keep_last_n: 10                               # rolling: the checkpoints of the last 10 epochs
+  every_steps: 20                               # a rolling checkpoint every 20 updates (a stop loses at most 20)
+  keep_last_n: 30                               # rolling: the newest 30 of them (the last 600 updates = 4 epochs)
   keep_top_k: 3                                 # the 3 best validations (for the live check afterwards)
 
 # ---- Modal (prices per hour, for the cost prints) ----

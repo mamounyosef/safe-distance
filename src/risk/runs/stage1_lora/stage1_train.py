@@ -138,6 +138,7 @@ GROUP_SECONDS = dict(enumerate(_V["group_seconds"]))  # Nexar test group 0, 1, 2
 
 # ---- checkpoints ----
 KEEP_LAST_N, KEEP_TOP_K = _K["keep_last_n"], _K["keep_top_k"]
+CHECKPOINT_EVERY = _K["every_steps"]                 # a rolling checkpoint every N updates
 
 # ---- Modal ----
 GPU, TIMEOUT_HOURS = _MO["gpu"], _MO["timeout_hours"]
@@ -184,7 +185,7 @@ def cfg_for(smoke: bool) -> dict:
                     "diagnostics_every": 50},                             # update/weight ratio etc. every 50
         "output": {"run_dir": "results_smoke" if smoke else "results",
                    "keep_last_n": KEEP_LAST_N, "keep_top_k": KEEP_TOP_K,
-                   "checkpoint_every_steps": 0,                           # set to one epoch in build_data
+                   "checkpoint_every_steps": 0,                           # set in build_data (config.yaml)
                    "commit_every_steps": 25,                              # save logs to the volume every 25 updates
                    "make_plots": False},                                  # plots are drawn on this PC afterwards
         "modal": {"gpu": GPU, "timeout_hours": TIMEOUT_HOURS, "cpu": CPU_CORES, "memory_gb": MEMORY_GB,
@@ -543,7 +544,8 @@ def build_data(cfg: dict) -> dict:
     passes = len(TRAIN) // BATCH_SIZE
     steps = -(-passes // ACCUM_STEPS)                             # -(-a // b) = a / b rounded UP
     STEPS_PER_EPOCH[0] = steps
-    cfg["output"]["checkpoint_every_steps"] = steps               # a rolling checkpoint at every epoch's end
+    cfg["output"]["checkpoint_every_steps"] = CHECKPOINT_EVERY    # a rolling checkpoint every N updates
+    # (a resume loads the NEWEST checkpoint, rolling or last.pt, and continues mid-epoch if needed)
     if VALS_PER_EPOCH > 1:                                        # also validate inside the epoch, e.g. halfway
         # ml_utils: from that epoch on, validate every N updates (148 / 2 = 74). The step that ends an epoch is
         # validated once (ml_utils skips a second validation at the same step).
