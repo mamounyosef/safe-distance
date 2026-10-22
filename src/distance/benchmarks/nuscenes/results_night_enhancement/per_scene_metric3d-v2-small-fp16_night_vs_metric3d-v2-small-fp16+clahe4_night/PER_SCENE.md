@@ -14,7 +14,7 @@ The unit of evidence is the scene: frames of one scene show the same objects man
 | Scenes better / worse / equal | 2 / 1 / 0 |
 | Sign test over scenes, p | 1 |
 | Share of the gain from the single best scene | 104.0% |
-| Git commit | `250f2b1` |
+| Git commit | `83793d9` |
 
 ## Per scene
 

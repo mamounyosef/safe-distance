@@ -41,7 +41,7 @@ sys.path.insert(0, str(REPO / "src/ttc/benchmarks/kitti_tracking"))
 from src.ttc.kalman import FusedKalman, time_to_collision  # noqa: E402
 
 # ---- CONFIG ----------------------------------------------------------------
-MODE = "kitti"              # "kitti" or "braking"
+MODE = "braking"              # "kitti" or "braking"
 SEQUENCE = "0017"           # KITTI recording; 0017 and 0019 have cars really approaching
 SPEED = 1.0                 # playback speed (1.0 = real time, 10 frames per second)
 SAVE_VIDEO = None           # e.g. "out/ttc_demo.mp4" to also save what is shown

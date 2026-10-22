@@ -1,0 +1,330 @@
+{
+ "fc6896a7-9433880b": {
+  "rank": 9,
+  "label": "risk",
+  "max_risk": 0.99643,
+  "peak_s": 19.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:53:08"
+ },
+ "d78f9ed3-302073ad": {
+  "rank": 19,
+  "label": "unsure",
+  "max_risk": 0.99608,
+  "peak_s": 23.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:53:29"
+ },
+ "e6d56a62-431a0b05": {
+  "rank": 27,
+  "label": "risk",
+  "max_risk": 0.99594,
+  "peak_s": 20.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:53:32"
+ },
+ "e600c5a9-fcb9b2b6": {
+  "rank": 29,
+  "label": "risk",
+  "max_risk": 0.99592,
+  "peak_s": 20.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:54:57"
+ },
+ "f702ebe5-a6e93006": {
+  "rank": 33,
+  "label": "unsure",
+  "max_risk": 0.99587,
+  "peak_s": 22.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:55:10"
+ },
+ "e82943ed-3b499ebe": {
+  "rank": 36,
+  "label": "risk",
+  "max_risk": 0.99582,
+  "peak_s": 20.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:55:18"
+ },
+ "d29e9b91-054254ab": {
+  "rank": 46,
+  "label": "unsure",
+  "max_risk": 0.99554,
+  "peak_s": 20.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:56:29"
+ },
+ "de18f099-394efbbc": {
+  "rank": 51,
+  "label": "risk",
+  "max_risk": 0.99527,
+  "peak_s": 28.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:56:40"
+ },
+ "e2c97a4d-bf7f2715": {
+  "rank": 54,
+  "label": "risk",
+  "max_risk": 0.99524,
+  "peak_s": 20.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:56:48"
+ },
+ "f4a388d4-a695ab2a": {
+  "rank": 73,
+  "label": "normal",
+  "max_risk": 0.99492,
+  "peak_s": 22.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:56:58"
+ },
+ "fa3ab43d-4bd221d0": {
+  "rank": 77,
+  "label": "normal",
+  "max_risk": 0.99483,
+  "peak_s": 22.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:57:06"
+ },
+ "d7711cac-44bbd142": {
+  "rank": 78,
+  "label": "normal",
+  "max_risk": 0.99483,
+  "peak_s": 5.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:57:15"
+ },
+ "efb159ce-afb33c4c": {
+  "rank": 81,
+  "label": "normal",
+  "max_risk": 0.99478,
+  "peak_s": 25.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:57:59"
+ },
+ "d8284f6d-1fdbf7d7": {
+  "rank": 84,
+  "label": "bad",
+  "max_risk": 0.99468,
+  "peak_s": 28.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:58:09"
+ },
+ "d03cfaf5-a4ea1442": {
+  "rank": 91,
+  "label": "risk",
+  "max_risk": 0.99455,
+  "peak_s": 19.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:58:19"
+ },
+ "eda7758a-5a0f303c": {
+  "rank": 98,
+  "label": "unsure",
+  "max_risk": 0.99448,
+  "peak_s": 20.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 19:58:51"
+ },
+ "cd31bcc0-07b8e93f": {
+  "rank": 111,
+  "label": "risk",
+  "max_risk": 0.99418,
+  "peak_s": 25.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:29:06"
+ },
+ "e6234cfc-96c180f6": {
+  "rank": 119,
+  "label": "unsure",
+  "max_risk": 0.99393,
+  "peak_s": 27.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:29:12"
+ },
+ "d510ec96-fa7f90c8": {
+  "rank": 143,
+  "label": "normal",
+  "max_risk": 0.99351,
+  "peak_s": 40.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:29:17"
+ },
+ "e4d96fa5-3e84dfbb": {
+  "rank": 144,
+  "label": "normal",
+  "max_risk": 0.9935,
+  "peak_s": 21.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:29:21"
+ },
+ "e37f49da-733b43ec": {
+  "rank": 146,
+  "label": "normal",
+  "max_risk": 0.99349,
+  "peak_s": 19.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:29:25"
+ },
+ "cd8f8f54-e7d915d5": {
+  "rank": 147,
+  "label": "normal",
+  "max_risk": 0.99346,
+  "peak_s": 20.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:29:29"
+ },
+ "f14e01b6-993f8942": {
+  "rank": 150,
+  "label": "risk",
+  "max_risk": 0.99332,
+  "peak_s": 5.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:29:33"
+ },
+ "e6453d3a-67eeaa4f": {
+  "rank": 157,
+  "label": "bad",
+  "max_risk": 0.99319,
+  "peak_s": 35.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:29:45"
+ },
+ "f527cfb9-f86a3064": {
+  "rank": 164,
+  "label": "bad",
+  "max_risk": 0.9931,
+  "peak_s": 36.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:29:53"
+ },
+ "f55e5322-09dbc178": {
+  "rank": 168,
+  "label": "normal",
+  "max_risk": 0.99295,
+  "peak_s": 26.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:29:58"
+ },
+ "d6a03ef9-1a0dab1d": {
+  "rank": 183,
+  "label": "normal",
+  "max_risk": 0.99239,
+  "peak_s": 10.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:30:02"
+ },
+ "edac5311-fffababe": {
+  "rank": 187,
+  "label": "normal",
+  "max_risk": 0.99227,
+  "peak_s": 13.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:30:13"
+ },
+ "d190167f-c91b924e": {
+  "rank": 188,
+  "label": "normal",
+  "max_risk": 0.9922,
+  "peak_s": 20.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:30:28"
+ },
+ "daab3ef8-f05153fa": {
+  "rank": 193,
+  "label": "bad",
+  "max_risk": 0.99208,
+  "peak_s": 38.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:30:35"
+ },
+ "d96e7ae0-bcf6744e": {
+  "rank": 202,
+  "label": "normal",
+  "max_risk": 0.9917,
+  "peak_s": 20.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:30:43"
+ },
+ "f8a48562-dd428ddc": {
+  "rank": 215,
+  "label": "bad",
+  "max_risk": 0.99129,
+  "peak_s": 19.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:30:47"
+ },
+ "f4b1a3b9-f5b30cea": {
+  "rank": 231,
+  "label": "normal",
+  "max_risk": 0.9908,
+  "peak_s": 4.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:30:53"
+ },
+ "f3c744e5-0e36ed78": {
+  "rank": 233,
+  "label": "normal",
+  "max_risk": 0.99079,
+  "peak_s": 17.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:31:01"
+ },
+ "e64fe064-ac1330c1": {
+  "rank": 239,
+  "label": "normal",
+  "max_risk": 0.99051,
+  "peak_s": 20.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:31:07"
+ },
+ "e473f25e-1fc08168": {
+  "rank": 240,
+  "label": "normal",
+  "max_risk": 0.99048,
+  "peak_s": 19.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:31:19"
+ },
+ "e84e6633-7da92b68": {
+  "rank": 249,
+  "label": "normal",
+  "max_risk": 0.99029,
+  "peak_s": 33.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:31:27"
+ },
+ "eea7c122-139a26ef": {
+  "rank": 250,
+  "label": "normal",
+  "max_risk": 0.99024,
+  "peak_s": 31.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:31:33"
+ },
+ "d346be7a-85025885": {
+  "rank": 257,
+  "label": "normal",
+  "max_risk": 0.98993,
+  "peak_s": 7.5,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:31:38"
+ },
+ "edf84a87-3e0d3c7a": {
+  "rank": 261,
+  "label": "bad",
+  "max_risk": 0.98973,
+  "peak_s": 24.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:31:42"
+ },
+ "d970be77-e00fe2bc": {
+  "rank": 274,
+  "label": "bad",
+  "max_risk": 0.98945,
+  "peak_s": 12.0,
+  "by": "mamoun Phone",
+  "at": "2026-10-16 20:47:56"
+ }
+}
