@@ -132,7 +132,7 @@ def clock(sec: float) -> str:
 
 
 @app.local_entrypoint()
-def main(limit: int = 0) -> None:
+def main(limit: int = 0, tag: str = "") -> None:      # tag: e.g. session19 (keeps each workspace's summary)
     index = json.loads((IDS_DIR / "zip_index.json").read_text())["clips"]
     jobs = list(index.items())
     if limit:                                          # test run: the first `limit` clips of each split
@@ -177,6 +177,8 @@ def main(limit: int = 0) -> None:
         print(f"full run estimate ({len(index):,} clips): ${summary['full_run_estimate']['cost_usd']:.2f}, "
               f"about {clock(summary['full_run_estimate']['wall_s'])} with {MAX_CONTAINERS} containers")
     out = IDS_DIR / ("extract_summary_test.json" if limit else "extract_summary.json")
+    if tag:                                            # a second workspace: its own summary file
+        out = out.with_name(f"{out.stem}_{tag}.json")
     out.write_text(json.dumps(summary, indent=1))
     print(f"done: {len(new)} new, {summary['skipped']} skipped, {len(failed)} failed; "
           f"cost about ${summary['cost_usd_estimate']:.2f}; saved {out}")
