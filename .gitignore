@@ -243,10 +243,10 @@ outline.md
 src/risk/data/prepare_workspace_*.log
 modal_setup_commands.txt
 
-# Run outputs that are not results: ml_utils run-id markers and smoke tests
+# Run outputs that are not results: shared_code run-id markers and smoke tests
 **/.run_ids/
 src/risk/runs/*/results_smoke/
-# Terminal output copies (ml_utils tee, late validation log): kept on this PC only
+# Terminal output copies (shared_code tee, late validation log): kept on this PC only
 src/risk/runs/*/results/train_config/*.txt
 src/risk/runs/*/late_validation/results/log_*.txt
 

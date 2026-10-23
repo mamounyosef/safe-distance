@@ -3,8 +3,9 @@
 WHAT IT DOES
     For every step in config.yaml (0 = plain BADAS-Open, the rest = saved checkpoints of the finished run):
     load the weights, score all 2,559 windows, compute every score, and save them at once (a re-run skips the
-    steps already done). The model, its 16:9 input and the window reader are stage1_train.py's own, so scoring is
-    exactly what training's validation did, only on the new windows.
+    steps already done). The model, its 16:9 input, the window reader and the scores are the shared ones
+    (shared_code.py, crash-risk section, with stage 1's settings), so scoring is exactly what training's
+    validation did, only on the new windows.
 
     The four cases (see make_windows.py):
         nexar_crash   label 1   Nexar Public crash clips: last frame + 0.5 s earlier (group 2: last frame only)
@@ -50,7 +51,7 @@ def _stage1_dir() -> Path:
 STAGE1_DIR = _stage1_dir()
 sys.path.insert(0, str(STAGE1_DIR))
 import stage1_train as S  # noqa: E402            # stage 1's model, input, window reader and settings
-import ml_utils as ml  # noqa: E402                # (on the path through stage1_train) prints, Modal image / volumes
+import shared_code as ml  # noqa: E402             # (on the path through stage1_train) scores, model, Modal
 
 LV_DIR = STAGE1_DIR / "late_validation"
 _C = yaml.safe_load((LV_DIR / "config.yaml").read_text(encoding="utf-8"))
@@ -66,61 +67,6 @@ LOCAL_DIR = LV_DIR / "results"                        # on this PC
 PRICE_H = _MO["gpu_price_s"] * 3600 + _MO["cpu_cores"] * 0.0473 + _MO["memory_gb"] * 0.008   # $ per hour, all in
 CASES = ["nexar_crash", "nexar_normal", "bdd_hard", "bdd_normal"]
 NORMAL_CASES = CASES[1:]
-CAUGHT_AT = (0.5, 0.9)                                # thresholds for the per-timing crash rows
-
-
-# =====================================================================================================================
-# SCORES
-# =====================================================================================================================
-def scores(risk: np.ndarray, W: dict) -> dict:
-    """Every score for one checkpoint.
-
-    Arguments:
-        risk: the model's risk (0..1) per window, in windows.json order.
-        W:    per-window facts: group (case), rank (1st / 2nd window of its clip), nexar_group (0/1/2, -1 for BDD),
-              before_s (Nexar crash windows: seconds between the window's end and the crash).
-    """
-    is_ = {c: W["group"] == c for c in CASES}
-    crash = risk[is_["nexar_crash"]]
-    all_normal = risk[np.isin(W["group"], NORMAL_CASES)]
-    out = {"ap_crash_vs_all_normal": S._ap(crash, all_normal)}              # crash vs every normal window
-    for c in NORMAL_CASES:
-        out[f"ap_crash_vs_{c}"] = S._ap(crash, risk[is_[c]])
-
-    # Nexar's official score: per test group, last-frame windows only, crash vs Nexar normal; then the average.
-    # It uses exactly the same windows as training's validation, so it is directly comparable with val_log.csv.
-    last = W["rank"] == 1
-    per_group = []
-    for g, sec in S.GROUP_SECONDS.items():
-        in_g = W["nexar_group"] == g
-        ap = S._ap(risk[is_["nexar_crash"] & last & in_g], risk[is_["nexar_normal"] & last & in_g])
-        out[f"group_{sec}s_official_ap"] = ap
-        per_group.append(ap)
-    out["nexar_official_map"] = float(np.mean(per_group))
-
-    for c in CASES:
-        out[f"mean_risk_{c}"] = float(risk[is_[c]].mean())
-
-    # crash windows by how long before the crash they end (0.5 / 1.0 / 1.5 s)
-    for sec in sorted(set(W["before_s"][is_["nexar_crash"]].tolist())):
-        here = risk[is_["nexar_crash"] & (W["before_s"] == sec)]
-        out[f"crash_{sec}s_windows"] = int(len(here))
-        out[f"crash_{sec}s_mean_risk"] = float(here.mean())
-        for t in CAUGHT_AT:
-            out[f"crash_{sec}s_caught_pct_at_{t}"] = round(100.0 * float((here > t).mean()), 2)
-
-    # at every threshold: crashes caught and false alarms per normal case
-    for t in S.THRESHOLDS:
-        out[f"crash_caught_pct_at_{t}"] = round(100.0 * float((crash > t).mean()), 2)
-        for c in NORMAL_CASES:
-            out[f"{c}_alarm_pct_at_{t}"] = round(100.0 * float((risk[is_[c]] > t).mean()), 2)
-
-    # calibration error (same as training's): 10 risk bins, |mean risk - share of crashes|, weighted by bin size
-    truth = is_["nexar_crash"].astype(float)
-    bin_of = np.clip((risk * 10).astype(int), 0, 9)
-    out["calibration_error"] = float(sum(abs(risk[bin_of == b].mean() - truth[bin_of == b].mean()) * (bin_of == b).mean()
-                                         for b in range(10) if (bin_of == b).any()))
-    return out
 
 
 # =====================================================================================================================
@@ -163,16 +109,13 @@ def score_remote() -> dict:
 
     # --- the windows (stage 1's own reader: same cache, same frames, no augmentation) ---
     windows = json.loads(WINDOWS.read_text())
-    val = S.ValWindows(windows)                         # fills each window's end frame
-    W = {"group": val.group, "rank": val.rank, "nexar_group": val.nexar_group,
-         "before_s": np.array([S.GROUP_SECONDS[w["nexar_group"]] + w["end_back"] / S.FPS
-                               if w["group"] == "nexar_crash" else -1.0 for w in val.windows])}
+    val = ml.FixedWindows(windows, S.RS)               # fills each window's end frame
     ml._table("late validation windows", ["case", "windows"], [[c, int((val.group == c).sum())] for c in CASES], "📦")
     loader = DataLoader(val, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS, pin_memory=True)
 
     # --- the model: plain BADAS-Open + LoRA at zero (stage 1's start-up checks run here) ---
     device = torch.device("cuda")
-    model = S.RiskModel(device).to(device).eval()
+    model = ml.RiskModel(device, S.RS).to(device).eval()
     gpu = torch.cuda.get_device_name(0)
 
     rows, preds = [], {}
@@ -191,10 +134,7 @@ def score_remote() -> dict:
             path = next((p for p in (CKPT_DIR / f"top_step{step}.pt", CKPT_DIR / f"step{step}.pt") if p.exists()), None)
             if path is None:
                 raise SystemExit(f"no checkpoint for step {step} in {CKPT_DIR}")
-            ck = torch.load(path, map_location="cpu", weights_only=False)
-            if int(ck.get("step", -1)) != step:
-                raise SystemExit(f"{path.name} holds step {ck.get('step')}, not {step}")
-            model.load_state_dict(ck["model"])          # strict: every trainable weight must be there
+            ml.load_risk_checkpoint(model, path, step)   # strict: every trainable weight must be there
             source = path.name
 
         # score every window (no gradients, bf16 like training's validation)
@@ -214,7 +154,7 @@ def score_remote() -> dict:
         z = torch.cat(logits).numpy()[:, 0]
         risk = 1.0 / (1.0 + np.exp(-z))                # sigmoid: the risk 0..1
 
-        row = {"step": step, "checkpoint": source, **scores(risk, W),
+        row = {"step": step, "checkpoint": source, **ml.risk_scores(risk, val, S.GROUP_SECONDS, S.THRESHOLDS),
                "windows": int(len(z)), "batch_size": BATCH_SIZE, "gpu": gpu,
                "peak_gpu_gb": round(torch.cuda.max_memory_allocated() / 1e9, 2),
                "score_secs": round(secs, 1), "windows_per_s": round(len(z) / secs, 1),

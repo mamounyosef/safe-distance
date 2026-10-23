@@ -1,5 +1,7 @@
 """
-ml_utils.py - a general, single-file training engine for Kaggle-style and research ML projects.
+shared_code.py - the safe-distance project's shared code: the training engine (general: loop, logs,
+checkpoints, Modal) and, at the end, the crash-risk parts every stage uses (scores, model, fixed windows).
+(Was ml_utils.py.)
 
 Extracted from a production Kaggle engine (knee-MRI, RSNA 2026) and made task-agnostic. Copy this ONE file into a project's runs/ folder; each run folder then holds only
 a config.yaml delta and a thin train.py that builds the model and the datasets.
@@ -5552,11 +5554,482 @@ def kaggle_download(competition: str, dest, unzip: bool = True) -> Path:
 
 
 # =============================================================================
-# CLI:  python ml_utils.py <command> ...
+# CRASH-RISK PROJECT (safe-distance): parts shared by stage 1, the late validation, later stages and the final test
+#   risk_settings          one flat dict of the model / data / LoRA settings (from a stage's config.yaml)
+#   frame_count            frames in a cached clip (from wide_frame_counts.json, no volume reads)
+#   FixedWindows           fixed 2 s windows from the 16:9 cache (validation and test sets; never augmented)
+#   risk_ap, calibration_error, risk_scores   the crash-risk scores
+#   RiskModel              BADAS-Open + 16:9 + batched predictor + LoRA, one crash-risk logit per window
+#   load_risk_checkpoint   load a saved stage checkpoint into a RiskModel
+# =============================================================================
+def risk_settings(cfg_yaml: dict, pkg_root) -> dict:
+    """The model / data / LoRA settings as one flat dict (what the shared crash-risk parts below read).
+
+    Arguments:
+        cfg_yaml: a stage's config.yaml, read (needs its data, model and lora sections).
+        pkg_root: the src/risk folder (data paths in the config are relative to it).
+    """
+    import wide_input as W                                 # the 16:9 input (frame shape, normalising, position patch)
+    d, m, lo = cfg_yaml["data"], cfg_yaml["model"], cfg_yaml["lora"]
+    return {"cache": d["cache"], "frame_counts": Path(pkg_root) / d["frame_counts"],
+            "fps": d["fps"], "window_frames": d["window_frames"], "frame_h": W.WIDE_H, "frame_w": W.WIDE_W,
+            "badas_repo": m["badas_repo"], "base_model": m["base_model"], "hf_cache": m["hf_cache"],
+            "temperature": m["temperature"], "predictor_check_tol": m["predictor_check_tol"],
+            "grad_checkpointing": m["grad_checkpointing"],
+            "lora_rank": lo["rank"], "lora_alpha": lo["alpha"], "lora_dropout": lo["dropout"],
+            "lora_targets": lo["targets"], "lora_expected_layers": lo["expected_layers"],
+            "lora_fully_trained": lo["fully_trained"]}
+
+
+_FRAME_COUNTS: dict = {}                     # counts file -> {"folder/clip": frames}, read once per file
+
+
+def frame_count(path: str, counts_file) -> int:
+    """Number of frames in a cached clip, looked up in the counts file (counted once by wide_frame_counts.py).
+
+    Why not read the file: opening about 5,000 cache files on the Modal volume at start-up choked the GPU
+    container (no progress for 9 minutes). The counts file ships with the code, so this reads nothing from the volume.
+
+    Arguments:
+        path:        a cached clip's .npy file (.../<cache folder>/<clip>.npy).
+        counts_file: wide_frame_counts.json.
+    """
+    key_file = str(counts_file)
+    if key_file not in _FRAME_COUNTS:
+        _FRAME_COUNTS[key_file] = json.loads(Path(counts_file).read_text())
+    p = Path(path)
+    key = f"{p.parent.name}/{p.stem}"                                 # e.g. nexar_train_positive/00266
+    if key not in _FRAME_COUNTS[key_file]:
+        raise SystemExit(f"{key} is not in {Path(counts_file).name}: re-run wide_frame_counts.py")
+    return _FRAME_COUNTS[key_file][key]
+
+
+class FixedWindows(Dataset):
+    """FIXED windows (a validation or test set): never augmented, the same every time they are scored."""
+
+    def __init__(self, windows: list[dict], s: dict):
+        """Find each window's clip file and end frame, and the facts the scores need.
+
+        Arguments:
+            windows: one dict per window (group, folder, clip, end / end_back, rank, label, nexar_group), as written by
+                     make_val_windows.py / late_validation/make_windows.py.
+            s:       risk_settings().
+        """
+        self.window_frames = s["window_frames"]
+        # where each clip's frames are
+        for w in windows:
+            w["path"] = f"{s['cache']}/{w['folder']}/{w['clip']}.npy"
+        # Nexar windows are given as "frames before the clip's last frame" (end_back), so we need each clip's
+        # length to know the end frame. BDD windows already have their end frame.
+        for w in windows:
+            if w["end"] is None:
+                w["end"] = frame_count(w["path"], s["frame_counts"]) - w["end_back"]   # e.g. back 0 = last frame
+        self.windows = windows
+        self.ids = [f"{w['group']}|{w['clip']}|{w['end']}" for w in windows]   # names in the prediction files
+        self.targets = np.array([[w["label"]] for w in windows], np.float32)    # the right answers
+        # Per-window facts the scores need. They line up with the model's outputs because the loader never
+        # shuffles: output k belongs to window k.
+        self.group = np.array([w["group"] for w in windows])                  # nexar_crash / nexar_normal / bdd_...
+        self.rank = np.array([w["rank"] for w in windows])                    # 1st or 2nd window of its clip
+        self.nexar_group = np.array([-1 if w["nexar_group"] is None else w["nexar_group"] for w in windows])  # -1: BDD
+        # Nexar crash windows: seconds between the window's end and the crash (group's seconds + frames back / fps)
+        self.end_back_s = np.array([(w["end_back"] or 0) / s["fps"] for w in windows])
+
+    def __len__(self) -> int:
+        return len(self.windows)
+
+    def __getitem__(self, i: int):
+        w = self.windows[i]
+        frames = np.array(np.load(w["path"], mmap_mode="r")[w["end"] - self.window_frames:w["end"]])   # writable copy
+        return torch.from_numpy(frames), torch.tensor([w["label"]], dtype=torch.float32), self.ids[i]
+
+
+def risk_ap(crash_risks: np.ndarray, normal_risks: np.ndarray) -> float:
+    """Average precision (AP): how well crash windows rank ABOVE normal ones. 1.0 = every crash window scores higher
+    than every normal window; lower = some normal windows score as high as crashes (false alarms).
+
+    Arguments:
+        crash_risks:  the model's risk on the crash windows.
+        normal_risks: the model's risk on the normal windows.
+    """
+    from sklearn.metrics import average_precision_score
+    if not len(crash_risks) or not len(normal_risks):              # needs both kinds
+        return float("nan")
+    is_crash = np.r_[np.ones(len(crash_risks)), np.zeros(len(normal_risks))]   # the right answers: 1 crash, 0 normal
+    return float(average_precision_score(is_crash, np.r_[crash_risks, normal_risks]))
+
+
+def calibration_error(risk: np.ndarray, is_crash: np.ndarray) -> float:
+    """0 = honest risk values (of windows given about 0.8, about 80% are crashes). Windows split into 10 bins by
+    risk (0-0.1, ..., 0.9-1); in each bin the average risk is compared with the share that really are crashes;
+    the gaps are added up, weighted by how many windows each bin holds.
+
+    Arguments:
+        risk:     the model's risk per window (0..1).
+        is_crash: True / 1 for crash windows.
+    """
+    truth = np.asarray(is_crash, dtype=float)
+    bin_of = np.clip((risk * 10).astype(int), 0, 9)                   # which of the 10 bins each window falls in
+    gap = 0.0
+    for b in range(10):
+        in_bin = bin_of == b
+        if in_bin.any():
+            gap += abs(risk[in_bin].mean() - truth[in_bin].mean()) * in_bin.mean()
+    return float(gap)
+
+
+def risk_scores(risk: np.ndarray, win: FixedWindows, group_seconds: dict, thresholds,
+                caught_at=(0.5, 0.9)) -> dict:
+    """Every crash-risk score for one set of predictions. Works for any mix of window cases: the crash case is
+    "nexar_crash", every other case is normal (e.g. nexar_normal, bdd_hard, bdd_normal).
+
+      ap_crash_vs_all_normal       AP: crash windows vs every normal window
+      ap_crash_vs_<case>           AP: crash vs one normal case
+      nexar_official_map           Nexar's own score: per test group, LAST-frame windows only, crash vs nexar_normal,
+                                   then the average (group_<s>s_official_ap: each group's AP)
+      mean_risk_<case>             the average risk per case
+      crash_<s>s_...               crash windows by how long before the crash they end: count, mean risk, % caught
+      crash_caught_pct_at_<t>      % of crash windows above threshold t
+      <case>_alarm_pct_at_<t>      % of a normal case's windows above t (false alarms)
+      calibration_error            see calibration_error()
+
+    Arguments:
+        risk:          the model's risk (0..1) per window, in the windows' order.
+        win:           the FixedWindows they were scored on.
+        group_seconds: Nexar test group -> seconds before the crash its clips end ({0: 0.5, 1: 1.0, 2: 1.5}).
+        thresholds:    the risk thresholds for the caught / alarm percentages.
+        caught_at:     the thresholds for the per-timing crash rows.
+    """
+    cases = list(dict.fromkeys(win.group.tolist()))                    # every case present, in first-seen order
+    normal_cases = [c for c in cases if c != "nexar_crash"]
+    is_ = {c: win.group == c for c in cases}
+    is_crash = win.group == "nexar_crash"
+    crash = risk[is_crash]
+    out = {"ap_crash_vs_all_normal": risk_ap(crash, risk[~is_crash])}
+    for c in normal_cases:
+        out[f"ap_crash_vs_{c}"] = risk_ap(crash, risk[is_[c]])
+
+    # Nexar's official score (needs nexar_normal windows)
+    last = win.rank == 1
+    is_nn = win.group == "nexar_normal"
+    per_group = []
+    for g, sec in group_seconds.items():
+        in_g = win.nexar_group == g
+        ap = risk_ap(risk[is_crash & last & in_g], risk[is_nn & last & in_g])
+        out[f"group_{sec}s_official_ap"] = ap
+        per_group.append(ap)
+    out["nexar_official_map"] = float(np.mean(per_group))
+
+    for c in cases:
+        out[f"mean_risk_{c}"] = float(risk[is_[c]].mean())
+
+    # crash windows by how long before the crash they end (the group's seconds + how far back the window ends)
+    before_s = np.array([group_seconds.get(g, np.nan) for g in win.nexar_group]) + win.end_back_s
+    for sec in sorted(set(before_s[is_crash].tolist())):
+        here = risk[is_crash & (before_s == sec)]
+        out[f"crash_{sec}s_windows"] = int(len(here))
+        out[f"crash_{sec}s_mean_risk"] = float(here.mean())
+        for t in caught_at:
+            out[f"crash_{sec}s_caught_pct_at_{t}"] = round(100.0 * float((here > t).mean()), 2)
+
+    # at every threshold: crashes caught and false alarms per normal case
+    for t in thresholds:
+        out[f"crash_caught_pct_at_{t}"] = round(100.0 * float((crash > t).mean()), 2)
+        for c in normal_cases:
+            out[f"{c}_alarm_pct_at_{t}"] = round(100.0 * float((risk[is_[c]] > t).mean()), 2)
+
+    out["calibration_error"] = calibration_error(risk, is_crash)
+    return out
+
+
+# ----- the crash-risk model --------------------------------------------------
+def batched_predict_future(self, encoder_features: torch.Tensor) -> torch.Tensor:
+    """BADAS's "future" prediction for the WHOLE batch in one call (BADAS's own code does one clip at a time).
+
+    What the predictor does: the encoder turns a window into 3,584 tokens (the "present"). The predictor gets those
+    plus 896 empty slots for the "future", fills the slots in, and returns them (each token = 1,024 numbers).
+    It is told which positions are present (context) and which to fill (target) by two lists of positions.
+    BADAS's loop builds those lists for one clip; here the same lists are repeated for every clip of the batch, so
+    one call does them all. check_batched_predictor() proves it gives the same numbers before the model is used.
+    `self` is BADAS's classifier object (this function replaces its own _predict_future_features).
+
+    Arguments:
+        self:             BADAS's classifier object (this function replaces its own method).
+        encoder_features: the encoder's tokens, batch x 3,584 x 1,024 (the 'present').
+    """
+    batch, n_present, width = encoder_features.shape                 # e.g. 8, 3584, 1024
+
+    # How many future slots: BADAS's checkpoint config says 1 s of future and "original_fps" 4, so 1 s / (16 frames /
+    # 4 per s) = a quarter of the present tokens = 896. (Same formula as BADAS's own code.)
+    # Note: we really feed 8 fps (16 frames = 2 s), so these 896 slots are 2 of 8 time steps = 0.5 s ahead, not 1 s.
+    # Kept as is: BADAS-Open was trained this way, so its weights expect exactly 896 future slots.
+    future_s = getattr(self.config, "future_prediction_seconds", 1.0)
+    present_s = self.config.frame_count / getattr(self.config, "original_fps", 4)
+    n_future = max(int(n_present * (future_s / present_s)), 1)
+
+    # Build one long row of tokens per clip: the 3,584 real tokens from the encoder, then 896 placeholder tokens
+    # for the future (all zeros). BADAS's code passes the predictor this full-length row, so we do the same.
+    # The zeros are never used: the predictor throws them away and puts its own learned "fill me in" token there.
+    empty = encoder_features.new_zeros(batch, n_future, width)        # the 896 placeholders: batch x 896 x 1,024
+    tokens = torch.cat([encoder_features, empty], dim=1)              # real + placeholders: batch x 4,480 x 1,024
+
+    # Tell the predictor which token positions are which, as two lists of position numbers per clip:
+    #   context = positions 0 ... 3,583     -> "these are known (the 2 s we saw)"
+    #   target  = positions 3,584 ... 4,479 -> "predict these (the future)"
+    # Every clip uses the same numbers, so one list is copied once per clip in the batch (.expand).
+    device = encoder_features.device
+    context = torch.arange(n_present, device=device).unsqueeze(0).expand(batch, -1)                       # batch x 3,584
+    target = torch.arange(n_present, n_present + n_future, device=device).unsqueeze(0).expand(batch, -1)  # batch x 896
+
+    # Run the predictor; it returns only its guesses for the future positions: batch x 896 tokens x 1,024 numbers
+    return self.predictor(tokens, context_mask=[context], target_mask=[target]).last_hidden_state
+
+
+def check_batched_predictor(net: nn.Module, device, s: dict) -> float:
+    """Stop unless the batched predictor gives the same numbers as BADAS's own one-clip-at-a-time loop.
+
+    4 random clips, full precision. "Same" = the largest difference is under predictor_check_tol (tiny differences
+    come from the order of additions inside the GPU, not from a different computation).
+
+    Arguments:
+        net:    BADAS's classifier (before LoRA).
+        device: where to run the check (the GPU).
+        s:      risk_settings().
+    """
+    net.eval()                                                        # no randomness (dropout off)
+    x = torch.randn(4, s["window_frames"], 3, s["frame_h"], s["frame_w"], device=device)   # 4 random clips
+    with torch.no_grad():                                             # no gradients needed for a check
+        present = net._extract_video_features(x)                      # the encoder's 3,584 tokens per clip
+        loop = type(net)._predict_future_features(net, present)      # BADAS's own code (one clip at a time)
+        batched = batched_predict_future(net, present)               # ours (all clips at once)
+    diff = float((loop - batched).abs().max())                        # the largest difference anywhere
+    print(f"  ✅ batched predictor vs BADAS's per-clip loop: largest difference {diff:.2e} "
+          f"(allowed {s['predictor_check_tol']:g})")
+    if not diff <= s["predictor_check_tol"]:
+        raise SystemExit("batched predictor differs from BADAS's loop: stopping")
+    return diff
+
+
+def add_lora(net: nn.Module, s: dict) -> nn.Module:
+    """Wrap BADAS-Open with LoRA, switch on the small parts that train fully, then CHECK that nothing is left out.
+
+    LoRA in one sentence: each chosen weight matrix W stays frozen, and next to it the model learns a small update
+    B x A (A: 16 x input size, B: output size x 16, "rank 16"), added as W + (alpha / rank) x B x A = W + 2 x B x A.
+    B starts at zero, so at step 0 the model is exactly BADAS-Open.
+
+    Stops when:
+      - the number of LoRA layers is not the one expected (a renamed layer would silently lose its LoRA),
+      - any frozen weight is neither the base of a LoRA layer nor a backup copy (= it would be left out of training),
+      - the predictor is no longer one shared object (BADAS lists it twice: predictor and backbone.predictor).
+
+    Arguments:
+        net: BADAS's classifier (the network to wrap).
+        s:   risk_settings().
+    """
+    from peft import LoraConfig, get_peft_model                      # peft: the library that adds LoRA
+
+    config = LoraConfig(r=s["lora_rank"], lora_alpha=s["lora_alpha"], lora_dropout=s["lora_dropout"],
+                        bias="none",                          # biases are not trained (standard for LoRA)
+                        target_modules=s["lora_targets"],     # which layers get LoRA (the 219, by name)
+                        modules_to_save=s["lora_fully_trained"])   # trained fully: time-attention + head
+    model = get_peft_model(net, config)                       # BADAS wrapped: every target layer now has LoRA
+
+    # peft leaves LayerNorms and the predictor's mask tokens frozen: switch them on (tiny, and they matter).
+    # "lora_" = the new LoRA weights (already on); "original_module" = peft's frozen backup of the fully-trained parts.
+    for name, p in model.named_parameters():
+        is_norm_or_mask = "norm" in name or name.endswith("mask_tokens")
+        if is_norm_or_mask and "lora_" not in name and "original_module" not in name:
+            p.requires_grad_(True)                            # requires_grad = this weight gets trained
+
+    # --- the checks ---
+    # every layer that got LoRA (it now has a frozen "base_layer" and the new "lora_A" / "lora_B")
+    lora_layers = {n: m for n, m in model.named_modules() if hasattr(m, "base_layer") and hasattr(m, "lora_A")}
+    # the frozen weights that LoRA adapts (these are fine to be frozen)
+    lora_bases = set()
+    for n, m in lora_layers.items():
+        for pn, _ in m.base_layer.named_parameters():
+            lora_bases.add(f"{n}.base_layer.{pn}")
+    # a frozen weight that is NOT a LoRA base and NOT peft's backup copy would never change: left out
+    left_out = []
+    for name, p in model.named_parameters():
+        if not p.requires_grad and name not in lora_bases and "original_module" not in name:
+            left_out.append(name)
+    inner = model.base_model.model                                    # BADAS's classifier inside peft's wrapper
+    shared = inner.predictor is inner.backbone.predictor              # still ONE predictor object?
+    by_type = {}                                                      # LoRA layers counted by layer type
+    for m in lora_layers.values():
+        kind = type(m.base_layer).__name__                            # Linear or Conv3d
+        by_type[kind] = by_type.get(kind, 0) + 1
+    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)   # values that will change
+    total = sum(p.numel() for p in model.parameters())                          # all values
+    _table("LoRA coverage check", ["check", "result"], [
+        ("LoRA layers", f"{len(lora_layers)} (expected {s['lora_expected_layers']})  {by_type}"),
+        ("weights left out of training", len(left_out)),
+        ("predictor still one shared object", shared),
+        ("trainable values", f"{trainable / 1e6:.2f} M of {total / 1e6:.1f} M"),
+    ], "🧩")
+    if len(lora_layers) != s["lora_expected_layers"] or left_out or not shared:
+        raise SystemExit(f"LoRA coverage check failed: {len(lora_layers)} layers, left out {left_out[:10]}, "
+                         f"shared predictor {shared}")
+    return model
+
+
+def check_gradients_reach_everything(model: nn.Module, device, s: dict) -> None:
+    """One forward + backward pass on 2 random clips: every trainable weight must receive a gradient.
+
+    A weight with no gradient is cut off from the loss and would never learn (a "dead path"). Two details:
+      - drop_path (training randomly skips whole blocks) is paused, else a skipped block would look dead;
+      - LoRA's A matrices get a gradient of exactly zero on this first pass (B is still zero): zero is fine, MISSING
+        (None) is not.
+
+    Arguments:
+        model:  the full RiskModel (BADAS + LoRA).
+        device: where to run the check (the GPU).
+        s:      risk_settings().
+    """
+    model.train()                                                     # training mode (as in real training)
+    drop_path = [m for m in model.modules() if type(m).__name__ == "VJEPA2DropPath"]
+    for m in drop_path:
+        m.eval()                                                      # eval mode = never skip
+    with torch.autocast("cuda", dtype=torch.bfloat16):                # same 16-bit maths as training
+        out = model(torch.randn(2, s["window_frames"], 3, s["frame_h"], s["frame_w"], device=device))
+    target = torch.tensor([[0.0], [1.0]], device=device)              # any labels will do
+    nn.functional.binary_cross_entropy_with_logits(out.float(), target).backward()   # computes every gradient
+    dead = [n for n, p in model.named_parameters() if p.requires_grad and p.grad is None]
+    model.zero_grad(set_to_none=True)                                 # throw the gradients away: only a check
+    for m in drop_path:
+        m.train()                                                     # drop_path back on
+    print(f"  ✅ gradient check: {len(dead)} trainable weights without a gradient (must be 0)")
+    if dead:
+        raise SystemExit(f"trainable weights with no gradient: {dead[:10]}")
+
+
+class RiskModel(nn.Module):
+    """BADAS-Open + LoRA, giving ONE number per window: the crash-risk logit (its sigmoid = BADAS's risk, 0..1)."""
+
+    def __init__(self, device, s: dict):
+        """Load BADAS-Open, patch it for 16:9, add LoRA, and run the start-up checks.
+
+        Arguments:
+            device: where the model lives (the GPU).
+            s:      risk_settings().
+        """
+        super().__init__()
+        from huggingface_hub import snapshot_download               # downloads from Hugging Face (or uses the cache)
+        import wide_input as W                                      # the 16:9 position patch
+
+        self.temperature = s["temperature"]
+        # --- load BADAS-Open exactly as its released code does (code + weights from Hugging Face) ---
+        repo = Path(snapshot_download(s["badas_repo"], allow_patterns=["src/*", "src/**/*", "weights/*"]))
+        sys.path.insert(0, str(repo / "src"))                       # so BADAS's own code can be imported
+        from models.vjepa import VJEPAModel                         # BADAS's loader class
+        badas = VJEPAModel(model_name=s["base_model"], checkpoint_path=str(repo / "weights" / "badas_open.pth"),
+                           device=str(device), frame_count=s["window_frames"], img_size=s["frame_h"],
+                           target_fps=float(s["fps"]), use_sliding_window=False)
+        badas.load()                                                # builds the network and loads its weights
+        net = badas.model                                           # the network: encoder, predictor, time-attention, head
+        # 16:9: tell every attention layer the real token grid (16 rows x 28 columns), see wide_input.py
+        n_patched = W.patch_positions(net, s["frame_h"], s["frame_w"])
+        print(f"  ✅ 16:9 input: {n_patched} attention layers use the {s['frame_h'] // 16} x {s['frame_w'] // 16} "
+              f"patch grid (expected 36)")
+        if n_patched != 36:
+            raise SystemExit("position patch: not every attention layer found: stopping")
+        if s["grad_checkpointing"] and hasattr(net.backbone, "gradient_checkpointing_enable"):
+            net.backbone.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
+            print("  🧮 gradient checkpointing ON (less memory, slower)")
+
+        # --- prove the batched predictor equals BADAS's loop, then switch to it ---
+        check_batched_predictor(net, device, s)
+        x = torch.randn(2, s["window_frames"], 3, s["frame_h"], s["frame_w"], device=device)   # 2 random clips
+        with torch.no_grad():
+            before = net(x)                                         # plain BADAS-Open's 2 scores on them
+        import types
+        net._predict_future_features = types.MethodType(batched_predict_future, net)   # use ours from now on
+
+        # --- LoRA on every layer (the coverage check runs inside) ---
+        self.net = add_lora(net, s)
+
+        # --- start check: LoRA starts at zero, so the outputs must still be plain BADAS-Open's ---
+        self.net.eval()
+        with torch.no_grad():
+            diff = float((self.net(x) - before).abs().max())        # same 2 clips, now through LoRA + batched predictor
+        print(f"  ✅ start check: after adding LoRA + the batched predictor, outputs differ from plain BADAS-Open by "
+              f"{diff:.2e} (must be about 0)")
+        if not diff <= s["predictor_check_tol"]:
+            raise SystemExit("the model at step 0 is not BADAS-Open: stopping")
+        check_gradients_reach_everything(self, device, s)
+        # the names of the weights training changes (what the checkpoints store)
+        self._trainable = {n for n, p in self.named_parameters() if p.requires_grad}
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """x: a batch of windows, B x 16 x 3 x 256 x 448 (already normalised). Returns B x 1.
+
+        BADAS's head gives 2 scores per window: s_safe and s_crash. Its risk is softmax([s_safe, s_crash] / 2) for
+        the crash class. With only two classes, that softmax is exactly sigmoid((s_crash - s_safe) / 2). So we pass
+        on ONE number per window, z = (s_crash - s_safe) / 2, and sigmoid(z) is BADAS's risk.
+
+        The loss ("bce") is binary cross-entropy between sigmoid(z) and the window's label (1, a ramp value from 0.7
+        to 1, or 0). That is the same loss as BADAS's own 2-class cross-entropy, with a soft target.
+
+        Arguments:
+            x: the batch, B x 16 x 3 x 256 x 448, normalised (wide_input.normalise).
+        """
+        scores = self.net(x)                                     # B x 2: column 0 = safe, column 1 = crash
+        z = (scores[:, 1] - scores[:, 0]) / self.temperature     # one number per window
+        return z.unsqueeze(1)                                    # B x 1 (one target: crash_risk)
+
+    # --- checkpoints store only what training changes ---
+    # The frozen 330 M BADAS weights never change, so a checkpoint holds just the 14 M trainable ones (about
+    # 57 MB, plus the optimizer state); the frozen part is reloaded from BADAS-Open at every start. save_checkpoint
+    # and load_checkpoint call these two methods.
+    def state_dict(self, *args, **kwargs):
+        """The weights to save: only the trainable ones.
+
+        Arguments:
+            *args, **kwargs: passed on to PyTorch's own state_dict (prefix, keep_vars, ...).
+        """
+        full = super().state_dict(*args, **kwargs)               # every weight, frozen and trainable
+        prefix = kwargs.get("prefix", "")                        # (empty unless called from a parent module)
+        return type(full)((k, v) for k, v in full.items() if k[len(prefix):] in self._trainable)   # trainable only
+
+    def load_state_dict(self, state_dict, strict: bool = True, assign: bool = False):
+        """Load saved trainable weights; the frozen ones stay as loaded from BADAS-Open.
+
+        Arguments:
+            state_dict: the saved weights (from a checkpoint).
+            strict:     True = stop if any trainable weight is missing from it.
+            assign:     passed on to PyTorch (False = copy the values into the existing weights).
+        """
+        missing = sorted(self._trainable - set(state_dict))        # a trainable weight the checkpoint lacks
+        if strict and missing:
+            raise RuntimeError(f"checkpoint is missing {len(missing)} trainable weights, e.g. {missing[:5]}")
+        res = super().load_state_dict(state_dict, strict=False, assign=assign)   # frozen ones stay as loaded
+        if res.unexpected_keys:                                   # a weight this model does not have
+            raise RuntimeError(f"checkpoint has unknown weights: {res.unexpected_keys[:5]}")
+        return res
+
+
+def load_risk_checkpoint(model: RiskModel, path, step: int | None = None) -> dict:
+    """Load a saved checkpoint's trainable weights into a RiskModel (strict: every trainable weight must be there).
+
+    Arguments:
+        model: the RiskModel (built fresh = plain BADAS-Open).
+        path:  the checkpoint file (step<N>.pt, top_step<N>.pt, best.pt, last.pt).
+        step:  if given, stop unless the checkpoint holds exactly this step.
+    """
+    ck = torch.load(path, map_location="cpu", weights_only=False)
+    if step is not None and int(ck.get("step", -1)) != step:
+        raise SystemExit(f"{Path(path).name} holds step {ck.get('step')}, not {step}")
+    model.load_state_dict(ck["model"])
+    return ck
+
+
+# =============================================================================
+# CLI:  python shared_code.py <command> ...
 # =============================================================================
 def _cli():
     import argparse
-    ap = argparse.ArgumentParser(description="ml_utils: plots, sync, leaderboard, config")
+    ap = argparse.ArgumentParser(description="shared_code: plots, sync, leaderboard, config")
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("plot", help="draw the curves of one run from its CSVs")
     p.add_argument("exp_dir")
