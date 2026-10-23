@@ -1,0 +1,1844 @@
+[capture] full console of this run -> /runs/stage1_lora/results/train_config/run003_2026-10-23_07-37-57.txt
+[capture] run_id: run003  side: modal-container
+[capture] command: /pkg/modal/_container_entrypoint.py
+[capture] started 2026-10-23 07:37:57
+######################################################################
+# 🚀 run_experiment: stage1_lora
+# 🆔 run_id=run003  side=modal-container  task=binary
+# 🖥️  device=cuda  epochs=10
+######################################################################
+[set_seed] seed=42  deterministic=False
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 🖥️ ENVIRONMENT                                                             ║
+╚════════════════════════════════════════════════════════════════════════════╝
+┌─ 📦 software────────────────────────────────────────────────────────────────┐
+│ host                  │ modal                                              │
+│ platform              │ Linux 4.19.0-gvisor                                │
+│ python                │ 3.12.10                                            │
+│ torch                 │ 2.6.0+cu124                                        │
+│ cuda (torch)          │ 12.4                                               │
+│ numpy / pandas        │ 2.5.4 / 3.1.0                                      │
+│ opencv                │ 5.0.0                                              │
+└────────────────────────────────────────────────────────────────────────────┘
+┌─ 🧮 cpu / memory────────────────────────────────────────────────────────────┐
+│ logical cores         │ 36                                                 │
+│ physical cores        │ 36                                                 │
+│ RAM total             │ 1024.0 GiB                                         │
+│ RAM available         │ 1015.6 GiB                                         │
+└────────────────────────────────────────────────────────────────────────────┘
+  🎮 gpu
+┌───┬─────────────┬───────────┬────────────┬─────┐
+│ # │ device      │ memory    │ capability │ SMs │
+├───┼─────────────┼───────────┼────────────┼─────┤
+│ 0 │ NVIDIA H200 │ 139.8 GiB │ 9.0        │ 132 │
+└───┴─────────────┴───────────┴────────────┴─────┘
+  cudnn benchmark=True  tf32_matmul=False  tf32_cudnn=True
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ ⚙️ CONFIGURATION                                                           ║
+╚════════════════════════════════════════════════════════════════════════════╝
+┌─ 🎯 experiment──────────────────────────────────────────────────────────────┐
+│ name                  │ stage1_lora                                        │
+│ run_id                │ run003                                             │
+│ notes                 │ stage 1: BADAS-Open + LoRA, Nexar + clean BDD100K  │
+└────────────────────────────────────────────────────────────────────────────┘
+┌─ 🧩 task────────────────────────────────────────────────────────────────────┐
+│ type                  │ binary                                             │
+│ targets               │ ['crash_risk']                                     │
+│ num_classes           │ None                                               │
+└────────────────────────────────────────────────────────────────────────────┘
+┌─ 📏 metrics─────────────────────────────────────────────────────────────────┐
+│ monitor               │ ap_crash_vs_all_normal                             │
+│ mode                  │ max                                                │
+│ threshold             │ 0.5                                                │
+│ top_k                 │ [3]                                                │
+│ qwk                   │ False                                              │
+└────────────────────────────────────────────────────────────────────────────┘
+┌─ 📁 paths───────────────────────────────────────────────────────────────────┐
+│ data_dir              │ data                                               │
+└────────────────────────────────────────────────────────────────────────────┘
+┌─ 🎲 reproducibility─────────────────────────────────────────────────────────┐
+│ seed                  │ 42                                                 │
+│ deterministic         │ False                                              │
+└────────────────────────────────────────────────────────────────────────────┘
+┌─ 🚚 dataloader──────────────────────────────────────────────────────────────┐
+│ batch_size            │ 16                                                 │
+│ accum_steps           │ 2                                                  │
+│ num_workers           │ 16                                                 │
+│ val_batch_size        │ 16                                                 │
+│ val_num_workers       │ None                                               │
+│ pin_memory            │ True                                               │
+│ persistent_workers    │ False                                              │
+│ prefetch_factor       │ 2                                                  │
+│ drop_last             │ True                                               │
+└────────────────────────────────────────────────────────────────────────────┘
+┌─ 🏋️ training───────────────────────────────────────────────────────────────┐
+│ device                │ auto                                               │
+│ epochs                │ 10                                                 │
+│ amp                   │ True                                               │
+│ amp_dtype             │ bfloat16                                           │
+│ channels_last         │ False                                              │
+│ grad_clip             │ 3.0                                                │
+│ grad_clip_floor       │ 0.0                                                │
+│ grad_checkpointing    │ False                                              │
+│ backbone_chunk        │ 0                                                  │
+│ tf32                  │ True                                               │
+│ compile               │ False                                              │
+│ compile_mode          │ default                                            │
+│ lp_ft_epochs          │ 0                                                  │
+│ stop_after_steps      │ 0                                                  │
+│ loss.name             │ bce                                                │
+│ loss.pos_weight       │ None                                               │
+│ loss.class_weight     │ None                                               │
+│ loss.label_smoothing  │ 0.0                                                │
+│ loss.focal_gamma      │ 2.0                                                │
+│ loss.aucm_margin      │ 1.0                                                │
+│ loss.aucm_bce_mix     │ 0.1                                                │
+│ loss.huber_delta      │ 1.0                                                │
+│ optimizer.name        │ adamw                                              │
+│ optimizer.lr          │ 4e-05                                              │
+│ optimizer.head_lr     │ None                                               │
+│ optimizer.backbone_lr_mult│ 1.0                                            │
+│ optimizer.fresh_lr    │ None                                               │
+│ optimizer.layer_decay │ None                                               │
+│ optimizer.weight_decay│ 0.01                                               │
+│ optimizer.no_decay_bias_norm│ True                                         │
+│ optimizer.betas       │ [0.9, 0.999]                                       │
+│ optimizer.momentum    │ 0.9                                                │
+│ optimizer.nesterov    │ True                                               │
+│ optimizer.eight_bit   │ False                                              │
+│ scheduler.name        │ cosine                                             │
+│ scheduler.warmup_frac │ 0.05                                               │
+│ scheduler.min_lr_mult │ 0.01                                               │
+│ scheduler.schedule_epochs│ None                                            │
+│ scheduler.milestones  │ []                                                 │
+│ scheduler.gamma       │ 0.1                                                │
+│ early_stopping.enable │ True                                               │
+│ early_stopping.patience│ 8                                                 │
+│ early_stopping.reset_tag│ None                                             │
+│ ema.enable            │ False                                              │
+│ ema.decay             │ 0.999                                              │
+│ ema.warmup            │ True                                               │
+│ ema.eval              │ True                                               │
+│ sam.enable            │ False                                              │
+│ sam.rho               │ 0.05                                               │
+│ sam.adaptive          │ False                                              │
+│ extend.enable         │ False                                              │
+│ extend.epochs         │ 5                                                  │
+│ extend.lr             │ None                                               │
+│ extend.warmup_frac    │ 0.02                                               │
+│ extend.min_lr_mult    │ None                                               │
+│ extend.reset_optimizer│ False                                              │
+│ extend.reset_patience │ True                                               │
+└────────────────────────────────────────────────────────────────────────────┘
+┌─ 🔎 evaluation──────────────────────────────────────────────────────────────┐
+│ enable                │ True                                               │
+│ eval_every_epochs     │ 1                                                  │
+│ eval_every_steps      │ 0                                                  │
+│ eval_steps_schedule   │ [[3, 74]]                                          │
+│ validate_before_training│ True                                             │
+│ validate_on_resume    │ False                                              │
+└────────────────────────────────────────────────────────────────────────────┘
+┌─ 📝 logging─────────────────────────────────────────────────────────────────┐
+│ unit                  │ window                                             │
+│ sub_unit              │ None                                               │
+│ sub_units_per_sample  │ 1                                                  │
+│ console_log_every     │ 20                                                 │
+│ diagnostics_every     │ 50                                                 │
+│ flops_probe           │ True                                               │
+│ wandb.enabled         │ False                                              │
+│ wandb.project         │ None                                               │
+└────────────────────────────────────────────────────────────────────────────┘
+┌─ 📋 output──────────────────────────────────────────────────────────────────┐
+│ run_dir               │ results                                            │
+│ checkpoints_dir       │ checkpoints                                        │
+│ best_name             │ best.pt                                            │
+│ train_log_csv         │ train_log.csv                                      │
+│ val_log_csv           │ val_log.csv                                        │
+│ summary_json          │ training_summary.json                              │
+│ console_capture_dir   │ train_config                                       │
+│ debug_dir             │ debug                                              │
+│ predictions_dir       │ predictions                                        │
+│ save_predictions      │ True                                               │
+│ checkpoint_every_steps│ 20                                                 │
+│ keep_last_n           │ 30                                                 │
+│ keep_top_k            │ 3                                                  │
+│ top_k_weights_only    │ True                                               │
+│ async_checkpoints     │ True                                               │
+│ commit_every_steps    │ 25                                                 │
+│ make_plots            │ False                                              │
+│ plots_dir             │ plots                                              │
+│ upload_checkpoints    │ None                                               │
+└────────────────────────────────────────────────────────────────────────────┘
+┌─ ☁️ modal──────────────────────────────────────────────────────────────────┐
+│ gpu                   │ H200                                               │
+│ timeout_hours         │ 12                                                 │
+│ cpu                   │ 20                                                 │
+│ memory_gb             │ 64                                                 │
+│ scaledown_window      │ 2                                                  │
+│ python_version        │ 3.12                                               │
+│ pip                   │ ['torch==2.6.0', 'torchvision==0.21.0', 'transfo...│
+│ extra_pip             │ []                                                 │
+│ apt                   │ ['libgl1', 'libglib2.0-0']                         │
+│ runs_volume           │ safe-distance-runs                                 │
+│ runs_mount            │ /runs                                              │
+│ data_volume           │ safe-distance-data                                 │
+│ data_mount            │ /data                                              │
+│ ship_data_dir         │ False                                              │
+│ data_ignore           │ ['**/*.pt', '**/*.npz', '**/*.parquet', 'raw', '...│
+│ path_remap            │ {}                                                 │
+│ secrets               │ []                                                 │
+│ sync_checkpoints      │ False                                              │
+└────────────────────────────────────────────────────────────────────────────┘
+┌─ 🧠 model───────────────────────────────────────────────────────────────────┐
+│ name                  │ BADAS-Open + LoRA r16                              │
+│ pretrained            │ nexar-ai/BADAS-Open                                │
+└────────────────────────────────────────────────────────────────────────────┘
+┌─ 🔧 top level───────────────────────────────────────────────────────────────┐
+│ resume                │ last                                               │
+│ resume_force          │ False                                              │
+│ resume_guard          │ ['model.name', 'training.epochs', 'training.opti...│
+└────────────────────────────────────────────────────────────────────────────┘
+
+── raw merged config (verbatim) ───────────────────────────────────────────────
+experiment:
+  name: stage1_lora
+  run_id: run003
+  notes: 'stage 1: BADAS-Open + LoRA, Nexar + clean BDD100K'
+task:
+  type: binary
+  targets:
+  - crash_risk
+  num_classes: null
+metrics:
+  monitor: ap_crash_vs_all_normal
+  mode: max
+  threshold: 0.5
+  top_k:
+  - 3
+  qwk: false
+paths:
+  data_dir: data
+reproducibility:
+  seed: 42
+  deterministic: false
+dataloader:
+  batch_size: 16
+  accum_steps: 2
+  num_workers: 16
+  val_batch_size: 16
+  val_num_workers: null
+  pin_memory: true
+  persistent_workers: false
+  prefetch_factor: 2
+  drop_last: true
+training:
+  device: auto
+  epochs: 10
+  amp: true
+  amp_dtype: bfloat16
+  channels_last: false
+  grad_clip: 3.0
+  grad_clip_floor: 0.0
+  grad_checkpointing: false
+  backbone_chunk: 0
+  tf32: true
+  compile: false
+  compile_mode: default
+  lp_ft_epochs: 0
+  stop_after_steps: 0
+  loss:
+    name: bce
+    pos_weight: null
+    class_weight: null
+    label_smoothing: 0.0
+    focal_gamma: 2.0
+    aucm_margin: 1.0
+    aucm_bce_mix: 0.1
+    huber_delta: 1.0
+  optimizer:
+    name: adamw
+    lr: 4.0e-05
+    head_lr: null
+    backbone_lr_mult: 1.0
+    fresh_lr: null
+    layer_decay: null
+    weight_decay: 0.01
+    no_decay_bias_norm: true
+    betas:
+    - 0.9
+    - 0.999
+    momentum: 0.9
+    nesterov: true
+    eight_bit: false
+  scheduler:
+    name: cosine
+    warmup_frac: 0.05
+    min_lr_mult: 0.01
+    schedule_epochs: null
+    milestones: []
+    gamma: 0.1
+  early_stopping:
+    enable: true
+    patience: 8
+    reset_tag: null
+  ema:
+    enable: false
+    decay: 0.999
+    warmup: true
+    eval: true
+  sam:
+    enable: false
+    rho: 0.05
+    adaptive: false
+  extend:
+    enable: false
+    epochs: 5
+    lr: null
+    warmup_frac: 0.02
+    min_lr_mult: null
+    reset_optimizer: false
+    reset_patience: true
+evaluation:
+  enable: true
+  eval_every_epochs: 1
+  eval_every_steps: 0
+  eval_steps_schedule:
+  - - 3
+    - 74
+  validate_before_training: true
+  validate_on_resume: false
+logging:
+  unit: window
+  sub_unit: null
+  sub_units_per_sample: 1
+  console_log_every: 20
+  diagnostics_every: 50
+  flops_probe: true
+  print:
+    config: true
+    raw_config: true
+    environment: true
+    data: true
+    model: true
+    lr_groups: true
+    step_line: true
+    throughput: true
+    compute: true
+    ud_ratio: true
+    scale_probe: true
+    warmup: true
+    per_target_eval: true
+    final_summary: true
+    clip_warning: true
+  wandb:
+    enabled: false
+    project: null
+output:
+  run_dir: results
+  checkpoints_dir: checkpoints
+  best_name: best.pt
+  train_log_csv: train_log.csv
+  val_log_csv: val_log.csv
+  summary_json: training_summary.json
+  console_capture_dir: train_config
+  debug_dir: debug
+  predictions_dir: predictions
+  save_predictions: true
+  checkpoint_every_steps: 20
+  keep_last_n: 30
+  keep_top_k: 3
+  top_k_weights_only: true
+  async_checkpoints: true
+  commit_every_steps: 25
+  make_plots: false
+  plots_dir: plots
+  upload_checkpoints: null
+modal:
+  gpu: H200
+  timeout_hours: 12
+  cpu: 20
+  memory_gb: 64
+  scaledown_window: 2
+  python_version: '3.12'
+  pip:
+  - torch==2.6.0
+  - torchvision==0.21.0
+  - transformers==4.53.0
+  - peft==0.21.2
+  - huggingface_hub
+  - opencv-python-headless
+  - numpy
+  - pandas
+  - scikit-learn
+  - pyyaml
+  - matplotlib
+  - psutil
+  - nvidia-ml-py
+  - albumentations
+  extra_pip: []
+  apt:
+  - libgl1
+  - libglib2.0-0
+  runs_volume: safe-distance-runs
+  runs_mount: /runs
+  data_volume: safe-distance-data
+  data_mount: /data
+  ship_data_dir: false
+  data_ignore:
+  - '**/*.pt'
+  - '**/*.npz'
+  - '**/*.parquet'
+  - raw
+  - shards
+  - images
+  path_remap: {}
+  secrets: []
+  sync_checkpoints: false
+resume: last
+resume_force: false
+resume_guard:
+- model.name
+- training.epochs
+- training.optimizer.lr
+- training.optimizer.backbone_lr_mult
+- training.optimizer.layer_decay
+- training.optimizer.weight_decay
+- training.scheduler.name
+- training.grad_clip
+- task.type
+- task.targets
+model:
+  name: BADAS-Open + LoRA r16
+  pretrained: nexar-ai/BADAS-Open
+──────────────────────────────────────────────────────────────────────────────
+[paths] results -> /runs/stage1_lora/results
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 📦 DATA                                                                     ║
+╚════════════════════════════════════════════════════════════════════════════╝
+  📊 splits
+┌───────┬─────────┬─────────┬────────────┐
+│ split │ windows │ batches │ batch size │
+├───────┼─────────┼─────────┼────────────┤
+│ train │ 4,735   │ 295     │ 16         │
+│ val   │ 2,202   │ 138     │ 16         │
+└───────┴─────────┴─────────┴────────────┘
+  ⚖️ label balance
+┌────────────┬────────────┬────────────┬──────────┬──────────┐
+│ target     │ train mean │ train >0.5 │ val mean │ val >0.5 │
+├────────────┼────────────┼────────────┼──────────┼──────────┤
+│ crash_risk │ 0.149      │ 14.9%      │ 0.303    │ 30.3%    │
+└────────────┴────────────┴────────────┴──────────┴──────────┘
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 🧠 MODEL                                                                    ║
+╚════════════════════════════════════════════════════════════════════════════╝
+┌─ 🧱 architecture────────────────────────────────────────────────────────────┐
+│ class                 │ RiskModel                                          │
+│ name                  │ BADAS-Open + LoRA r16                              │
+│ pretrained            │ nexar-ai/BADAS-Open                                │
+│ has .backbone         │ False                                              │
+│ output logits         │ 1  (binary)                                        │
+├────────────────────────────────────────────────────────────────────────────┤
+│ total params          │ 345,628,036  (345.63 M)                            │
+│ trainable             │ 14,197,250  (14.20 M, 4.1%)                        │
+│ frozen                │ 331,430,786  (331.43 M)                            │
+│ param memory          │ 1318.5 MB                                          │
+└────────────────────────────────────────────────────────────────────────────┘
+  🧮 optimizer adamw  (2 param groups)
+┌───────┬─────────┬──────────┬──────────────┐
+│ group │ params  │ lr       │ weight_decay │
+├───────┼─────────┼──────────┼──────────────┤
+│ all   │ 14.067M │ 4.00e-05 │ 0.01         │
+│ all   │ 0.130M  │ 4.00e-05 │ 0.0          │
+└───────┴─────────┴──────────┴──────────────┘
+  📏 update/weight ratio logging: 444 weight tensors, every 50 steps -> ud_ratio.csv
+  📏 feature/logit scale probe on 'net.base_model.model.classifier.classifier.modules_to_save.default.8', every 50 steps
+[setup] optimizer=adamw  scheduler=cosine  amp=True (bfloat16)  grad scaler=False
+[setup] steps/epoch=148  total_steps=1480  accum=2  windows/optimizer-step=32
+[setup] loss=bce  train bs=16/16w  val bs=16/16w  monitor=val_ap_crash_vs_all_normal (max)  eval=every 74 steps from epoch 3 + every 1 epoch(s) at epoch end
+  ↩️  resuming from /runs/stage1_lora/results/checkpoints/step680.pt
+  ↩️  resumed at epoch 5, step 680, score=None
+  ↩️  mid-epoch resume: epoch 5 continues at optimizer step 88/148 (176 micro-batches skipped)
+  ↩️  restored: best=0.8834 @ epoch 5  patience=0/8  top_k=3  elapsed=1h02m44s
+
+======================================================================
+📚 EPOCH 5/10
+======================================================================
+  🎲 epoch 5: training windows (one per source, new random end points)
+┌──────────────────────┬───────┐
+│ windows              │ count │
+├──────────────────────┼───────┤
+│ total                │ 4735  │
+│ danger               │ 706   │
+│ danger label 1       │ 693   │
+│ danger ramp 0.7 to 1 │ 13    │
+│ safe crash clip part │ 703   │
+│ safe nexar normal    │ 750   │
+│ safe bdd100k         │ 2576  │
+│ danger share pct     │ 14.9  │
+└──────────────────────┴───────┘
+  🎞️  video watched so far: 10 h 31 min   left: 15 h 47 min   whole run: 26 h 19 min  (10 epochs; each window = 2 s)
+  [warn] train_log.csv has a different header, appending in its column order
+  📏 ud log10 (update / weight)
+     head    n=3   min  -3.77  mean  -3.69  median  -3.71  max  -3.60   (random head: want ~-3 or above)
+     trunk   n=441 min  -4.23  mean  -2.80  median  -2.95  max  -2.02   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  trunk hot (> -3, may damage the pretrained features): 224 tensors, e.g. net.base_model.model.backbone.encoder.embeddings.patch_embeddings.proj.lora_B.default.weight
+  📏 scale  features std 1.051  L2 29.1   |   logits std 5.930  |max| 8.06   |   head |W| 0.83
+──────────────────────────────────────────────────────────────────────
+  Epoch 5/10  epoch_step: 108/148  global_step: 700/1480
+     loss=0.0676  lr=2.359e-05  gnorm=2.44 (avg20 2.36, clip 15%)  elapsed=1h03m57s  ETA=1h11m15s  gpu_mem(peak)=128.84GB
+
+     throughput: 11 window/s compute | 9 window/s real (20-step) | data-wait 14%
+     ➤ END-TO-END: 6 window/s over the whole run (62% of in-loop) - 22,352 windows in 1h03m57s
+     compute:    MFU 18% (176.7 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 8% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 700 (rolling, keep_last_n=30)
+──────────────────────────────────────────────────────────────────────
+  Epoch 5/10  epoch_step: 128/148  global_step: 720/1480
+     loss=0.0126 (-0.0550)  lr=2.271e-05  gnorm=1.28 (avg40 2.21, clip 20%)  elapsed=1h04m54s  ETA=1h08m31s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (53% of in-loop) - 22,992 windows in 1h04m54s
+     compute:    MFU 18% (180.7 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 100% | mem ctrl busy 50%
+  💾 periodic checkpoint @ step 720 (rolling, keep_last_n=30)
+======================================================================
+🔎 VALIDATION (every 74 steps) - epoch 5/10  step 740  (138 batches, 2202 windows) ...
+----------------------------------------------------------------------
+  🔎 [VAL] epoch=5/10 step=740  n=2202  loss=0.3178 (-0.0287)  ⏱️ took=1m30s  elapsed=1h05m50s  ETA=1h05m50s
+     📊 macro_auroc=0.9491 (+0.0017)  macro_auprc=0.8865 (+0.0031)  precision=0.8239 (-0.0201)  recall=0.7216 (+0.0494)
+     📊 f1=0.7694 (+0.0210)  specificity=0.9329 (-0.0130)  logloss=0.3178 (-0.0287)  accuracy=0.8688 (+0.0059)
+     📊 ap_crash_vs_all_normal=0.8865 (+0.0031)  ap_crash_vs_nexar_normal=0.8922 (+0.0028)  ap_crash_vs_bdd_hard=0.9895 (+0.0006)  nexar_official_map=0.9314 (+0.0018)
+     📊 mean_risk_nexar_crash=0.7278 (+0.0472)  mean_risk_nexar_normal=0.1800 (+0.0345)  mean_risk_bdd_hard=0.0128 (+0.0036)
+        crash_risk             AUROC=0.9491  AUPRC=0.8865  precision=0.8239  recall=0.7216  f1=0.7694  specificity=0.9329  (n=668)
+     ⭐ new best val_ap_crash_vs_all_normal = 0.8865  (was 0.8834, +0.0031) -> best.pt
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 📋 STAGE 1 VALIDATION SUMMARY  epoch 5  step 740                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+  🏁 ranking quality: average precision (1.0 = every crash window above every normal one)
+┌────────────────────────────────────────────┬───────────────────────────┐
+│ measure                                    │ value                     │
+├────────────────────────────────────────────┼───────────────────────────┤
+│ Nexar crash vs ALL normal  (picks best.pt) │ 0.8865                    │
+│ Nexar crash vs Nexar normal                │ 0.8922                    │
+│ Nexar crash vs BDD100K val hard moments    │ 0.9895                    │
+│ Nexar official mAP (last frame, 3 groups)  │ 0.9314   (baseline 0.903) │
+│ calibration error (0 = honest risk values) │ 0.0695                    │
+└────────────────────────────────────────────┴───────────────────────────┘
+  📊 mean risk per window group
+┌─────────────┬──────────────┬──────────────────────────┐
+│ Nexar crash │ Nexar normal │ BDD100K val hard moments │
+├─────────────┼──────────────┼──────────────────────────┤
+│ 0.7278      │ 0.1800       │ 0.0128                   │
+└─────────────┴──────────────┴──────────────────────────┘
+  ⏱️ by Nexar test group (when the clip ends)
+┌────────────────────────┬─────────────────────────────┬────────────────┬─────────────────┬──────────────────────┬───────────────────────┐
+│ group                  │ official AP vs Nexar normal │ AP vs BDD hard │ mean crash risk │ crashes caught > 0.9 │ crashes caught > 0.99 │
+├────────────────────────┼─────────────────────────────┼────────────────┼─────────────────┼──────────────────────┼───────────────────────┤
+│ 0.5 s before the crash │ 0.9346                      │ 0.9867         │ 0.8336          │ 74.3%                │ 53.5%                 │
+│ 1.0 s before the crash │ 0.9267                      │ 0.9728         │ 0.7161          │ 55.6%                │ 32.6%                 │
+│ 1.5 s before the crash │ 0.9328                      │ 0.9222         │ 0.5501          │ 31.2%                │ 9.7%                  │
+└────────────────────────┴─────────────────────────────┴────────────────┴─────────────────┴──────────────────────┴───────────────────────┘
+  🎚️ at each threshold: share of windows with risk above it
+┌───────────┬──────────────────────────────┬─────────────────────────────┬─────────────────────────────────────┐
+│ threshold │ crashes caught (Nexar crash) │ false alarms (Nexar normal) │ false alarms (BDD100K hard moments) │
+├───────────┼──────────────────────────────┼─────────────────────────────┼─────────────────────────────────────┤
+│ 0.5       │ 72.2%                        │ 14.6%                       │ 0.7%                                │
+│ 0.8       │ 62.6%                        │ 8.7%                        │ 0.2%                                │
+│ 0.9       │ 57.9%                        │ 5.6%                        │ 0.0%                                │
+│ 0.93      │ 54.5%                        │ 4.7%                        │ 0.0%                                │
+│ 0.95      │ 52.5%                        │ 4.2%                        │ 0.0%                                │
+│ 0.97      │ 48.6%                        │ 3.1%                        │ 0.0%                                │
+│ 0.98      │ 43.6%                        │ 2.5%                        │ 0.0%                                │
+│ 0.99      │ 36.2%                        │ 1.5%                        │ 0.0%                                │
+│ 0.993     │ 30.8%                        │ 0.9%                        │ 0.0%                                │
+│ 0.995     │ 26.5%                        │ 0.6%                        │ 0.0%                                │
+│ 0.997     │ 18.7%                        │ 0.3%                        │ 0.0%                                │
+└───────────┴──────────────────────────────┴─────────────────────────────┴─────────────────────────────────────┘
+  🎞️ video the model has trained on (each window = 2 s of video)
+┌───────────────────────┬─────────────┐
+│                       │ hours       │
+├───────────────────────┼─────────────┤
+│ watched so far        │ 13 h 09 min │
+│ left in this run      │ 13 h 09 min │
+│ whole run (10 epochs) │ 26 h 19 min │
+└───────────────────────┴─────────────┘
+  💰 cost
+┌──────────────────────────────────┬──────────────────────────┐
+│ item                             │ value                    │
+├──────────────────────────────────┼──────────────────────────┤
+│ cost so far (GPU + CPU + memory) │ $6.58  at $6.00 per hour │
+│ estimated time per epoch         │ 15.9 min                 │
+│ estimated cost per epoch         │ $1.59                    │
+│ estimated cost for 10 epochs     │ $15.90                   │
+└──────────────────────────────────┴──────────────────────────┘
+══════════════════════════════════════════════════════════════════════════════
+
+  🗑️  evicted top_step518.pt (score 0.8724, epoch 4) - pushed out of the top-3
+  💾 best.pt written (score 0.8865)
+  📦 predictions saved (val:2202) -> predictions/
+  💾 saved last.pt (epoch 5)  🏆 top-3 kept
+──────────────────────────────────────────────────────────────────────
+  Epoch 5/10  epoch_step: 148/148  global_step: 740/1480
+     loss=0.1417 (+0.1291)  lr=2.184e-05  gnorm=8.09 (avg50 2.37, clip 22%)  elapsed=1h05m50s  ETA=1h05m50s  gpu_mem(peak)=128.84GB  +0m55s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (53% of in-loop) - 23,616 windows in 1h07m23s
+     compute:    MFU 18% (180.2 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 0% | mem ctrl busy 0%
+
+======================================================================
+📚 EPOCH 6/10
+======================================================================
+  🎲 epoch 6: training windows (one per source, new random end points)
+┌──────────────────────┬───────┐
+│ windows              │ count │
+├──────────────────────┼───────┤
+│ total                │ 4735  │
+│ danger               │ 706   │
+│ danger label 1       │ 692   │
+│ danger ramp 0.7 to 1 │ 14    │
+│ safe crash clip part │ 703   │
+│ safe nexar normal    │ 750   │
+│ safe bdd100k         │ 2576  │
+│ danger share pct     │ 14.9  │
+└──────────────────────┴───────┘
+  🎞️  video watched so far: 13 h 09 min   left: 13 h 09 min   whole run: 26 h 19 min  (10 epochs; each window = 2 s)
+  💾 periodic checkpoint @ step 740 (rolling, keep_last_n=30)
+  📏 ud log10 (update / weight)
+     head    n=3   min  -3.78  mean  -3.72  median  -3.74  max  -3.64   (random head: want ~-3 or above)
+     trunk   n=441 min  -3.94  mean  -2.85  median  -3.07  max  -2.04   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  trunk hot (> -3, may damage the pretrained features): 219 tensors, e.g. net.base_model.model.backbone.encoder.embeddings.patch_embeddings.proj.lora_B.default.weight
+  📏 scale  features std 1.058  L2 29.3   |   logits std 5.938  |max| 7.81   |   head |W| 0.83
+──────────────────────────────────────────────────────────────────────
+  Epoch 6/10  epoch_step: 20/148  global_step: 760/1480
+     loss=0.0099 (-0.1318)  lr=2.095e-05  gnorm=3.06 (avg50 2.65, clip 22%)  elapsed=1h08m28s  ETA=1h04m52s  gpu_mem(peak)=128.84GB  +2m38s/20st
+
+     throughput: 11 window/s compute | 10 window/s real (20-step) | data-wait 7%
+     ➤ END-TO-END: 6 window/s over the whole run (57% of in-loop) - 24,256 windows in 1h08m28s
+     compute:    MFU 18% (180.3 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 7% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 760 (rolling, keep_last_n=30)
+──────────────────────────────────────────────────────────────────────
+  Epoch 6/10  epoch_step: 40/148  global_step: 780/1480
+     loss=0.0683 (+0.0584)  lr=2.007e-05  gnorm=1.66 (avg50 2.66, clip 21%)  elapsed=1h09m25s  ETA=1h02m18s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (53% of in-loop) - 24,896 windows in 1h09m26s
+     compute:    MFU 18% (180.5 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 5% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 780 (rolling, keep_last_n=30)
+  📏 ud log10 (update / weight)
+     head    n=3   min  -3.76  mean  -3.71  median  -3.72  max  -3.66   (random head: want ~-3 or above)
+     trunk   n=441 min  -4.22  mean  -3.01  median  -3.13  max  -2.10   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  trunk hot (> -3, may damage the pretrained features): 219 tensors, e.g. net.base_model.model.backbone.encoder.embeddings.patch_embeddings.proj.lora_B.default.weight
+  📏 scale  features std 1.059  L2 29.3   |   logits std 6.219  |max| 7.97   |   head |W| 0.83
+──────────────────────────────────────────────────────────────────────
+  Epoch 6/10  epoch_step: 60/148  global_step: 800/1480
+     loss=0.0585 (-0.0098)  lr=1.918e-05  gnorm=2.22 (avg50 2.08, clip 19%)  elapsed=1h10m22s  ETA=59m49s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (54% of in-loop) - 25,536 windows in 1h10m23s
+     compute:    MFU 18% (176.8 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 6% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 800 (rolling, keep_last_n=30)
+======================================================================
+🔎 VALIDATION (every 74 steps) - epoch 6/10  step 814  (138 batches, 2202 windows) ...
+----------------------------------------------------------------------
+  🔎 [VAL] epoch=6/10 step=814  n=2202  loss=0.3092 (-0.0086)  ⏱️ took=1m30s  elapsed=1h11m03s  ETA=58m07s
+     📊 macro_auroc=0.9500 (+0.0009)  macro_auprc=0.8882 (+0.0016)  precision=0.8351 (+0.0112)  recall=0.6976 (-0.0240)
+     📊 f1=0.7602 (-0.0092)  specificity=0.9400 (+0.0072)  logloss=0.3092 (-0.0086)  accuracy=0.8665 (-0.0023)
+     📊 ap_crash_vs_all_normal=0.8882 (+0.0016)  ap_crash_vs_nexar_normal=0.8927 (+0.0006)  ap_crash_vs_bdd_hard=0.9913 (+0.0019)  nexar_official_map=0.9311 (-0.0003)
+     📊 mean_risk_nexar_crash=0.6924 (-0.0354)  mean_risk_nexar_normal=0.1588 (-0.0212)  mean_risk_bdd_hard=0.0089 (-0.0039)
+        crash_risk             AUROC=0.9500  AUPRC=0.8882  precision=0.8351  recall=0.6976  f1=0.7602  specificity=0.9400  (n=668)
+     ⭐ new best val_ap_crash_vs_all_normal = 0.8882  (was 0.8865, +0.0016) -> best.pt
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 📋 STAGE 1 VALIDATION SUMMARY  epoch 6  step 814                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+  🏁 ranking quality: average precision (1.0 = every crash window above every normal one)
+┌────────────────────────────────────────────┬───────────────────────────┐
+│ measure                                    │ value                     │
+├────────────────────────────────────────────┼───────────────────────────┤
+│ Nexar crash vs ALL normal  (picks best.pt) │ 0.8882                    │
+│ Nexar crash vs Nexar normal                │ 0.8927                    │
+│ Nexar crash vs BDD100K val hard moments    │ 0.9913                    │
+│ Nexar official mAP (last frame, 3 groups)  │ 0.9311   (baseline 0.903) │
+│ calibration error (0 = honest risk values) │ 0.0652                    │
+└────────────────────────────────────────────┴───────────────────────────┘
+  📊 mean risk per window group
+┌─────────────┬──────────────┬──────────────────────────┐
+│ Nexar crash │ Nexar normal │ BDD100K val hard moments │
+├─────────────┼──────────────┼──────────────────────────┤
+│ 0.6924      │ 0.1588       │ 0.0089                   │
+└─────────────┴──────────────┴──────────────────────────┘
+  ⏱️ by Nexar test group (when the clip ends)
+┌────────────────────────┬─────────────────────────────┬────────────────┬─────────────────┬──────────────────────┬───────────────────────┐
+│ group                  │ official AP vs Nexar normal │ AP vs BDD hard │ mean crash risk │ crashes caught > 0.9 │ crashes caught > 0.99 │
+├────────────────────────┼─────────────────────────────┼────────────────┼─────────────────┼──────────────────────┼───────────────────────┤
+│ 0.5 s before the crash │ 0.9379                      │ 0.9893         │ 0.8113          │ 68.7%                │ 28.5%                 │
+│ 1.0 s before the crash │ 0.9265                      │ 0.9776         │ 0.6775          │ 47.8%                │ 8.3%                  │
+│ 1.5 s before the crash │ 0.9289                      │ 0.9341         │ 0.4952          │ 20.8%                │ 2.6%                  │
+└────────────────────────┴─────────────────────────────┴────────────────┴─────────────────┴──────────────────────┴───────────────────────┘
+  🎚️ at each threshold: share of windows with risk above it
+┌───────────┬──────────────────────────────┬─────────────────────────────┬─────────────────────────────────────┐
+│ threshold │ crashes caught (Nexar crash) │ false alarms (Nexar normal) │ false alarms (BDD100K hard moments) │
+├───────────┼──────────────────────────────┼─────────────────────────────┼─────────────────────────────────────┤
+│ 0.5       │ 69.8%                        │ 13.2%                       │ 0.5%                                │
+│ 0.8       │ 57.5%                        │ 5.6%                        │ 0.0%                                │
+│ 0.9       │ 50.5%                        │ 4.2%                        │ 0.0%                                │
+│ 0.93      │ 46.0%                        │ 3.0%                        │ 0.0%                                │
+│ 0.95      │ 40.6%                        │ 2.2%                        │ 0.0%                                │
+│ 0.97      │ 32.9%                        │ 1.1%                        │ 0.0%                                │
+│ 0.98      │ 28.1%                        │ 0.6%                        │ 0.0%                                │
+│ 0.99      │ 15.6%                        │ 0.1%                        │ 0.0%                                │
+│ 0.993     │ 9.4%                         │ 0.1%                        │ 0.0%                                │
+│ 0.995     │ 4.3%                         │ 0.0%                        │ 0.0%                                │
+│ 0.997     │ 0.3%                         │ 0.0%                        │ 0.0%                                │
+└───────────┴──────────────────────────────┴─────────────────────────────┴─────────────────────────────────────┘
+  🎞️ video the model has trained on (each window = 2 s of video)
+┌───────────────────────┬─────────────┐
+│                       │ hours       │
+├───────────────────────┼─────────────┤
+│ watched so far        │ 14 h 28 min │
+│ left in this run      │ 11 h 50 min │
+│ whole run (10 epochs) │ 26 h 19 min │
+└───────────────────────┴─────────────┘
+  💰 cost
+┌──────────────────────────────────┬──────────────────────────┐
+│ item                             │ value                    │
+├──────────────────────────────────┼──────────────────────────┤
+│ cost so far (GPU + CPU + memory) │ $7.10  at $6.00 per hour │
+│ estimated time per epoch         │ 15.4 min                 │
+│ estimated cost per epoch         │ $1.54                    │
+│ estimated cost for 10 epochs     │ $15.40                   │
+└──────────────────────────────────┴──────────────────────────┘
+══════════════════════════════════════════════════════════════════════════════
+
+  🗑️  evicted top_step444.pt (score 0.8732, epoch 3) - pushed out of the top-3
+  💾 best.pt written (score 0.8882)
+  📦 predictions saved (val:2202) -> predictions/
+  💾 saved last.pt (epoch 6)  🏆 top-3 kept
+──────────────────────────────────────────────────────────────────────
+  Epoch 6/10  epoch_step: 80/148  global_step: 820/1480
+     loss=0.0534 (-0.0051)  lr=1.830e-05  gnorm=2.04 (avg50 1.94, clip 19%)  elapsed=1h12m52s  ETA=58m39s  gpu_mem(peak)=128.84GB  +2m29s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (53% of in-loop) - 26,176 windows in 1h12m52s
+     compute:    MFU 18% (180.6 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 60% | mem ctrl busy 29%
+  💾 periodic checkpoint @ step 820 (rolling, keep_last_n=30)
+──────────────────────────────────────────────────────────────────────
+  Epoch 6/10  epoch_step: 100/148  global_step: 840/1480
+     loss=0.0361 (-0.0173)  lr=1.742e-05  gnorm=0.63 (avg50 2.06, clip 19%)  elapsed=1h13m49s  ETA=56m14s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (54% of in-loop) - 26,816 windows in 1h13m49s
+     compute:    MFU 18% (179.8 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 35% | mem ctrl busy 15%
+  💾 periodic checkpoint @ step 840 (rolling, keep_last_n=30)
+  📏 ud log10 (update / weight)
+     head    n=3   min  -3.83  mean  -3.79  median  -3.78  max  -3.76   (random head: want ~-3 or above)
+     trunk   n=441 min  -4.01  mean  -2.99  median  -3.17  max  -2.03   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  trunk hot (> -3, may damage the pretrained features): 219 tensors, e.g. net.base_model.model.backbone.encoder.embeddings.patch_embeddings.proj.lora_B.default.weight
+  📏 scale  features std 1.055  L2 29.2   |   logits std 6.084  |max| 8.25   |   head |W| 0.83
+──────────────────────────────────────────────────────────────────────
+  Epoch 6/10  epoch_step: 120/148  global_step: 860/1480
+     loss=0.0483 (+0.0123)  lr=1.655e-05  gnorm=1.07 (avg50 2.23, clip 21%)  elapsed=1h14m46s  ETA=53m54s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (55% of in-loop) - 27,456 windows in 1h14m47s
+     compute:    MFU 18% (179.8 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 62% | mem ctrl busy 29%
+  💾 periodic checkpoint @ step 860 (rolling, keep_last_n=30)
+──────────────────────────────────────────────────────────────────────
+  Epoch 6/10  epoch_step: 140/148  global_step: 880/1480
+     loss=0.0119 (-0.0365)  lr=1.568e-05  gnorm=2.32 (avg50 2.10, clip 19%)  elapsed=1h15m43s  ETA=51m38s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (55% of in-loop) - 28,096 windows in 1h15m44s
+     compute:    MFU 18% (180.7 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 11% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 880 (rolling, keep_last_n=30)
+======================================================================
+🔎 VALIDATION (every 74 steps) - epoch 6/10  step 888  (138 batches, 2202 windows) ...
+----------------------------------------------------------------------
+  🔎 [VAL] epoch=6/10 step=888  n=2202  loss=0.2987 (-0.0105)  ⏱️ took=1m29s  elapsed=1h16m05s  ETA=50m43s
+     📊 macro_auroc=0.9511 (+0.0012)  macro_auprc=0.8908 (+0.0026)  precision=0.8174 (-0.0177)  recall=0.7305 (+0.0329)
+     📊 f1=0.7715 (+0.0113)  specificity=0.9289 (-0.0111)  logloss=0.2987 (-0.0105)  accuracy=0.8688 (+0.0023)
+     📊 ap_crash_vs_all_normal=0.8908 (+0.0026)  ap_crash_vs_nexar_normal=0.8937 (+0.0010)  ap_crash_vs_bdd_hard=0.9938 (+0.0025)  nexar_official_map=0.9319 (+0.0008)
+     📊 mean_risk_nexar_crash=0.7182 (+0.0258)  mean_risk_nexar_normal=0.1781 (+0.0194)  mean_risk_bdd_hard=0.0067 (-0.0022)
+        crash_risk             AUROC=0.9511  AUPRC=0.8908  precision=0.8174  recall=0.7305  f1=0.7715  specificity=0.9289  (n=668)
+     ⭐ new best val_ap_crash_vs_all_normal = 0.8908  (was 0.8882, +0.0026) -> best.pt
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 📋 STAGE 1 VALIDATION SUMMARY  epoch 6  step 888                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+  🏁 ranking quality: average precision (1.0 = every crash window above every normal one)
+┌────────────────────────────────────────────┬───────────────────────────┐
+│ measure                                    │ value                     │
+├────────────────────────────────────────────┼───────────────────────────┤
+│ Nexar crash vs ALL normal  (picks best.pt) │ 0.8908                    │
+│ Nexar crash vs Nexar normal                │ 0.8937                    │
+│ Nexar crash vs BDD100K val hard moments    │ 0.9938                    │
+│ Nexar official mAP (last frame, 3 groups)  │ 0.9319   (baseline 0.903) │
+│ calibration error (0 = honest risk values) │ 0.0621                    │
+└────────────────────────────────────────────┴───────────────────────────┘
+  📊 mean risk per window group
+┌─────────────┬──────────────┬──────────────────────────┐
+│ Nexar crash │ Nexar normal │ BDD100K val hard moments │
+├─────────────┼──────────────┼──────────────────────────┤
+│ 0.7182      │ 0.1781       │ 0.0067                   │
+└─────────────┴──────────────┴──────────────────────────┘
+  ⏱️ by Nexar test group (when the clip ends)
+┌────────────────────────┬─────────────────────────────┬────────────────┬─────────────────┬──────────────────────┬───────────────────────┐
+│ group                  │ official AP vs Nexar normal │ AP vs BDD hard │ mean crash risk │ crashes caught > 0.9 │ crashes caught > 0.99 │
+├────────────────────────┼─────────────────────────────┼────────────────┼─────────────────┼──────────────────────┼───────────────────────┤
+│ 0.5 s before the crash │ 0.9330                      │ 0.9914         │ 0.8168          │ 69.7%                │ 20.1%                 │
+│ 1.0 s before the crash │ 0.9282                      │ 0.9854         │ 0.7089          │ 48.7%                │ 6.1%                  │
+│ 1.5 s before the crash │ 0.9347                      │ 0.9569         │ 0.5502          │ 24.0%                │ 1.9%                  │
+└────────────────────────┴─────────────────────────────┴────────────────┴─────────────────┴──────────────────────┴───────────────────────┘
+  🎚️ at each threshold: share of windows with risk above it
+┌───────────┬──────────────────────────────┬─────────────────────────────┬─────────────────────────────────────┐
+│ threshold │ crashes caught (Nexar crash) │ false alarms (Nexar normal) │ false alarms (BDD100K hard moments) │
+├───────────┼──────────────────────────────┼─────────────────────────────┼─────────────────────────────────────┤
+│ 0.5       │ 73.0%                        │ 16.1%                       │ 0.2%                                │
+│ 0.8       │ 60.8%                        │ 7.1%                        │ 0.0%                                │
+│ 0.9       │ 52.0%                        │ 4.2%                        │ 0.0%                                │
+│ 0.93      │ 47.3%                        │ 3.3%                        │ 0.0%                                │
+│ 0.95      │ 40.4%                        │ 2.1%                        │ 0.0%                                │
+│ 0.97      │ 31.9%                        │ 0.9%                        │ 0.0%                                │
+│ 0.98      │ 24.9%                        │ 0.6%                        │ 0.0%                                │
+│ 0.99      │ 11.1%                        │ 0.1%                        │ 0.0%                                │
+│ 0.993     │ 4.3%                         │ 0.0%                        │ 0.0%                                │
+│ 0.995     │ 0.6%                         │ 0.0%                        │ 0.0%                                │
+│ 0.997     │ 0.0%                         │ 0.0%                        │ 0.0%                                │
+└───────────┴──────────────────────────────┴─────────────────────────────┴─────────────────────────────────────┘
+  🎞️ video the model has trained on (each window = 2 s of video)
+┌───────────────────────┬─────────────┐
+│                       │ hours       │
+├───────────────────────┼─────────────┤
+│ watched so far        │ 15 h 47 min │
+│ left in this run      │ 10 h 31 min │
+│ whole run (10 epochs) │ 26 h 19 min │
+└───────────────────────┴─────────────┘
+  💰 cost
+┌──────────────────────────────────┬──────────────────────────┐
+│ item                             │ value                    │
+├──────────────────────────────────┼──────────────────────────┤
+│ cost so far (GPU + CPU + memory) │ $7.61  at $6.00 per hour │
+│ estimated time per epoch         │ 14.9 min                 │
+│ estimated cost per epoch         │ $1.49                    │
+│ estimated cost for 10 epochs     │ $14.90                   │
+└──────────────────────────────────┴──────────────────────────┘
+══════════════════════════════════════════════════════════════════════════════
+
+  🗑️  evicted top_step666.pt (score 0.8834, epoch 5) - pushed out of the top-3
+  💾 best.pt written (score 0.8908)
+  📦 predictions saved (val:2202) -> predictions/
+
+======================================================================
+📚 EPOCH 7/10
+======================================================================
+  🎲 epoch 7: training windows (one per source, new random end points)
+┌──────────────────────┬───────┐
+│ windows              │ count │
+├──────────────────────┼───────┤
+│ total                │ 4735  │
+│ danger               │ 706   │
+│ danger label 1       │ 695   │
+│ danger ramp 0.7 to 1 │ 11    │
+│ safe crash clip part │ 703   │
+│ safe nexar normal    │ 750   │
+│ safe bdd100k         │ 2576  │
+│ danger share pct     │ 14.9  │
+└──────────────────────┴───────┘
+  🎞️  video watched so far: 15 h 47 min   left: 10 h 31 min   whole run: 26 h 19 min  (10 epochs; each window = 2 s)
+  💾 saved last.pt (epoch 6)  🏆 top-3 kept
+  📏 ud log10 (update / weight)
+     head    n=3   min  -4.03  mean  -4.01  median  -4.03  max  -3.96   (random head: want ~-3 or above)
+     trunk   n=441 min  -4.26  mean  -3.15  median  -3.28  max  -2.34   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  trunk hot (> -3, may damage the pretrained features): 219 tensors, e.g. net.base_model.model.backbone.encoder.embeddings.patch_embeddings.proj.lora_B.default.weight
+  📏 scale  features std 1.055  L2 29.2   |   logits std 5.484  |max| 8.00   |   head |W| 0.83
+──────────────────────────────────────────────────────────────────────
+  Epoch 7/10  epoch_step: 12/148  global_step: 900/1480
+     loss=0.1043 (+0.0924)  lr=1.483e-05  gnorm=1.72 (avg50 2.01, clip 19%)  elapsed=1h18m15s  ETA=50m26s  gpu_mem(peak)=128.84GB  +2m32s/20st
+
+     throughput: 11 window/s compute | 10 window/s real (12-step) | data-wait 6%
+     ➤ END-TO-END: 6 window/s over the whole run (59% of in-loop) - 28,720 windows in 1h18m16s
+     compute:    MFU 18% (177.0 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 0% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 900 (rolling, keep_last_n=30)
+──────────────────────────────────────────────────────────────────────
+  Epoch 7/10  epoch_step: 32/148  global_step: 920/1480
+     loss=0.0707 (-0.0336)  lr=1.398e-05  gnorm=1.42 (avg50 2.13, clip 19%)  elapsed=1h19m13s  ETA=48m13s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (55% of in-loop) - 29,360 windows in 1h19m13s
+     compute:    MFU 18% (180.4 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 5% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 920 (rolling, keep_last_n=30)
+──────────────────────────────────────────────────────────────────────
+  Epoch 7/10  epoch_step: 52/148  global_step: 940/1480
+     loss=0.3139 (+0.2432)  lr=1.315e-05  gnorm=2.44 (avg50 2.15, clip 18%)  elapsed=1h20m10s  ETA=46m03s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (55% of in-loop) - 30,000 windows in 1h20m11s
+     compute:    MFU 18% (180.8 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 100% | mem ctrl busy 53%
+  💾 periodic checkpoint @ step 940 (rolling, keep_last_n=30)
+  📏 ud log10 (update / weight)
+     head    n=3   min  -3.97  mean  -3.94  median  -3.93  max  -3.91   (random head: want ~-3 or above)
+     trunk   n=441 min  -4.25  mean  -3.20  median  -3.30  max  -2.27   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  trunk hot (> -3, may damage the pretrained features): 219 tensors, e.g. net.base_model.model.backbone.encoder.embeddings.patch_embeddings.proj.lora_B.default.weight
+  📏 scale  features std 1.057  L2 29.3   |   logits std 6.243  |max| 8.38   |   head |W| 0.83
+──────────────────────────────────────────────────────────────────────
+  Epoch 7/10  epoch_step: 72/148  global_step: 960/1480
+     loss=0.0283 (-0.2856)  lr=1.233e-05  gnorm=1.59 (avg50 2.27, clip 18%)  elapsed=1h21m07s  ETA=43m56s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (56% of in-loop) - 30,640 windows in 1h21m08s
+     compute:    MFU 18% (180.5 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 100% | mem ctrl busy 50%
+  💾 periodic checkpoint @ step 960 (rolling, keep_last_n=30)
+======================================================================
+🔎 VALIDATION (every 74 steps) - epoch 7/10  step 962  (138 batches, 2202 windows) ...
+----------------------------------------------------------------------
+  🔎 [VAL] epoch=7/10 step=962  n=2202  loss=0.3076 (+0.0090)  ⏱️ took=1m27s  elapsed=1h21m13s  ETA=43m44s
+     📊 macro_auroc=0.9511 (-0.0000)  macro_auprc=0.8911 (+0.0003)  precision=0.8319 (+0.0145)  recall=0.7111 (-0.0195)
+     📊 f1=0.7667 (-0.0048)  specificity=0.9374 (+0.0085)  logloss=0.3076 (+0.0090)  accuracy=0.8688 (+0.0000)
+     📊 ap_crash_vs_all_normal=0.8911 (+0.0003)  ap_crash_vs_nexar_normal=0.8927 (-0.0010)  ap_crash_vs_bdd_hard=0.9964 (+0.0026)  nexar_official_map=0.9302 (-0.0017)
+     📊 mean_risk_nexar_crash=0.6947 (-0.0234)  mean_risk_nexar_normal=0.1657 (-0.0124)  mean_risk_bdd_hard=0.0032 (-0.0035)
+        crash_risk             AUROC=0.9511  AUPRC=0.8911  precision=0.8319  recall=0.7111  f1=0.7667  specificity=0.9374  (n=668)
+     ⭐ new best val_ap_crash_vs_all_normal = 0.8911  (was 0.8908, +0.0003) -> best.pt
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 📋 STAGE 1 VALIDATION SUMMARY  epoch 7  step 962                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+  🏁 ranking quality: average precision (1.0 = every crash window above every normal one)
+┌────────────────────────────────────────────┬───────────────────────────┐
+│ measure                                    │ value                     │
+├────────────────────────────────────────────┼───────────────────────────┤
+│ Nexar crash vs ALL normal  (picks best.pt) │ 0.8911                    │
+│ Nexar crash vs Nexar normal                │ 0.8927                    │
+│ Nexar crash vs BDD100K val hard moments    │ 0.9964                    │
+│ Nexar official mAP (last frame, 3 groups)  │ 0.9302   (baseline 0.903) │
+│ calibration error (0 = honest risk values) │ 0.0634                    │
+└────────────────────────────────────────────┴───────────────────────────┘
+  📊 mean risk per window group
+┌─────────────┬──────────────┬──────────────────────────┐
+│ Nexar crash │ Nexar normal │ BDD100K val hard moments │
+├─────────────┼──────────────┼──────────────────────────┤
+│ 0.6947      │ 0.1657       │ 0.0032                   │
+└─────────────┴──────────────┴──────────────────────────┘
+  ⏱️ by Nexar test group (when the clip ends)
+┌────────────────────────┬─────────────────────────────┬────────────────┬─────────────────┬──────────────────────┬───────────────────────┐
+│ group                  │ official AP vs Nexar normal │ AP vs BDD hard │ mean crash risk │ crashes caught > 0.9 │ crashes caught > 0.99 │
+├────────────────────────┼─────────────────────────────┼────────────────┼─────────────────┼──────────────────────┼───────────────────────┤
+│ 0.5 s before the crash │ 0.9344                      │ 0.9948         │ 0.7987          │ 66.2%                │ 16.9%                 │
+│ 1.0 s before the crash │ 0.9245                      │ 0.9919         │ 0.6817          │ 44.8%                │ 5.7%                  │
+│ 1.5 s before the crash │ 0.9318                      │ 0.9734         │ 0.5225          │ 21.4%                │ 0.7%                  │
+└────────────────────────┴─────────────────────────────┴────────────────┴─────────────────┴──────────────────────┴───────────────────────┘
+  🎚️ at each threshold: share of windows with risk above it
+┌───────────┬──────────────────────────────┬─────────────────────────────┬─────────────────────────────────────┐
+│ threshold │ crashes caught (Nexar crash) │ false alarms (Nexar normal) │ false alarms (BDD100K hard moments) │
+├───────────┼──────────────────────────────┼─────────────────────────────┼─────────────────────────────────────┤
+│ 0.5       │ 71.1%                        │ 14.4%                       │ 0.0%                                │
+│ 0.8       │ 58.5%                        │ 6.0%                        │ 0.0%                                │
+│ 0.9       │ 48.5%                        │ 3.3%                        │ 0.0%                                │
+│ 0.93      │ 43.3%                        │ 2.5%                        │ 0.0%                                │
+│ 0.95      │ 35.9%                        │ 1.2%                        │ 0.0%                                │
+│ 0.97      │ 28.1%                        │ 0.8%                        │ 0.0%                                │
+│ 0.98      │ 21.9%                        │ 0.3%                        │ 0.0%                                │
+│ 0.99      │ 9.3%                         │ 0.0%                        │ 0.0%                                │
+│ 0.993     │ 4.3%                         │ 0.0%                        │ 0.0%                                │
+│ 0.995     │ 1.2%                         │ 0.0%                        │ 0.0%                                │
+│ 0.997     │ 0.0%                         │ 0.0%                        │ 0.0%                                │
+└───────────┴──────────────────────────────┴─────────────────────────────┴─────────────────────────────────────┘
+  🎞️ video the model has trained on (each window = 2 s of video)
+┌───────────────────────┬─────────────┐
+│                       │ hours       │
+├───────────────────────┼─────────────┤
+│ watched so far        │ 17 h 06 min │
+│ left in this run      │ 9 h 13 min  │
+│ whole run (10 epochs) │ 26 h 19 min │
+└───────────────────────┴─────────────┘
+  💰 cost
+┌──────────────────────────────────┬──────────────────────────┐
+│ item                             │ value                    │
+├──────────────────────────────────┼──────────────────────────┤
+│ cost so far (GPU + CPU + memory) │ $8.12  at $6.00 per hour │
+│ estimated time per epoch         │ 14.5 min                 │
+│ estimated cost per epoch         │ $1.45                    │
+│ estimated cost for 10 epochs     │ $14.50                   │
+└──────────────────────────────────┴──────────────────────────┘
+══════════════════════════════════════════════════════════════════════════════
+
+  🗑️  evicted top_step740.pt (score 0.8865, epoch 5) - pushed out of the top-3
+  💾 best.pt written (score 0.8911)
+  📦 predictions saved (val:2202) -> predictions/
+  💾 saved last.pt (epoch 7)  🏆 top-3 kept
+──────────────────────────────────────────────────────────────────────
+  Epoch 7/10  epoch_step: 92/148  global_step: 980/1480
+     loss=0.0147 (-0.0136)  lr=1.152e-05  gnorm=3.03 (avg50 2.13, clip 19%)  elapsed=1h23m33s  ETA=42m37s  gpu_mem(peak)=128.84GB  +2m25s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (55% of in-loop) - 31,280 windows in 1h23m33s
+     compute:    MFU 18% (180.6 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 64% | mem ctrl busy 30%
+  💾 periodic checkpoint @ step 980 (rolling, keep_last_n=30)
+  📏 ud log10 (update / weight)
+     head    n=3   min  -3.98  mean  -3.93  median  -3.96  max  -3.84   (random head: want ~-3 or above)
+     trunk   n=441 min  -4.34  mean  -3.30  median  -3.41  max  -2.50   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  trunk hot (> -3, may damage the pretrained features): 219 tensors, e.g. net.base_model.model.backbone.encoder.embeddings.patch_embeddings.proj.lora_B.default.weight
+  📏 scale  features std 1.060  L2 29.4   |   logits std 5.064  |max| 8.12   |   head |W| 0.83
+──────────────────────────────────────────────────────────────────────
+  Epoch 7/10  epoch_step: 112/148  global_step: 1000/1480
+     loss=0.2855 (+0.2708)  lr=1.074e-05  gnorm=2.43 (avg50 2.28, clip 19%)  elapsed=1h24m31s  ETA=40m34s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (57% of in-loop) - 31,920 windows in 1h24m31s
+     compute:    MFU 18% (174.8 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 35% | mem ctrl busy 7%
+  💾 periodic checkpoint @ step 1000 (rolling, keep_last_n=30)
+──────────────────────────────────────────────────────────────────────
+  Epoch 7/10  epoch_step: 132/148  global_step: 1020/1480
+     loss=0.0895 (-0.1960)  lr=9.970e-06  gnorm=1.91 (avg50 2.09, clip 20%)  elapsed=1h25m28s  ETA=38m32s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (57% of in-loop) - 32,560 windows in 1h25m29s
+     compute:    MFU 18% (180.8 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 0% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 1020 (rolling, keep_last_n=30)
+======================================================================
+🔎 VALIDATION (every 74 steps) - epoch 7/10  step 1036  (138 batches, 2202 windows) ...
+----------------------------------------------------------------------
+  🔎 [VAL] epoch=7/10 step=1036  n=2202  loss=0.2801 (-0.0275)  ⏱️ took=1m26s  elapsed=1h26m13s  ETA=36m57s
+     📊 macro_auroc=0.9520 (+0.0008)  macro_auprc=0.8933 (+0.0022)  precision=0.8197 (-0.0122)  recall=0.7350 (+0.0240)
+     📊 f1=0.7751 (+0.0083)  specificity=0.9296 (-0.0078)  logloss=0.2801 (-0.0275)  accuracy=0.8706 (+0.0018)
+     📊 ap_crash_vs_all_normal=0.8933 (+0.0022)  ap_crash_vs_nexar_normal=0.8966 (+0.0038)  ap_crash_vs_bdd_hard=0.9934 (-0.0029)  nexar_official_map=0.9344 (+0.0042)
+     📊 mean_risk_nexar_crash=0.7131 (+0.0184)  mean_risk_nexar_normal=0.1798 (+0.0141)  mean_risk_bdd_hard=0.0089 (+0.0057)
+        crash_risk             AUROC=0.9520  AUPRC=0.8933  precision=0.8197  recall=0.7350  f1=0.7751  specificity=0.9296  (n=668)
+     ⭐ new best val_ap_crash_vs_all_normal = 0.8933  (was 0.8911, +0.0022) -> best.pt
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 📋 STAGE 1 VALIDATION SUMMARY  epoch 7  step 1036                           ║
+╚════════════════════════════════════════════════════════════════════════════╝
+  🏁 ranking quality: average precision (1.0 = every crash window above every normal one)
+┌────────────────────────────────────────────┬───────────────────────────┐
+│ measure                                    │ value                     │
+├────────────────────────────────────────────┼───────────────────────────┤
+│ Nexar crash vs ALL normal  (picks best.pt) │ 0.8933                    │
+│ Nexar crash vs Nexar normal                │ 0.8966                    │
+│ Nexar crash vs BDD100K val hard moments    │ 0.9934                    │
+│ Nexar official mAP (last frame, 3 groups)  │ 0.9344   (baseline 0.903) │
+│ calibration error (0 = honest risk values) │ 0.0515                    │
+└────────────────────────────────────────────┴───────────────────────────┘
+  📊 mean risk per window group
+┌─────────────┬──────────────┬──────────────────────────┐
+│ Nexar crash │ Nexar normal │ BDD100K val hard moments │
+├─────────────┼──────────────┼──────────────────────────┤
+│ 0.7131      │ 0.1798       │ 0.0089                   │
+└─────────────┴──────────────┴──────────────────────────┘
+  ⏱️ by Nexar test group (when the clip ends)
+┌────────────────────────┬─────────────────────────────┬────────────────┬─────────────────┬──────────────────────┬───────────────────────┐
+│ group                  │ official AP vs Nexar normal │ AP vs BDD hard │ mean crash risk │ crashes caught > 0.9 │ crashes caught > 0.99 │
+├────────────────────────┼─────────────────────────────┼────────────────┼─────────────────┼──────────────────────┼───────────────────────┤
+│ 0.5 s before the crash │ 0.9384                      │ 0.9909         │ 0.8148          │ 67.6%                │ 21.1%                 │
+│ 1.0 s before the crash │ 0.9279                      │ 0.9840         │ 0.7008          │ 45.6%                │ 5.7%                  │
+│ 1.5 s before the crash │ 0.9370                      │ 0.9528         │ 0.5440          │ 20.1%                │ 0.7%                  │
+└────────────────────────┴─────────────────────────────┴────────────────┴─────────────────┴──────────────────────┴───────────────────────┘
+  🎚️ at each threshold: share of windows with risk above it
+┌───────────┬──────────────────────────────┬─────────────────────────────┬─────────────────────────────────────┐
+│ threshold │ crashes caught (Nexar crash) │ false alarms (Nexar normal) │ false alarms (BDD100K hard moments) │
+├───────────┼──────────────────────────────┼─────────────────────────────┼─────────────────────────────────────┤
+│ 0.5       │ 73.5%                        │ 15.8%                       │ 0.3%                                │
+│ 0.8       │ 58.8%                        │ 5.4%                        │ 0.0%                                │
+│ 0.9       │ 49.1%                        │ 3.3%                        │ 0.0%                                │
+│ 0.93      │ 43.4%                        │ 2.2%                        │ 0.0%                                │
+│ 0.95      │ 37.0%                        │ 1.2%                        │ 0.0%                                │
+│ 0.97      │ 28.4%                        │ 0.9%                        │ 0.0%                                │
+│ 0.98      │ 22.2%                        │ 0.3%                        │ 0.0%                                │
+│ 0.99      │ 11.1%                        │ 0.0%                        │ 0.0%                                │
+│ 0.993     │ 4.5%                         │ 0.0%                        │ 0.0%                                │
+│ 0.995     │ 1.4%                         │ 0.0%                        │ 0.0%                                │
+│ 0.997     │ 0.1%                         │ 0.0%                        │ 0.0%                                │
+└───────────┴──────────────────────────────┴─────────────────────────────┴─────────────────────────────────────┘
+  🎞️ video the model has trained on (each window = 2 s of video)
+┌───────────────────────┬─────────────┐
+│                       │ hours       │
+├───────────────────────┼─────────────┤
+│ watched so far        │ 18 h 25 min │
+│ left in this run      │ 7 h 54 min  │
+│ whole run (10 epochs) │ 26 h 19 min │
+└───────────────────────┴─────────────┘
+  💰 cost
+┌──────────────────────────────────┬──────────────────────────┐
+│ item                             │ value                    │
+├──────────────────────────────────┼──────────────────────────┤
+│ cost so far (GPU + CPU + memory) │ $8.62  at $6.00 per hour │
+│ estimated time per epoch         │ 14.2 min                 │
+│ estimated cost per epoch         │ $1.41                    │
+│ estimated cost for 10 epochs     │ $14.10                   │
+└──────────────────────────────────┴──────────────────────────┘
+══════════════════════════════════════════════════════════════════════════════
+
+  🗑️  evicted top_step814.pt (score 0.8882, epoch 6) - pushed out of the top-3
+  💾 best.pt written (score 0.8933)
+  📦 predictions saved (val:2202) -> predictions/
+
+======================================================================
+📚 EPOCH 8/10
+======================================================================
+  🎲 epoch 8: training windows (one per source, new random end points)
+┌──────────────────────┬───────┐
+│ windows              │ count │
+├──────────────────────┼───────┤
+│ total                │ 4735  │
+│ danger               │ 706   │
+│ danger label 1       │ 694   │
+│ danger ramp 0.7 to 1 │ 12    │
+│ safe crash clip part │ 703   │
+│ safe nexar normal    │ 750   │
+│ safe bdd100k         │ 2576  │
+│ danger share pct     │ 14.9  │
+└──────────────────────┴───────┘
+  🎞️  video watched so far: 18 h 25 min   left: 7 h 54 min   whole run: 26 h 19 min  (10 epochs; each window = 2 s)
+  💾 saved last.pt (epoch 7)  🏆 top-3 kept
+──────────────────────────────────────────────────────────────────────
+  Epoch 8/10  epoch_step: 4/148  global_step: 1040/1480
+     loss=0.1421 (+0.0527)  lr=9.223e-06  gnorm=1.87 (avg50 2.14, clip 21%)  elapsed=1h27m57s  ETA=37m12s  gpu_mem(peak)=128.84GB  +2m28s/20st
+
+     throughput: 11 window/s compute | 9 window/s real (4-step) | data-wait 16%
+     ➤ END-TO-END: 6 window/s over the whole run (67% of in-loop) - 33,184 windows in 1h27m57s
+     compute:    MFU 18% (180.7 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 4% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 1040 (rolling, keep_last_n=30)
+  📏 ud log10 (update / weight)
+     head    n=3   min  -4.05  mean  -4.01  median  -4.01  max  -3.98   (random head: want ~-3 or above)
+     trunk   n=441 min  -4.33  mean  -3.35  median  -3.50  max  -2.47   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  trunk hot (> -3, may damage the pretrained features): 219 tensors, e.g. net.base_model.model.backbone.encoder.embeddings.patch_embeddings.proj.lora_B.default.weight
+  📏 scale  features std 1.058  L2 29.3   |   logits std 6.480  |max| 8.25   |   head |W| 0.83
+──────────────────────────────────────────────────────────────────────
+  Epoch 8/10  epoch_step: 24/148  global_step: 1060/1480
+     loss=0.1386 (-0.0036)  lr=8.498e-06  gnorm=2.38 (avg50 2.06, clip 20%)  elapsed=1h28m54s  ETA=35m13s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (56% of in-loop) - 33,824 windows in 1h28m54s
+     compute:    MFU 18% (180.7 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 66% | mem ctrl busy 31%
+  💾 periodic checkpoint @ step 1060 (rolling, keep_last_n=30)
+──────────────────────────────────────────────────────────────────────
+  Epoch 8/10  epoch_step: 44/148  global_step: 1080/1480
+     loss=0.0826 (-0.0560)  lr=7.796e-06  gnorm=1.23 (avg50 1.75, clip 19%)  elapsed=1h29m51s  ETA=33m16s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (57% of in-loop) - 34,464 windows in 1h29m51s
+     compute:    MFU 18% (180.5 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 9% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 1080 (rolling, keep_last_n=30)
+  📏 ud log10 (update / weight)
+     head    n=3   min  -4.16  mean  -4.11  median  -4.10  max  -4.07   (random head: want ~-3 or above)
+     trunk   n=441 min  -4.39  mean  -3.46  median  -3.63  max  -2.65   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  trunk hot (> -3, may damage the pretrained features): 219 tensors, e.g. net.base_model.model.backbone.encoder.embeddings.patch_embeddings.proj.lora_B.default.weight
+  📏 scale  features std 1.062  L2 29.4   |   logits std 6.684  |max| 8.44   |   head |W| 0.83
+──────────────────────────────────────────────────────────────────────
+  Epoch 8/10  epoch_step: 64/148  global_step: 1100/1480
+     loss=0.0142 (-0.0684)  lr=7.119e-06  gnorm=0.77 (avg50 1.99, clip 19%)  elapsed=1h30m48s  ETA=31m22s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (57% of in-loop) - 35,104 windows in 1h30m48s
+     compute:    MFU 18% (177.5 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 6% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 1100 (rolling, keep_last_n=30)
+======================================================================
+🔎 VALIDATION (every 74 steps) - epoch 8/10  step 1110  (138 batches, 2202 windows) ...
+----------------------------------------------------------------------
+  🔎 [VAL] epoch=8/10 step=1110  n=2202  loss=0.3179 (+0.0377)  ⏱️ took=1m26s  elapsed=1h31m17s  ETA=30m25s
+     📊 macro_auroc=0.9502 (-0.0018)  macro_auprc=0.8905 (-0.0027)  precision=0.8582 (+0.0385)  recall=0.6886 (-0.0464)
+     📊 f1=0.7641 (-0.0109)  specificity=0.9505 (+0.0209)  logloss=0.3179 (+0.0377)  accuracy=0.8710 (+0.0005)
+     📊 ap_crash_vs_all_normal=0.8905 (-0.0027)  ap_crash_vs_nexar_normal=0.8950 (-0.0016)  ap_crash_vs_bdd_hard=0.9912 (-0.0022)  nexar_official_map=0.9332 (-0.0012)
+     📊 mean_risk_nexar_crash=0.6763 (-0.0368)  mean_risk_nexar_normal=0.1455 (-0.0343)  mean_risk_bdd_hard=0.0074 (-0.0015)
+        crash_risk             AUROC=0.9502  AUPRC=0.8905  precision=0.8582  recall=0.6886  f1=0.7641  specificity=0.9505  (n=668)
+     ⚠️  no improvement (1/8)  val_ap_crash_vs_all_normal = 0.8905, best 0.8933 @ epoch 7
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 📋 STAGE 1 VALIDATION SUMMARY  epoch 8  step 1110                           ║
+╚════════════════════════════════════════════════════════════════════════════╝
+  🏁 ranking quality: average precision (1.0 = every crash window above every normal one)
+┌────────────────────────────────────────────┬───────────────────────────┐
+│ measure                                    │ value                     │
+├────────────────────────────────────────────┼───────────────────────────┤
+│ Nexar crash vs ALL normal  (picks best.pt) │ 0.8905                    │
+│ Nexar crash vs Nexar normal                │ 0.8950                    │
+│ Nexar crash vs BDD100K val hard moments    │ 0.9912                    │
+│ Nexar official mAP (last frame, 3 groups)  │ 0.9332   (baseline 0.903) │
+│ calibration error (0 = honest risk values) │ 0.0670                    │
+└────────────────────────────────────────────┴───────────────────────────┘
+  📊 mean risk per window group
+┌─────────────┬──────────────┬──────────────────────────┐
+│ Nexar crash │ Nexar normal │ BDD100K val hard moments │
+├─────────────┼──────────────┼──────────────────────────┤
+│ 0.6763      │ 0.1455       │ 0.0074                   │
+└─────────────┴──────────────┴──────────────────────────┘
+  ⏱️ by Nexar test group (when the clip ends)
+┌────────────────────────┬─────────────────────────────┬────────────────┬─────────────────┬──────────────────────┬───────────────────────┐
+│ group                  │ official AP vs Nexar normal │ AP vs BDD hard │ mean crash risk │ crashes caught > 0.9 │ crashes caught > 0.99 │
+├────────────────────────┼─────────────────────────────┼────────────────┼─────────────────┼──────────────────────┼───────────────────────┤
+│ 0.5 s before the crash │ 0.9364                      │ 0.9882         │ 0.7923          │ 67.2%                │ 27.1%                 │
+│ 1.0 s before the crash │ 0.9295                      │ 0.9785         │ 0.6607          │ 45.6%                │ 6.5%                  │
+│ 1.5 s before the crash │ 0.9337                      │ 0.9382         │ 0.4857          │ 18.8%                │ 1.9%                  │
+└────────────────────────┴─────────────────────────────┴────────────────┴─────────────────┴──────────────────────┴───────────────────────┘
+  🎚️ at each threshold: share of windows with risk above it
+┌───────────┬──────────────────────────────┬─────────────────────────────┬─────────────────────────────────────┐
+│ threshold │ crashes caught (Nexar crash) │ false alarms (Nexar normal) │ false alarms (BDD100K hard moments) │
+├───────────┼──────────────────────────────┼─────────────────────────────┼─────────────────────────────────────┤
+│ 0.5       │ 68.9%                        │ 11.1%                       │ 0.2%                                │
+│ 0.8       │ 56.9%                        │ 4.8%                        │ 0.0%                                │
+│ 0.9       │ 48.6%                        │ 3.1%                        │ 0.0%                                │
+│ 0.93      │ 42.8%                        │ 2.1%                        │ 0.0%                                │
+│ 0.95      │ 38.0%                        │ 1.4%                        │ 0.0%                                │
+│ 0.97      │ 30.5%                        │ 0.9%                        │ 0.0%                                │
+│ 0.98      │ 25.8%                        │ 0.6%                        │ 0.0%                                │
+│ 0.99      │ 14.2%                        │ 0.1%                        │ 0.0%                                │
+│ 0.993     │ 8.2%                         │ 0.0%                        │ 0.0%                                │
+│ 0.995     │ 3.9%                         │ 0.0%                        │ 0.0%                                │
+│ 0.997     │ 0.3%                         │ 0.0%                        │ 0.0%                                │
+└───────────┴──────────────────────────────┴─────────────────────────────┴─────────────────────────────────────┘
+  🎞️ video the model has trained on (each window = 2 s of video)
+┌───────────────────────┬─────────────┐
+│                       │ hours       │
+├───────────────────────┼─────────────┤
+│ watched so far        │ 19 h 44 min │
+│ left in this run      │ 6 h 35 min  │
+│ whole run (10 epochs) │ 26 h 19 min │
+└───────────────────────┴─────────────┘
+  💰 cost
+┌──────────────────────────────────┬──────────────────────────┐
+│ item                             │ value                    │
+├──────────────────────────────────┼──────────────────────────┤
+│ cost so far (GPU + CPU + memory) │ $9.12  at $6.00 per hour │
+│ estimated time per epoch         │ 13.9 min                 │
+│ estimated cost per epoch         │ $1.39                    │
+│ estimated cost for 10 epochs     │ $13.90                   │
+└──────────────────────────────────┴──────────────────────────┘
+══════════════════════════════════════════════════════════════════════════════
+
+  📦 predictions saved (val:2202) -> predictions/
+  💾 saved last.pt (epoch 8)  🏆 top-3 kept
+──────────────────────────────────────────────────────────────────────
+  Epoch 8/10  epoch_step: 84/148  global_step: 1120/1480
+     loss=0.3240 (+0.3098)  lr=6.468e-06  gnorm=2.73 (avg50 2.03, clip 19%)  elapsed=1h33m13s  ETA=29m57s  gpu_mem(peak)=128.84GB  +2m24s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (57% of in-loop) - 35,744 windows in 1h33m13s
+     compute:    MFU 18% (180.8 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 100% | mem ctrl busy 49%
+  💾 periodic checkpoint @ step 1120 (rolling, keep_last_n=30)
+──────────────────────────────────────────────────────────────────────
+  Epoch 8/10  epoch_step: 104/148  global_step: 1140/1480
+     loss=0.0212 (-0.3028)  lr=5.844e-06  gnorm=0.41 (avg50 1.86, clip 18%)  elapsed=1h34m10s  ETA=28m05s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (57% of in-loop) - 36,384 windows in 1h34m10s
+     compute:    MFU 18% (180.4 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 75% | mem ctrl busy 39%
+  💾 periodic checkpoint @ step 1140 (rolling, keep_last_n=30)
+  📏 ud log10 (update / weight)
+     head    n=3   min  -4.44  mean  -4.38  median  -4.41  max  -4.29   (random head: want ~-3 or above)
+     trunk   n=441 min  -4.65  mean  -3.52  median  -3.70  max  -2.52   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  trunk hot (> -3, may damage the pretrained features): 185 tensors, e.g. net.base_model.model.backbone.encoder.embeddings.patch_embeddings.proj.lora_B.default.weight
+  📏 scale  features std 1.049  L2 29.1   |   logits std 5.849  |max| 8.25   |   head |W| 0.83
+──────────────────────────────────────────────────────────────────────
+  Epoch 8/10  epoch_step: 124/148  global_step: 1160/1480
+     loss=0.0406 (+0.0193)  lr=5.249e-06  gnorm=2.22 (avg50 1.79, clip 18%)  elapsed=1h35m07s  ETA=26m14s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 6 window/s over the whole run (58% of in-loop) - 37,024 windows in 1h35m07s
+     compute:    MFU 18% (180.7 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 100% | mem ctrl busy 52%
+  💾 periodic checkpoint @ step 1160 (rolling, keep_last_n=30)
+──────────────────────────────────────────────────────────────────────
+  Epoch 8/10  epoch_step: 144/148  global_step: 1180/1480
+     loss=0.3145 (+0.2740)  lr=4.684e-06  gnorm=3.21 (avg50 1.93, clip 18%)  elapsed=1h36m04s  ETA=24m25s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 7 window/s over the whole run (58% of in-loop) - 37,664 windows in 1h36m04s
+     compute:    MFU 18% (180.5 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 100% | mem ctrl busy 53%
+  💾 periodic checkpoint @ step 1180 (rolling, keep_last_n=30)
+======================================================================
+🔎 VALIDATION (every 74 steps) - epoch 8/10  step 1184  (138 batches, 2202 windows) ...
+----------------------------------------------------------------------
+  🔎 [VAL] epoch=8/10 step=1184  n=2202  loss=0.3092 (-0.0087)  ⏱️ took=1m26s  elapsed=1h36m14s  ETA=24m03s
+     📊 macro_auroc=0.9504 (+0.0002)  macro_auprc=0.8909 (+0.0004)  precision=0.8117 (-0.0465)  recall=0.7290 (+0.0404)
+     📊 f1=0.7681 (+0.0040)  specificity=0.9263 (-0.0241)  logloss=0.3092 (-0.0087)  accuracy=0.8665 (-0.0045)
+     📊 ap_crash_vs_all_normal=0.8909 (+0.0004)  ap_crash_vs_nexar_normal=0.8955 (+0.0005)  ap_crash_vs_bdd_hard=0.9910 (-0.0002)  nexar_official_map=0.9339 (+0.0007)
+     📊 mean_risk_nexar_crash=0.7244 (+0.0480)  mean_risk_nexar_normal=0.1738 (+0.0283)  mean_risk_bdd_hard=0.0092 (+0.0018)
+        crash_risk             AUROC=0.9504  AUPRC=0.8909  precision=0.8117  recall=0.7290  f1=0.7681  specificity=0.9263  (n=668)
+     ⚠️  no improvement (2/8)  val_ap_crash_vs_all_normal = 0.8909, best 0.8933 @ epoch 7
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 📋 STAGE 1 VALIDATION SUMMARY  epoch 8  step 1184                           ║
+╚════════════════════════════════════════════════════════════════════════════╝
+  🏁 ranking quality: average precision (1.0 = every crash window above every normal one)
+┌────────────────────────────────────────────┬───────────────────────────┐
+│ measure                                    │ value                     │
+├────────────────────────────────────────────┼───────────────────────────┤
+│ Nexar crash vs ALL normal  (picks best.pt) │ 0.8909                    │
+│ Nexar crash vs Nexar normal                │ 0.8955                    │
+│ Nexar crash vs BDD100K val hard moments    │ 0.9910                    │
+│ Nexar official mAP (last frame, 3 groups)  │ 0.9339   (baseline 0.903) │
+│ calibration error (0 = honest risk values) │ 0.0692                    │
+└────────────────────────────────────────────┴───────────────────────────┘
+  📊 mean risk per window group
+┌─────────────┬──────────────┬──────────────────────────┐
+│ Nexar crash │ Nexar normal │ BDD100K val hard moments │
+├─────────────┼──────────────┼──────────────────────────┤
+│ 0.7244      │ 0.1738       │ 0.0092                   │
+└─────────────┴──────────────┴──────────────────────────┘
+  ⏱️ by Nexar test group (when the clip ends)
+┌────────────────────────┬─────────────────────────────┬────────────────┬─────────────────┬──────────────────────┬───────────────────────┐
+│ group                  │ official AP vs Nexar normal │ AP vs BDD hard │ mean crash risk │ crashes caught > 0.9 │ crashes caught > 0.99 │
+├────────────────────────┼─────────────────────────────┼────────────────┼─────────────────┼──────────────────────┼───────────────────────┤
+│ 0.5 s before the crash │ 0.9369                      │ 0.9879         │ 0.8272          │ 71.5%                │ 39.8%                 │
+│ 1.0 s before the crash │ 0.9295                      │ 0.9776         │ 0.7137          │ 53.0%                │ 14.3%                 │
+│ 1.5 s before the crash │ 0.9351                      │ 0.9387         │ 0.5506          │ 30.5%                │ 5.8%                  │
+└────────────────────────┴─────────────────────────────┴────────────────┴─────────────────┴──────────────────────┴───────────────────────┘
+  🎚️ at each threshold: share of windows with risk above it
+┌───────────┬──────────────────────────────┬─────────────────────────────┬─────────────────────────────────────┐
+│ threshold │ crashes caught (Nexar crash) │ false alarms (Nexar normal) │ false alarms (BDD100K hard moments) │
+├───────────┼──────────────────────────────┼─────────────────────────────┼─────────────────────────────────────┤
+│ 0.5       │ 72.9%                        │ 16.2%                       │ 0.6%                                │
+│ 0.8       │ 62.0%                        │ 6.9%                        │ 0.0%                                │
+│ 0.9       │ 55.7%                        │ 4.8%                        │ 0.0%                                │
+│ 0.93      │ 51.8%                        │ 3.9%                        │ 0.0%                                │
+│ 0.95      │ 47.6%                        │ 3.1%                        │ 0.0%                                │
+│ 0.97      │ 39.7%                        │ 1.8%                        │ 0.0%                                │
+│ 0.98      │ 33.7%                        │ 1.1%                        │ 0.0%                                │
+│ 0.99      │ 23.2%                        │ 0.6%                        │ 0.0%                                │
+│ 0.993     │ 16.0%                        │ 0.1%                        │ 0.0%                                │
+│ 0.995     │ 10.9%                        │ 0.1%                        │ 0.0%                                │
+│ 0.997     │ 2.7%                         │ 0.0%                        │ 0.0%                                │
+└───────────┴──────────────────────────────┴─────────────────────────────┴─────────────────────────────────────┘
+  🎞️ video the model has trained on (each window = 2 s of video)
+┌───────────────────────┬─────────────┐
+│                       │ hours       │
+├───────────────────────┼─────────────┤
+│ watched so far        │ 21 h 03 min │
+│ left in this run      │ 5 h 16 min  │
+│ whole run (10 epochs) │ 26 h 19 min │
+└───────────────────────┴─────────────┘
+  💰 cost
+┌──────────────────────────────────┬──────────────────────────┐
+│ item                             │ value                    │
+├──────────────────────────────────┼──────────────────────────┤
+│ cost so far (GPU + CPU + memory) │ $9.62  at $6.00 per hour │
+│ estimated time per epoch         │ 13.6 min                 │
+│ estimated cost per epoch         │ $1.36                    │
+│ estimated cost for 10 epochs     │ $13.60                   │
+└──────────────────────────────────┴──────────────────────────┘
+══════════════════════════════════════════════════════════════════════════════
+
+  🗑️  evicted top_step888.pt (score 0.8908, epoch 6) - pushed out of the top-3
+  📦 predictions saved (val:2202) -> predictions/
+
+======================================================================
+📚 EPOCH 9/10
+======================================================================
+  🎲 epoch 9: training windows (one per source, new random end points)
+┌──────────────────────┬───────┐
+│ windows              │ count │
+├──────────────────────┼───────┤
+│ total                │ 4735  │
+│ danger               │ 706   │
+│ danger label 1       │ 693   │
+│ danger ramp 0.7 to 1 │ 13    │
+│ safe crash clip part │ 703   │
+│ safe nexar normal    │ 750   │
+│ safe bdd100k         │ 2576  │
+│ danger share pct     │ 14.9  │
+└──────────────────────┴───────┘
+  🎞️  video watched so far: 21 h 03 min   left: 5 h 16 min   whole run: 26 h 19 min  (10 epochs; each window = 2 s)
+  💾 saved last.pt (epoch 8)  🏆 top-3 kept
+  📏 ud log10 (update / weight)
+     head    n=3   min  -4.60  mean  -4.49  median  -4.47  max  -4.40   (random head: want ~-3 or above)
+     trunk   n=441 min  -4.80  mean  -3.73  median  -3.83  max  -2.74   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  trunk hot (> -3, may damage the pretrained features): 16 tensors, e.g. net.base_model.model.backbone.encoder.embeddings.patch_embeddings.proj.lora_B.default.weight
+     ⚠️  head barely moving (< -4.5): net.base_model.model.classifier.classifier.modules_to_save.default.8.weight
+  📏 scale  features std 1.052  L2 29.2   |   logits std 5.817  |max| 8.38   |   head |W| 0.83
+──────────────────────────────────────────────────────────────────────
+  Epoch 9/10  epoch_step: 16/148  global_step: 1200/1480
+     loss=0.0886 (-0.2260)  lr=4.150e-06  gnorm=2.72 (avg50 2.06, clip 18%)  elapsed=1h38m33s  ETA=22m59s  gpu_mem(peak)=128.84GB  +2m29s/20st
+
+     throughput: 11 window/s compute | 10 window/s real (16-step) | data-wait 7%
+     ➤ END-TO-END: 6 window/s over the whole run (62% of in-loop) - 38,288 windows in 1h38m33s
+     compute:    MFU 18% (177.4 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 13% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 1200 (rolling, keep_last_n=30)
+──────────────────────────────────────────────────────────────────────
+  Epoch 9/10  epoch_step: 36/148  global_step: 1220/1480
+     loss=0.1621 (+0.0735)  lr=3.648e-06  gnorm=3.85 (avg50 1.98, clip 18%)  elapsed=1h39m30s  ETA=21m12s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 7 window/s over the whole run (58% of in-loop) - 38,928 windows in 1h39m30s
+     compute:    MFU 18% (180.9 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 59% | mem ctrl busy 29%
+  💾 periodic checkpoint @ step 1220 (rolling, keep_last_n=30)
+──────────────────────────────────────────────────────────────────────
+  Epoch 9/10  epoch_step: 56/148  global_step: 1240/1480
+     loss=0.1920 (+0.0299)  lr=3.179e-06  gnorm=3.82 (avg50 2.01, clip 17%)  elapsed=1h40m27s  ETA=19m26s  gpu_mem(peak)=128.84GB  +0m56s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 7 window/s over the whole run (58% of in-loop) - 39,568 windows in 1h40m28s
+     compute:    MFU 18% (181.0 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 0% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 1240 (rolling, keep_last_n=30)
+  📏 ud log10 (update / weight)
+     head    n=3   min  -4.64  mean  -4.61  median  -4.63  max  -4.55   (random head: want ~-3 or above)
+     trunk   n=441 min  -5.03  mean  -3.80  median  -3.85  max  -2.87   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  trunk hot (> -3, may damage the pretrained features): 33 tensors, e.g. net.base_model.model.backbone.encoder.layer.0.attention.query.lora_B.default.weight
+     ⚠️  head barely moving (< -4.5): net.base_model.model.classifier.classifier.modules_to_save.default.0.weight
+  📏 scale  features std 1.054  L2 29.2   |   logits std 7.162  |max| 8.50   |   head |W| 0.83
+======================================================================
+🔎 VALIDATION (every 74 steps) - epoch 9/10  step 1258  (138 batches, 2202 windows) ...
+----------------------------------------------------------------------
+  🔎 [VAL] epoch=9/10 step=1258  n=2202  loss=0.3296 (+0.0205)  ⏱️ took=1m26s  elapsed=1h41m19s  ETA=17m52s
+     📊 macro_auroc=0.9513 (+0.0009)  macro_auprc=0.8921 (+0.0011)  precision=0.8612 (+0.0495)  recall=0.6871 (-0.0419)
+     📊 f1=0.7644 (-0.0038)  specificity=0.9518 (+0.0254)  logloss=0.3296 (+0.0205)  accuracy=0.8715 (+0.0050)
+     📊 ap_crash_vs_all_normal=0.8921 (+0.0011)  ap_crash_vs_nexar_normal=0.8954 (-0.0001)  ap_crash_vs_bdd_hard=0.9932 (+0.0022)  nexar_official_map=0.9332 (-0.0006)
+     📊 mean_risk_nexar_crash=0.6768 (-0.0476)  mean_risk_nexar_normal=0.1393 (-0.0345)  mean_risk_bdd_hard=0.0046 (-0.0045)
+        crash_risk             AUROC=0.9513  AUPRC=0.8921  precision=0.8612  recall=0.6871  f1=0.7644  specificity=0.9518  (n=668)
+     ⚠️  no improvement (3/8)  val_ap_crash_vs_all_normal = 0.8921, best 0.8933 @ epoch 7
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 📋 STAGE 1 VALIDATION SUMMARY  epoch 9  step 1258                           ║
+╚════════════════════════════════════════════════════════════════════════════╝
+  🏁 ranking quality: average precision (1.0 = every crash window above every normal one)
+┌────────────────────────────────────────────┬───────────────────────────┐
+│ measure                                    │ value                     │
+├────────────────────────────────────────────┼───────────────────────────┤
+│ Nexar crash vs ALL normal  (picks best.pt) │ 0.8921                    │
+│ Nexar crash vs Nexar normal                │ 0.8954                    │
+│ Nexar crash vs BDD100K val hard moments    │ 0.9932                    │
+│ Nexar official mAP (last frame, 3 groups)  │ 0.9332   (baseline 0.903) │
+│ calibration error (0 = honest risk values) │ 0.0708                    │
+└────────────────────────────────────────────┴───────────────────────────┘
+  📊 mean risk per window group
+┌─────────────┬──────────────┬──────────────────────────┐
+│ Nexar crash │ Nexar normal │ BDD100K val hard moments │
+├─────────────┼──────────────┼──────────────────────────┤
+│ 0.6768      │ 0.1393       │ 0.0046                   │
+└─────────────┴──────────────┴──────────────────────────┘
+  ⏱️ by Nexar test group (when the clip ends)
+┌────────────────────────┬─────────────────────────────┬────────────────┬─────────────────┬──────────────────────┬───────────────────────┐
+│ group                  │ official AP vs Nexar normal │ AP vs BDD hard │ mean crash risk │ crashes caught > 0.9 │ crashes caught > 0.99 │
+├────────────────────────┼─────────────────────────────┼────────────────┼─────────────────┼──────────────────────┼───────────────────────┤
+│ 0.5 s before the crash │ 0.9344                      │ 0.9906         │ 0.7924          │ 68.0%                │ 33.1%                 │
+│ 1.0 s before the crash │ 0.9297                      │ 0.9835         │ 0.6615          │ 47.8%                │ 8.7%                  │
+│ 1.5 s before the crash │ 0.9356                      │ 0.9531         │ 0.4864          │ 20.8%                │ 3.2%                  │
+└────────────────────────┴─────────────────────────────┴────────────────┴─────────────────┴──────────────────────┴───────────────────────┘
+  🎚️ at each threshold: share of windows with risk above it
+┌───────────┬──────────────────────────────┬─────────────────────────────┬─────────────────────────────────────┐
+│ threshold │ crashes caught (Nexar crash) │ false alarms (Nexar normal) │ false alarms (BDD100K hard moments) │
+├───────────┼──────────────────────────────┼─────────────────────────────┼─────────────────────────────────────┤
+│ 0.5       │ 68.7%                        │ 11.0%                       │ 0.1%                                │
+│ 0.8       │ 57.3%                        │ 5.0%                        │ 0.0%                                │
+│ 0.9       │ 50.1%                        │ 3.6%                        │ 0.0%                                │
+│ 0.93      │ 45.8%                        │ 2.5%                        │ 0.0%                                │
+│ 0.95      │ 39.7%                        │ 1.8%                        │ 0.0%                                │
+│ 0.97      │ 33.4%                        │ 0.9%                        │ 0.0%                                │
+│ 0.98      │ 28.7%                        │ 0.9%                        │ 0.0%                                │
+│ 0.99      │ 17.8%                        │ 0.1%                        │ 0.0%                                │
+│ 0.993     │ 13.2%                        │ 0.1%                        │ 0.0%                                │
+│ 0.995     │ 7.2%                         │ 0.0%                        │ 0.0%                                │
+│ 0.997     │ 1.2%                         │ 0.0%                        │ 0.0%                                │
+└───────────┴──────────────────────────────┴─────────────────────────────┴─────────────────────────────────────┘
+  🎞️ video the model has trained on (each window = 2 s of video)
+┌───────────────────────┬─────────────┐
+│                       │ hours       │
+├───────────────────────┼─────────────┤
+│ watched so far        │ 22 h 22 min │
+│ left in this run      │ 3 h 57 min  │
+│ whole run (10 epochs) │ 26 h 19 min │
+└───────────────────────┴─────────────┘
+  💰 cost
+┌──────────────────────────────────┬───────────────────────────┐
+│ item                             │ value                     │
+├──────────────────────────────────┼───────────────────────────┤
+│ cost so far (GPU + CPU + memory) │ $10.13  at $6.00 per hour │
+│ estimated time per epoch         │ 13.4 min                  │
+│ estimated cost per epoch         │ $1.34                     │
+│ estimated cost for 10 epochs     │ $13.40                    │
+└──────────────────────────────────┴───────────────────────────┘
+══════════════════════════════════════════════════════════════════════════════
+
+  🗑️  evicted top_step1184.pt (score 0.8909, epoch 8) - pushed out of the top-3
+  📦 predictions saved (val:2202) -> predictions/
+  💾 saved last.pt (epoch 9)  🏆 top-3 kept
+──────────────────────────────────────────────────────────────────────
+  Epoch 9/10  epoch_step: 76/148  global_step: 1260/1480
+     loss=0.0125 (-0.1795)  lr=2.744e-06  gnorm=1.47 (avg50 2.07, clip 17%)  elapsed=1h42m53s  ETA=17m57s  gpu_mem(peak)=128.84GB  +2m25s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 7 window/s over the whole run (58% of in-loop) - 40,208 windows in 1h42m53s
+     compute:    MFU 18% (180.8 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 100% | mem ctrl busy 54%
+  💾 periodic checkpoint @ step 1260 (rolling, keep_last_n=30)
+──────────────────────────────────────────────────────────────────────
+  Epoch 9/10  epoch_step: 96/148  global_step: 1280/1480
+     loss=0.1074 (+0.0949)  lr=2.344e-06  gnorm=2.64 (avg50 1.95, clip 17%)  elapsed=1h43m50s  ETA=16m13s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 7 window/s over the whole run (58% of in-loop) - 40,848 windows in 1h43m50s
+     compute:    MFU 18% (180.8 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 77% | mem ctrl busy 40%
+  💾 periodic checkpoint @ step 1280 (rolling, keep_last_n=30)
+  📏 ud log10 (update / weight)
+     head    n=3   min  -4.70  mean  -4.65  median  -4.67  max  -4.59   (random head: want ~-3 or above)
+     trunk   n=441 min  -5.03  mean  -3.98  median  -4.16  max  -3.15   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  head barely moving (< -4.5): net.base_model.model.classifier.classifier.modules_to_save.default.0.weight
+  📏 scale  features std 1.054  L2 29.2   |   logits std 6.294  |max| 8.25   |   head |W| 0.83
+  🗑️  pruned step680.pt (163 MB) - outside the keep_last_n=30 window
+──────────────────────────────────────────────────────────────────────
+  Epoch 9/10  epoch_step: 116/148  global_step: 1300/1480
+     loss=0.1176 (+0.0102)  lr=1.980e-06  gnorm=2.02 (avg50 2.10, clip 17%)  elapsed=1h44m47s  ETA=14m30s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 7 window/s over the whole run (59% of in-loop) - 41,488 windows in 1h44m47s
+     compute:    MFU 18% (177.4 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 7% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 1300 (rolling, keep_last_n=30)
+  🗑️  pruned step700.pt (163 MB) - outside the keep_last_n=30 window
+──────────────────────────────────────────────────────────────────────
+  Epoch 9/10  epoch_step: 136/148  global_step: 1320/1480
+     loss=0.1002 (-0.0174)  lr=1.652e-06  gnorm=2.15 (avg50 2.12, clip 17%)  elapsed=1h45m44s  ETA=12m49s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 7 window/s over the whole run (59% of in-loop) - 42,128 windows in 1h45m44s
+     compute:    MFU 18% (180.9 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 9% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 1320 (rolling, keep_last_n=30)
+======================================================================
+🔎 VALIDATION (every 74 steps) - epoch 9/10  step 1332  (138 batches, 2202 windows) ...
+----------------------------------------------------------------------
+  🔎 [VAL] epoch=9/10 step=1332  n=2202  loss=0.3152 (-0.0145)  ⏱️ took=1m27s  elapsed=1h46m17s  ETA=11m48s
+     📊 macro_auroc=0.9516 (+0.0004)  macro_auprc=0.8926 (+0.0006)  precision=0.8553 (-0.0059)  recall=0.6991 (+0.0120)
+     📊 f1=0.7694 (+0.0050)  specificity=0.9485 (-0.0033)  logloss=0.3152 (-0.0145)  accuracy=0.8728 (+0.0014)
+     📊 ap_crash_vs_all_normal=0.8926 (+0.0006)  ap_crash_vs_nexar_normal=0.8956 (+0.0002)  ap_crash_vs_bdd_hard=0.9939 (+0.0007)  nexar_official_map=0.9332 (-0.0000)
+     📊 mean_risk_nexar_crash=0.6898 (+0.0130)  mean_risk_nexar_normal=0.1501 (+0.0108)  mean_risk_bdd_hard=0.0051 (+0.0005)
+        crash_risk             AUROC=0.9516  AUPRC=0.8926  precision=0.8553  recall=0.6991  f1=0.7694  specificity=0.9485  (n=668)
+     ⚠️  no improvement (4/8)  val_ap_crash_vs_all_normal = 0.8926, best 0.8933 @ epoch 7
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 📋 STAGE 1 VALIDATION SUMMARY  epoch 9  step 1332                           ║
+╚════════════════════════════════════════════════════════════════════════════╝
+  🏁 ranking quality: average precision (1.0 = every crash window above every normal one)
+┌────────────────────────────────────────────┬───────────────────────────┐
+│ measure                                    │ value                     │
+├────────────────────────────────────────────┼───────────────────────────┤
+│ Nexar crash vs ALL normal  (picks best.pt) │ 0.8926                    │
+│ Nexar crash vs Nexar normal                │ 0.8956                    │
+│ Nexar crash vs BDD100K val hard moments    │ 0.9939                    │
+│ Nexar official mAP (last frame, 3 groups)  │ 0.9332   (baseline 0.903) │
+│ calibration error (0 = honest risk values) │ 0.0671                    │
+└────────────────────────────────────────────┴───────────────────────────┘
+  📊 mean risk per window group
+┌─────────────┬──────────────┬──────────────────────────┐
+│ Nexar crash │ Nexar normal │ BDD100K val hard moments │
+├─────────────┼──────────────┼──────────────────────────┤
+│ 0.6898      │ 0.1501       │ 0.0051                   │
+└─────────────┴──────────────┴──────────────────────────┘
+  ⏱️ by Nexar test group (when the clip ends)
+┌────────────────────────┬─────────────────────────────┬────────────────┬─────────────────┬──────────────────────┬───────────────────────┐
+│ group                  │ official AP vs Nexar normal │ AP vs BDD hard │ mean crash risk │ crashes caught > 0.9 │ crashes caught > 0.99 │
+├────────────────────────┼─────────────────────────────┼────────────────┼─────────────────┼──────────────────────┼───────────────────────┤
+│ 0.5 s before the crash │ 0.9352                      │ 0.9915         │ 0.8015          │ 68.0%                │ 35.2%                 │
+│ 1.0 s before the crash │ 0.9303                      │ 0.9852         │ 0.6759          │ 48.7%                │ 10.4%                 │
+│ 1.5 s before the crash │ 0.9341                      │ 0.9573         │ 0.5044          │ 20.8%                │ 3.9%                  │
+└────────────────────────┴─────────────────────────────┴────────────────┴─────────────────┴──────────────────────┴───────────────────────┘
+  🎚️ at each threshold: share of windows with risk above it
+┌───────────┬──────────────────────────────┬─────────────────────────────┬─────────────────────────────────────┐
+│ threshold │ crashes caught (Nexar crash) │ false alarms (Nexar normal) │ false alarms (BDD100K hard moments) │
+├───────────┼──────────────────────────────┼─────────────────────────────┼─────────────────────────────────────┤
+│ 0.5       │ 69.9%                        │ 11.7%                       │ 0.1%                                │
+│ 0.8       │ 58.2%                        │ 5.4%                        │ 0.0%                                │
+│ 0.9       │ 50.5%                        │ 3.8%                        │ 0.0%                                │
+│ 0.93      │ 47.0%                        │ 3.0%                        │ 0.0%                                │
+│ 0.95      │ 41.9%                        │ 1.8%                        │ 0.0%                                │
+│ 0.97      │ 34.9%                        │ 0.9%                        │ 0.0%                                │
+│ 0.98      │ 29.0%                        │ 0.9%                        │ 0.0%                                │
+│ 0.99      │ 19.5%                        │ 0.1%                        │ 0.0%                                │
+│ 0.993     │ 13.8%                        │ 0.1%                        │ 0.0%                                │
+│ 0.995     │ 8.1%                         │ 0.0%                        │ 0.0%                                │
+│ 0.997     │ 1.5%                         │ 0.0%                        │ 0.0%                                │
+└───────────┴──────────────────────────────┴─────────────────────────────┴─────────────────────────────────────┘
+  🎞️ video the model has trained on (each window = 2 s of video)
+┌───────────────────────┬─────────────┐
+│                       │ hours       │
+├───────────────────────┼─────────────┤
+│ watched so far        │ 23 h 41 min │
+│ left in this run      │ 2 h 38 min  │
+│ whole run (10 epochs) │ 26 h 19 min │
+└───────────────────────┴─────────────┘
+  💰 cost
+┌──────────────────────────────────┬───────────────────────────┐
+│ item                             │ value                     │
+├──────────────────────────────────┼───────────────────────────┤
+│ cost so far (GPU + CPU + memory) │ $10.62  at $6.00 per hour │
+│ estimated time per epoch         │ 13.3 min                  │
+│ estimated cost per epoch         │ $1.33                     │
+│ estimated cost for 10 epochs     │ $13.30                    │
+└──────────────────────────────────┴───────────────────────────┘
+══════════════════════════════════════════════════════════════════════════════
+
+  🗑️  evicted top_step962.pt (score 0.8911, epoch 7) - pushed out of the top-3
+  📦 predictions saved (val:2202) -> predictions/
+
+======================================================================
+📚 EPOCH 10/10
+======================================================================
+  🎲 epoch 10: training windows (one per source, new random end points)
+┌──────────────────────┬───────┐
+│ windows              │ count │
+├──────────────────────┼───────┤
+│ total                │ 4735  │
+│ danger               │ 706   │
+│ danger label 1       │ 689   │
+│ danger ramp 0.7 to 1 │ 17    │
+│ safe crash clip part │ 703   │
+│ safe nexar normal    │ 750   │
+│ safe bdd100k         │ 2576  │
+│ danger share pct     │ 14.9  │
+└──────────────────────┴───────┘
+  🎞️  video watched so far: 23 h 41 min   left: 2 h 38 min   whole run: 26 h 19 min  (10 epochs; each window = 2 s)
+  💾 saved last.pt (epoch 9)  🏆 top-3 kept
+  🗑️  pruned step720.pt (163 MB) - outside the keep_last_n=30 window
+──────────────────────────────────────────────────────────────────────
+  Epoch 10/10  epoch_step: 8/148  global_step: 1340/1480
+     loss=0.0703 (-0.0299)  lr=1.361e-06  gnorm=2.47 (avg50 1.92, clip 17%)  elapsed=1h48m13s  ETA=11m18s  gpu_mem(peak)=128.84GB  +2m29s/20st
+
+     throughput: 11 window/s compute | 10 window/s real (8-step) | data-wait 10%
+     ➤ END-TO-END: 7 window/s over the whole run (66% of in-loop) - 42,752 windows in 1h48m13s
+     compute:    MFU 18% (180.4 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 11% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 1340 (rolling, keep_last_n=30)
+  📏 ud log10 (update / weight)
+     head    n=3   min  -5.07  mean  -5.00  median  -5.00  max  -4.94   (random head: want ~-3 or above)
+     trunk   n=441 min  -5.46  mean  -4.31  median  -4.45  max  -3.48   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  head barely moving (< -4.5): net.base_model.model.classifier.classifier.modules_to_save.default.0.weight
+  📏 scale  features std 1.052  L2 29.2   |   logits std 6.438  |max| 8.44   |   head |W| 0.83
+  🗑️  pruned step740.pt (163 MB) - outside the keep_last_n=30 window
+──────────────────────────────────────────────────────────────────────
+  Epoch 10/10  epoch_step: 28/148  global_step: 1360/1480
+     loss=0.0032 (-0.0672)  lr=1.107e-06  gnorm=1.29 (avg50 1.97, clip 17%)  elapsed=1h49m11s  ETA=9m38s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 7 window/s over the whole run (59% of in-loop) - 43,392 windows in 1h49m11s
+     compute:    MFU 18% (180.6 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 59% | mem ctrl busy 29%
+  💾 periodic checkpoint @ step 1360 (rolling, keep_last_n=30)
+  🗑️  pruned step760.pt (163 MB) - outside the keep_last_n=30 window
+──────────────────────────────────────────────────────────────────────
+  Epoch 10/10  epoch_step: 48/148  global_step: 1380/1480
+     loss=0.0066 (+0.0034)  lr=8.922e-07  gnorm=1.10 (avg50 2.03, clip 16%)  elapsed=1h50m08s  ETA=7m58s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 7 window/s over the whole run (59% of in-loop) - 44,032 windows in 1h50m08s
+     compute:    MFU 18% (180.5 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 100% | mem ctrl busy 53%
+  💾 periodic checkpoint @ step 1380 (rolling, keep_last_n=30)
+  📏 ud log10 (update / weight)
+     head    n=3   min  -5.10  mean  -5.06  median  -5.07  max  -5.00   (random head: want ~-3 or above)
+     trunk   n=441 min  -5.46  mean  -4.40  median  -4.58  max  -3.42   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  head barely moving (< -4.5): net.base_model.model.classifier.classifier.modules_to_save.default.0.weight
+  📏 scale  features std 1.055  L2 29.2   |   logits std 6.929  |max| 8.44   |   head |W| 0.83
+  🗑️  pruned step780.pt (163 MB) - outside the keep_last_n=30 window
+──────────────────────────────────────────────────────────────────────
+  Epoch 10/10  epoch_step: 68/148  global_step: 1400/1480
+     loss=0.0124 (+0.0058)  lr=7.155e-07  gnorm=0.44 (avg50 1.74, clip 16%)  elapsed=1h51m05s  ETA=6m20s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 7 window/s over the whole run (60% of in-loop) - 44,672 windows in 1h51m05s
+     compute:    MFU 18% (176.9 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 8% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 1400 (rolling, keep_last_n=30)
+======================================================================
+🔎 VALIDATION (every 74 steps) - epoch 10/10  step 1406  (138 batches, 2202 windows) ...
+----------------------------------------------------------------------
+  🔎 [VAL] epoch=10/10 step=1406  n=2202  loss=0.3184 (+0.0032)  ⏱️ took=1m27s  elapsed=1h51m22s  ETA=5m51s
+     📊 macro_auroc=0.9515 (-0.0002)  macro_auprc=0.8924 (-0.0002)  precision=0.8478 (-0.0075)  recall=0.7006 (+0.0015)
+     📊 f1=0.7672 (-0.0021)  specificity=0.9452 (-0.0033)  logloss=0.3184 (+0.0032)  accuracy=0.8710 (-0.0018)
+     📊 ap_crash_vs_all_normal=0.8924 (-0.0002)  ap_crash_vs_nexar_normal=0.8954 (-0.0002)  ap_crash_vs_bdd_hard=0.9938 (-0.0002)  nexar_official_map=0.9334 (+0.0002)
+     📊 mean_risk_nexar_crash=0.6942 (+0.0044)  mean_risk_nexar_normal=0.1515 (+0.0013)  mean_risk_bdd_hard=0.0051 (-0.0001)
+        crash_risk             AUROC=0.9515  AUPRC=0.8924  precision=0.8478  recall=0.7006  f1=0.7672  specificity=0.9452  (n=668)
+     ⚠️  no improvement (5/8)  val_ap_crash_vs_all_normal = 0.8924, best 0.8933 @ epoch 7
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 📋 STAGE 1 VALIDATION SUMMARY  epoch 10  step 1406                          ║
+╚════════════════════════════════════════════════════════════════════════════╝
+  🏁 ranking quality: average precision (1.0 = every crash window above every normal one)
+┌────────────────────────────────────────────┬───────────────────────────┐
+│ measure                                    │ value                     │
+├────────────────────────────────────────────┼───────────────────────────┤
+│ Nexar crash vs ALL normal  (picks best.pt) │ 0.8924                    │
+│ Nexar crash vs Nexar normal                │ 0.8954                    │
+│ Nexar crash vs BDD100K val hard moments    │ 0.9938                    │
+│ Nexar official mAP (last frame, 3 groups)  │ 0.9334   (baseline 0.903) │
+│ calibration error (0 = honest risk values) │ 0.0671                    │
+└────────────────────────────────────────────┴───────────────────────────┘
+  📊 mean risk per window group
+┌─────────────┬──────────────┬──────────────────────────┐
+│ Nexar crash │ Nexar normal │ BDD100K val hard moments │
+├─────────────┼──────────────┼──────────────────────────┤
+│ 0.6942      │ 0.1515       │ 0.0051                   │
+└─────────────┴──────────────┴──────────────────────────┘
+  ⏱️ by Nexar test group (when the clip ends)
+┌────────────────────────┬─────────────────────────────┬────────────────┬─────────────────┬──────────────────────┬───────────────────────┐
+│ group                  │ official AP vs Nexar normal │ AP vs BDD hard │ mean crash risk │ crashes caught > 0.9 │ crashes caught > 0.99 │
+├────────────────────────┼─────────────────────────────┼────────────────┼─────────────────┼──────────────────────┼───────────────────────┤
+│ 0.5 s before the crash │ 0.9358                      │ 0.9913         │ 0.8050          │ 68.7%                │ 37.3%                 │
+│ 1.0 s before the crash │ 0.9299                      │ 0.9850         │ 0.6807          │ 50.4%                │ 12.6%                 │
+│ 1.5 s before the crash │ 0.9347                      │ 0.9564         │ 0.5099          │ 24.0%                │ 3.9%                  │
+└────────────────────────┴─────────────────────────────┴────────────────┴─────────────────┴──────────────────────┴───────────────────────┘
+  🎚️ at each threshold: share of windows with risk above it
+┌───────────┬──────────────────────────────┬─────────────────────────────┬─────────────────────────────────────┐
+│ threshold │ crashes caught (Nexar crash) │ false alarms (Nexar normal) │ false alarms (BDD100K hard moments) │
+├───────────┼──────────────────────────────┼─────────────────────────────┼─────────────────────────────────────┤
+│ 0.5       │ 70.1%                        │ 12.3%                       │ 0.2%                                │
+│ 0.8       │ 58.8%                        │ 5.6%                        │ 0.0%                                │
+│ 0.9       │ 52.1%                        │ 3.9%                        │ 0.0%                                │
+│ 0.93      │ 48.2%                        │ 3.0%                        │ 0.0%                                │
+│ 0.95      │ 43.7%                        │ 2.2%                        │ 0.0%                                │
+│ 0.97      │ 36.2%                        │ 1.1%                        │ 0.0%                                │
+│ 0.98      │ 30.5%                        │ 0.9%                        │ 0.0%                                │
+│ 0.99      │ 21.1%                        │ 0.3%                        │ 0.0%                                │
+│ 0.993     │ 14.7%                        │ 0.1%                        │ 0.0%                                │
+│ 0.995     │ 9.6%                         │ 0.0%                        │ 0.0%                                │
+│ 0.997     │ 2.2%                         │ 0.0%                        │ 0.0%                                │
+└───────────┴──────────────────────────────┴─────────────────────────────┴─────────────────────────────────────┘
+  🎞️ video the model has trained on (each window = 2 s of video)
+┌───────────────────────┬─────────────┐
+│                       │ hours       │
+├───────────────────────┼─────────────┤
+│ watched so far        │ 25 h 00 min │
+│ left in this run      │ 1 h 19 min  │
+│ whole run (10 epochs) │ 26 h 19 min │
+└───────────────────────┴─────────────┘
+  💰 cost
+┌──────────────────────────────────┬───────────────────────────┐
+│ item                             │ value                     │
+├──────────────────────────────────┼───────────────────────────┤
+│ cost so far (GPU + CPU + memory) │ $11.13  at $6.00 per hour │
+│ estimated time per epoch         │ 13.1 min                  │
+│ estimated cost per epoch         │ $1.31                     │
+│ estimated cost for 10 epochs     │ $13.10                    │
+└──────────────────────────────────┴───────────────────────────┘
+══════════════════════════════════════════════════════════════════════════════
+
+  🗑️  evicted top_step1258.pt (score 0.8921, epoch 9) - pushed out of the top-3
+  📦 predictions saved (val:2202) -> predictions/
+  💾 saved last.pt (epoch 10)  🏆 top-3 kept
+  🗑️  pruned step800.pt (163 MB) - outside the keep_last_n=30 window
+──────────────────────────────────────────────────────────────────────
+  Epoch 10/10  epoch_step: 88/148  global_step: 1420/1480
+     loss=0.0440 (+0.0316)  lr=5.777e-07  gnorm=2.76 (avg50 2.06, clip 16%)  elapsed=1h53m30s  ETA=4m47s  gpu_mem(peak)=128.84GB  +2m25s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 7 window/s over the whole run (59% of in-loop) - 45,312 windows in 1h53m31s
+     compute:    MFU 18% (180.4 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 85% | mem ctrl busy 41%
+  💾 periodic checkpoint @ step 1420 (rolling, keep_last_n=30)
+  🗑️  pruned step820.pt (163 MB) - outside the keep_last_n=30 window
+──────────────────────────────────────────────────────────────────────
+  Epoch 10/10  epoch_step: 108/148  global_step: 1440/1480
+     loss=0.0175 (-0.0265)  lr=4.790e-07  gnorm=0.63 (avg50 2.17, clip 16%)  elapsed=1h54m27s  ETA=3m10s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 7 window/s over the whole run (60% of in-loop) - 45,952 windows in 1h54m28s
+     compute:    MFU 18% (180.1 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 8% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 1440 (rolling, keep_last_n=30)
+  📏 ud log10 (update / weight)
+     head    n=3   min  -5.44  mean  -5.38  median  -5.39  max  -5.29   (random head: want ~-3 or above)
+     trunk   n=441 min  -5.72  mean  -4.68  median  -4.83  max  -3.86   (pretrained: -5..-6 is drift, not frozen)
+     ⚠️  head barely moving (< -4.5): net.base_model.model.classifier.classifier.modules_to_save.default.0.weight
+  📏 scale  features std 1.053  L2 29.2   |   logits std 6.794  |max| 8.38   |   head |W| 0.83
+  🗑️  pruned step840.pt (163 MB) - outside the keep_last_n=30 window
+──────────────────────────────────────────────────────────────────────
+  Epoch 10/10  epoch_step: 128/148  global_step: 1460/1480
+     loss=0.0445 (+0.0271)  lr=4.198e-07  gnorm=2.59 (avg50 2.23, clip 16%)  elapsed=1h55m25s  ETA=1m34s  gpu_mem(peak)=128.84GB  +0m57s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 7 window/s over the whole run (60% of in-loop) - 46,592 windows in 1h55m25s
+     compute:    MFU 18% (180.5 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 11% | mem ctrl busy 0%
+  💾 periodic checkpoint @ step 1460 (rolling, keep_last_n=30)
+======================================================================
+🔎 VALIDATION (every 74 steps) - epoch 10/10  step 1480  (138 batches, 2202 windows) ...
+----------------------------------------------------------------------
+  🔎 [VAL] epoch=10/10 step=1480  n=2202  loss=0.3164 (-0.0020)  ⏱️ took=1m27s  elapsed=1h56m20s  ETA=0m00s
+     📊 macro_auroc=0.9516 (+0.0002)  macro_auprc=0.8925 (+0.0002)  precision=0.8509 (+0.0031)  recall=0.7006 (+0.0000)
+     📊 f1=0.7685 (+0.0013)  specificity=0.9465 (+0.0013)  logloss=0.3164 (-0.0020)  accuracy=0.8719 (+0.0009)
+     📊 ap_crash_vs_all_normal=0.8925 (+0.0002)  ap_crash_vs_nexar_normal=0.8954 (+0.0000)  ap_crash_vs_bdd_hard=0.9940 (+0.0003)  nexar_official_map=0.9334 (-0.0001)
+     📊 mean_risk_nexar_crash=0.6944 (+0.0002)  mean_risk_nexar_normal=0.1519 (+0.0005)  mean_risk_bdd_hard=0.0049 (-0.0001)
+        crash_risk             AUROC=0.9516  AUPRC=0.8925  precision=0.8509  recall=0.7006  f1=0.7685  specificity=0.9465  (n=668)
+     ⚠️  no improvement (6/8)  val_ap_crash_vs_all_normal = 0.8925, best 0.8933 @ epoch 7
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 📋 STAGE 1 VALIDATION SUMMARY  epoch 10  step 1480                          ║
+╚════════════════════════════════════════════════════════════════════════════╝
+  🏁 ranking quality: average precision (1.0 = every crash window above every normal one)
+┌────────────────────────────────────────────┬───────────────────────────┐
+│ measure                                    │ value                     │
+├────────────────────────────────────────────┼───────────────────────────┤
+│ Nexar crash vs ALL normal  (picks best.pt) │ 0.8925                    │
+│ Nexar crash vs Nexar normal                │ 0.8954                    │
+│ Nexar crash vs BDD100K val hard moments    │ 0.9940                    │
+│ Nexar official mAP (last frame, 3 groups)  │ 0.9334   (baseline 0.903) │
+│ calibration error (0 = honest risk values) │ 0.0679                    │
+└────────────────────────────────────────────┴───────────────────────────┘
+  📊 mean risk per window group
+┌─────────────┬──────────────┬──────────────────────────┐
+│ Nexar crash │ Nexar normal │ BDD100K val hard moments │
+├─────────────┼──────────────┼──────────────────────────┤
+│ 0.6944      │ 0.1519       │ 0.0049                   │
+└─────────────┴──────────────┴──────────────────────────┘
+  ⏱️ by Nexar test group (when the clip ends)
+┌────────────────────────┬─────────────────────────────┬────────────────┬─────────────────┬──────────────────────┬───────────────────────┐
+│ group                  │ official AP vs Nexar normal │ AP vs BDD hard │ mean crash risk │ crashes caught > 0.9 │ crashes caught > 0.99 │
+├────────────────────────┼─────────────────────────────┼────────────────┼─────────────────┼──────────────────────┼───────────────────────┤
+│ 0.5 s before the crash │ 0.9355                      │ 0.9915         │ 0.8050          │ 68.7%                │ 37.0%                 │
+│ 1.0 s before the crash │ 0.9294                      │ 0.9855         │ 0.6808          │ 50.4%                │ 12.6%                 │
+│ 1.5 s before the crash │ 0.9352                      │ 0.9582         │ 0.5106          │ 22.7%                │ 3.9%                  │
+└────────────────────────┴─────────────────────────────┴────────────────┴─────────────────┴──────────────────────┴───────────────────────┘
+  🎚️ at each threshold: share of windows with risk above it
+┌───────────┬──────────────────────────────┬─────────────────────────────┬─────────────────────────────────────┐
+│ threshold │ crashes caught (Nexar crash) │ false alarms (Nexar normal) │ false alarms (BDD100K hard moments) │
+├───────────┼──────────────────────────────┼─────────────────────────────┼─────────────────────────────────────┤
+│ 0.5       │ 70.1%                        │ 12.2%                       │ 0.1%                                │
+│ 0.8       │ 58.8%                        │ 5.6%                        │ 0.0%                                │
+│ 0.9       │ 51.8%                        │ 3.9%                        │ 0.0%                                │
+│ 0.93      │ 47.9%                        │ 3.3%                        │ 0.0%                                │
+│ 0.95      │ 43.4%                        │ 2.1%                        │ 0.0%                                │
+│ 0.97      │ 36.1%                        │ 1.1%                        │ 0.0%                                │
+│ 0.98      │ 30.7%                        │ 0.9%                        │ 0.0%                                │
+│ 0.99      │ 21.0%                        │ 0.3%                        │ 0.0%                                │
+│ 0.993     │ 14.5%                        │ 0.1%                        │ 0.0%                                │
+│ 0.995     │ 9.1%                         │ 0.0%                        │ 0.0%                                │
+│ 0.997     │ 2.2%                         │ 0.0%                        │ 0.0%                                │
+└───────────┴──────────────────────────────┴─────────────────────────────┴─────────────────────────────────────┘
+  🎞️ video the model has trained on (each window = 2 s of video)
+┌───────────────────────┬─────────────┐
+│                       │ hours       │
+├───────────────────────┼─────────────┤
+│ watched so far        │ 26 h 19 min │
+│ left in this run      │ 0 h 00 min  │
+│ whole run (10 epochs) │ 26 h 19 min │
+└───────────────────────┴─────────────┘
+  💰 cost
+┌──────────────────────────────────┬───────────────────────────┐
+│ item                             │ value                     │
+├──────────────────────────────────┼───────────────────────────┤
+│ cost so far (GPU + CPU + memory) │ $11.63  at $6.00 per hour │
+│ estimated time per epoch         │ 12.9 min                  │
+│ estimated cost per epoch         │ $1.29                     │
+│ estimated cost for 10 epochs     │ $12.90                    │
+└──────────────────────────────────┴───────────────────────────┘
+══════════════════════════════════════════════════════════════════════════════
+
+  🗑️  evicted top_step1406.pt (score 0.8924, epoch 10) - pushed out of the top-3
+  📦 predictions saved (val:2202) -> predictions/
+  💾 saved last.pt (epoch 10)  🏆 top-3 kept
+  🗑️  pruned step860.pt (163 MB) - outside the keep_last_n=30 window
+──────────────────────────────────────────────────────────────────────
+  Epoch 10/10  epoch_step: 148/148  global_step: 1480/1480
+     loss=0.0151 (-0.0294)  lr=4.000e-07  gnorm=0.57 (avg50 2.05, clip 16%)  elapsed=1h56m20s  ETA=0m00s  gpu_mem(peak)=128.84GB  +0m55s/20st
+
+     throughput: 11 window/s compute | 11 window/s real (20-step) | data-wait 0%
+     ➤ END-TO-END: 7 window/s over the whole run (60% of in-loop) - 47,216 windows in 1h57m49s
+     compute:    MFU 18% (180.3 of 989 TFLOP/s fp16/bf16) | 5341.93 GFLOP/window fwd | SM busy 0% | mem ctrl busy 0%
+
+======================================================================
+🏁 FINISHED - stage1_lora  (run003)
+======================================================================
+  ⏱️  total time       : 1h57m49s  (10 epochs, 1480 steps, 19 validations, 47,216 windows)
+  ⭐ best val_ap_crash_vs_all_normal: 0.8933  @ epoch 7
+  📉 val loss at best  : 0.280127
+  🔍 per-target at the best validation (epoch 7)
+┌────────────┬───────────┬───────────┬────────────────────┐
+│ target     │ val AUROC │ val AUPRC │ above chance       │
+├────────────┼───────────┼───────────┼────────────────────┤
+│ crash_risk │ 0.9520    │ 0.8933    │ ██████████████████ │
+└────────────┴───────────┴───────────┴────────────────────┘
+  💾 checkpoints       : /runs/stage1_lora/results/checkpoints
+  📝 logs              : /runs/stage1_lora/results/train_log.csv
+                        /runs/stage1_lora/results/val_log.csv
+======================================================================
+  💾 periodic checkpoint @ step 1480 (rolling, keep_last_n=30)
+  ℹ️  74 volume flushes, 10 skipped as redundant (one was already in flight)

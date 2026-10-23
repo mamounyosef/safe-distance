@@ -1,0 +1,208 @@
+experiment:
+  name: stage1_lora
+  run_id: run001
+  notes: 'stage 1: BADAS-Open + LoRA, Nexar + clean BDD100K'
+task:
+  type: binary
+  targets:
+  - crash_risk
+  num_classes: null
+metrics:
+  monitor: ap_crash_vs_all_normal
+  mode: max
+  threshold: 0.5
+  top_k:
+  - 3
+  qwk: false
+paths:
+  data_dir: data
+reproducibility:
+  seed: 42
+  deterministic: false
+dataloader:
+  batch_size: 8
+  accum_steps: 4
+  num_workers: 8
+  val_batch_size: 16
+  val_num_workers: null
+  pin_memory: true
+  persistent_workers: false
+  prefetch_factor: 2
+  drop_last: true
+training:
+  device: auto
+  epochs: 10
+  amp: true
+  amp_dtype: bfloat16
+  channels_last: false
+  grad_clip: 3.0
+  grad_clip_floor: 0.0
+  grad_checkpointing: false
+  backbone_chunk: 0
+  tf32: true
+  compile: false
+  compile_mode: default
+  lp_ft_epochs: 0
+  stop_after_steps: 0
+  loss:
+    name: bce
+    pos_weight: null
+    class_weight: null
+    label_smoothing: 0.0
+    focal_gamma: 2.0
+    aucm_margin: 1.0
+    aucm_bce_mix: 0.1
+    huber_delta: 1.0
+  optimizer:
+    name: adamw
+    lr: 4.0e-05
+    head_lr: null
+    backbone_lr_mult: 1.0
+    fresh_lr: null
+    layer_decay: null
+    weight_decay: 0.01
+    no_decay_bias_norm: true
+    betas:
+    - 0.9
+    - 0.999
+    momentum: 0.9
+    nesterov: true
+    eight_bit: false
+  scheduler:
+    name: cosine
+    warmup_frac: 0.05
+    min_lr_mult: 0.01
+    schedule_epochs: null
+    milestones: []
+    gamma: 0.1
+  early_stopping:
+    enable: true
+    patience: 5
+    reset_tag: null
+  ema:
+    enable: false
+    decay: 0.999
+    warmup: true
+    eval: true
+  sam:
+    enable: false
+    rho: 0.05
+    adaptive: false
+  extend:
+    enable: false
+    epochs: 5
+    lr: null
+    warmup_frac: 0.02
+    min_lr_mult: null
+    reset_optimizer: false
+    reset_patience: true
+evaluation:
+  enable: true
+  eval_every_epochs: 1
+  eval_every_steps: 0
+  eval_steps_schedule: []
+  validate_before_training: true
+  validate_on_resume: false
+logging:
+  unit: window
+  sub_unit: null
+  sub_units_per_sample: 1
+  console_log_every: 20
+  diagnostics_every: 50
+  flops_probe: true
+  print:
+    config: true
+    raw_config: true
+    environment: true
+    data: true
+    model: true
+    lr_groups: true
+    step_line: true
+    throughput: true
+    compute: true
+    ud_ratio: true
+    scale_probe: true
+    warmup: true
+    per_target_eval: true
+    final_summary: true
+    clip_warning: true
+  wandb:
+    enabled: false
+    project: null
+output:
+  run_dir: results
+  checkpoints_dir: checkpoints
+  best_name: best.pt
+  train_log_csv: train_log.csv
+  val_log_csv: val_log.csv
+  summary_json: training_summary.json
+  console_capture_dir: train_config
+  debug_dir: debug
+  predictions_dir: predictions
+  save_predictions: true
+  checkpoint_every_steps: 148
+  keep_last_n: 10
+  keep_top_k: 3
+  top_k_weights_only: true
+  async_checkpoints: true
+  commit_every_steps: 25
+  make_plots: false
+  plots_dir: plots
+  upload_checkpoints: null
+modal:
+  gpu: A100-80GB
+  timeout_hours: 12
+  cpu: 10
+  memory_gb: 48
+  scaledown_window: 2
+  python_version: '3.12'
+  pip:
+  - torch==2.6.0
+  - torchvision==0.21.0
+  - transformers==4.53.0
+  - peft==0.21.2
+  - huggingface_hub
+  - opencv-python-headless
+  - numpy
+  - pandas
+  - scikit-learn
+  - pyyaml
+  - matplotlib
+  - psutil
+  - nvidia-ml-py
+  - albumentations
+  extra_pip: []
+  apt:
+  - libgl1
+  - libglib2.0-0
+  runs_volume: safe-distance-runs
+  runs_mount: /runs
+  data_volume: safe-distance-data
+  data_mount: /data
+  ship_data_dir: false
+  data_ignore:
+  - '**/*.pt'
+  - '**/*.npz'
+  - '**/*.parquet'
+  - raw
+  - shards
+  - images
+  path_remap: {}
+  secrets: []
+  sync_checkpoints: false
+resume: last
+resume_force: false
+resume_guard:
+- model.name
+- training.epochs
+- training.optimizer.lr
+- training.optimizer.backbone_lr_mult
+- training.optimizer.layer_decay
+- training.optimizer.weight_decay
+- training.scheduler.name
+- training.grad_clip
+- task.type
+- task.targets
+model:
+  name: BADAS-Open + LoRA r16
+  pretrained: nexar-ai/BADAS-Open
