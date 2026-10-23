@@ -198,11 +198,18 @@ def score_remote() -> dict:
             source = path.name
 
         # score every window (no gradients, bf16 like training's validation)
+        print(f"\n  ▶️  step {step}: scoring {len(val)} windows with {source} (batch {BATCH_SIZE})", flush=True)
         torch.cuda.reset_peak_memory_stats()
-        t0, logits = time.time(), []
+        t0, logits, done = time.time(), [], 0
         with torch.inference_mode(), torch.autocast("cuda", dtype=torch.bfloat16):
-            for x, _, _ in loader:
+            for b, (x, _, _) in enumerate(loader, 1):
                 logits.append(model(S.prepare(x, device, None)).float().cpu())
+                done += len(x)
+                if b % 5 == 0 or b == len(loader):            # a progress line every 5 batches
+                    el = time.time() - t0
+                    print(f"     batch {b}/{len(loader)} | {done}/{len(val)} windows | {done / el:.1f}/s | "
+                          f"elapsed {el:.0f} s | left about {(len(val) - done) / max(done / el, 1e-9):.0f} s | "
+                          f"GPU memory peak {torch.cuda.max_memory_allocated() / 1e9:.1f} GB", flush=True)
         secs = time.time() - t0
         z = torch.cat(logits).numpy()[:, 0]
         risk = 1.0 / (1.0 + np.exp(-z))                # sigmoid: the risk 0..1
