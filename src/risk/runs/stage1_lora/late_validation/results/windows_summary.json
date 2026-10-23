@@ -1,0 +1,34 @@
+{
+  "total": 2559,
+  "per_case": {
+    "nexar_crash": 591,
+    "nexar_normal": 666,
+    "bdd_hard": 868,
+    "bdd_normal": 434
+  },
+  "nexar_crash_per_group_and_window": {
+    "group0_win1": 142,
+    "group0_win2": 142,
+    "group1_win1": 115,
+    "group1_win2": 115,
+    "group2_win1": 77
+  },
+  "settings": {
+    "out": "windows.json",
+    "seed": 42,
+    "nexar_crash_back_frames": [
+      0,
+      4
+    ],
+    "nexar_crash_drop_second_for_groups": [
+      2
+    ],
+    "nexar_normal_back_frames": [
+      0,
+      32
+    ],
+    "bdd_hard_per_clip": 2,
+    "bdd_normal_per_clip": 1,
+    "bdd_min_gap_s": 2.0
+  }
+}

@@ -1,0 +1,33 @@
+# Late validation: re-score stage 1 checkpoints on a NEW, more varied validation set, after training.
+# Read by make_windows.py (this PC) and late_validate.py (Modal). The model and data settings themselves come from
+# ../config.yaml, so the model and its input are exactly what training used.
+
+windows:
+  out: windows.json                             # the window list (NOT in git: it holds Nexar test labels)
+  seed: 42                                      # fixes the random BDD normal moments (same windows every time)
+  nexar_crash_back_frames: [0, 4]               # crash windows end at the last frame and 0.5 s (4 frames) earlier
+  nexar_crash_drop_second_for_groups: [2]       # group 2 (clip stops 1.5 s before the crash): only the last-frame
+                                                # window (its 2nd would end 2.0 s before: in 73% of train clips the
+                                                # danger is not visible yet; nexar_alert_lead.json)
+  nexar_normal_back_frames: [0, 32]             # normal windows end at the last frame and 4 s (32 frames) earlier:
+                                                # no overlap between the two
+  bdd_hard_per_clip: 2                          # the 2 moments plain BADAS-Open found riskiest (as before)
+  bdd_normal_per_clip: 1                        # plus 1 random moment per clip (new)
+  bdd_min_gap_s: 2.0                            # every BDD window at least 2 s from the others of its clip (no shared video)
+
+scoring:
+  # Which checkpoints to score: 0 = plain BADAS-Open (no checkpoint); others are files in the runs volume under
+  # stage1_lora/results/checkpoints/ (top_step<N>.pt for the 3 best by the old validation, step<N>.pt rolling).
+  steps: [0, 900, 1000, 1036, 1100, 1200, 1300, 1332, 1400, 1480]
+  checkpoint_dir: /runs/stage1_lora/results/checkpoints
+  batch_size: 64                                # windows per GPU pass (no gradients, so far more fit than in
+                                                # training's 16). If it runs out of memory, lower it here by hand.
+  num_workers: 16                               # CPU processes reading windows in parallel
+  results_dir: /runs/stage1_lora/late_validation   # on the runs volume; copied home to results/ at the end
+
+modal:
+  gpu: H200                                     # the GPU type
+  gpu_price_s: 0.001261                         # its price per second ($4.54 per hour)
+  timeout_hours: 3                              # hard stop
+  cpu_cores: 20                                 # CPU cores ($0.0473 per core per hour)
+  memory_gb: 64                                 # memory ($0.008 per GB per hour)
