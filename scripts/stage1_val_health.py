@@ -25,6 +25,10 @@ RES = Path(__file__).resolve().parents[1] / "src/risk/runs/stage1_lora/results"
 KEYS = ["val_ap_crash_vs_all_normal", "val_nexar_official_map", "val_ap_crash_vs_bdd_hard", "val_macro_auroc",
         "val_logloss", "val_calibration_error", "val_mean_risk_nexar_crash", "val_mean_risk_nexar_normal",
         "val_mean_risk_bdd_hard"]
+# Crash windows only: how many are caught (risk above a threshold), overall and per Nexar group (seconds before crash)
+CRASH_KEYS = (["val_crash_caught_pct_at_0.5", "val_crash_caught_pct_at_0.8", "val_crash_caught_pct_at_0.9"]
+              + [f"val_group_{g}s_{m}" for g in ("0.5", "1.0", "1.5")
+                 for m in ("mean_risk_crash", "crash_caught_pct_at_0.9", "official_ap_crash_vs_nexar_normal")])
 
 
 def recompute(npz: Path) -> dict:
@@ -46,7 +50,8 @@ def main() -> None:
     for _, v in val.iterrows():
         s = int(v.step)
         seg = train[(train.global_step > prev) & (train.global_step <= s)]
-        row = {"run": v.run_id, "epoch": int(v.epoch), "step": s, **{k[4:]: round(float(v[k]), 4) for k in KEYS}}
+        row = {"run": v.run_id, "epoch": int(v.epoch), "step": s, **{k[4:]: round(float(v[k]), 4) for k in KEYS},
+               **{k[4:]: round(float(v[k]), 3) for k in CRASH_KEYS}}
         if len(seg):
             row.update(train_loss=round(float(seg.loss.mean()), 4), gnorm=round(float(seg.gnorm.median()), 2),
                        clip_pct=round(float(seg.clip_pct.mean()), 1), lr=float(seg.lr.iloc[-1]))
@@ -69,6 +74,8 @@ def main() -> None:
             "ap_crash_vs_bdd_hard", "logloss", "calibration_error", "mean_risk_nexar_crash",
             "mean_risk_nexar_normal", "mean_risk_bdd_hard", "train_loss", "gnorm", "clip_pct", "lr"]
     print(pd.DataFrame(rows).reindex(columns=cols).to_string(index=False))
+    print("\nCRASH WINDOWS ONLY")
+    print(pd.DataFrame(rows).reindex(columns=["step"] + [k[4:] for k in CRASH_KEYS]).to_string(index=False))
     print("npz keys:", rows[-1].get("npz_keys"))
     print("after last val:", tail, "| last train step:", report["last_train_step"])
 
