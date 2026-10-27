@@ -13,5 +13,14 @@
     "frame_w": 960,
     "frame_h": 540,
     "data_dir": "C:/safe-distance-data/nexar/visible_labels"
+  },
+  "batch3": {
+    "windows": 50,
+    "a": 12,
+    "b": 12,
+    "c": 16,
+    "decoys": 10,
+    "seed": 43,
+    "policy": "one window per clip, last frame"
   }
 }

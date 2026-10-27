@@ -39,7 +39,9 @@ PORT = CFG["web"]["port"]
 KEYS = {"1": "no", "2": "yes", "3": "unsure"}      # 1 normal, 2 risk (alert), 3 unsure
 # ----------------
 
-ROWS = [it for it in json.loads((DATA / "set.json").read_text()) if it["batch"] == 1]   # batch 1, in its order
+import sys
+BATCH = int(sys.argv[1]) if len(sys.argv) > 1 else 1                     # which batch to label (default 1)
+ROWS = [it for it in json.loads((DATA / "set.json").read_text()) if it["batch"] == BATCH]   # in its order
 LOCK = threading.Lock()
 KEY = KEY_FILE.read_text().strip() if KEY_FILE.exists() else secrets.token_urlsafe(12)
 KEY_FILE.write_text(KEY)
