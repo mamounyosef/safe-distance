@@ -1,0 +1,94 @@
+{
+  "what": "visible-danger labels on late-validation crash windows ending 1.5 s before the crash; person vs Gemma 4 31B; stage 1 step 1000 catch rate where danger is visible",
+  "batch1_windows": 55,
+  "missing_labels": [],
+  "bad_examples": {
+    "w022": "blurry lights, bad footage (person, 2026-10-27)"
+  },
+  "agreement_all": {
+    "windows": 55,
+    "same_answer_pct": 43.6,
+    "cohens_kappa": 0.017,
+    "person_rows_vs_gemma_columns": {
+      "yes": {
+        "yes": 3,
+        "no": 25,
+        "unsure": 0
+      },
+      "no": {
+        "yes": 2,
+        "no": 21,
+        "unsure": 0
+      },
+      "unsure": {
+        "yes": 0,
+        "no": 4,
+        "unsure": 0
+      }
+    }
+  },
+  "agreement_without_bad": {
+    "windows": 54,
+    "same_answer_pct": 44.4,
+    "cohens_kappa": 0.021,
+    "person_rows_vs_gemma_columns": {
+      "yes": {
+        "yes": 3,
+        "no": 24,
+        "unsure": 0
+      },
+      "no": {
+        "yes": 2,
+        "no": 21,
+        "unsure": 0
+      },
+      "unsure": {
+        "yes": 0,
+        "no": 4,
+        "unsure": 0
+      }
+    }
+  },
+  "answers_vs_truth": {
+    "person": {
+      "crash": {
+        "yes": 27,
+        "no": 10,
+        "unsure": 3
+      },
+      "decoy": {
+        "no": 13,
+        "yes": 1,
+        "unsure": 1
+      }
+    },
+    "gemma": {
+      "crash": {
+        "no": 35,
+        "yes": 5
+      },
+      "decoy": {
+        "no": 15
+      }
+    }
+  },
+  "crash_windows_used": 40,
+  "visible_by_person": 27,
+  "visible_share_pct": 67.5,
+  "visible_share_estimate_from_train_alerts_pct": 47.1,
+  "model_step": 1000,
+  "caught": {
+    "0.5": {
+      "all_crash_windows_pct": 70.0,
+      "visible_by_person_pct": 77.8
+    },
+    "0.8": {
+      "all_crash_windows_pct": 47.5,
+      "visible_by_person_pct": 59.3
+    },
+    "0.9": {
+      "all_crash_windows_pct": 42.5,
+      "visible_by_person_pct": 51.9
+    }
+  }
+}
