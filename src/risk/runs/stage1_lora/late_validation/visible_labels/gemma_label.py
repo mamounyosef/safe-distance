@@ -50,7 +50,19 @@ def keys() -> list[str]:
             found.append(os.environ[name])
     if not found:
         raise SystemExit(f"no API key: set {base} (and {base}_2 for a second worker)")
-    return found
+    # keep only the keys that can use the model now (an account without credit answers 402)
+    working = []
+    for k, key in enumerate(found, 1):
+        try:
+            Client(host=G["host"], headers={"Authorization": "Bearer " + key}).chat(
+                model=G["model"], messages=[{"role": "user", "content": "Reply with the single word: ok"}])
+            working.append(key)
+            print(f"  key {k}: works")
+        except Exception as e:
+            print(f"  key {k}: not used ({getattr(e, 'status_code', '')} {str(e)[:60]})")
+    if not working:
+        raise SystemExit("no key can use the model now")
+    return working
 
 
 def load() -> dict:
@@ -77,8 +89,11 @@ def label_one(client: Client, worker: int, it: dict) -> None:
                     messages=[{"role": "system", "content": CFG["system_prompt"]},
                               {"role": "user", "content": CFG["user_prompt"], "images": frames}])
     secs = time.time() - t0
+    text = r.message.content.strip()
+    if text.startswith("```"):                               # Gemma sometimes wraps the JSON in a ```json block
+        text = text.strip("`").removeprefix("json").strip()
     try:
-        ans = json.loads(r.message.content)
+        ans = json.loads(text)
     except json.JSONDecodeError:
         ans = {"label": None, "parse_error": r.message.content[:500]}
     row = {**ans, "thinking": r.message.thinking, "secs": round(secs, 1), "worker": worker,
