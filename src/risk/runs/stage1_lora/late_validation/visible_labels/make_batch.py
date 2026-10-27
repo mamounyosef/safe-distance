@@ -34,8 +34,12 @@ def main() -> None:
     if any(it["batch"] == a.batch for it in items):
         raise SystemExit(f"batch {a.batch} already exists in set.json")
     labelled = set(json.loads((M.DATA / "human_labels.json").read_text())) if (M.DATA / "human_labels.json").exists() else set()
-    taken = {(it["clip"], it["end_back"]) for it in items if it["batch"] != 2 or it["name"] in labelled}
+    # never reuse a clip the person has already seen: any window of it in a batch, or in the review video
+    review = M.Path.home() / "Downloads/safe-distance-testing/late_validation/review_step1000.json"
     used_clips = {it["clip"] for it in items if it["batch"] != 2 or it["name"] in labelled}
+    if review.exists():
+        used_clips |= {x["clip"] for x in json.loads(review.read_text())}
+    taken = {(c, 0) for c in used_clips}
 
     wins = json.loads((M.LV / "windows.json").read_text())
     new = []

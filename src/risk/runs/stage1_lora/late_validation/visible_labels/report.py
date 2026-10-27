@@ -91,10 +91,21 @@ def main() -> None:
               "visible_share_pct": round(100 * len(visible) / len(crash), 1) if crash else None,
               "visible_share_estimate_from_train_alerts_pct": 47.1,
               "model_step": STEP, "caught": caught}
+    # --- not blind: the clip was already shown before this window, in the review video (risk and crash/normal on
+    #     screen) or in an earlier batch (another window of the same clip) -> left out of the last-frame numbers ---
+    review = Path.home() / "Downloads/safe-distance-testing/late_validation/review_step1000.json"
+    review_clips = {x["clip"] for x in json.loads(review.read_text())} if review.exists() else set()
+    first_batch = {}
+    for it in sorted(items.values(), key=lambda x: (x["batch"] if x["batch"] != 2 else 99, x["name"])):
+        if it["name"] in human:
+            first_batch.setdefault(it["clip"], it["batch"])
+    not_blind = sorted(n for n, it in items.items() if n in human and
+                       (it["clip"] in review_clips or first_batch.get(it["clip"]) != it["batch"]))
+
     # --- one window per clip (last frame only, Nexar's own setup): every labelled last-frame window, all batches ---
     last = []
     for name, it in items.items():
-        if name not in human or it["end_back"] != 0 or name in BAD_EXAMPLES:
+        if name not in human or it["end_back"] != 0 or name in BAD_EXAMPLES or name in not_blind:
             continue
         r = None
         if it["kind"] == "crash":
@@ -114,7 +125,7 @@ def main() -> None:
             **{f"caught_visible_pct_at_{t}": round(100 * np.mean([r["risk"] > t for r in vis]), 1) if vis else None
                for t in THRESHOLDS}}
     decoys = [r for r in last if r["truth"] == "decoy"]
-    report["last_frame_policy"] = {"per_timing": per_timing,
+    report["last_frame_policy"] = {"per_timing": per_timing, "not_blind_left_out": not_blind,
                                    "decoys_labelled": len(decoys),
                                    "decoys_person": dict(Counter(r["person"] for r in decoys))}
     (HERE / "results" / "report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
