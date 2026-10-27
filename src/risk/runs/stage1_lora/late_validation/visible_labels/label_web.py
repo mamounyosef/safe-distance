@@ -106,7 +106,7 @@ class Handler(BaseHTTPRequestHandler):
         elif u.path == "/api/next":
             self._json({"i": next_unlabelled(int(q.get("after", ["-1"])[0]))})
         elif re.fullmatch(r"/clips/w\d{3}\.mp4", u.path):
-            self._video(DATA / "clips" / u.path.split("/")[-1])
+            self._video(DATA / "clips8" / u.path.split("/")[-1])   # the 16 frames at 8 fps (what the model sees)
         else:
             self._ok(b"not found", "text/plain", 404)
 

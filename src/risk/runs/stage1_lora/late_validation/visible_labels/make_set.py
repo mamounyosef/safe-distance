@@ -9,7 +9,7 @@ frame names says crash or normal.
 For each window, from the original Nexar video (exactly the 16 frames the model saw: cache frame i = video frame
 round(i x fps / 8)):
     frames/<name>/01.jpg ... 16.jpg   the 16 frames at 960 x 540, oldest first (what Gemma gets)
-    clips/<name>.mp4                  the same 2 s at full speed, 960 x 540, H.264 (what the person sees, looped)
+    clips8/<name>.mp4                 those same 16 frames at 8 per second (2 s), H.264 (what the person sees, looped)
 
 Outputs (NOT in git: the list says which windows are crashes):
     <data_dir>/set.json, <data_dir>/frames/, <data_dir>/clips/      (data_dir in config.yaml)
@@ -119,13 +119,14 @@ def cut(it: dict) -> dict:
             pos += 1
     cap.release()
 
-    clip = DATA / "clips" / f"{it['name']}.mp4"
+    # the page's clip = exactly those 16 frames at 8 per second (2 s): what the model and Gemma see, not 30 fps
+    clip = DATA / "clips8" / f"{it['name']}.mp4"
     if not clip.exists():
         clip.parent.mkdir(parents=True, exist_ok=True)
         tmp = clip.with_suffix(".part.mp4")
-        p = subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{idx[0] / fps:.3f}", "-i", str(src),
-                            "-t", f"{(idx[-1] + 1 - idx[0]) / fps:.3f}", "-vf", f"scale={W}:{H}", "-an",
-                            "-c:v", "libx264", "-crf", "22", "-pix_fmt", "yuv420p", "-movflags", "+faststart",
+        p = subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS_CACHE),
+                            "-i", str(fdir / "%02d.jpg"), "-an", "-c:v", "libx264", "-crf", "20",
+                            "-pix_fmt", "yuv420p", "-r", str(FPS_CACHE), "-movflags", "+faststart",
                             str(tmp)], capture_output=True, text=True)
         if p.returncode:
             raise SystemExit(f"ffmpeg failed on {src.name}: {p.stderr[-500:]}")
