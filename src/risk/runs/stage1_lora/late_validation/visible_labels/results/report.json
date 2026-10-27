@@ -3,7 +3,8 @@
   "batch1_windows": 55,
   "missing_labels": [],
   "bad_examples": {
-    "w022": "blurry lights, bad footage (person, 2026-10-27)"
+    "w022": "blurry lights, bad footage (person, 2026-10-27)",
+    "w253": "video upside down (person, 2026-10-27)"
   },
   "agreement_all": {
     "windows": 55,
@@ -89,6 +90,54 @@
     "0.9": {
       "all_crash_windows_pct": 42.5,
       "visible_by_person_pct": 51.9
+    }
+  },
+  "last_frame_policy": {
+    "per_timing": {
+      "0.5s": {
+        "labelled": 12,
+        "visible_yes": 11,
+        "not_visible_no": 1,
+        "unsure": 0,
+        "visible_pct": 91.7,
+        "caught_all_pct_at_0.5": 75.0,
+        "caught_all_pct_at_0.8": 66.7,
+        "caught_all_pct_at_0.9": 66.7,
+        "caught_visible_pct_at_0.5": 81.8,
+        "caught_visible_pct_at_0.8": 72.7,
+        "caught_visible_pct_at_0.9": 72.7
+      },
+      "1.0s": {
+        "labelled": 12,
+        "visible_yes": 11,
+        "not_visible_no": 1,
+        "unsure": 0,
+        "visible_pct": 91.7,
+        "caught_all_pct_at_0.5": 91.7,
+        "caught_all_pct_at_0.8": 83.3,
+        "caught_all_pct_at_0.9": 75.0,
+        "caught_visible_pct_at_0.5": 90.9,
+        "caught_visible_pct_at_0.8": 90.9,
+        "caught_visible_pct_at_0.9": 81.8
+      },
+      "1.5s": {
+        "labelled": 33,
+        "visible_yes": 26,
+        "not_visible_no": 7,
+        "unsure": 0,
+        "visible_pct": 78.8,
+        "caught_all_pct_at_0.5": 75.8,
+        "caught_all_pct_at_0.8": 51.5,
+        "caught_all_pct_at_0.9": 45.5,
+        "caught_visible_pct_at_0.5": 80.8,
+        "caught_visible_pct_at_0.8": 65.4,
+        "caught_visible_pct_at_0.9": 57.7
+      }
+    },
+    "decoys_labelled": 13,
+    "decoys_person": {
+      "no": 9,
+      "yes": 4
     }
   }
 }

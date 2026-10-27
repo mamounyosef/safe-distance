@@ -29,7 +29,9 @@ CFG = yaml.safe_load((HERE / "config.yaml").read_text(encoding="utf-8"))
 DATA = Path(CFG["set"]["data_dir"])
 STEP = 1000                                        # the chosen stage 1 checkpoint
 THRESHOLDS = (0.5, 0.8, 0.9)
-BAD_EXAMPLES = {"w022": "blurry lights, bad footage (person, 2026-10-27)"}
+BAD_EXAMPLES = {"w022": "blurry lights, bad footage (person, 2026-10-27)",
+                "w253": "video upside down (person, 2026-10-27)"}
+GROUP_S = {0: 0.5, 1: 1.0, 2: 1.5}                 # Nexar group -> clip stops this long before the crash
 ANSWERS = ("yes", "no", "unsure")
 
 
@@ -89,7 +91,40 @@ def main() -> None:
               "visible_share_pct": round(100 * len(visible) / len(crash), 1) if crash else None,
               "visible_share_estimate_from_train_alerts_pct": 47.1,
               "model_step": STEP, "caught": caught}
+    # --- one window per clip (last frame only, Nexar's own setup): every labelled last-frame window, all batches ---
+    last = []
+    for name, it in items.items():
+        if name not in human or it["end_back"] != 0 or name in BAD_EXAMPLES:
+            continue
+        r = None
+        if it["kind"] == "crash":
+            r = float(risk_of[f"nexar_crash|{it['clip']}|{it['end_cache_frame']}"])
+        last.append({"name": name, "truth": it["kind"], "group": it["nexar_group"], "person": human[name]["label"],
+                     "risk": r})
+    per_timing = {}
+    for g, sec in GROUP_S.items():
+        rs = [r for r in last if r["truth"] == "crash" and r["group"] == g]
+        vis = [r for r in rs if r["person"] == "yes"]
+        per_timing[f"{sec}s"] = {
+            "labelled": len(rs), "visible_yes": len(vis), "not_visible_no": sum(r["person"] == "no" for r in rs),
+            "unsure": sum(r["person"] == "unsure" for r in rs),
+            "visible_pct": round(100 * len(vis) / len(rs), 1) if rs else None,
+            **{f"caught_all_pct_at_{t}": round(100 * np.mean([r["risk"] > t for r in rs]), 1) if rs else None
+               for t in THRESHOLDS},
+            **{f"caught_visible_pct_at_{t}": round(100 * np.mean([r["risk"] > t for r in vis]), 1) if vis else None
+               for t in THRESHOLDS}}
+    decoys = [r for r in last if r["truth"] == "decoy"]
+    report["last_frame_policy"] = {"per_timing": per_timing,
+                                   "decoys_labelled": len(decoys),
+                                   "decoys_person": dict(Counter(r["person"] for r in decoys))}
     (HERE / "results" / "report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    print("\nONE WINDOW PER CLIP (last frame), all batches, bad examples left out:")
+    for k, v in per_timing.items():
+        print(f"  {k}: labelled {v['labelled']}, visible {v['visible_yes']} ({v['visible_pct']}%), "
+              f"no {v['not_visible_no']}, unsure {v['unsure']} | caught at 0.5/0.8/0.9: all "
+              f"{v['caught_all_pct_at_0.5']}/{v['caught_all_pct_at_0.8']}/{v['caught_all_pct_at_0.9']}%, visible "
+              f"{v['caught_visible_pct_at_0.5']}/{v['caught_visible_pct_at_0.8']}/{v['caught_visible_pct_at_0.9']}%")
+    print(f"  decoys: {len(decoys)} labelled, person: {report['last_frame_policy']['decoys_person']}")
 
     print(f"batch 1: {len(rows)} windows, missing labels: {missing or 'none'}")
     for k in ("agreement_all", "agreement_without_bad"):
