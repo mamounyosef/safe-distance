@@ -1,0 +1,17 @@
+{
+  "windows": 207,
+  "batch1": 55,
+  "batch1_crash": 40,
+  "batch1_decoys": 15,
+  "batch2_crash": 152,
+  "crash_windows_total": 192,
+  "settings": {
+    "seed": 42,
+    "timing_s": 1.5,
+    "first_batch_crash": 40,
+    "first_batch_decoys": 15,
+    "frame_w": 960,
+    "frame_h": 540,
+    "data_dir": "C:/safe-distance-data/nexar/visible_labels"
+  }
+}

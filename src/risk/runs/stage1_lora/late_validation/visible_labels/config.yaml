@@ -1,0 +1,40 @@
+# Visible-danger labelling of the late-validation crash windows that end 1.5 s before the crash.
+# Question (for the person and for Gemma): should a warning system alert the driver now?
+# Used ONLY for an extra "caught when visible" number; the official scores never change. Never for training.
+
+set:
+  seed: 42                                    # fixes the random order and the decoys
+  timing_s: 1.5                               # crash windows ending this long before the crash (192 of them)
+  first_batch_crash: 40                       # crash windows in the first batch (labelled by the person AND Gemma)
+  first_batch_decoys: 15                      # Nexar normal windows mixed in (nobody knows which windows are crashes)
+  frame_w: 960                                # frame size sent to Gemma and shown on the page (16:9)
+  frame_h: 540
+  data_dir: C:/safe-distance-data/nexar/visible_labels   # clips, cut windows and frames (outside the repo)
+
+gemma:
+  host: https://ollama.com                    # Ollama Cloud
+  model: gemma4:31b                           # Gemma 4 31B on Ollama Cloud
+  think: true                                 # reasoning on (returned separately as "thinking")
+  temperature: 0                              # the same answer for the same window
+  api_key_env: OLLAMA_API_KEY                 # read from this environment variable only (never stored)
+
+web:
+  port: 8766
+
+system_prompt: |
+  You are an expert driving-safety reviewer labelling dashcam footage for a forward collision warning system.
+
+  You will see 16 frames from a camera mounted behind the windshield of OUR car, looking forward. They are in time order, oldest first, 0.125 s apart: 2 seconds of video. The video stops at the last frame. You do not know what happens after it.
+
+  Your task: decide whether, judging only from what is visible up to the last frame, a warning system should alert our driver now. Alert means: a situation is already developing in which OUR car is likely to collide with something (a vehicle, pedestrian, cyclist, animal or object) within the next few seconds, unless someone brakes or steers, so a careful, attentive driver would already be reacting.
+
+  Answer:
+  - "yes": a concrete danger to OUR car is visible (for example, a vehicle cutting into our path, a sudden braking ahead with a closing gap, a pedestrian or cyclist moving into our path, our car drifting toward an obstacle).
+  - "no": normal driving, even if busy: traffic at a safe gap, parked cars, oncoming traffic in its own lane, road users that are not on a path toward our car.
+  - "unsure": something could be developing but it is not clear from these frames.
+
+  Rules: judge only danger involving OUR car. Do not guess from camera quality, weather, night, overlays or watermarks. Some windows show normal driving and some do not; do not assume either.
+
+  Return JSON only: {"label": "yes" | "no" | "unsure", "first_visible_frame": the 1-16 frame where the danger first becomes visible, or null, "what": a few words (for example "white SUV cutting in from the left"), "reason": one or two sentences}.
+
+user_prompt: "These are the 16 frames, oldest first, 0.125 s apart. Should a warning system alert our driver now?"
