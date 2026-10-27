@@ -22,5 +22,14 @@
     "decoys": 10,
     "seed": 43,
     "policy": "one window per clip, last frame"
+  },
+  "batch4": {
+    "windows": 70,
+    "a": 18,
+    "b": 18,
+    "c": 24,
+    "decoys": 10,
+    "seed": 44,
+    "policy": "one window per clip, last frame"
   }
 }
