@@ -40,6 +40,7 @@ SCHEMA = {"type": "object",
 # ----------------
 
 LOCK = threading.Lock()
+PROGRESS = {"done": 0, "total": 0, "t0": 0.0}      # windows finished in this run (for the progress lines)
 
 
 def keys() -> list[str]:
@@ -100,7 +101,11 @@ def label_one(client: Client, worker: int, it: dict) -> None:
            "prompt_tokens": r.prompt_eval_count, "output_tokens": r.eval_count,
            "model": G["model"], "think": G["think"], "at": time.strftime("%Y-%m-%d %H:%M:%S")}
     save_one(it["name"], row)
-    print(f"  {it['name']}  worker {worker}  {secs:5.1f} s  label {ans.get('label')!s:7s} "
+    with LOCK:
+        PROGRESS["done"] += 1
+        n, tot, el = PROGRESS["done"], PROGRESS["total"], time.time() - PROGRESS["t0"]
+    print(f"  [{n}/{tot}  elapsed {el / 60:4.1f} min  left about {el / n * (tot - n) / 60:4.1f} min]  "
+          f"{it['name']}  worker {worker}  {secs:5.1f} s  label {ans.get('label')!s:7s} "
           f"tokens in {r.prompt_eval_count} out {r.eval_count}  | {ans.get('what', '')[:60]}", flush=True)
 
 
@@ -134,6 +139,7 @@ def main() -> None:
     print(f"{len(todo)} windows to do (batch {a.batch}), {len(ks)} API key(s) in parallel, model {G['model']}, "
           f"thinking {G['think']}")
     t0 = time.time()
+    PROGRESS.update(total=len(todo), t0=t0)
     with ThreadPoolExecutor(len(ks)) as pool:
         for w, k in enumerate(ks, 1):
             pool.submit(worker_loop, w, k, todo[w - 1::len(ks)])   # each key takes every other window
