@@ -95,43 +95,43 @@
   "last_frame_policy": {
     "per_timing": {
       "0.5s": {
-        "labelled": 22,
-        "visible_yes": 19,
+        "labelled": 30,
+        "visible_yes": 27,
         "not_visible_no": 3,
         "unsure": 0,
-        "visible_pct": 86.4,
-        "caught_all_pct_at_0.5": 77.3,
-        "caught_all_pct_at_0.8": 72.7,
-        "caught_all_pct_at_0.9": 68.2,
-        "caught_visible_pct_at_0.5": 89.5,
-        "caught_visible_pct_at_0.8": 84.2,
-        "caught_visible_pct_at_0.9": 78.9
+        "visible_pct": 90.0,
+        "caught_all_pct_at_0.5": 83.3,
+        "caught_all_pct_at_0.8": 80.0,
+        "caught_all_pct_at_0.9": 70.0,
+        "caught_visible_pct_at_0.5": 92.6,
+        "caught_visible_pct_at_0.8": 88.9,
+        "caught_visible_pct_at_0.9": 77.8
       },
       "1.0s": {
-        "labelled": 14,
-        "visible_yes": 12,
-        "not_visible_no": 2,
+        "labelled": 21,
+        "visible_yes": 18,
+        "not_visible_no": 3,
         "unsure": 0,
         "visible_pct": 85.7,
         "caught_all_pct_at_0.5": 85.7,
-        "caught_all_pct_at_0.8": 78.6,
-        "caught_all_pct_at_0.9": 64.3,
-        "caught_visible_pct_at_0.5": 91.7,
-        "caught_visible_pct_at_0.8": 91.7,
-        "caught_visible_pct_at_0.9": 75.0
+        "caught_all_pct_at_0.8": 76.2,
+        "caught_all_pct_at_0.9": 61.9,
+        "caught_visible_pct_at_0.5": 94.4,
+        "caught_visible_pct_at_0.8": 88.9,
+        "caught_visible_pct_at_0.9": 72.2
       },
       "1.5s": {
-        "labelled": 46,
-        "visible_yes": 35,
-        "not_visible_no": 6,
-        "unsure": 5,
-        "visible_pct": 76.1,
-        "caught_all_pct_at_0.5": 84.8,
-        "caught_all_pct_at_0.8": 60.9,
-        "caught_all_pct_at_0.9": 45.7,
-        "caught_visible_pct_at_0.5": 85.7,
-        "caught_visible_pct_at_0.8": 68.6,
-        "caught_visible_pct_at_0.9": 54.3
+        "labelled": 53,
+        "visible_yes": 40,
+        "not_visible_no": 7,
+        "unsure": 6,
+        "visible_pct": 75.5,
+        "caught_all_pct_at_0.5": 79.2,
+        "caught_all_pct_at_0.8": 58.5,
+        "caught_all_pct_at_0.9": 41.5,
+        "caught_visible_pct_at_0.5": 82.5,
+        "caught_visible_pct_at_0.8": 67.5,
+        "caught_visible_pct_at_0.9": 50.0
       }
     },
     "not_blind_left_out": [
@@ -148,12 +148,14 @@
       "w264",
       "w280",
       "w286",
-      "w294"
+      "w294",
+      "w313"
     ],
-    "decoys_labelled": 17,
+    "decoys_labelled": 21,
     "decoys_person": {
-      "no": 13,
-      "yes": 4
+      "no": 15,
+      "yes": 5,
+      "unsure": 1
     }
   }
 }
